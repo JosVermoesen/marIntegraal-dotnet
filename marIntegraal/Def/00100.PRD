@@ -1,0 +1,7 @@
+Adreslijst klanten met telefoon en fax
+1   A100   001 035 T Naam
+1   A104   037 030 T Straat
+@01 A107   068 007 T PC
+@02 A108   076 024 T Woonplaats
+A   A10A   102 012 T Telefoon
+A   vs02   116 012 T Fax/Telexnummer

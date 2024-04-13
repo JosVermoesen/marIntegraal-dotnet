@@ -1,0 +1,26 @@
+"7   v033  ","Dokumentnummer","A",11
+"7   v034  ","Partijkodenummer","A",13
+"9   v035  ","Dokumentdatum","A",8
+"9   v036  ","Vervaldatum","A",8
+"3   v037  ","Reeds betaald","D",10
+"7   v038  ","Betalingsstuk","A",8
+"7   v039  ","Gestructureerde Betalingsreferte","A",12
+"5   vs03  ","ISO MuntKode","A",3
+"3   v249  ","Totaal document","D",10
+"3   v040  ","Dagkoers van de Munt","D",15
+"5   v041  ","Bewerkingsvlag dokument","A",1
+"3   v042  ","Vak 55 BTW invoer EU","D",10
+"3   v043  ","Vak 56 BTW medekontraktant","D",10
+"3   v044  ","Vak 57 invoer verlegging heffing","D",10
+"3   v045  ","Vak 59(63) Aftrekbare BTW","D",10
+"3   v046  ","Vak 81 Handelsgoed, grond/hulpstof","D",10
+"3   v047  ","Vak 82 Aankoop diversen(kost)","D",10
+"3   v048  ","Vak 83 Investeringen","D",10
+"3   v049  ","Schulden via derden, andere dan 81-83","D",10
+"3   v050  ","Vak 84 Creditnota's EU aankopen","D",10
+"3   v051  ","Vak 85 Creditnota's andere dan EU","D",10
+"3   v052  ","Vak 86 Aankopen EU (aftrek CN's)","D",10
+"3   v053  ","Vak 87 Aankoop medekontraktant","D",10
+"3   v054  ","Vak 88 Aankoop andere dan 86/87","D",10
+"    v245  ","Gebruikernummer","A",1
+"    v246  ","SysteemDatum en tijd bewerking","A",12

@@ -1,0 +1,8 @@
+Kia Belgium
+7   v102 - 001 013 T 13;'Artikelcode
+2   v105   031 040 T 30;'Omschrijving
+3   v112   068 015 T 10;'Verkoopprijs
+7   v116 * 088 007 T =604000;kostenrek.
+7   v117 * 096 007 T =704000;opbrengstrek;
+7   v124   112 012 T =001000;'leverancier
+7   v104   001 020 T 20;Produktkode leverancier

@@ -1,0 +1,21 @@
+"&LCOA010 *","BVVO nr. maatschappij","N",4
+"7   A000 *","Polisnummer","A",12
+"&K  A110 *","Klantkode","A",12
+"    vs99 *","Waarborgen","A",30
+"    vs98  ","Detail risico","A",30
+"    v164 *","Laatste Vervalmaand","A",2
+"    v165 *","Laatste Vervaldag","A",2
+"    AW_2 *","Einddatum (EEJJMMDD)","A",8
+"914 A325 *","Splitsing","A",1
+"915 A600  ","Inning","N",1
+"001 vs97 *","Aktiekode","A",1
+"    B010  ","Totaal premie (+)","D",10
+"    B014  ","Commercialisatiekost (+)","D",10
+"976 v166  ","Indexkode","N",1
+"897 v223  ","Takgroep '98","A",3
+"005 vs96 *","Takgroep oud (VSOFT)","N",2
+"    e069  ","Beheersvergoeding","N",10
+"919 e070  ","Fee actief?","A",12
+"    e071  ","Fee %-age","N",8
+"    e072  ","Fee Bedrag EUR","A",12
+"    v167 -","sorteersleutel","A",30

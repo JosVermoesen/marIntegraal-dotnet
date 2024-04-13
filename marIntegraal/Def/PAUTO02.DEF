@@ -1,0 +1,78 @@
+"--0--","    A10X","Andere polis bij de mij","A",12,71
+"--*-*","    A101","VERZ.NEMER Voornaam","A",15,83
+"--*-*"," 98 A102","VERZ.NEMER Code aanspreektitel ","N",1,98
+"--*-*","    A103","VERZ.NEMER (of!!) omschrijving aanspreektitel","A",17,99
+"--0-*","    A104","VERZ.NEMER Straat","A",30,116
+"--*-*","    A105","VERZ.NEMER Huisnummer","A",5,146
+"--*-*","    A106","VERZ.NEMER Busnummer","A",4,151
+"*-*-*","    A107","VERZ.NEMER Postkode","A",7,155
+"--0-*","    A108","VERZ.NEMER Gemeente","A",24,162
+"--0-*"," 94 A109","VERZ.NEMER Landkode","A",3,186
+"--*-*","    A10A","VERZ.NEMER Telefoonnummer","N",9,189
+"--*-*"," 97 A10C","VERZ.NEMER Taalkode","N",1,198
+"*-*-*","    A120","VERZ.NEMER Geboortedat. (DDMMJJJJ)","N",8,199
+"--*-*"," 94 A121","VERZ.NEMER Kode nationaliteit","A",3,207
+"--*-*","    A122","VERZ.NEMER of !! Omschr. Nationaliteit","A",12,210
+"--*-*"," 95 A123","VERZ.NEMER Burgerlijke stand","N",1,222
+"--*-*"," 99 A124","VERZ.NEMER Kode geslacht","N",1,223
+"--*-*","    A161","VERZ.NEMER BTW nummer","N",9,224
+"--*-*","    A170","VERZ.NEMER Financiele rekening","N",12,233
+"--*-*"," 93 A192","VERZ.NEMER Type Rijbewijs","A",2,252
+"--*-*","    A193","VERZ.NEMER Datum Rijbewijs DDMMJJJJ","N",8,254
+"--*-*","    A194","VERZ.NEMER Bestuurder sedert DDMMJJJJ","N",8,262
+"--*-*"," 92 A197","VERZ.NEMER Risiko klasse","A",2,270
+"--0-*"," 19 510Z","VERZ.NEMER = gewoonlijke bestuurder ?","N",1,272
+"--*-*","    A191","VERZ.NEMER Rijbewijs nummer (xxxxxxxx)","A",8,273
+"****-"," 91 A130","VERZ.NEMER Fysiek of moreel persoon","N",1,491
+"****-"," 19 5V0B","VERZ.NEMER Overname andere mij","N",1,492
+"****-","    A700","VERZ.NEMER BVVO kode vorige mij","A",4,493
+"****-","    A701","VERZ.NEMER Polis nummer vorige mij","A",12,497
+"****-","    5310","VERZ.NEMER BM graad vorige mij","A",2,509
+"****-"," 29 5V0C","VERZ.NEMER Code schaal BM","N",1,511
+"****-"," 90 D243","VERZ.NEMER Code reden vernietiging","N",1,512
+"****-"," 89 5V03","VERZ.NEMER maatregel vorige mij opzegging","N",1,513
+"****-"," 88 5V0D","VERZ.NEMER Schorsing rijbewijs ?","N",1,514
+"****-","    5V0A","VERZ.NEMER Laatste jaar schorsing rijbewijs (JJJJ)","N",4,515
+"****-"," 19 5V0E","VERZ.NEMER Gerechtelijk onderzoek aan gang","N",1,519
+"****-","    5V02","VERZ.NEMER Aantal schades BA (laatste 5 jaar)","N",2,520
+"****-","    5V0F","VERZ.NEMER Aantal schades DIEFSTAL (5 jaar)","N",2,522
+"****-","    5V0G","VERZ.NEMER Aantal schades ANDERE (5 jaar)","N",2,524
+"****-","    5V0H","VERZ.NEMER Bedrag schades BA laatste 5 jaar","N",9,526
+"****-","    5V0I","VERZ.NEMER Bedrag schades DIEFSTAL (5 jaar)","N",9,535
+"****-","    5V0J","VERZ.NEMER Bedrag schades ANDERE laatste 5 jaar","N",9,544
+"--***","    5100","BESTUURDER Naam","A",35,291
+"--***","    5101","BESTUURDER Voornaam","A",15,326
+"--***","    5104","BESTUURDER Straat","A",30,341
+"--***","    5105","BESTUURDER Huisnummer","A",5,371
+"--***","    5106","BESTUURDER Busnummer","A",4,376
+"*-***","    5107","BESTUURDER Postkode","A",7,380
+"--***","    5108","BESTUURDER Gemeente","A",24,387
+"--***"," 94 5109","BESTUURDER Landkode","A",3,411
+"--***"," 97 5115","BESTUURDER Taalkode","N",1,414
+"*-***","    5120","BESTUURDER Geboortedat. (DDMMJJJJ)","N",8,415
+"--***"," 94 5121","BESTUURDER Kode nationaliteit","A",3,423
+"--***","    5122","BESTUURDER of !! Omschr. Nationaliteit","A",12,426
+"--***"," 95 5123","BESTUURDER Burgerlijke stand","N",1,438
+"--***"," 99 5124","BESTUURDER Kode geslacht","N",1,439
+"--*-*"," 93 5192","BESTUURDER Type Rijbewijs","A",2,447
+"--***","    5193","BESTUURDER Datum Rijbewijs DDMMJJJJ","N",8,449
+"--***","    5194","BESTUURDER Bestuurder sedert DDMMJJJJ","N",8,457
+"--***"," 92 5197","BESTUURDER Risiko klasse","A",2,465
+"--***","    5191","BESTUURDER Rijbewijs nummer (xxxxxxxx)","A",8,467
+"****-"," 91 A1301","BESTUURDER Fysiek of moreel persoon","N",1,571
+"****-"," 19 5V0B1","BESTUURDER Overname andere mij","N",1,572
+"****-","    A7001","BESTUURDER BVVO kode vorige mij","A",4,573
+"****-","    A7011","BESTUURDER Polis nummer vorige mij","A",12,577
+"****-","    53101","BESTUURDER BM graad vorige mij","A",2,589
+"****-"," 29 5V1C","BESTUURDER Code schaal BM","N",1,591
+"****-"," 90 D2431","BESTUURDER Code reden vernietiging","N",1,592
+"****-"," 89 5V13","BESTUURDER maatregel vorige mij opzegging","N",1,593
+"****-"," 88 5V1D","BESTUURDER Schorsing rijbewijs ?","N",1,594
+"****-","    5V1A","BESTUURDER Laatste jaar schorsing rijbewijs (JJJJ)","N",4,595
+"****-"," 19 5V1E","BESTUURDER Gerechtelijk onderzoek aan gang","N",1,599
+"****-","    5V12","BESTUURDER Aantal schades BA (laatste 5 jaar)","N",2,600
+"****-","    5V1F","BESTUURDER aantal schades DIEFSTAL (5 jaar)","N",2,602
+"****-","    5V1G","BESTUURDER Aantal schades ANDERE (5 jaar)","N",2,604
+"****-","    5V1H","BESTUURDER Bedrag schades BA laatste 5 jaar","N",9,606
+"****-","    5V1I","BESTUURDER Bedrag schades DIEFSTAL (5 jaar)","N",9,615
+"****-","    5V1J","BESTUURDER Bedrag schades ANDERE laatste 5 jaar","N",9,624

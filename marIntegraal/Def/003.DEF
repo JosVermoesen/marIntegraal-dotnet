@@ -1,0 +1,26 @@
+"O   v019 -","Uniek Rekeningnummer M.A.R.","N",7
+"2   v020","Naam Rekening","A",40
+"2   v021","Verdeelsleutel","A",50
+"020 v032","Budgetteringsvlag","A",1
+"    v216","Forfaitaire cumulator","A",2
+"5   v249 -","Muntkode hoogste boekjaar","A",3
+"3   e022 -","EUR hoogste boekjaar","D",9
+"3   e023 -","EUR boekjaar -1","D",9
+"3   e024","EUR boekjaar -2","D",9
+"3   e025","EUR boekjaar -3","D",9
+"3   e026","EUR boekjaar -4","D",9
+"3   e027","EUR boekjaar -5","D",9
+"3   e028","EUR boekjaar -6","D",9
+"3   e029","EUR boekjaar -7","D",9
+"3   e030","EUR boekjaar -8","D",9
+"3   e031","EUR boekjaar -9","D",9
+"3   v022 -","BEF hoogste boekjaar","N",9
+"3   v023 -","BEF boekjaar -1","N",9
+"3   v024","BEF boekjaar -2","N",9
+"3   v025","BEF boekjaar -3","N",9
+"3   v026","BEF boekjaar -4","N",9
+"3   v027","BEF boekjaar -5","N",9
+"3   v028","BEF boekjaar -6","N",9
+"3   v029","BEF boekjaar -7","N",9
+"3   v030","BEF boekjaar -8","N",9
+"3   v031","BEF boekjaar -9","N",9

@@ -1,0 +1,26 @@
+"919 v252","Kwijtingforfait","N",1
+"919 e070  ","Fee actief?","A",12
+"    e071  ","Fee %-age","N",8
+" 95 A123","Burgerlijke staat","N",1
+" 99 A124","Kode Geslacht","N",1
+" 94 A121","Kode nationaliteit","A",3
+"2   A122","     of omschrijving !","A",12
+"7   A191","Rijbewijs nummer (A8)","A",8
+" 93 A192","Type Rijbewijs","A",2
+"9   A193","Datum Rijbewijs DDMMEEJJ","N",8
+"9   A194","Bestuurder sedert DDMMEEJJ","N",8
+" 92 A197","Risiko klasse","A",2
+" 19 510Z","= gewoonlijke bestuurder ?","N",1
+" 91 A130","Fysiek of moreel persoon","N",1
+"9   A120","Geboortedatum (DDMMEEJJ)","N",8
+"    v201","Partner geboortedatum","N",8
+"    v202","Kind A geboortedatum","N",8
+"    v203","Kind B geboortedatum","N",8
+"    v204","Kind C geboortedatum","N",8
+"    v205","Kind D geboortedatum","N",8
+"    v206","Kind E geboortedatum","N",8
+"    v207","Voornaam Kind A","A",15
+"    v208","Voornaam Kind B","A",15
+"    v209","Voornaam Kind C","A",15
+"    v210","Voornaam Kind D","A",15
+"    v211","Voornaam Kind E","A",15

@@ -1,0 +1,230 @@
+"--*0*","    A000","Polisnummer","A",12,1
+"**00*","    A400","Producentnummer bij de maatschappij","A",8,13
+"--00*","    A100","Naam van de verzekeringsnemer","A",35,21
+"0000*","    A110","Referte van de producent","A",12,56
+"--00*","    A305","Aanvangsdatum (DDMMJJJ)","N",8,68
+"--**-","    A307","Aanvangsuur (UUMM)","N",4,76
+"---0*"," 10 EW00","Type van bijvoegsel","N",1,80
+"---**"," 11 EW01","Reden van de schorsing","N",2,81
+"--00*"," 12 EW05","Aard van het dokument","N",1,83
+"0000*"," 13 5200","Gebruik","N",2,84
+"--00*","    A320","Hoofdvervaldag (DDMM)","N",4,86
+"....*"," 14 A325","Splitsing","A",1,90
+"--***"," 15 A600","Inning","N",1,91
+"--***","    A040","Nummer samenhangende polis","A",12,92
+"--***"," 16 A04A","Reden samenhangendheid","A",1,104
+"--..-"," 17 A094","Gelijktijdige adreswijziging","N",1,105
+"--**-"," 18 EW10","Printrecord","N",1,106
+"-**--","    A070","Tariferingsreferte maatschappij","A",12,107
+"--*-*"," 19 5230","Deel van een vloot            ","N",1,119
+"--*-*","    5231","Referte vloot                 ","A",12,120
+"----*","    A001","Nummer bijvoegsel             ","A",2,132
+"----*","    5330","Aantal 1e betalingen B.A. nieuwe BM","N",2,134
+"0000-"," 20 500C","VOERTUIG Code beweging         ","N",1,161
+"0000*"," 21 5003","VOERTUIG Aard                  ","A",2,162
+"--00*","    500A","Merk                          ","A",19,164
+"--00*","    500B","Type                          ","A",25,183
+"--***","    5004","P.V.G. nummer                 ","N",6,208
+"0000*","    5002","Bouwjaar                      ","N",4,221
+"--***","    5020","Plaatnummer                   ","A",10,225
+"--00*","    5021","Onderstelnummer               ","A",20,235
+"*****","    5060","Datum eerste ingebruikstelling","N",8,255
+"0000*","    5011","Vermogen of cylinderinhoud    ","N",5,263
+"0000*"," 22 5010","Eenheid vermogen of cylinderinhoud","N",1,268
+"*****"," 23 5015","Brandstof                     ","N",1,269
+"....*","    5050","Zitplaatsen (- bestuurder) deflt=4","N",3,270
+"0000*","    5041","Maximale toegelaten massa (in kg)","N",5,273
+"*****","    5030","Cataloguswaarde (z/BTW)       ","N",8,278
+"*****","    5035","Waarde te verzekeren (z/BTW)  ","N",8,286
+"....*"," 19 5601","Cabriolet/afneembare kap ? deflt=2","N",1,294
+"....*"," 19 5602","Wagen met sportkenmerken ? deflt=2","N",1,295
+"*****"," 24 560A","Toebehoren kode 1             ","A",1,296
+"*****","    560G","Waarde toebehoren 1 (z/BTW)   ","N",8,297
+"*****"," 24 560B","Toebehoren kode 2             ","A",1,305
+"*****","    560H","Waarde toebehoren 2 (z/BTW)   ","N",8,306
+"*****"," 24 560C","Toebehoren kode 3             ","A",1,314
+"*****","    560I","Waarde toebehoren 3 (z/BTW)   ","N",8,315
+"*****"," 24 560D","Toebehoren kode 4             ","A",1,323
+"*****","    560J","Waarde toebehoren 4 (z/BTW)   ","N",8,324
+"*****"," 24 560E","Toebehoren kode 5             ","A",1,332
+"*****","    560K","Waarde toebehoren 5 (z/BTW)   ","N",8,333
+"*****"," 24 560F","Toebehoren kode 6             ","A",1,341
+"*****","    560L","Waarde toebehoren 6 (z/BTW)   ","N",8,342
+"0000-"," 20 550C1","Code beweging aanhangwagen 1","N",1,361
+"*****"," 25 55031","Aard aanhangwagen 1","A",2,362
+"*****"," 26 55011","Type aanhangwagen 1","N",1,364
+"--***","    55001","Merk aanhangwagen 1","A",12,365
+"--***","    55201","Plaatnummer aanhangwagen 1","A",10,377
+"*****","    55021","Bouwjaar aanhangwagen 1","N",4,387
+"--***","    55211","Onderstelnummer aanhangwagen 1","A",20,391
+"*****","    55411","MTM (in kg) aanhang 1","N",5,411
+"*****","    55301","Cataloguswaarde (z/BTW) aanhang 1","N",8,416
+"*****","    55351","Waarde te verzekeren (z/BTW) aanhang 1","N",8,424
+"*****"," 24 560A1","Code Toebehoren 1 aanhang 1","A",1,432
+"*****","    560G1","Waarde toebehoren 1 aanhang 1","N",8,433
+"*****"," 24 560B1","Code Toebehoren 2 aanhang 1","A",1,441
+"*****","    560H1","Waarde toebehoren 2 aanhang 1","N",8,442
+"*****"," 24 560C1","Code Toebehoren 3 aanhang 1","A",1,450
+"*****","    560I1","Waarde toebehoren 3 aanhang 1","N",8,451
+"0000-"," 20 550C2","Code beweging aanhangwagen 2","N",1,481
+"*****"," 25 55032","Aard aanhangwagen 2","A",2,482
+"*****"," 26 55012","Type aanhangwagen 2","N",1,484
+"--***","    55002","Merk aanhangwagen 2","A",12,485
+"--***","    55202","Plaatnummer aanhangwagen 2","A",10,497
+"*****","    55022","Bouwjaar aanhangwagen 2","N",4,507
+"--***","    55212","Onderstelnummer aanhangwagen 2","A",20,511
+"*****","    55412","MTM (in kg) aanhang 2","N",5,531
+"*****","    55302","Cataloguswaarde (z/BTW) aanhang 2","N",8,536
+"*****","    55352","Waarde te verzekeren (z/BTW) aanhang 2","N",8,544
+"*****"," 24 560A2","Code Toebehoren 1 aanhang 2","A",1,552
+"*****","    560G2","Waarde toebehoren 1 aanhang 2","N",8,553
+"*****"," 24 560B2","Code Toebehoren 2 aanhang 2","A",1,561
+"*****","    560H2","Waarde toebehoren 2 aanhang 2","N",8,562
+"*****"," 24 560C2","Code Toebehoren 3 aanhang 2","A",1,570
+"*****","    560I2","Waarde toebehoren 3 aanhang 2","N",8,571
+"0000*"," 27 P110","Waarborg B.A. Voertuig, aktiekode","N",1,601
+"*****","    P11A","Waarborg B.A. Voertuig, vrijstelling","N",8,602
+"*****"," 28 P11T","waarborg B.A. Voertuig, type vrijstelling","N",1,610
+"0000*"," 27 P120","Waarborg B.A. Aanhang, aktiekode","N",1,611
+"*****","    P12A","Waarborg B.A. Aanhang, vrijstelling","N",8,612
+"*****"," 28 P12T","Waarborg B.A. Aanhang, type vrijstelling","N",1,620
+"---**","    P102","Waarborg B.A. Einddatum (in jaren)","N",4,621
+"000**","    5315","B.A. Bonus-Malus graad","A",2,625
+"....*"," 29 530A","B.A. Kode schaal Bonus-Malus","N",1,627
+"*****","    P10V","B.A. Percentage vermindering commissie","N",4,628
+"--*--","    P101","B.A. Datum inwerkingtreding","N",8,632
+"--.--"," 19 P10U","B.A. Aangeduide periode zonder meer","N",1,640
+"-*--*","    P104","B.A. Netto premie","N",9,641
+"-*--*","    P105","B.A. Referentie index berekening premie","N",5,650
+"0000*"," 27 P200","RECHT Aktiekode","N",1,655
+"---**","    P202","RECHT Einddatum (in jaren)","N",4,656
+"*****","    P20E","RECHT Type EIGEN AAN MIJ","A",2,660
+"*****","    P20V","RECHT Percentage verminderde commissie","N",4,662
+"--*--","    P201","RECHT Datum inwerkingtreding","N",8,666
+"--.--"," 19 P20U","RECHT Aangeduide periode zonder meer 2=Deflt","N",1,674
+"-*--*","    P204","RECHT Netto premie","N",7,675
+"0000*"," 27 P310","INZITTENDEN Aktiekode","N",1,682
+"---**","    P302","INZITTENDEN Einddatum (in jaren)","N",4,683
+"*****","    P31E","INZITTENDEN Type EIGEN AAN MIJ","A",2,691
+"*****","    P30V","INZITTENDEN Percentage verminderde commissie","N",4,693
+"--*--","    P301","INZITTENDEN Datum inwerkingtreding","N",8,697
+"***--","    P303","INZITTENDEN Duur (in jaren)","N",2,705
+"--.--"," 19 P30U","INZITTENDEN Aangeduide periode 2=deflt","N",1,707
+"-*--*","    P304","INZITTENDEN Netto premie","N",7,708
+"0000*"," 27 P410","EIGEN SCHADE VOERTUIG Aktiekode","N",1,715
+"*****","    P41A","EIGEN SCHADE VOERTUIG Vrijstelling","N",8,716
+"*****"," 28 P41T","EIGEN SCHADE VOERTUIG Type vrijstelling","N",1,724
+"0000*"," 27 P420","EIGEN SCHADE AANHANG Aktiekode","N",1,725
+"*****","    P42A","EIGEN SCHADE AANHANG Vrijstelling","N",8,726
+"*****"," 28 P42T","EIGEN SCHADE AANHANG Type vrijstelling","N",1,734
+"---**","    P402","EIGEN SCHADE Einddatum","N",8,735
+"*****","    P40V","EIGEN SCHADE Percentage verminderde comm.","N",4,743
+"--*--","    P401","EIGEN SCHADE Datum inwerkingtreding","N",8,747
+"***--","    P403","EIGEN SCHADE Duur (in jaren)","N",2,755
+"--.--"," 19 P40U","EIGEN SCHADE Aangeduide periode 2=deflt","N",1,757
+"-*--*","    P414","EIGEN SCHADE Netto premie","N",9,758
+"0000*"," 27 P510","BRAND VOERTUIG Aktiekode","N",1,767
+"*****","    P51A","BRAND VOERTUIG Vrijstelling","N",8,768
+"*****"," 28 P51T","BRAND VOERTUIG Type vrijstelling","N",1,776
+"0000*"," 27 P520","BRAND AANHANG Aktiekode","N",1,777
+"*****","    P52A","BRAND AANHANG Vrijstelling","N",8,778
+"*****"," 28 P52T","BRAND AANHANG Type vrijstelling","N",1,786
+"---**","    P502","BRAND Einddatum","N",8,787
+"*****","    P50V","BRAND Percentage verminderde comm.","N",4,795
+"--*--","    P501","BRAND Datum inwerkingtreding","N",8,799
+"***--","    P503","BRAND Duur (in jaren)","N",2,807
+"--.--"," 19 P50U","BRAND Aangeduide periode 2=default","N",1,809
+"-*--*","    P514","BRAND Netto premie","N",9,810
+"0000*"," 27 P610","DIEFSTAL VOERTUIG Aktiekode","N",1,819
+"*****","    P61A","DIEFSTAL VOERTUIG Vrijstelling","N",8,820
+"*****"," 28 P61T","DIEFSTAL VOERTUIG Type vrijstelling","N",1,828
+"0000*"," 27 P620","DIEFSTAL AANHANG Aktiekode","N",1,829
+"*****","    P62A","DIEFSTAL AANHANG Vrijstelling","N",8,830
+"*****"," 28 P62T","DIEFSTAL AANHANG Type vrijstelling","N",1,838
+"---**","    P602","DIEFSTAL Einddatum","N",8,839
+"*****","    P61V","DIEFSTAL Percentage verminderde comm.","N",4,847
+"--*--","    P611","DIEFSTAL Datum inwerkingtreding","N",8,851
+"***--","    P613","DIEFSTAL Duur (in jaren)","N",2,859
+"--.--"," 19 P61U","DIEFSTAL Aangeduide periode z meer 2=deflt","N",1,861
+"-*--*","    P614","DIEFSTAL Netto premie","N",9,862
+"0000*"," 27 P710","GLASBRAAK Aktiekode","N",1,871
+"*****","    P71A","GLASBRAAK Vrijstelling","N",8,872
+"*****"," 28 P71T","GLASBRAAK Type vrijstelling","N",1,880
+"---**","    P702","GLASBRAAK Einddatum","N",8,881
+"*****","    P70V","GLASBRAAK Percentage verminderde comm.","N",4,889
+"--*--","    P701","GLASBRAAK Datum inwerkingtreding","N",8,893
+"***--","    P703","GLASBRAAK Duur (in jaren)","N",2,901
+"--.--"," 19 P70U","GLASBRAAK Aangeduide periode z. meer","N",1,903
+"-*--*","    P714","GLASBRAAK Netto premie","N",9,904
+"0000*"," 27 P810","BIJSTAND Aktiekode","N",1,911
+"*****","    P80E","BIJSTAND Type bijstand","A",2,912
+"---**","    P802","BIJSTAND Einddatum","N",8,914
+"*****","    P80V","BIJSTAND Percentage verminderde comm.","N",4,922
+"--*--","    P801","BIJSTAND Datum inwerkingtreding","N",8,926
+"***--","    P803","BIJSTAND Duur (in jaren)","N",2,934
+"--.--"," 19 P80U","BIJSTAND Aangeduide periode z. meer","N",1,936
+"-*--*","    P804","BIJSTAND Netto premie","N",9,937
+"0000*"," 27 P910","PERSOONLIJKE Aktiekode","N",1,946
+"*****","    P90E","PERSOONLIJKE Type bijstand","N",2,947
+"---**","    P902","PERSOONLIJKE Einddatum","N",8,949
+"*****","    P90V","PERSOONLIJKE Percentage verminderde comm.","N",4,957
+"--*--","    P901","PERSOONLIJKE Datum inwerkingtreding","N",8,961
+"***--","    P903","PERSOONLIJKE Duur (in jaren)","N",2,969
+"--.--"," 19 P90U","PERSOONLIJKE Aangeduide periode zonder meer","N",1,971
+"-*--*","    P904","PERSOONLIJKE Netto premie","N",9,972
+"*****","    PY0P","Formule 1","A",2,981
+"0000*"," 27 PY10","F1 VOERTUIG Aktiekode","N",1,983
+"*****","    PY1A","F1 VOERTUIG Vrijstelling","N",8,984
+"*****"," 28 PY1T","F1 VOERTUIG Code type vrijstelling","N",1,992
+"0000*"," 27 PY20","F1 AANHANG Aktiekode","N",1,993
+"*****","    PY2A","F1 AANHANG Vrijstelling","N",8,994
+"*****"," 28 PY2T","F1 AANHANG Code type vrijstelling","N",1,1002
+"---**","    PY02","F1 Einddatum","N",8,1003
+"*****","    PY0V","F1 Percentage verminderde commissie","N",4,1011
+"--*--","    PY01","F1 Datum inwerkingtreding","N",8,1015
+"***--","    PY03","F1 Duur (in jaren),"N",2,1023
+"--.--"," 19 PY0U","F1 Aangeduide periode zonder meer","N",1,1025
+"-*---","    PY04","F1 Netto premie","N",9,1026
+"*****","    PZ0P","Formule 2","A",2,1035
+"0000*"," 27 PZ10","F2 VOERTUIG Aktiekode","N",1,1037
+"*****","    PZ1A","F2 VOERTUIG Vrijstelling","N",8,1038
+"*****"," 28 PZ1T","F2 VOERTUIG Code type vrijstelling","N",1,1046
+"0000*"," 27 PZ20","F2 AANHANG Aktiekode","N",1,1047
+"*****","    PZ2A","F2 AANHANG Vrijstelling","N",8,1048
+"*****"," 28 PZ2T","F2 AANHANG Code type vrijstelling","N",1,1056
+"---**","    PZ02","F2 Einddatum","N",8,1057
+"*****","    PZ0V","F2 Percentage verminderde commissie","N",4,1065
+"--*--","    PZ01","F2 Datum inwerkingtreding","N",8,1069
+"***--","    PZ03","F2 Duur (in jaren),"N",2,1077
+"--.--"," 19 PZ0U","F2 Aangeduide periode zonder meer","N",1,1079
+"-*--*","    PZ04","F2 Netto premie","N",9,1080
+"*****"," 30 5609","Code eigendom","N",1,1111
+"*****"," 31 5400","Code vergoeding","N",1,1112
+"....*"," 19 5606","Code financiering","N",1,1113
+"0000*"," 19 5608","Anti-diefstal goedgekeurd door mij","N",1,1114
+"*****","    5211","Code vervoerde goederen (ADR)","A",4,1115
+"*****","    A160","Percentage onderwerping BTW","N",5,1119
+"*****","    5603","Vermindering % meerdere voertuigen B.A.","N",2,1124
+"*****"," 19 5401","Dekking belasing op inverkeerstelling","N",1,1126
+"*****","    5402","Bedrag belasting inverkeerstelling","N",9,1127
+"*****","    56A1","Code verdere bepaling 1","A",3,1161
+"*****","    56A2","Waarde 1 van 1","A",9,1164
+"*****","    56A3","Waarde 2 van 1","A",9,1173
+"*****","    56B1","Code verdere bepaling 2","A",3,1182
+"*****","    56B2","Waarde 1 van 2","A",9,1185
+"*****","    56B3","Waarde 2 van 2","A",9,1194
+"*****","    56C1","Code verdere bepaling 3","A",3,1203
+"*****","    56C2","Waarde 1 van 3","A",9,1206
+"*****","    56C3","Waarde 2 van 3","A",9,1215
+"*****","    56D1","Code verdere bepaling 4","A",3,1224
+"*****","    56D2","Waarde 1 van 4","A",9,1227
+"*****","    56D3","Waarde 2 van 4","A",9,1236
+"*****","    56E1","Code verdere bepaling 5","A",3,1245
+"*****","    56E2","Waarde 1 van 5","A",9,1248
+"*****","    56E3","Waarde 2 van 5","A",9,1257
+"*****","    56F1","Code verdere bepaling 6","A",3,1266
+"*****","    56F2","Waarde 1 van 6","A",9,1269
+"*****","    56F3","Waarde 2 van 6","A",9,1278
+"*****","    56G1","Code verdere bepaling 7","A",3,1287
+"*****","    56G2","Waarde 1 van 7","A",9,1290
+"*****","    56G3","Waarde 2 van 7","A",9,1299

@@ -1,0 +1,167 @@
+" 81 9060 *","Selectie type Rechtsbijstand","N",1,141
+"    A000  ","Polisnummer (voorbehouden serie)","A",12,142
+"    A009  ","Vervangt polisnummer","A",12,154
+"    A040  ","Nummer samenhangende polis","A",12,166
+" 80 A04A  ","Reden van connex","A",1,178
+"    A400 *","Producentnummer mij","A",8,179
+"    A110 *","Referte producent","A",12,187
+" 15 A600 *","Inning van de premie","N",1,199
+" 87 A670 *","Index vrijstelling taksen","N",1,200
+" 86 A090 *","Te verzenden dokumenten","N",1,201
+" 19 A091 *","Verzending antwoordrecord ?","N",1,202
+"    A300 *","Aanvangsdatum (DDMMEEJJ)","N",8,203
+"    A320 *","Hoofdvervaldag (DDMM)","N",4,211
+" 14 A325 *","Splitsing","N",1,215
+"    D241  ","Polisnummer vorige/huidige mij","A",12,216
+"    D240  ","BVVO kode vorige/huidige mij","N",4,228
+"    D242  ","Datum vernietiging (DDMMEEJJ)","N",8,232
+" 85 D243  ","Reden van vernietiging","N",1,240
+"    A10X  ","Verz.nemer andere polis = ","A",12,261
+"    A100 *","Verz.nemer Naam","A",35,273
+"    A101  ","Verz.nemer Voornaam","A",15,308
+" 98 A102  ","Verz.nemer Kode Titel (of)","N",1,323
+"    A103  ","Verz.nemer Benaming Titel","A",17,324
+" 99 A124 *","Verz.nemer Geslacht","N",1,341
+" 97 A10C *","Verz.nemer Kode Taal","N",1,342
+"    A120 *","Verz.nemer Geboortedatum","N",8,343
+" 94 A121  ","Verz.nemer Nationaliteitskode (of !)","A",3,351
+"    A122  ","Verz.nemer Nationaliteitsomschrijving","A",12,354
+" 95 A123 *","Verz.nemer Burgerlijke staat","N",1,366
+"    A141  ","Verz.nemer Beroepskode (of !)","A",2,367
+"    A140  ","Verz.nemer Beroepsomschrijving","A",20,372
+"    A104 *","Verz.nemer Straat","A",30,392
+"    A105  ","Verz.nemer Huisnummer","A",5,422
+"    A106  ","Verz.nemer Bus","A",4,427
+"    A107 *","Verz.nemer Postkode","A",7,431
+"    A108 *","Verz.nemer Woonplaats","A",24,438
+" 94 A109 *","Verz.nemer Landkode","A",3,462
+"    A10A  ","Verz.nemer Telefoonnummer","N",9,465
+"    A170  ","Verz.nemer Financiele rekening","N",12,474
+"    A172  ","Verz.nemer BTW nummer","N",9,486
+"    P20E1 ","VOERTUIG Code formule 1","A",2,515
+"    90611 ","VOERTUIG formule 1 uitbreiding 1","A",2,517
+"    90621 ","VOERTUIG formule 1 uitbreiding 2","A",2,519
+"    90631 ","VOERTUIG formule 1 uitbreiding 3","A",2,521
+"    90641 ","VOERTUIG formule 1 uitbreiding 4","A",2,523
+"    90651 ","VOERTUIG formule 1 uitbreiding 5","A",2,525
+"    P20E2 ","VOERTUIG Code formule 2","A",2,527
+"    90612 ","VOERTUIG formule 2 uitbreiding 1","A",2,529
+"    90622 ","VOERTUIG formule 2 uitbreiding 2","A",2,531
+"    90632 ","VOERTUIG formule 2 uitbreiding 3","A",2,533
+"    90642 ","VOERTUIG formule 2 uitbreiding 4","A",2,535
+"    90652 ","VOERTUIG formule 2 uitbreiding 5","A",2,537
+"    P20E3 ","VOERTUIG Code formule 3","A",2,539
+"    90613 ","VOERTUIG formule 3 uitbreiding 1","A",2,541
+"    90623 ","VOERTUIG formule 3 uitbreiding 2","A",2,543
+"    90633 ","VOERTUIG formule 3 uitbreiding 3","A",2,545
+"    90643 ","VOERTUIG formule 3 uitbreiding 4","A",2,547
+"    90653 ","VOERTUIG formule 3 uitbreiding 5","A",2,549
+" 19 5230  ","VOERTUIG code vloot","N",1,571
+"    5231  ","VOERTUIG vloot referte","A",12,572
+"    55001 ","VOERTUIG 1 Merk","A",33,584
+" 79 55031 ","VOERTUIG 1 Type","A",2,617
+" 13 52001 ","VOERTUIG 1 Gebruik","N",2,619
+"    55401 ","VOERTUIG 1 MTM (in ton)","N",4,621
+"    55201 ","VOERTUIG 1 Plaatnummer","A",10,625
+"    55211 ","VOERTUIG 1 Onderstelnummer","A",20,635
+"    55002 ","VOERTUIG 2 Merk","A",33,655
+" 79 55032 ","VOERTUIG 2 Type","A",2,688
+" 13 52002 ","VOERTUIG 2 Gebruik","N",2,690
+"    55402 ","VOERTUIG 2 MTM (in ton)","N",4,692
+"    55202 ","VOERTUIG 2 Plaatnummer","A",10,696
+"    55212 ","VOERTUIG 2 Onderstelnummer","A",20,706
+"    55003 ","VOERTUIG 3 Merk","A",33,726
+" 79 55033 ","VOERTUIG 3 Type","A",2,759
+" 13 52003 ","VOERTUIG 3 Gebruik","N",2,761
+"    55403 ","VOERTUIG 3 MTM (in ton)","N",4,763
+"    55203 ","VOERTUIG 3 Plaatnummer","A",10,767
+"    55213 ","VOERTUIG 3 Onderstelnummer","A",20,777
+"    55004 ","VOERTUIG 4 Merk","A",33,797
+" 79 55034 ","VOERTUIG 4 Type","A",2,830
+" 13 52004 ","VOERTUIG 4 Gebruik","N",2,832
+"    55404 ","VOERTUIG 4 MTM (in ton)","N",4,834
+"    55204 ","VOERTUIG 4 Plaatnummer","A",10,838
+"    55214 ","VOERTUIG 4 Onderstelnummer","A",20,848
+"    N20E1 ","PRIVE LEVEN Code FORMULE 1","A",2,888
+"    90611 ","Uitbreiding 1 (Form. 1)","A",2,890
+"    90621 ","Uitbreiding 2 (Form. 1)","A",2,892
+"    90631 ","Uitbreiding 3 (Form. 1)","A",2,894
+"    90641 ","Uitbreiding 4 (Form. 1)","A",2,896
+"    90651 ","Uitbreiding 5 (Form. 1)","A",2,898
+"    N20E2 ","PRIVE LEVEN Code FORMULE 2","A",2,900
+"    90612 ","Uitbreiding 1 (Form. 2)","A",2,902
+"    90622 ","Uitbreiding 2 (Form. 2)","A",2,904
+"    90632 ","Uitbreiding 3 (Form. 2)","A",2,906
+"    90642 ","Uitbreiding 4 (Form. 2)","A",2,908
+"    90652 ","Uitbreiding 5 (Form. 2)","A",2,910
+"    N20E3 ","PRIVE LEVEN Code FORMULE 3","A",2,912
+"    90613 ","Uitbreiding 1 (Form. 3)","A",2,914
+"    90623 ","Uitbreiding 2 (Form. 3)","A",2,916
+"    90633 ","Uitbreiding 3 (Form. 3)","A",2,918
+"    90643 ","Uitbreiding 4 (Form. 3)","A",2,920
+"    90653 ","Uitbreiding 5 (Form. 3)","A",2,922
+"    A1041 ","Tweede verblijf Straat","A",30,944
+"    A1051 ","Tweede verblijf Huisnummer","A",5,974
+"    A1061 ","Tweede verblijf Bus","A",4,979
+"    A1071 ","Tweede verblijf Postkode","A",7,983
+"    A1081 ","Tweede verblijf Woonplaats","A",24,990
+" 94 A1091 ","Tweede verblijf Landkode","A",3,1014
+"    A200  ","Samenwoner - naam","A",35,1017
+"    A201  ","Samenwoner - voornaam","A",15,1052
+" 19 3010  ","BRAND ligging goed=woning onderschrijver?","N",1,1087
+"    30041 ","Gebouw 1 Straat","A",30,1088
+"    30051 ","Gebouw 1 Huisnummer","A",5,1118
+"    30061 ","Gebouw 1 Bus","A",4,1123
+"    30071 ","Gebouw 1 Postkode","A",7,1127
+"    30081 ","Gebouw 1 Woonplaats","A",24,1134
+" 94 30091 ","Gebouw 1 Landkode","A",3,1158
+" 78 31001 ","Gebruik van het gebouw","N",1,1161
+" 77 31101 ","Hoedanigheid onderschrijver","N",2,1162
+"    31021 ","Jaarlijkse huurprijs","N",9,1164
+"    A0001 ","Polisnummer BRAND verzekering","A",12,1173
+"    A0101 ","BVVO code brand verzekeraar","N",4,1185
+"    M0141 ","Netto brandpremie","N",9,1189
+"    M01B1 ","Verzekerd kapitaal (brand)","N",12,1198
+" 76 M0161 ","Code index","A",1,1210
+"    30042 ","Gebouw 2 Straat","A",30,1211
+"    30052 ","Gebouw 2 Huisnummer","A",5,1241
+"    30062 ","Gebouw 2 Bus","A",4,1246
+"    30072 ","Gebouw 2 Postkode","A",7,1250
+"    30082 ","Gebouw 2 Woonplaats","A",24,1257
+" 94 30092 ","Gebouw 2 Landkode","A",3,1281
+" 78 31002 ","Gebruik van het gebouw","N",1,1284
+" 77 31102 ","Hoedanigheid onderschrijver","N",2,1285
+"    31022 ","Jaarlijkse huurprijs","N",9,1287
+"    A0002 ","Polisnummer BRAND verzekering","A",12,1296
+"    A0102 ","BVVO code brand verzekeraar","N",4,1308
+"    M0142 ","Netto brandpremie","N",9,1312
+"    M01B2 ","Verzekerd kapitaal (brand)","N",12,1321
+" 76 M0162 ","Code index","A",1,1333
+"    30043 ","Gebouw 3 Straat","A",30,1334
+"    30053 ","Gebouw 3 Huisnummer","A",5,1364
+"    30063 ","Gebouw 3 Bus","A",4,1369
+"    30073 ","Gebouw 3 Postkode","A",7,1373
+"    30083 ","Gebouw 3 Woonplaats","A",24,1380
+" 94 30093 ","Gebouw 3 Landkode","A",3,1404
+" 78 31003 ","Gebruik van het gebouw","N",1,1407
+" 77 31103 ","Hoedanigheid onderschrijver","N",2,1408
+"    31023 ","Jaarlijkse huurprijs","N",9,1410
+"    A0003 ","Polisnummer BRAND verzekering","A",12,1419
+"    A0103 ","BVVO code brand verzekeraar","N",4,1431
+"    M0143 ","Netto brandpremie","N",9,1435
+"    M01B3 ","Verzekerd kapitaal (brand)","N",12,1444
+" 76 M0163 ","Code index","A",1,1210
+"    30044 ","Gebouw 4 Straat","A",30,1457
+"    30054 ","Gebouw 4 Huisnummer","A",5,1487
+"    30064 ","Gebouw 4 Bus","A",4,1492
+"    30074 ","Gebouw 4 Postkode","A",7,1496
+"    30084 ","Gebouw 4 Woonplaats","A",24,1503
+" 94 30094 ","Gebouw 4 Landkode","A",3,1527
+" 78 31004 ","Gebruik van het gebouw","N",1,1530
+" 77 31104 ","Hoedanigheid onderschrijver","N",2,1531
+"    31024 ","Jaarlijkse huurprijs","N",9,1533
+"    A0004 ","Polisnummer BRAND verzekering","A",12,1542
+"    A0104 ","BVVO code brand verzekeraar","N",4,1554
+"    M0144 ","Netto brandpremie","N",9,1558
+"    M01B4 ","Verzekerd kapitaal (brand)","N",12,1567
+" 76 M0164 ","Code index","A",1,1579

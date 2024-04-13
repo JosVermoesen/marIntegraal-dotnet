@@ -1,0 +1,56 @@
+" 01 A500  ","Takcode","N",1,141
+"    A000  ","Polisnummer","A",12,142
+"    A040  ","Samenhangende polis nr. 2","A",12,154
+"    A0B0  ","Samenhangende polis nr. 3","A",12,166
+"    C000  ","Schadenummer (indien serie voorbeh.)","A",12,178
+"    A110  ","Referte Producent (polis)","A",12,190
+"    C010  ","Referte Producent (schade)","A",12,202
+"1   A100  ","Verz.nemer Naam","A",35,247
+"1   A101  ","Verz.nemer Voornaam","A",15,282
+"1   A104  ","Verz.nemer Straat","A",30,297
+"1   A105  ","Verz.nemer Nummer","A",5,327
+"1   A106  ","Verz.nemer Bus","A",4,332
+"1   A107  ","Verz.nemer Postkode","A",7,336
+"1   A108  ","Verz.nemer Woonplaats","A",24,343
+" 94 A109  ","Verz.nemer Landkode","A",3,367
+"    A10A  ","Verz.nemer Telefoon","N",9,370
+"9   A120  ","Verz.nemer Geboortedatum","N",8,379
+" 97 A10C  ","Verz.nemer Kode Taal","N",1,387
+"    A141  ","Verz.nemer Beroepscode","A",5,388
+"    A140  ","Verz.nemer Beroep (omschrijving)","A",20,393
+"    A171  ","Verz.nemer BTW code","N",5,413
+"    A172  ","Verz.nemer BTW nummer","N",9,418
+"    A170  ","Verz.nemer Bankrekening","N",12,427
+"006 C384  ","Kode Verz.nemer aanduiding 1","N",1,439
+"006 C385  ","Kode Verz.nemer aanduiding 2","N",1,440
+"    C200  ","Datum schadegeval","N",8,477
+"    C201  ","Uur schadegeval (UUMM)","N",4,485
+"    C207  ","Postcode plaats ongeval","A",7,489
+"    C210  ","Plaats van het ongeval","A",40,496
+" 19 C236  ","Materiele schade ?","N",1,536
+" 19 C233  ","Slachtoffers (gewond of overleden) ?","N",1,537
+" 19 C232  ","Getuigen ?","N",1,538
+"007 C240  ","Tussenkomst overheid","N",1,539
+"    C241  ","Tussenkomst overheid, plaats","A",17,540
+"    C242  ","Nr van het proces verbaal","A",8,557
+"    C243  ","Datum proces verbaal","N",8,565
+"    C220  ","Beschrijving van de schade (8 * 75)","A",600,573
+"    C260  ","Beschrijving van de schade van verzekerde","A",80,1173
+"    C264  ","Schade van verzekerde, geschat bedrag","N",8,1253
+"    C270  ","Beschrijving van de schade van derden","A",80,1261
+"    C274  ","Schade van derden, geschat bedrag","N",8,1341
+"008 C608  ","Wijze van betaling","A",1,1349
+"    C606  ","Naam begunstigde van de betaling","A",35,1350
+" 05 C416  ","Type expert","N",1,1385
+" 19 C403  ","Aangeduide expert","N",1,1386
+"009 C390  ","Dokument 1 aan maatschappij","N",2,1412
+"009 C391  ","Dokument 2 aan maatschappij","N",2,1414
+"009 C392  ","Dokument 3 aan maatschappij","N",2,1416
+"010 C031  ","Betrokken waarborg 1","A",3,1442
+"010 C032  ","Betrokken waarborg 2","A",3,1445
+"010 C033  ","Betrokken waarborg 3","A",3,1448
+"011 2121  ","Aard verzekering","N",1,1451
+"012 2120  ","Type beroep","N",1,1452
+"013 CLA0  ","Type ongeval","N",1,1453
+"014 CL90  ","Aansluiting tot een mutualiteit","N",1,1454
+" 19 A020  ","Co-verzekering ?","N",1,1455

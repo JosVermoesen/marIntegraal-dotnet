@@ -1,0 +1,12 @@
+"7   v004 -","'L' + v157","A",13
+"7   v005 -","'12' + v152","A",20
+"7   v152 *","Serienummer artikel/produkt","A",18
+"7   v033  ","AankoopDokumentnummer","A",8
+"2   v153  ","Omschrijving artikel/produkt","A",50
+"3   v154  ","Aankoopbedrag","D",9
+"3   v155  ","Verkoopbedrag","D",9
+"7   v156  ","Verkoopdokumentnummer","A",8
+"7   v157  ","Leveranciernummer","A",12
+"7   v158  ","Klantnummer","A",12
+"9   v159  ","Datum aankoop","A",8
+"9   v160  ","Datum verkoop","A",8

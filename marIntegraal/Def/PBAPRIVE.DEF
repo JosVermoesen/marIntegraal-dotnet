@@ -1,0 +1,50 @@
+"    A000  ","Polisnummer","A",12,141
+"    A009  ","Vervangt polisnummer","A",12,153
+"    A041  ","Nummer samenhangende polis","A",12,165
+"    A400 *","Producentnummer mij","A",8,177
+"    A110 *","Referte producent","A",12,185
+"    A300 *","Aanvangsdatum (DDMMEEJJ)","N",8,197
+"    A320 *","Hoofdvervaldag (DDMM)","N",4,205
+"    A355  ","Duur kontrakt (in jaren)","N",2,209
+" 14 A325 *","Splitsing","N",1,211
+" 15 A600 *","Inning van de premie","N",1,212
+" 87 A670 *","Index vrijstelling taksen","N",1,213
+" 86 A090 *","Te verzenden dokumenten","N",1,214
+" 19 A091 *","Verzending antwoordrecord ?","N",1,215
+" 19 D246 *","Reeds verzekerd geweest ?","N",1,250
+"    D240  ","BVVO kode vorige/huidige mij","N",4,251
+"    D241  ","Polisnummer vorige/huidige mij","A",12,255
+" 19 A330  ","Werd polis opgezegd ?","N",1,267
+"    D242  ","Datum vernietiging (DDMMEEJJ)","N",8,268
+" 85 D243  ","Reden van vernietiging","N",1,276
+"    D261  ","Aantal schades laatste 4 jaar","N",2,277
+"    D262  ","Bedrag schades laatste 4 jaar","N",9,288
+"    A10X  ","Verz.nemer andere polis = ","A",12,323
+"    A100 *","Verz.nemer Naam","A",35,335
+"    A101  ","Verz.nemer Voornaam","A",15,370
+" 98 A102  ","Verz.nemer Kode Titel (of !)","N",1,385
+"    A103  ","Verz.nemer Benaming Titel","A",17,386
+"    A104 *","Verz.nemer Straat","A",30,403
+"    A105  ","Verz.nemer Nummer","A",5,433
+"    A106  ","Verz.nemer Bus","A",4,438
+"    A107 *","Verz.nemer Postkode","A",7,442
+"    A108 *","Verz.nemer Woonplaats","A",24,449
+" 94 A109 *","Verz.nemer Landkode","A",3,473
+"    A10A  ","Verz.nemer Telefoonnummer","N",9,476
+" 97 A10C *","Verz.nemer Kode Taal","N",1,485
+"    A120 *","Verz.nemer Geboortedatum","N",8,486
+" 94 A121  ","Verz.nemer Nationaliteitskode (of !)","A",3,494
+"    A122  ","Verz.nemer Nationaliteitsomschrijving","A",12,497
+" 95 A123 *","Verz.nemer Burgerlijke staat","N",1,509
+" 99 A124 *","Verz.nemer Geslacht","N",1,510
+"    A141  ","Verz.nemer Beroepskode (of !)","A",2,511
+"    A140  ","Verz.nemer Beroepsomschrijving","A",20,516
+"    A170  ","Verz.nemer Financiele rekening","N",12,536
+"    A172  ","Verz.nemer BTW nummer","N",9,548
+" 84 41001*","Waarborg kode","N",1,587
+" 83 41002*","Kode gezin","N",1,588
+" 82 N100  ","Uitbreiding 1 kode","N",1,589
+"    4110  ","Uitbreiding 1 specifiek mij","A",3,590
+"    4111  ","Uitbreiding 1 beschrijving waarborg","A",20,593
+" 19 3V21 *","GRATIS 1 jaar jonggehuwden ?","N",1,709
+" 19 3V22 *","GRATIS 1 jaar geboorte 1e kind ?","N",1,710

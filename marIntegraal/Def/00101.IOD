@@ -1,0 +1,8 @@
+Infobel CDRom Import
+7   A110 - 001 013 T 4;'Uniek Kodenummer
+1   A100   005 035 T 40;'Naam 1
+1   A104   057 030 T 22;'Straat
+1   A105   079 005 T 5;'Nummer
+@01 A107   084 007 T 4;'Postkode SQL-opvraging
+@02 A108   088 024 T 30;'Woonplaats SQL-opvraging
+A   A10A   045 009 T 12;'Telefoonnummer

@@ -1,0 +1,70 @@
+" 01 A500 *","Takkode","N",1,0
+"005 vs96 *","TakGroep (VSOFT)","N",2,0
+"    A010 *","BVVO nummer maatschappij","N",4,0
+"    A000 *","Polisnummer","A",12,0
+"    A400 *","Producentnummer bij de maatschappij","A",8,0
+"    A110 *","Referte van de producent","A",12,0
+"    A320 *","Hoofdvervaldag (DDMM)","N",4,0
+"    AW.2 *","Einddatum (DDMMEEJJ)","N",8,0
+" 14 A325 *","Splitsing","A",1,0
+" 15 A600 *","Inning","N",1,0
+"    AW.R  ","Recente Index","A",6,0
+"    B010","Brutopremie","N",9,0
+"    B011","Taksen en kosten","N",9,0
+"    B013","Nettopremie","N",9,0
+"    B014","Commercialisatiekost (+)","N",8,0
+"    B090","Totaal teruggave (-)","N",9,0
+"    B094","Commercialisatiekost (-)","N",8,0
+" 19 5230","Deel van een vloot","N",1,119
+"    5231","Referte vloot","A",12,120
+" 21 5003","VOERTUIG Aard","A",2,162
+"    500A","Merk","A",19,164
+"    500B","Type","A",25,183
+"    5004","P.V.G. nummer","N",6,208
+"    5002","Bouwjaar","N",4,221
+"    5020","Plaatnummer","A",10,225
+"    5021","Onderstelnummer","A",20,235
+"    5060","Datum eerste ingebruikstelling","N",8,255
+"    5011","Vermogen of cylinderinhoud","N",5,263
+" 22 5010","Eenheid vermogen of cylinderinhoud","N",1,268
+" 23 5015","Brandstof","N",1,269
+"    5050","Zitplaatsen (- bestuurder) deflt=4","N",3,270
+"    5041","Maximale toegelaten massa (in kg)","N",5,273
+"    5030","Cataloguswaarde (z/BTW)","N",8,278
+"    5035","Waarde te verzekeren (z/BTW)","N",8,286
+" 19 5601","Cabriolet/afneembare kap ? deflt=2","N",1,294
+" 19 5602","Wagen met sportkenmerken ? deflt=2","N",1,295
+" 25 55031","Aard aanhangwagen 1","A",2,362
+" 26 55011","Type aanhangwagen 1","N",1,364
+"    55001","Merk aanhangwagen 1","A",12,365
+"    55201","Plaatnummer aanhangwagen 1","A",10,377
+"    55021","Bouwjaar aanhangwagen 1","N",4,387
+"    55211","Onderstelnummer aanhangwagen 1","A",20,391
+"    55411","MTM (in kg) aanhang 1","N",5,411
+" 27 P110","Waarborg B.A. Voertuig, aktiekode","N",1,601
+" 27 P120","Waarborg B.A. Aanhang, aktiekode","N",1,611
+"    5315","B.A. Bonus-Malus graad","A",2,625
+" 29 530A","B.A. Kode schaal Bonus-Malus","N",1,627
+" 27 P200","RECHT Aktiekode","N",1,655
+" 27 P310","INZITTENDEN Aktiekode","N",1,682
+" 27 P410","EIGEN SCHADE VOERTUIG Aktiekode","N",1,715
+"    P41A","EIGEN SCHADE VOERTUIG Vrijstelling","N",8,716
+" 28 P41T","EIGEN SCHADE VOERTUIG Type vrijstelling","N",1,724
+" 27 P510","BRAND VOERTUIG Aktiekode","N",1,767
+"    P51A","BRAND VOERTUIG Vrijstelling","N",8,768
+" 28 P51T","BRAND VOERTUIG Type vrijstelling","N",1,776
+" 27 P610","DIEFSTAL VOERTUIG Aktiekode","N",1,819
+"    P61A","DIEFSTAL VOERTUIG Vrijstelling","N",8,820
+" 28 P61T","DIEFSTAL VOERTUIG Type vrijstelling","N",1,828
+" 27 P710","GLASBRAAK Aktiekode","N",1,871
+"    P71A","GLASBRAAK Vrijstelling","N",8,872
+" 28 P71T","GLASBRAAK Type vrijstelling","N",1,880
+" 27 P810","BIJSTAND Aktiekode","N",1,911
+" 27 P910","PERSOONLIJKE Aktiekode","N",1,946
+" 30 5609","Code eigendom","N",1,1111
+" 31 5400","Code vergoeding","N",1,1112
+" 19 5606","Code financiering","N",1,1113
+" 19 5608","Anti-diefstal goedgekeurd door mij","N",1,1114
+"    A160","Percentage onderwerping BTW","N",5,1119
+" 19 5401","Dekking belasing op inverkeerstelling","N",1,1126
+"    5402","Bedrag belasting inverkeerstelling","N",9,1127

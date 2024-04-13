@@ -1,0 +1,7 @@
+Eenvoudige klantenlijst 2.0
+7   A110 - 001 013 T Kodenummer
+1   A100   015 035 T Naam
+1   A104   056 030 T Straat
+1   A105   087 005 T Nummer
+@01 A107   094 007 T Postkode SQL-opvraging
+@02 A108   102 024 T Woonplaats SQL-opvraging

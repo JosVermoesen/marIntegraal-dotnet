@@ -1,0 +1,10 @@
+"7   A110 *","Klant kodenummer","A",6
+"    vs11 *","Serienummer","A",12
+"019 vs12 *","Produktkode","A",3
+"    vs13 *","Kapitaal","N",9
+"    vs14  ","Basis Intrest","N",5
+"    vs15  ","Kapitalisatie intrest","N",5
+"    vs16 *","Aantal jaar","N",2
+"    A300 *","Aanvangsdatum (DDMMEEJJ)","N",8
+"    vs17 *","Referte Klant","A",30
+"    vs18  ","Opmerkingen","A",80

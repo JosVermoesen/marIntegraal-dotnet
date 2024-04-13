@@ -1,0 +1,5 @@
+Maandrapportage kontrakten 2.0
+    A000 * 032 012 T Polisnummer
+    vs99 * 045 030 T Omschrijving (30 tekens)
+    vs98   076 030 T Detail (30 tekens)
+    AW_2 * 107 008 T Einddatum (DDMMEEJJ)

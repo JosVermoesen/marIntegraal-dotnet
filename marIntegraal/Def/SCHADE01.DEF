@@ -1,0 +1,62 @@
+"    A000 *","Polis 1                            ","A",12
+"    A010 *","BVVO kode maatschappij             ","N",4
+"    C000 *","Schadenummer maatschappij          ","A",12
+"    C200 *","Schadegeval datum                  ","N",8
+"    C100 *","Tegenpartij naam                   ","A",35
+" 01 A500  ","Code Tak                           ","N",1
+"    C041  ","Polis 2                            ","A",12
+"    C043  ","Polis 3                            ","A",12
+"    A400  ","Producent Nummer                   ","A",8
+"    A100  ","Verzekeringsnemer Naam             ","A",35
+"    A110  ","Referte Producent (polis)          ","A",10
+"    C010  ","Referte Producent (schadegeval)    ","A",12
+"    C002  ","Code beheerder                     ","A",5
+"    C003  ","Naam beheerder                     ","A",35
+"    C004  ","Telefoonnummer beheerder           ","N",9
+"    C020  ","Opening dossier datum              ","N",8
+" 02 C031  ","Betrokken waarborg 1               ","A",3
+" 03 C032  ","Betrokken waarborg 2               ","A",3
+" 04 C033  ","Betrokken waarborg 3               ","A",3
+"    C110  ","Tegenpartij maatschappij           ","N",4
+"    C111  ","Tegenpartij referte                ","A",12
+"    C400  ","Expert naam                        ","A",35
+"    C401  ","Expert aggregatienummer            ","N",5
+"    C40A  ","Expert telefoonnummer              ","N",9
+"    C405  ","Expert referte                     ","A",10
+" 05 C406  ","Expert type                        ","N",1
+" 06 -001  ","Expertise type                     ","N",2
+" 07 C413  ","Expertise aard                     ","N",1
+"    C410  ","Datum verzending expert            ","N",8
+"    C300  ","Plaats te bezichtigen              ","A",50
+"    C412  ","Datum ontvangst expertiseverslag   ","N",8
+"    C450  ","Expertise bedrag 1 of forfait      ","N",9
+"    C451  ","Expertise bedrag 2                 ","N",9
+"    C453  ","Totaal verlies                     ","N",9
+"    ZZZZ1 ","Opmerkingen bij beheer             ","A",160
+"    C455  ","Aantal dagen gebruiksderving       ","N",3
+"    5020  ","Plaat voertuig                     ","A",10
+"    5021  ","Onderstelnummer voertuig           ","A",20
+"    5000  ","Voertuig merk/type                 ","A",33
+"    5035  ","Verzekerde waarde voertuig         ","N",8
+" 08 5400  ","Type verzekerde waarde             ","N",1
+" 09 5F00  ","Vrijstelling type 1                ","N",1
+" 09 5F10  ","Vrijstelling type 2                ","N",1
+" 09 5F20  ","Vrijstelling type 3                ","N",1
+"    5F02  ","Vrijstelling omschrijving          ","A",10
+"    5F01  ","Vrijstelling waarde 1              ","N",8
+"    5F11  ","Vrijstelling waarde 2              ","N",8
+"    5F21  ","Vrijstelling waarde 3              ","N",8
+"    C6B1  ","Code uitkering waarborg 1          ","A",3
+"    C6B2  ","Uitkering waarborg 1 (omschrijving)","A",18
+"    C6B3  ","Bedrag uitkering waarborg 1        ","N",9
+"    C6C1  ","Code uitkering waarborg 2          ","A",3
+"    C6C2  ","Uitkering waarborg 2 (omschrijving)","A",18
+"    C6C3  ","Bedrag uitkering waarborg 2        ","N",9
+"    C6D1  ","Code uitkering waarborg 3          ","A",3
+"    C6D2  ","Uitkering waarborg 3 (omschrijving)","A",18
+"    C6D3  ","Bedrag uitkering waarborg 3        ","N",9
+"    C029  ","Datum afsluiting                   ","N",8
+"    ZZZZ2 ","Opmerkingen bij afhandeling        ","A",160
+"    C680  ","Vergoeding aan klient              ","N",9
+"    C690  ","Vergoeding aan tegenpartij         ","N",9
+"    C700  ","Bedrag verhaal op klient           ","N",9

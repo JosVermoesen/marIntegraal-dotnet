@@ -1,0 +1,18 @@
+"    A000","Polisnummer","A",12,68
+"    A010","BVVO code mij","A",4,1
+"    A400","Producentnummer","A",8,11
+"    B101","Datum beginperiode DDMMEEJJ","N",8,31
+"    B102","Datum eindperiode DDMMEEJJ","N",8,39
+"    A660","Code munteenheid","A",3,47
+"    A500","Takkode GCP","N",1,61
+"    A501","Sub-groep verzekeringen GCP","N",1,62
+"    A510","Takkode maatschappij","A",5,63
+"    A014","Zetel beheer verzekeringsnemer","A",3,80
+"    A012","Zetel beheer maatschappij","A",2,83
+"    A030","Polisnummer maatschappij BVVO","A",12,85
+"    A530","Takomschrijving","A",17,97
+"    A532","Produktnaam maatschappij","A",17,114
+"    A110","Referte van de producent","A",12,131
+"    A320","Hoofdvervaldag (DDMM)","N",4,143
+" 14 A325","Splitsing","A",1,147
+" 15 A600","Inning","N",1,149

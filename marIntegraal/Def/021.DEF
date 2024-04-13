@@ -1,0 +1,5 @@
+"7   v005 -","'21' + v216","A",20
+"7   v216 -","Forfaitkode (00 - 99)","N",2
+"7   v218  ","Cumulator","N",10
+"002 v111  ","BTW kode","N",1
+"    v230  ","Vaste verkoopkorting (in %)","N",2

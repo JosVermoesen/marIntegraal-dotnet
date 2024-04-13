@@ -1,0 +1,9 @@
+"7   v005 -","'18' + v019","A",20
+"&R  v019  ","Investeerrekening (2..0)","N",7
+"&R  v087 -","Afschrijfrekening (2..9)","N",7
+"&R  v088  ","Afschrijfrekening KOST (63.)","N",7
+"3   v082  ","Lineaire afschrijving, aantal jaar","N",3
+"9   v083  ","Eerste bewerking in boekjaar","N",10
+"3   v084  ","Totaal bedrag investering in boekjaar","D",9
+"3   v085  ","Totaal bedrag reeds afgeschreven","D",9
+" 19 v086  ","Versneld afschrijven ?","N",1

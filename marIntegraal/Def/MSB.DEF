@@ -1,0 +1,25 @@
+"    A000 *","Polisnummer","A",12,141
+"    A400  ","Producent Nummer","A",8,153
+"    C000 *","Schadenummer maatschappij","A",12,161
+"    C002  ","Code beheerder","A",5,173
+"    C010  ","Referte Producent","A",12,988
+" 32 CMSB  ","BerichtKode MSB 1","A",3,178
+"    ZZZZ  ","Variabel gegeven","A",75,238
+" 32 CMSB  ","BerichtKode MSB 2","A",3,181
+"    ZZZZ  ","Variabel gegeven","A",75,313
+" 32 CMSB  ","BerichtKode MSB 3","A",3,184
+"    ZZZZ  ","Variabel gegeven","A",75,388
+" 32 CMSB  ","BerichtKode MSB 4","A",3,187
+"    ZZZZ  ","Variabel gegeven","A",75,463
+" 32 CMSB  ","BerichtKode MSB 5","A",3,190
+"    ZZZZ  ","Variabel gegeven","A",75,538
+" 32 CMSB  ","BerichtKode MSB 6","A",3,193
+"    ZZZZ  ","Variabel gegeven","A",75,613
+" 32 CMSB  ","BerichtKode MSB 7","A",3,196
+"    ZZZZ  ","Variabel gegeven","A",75,688
+" 32 CMSB  ","BerichtKode MSB 8","A",3,199
+"    ZZZZ  ","Variabel gegeven","A",75,763
+" 32 CMSB  ","BerichtKode MSB 9","A",3,202
+"    ZZZZ  ","Variabel gegeven","A",75,838
+" 32 CMSB  ","BerichtKode MSB 10","A",3,205
+"    ZZZZ  ","Variabel gegeven","A",75,913

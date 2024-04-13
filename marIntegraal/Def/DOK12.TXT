@@ -1,0 +1,24 @@
+0
+"4400"
+"15000"
+4800,2200,10700,4000,1
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+0,0,0,0,0
+"Bedrijfsnaam",200,350,19.5,"Arial",-1,0,0,8421376
+"Straat en nummer",200,780,9.75,"Arial",0,0,0,0
+"Postkode en plaats",200,1020,9.75,"Arial",-1,0,0,0
+"Korte aktiviteitsomschrijving",200,1500,12,"Arial",-1,-1,0,0
+"Telefoon en fax",200,2040,9.75,"Arial",0,0,0,0
+"Banken",200,2280,9.75,"Arial",0,0,0,0
+"Btw nr.",200,2520,9.75,"Arial",0,0,0,0
+"Handelsregister",200,3000,9.75,"Arial",0,0,0,0
+"Openingsuren enz...",200,3240,9.75,"Arial",0,0,0,0
+"Zie onze algemene verkoopsvoorwaarden op keerzijde.",200,15500,9.75,"Arial",0,0,0,0

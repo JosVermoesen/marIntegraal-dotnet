@@ -1,0 +1,5 @@
+Import kontrolelijst klanten
+1   A100   001 035 T Naam
+1   A104   042 030 T Straat
+1   A105   073 005 T Nummer
+@01 A107   079 007 T Postkode SQL-opvraging

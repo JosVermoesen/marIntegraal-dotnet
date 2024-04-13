@@ -1,0 +1,50 @@
+"7   A110 -","Uniek Kodenummer","A",12
+" 98 A102","TitelKode 1","N",1
+"1   A100","Naam 1","A",35
+"1   A101  ","Voornaam 1","A",15
+"A   v301","Rijksregisternr. 1","N",11
+"A   v224","E-mail adres","A",60
+" 19 e072","Papierarm?","N",1
+" 98 vs01","TitelKode 2","N",1
+"1   A125","Naam 2","A",35
+"1   A127","Voornaam 2","A",15
+"A   v302","Rijksregisternr. 2","N",11
+"A   v002","Email Partner","A",50
+" 97 A10C *","Taalkode","N",1
+"1   A104","Straat","A",30
+"1   A105","Nummer","A",5
+"1   A106","Bus","A",4
+"@01 A107","Postkode SQL-opvraging","A",7
+"@02 A108","Woonplaats SQL-opvraging","A",24
+"@00 v149","ISOLandNummer, SQL-opvraging","n",3
+" 94 A109 *","Landkode volgens de POST","A",3
+"7   v150 *","ISOLandKode","A",2
+"    vs03","ISOMuntkode","A",3
+"A   A10A","Telefoonnummer","N",12
+"A   vs02","Fax/Telexnummer","N",12
+"A   v226","Gsm Nummer","N",12
+"A   v243","Telefoon 2 (werk)","N",12
+"A   v244","Fax 2 (werk)","N",12
+"    v227","Datum laatste bezoek","N",10
+"&R40v161","Koppeling 40-Rekening","N",7
+"&R70v225","Koppeling 70-Rekening","N",7
+"b   A161","BTW nummer","N",15
+" 19 v151","Default Medekontraktant?","N",1
+"002 v111","Default BTW kode","N",1
+"B   A170  ","Fin. belgische rekening","N",14
+"    v259  ","IBAN bankrekening","A",20
+"    v260  ","BIC bankrekening","A",14
+"B   v251  ","Fin. rekening (partner)","N",14
+"    v257  ","IBAN bankrekening partner","A",20
+"    v258  ","BIC bankrekening partner","A",14
+"4   vs04","Betaaltermijn","A",4
+"8   vs05","Vaste korting (in %)","N",3
+"7   vs06","sortering +","A",20
+"4   vs07","exemplaren dokumenten","N",1
+"    v247","Opmerkingen","A",50
+"    v245","Gebruikernummer","A",1
+"    v246","SysteemDatum en tijd bewerking","A",12
+"    v253","SQL verkoopverrichting","A",50
+"    v254","eShop Paswoord","A",50
+"    v255","DOMIC. Referte of abonneenr.","A",12
+"    v256","Domicilieringsnummer","A",12

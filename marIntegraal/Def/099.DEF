@@ -1,0 +1,129 @@
+;Boekingen en algemene instellingen
+"919 s299","VPE/PDF Afdrukmodus","N",1
+"899 s020","Bedrijfstype","N",1
+"028 s304","Brokerstype","A",1
+"029 s305","Fee %","A",2
+"002 s183","Default BTW code (3)","N",1
+"919 s200","Intrastat Aangifteschermen (0=OFF)","N",1
+"919 s201","Kontaktpersoon in adres ? (0=OFF)","N",1
+"919 s290","Briefwisseling via DDE ?","N",1
+"919 s021","E-mail mogelijk maken ?","N",1
+"2   s291","Programma voor DDE","A",20
+"2   s292","Algemene benaming toepassing","A",20
+"2   s293","Dokumentnaam voor DDE","A",20
+"2   s294","SendKeys 'afdruk door toepassing'","A",20
+"2   s295","SendKeys 'sluiten toepassing'","A",20
+;Aankoopverrichtingen
+"5   s001","Nr Aankoopfakturen","N",5
+"5   s002","Nr Fakturen in Aankoopboek","N",5
+"5   s003","Nr Creditnota's Aankoop,"N",5
+"5   s004","Nr Creditnota's in Aankoopboek","N",5
+"5   s015","Nr Leveringsbons","N",5
+"5   s205","Nr Bestelbons Leveranciers","N",5
+;Verkoopverrichtingen
+"5   s011","Nr Verkoopfakturen","N",5
+"5   s012","Nr Verkoopfakturen in Verkoopboek","N",5
+"5   s013","Nr Creditnota op Verkoop","N",5
+"5   s014","Nr Creditnota in Verkoopboek","N",5
+"5   s073","Volgnummer bestelbons klanten",N",5
+"5   s059","Volgnummer offertes klanten","N",5
+"5   s121","Volgnummer kwijtingen","N",5
+"5   s288","Default Beheerskost","N",5
+"919 s053","Korting voor Kontant","A",3
+"5   s054","Percentage korting voor kontant 0-9","N",1
+"2   s181","Rekenvlag Produkten (1001)","N",4
+"2   s300","Afdrukmasker voor 'aantal' verpakkingen","A",7
+"2   s182","Default BTW filter (1=inclusief)","N",1
+"2   s185","Doorslagen/Kopijen dokumenten (11)","N",2
+"2   s186","Samengestelde produkten (000)","N",3
+"2   s187","Standaardkostprijs produkt (0) 1=JA","N",1
+"2   s188","Volgnummer standaardkostprijskaart","N",5
+"919 s202","Default Overschrijvingsstrook ?","N",1
+"919 s203","Default Afdruk dokumenten ?","N",1
+"919 s072","Artikelinfo op een enkele lijn","N",1
+"919 s074","Produktnummer opnemen in dokument","N",1
+"919 s075","Maatstaf opnemen in dokument","N",1
+"919 s076","Klantenkorting opnemen in dokument","N",1
+;BTW Default Rekeningen
+"025 s301","Periodiciteit BTW aangifte","N",1
+"026 s302","Type Aangifteplichtige","N",1
+"027 s303","Niet in BE gevestigde Btw Plichtige","N",1
+"&R49s016","Rek. Verschuldigde BTW Vak 54","N",7
+"&R49s017","Rek. Verschuldigde BTW Vak 55","N",7
+"&R49s018","Rek. Verschuldigde BTW Vak 56","N",7
+"&R49s019","Rek. Verschuldigde BTW Vak 57","N",7
+"&R49s022","Rek. Aftrekbare BTW Vak 59","N",7
+"&R49s023","Rek. BTW creditnota aankoop Vak 63","N",7
+"&R49s024","Rek. BTW creditnota verkoop Vak 64","N",7
+"&R70s025","Verkooprekening bij omschrijving","N",7
+"&R60s077","Aankooprekening stock (default)","N",7
+"&R70s078","Verkooprekening stock (default)","N",7
+"&R34s079","Voorraadrekening stock (default)","N",7
+;Default Collectieve Rekeningen
+"&R40s009","Rek. Klanten default","N",7
+"&R44s010","Rek. Leveranciers default","N",7
+"    s297","KlantenGROEP (vb. 4000) ","N",4
+"    s298","LeveranciersGROEP (vb. 4400) ","N",4
+"&R75s027","Rek. Bekomen Betalingskorting","N",7
+"&R65s028","Rek. Toegest. Betalingskorting","N",7
+"&R48s145","Rek. Courant Zaakvoerder 1","N",7
+"2   s146","Rek. Schulden via Derden VAN","N",7
+"2   s147","Rek. Schulden via Derden TOT","N",7
+"2   s148","Rek. Investeringen VAN","N",7
+"2   s149","Rek. Investeringen TOT","N",7
+"2   s150","Rek. Handelsgoed/Stof VAN","N",7
+"2   s151","Rek. Handelsgoed/Stof TOT",N",7
+"2   s152","Rek. AankoopKOST VAN","N",7
+"2   s153","Rek. AankoopKOST TOT","N",7
+"&R70s289","Rek. Beheerskosten (assurfin.)","N",7
+;Financieel en Rekeningen
+"2   s041","Rek. Financieel 1","N",7
+"5   s031","Teller Uittreksel Financieel 1","N",6
+"2   s042","Rek. Financieel 2","N",7
+"5   s032","Teller Uittreksel Financieel 2","N",6
+"2   s043","Rek. Financieel 3","N",7
+"5   s033","Teller Uittreksel Financieel 3","N",6
+"2   s044","Rek. Financieel 4","N",7
+"5   s034","Teller Uittreksel Financieel 4","N",6
+"2   s045","Rek. Financieel 5","N",7
+"5   s035","Teller Uittreksel Financieel 5","N",6
+"2   s039","Rek. Financieel 6","N",7
+"5   s038","Teller Uittreksel Financieel 6","N",6
+"2   s211","Rek. Financieel 7","N",7
+"5   s215","Teller Uittreksel Financieel 7","N",6
+"2   s212","Rek. Financieel 8","N",7
+"5   s216","Teller Uittreksel Financieel 8","N",6
+"2   s213","Rek. Financieel 9","N",7
+"5   s217","Teller Uittreksel Financieel 9","N",6
+"2   s214","Rek. Financieel 0","N",7
+"5   s218","Teller Uittreksel Financieel 0","N",6
+"5   s101","Laatste rekening gebruikt","N",7
+;Bedrijfsinformatie
+"1   s046","Bedrijfsnaam","A",30
+"1   s047","Straat en Nummer","A",30
+"1   s048","Postkode / Woonplaats","A",30
+"1   s049","Telefoon","A",30
+"1   s051","BTW Nummer","A",30
+"1   s052","Naam Contact","A",30
+"1   s050","Mailadres","A",30
+;Status Boekjaar
+"2   s062","Voorraadwijziging (1=geboekt)","N",1
+"2   s063","Afschrijvingen (1=geboekt)","N",1
+"2   s064","Beginbalans (1=geboekt)","N",1
+;Kassaverkoop
+"7   s130","Etiket drukken (ON/OFF)","A",3
+"2   s131","Tabulator (10)","N",1
+"5   s132","Aantal aktieve voetlijnen (0-8)","N",1
+"2   s133","Koptekst Lijn 1 (20 tekens)","A",20
+"2   s134","Koptekst Lijn 2 (20 tekens)","A",20
+"2   s135","Koptekst Lijn 3 (20 tekens)","A",20
+"2   s136","Koptekst Lijn 4 (20 tekens)","A",20
+"2   s137","Voettekst Lijn 1 (30 tekens)","A",30
+"2   s138","Voettekst Lijn 2 (30 tekens)","A",30
+"2   s139","Voettekst Lijn 3 (30 tekens)","A",30
+"2   s140","Voettekst Lijn 4 (30 tekens)","A",30
+"2   s141","Voettekst Lijn 5 (30 tekens)","A",30
+"2   s142","Voettekst Lijn 6 (30 tekens)","A",30
+"2   s143","Voettekst Lijn 7 (30 tekens)","A",30
+"2   s144","Voettekst Lijn 8 (30 tekens)","A",30
+";       ","","",0

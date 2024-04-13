@@ -1,0 +1,7 @@
+Import van vsoft definitie
+7   A110 - 001 013 T 6;'Kodenummer klant
+    u001   193 010 T 10;'Pc Type
+    u003   221 010 T 10;'Dealer
+    u004   231 010 T 10;'Versie
+    u002   215 006 T 6;'Paswoord
+7   vs06   221 001 T 10;'Sortering + (dealer)

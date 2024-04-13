@@ -1,0 +1,16 @@
+"    v005 -","'20' + v231","A",20
+"    v231 -","Bank Nationaal Nummer","N",3
+"    v232 *","Naam Bank","A",26
+"    v233 *","Toepassingskode","N",2
+"    v234 *","Bestandstype","A",12
+"    v235 *","Schrijfkode (ASCII)","A",8
+"    v236 *","Rekening nummer","N",12
+"    v259  ","IBAN bankrekening","A",20
+"    v260  ","BIC bankrekening","A",14
+"    v237 *","Bestandsnaam","A",12
+" 97 v238 *","Taalkode","N",1
+"    v239 *","Nr. Informatiedrager","N",10
+"    v240 *","Default Cheque (1)","N",1
+"    v241 *","BTW- of Nationaal Nummer","N",9
+"    v242 *","Default kosten cheque","N",1
+"    v257  ","DOMIC. Identificatienr.","N",11

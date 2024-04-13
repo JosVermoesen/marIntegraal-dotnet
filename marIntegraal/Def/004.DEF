@@ -1,0 +1,37 @@
+"7   v102 -","Uniek kodenumer (EAN norm)","A",13
+"2   v105","Omschrijving (normaal)","A",40
+"004 v106","Produkt maatstaf","A",1
+"4   v107","Aantal maatstaven in verpakking","S",10
+"022 v108","Soort artikel/produkt/dienst","A",1
+"8   v110","Winstmarge","N",3
+"5   v249 -","Muntkode bedragen","A",3
+"002 v111","BTW kode","N",1
+"024 v168","TaksType","N",1
+"    v169","Taks WAARDERINGSFACTOR","N",3
+"3   v112","Verkoop BEF excl. BTW","N",15
+"3   e112","Verkoop EUR excl. BTW","D",15
+"3   v113","Aankoop BEF excl. BTW","N",15
+"3   e113","Aankoop EUR excl. BTW","D",15
+"4   v115","Minimum voorraad","S",10
+"&R6 v116 *","Aankooprekening","N",7
+"&R7 v117 *","Verkooprekening","N",7
+"&R3 v118","Voorraadrekening","N",7
+"4   v114","Eenheden begin boekjaar","S",10
+"4   v119","Eenheden aankoop in boekjaar","S",10
+"4   v120","Eenheden verkoop in boekjaar","S",10
+"3   v121","BEF aankoop boekjaar","N",15
+"3   e121","EUR aankoop boekjaar","D",15
+"3   v122","BEF aankoopgemiddelde verkopen","N",15
+"3   e122","EUR aankoopgemiddelde verkopen","D",15
+"3   v123","BEF beginvoorraad boekjaar","N",15
+"3   e123","EUR beginvoorraad boekjaar","D",15
+"7   v109","Plaats in magazijn","A",10
+"7   v103","Goederencode Intrastat","A",8
+"7   v104","Produktkode leverancier","A",20
+"&L  v124","Leverancier laatste levering","A",12
+"7   v125","Sorteervlag","A",1
+"2   v221","groepCategorie","A",40
+"c   v001","groepMerk","A",30
+"d   v002","Afbeelding Link","A",30
+"8   v300","Vast kortingspct","N",3
+"2   v261","Milieu","A",20

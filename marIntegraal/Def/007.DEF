@@ -1,0 +1,24 @@
+"901 A500 *","Takkode","N",1,0
+"005 vs96 *","TakGroep (VSOFT)","N",2,0
+"    A110 *","Nummer klant",12,0
+"    A010 *","BVVO nummer maatschappij","N",4,0
+"    A000 *","Polisnummer","A",12,0
+"    A110 *","Referte van de producent","A",12,0
+"    vs99 *","Omschrijving (30 tekens)","A",30,0
+"    vs98  ","Detail (30 tekens)","A",30,0
+"    v164 *","Laatste Vervalmaand","N",2,0
+"    v165 *","Laatste Vervaldag","N",2,0
+"    A320 *","Hoofdvervaldag (DDMM)","N",4,0
+"    AW_2 *","Einddatum (EEJJMMDD)","N",8,0
+"914 A325 *","Splitsing","A",1,0
+"915 A600 *","Inning","N",1,0
+"001 vs97 *","Aktiekode","A",1,0
+"    B010  ","Totaal te betalen (+)","D",9,0
+"    B014  ","Commissie (+)","D",8,0
+"    v166  ","Indexkode","N",1
+"    e069  ","Beheersvergoeding","A",12,0
+"919 e070  ","Fee actief?","A",12
+"    e071  ","Fee %-age","N",8
+"    e072  ","Fee Bedrag EUR","A",12
+"    v167  ","Maand/Klant/Mij/Polis","N",30,0
+

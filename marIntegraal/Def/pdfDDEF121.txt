@@ -1,0 +1,76 @@
+' CMD-VSOFTSPACE duidt het gedeelte van een A4 document aan, waarbinnen marIntegraal
+'                variabele gegevens kan invoegen.  Tekst briefwisseling, verkoopdocument
+'                informatie, Rappel enz..
+'                voor CMD-VSOFTSPACE verwacht het programma op de volgende lijn de
+'                parameters VAN en TOT gescheiden door een comma in centimeters.
+'                De waarden mogen decimalen bevatten evenwel aangeduid met decimaal punt!
+'                Vb. 8.2,26.5 => van boven naar onder, startput 8,2 en stoppunt 26,5
+'                verwachtte waarden: YPos,YPos2
+'
+'                In de testomgeving worden de gekozen grenzen weergegeven via twee
+'                horizontale rode lijnen
+'
+CMD-VSOFTSPACE
+8.2,26.5
+'
+'
+' CMD-ADRESSPACE duidt op de volgende lijn de van/tot XY waarden voor de locatie van
+'                adres klant/leverancier (naam1, naam2, straat, Pc en plaats
+'                verwachtte waarden xPos,YPos,xPos2,YPos2
+'
+'
+CMD-ADRESSPACE
+10,4.3,19.4,7.5
+'
+'
+' CMD-PICTURE    stelt U in staat om afbeeldingen in te voegen in het document
+'                geef na dit bevel op een volgende lijn de van/tot XY waarden aan van de
+'                gewenste grootte van de afbeelding, gevolgd door de bestandsnaam tussen
+'                aanhalingstekens. U kan de bestandslocatie op drie mogelijkheden aanduiden
+'                1. absoluut: vb "c:\mijn documenten\rv2007.bmp"
+'                2. BL parameter voor variabele bedrijfslocatie: vb "[BL]rv2007.bmp"
+'                   afhankelijk van het actieve bedrijf zal er gezocht worden in de
+'                   bedrijfsinhoudsopgave (lokaal of serverlocatie)
+'                3. PL parameter voor variabele programmalocatie: vb "[PL]rv2007.bmp"
+'                   locatie hier afhankelijk van gebruikerstoestel
+'
+'                Verwachtte waarden xPos,YPos,xPos2,YPos2,Kaderpen,bestandsnaam en locatie
+'                Kaderpen=0 voor geen kader, 1 voor dunne lijn, 2 voor dikker enz.
+'
+CMD-PICTURE
+1.5,0.5,19,3.5,0,"[PL]rv2007.bmp"
+'
+'
+' CMD-WRITE      Laat U toe om een tekstvak aan te duiden gevolgd door de tekst die in
+'                eenzelfde lettertype en grootte dient afgedrukt te worden.  Laatste
+'                tekstlijn steeds afsluiten met CMD-ENDWRITE bevel!!!!! Essentiëel !!
+'                CMD-WRITE onmiddellijk gevolgd op de volgende lijn door de VAN/TOT XY
+'                waarden, de gewenste font, tekengrootte, al dan niet vet en/of cursief
+'
+'                xPos,YPos,xPos2,YPos2,FontGrootte,FontNaam,Kleur,Aligneren,Vet,Cursief,Onderlijnen
+'                
+CMD-WRITE
+0.8,3.6,6.5,7.2,9.75,"Arial",0,1,0,0,0
+VERZEKERINGSMAKELAARS
+KREDIETMAKELAARS
+GELDPLAATSINGEN
+KANTOORAUTOMATISATIE
+CBFA: 11578A-B MEZ: 119972
+BTW/Nat.nr. BE0440058217
+BROKER BE36 8289 9852 8681
+GIRO BE02 9100 7687 6640
+BIC HBKA BE 22
+CMD-ENDWRITE
+'
+'
+' CMD-PRINT      Identieke werking als CMD-WRITE maar dan voor een enkele regel
+'                vandaar ook slechts een XY en geen aligneerparameter + slechts een
+'                enkele tekstlijn zonder meer. 
+'                xPos,YPos,FontGrootte,FontNaam,Kleur,Vet,Cursief,Onderlijnen
+'
+CMD-PRINT
+2.4,26.6,8.25,"Arial",0,0,-1,0
+Klanten beheren na registratie op www.rv.be online hun facturen, vervaldagberichten, contracten en schadedossiers!
+CMD-PRINT
+2,26.90,9,"Arial",8388608,-1,0,0
+GROTE BAAN 141 - 9310 HERDERSEM-AALST - TEL. 053/21.59.25 - FAX 053/78.19.22 - info@rv.be

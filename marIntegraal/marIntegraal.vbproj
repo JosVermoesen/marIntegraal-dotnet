@@ -1,0 +1,1034 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{136DE3B7-422A-4AE7-9B62-5FBDC3884FF0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>marIntegraal.My.MyApplication</StartupObject>
+    <RootNamespace>marIntegraal</RootNamespace>
+    <AssemblyName>marIntegraal</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\Jos\source\repos\JosVermoesen\mar\vss\marintegraal-vsvb\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>https://clickonce.vsoft.be/marintegraal/</InstallUrl>
+    <SupportUrl>https://vsoft.be/#/marintegraal</SupportUrl>
+    <ProductName>marIntegraal DNN Studio</ProductName>
+    <PublisherName>Vsoft Administratieve Software</PublisherName>
+    <SuiteName>marIntegraal Studio</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>marIntegraal.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>marIntegraal.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Text</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2226D3007CFBE5180061ECE817606217A15DB3BB</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>marIntegraal_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>NOTE04.ICO</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'deploy2019|AnyCPU'">
+    <OutputPath>bin\deploy2019\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IDEALSoftware.VpeStandard, Version=6.1.1.0, Culture=neutral, PublicKeyToken=cd7e57f4b5d80cd1, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\VPE_S32.610\deploy\IDEALSoftware.VpeStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="SupportiveForms\frmAankoopEdit.Designer.vb">
+      <DependentUpon>frmAankoopEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmAankoopEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmAankoopInvesteerFiche.Designer.vb">
+      <DependentUpon>frmAankoopInvesteerFiche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmAankoopInvesteerFiche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CloudIO\frmAppOutInstellingen.Designer.vb">
+      <DependentUpon>frmAppOutInstellingen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CloudIO\frmAppOutInstellingen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\FormBSBook.Designer.vb">
+      <DependentUpon>FormBSBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\FormBSBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmBalansKlantLeverancier.Designer.vb">
+      <DependentUpon>frmBalansKlantLeverancier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmBalansKlantLeverancier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\frmBetalingOut.Designer.vb">
+      <DependentUpon>frmBetalingOut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\frmBetalingOut.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Broker\frmBetalingsPInput.Designer.vb">
+      <DependentUpon>frmBetalingsPInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Broker\frmBetalingsPInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Broker\frmBetalingsVerzoek.Designer.vb">
+      <DependentUpon>frmBetalingsVerzoek.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Broker\frmBetalingsVerzoek.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmBoekhoudRapportage.Designer.vb">
+      <DependentUpon>frmBoekhoudRapportage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmBoekhoudRapportage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\frmBriefwisseling.Designer.vb">
+      <DependentUpon>frmBriefwisseling.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\frmBriefwisseling.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\FormVatDeclaration.Designer.vb">
+      <DependentUpon>FormVatDeclaration.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\FormVatDeclaration.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\FormJournalEntriesBook.Designer.vb">
+      <DependentUpon>FormJournalEntriesBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\FormJournalEntriesBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\frmAankoopVerrichtingen.Designer.vb">
+      <DependentUpon>frmAankoopVerrichtingen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\frmAankoopVerrichtingen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sheets\FrmBasicSheetTemplate.Designer.vb">
+      <DependentUpon>FrmBasicSheetTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sheets\FrmBasicSheetTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actions\FrmCompanyOpen.Designer.vb">
+      <DependentUpon>FrmCompanyOpen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\FrmCompanyOpen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\FormBYPERDAT.Designer.vb">
+      <DependentUpon>FormBYPERDAT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="System\FormBYPERDAT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmBoeking.Designer.vb">
+      <DependentUpon>frmBoeking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmBoeking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\FormJournalEntryInput.Designer.vb">
+      <DependentUpon>FormJournalEntryInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\FormJournalEntryInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmDokHistoriek.Designer.vb">
+      <DependentUpon>frmDokHistoriek.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmDokHistoriek.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\FormFinancialBook.Designer.vb">
+      <DependentUpon>FormFinancialBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\FormFinancialBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\frmFinancieleVerrichtingen.Designer.vb">
+      <DependentUpon>frmFinancieleVerrichtingen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\frmFinancieleVerrichtingen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmHistoriekRekeningen.Designer.vb">
+      <DependentUpon>frmHistoriekRekeningen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmHistoriekRekeningen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sheets\FrmLedgerHistoryOnScreen.Designer.vb">
+      <DependentUpon>FrmLedgerHistoryOnScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sheets\FrmLedgerHistoryOnScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmInvesteringsFiche.Designer.vb">
+      <DependentUpon>frmInvesteringsFiche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmInvesteringsFiche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmJaarlistingBtw.Designer.vb">
+      <DependentUpon>frmJaarlistingBtw.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmJaarlistingBtw.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmKeuzeLijst.Designer.vb">
+      <DependentUpon>frmKeuzeLijst.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmKeuzeLijst.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Broker\frmKwijtingEdit.Designer.vb">
+      <DependentUpon>frmKwijtingEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Broker\frmKwijtingEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Broker\frmKwijtingInboeken.Designer.vb">
+      <DependentUpon>frmKwijtingInboeken.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Broker\frmKwijtingInboeken.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sheets\frmLijstRapportage.Designer.vb">
+      <DependentUpon>frmLijstRapportage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sheets\frmLijstRapportage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMim.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMim.Designer.vb">
+      <DependentUpon>FormMim.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aLoadMain.vb" />
+    <Compile Include="Actions\FrmCompanyNew.Designer.vb">
+      <DependentUpon>FrmCompanyNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\FrmCompanyNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmNTInputbox.Designer.vb">
+      <DependentUpon>frmNTInputbox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmNTInputbox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sheets\frmProductFiche.Designer.vb">
+      <DependentUpon>frmProductFiche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sheets\frmProductFiche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmProductlijstRekenkundig.Designer.vb">
+      <DependentUpon>frmProductlijstRekenkundig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmProductlijstRekenkundig.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmProefEnSaldi.Designer.vb">
+      <DependentUpon>frmProefEnSaldi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmProefEnSaldi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\FrmSettingsFinancialYear.Designer.vb">
+      <DependentUpon>FrmSettingsFinancialYear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="System\FrmSettingsFinancialYear.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\FormSQLOperations.Designer.vb">
+      <DependentUpon>FormSQLOperations.vb</DependentUpon>
+    </Compile>
+    <Compile Include="System\FormSQLOperations.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmSqlSearch.Designer.vb">
+      <DependentUpon>frmSqlSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmSqlSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\frmStandaardKostprijsKaart.Designer.vb">
+      <DependentUpon>frmStandaardKostprijsKaart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\frmStandaardKostprijsKaart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Broker\frmTelebibIN.Designer.vb">
+      <DependentUpon>frmTelebibIN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Broker\frmTelebibIN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmTopDown.Designer.vb">
+      <DependentUpon>frmTopDown.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmTopDown.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmVerkoopSjabloon.Designer.vb">
+      <DependentUpon>frmVerkoopSjabloon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmVerkoopSjabloon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Documents\frmVerkoopVerrichtingen.Designer.vb">
+      <DependentUpon>frmVerkoopVerrichtingen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\frmVerkoopVerrichtingen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\FrmVPEOutgoing.Designer.vb">
+      <DependentUpon>FrmVPEOutgoing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="System\FrmVPEOutgoing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Broker\frmVrijBerichtMaatschappij.Designer.vb">
+      <DependentUpon>frmVrijBerichtMaatschappij.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Broker\frmVrijBerichtMaatschappij.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmXDocument.Designer.vb">
+      <DependentUpon>frmXDocument.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmXDocument.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportiveForms\frmXLog.Designer.vb">
+      <DependentUpon>frmXLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\frmXLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\modDatabaseRoutines.vb" />
+    <Compile Include="Modules\modLibs.vb" />
+    <Compile Include="Modules\modMIM.vb" />
+    <Compile Include="Modules\modTB2.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SupportiveForms\frmAankoopEdit.resx">
+      <DependentUpon>frmAankoopEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmAankoopInvesteerFiche.resx">
+      <DependentUpon>frmAankoopInvesteerFiche.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CloudIO\frmAppOutInstellingen.resx">
+      <DependentUpon>frmAppOutInstellingen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\FormBSBook.resx">
+      <DependentUpon>FormBSBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmBalansKlantLeverancier.resx">
+      <DependentUpon>frmBalansKlantLeverancier.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\frmBetalingOut.resx">
+      <DependentUpon>frmBetalingOut.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Broker\frmBetalingsPInput.resx">
+      <DependentUpon>frmBetalingsPInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Broker\frmBetalingsVerzoek.resx">
+      <DependentUpon>frmBetalingsVerzoek.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmBoekhoudRapportage.resx">
+      <DependentUpon>frmBoekhoudRapportage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\frmBriefwisseling.resx">
+      <DependentUpon>frmBriefwisseling.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\FormVatDeclaration.resx">
+      <DependentUpon>FormVatDeclaration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\FormJournalEntriesBook.resx">
+      <DependentUpon>FormJournalEntriesBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\frmAankoopVerrichtingen.resx">
+      <DependentUpon>frmAankoopVerrichtingen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sheets\FrmBasicSheetTemplate.resx">
+      <DependentUpon>FrmBasicSheetTemplate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actions\FrmCompanyOpen.resx">
+      <DependentUpon>FrmCompanyOpen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\FormBYPERDAT.resx">
+      <DependentUpon>FormBYPERDAT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmBoeking.resx">
+      <DependentUpon>frmBoeking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\FormJournalEntryInput.resx">
+      <DependentUpon>FormJournalEntryInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmDokHistoriek.resx">
+      <DependentUpon>frmDokHistoriek.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\FormFinancialBook.resx">
+      <DependentUpon>FormFinancialBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\frmFinancieleVerrichtingen.resx">
+      <DependentUpon>frmFinancieleVerrichtingen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmHistoriekRekeningen.resx">
+      <DependentUpon>frmHistoriekRekeningen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sheets\FrmLedgerHistoryOnScreen.resx">
+      <DependentUpon>FrmLedgerHistoryOnScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmInvesteringsFiche.resx">
+      <DependentUpon>frmInvesteringsFiche.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmJaarlistingBtw.resx">
+      <DependentUpon>frmJaarlistingBtw.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmKeuzeLijst.resx">
+      <DependentUpon>frmKeuzeLijst.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Broker\frmKwijtingEdit.resx">
+      <DependentUpon>frmKwijtingEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Broker\frmKwijtingInboeken.resx">
+      <DependentUpon>frmKwijtingInboeken.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sheets\frmLijstRapportage.resx">
+      <DependentUpon>frmLijstRapportage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMim.resx">
+      <DependentUpon>FormMim.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actions\FrmCompanyNew.resx">
+      <DependentUpon>FrmCompanyNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmNTInputbox.resx">
+      <DependentUpon>frmNTInputbox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sheets\frmProductFiche.resx">
+      <DependentUpon>frmProductFiche.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmProductlijstRekenkundig.resx">
+      <DependentUpon>frmProductlijstRekenkundig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmProefEnSaldi.resx">
+      <DependentUpon>frmProefEnSaldi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\FrmSettingsFinancialYear.resx">
+      <DependentUpon>FrmSettingsFinancialYear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\FormSQLOperations.resx">
+      <DependentUpon>FormSQLOperations.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmSqlSearch.resx">
+      <DependentUpon>frmSqlSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\frmStandaardKostprijsKaart.resx">
+      <DependentUpon>frmStandaardKostprijsKaart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Broker\frmTelebibIN.resx">
+      <DependentUpon>frmTelebibIN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmTopDown.resx">
+      <DependentUpon>frmTopDown.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmVerkoopSjabloon.resx">
+      <DependentUpon>frmVerkoopSjabloon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Documents\frmVerkoopVerrichtingen.resx">
+      <DependentUpon>frmVerkoopVerrichtingen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\FrmVPEOutgoing.resx">
+      <DependentUpon>FrmVPEOutgoing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Broker\frmVrijBerichtMaatschappij.resx">
+      <DependentUpon>frmVrijBerichtMaatschappij.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmXDocument.resx">
+      <DependentUpon>frmXDocument.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportiveForms\frmXLog.resx">
+      <DependentUpon>frmXLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Def\00.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0000000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0000000.PRE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\001.QHP">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00100.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00100.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0010000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00101.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00101.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00102.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00102.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00103.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\002.QHP">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00200.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00200.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0020000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\003.QHP">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00300.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00300.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0030000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00301.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\003DUMM.OCT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\004.QHP">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00400.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0040000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00401.IOD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00401.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\005.QHP">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00501.PRD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00900111.MRG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00900112.MRG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00900113.MRG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00900114.MRG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\00DUMMY.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0200000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0600000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\0700000.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\90DUMMY.ONT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\99MAR01N.SRN">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\99MAR02N.SRN">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\99MAR03N.SRN">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\99MAR04N.SRN">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\AS1OCT.INI">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\BAAUTO.100">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Def\F01.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\F02.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\F03.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\F04.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Def\LICMARNT.###">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\MARNT.VBZ">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\PLIJST.INI">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\prnt2000.SET">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\TELEBIB.OCT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Def\TELEBIB.PRE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="DAO">
+      <Guid>{00025E01-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Scripting">
+      <Guid>{420B2830-E718-11CF-893D-00A0C9054228}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Def\00.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\000.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\001.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\001M.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\002.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\003.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\004.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\005.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\007.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\010.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\012.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\018.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\020.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\020A.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\020Q.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\020V.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\021.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\022.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\028.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\060.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\070.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\099.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\90D.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\AS1022.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\AS1024.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\AS1046.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\AS1047.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\AS1097.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\default.def">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK11.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK12.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK13.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK14.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK21.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK22.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK23.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\DOK24.TXT">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\ENDUSER.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\GROEP50.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\GROEP96.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\HPJ.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\IBM.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\MSB.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\PAUTO01.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\PAUTO02.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\PBAPRIVE.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\pdfDDEF110.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\pdfDDEF120.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\pdfDDEF121.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\pdfDDEF123.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\pdfDDEF124.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\PRECHT.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\SCHADE01.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\SPAARBON.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK0.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK1.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK2.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK3.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK4.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK41.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK5.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK6.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK7.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK8.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK9.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TAK96.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TELEB022.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TELEB024.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TELEBIB2.DEF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TRF50.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Def\TXT.DEF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NOTE04.ICO">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

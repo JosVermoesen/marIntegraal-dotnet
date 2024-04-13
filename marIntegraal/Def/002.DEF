@@ -1,0 +1,38 @@
+"7   A110 -","Uniek Kodenummer","A",12
+" 98 A102","TitelKode 1","N",1
+"1   A100","Naam 1","A",35
+" 98 vs01","TitelKode 2","N",1
+"1   A125","Naam 2","A",35
+" 97 A10C *","Taalkode","N",1
+"1   A104","Straat","A",30
+"1   A105","Nummer","A",5
+"1   A106","Bus","A",4
+"@01 A107","Postkode SQL-opvraging","A",7
+"@02 A108","Woonplaats SQL-opvraging","A",24
+"@00 v149","ISOLandNummer, SQL-opvraging","n",3
+" 94 A109 *","Landkode volgens de POST","A",3
+"7   v150 *","ISOLandKode","A",2
+"    vs03","ISOMuntkode","A",3
+"A   A10A","Telefoonnummer","N",12
+"A   vs02","Fax/Telexnummer","N",12
+"A   v226","Gsm Nummer","N",12
+"A   v224","E-mail adres","A",60
+" 19 e072","Papierarm?","N",1
+"A   v002","Web URL","A",50
+"    v227","Datum laatste bezoek","N",10
+" 19 v163","Koppeling voor stockbeheer","N",1
+"&R  v016","Koppeling 6-Kostenrekening","N",7
+"&R44v161","Koppeling 440-Rekening","N",7
+"b   A161","BTW nummer","A",15
+"B   A170  ","Fin. belgische rekening","N",14
+"    v259  ","IBAN bankrekening","A",20
+"    v260  ","BIC bankrekening","A",14
+"7   A400","Vaste referte/agentnummer","A",10
+"7   v015","Registratienummer","A",10
+" 19 v151","Default Medekontraktant?","N",1
+"002 v111","Default BTW kode","N",1
+"4   vs04","Betaaltermijn","A",4
+"5   v017","Aardcode gestruktureerde mededeling","N",1
+"3   v018","Streefomzet (surplus commissie eindejaar)","D",9
+"    v247","Opmerkingen","A",50
+"    v254","SQL aankoopverrichting","A",50

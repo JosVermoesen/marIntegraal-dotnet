@@ -1,0 +1,416 @@
+"BALANS NA WINSTVERDELING VOLLEDIG SCHEMA"
+"       Boekjaar       "
+"    Vorig boekjaar    "
+" Codes "
+"            (in munt boekjaar)               "
+1
+"m",8,"       ",0
+" Kontroleer na uitdruk :                                   "
+"                                                           "
+" 1. ACTIEF = PASSIEF                                       "
+"    indien niet : a. resultaat reeds geboekt ?             "
+"                  b. 498xxx BTW-rekeningen afgesloten ?    "
+"                  c. rekeningnummers buiten het MINIMUM ?  "
+"                                                           "
+" 2. 55xxxx rekeningen in MIN als SCHULDrekening 43xxxx ?   "
+0
+"h",3,"       ",0
+"    1.  B A L A N S   N A   W I N S T V E R D E L I N G    "
+"                                                           "
+"                        A C T I V A                        "
+0
+"l",0,"       ",0
+0
+"D",1," 20/28 ",10
+"                        VASTE ACTIVA                       "
+1
+"20    ","289999"
+"D",1," 20    ",10
+"   I. OPRICHTINGSKOSTEN (toel. I) .   .   .   .   .   .   ."
+1
+"20    ","209999"
+"D",1," 21    ",10
+"  II. IMMATERIELE VASTE ACTIVA (toel. II) .   .   .   .   ."
+1
+"21    ","219999"
+"D",1," 22/27 ",10
+" III. MATERIELE VASTE  ACTIVA (toel. III) .   .   .   .   ."
+1
+"22    ","279999"
+"D",1," 22    ",5
+"      A. Terreinen en gebouwen.   .   .   .   .   .   .   ."
+1
+"22    ","229999"
+"D",1," 23    ",5
+"      B. Installaties, machines en uitrusting .   .   .   ."
+1
+"23    ","239999"
+"D",1," 24    ",5
+"      C. Meubilair en rollend materieel   .   .   .   .   ."
+1
+"24    ","249999"
+"D",1," 25    ",5
+"      D. Leasing en soortgelijke rechten  .   .   .   .   ."
+1
+"25    ","259999"
+"D",1," 26    ",5
+"      E. Overige materi‰le vaste activa   .   .   .   .   ."
+1
+"26    ","269999"
+"D",1," 27    ",5
+"      F. Activa in aanbouw en vooruitbetalingen   .   .   ."
+1
+"27    ","279999"
+"D",1," 28    ",10
+"  IV. FINANCIELE VASTE ACTIVA (toel. IV en V) .   .   .   ."
+1
+"28    ","289999"
+"D",1," 280/1 ",5
+"      A. Verbonden ondernemingen  .   .   .   .   .   .   ."
+1
+"280   ","281999"
+"D",1," 280   ",0
+"         1. Deelnemingen  .   .   .   .   .   .   .   .   ."
+1
+"280   ","280999"
+"D",1," 281   ",0
+"         2. Vorderingen   .   .   .   .   .   .   .   .   ."
+1
+"281   ","281999"
+"D",2," 282/3 ",5
+"      B. Ondernemingen waarmee een deelnemingsverhouding  ."
+"         bestaat  .   .   .   .   .   .   .   .   .   .   ."
+1
+"282   ","283999"
+"D",1," 282   ",0
+"         1. Deelnemingen  .   .   .   .   .   .   .   .   ."
+1
+"282   ","282999"
+"D",1," 283   ",0
+"         2. Vorderingen   .   .   .   .   .   .   .   .   ."
+1
+"283   ","283999"
+"D",1," 284/8 ",5
+"      C. Andere financi‰le vaste activa   .   .   .   .   ."
+1
+"284   ","288999"
+"D",1," 284   ",0
+"         1. Aandelen  .   .   .   .   .   .   .   .   .   ."
+1
+"284   ","284999"
+"D",1," 285/8 ",0
+"         2. Vorderingen en borgtochten in contanten   .   ."
+1
+"285   ","288999"
+"l",0,"       ",0
+0
+"D",1," 29/58 ",10
+"                     VLOTTENDE ACTIVA                      "
+3
+"29    ","419999"
+"490   ","491999"
+"50    ","589999"
+"D",1," 29    ",10
+"   V. VORDERINGEN OP MEER DAN EEN JAAR.   .   .   .   .   ."
+1
+"29    ","299999"
+"D",1," 290   ",5
+"      A. Handelsvorderingen   .   .   .   .   .   .   .   ."
+1
+"290   ","290999"
+"D",1," 291   ",5
+"      B. Overige vorderingen  .   .   .   .   .   .   .   ."
+1
+"291   ","291999"
+"D",1," 3     ",10
+"  VI. VOORRADEN EN BESTELLINGEN IN UITVOERING .   .   .   ."
+1
+"3     ","379999"
+"D",1," 30/36 ",5
+"      A. Voorraden.   .   .   .   .   .   .   .   .   .   ."
+1
+"30    ","369999"
+"D",1," 30/31 ",0
+"         1. Grond- en hulpstoffen .   .   .   .   .   .   ."
+1
+"30    ","319999"
+"D",1," 32    ",0
+"         2. Goederen in bewerking .   .   .   .   .   .   ."
+1
+"32    ","329999"
+"D",1," 33    ",0
+"         3. Gereed produkt.   .   .   .   .   .   .   .   ."
+1
+"33    ","339999"
+"D",1," 34    ",0
+"         4. Handelsgoederen   .   .   .   .   .   .   .   ."
+1
+"34    ","349999"
+"D",1," 35    ",0
+"         5. Onroerende goederen bestemd voor verkoop  .   ."
+1
+"35    ","359999"
+"D",1," 36    ",0
+"         6. Vooruitbetalingen .   .   .   .   .   .   .   ."
+1
+"36    ","369999"
+"D",1," 37    ",5
+"      B. Bestellingen in uitvoering   .   .   .   .   .   ."
+1
+"37    ","379999"
+"D",1," 40/41 ",10
+" VII. VORDERINGEN OP TEN HOOGSTE EEN JAAR .   .   .   .   ."
+1
+"40    ","419999"
+"D",1," 40    ",5
+"      A. Handelsvorderingen   .   .   .   .   .   .   .   ."
+1
+"40    ","409999"
+"D",1," 41    ",5
+"      B. Overige vorderingen  .   .   .   .   .   .   .   ."
+1
+"41    ","419999"
+"D",1," 50/53 ",10
+"VIII. GELDBELEGGINGEN (toel. V en VI) .   .   .   .   .   ."
+1
+"50    ","539999"
+"D",1," 50    ",5
+"      A. Eigen aandelen   .   .   .   .   .   .   .   .   ."
+1
+"50    ","509999"
+"D",1," 51/53 ",5
+"      B. Overige beleggingen  .   .   .   .   .   .   .   ."
+1
+"51    ","539999"
+"D",1," 54/58 ",10
+"  IX. LIQUIDE MIDDELEN.   .   .   .   .   .   .   .   .   ."
+1
+"54    ","589999"
+"D",1," 490/1 ",10
+"   X. OVERLOPENDE REKENINGEN (toel. VII)  .   .   .   .   ."
+1
+"490   ","491999"
+"t",0,"       ",0
+0
+"D",1," 20/58 ",10
+"                                          TOTAAL DER ACTIVA"
+3
+"20    ","419999"
+"490   ","491999"
+"50    ","589999"
+"e",0,"       ",0
+0
+"h",2,"       ",0
+"                      P A S S I V A                        "
+"                                                           "
+0
+"C",1," 10/15 ",10
+"                      EIGEN VERMOGEN                       "
+1
+"10    ","159999"
+"C",1," 10    ",10
+"   I. KAPITAAL (toel. VIII)   .   .   .   .   .   .   .   ."
+1
+"10    ","109999"
+"C",1," 100   ",5
+"      A. Geplaatst kapitaal   .   .   .   .   .   .   .   ."
+1
+"100   ","100999"
+"C",1," 101   ",5
+"      B. Niet opgevraagd kapitaal .   .   .   .   .   . (-)"
+1
+"101   ","101999"
+"C",1," 11    ",10
+"  II. UITGIFTEPREMIES .   .   .   .   .   .   .   .   .   ."
+1
+"11    ","119999"
+"C",1," 12    ",10
+" III. HERWAARDERINGSMEERWAARDEN   .   .   .   .   .   .   ."
+1
+"12    ","129999"
+"C",1," 13    ",10
+"  IV. RESERVES.   .   .   .   .   .   .   .   .   .   .   ."
+1
+"13    ","133999"
+"C",1," 130   ",5
+"      A. Wettelijke reserve   .   .   .   .   .   .   .   ."
+1
+"130   ","130999"
+"C",1," 131   ",5
+"      B. Onbeschikbare reserve.   .   .   .   .   .   .   ."
+1
+"131   ","131999"
+"C",1," 1310  ",0
+"         1. Voor eigen aandelen   .   .   .   .   .   .   ."
+1
+"1310  ","131099"
+"C",1," 1311  ",0
+"         2. Andere.   .   .   .   .   .   .   .   .   .   ."
+1
+"1311  ","131199"
+"C",1," 132   ",5
+"      C. Belastingvrije reserves  .   .   .   .   .   .   ."
+1
+"132   ","132999"
+"C",1," 133   ",5
+"      D. Beschikbare reserves .   .   .   .   .   .   .   ."
+1
+"133   ","133999"
+"C",1," 140   ",10
+"   V. OVERGEDRAGEN WINST      .   .   .   .   .   .   .   ."
+1
+"140    ","140999"
+"D",1," 141   ",10
+"      OVERGEDRAGEN VERLIES.   .   .   .   .   .   .   . (-)"
+1
+"141   ","141999"
+"C",1," 15    ",10
+"  VI. KAPITAALSUBSIDIES   .   .   .   .   .   .   .   .   ."
+1
+"15    ","159999"
+"C",2," 16    ",10
+"                                                           "
+" VII. VOORZIENINGEN VOOR RISICO'S EN KOSTEN   .   .   .   ."
+1
+"16    ","169999"
+"C",1," 160   ",5
+"      A. Pensioenen en soortgelijke verplichtingen.   .   ."
+1
+"160   ","160999"
+"C",1," 161   ",5
+"      B. Belastingen  .   .   .   .   .   .   .   .   .   ."
+1
+"161   ","161999"
+"C",1," 162   ",5
+"      C. Grote herstellings- en onderhoudswerken  .   .   ."
+1
+"162   ","162999"
+"C",1," 163/9 ",5
+"      D. Overige risico's en kosten (toel. IX).   .   .   ."
+1
+"163   ","169999"
+"C",2," 17/49 ",10
+"                                                           "
+"                   SCHULDEN                                "
+3
+"17    ","179999"
+"42    ","489999"
+"492   ","493999"
+"C",1," 17    ",10
+"VIII. SCHULDEN OP MEER DAN EEN JAAR (toel. X) .   .   .   ."
+1
+"17    ","179999"
+"C",1," 170/4 ",5
+"      A. Financi‰le schulden  .   .   .   .   .   .   .   ."
+1
+"170   ","174999"
+"C",1," 170   ",0
+"         1. Achtergestelde leningen   .   .   .   .   .   ."
+1
+"170   ","170999"
+"C",1," 171   ",0
+"         2. Niet achtergestelde obligatieleningen .   .   ."
+1
+"171   ","171999"
+"C",1," 172   ",0
+"         3. Leasingschulden en soortgelijke schulden  .   ."
+1
+"172   ","172999"
+"C",1," 173   ",0
+"         4. Kredietinstellingen   .   .   .   .   .   .   ."
+1
+"173   ","173999"
+"C",1," 174   ",0
+"         5. Overige leningen  .   .   .   .   .   .   .   ."
+1
+"174   ","174999"
+"C",1," 175   ",5
+"      B. Handelsschulden  .   .   .   .   .   .   .   .   ."
+1
+"175   ","175999"
+"C",1," 1750  ",0
+"         1. Leveranciers  .   .   .   .   .   .   .   .   ."
+1
+"1750  ","175099"
+"C",1," 1751  ",0
+"         2. Te betalen wissels.   .   .   .   .   .   .   ."
+1
+"1751  ","175199"
+"C",1," 176   ",5
+"      C. Ontvangen vooruitbetalingen op bestellingen  .   ."
+1
+"176   ","176999"
+"C",1," 178/9 ",5
+"      D. Overige schulden .   .   .   .   .   .   .   .   ."
+1
+"178   ","178999"
+"C",1," 42/48 ",10
+"  IX. SCHULDEN OP TEN HOOGSTE EEN JAAR (toel. X)  .   .   ."
+2
+"42    ","489999"
+"492   ","493999"
+"C",2," 42    ",5
+"      A. Schulden op meer dan ‚‚n jaar die binnen het jaar."
+"         vervallen.   .   .   .   .   .   .   .   .   .   ."
+1
+"42    ","429999"
+"C",1," 43    ",5
+"      B. Financi‰le schulden  .   .   .   .   .   .   .   ."
+1
+"43    ","439999"
+"C",1," 430/8 ",0
+"         1. Kredietinstellingen   .   .   .   .   .   .   ."
+1
+"430   ","438999"
+"C",1," 439   ",0
+"         2. Te betalen wissels.   .   .   .   .   .   .   ."
+1
+"439   ","439999"
+"C",1," 44    ",5
+"      C. Handelsschulden  .   .   .   .   .   .   .   .   ."
+1
+"44    ","449999"
+"C",1," 440/4 ",0
+"         1. Leveranciers  .   .   .   .   .   .   .   .   ."
+2
+"440   ","440999"
+"444   ","444999"
+"C",1," 441   ",0
+"         2. Te betalen wissels.   .   .   .   .   .   .   ."
+1
+"441   ","441999"
+"C",1," 46    ",5
+"      D. Ontvangen vooruitbetalingen op bestellingen  .   ."
+1
+"46    ","469999"
+"C",2," 45    ",5
+"      E. Schulden met betrekking tot belastingen, bezoldi-."
+"         gingen en sociale lasten .   .   .   .   .   .   ."
+1
+"45    ","459999"
+"C",1," 450/3 ",0
+"         1. Belastingen   .   .   .   .   .   .   .   .   ."
+1
+"450   ","453999"
+"C",1," 454/9 ",0
+"         2. Bezoldigingen en sociale lasten   .   .   .   ."
+1
+"454   ","459999"
+"C",1," 47/48 ",5
+"      F. Overige schulden .   .   .   .   .   .   .   .   ."
+1
+"47    ","489999"
+"C",1," 492/3 ",10
+"   X. OVERLOPENDE REKENINGEN (toel. XI)   .   .   .   .   ."
+1
+"492   ","493999"
+"t",0,"       ",0
+0
+"C",1," 10/49 ",10
+"                                         TOTAAL DER PASSIVA"
+3
+"10    ","179999"
+"42    ","489999"
+"492   ","493999"
+"e",0,"       ",0
+0

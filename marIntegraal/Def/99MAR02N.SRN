@@ -1,0 +1,387 @@
+"RESULTATENREKENING VOLLEDIG SCHEMA (in scontro)"
+"       Boekjaar       "
+"    Vorig boekjaar    "
+" Codes "
+"             (in munt boekjaar)              "
+1
+"m",8,"       ",0
+" Kontroleer na uitdruk :                                   "
+"                                                           "
+" 1. RESULTAATVERWERKING punt A. winstsaldo/verliessaldo = 0"
+" 2. Werd er reeds rekening gehouden/is er geboekt :        "
+"       a. voorraadwijziging STOCK ?                        "
+"       b. afschrijvingen ?                                 "
+"       c. splitsing leningen KAPITAAL - INTREST(KOST) ?    "
+"       d. overlopende rekeningen, wachtrekeningen e.a. ok ?"
+0
+"h",4,"       ",0
+"         2.  R E S U L T A T E N R E K E N I N G           "
+"                     (in scontrovorm)                      "
+"                                                           "
+"                        K O S T E N                        "
+0
+"D",1," 60/64 ",10
+"   II. BEDRIJFSKOSTEN .   .   .   .   .   .   .   .   .   ."
+1
+"60    ","649999"
+"D",1," 60    ",5
+"       A. Handelsgoederen, grond- en hulpstoffen  .   .   ."
+1
+"60    ","609999"
+"D",1," 600/8 ",0
+"          1. Inkopen  .   .   .   .   .   .   .   .   .   ."
+1
+"600   ","608999"
+"D",2," 609   ",0
+"          2. Wijziging in de voorraad                      "
+"            (toename -, afname +) .   .   .   .   .   .   ."
+1
+"609   ","609999"
+"D",1," 61    ",5
+"      B. Diensten en diverse goederen .   .   .   .   .   ."
+1
+"61    ","619999"
+"D",2," 62    ",5
+"      C. Bezoldigingen, sociale lasten en pensioenen  .   ."
+"         (toel. XII, C2)  .   .   .   .   .   .   .   .   ."
+1
+"62    ","629999"
+"D",3," 630   ",5
+"      D. Afschrijvingen en waardeverminderingen op.   .   ."
+"         oprichtingskosten, op immateri‰le en .   .   .   ."
+"         materi‰le vaste activa   .   .   .   .   .   .   ."
+1
+"63    ","630999"
+"D",3," 631/4 ",5
+"      E. Waardeverminderingen op voorraden, bestellingen  ."
+"         in uitvoering en handelsvorderingen (toevoegingen."
+"         +, terugnemingen -) (toel. XII, D)   .   .   .   ."
+1
+"631   ","634999"
+"D",3," 635/7 ",5
+"      F. Voorzieningen voor risiko's en kosten (toevoe-   ."
+"         gingen +, bestedingen en terugnemingen -).   .   ."
+"         (toel. XII, C3 en E) .   .   .   .   .   .   .   ."
+1
+"635   ","637999"
+"D",1," 640/8 ",5
+"      G. Andere bedrijfskosten (toel. XII, F) .   .   .   ."
+1
+"640   ","648999"
+"D",2," 649   ",5
+"      H. Als herstructureringskosten geactiveerde bedrijfs-"
+"         kosten   .   .   .   .   .   .   .   .   .   . (-)"
+1
+"649   ","649999"
+"l",0," 649   ",5
+0
+"D",1," 65    ",10
+"   V. FINANCIELE KOSTEN   .   .   .   .   .   .   .   .   ."
+1
+"65    ","659999"
+"D",1," 650   ",5
+"      A. Kosten van schulden (toel. XIII, B)  .   .   .   ."
+1
+"650   ","650999"
+"D",3," 651   ",5
+"      B. Waardeverminderingen op vlottende activa andere  ."
+"         dan bedoeld onder II.E (toevoegingen +, terugne- ."
+"         mingen -)(toel. XIII, C) .   .   .   .   .   .   ."
+1
+"651   ","651999"
+"D",1," 652/9 ",5
+"      C. Andere financi‰le kosten (toel. XIII, D) .   .   ."
+1
+"652   ","659999"
+"l",0," 652/9 ",5
+0
+"D",1," 66    ",10
+"VIII. UITZONDERLIJKE KOSTEN   .   .   .   .   .   .   .   ."
+1
+"66    ","669999"
+"D",3," 660   ",5
+"      A. Uitzonderlijke afschrijvingen en waardeverminde- ."
+"         ringen op oprichtingskosten, op immateri‰le en   ."
+"         materi‰le vaste activa   .   .   .   .   .   .   ."
+1
+"660   ","660999"
+"D",1," 661   ",5
+"      B. Waardeverminderingen op financi‰le vaste activa  ."
+1
+"661   ","661999"
+"D",2," 662   ",5
+"      C. Voorzieningen voor uitzonderlijke risico's en.   ."
+"         kosten   .   .   .   .   .   .   .   .   .   .   ."
+1
+"662   ","661999"
+"D",1," 663   ",5
+"      D. Minderwaarden bij de realisatie van vaste activa ."
+1
+"663   ","663999"
+"D",1," 664/8 ",5
+"      E. Andere uitzonderlijke kosten (toel. XIV, B)  .   ."
+1
+"664   ","668999"
+"D",2," 669   ",5
+"      F. Als herstructureringskosten geactiveerde uitzon- ."
+"         derlijke kosten  .   .   .   .   .   .   .   . (-)"
+1
+"669   ","669999"
+"l",0," 669   ",5
+0
+"D",1," 670/3 ",10
+"   X. A. BELASTINGEN (toel. XV)   .   .   .   .   .   .   ."
+1
+"670   ","673999"
+"X",1," 70/67 ",10
+"  XI. WINST VAN HET BOEKJAAR      .   .   .   .   .   .   ."
+2
+"60    ","679999"
+"70    ","779999"
+"t",0," 70/67 ",10
+0
+"D",1," 60/67 ",5
+"                                                T O T A A L"
+1
+"60    ","679999"
+"t",0," 60/67 ",5
+0
+"D",1," 68    ",10
+" XII. OVERBOEKING NAAR DE BELASTINGVRIJE RESERVES .   .   ."
+1
+"68    ","689999"
+"X",1,"(70/68)",10
+"XIII. TE BESTEMMEN WINST VAN HET BOEKJAAR .   .   .   .   ."
+2
+"60    ","689999"
+"70    ","789999"
+"e",0,"(70/68)",10
+0
+"h",4,"(70/68)",10
+"         2.  R E S U L T A T E N R E K E N I N G           "
+"                     (in scontrovorm)                      "
+"                                                           "
+"                O P B R E N G S T E N                      "
+0
+"C",1," 70/74 ",10
+"   I. BEDRIJFSOPBRENGSTEN .   .   .   .   .   .   .   .   ."
+1
+"70    ","749999"
+"C",1," 70    ",5
+"      A. Omzet (toel. XII. A) .   .   .   .   .   .   .   ."
+1
+"70    ","709999"
+"C",3," 71    ",5
+"      B. Wijziging in de voorraad goederen in bewerking   ."
+"         en gereed produkt en in de bestellingen in uit-  ."
+"         voering (toename +, afname -).   .   .   .   .   ."
+1
+"71    ","719999"
+"C",1," 72    ",5
+"      C. Geproduceerde vaste activa   .   .   .   .   .   ."
+1
+"72    ","729999"
+"C",1," 74    ",5
+"      D. Andere bedrijfsopbrengsten (toel. XII, B).   .   ."
+1
+"74    ","749999"
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"l",0," 74    ",5
+0
+"C",1," 75    ",10
+"  IV. FINANCIELE OPBRENGSTEN  .   .   .   .   .   .   .   ."
+1
+"75    ","759999"
+"C",1," 750   ",5
+"      A. Opbrengsten uit financi‰le vaste activa  .   .   ."
+1
+"750   ","750999"
+"C",1," 751   ",5
+"      B. Opbrengsten uit vlottende activa .   .   .   .   ."
+1
+"751   ","751999"
+"C",1," 752/9 ",5
+"      C. Andere financi‰le opbrengsten (toel. XIII, A).   ."
+1
+"752   ","759999"
+"l",0," 752/9 ",5
+0
+"l",0," 752/9 ",5
+0
+"C",1," 76    ",10
+" VII. UITZONDERLIJKE OPBRENGSTEN  .   .   .   .   .   .   ."
+1
+"76    ","769999"
+"C",3," 760   ",5
+"      A. Terugneming van afschrijvingen en van waardever- ."
+"         minderingen op immateri‰le en materi‰le vaste.   ."
+"         activa   .   .   .   .   .   .   .   .   .   .   ."
+1
+"760    ","760999"
+"C",2," 761   ",5
+"      B. Terugneming van waardeverminderingen op financi‰le"
+"         vaste activa .   .   .   .   .   .   .   .   .   ."
+1
+"761   ","761999"
+"C",2," 762   ",5
+"      C. Terugneming van voorzieningen voor uitzonderlijke."
+"         risico's en kosten   .   .   .   .   .   .   .   ."
+1
+"762   ","762999"
+"C",1," 763   ",5
+"      D. Meerwaarden bij de realisatie van vaste activa   ."
+1
+"763   ","763999"
+"C",1," 764/9 ",5
+"      E. Andere uitzonderlijke opbrengsten (toel. XIV, A) ."
+1
+"764   ","769999"
+"l",0," 764/9 ",5
+0
+"C",2," 77    ",10
+"   X. B. Regularisering van belastingen en terugneming.   ."
+"         van voorzieningen voor belastingen   .   .   .   ."
+1
+"77    ","779999"
+"l",0," 77    ",10
+0
+"Y",1," 67/70 ",10
+"  XI. Verlies van het boekjaar.   .   .   .   .   .   .   ."
+2
+"60    ","679999"
+"70    ","779999"
+"t",0," 67/70 ",10
+0
+"C",1," 70/77 ",5
+"                                                T O T A A L"
+1
+"70    ","779999"
+"t",0," 70/77 ",5
+0
+"C",1," 78    ",10
+" XII. ONTTREKKING AAN DE BELASTINGVRIJE RESERVES  .   .   ."
+1
+"78    ","789999"
+"Y",1,"(68/70)",10
+"XIII. TE VERWERKEN VERLIES VAN HET BOEKJAAR       .   .   ."
+2
+"60    ","689999"
+"70    ","789999"
+"e",0,"(68/70)",10
+0
+"h",2,"(68/70)",10
+"             R E S U L T A A T V E R W E R K I N G         "
+"                                                           "
+0
+"X",1," 70/69 ",10
+"   A. TE BESTEMMEN WINSTSALDO .   .   .   .   .   .   .   ."
+2
+"60    ","699999"
+"70    ","799999"
+"Y",1," 69/70 ",10
+"      TE VERWERKEN VERLIESSALDO   .   .   .   .   .   . (-)"
+2
+"60    ","699999"
+"70    ","799999"
+"X",1," 70/68 ",0
+"      1. Te bestemmen winst van het boekjaar  .   .   .   ."
+2
+"60    ","689999"
+"70    ","789999"
+"Y",1," 68/70 ",0
+"         Te verwerken verlies van het boekjaar.   .   . (-)"
+2
+"60    ","689999"
+"70    ","789999"
+"C",1," 790   ",0
+"      2. Overgedragen winst van het vorige boekjaar   .   ."
+1
+"790   ","790999"
+"D",1," 690   ",0
+"         Overgedragen verlies van het vorige boekjaar . (-)"
+1
+"690   ","690999"
+"l",0," 690   ",0
+0
+"C",1," 791/2 ",10
+"   B. ONTTREKKING AAN HET EIGEN VERMOGEN  .   .   .   .   ."
+1
+"791   ","792999"
+"C",1," 791   ",0
+"      1. Aan het kapitaal en aan de uitgiftepremies   .   ."
+1
+"791   ","791999"
+"C",1," 792   ",0
+"      2. Aan de reserves  .   .   .   .   .   .   .   .   ."
+1
+"792   ","792999"
+"l",0," 792   ",0
+0
+"D",1," 691/2 ",10
+"   C. TOEVOEGING AAN HET EIGEN VERMOGEN                 (-)"
+1
+"691   ","692999"
+"D",1," 691   ",0
+"      1. Aan het kapitaal en aan de uitgiftepremies   .   ."
+1
+"691   ","691999"
+"D",1," 9620  ",0
+"      2. Aan de wettelijke reserve.   .   .   .   .   .   ."
+1
+"6920  ","692099"
+"D",1," 9621  ",0
+"      3. Aan de overige reserves  .   .   .   .   .   .   ."
+1
+"6921","692199"
+"D",2," 693   ",10
+"   D. OVER TE DRAGEN RESULTAAT.   .   .   .   .   .   .   ."
+"      1. Over te dragen winst .   .   .   .   .   .   . (-)"
+1
+"693   ","693999"
+"C",1," 793   ",10
+"      2. Over te dragen verlies   .   .   .   .   .   .   ."
+1
+"793   ","793999"
+"l",0," 793   ",10
+0
+"C",1," 794   ",10
+"   E. TUSSENKOMST VAN DE VENNOTEN IN HET VERLIES  .   .   ."
+1
+"794   ","794999"
+"l",0," 794   ",10
+0
+"D",1," 694/6 ",10
+"   F. UIT TE KEREN WINST  .   .   .   .   .   .   .   . (-)"
+1
+"694   ","696999"
+"D",1," 694   ",0
+"      1. Vergoeding van het kapitaal  .   .   .   .   .   ."
+1
+"694   ","694999"
+"D",1," 695   ",0
+"      2. Bestuurders of zaakvoerders  .   .   .   .   .   ."
+1
+"695   ","695999"
+"D",1," 696   ",0
+"      3. Andere rechthebbenden.   .   .   .   .   .   .   ."
+1
+"696   ","696999"
+"e",0," 696   ",0
+0

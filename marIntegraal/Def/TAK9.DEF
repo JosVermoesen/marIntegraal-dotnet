@@ -1,0 +1,17 @@
+" 01 A500 *","Takkode","N",1,0
+"005 vs96 *","TakGroep (VSOFT)","N",2,0
+"    A010 *","BVVO nummer maatschappij","N",4,0
+"    A000 *","Polisnummer","A",12,0
+"    A400 *","Producentnummer bij de maatschappij","A",8,0
+"    A110 *","Referte van de producent","A",12,0
+"    A320 *","Hoofdvervaldag (DDMM)","A",4,0
+"    AW.2 *","Einddatum (DDMMEEJJ)","A",8,0
+" 14 A325 *","Splitsing","A",1,0
+" 15 A600 *","Inning","N",1,0
+"001 vs97 *","Aktiekode","A",1,0
+"    B010  ","Brutopremie","D",9,0
+"    B011  ","Taksen en kosten","D",9,0
+"    B013  ","Nettopremie","D",9,0
+"    B014  ","Commercialisatiekost (+)","D",8,0
+"    B090  ","Totaal teruggave (-)","D",9,0
+"    B094  ","Commercialisatiekost (-)","D",8,0

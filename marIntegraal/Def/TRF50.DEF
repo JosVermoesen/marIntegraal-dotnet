@@ -1,0 +1,77 @@
+" 98 A102","TitelKode 1","N",1
+"1   A100 *","Naam 1","A",35
+"1   A101","Voornaam 1","A",15
+" 98 vs01","TitelKode 2","N",1
+"1   A125","Naam 2","A",35
+"1   A127","Voornaam 2","A",15
+" 97 A10C","Taalkode","N",1
+"1   A104 *","Straat","A",30
+"1   A105","Nummer","A",5
+"1   A106","Bus","A",4
+"1   A107 *","Postkode","A",7
+"1   A108 *","Woonplaats","A",24
+" 94 A109","Landkode","A",3
+"A   A10A","Telefoonnummer","N",9
+"A   vs02","Fax/Telexnummer","N",9
+"C   A161","BTW nummer","N",9
+"B   A170","Financiele rekening","N",12
+"    vs03","Munteenheid ISO kode","A",3
+"9   A120 *","Geboortedatum (DDMMEEJJ)","N",8
+" 95 A123","Burgerlijke staat","N",1
+" 99 A124 *","Kode Geslacht","N",1
+" 94 A121","Kode nationaliteit","A",3
+"    A122","  of omschrijving !","A",12
+"    A191 *","Rijbewijs nummer (A8)","A",8
+" 93 A192 *","Type Rijbewijs","A",2
+"    A193 *","Datum Rijbewijs DDMMJJJJ","N",8
+"    A194 *","Bestuurder sedert DDMMJJJJ","N",8
+" 92 A197","Risiko klasse","A",2
+" 19 510Z *","= gewoonlijke bestuurder ?","N",1
+" 91 A130 *","Fysiek of moreel persoon","N",1
+"    A320 *","Hoofdvervaldag (DDMM)","N",4
+"    AW.2","Einddatum (DDMMEEJJ)","N",8
+" 14 A325 *","Splitsing","A",1
+" 19 5230","Deel van een vloot            ","N",1
+"    5231","Referte vloot                 ","A",12
+" 21 5003 *","VOERTUIG Aard                  ","A",2
+"    500A *","Merk                          ","A",19
+"    500B *","Type                          ","A",25
+"    5004","P.V.G. nummer                 ","N",6
+"    5002","Bouwjaar                      ","N",4
+"    5020 *","Plaatnummer                   ","A",10
+"    5021 *","Onderstelnummer               ","A",20
+"    5060","Datum eerste ingebruikstelling","N",8
+"    5011 *","Vermogen of cylinderinhoud    ","N",5
+" 22 5010 *","Eenheid vermogen of cylinderinhoud","N",1
+" 23 5015","Brandstof                     ","N",1
+"    5050","Zitplaatsen (- bestuurder) deflt=4","N",3
+"    5041","Maximale toegelaten massa (in kg)","N",5
+"    5030","Cataloguswaarde (z/BTW)       ","N",8
+"    5035","Waarde te verzekeren (z/BTW)  ","N",8
+" 19 5601","Cabriolet/afneembare kap ? deflt=2","N",1
+" 19 5602 *","Wagen met sportkenmerken ? deflt=2","N",1
+" 25 55031","Aard aanhangwagen 1","A",2
+" 26 55011","Type aanhangwagen 1","N",1
+"    55001","Merk aanhangwagen 1","A",12
+"    55201","Plaatnummer aanhangwagen 1","A",10
+"    55021","Bouwjaar aanhangwagen 1","N",4
+"    55211","Onderstelnummer aanhangwagen 1","A",20
+"    55411","MTM (in kg) aanhang 1","N",5
+"    5315 *","B.A. Bonus-Malus graad","A",2
+" 29 530A *","B.A. Kode schaal Bonus-Malus","N",1
+" 30 5609","Code eigendom","N",1
+" 31 5400","Code vergoeding","N",1
+" 19 5606","Code financiering","N",1
+" 19 5608","Anti-diefstal goedgekeurd door mij","N",1
+"    A160","Percentage onderwerping BTW","N",5
+" 19 5401","Dekking belasing op inverkeerstelling","N",1
+"    5402","Bedrag belasting inverkeerstelling","N",9
+" 19 5V0B *","Overname andere maatschappij ?","N",1
+"    A700","BVVO kode vorige mij","A",4
+"    A701","Polis nummer vorige mij","A",12
+" 90 D243","Code reden vernietiging","N",1
+" 89 5V03","maatregel vorige mij opzegging","N",1
+" 88 5V0D *","Schorsing rijbewijs ?","N",1
+"    5V0A","Laatste jaar schorsing rijbewijs (JJJJ)","N",4
+" 19 5V0E *","Gerechtelijk onderzoek aan gang ?","N",1
+"    5V02 *","Aantal schades BA IN FOUT (laatste 5 jaar)","N",2

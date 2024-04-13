@@ -1,0 +1,9 @@
+EUR kontrolelijst 2.04
+O   v019 - 011 007 T Rekening
+2   v020   019 040 T Omschrijving
+3   e022 - 060 009 T Huidig jaar
+3   e023 - 070 009 T Boekjaar-1
+3   e024   080 009 T Boekjaar-2
+3   e025   090 009 T Boekjaar-3
+3   e026   100 009 T Boekjaar-4
+3   e027   110 009 T Boekjaar-5

@@ -1,0 +1,16 @@
+"    A000 *","Polis nummer                       ","A",12,1
+"    A110  ","Referte producent                  ","A",10,21
+"    A191  ","Nummer rijbewijs                   ","N",7,31
+"    A192  ","Type rijbewijs                     ","A",2,38
+"    A193  ","Datum rijbewijs DDMMJJJJ           ","N",8,40
+" 15 A600  ","Inning van de polis                ","N",1,48
+"    A041  ","Nummer samenhangende polis 1       ","A",12,49
+" 16 A0YA  ","Reden samenhangendheid (polis 1)   ","A",1,61
+"    A042  ","Nummer samenhangende polis 2       ","A",12,62
+" 16 A0YB  ","Reden samenhangendheid (polis 2)   ","A",1,74
+"    A043  ","Nummer samenhangende polis 3       ","A",12,75
+" 16 A0YC  ","Reden samenhangendheid (polis 3)   ","A",1,87
+"    5020  ","Plaatnummer                        ","A",10,88
+"    5021  ","Onderstelnummer voertuig           ","A",20,98
+"    5022  ","Onderstelnummer aanhangwagen 1     ","A",20,118
+"    5023  ","Onderstelnummer aanhangwagen 2     ","A",20,138

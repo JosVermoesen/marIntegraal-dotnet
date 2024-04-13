@@ -1,0 +1,16 @@
+"7   v070 -","Sorteerkode Rekening+Boekdatum","N",15
+"7   v034 -","Partij","A",13
+"7   v019 -","Rekeningnummer","N",7
+"9   v066 -","Boekdatum","A",8
+"7   v033 -","Dokumentnummer","A",11
+"7   v038 -","Betalingsstuk","A",8
+"9   v035 -","Dokumentdatum","A",8
+"2   v067 -","Boekingsomschrijving","A",35
+"5   v249 -","Muntkode boekhouding","A",3
+"3   v068 -","Bedrag","D",12
+"3   v248 -","Bedrag","N",12
+"7   v069 -","TegenRekening","N",7
+"7   v102 -","Productcode","A",13
+"5   v041 -","Bewerkingsvlag","A",1
+"    v245  ","Gebruikernummer","A",1
+"    v246  ","SysteemDatum en tijd bewerking","A",12

@@ -1,0 +1,6 @@
+"    v005 -","'10' + vs03","A",20
+"5   vs03 -","Muntkode ISO","A",3
+"3   v040  ","Dagkoers MUNT","D",15
+"3   v128  ","datum volledig formaat (yyyymmddhhmmss)","N",14
+"@00 v149  ","ISOLandNummer, SQL-opvraging","N",3
+"5   v150  ","ISOLandKode","A",2

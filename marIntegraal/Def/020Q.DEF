@@ -1,0 +1,22 @@
+"7   v033  ","Dokumentnummer","A",11
+"7   v034  ","Partijkodenummer","A",13
+"9   v035  ","Dokumentdatum","A",8
+"9   v036  ","Vervaldatum","A",8
+"3   v037  ","Reeds betaald","D",10
+"7   v038  ","Betalingsstuk","A",8
+"3   v249  ","Totaal document","D",10
+"7   v039  ","Gestructureerde Betalingsreferte","A",12
+"5   vs03  ","ISO MuntKode","A",3
+"3   v040  ","Dagkoers van de Munt","D",15
+"5   v041  ","Bewerkingsvlag dokument","A",1
+"7   A000  ","Polisnummer","A",12
+"3   B010  ","Premie te betalen (+)","D",10
+"3   B014  ","Commissie te ontvangen (+)","D",10
+"3   B090  ","Premie terug te geven (-)","D",10
+"3   B094  ","Commissie terug te geven (-)","D",10
+"3   v065  ","Voorschot schade (-)","D",10
+"    v245  ","Gebruikernummer","A",1
+"    v246  ","SysteemDatum en tijd bewerking","A",12
+"    e069  ","Beheerskost","A",12
+"    e071  ","Fee %-age","N",8
+"    e072  ","Fee Bedrag EUR","A",12

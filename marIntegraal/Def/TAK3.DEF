@@ -1,0 +1,81 @@
+" 01 A500 *","Takkode","N",1,0
+"005 vs96 *","TakGroep (VSOFT)","N",2,0
+"    A010 *","BVVO nummer maatschappij","N",4,0
+"    A000 *","Polisnummer","A",12,0
+"    A400 *","Producentnummer bij de maatschappij","A",8,0
+"    A110 *","Referte van de producent","A",12,0
+"    A320 *","Hoofdvervaldag (DDMM)","N",4,0
+"    AW.2 *","Einddatum (DDMMEEJJ)","N",8,0
+" 14 A325 *","Splitsing","A",1,0
+" 15 A600 *","Inning","N",1,0
+"    AW.R  ","Recente Index","A",6,0
+"    B010  ","Brutopremie","N",9,0
+"    B011  ","Taksen en kosten","N",9,0
+"    B013  ","Nettopremie","N",9,0
+"    B014  ","Commercialisatiekost (+)","N",8,0
+"    B090  ","Totaal teruggave (-)","N",9,0
+"    B094  ","Commercialisatiekost (-)","N",8,0
+" 19 3011  ","Risico = adres verzekeringsnemer ?","N",1,250 
+"    3004  ","Straat risico","A",30,0
+"    3005  ","Nummer risico","A",5,0
+"    3006  ","Bus risico","A",4,0
+"    3007  ","Postcode risico","A",7,0
+"    3008  ","Plaats risico","A",24,0
+" 94 3009  ","Landcode risico","A",3,0
+" 75 3100  ","Code gebruik risico","N",1,0
+" 74 3110  ","Hoedanigheid verzekeringsnemer","N",2,0
+" 19 3V11  ","Gebouw in brandbaar materiaal ?","N",1,0
+" 73 3V12  ","Type samenstelling risico","N",1,0
+" 19 3V15  ","Prefab woning ?","N",1,0
+" 72 3V16  ","Dak","N",1,0
+" 19 3V20  ","Gebouw in opbouw ?","N",1,0
+"    3V13  ","Brandbare materialen (in %-age)","N",3,0
+" 71 3150  ","GEBOUW Aktiecode kapitaal","N",1,0
+"    M01B  ","GEBOUW Te verzekeren (in frank)","N",9,0
+" 76 M016  ","GEBOUW Code Index","N",1,0
+" 70 3151  ","GEBOUW Type gebruikt rooster","N",1,0
+"    3152  ","Berekeningseenheid type rooster","N",9,0
+" 71 3160  ","INHOUD Aktiecode kapitaal","N",1,0
+"    M02B  ","INHOUD Te verzekeren (in frank)","N",9,0
+" 76 M026  ","INHOUD Code Index","N",1,0
+" 70 3161  ","INHOUD Type gebruikt rooster","N",1,0
+"    3162  ","Berekeningseenheid type rooster","N",9,0
+" 69 3170  ","Type woning","N",1,0
+"    A533  ","Code globale formule","A",3,0
+" 71 M110  ","Waarborg Brand en samenhangend gevaar","N",1,0
+" 71 M200  ","Waarborg Storm en hagel","N",1,0
+" 71 M400  ","Waarborg Waterschade","N",1,0
+" 71 M500  ","Waarborg Glasbraak","N",1,0
+" 71 MC00  ","Waarborg Aardbeving","N",1,0
+" 71 M620  ","DIEFSTAL waarborg","N",1,0
+" 68 3464  ","DIEFSTAL Type dekking","N",1,0
+"    3465  ","DIEFSTAL Verzekerde waarde (%-Age)","N",3,0
+"    3466  ","DIEFSTAL bedrag eerste risico","N",9,0
+" 19 3V61  ","Regelmatige bezetting ?","N",1,0
+" 67 3V62  ","Aangrenzing risico","N",1,0
+"    3V66  ","Indien alleenstaand, aantal meters ?","N",3,0
+" 19 3V63  ","Meerdere appartementen ?","N",1,0
+" 19 3V64  ","Gebouw met inwonende huisbewaarder ?","N",1,0
+"    3V67  ","Bedrag speciale voorwerpen","N",9,0
+" 71 M700  ","Waarborg B.A.","N",1,0
+"    3474  ","Aantal liften","N",2,0
+" 71 M800  ","Waarborg indirect verlies","N",1,0
+"    3486  ","Tussekomst (%-age)","N",2,0
+" 71 MB00  ","Waarborg Commerciele werkloosheid","N",1,0
+"    34B4  ","Aantal maanden uitkering","N",2,0
+"    34B5  ","Bedrag verzekerde","N",8,0
+" 66 34B6  ","Type uitkering","N",1,0
+" 19 D246  ","Reeds verzekerd geweest ?","N",1,250
+"    D240  ","BVVO kode vorige/huidige mij","N",4,251
+"    D241  ","Polisnummer vorige/huidige mij","A",12,255
+" 85 D243  ","Reden van vernietiging","N",1,276
+"    D261  ","Aantal schades laatste 4 jaar","N",2,277
+"    D262  ","Bedrag schades laatste 4 jaar","N",9,288
+"    A700  ","Medeverzekering BVVO nummer mij","N",4,0
+"    A701  ","(MV) Polisnummer maatschappij","A",12,0
+"    A703  ","(MV) Einddatum maatschappij","N",8,0
+"    3201  ","(MV) Voorzorgskapitaal (%-age)","N",3,0
+"    3140  ","(MV) ABEX waarde laatste kwitantie","N",3,0
+"    3141  ","(MV) Kapitaal GEBOUW","N",9,0
+"    3142  ","(MV) Kapitaal INHOUD","N",9,0
+"    3143  ","(MV) Vorige premie","N",9,0

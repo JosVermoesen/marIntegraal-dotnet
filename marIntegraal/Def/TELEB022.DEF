@@ -1,0 +1,33 @@
+" 99 A124 *","Verz.nemer Kode Geslacht           ","N",1,36
+" 98 A102  ","Verz.nemer Kode Titel              ","N",1,37
+"2   A103  ","Verz.nemer Benaming Titel          ","A",17,38
+"1   A100 *","Verz.nemer Naam                    ","A",35,55
+"1   A101  ","Verz.nemer Voornaam                ","A",15,90
+" 97 A10C *","Verz.nemer Kode Taal               ","N",1,105
+"1   A104 *","Verz.nemer Straat                  ","A",30,106
+"1   A105  ","Verz.nemer Nummer                  ","A",5,136
+"1   A106  ","Verz.nemer Bus                     ","A",4,141
+"1   A107 *","Verz.nemer Postkode                ","A",7,145
+"1   A108 *","Verz.nemer Woonplaats              ","A",24,152
+" 94 A109 *","Verz.nemer Landkode                ","A",3,176
+"A   A10A  ","Verz.nemer Telefoonnummer          ","N",9,323
+"9   A120  ","Verz.nemer Geboortedatum           ","N",8,332
+" 95 A123  ","Verz.nemer Burgerlijke staat       ","N",1,340
+"B   A170  ","Verz.nemer Financiele rekening     ","N",12,341
+"1   A125  ","Verz.nemer naam echtgenoot(ote)    ","A",35,353
+"1   A127  ","Voornaam echtgenoot(ote)           ","A",15,388
+"7   A110  ","Referentie producent               ","A",10,403
+" 96 A18Z *","Kode korrespondentieadres          ","N",1,179
+" 99 A18A  ","Korrespondent Kode Geslacht        ","N",1,180
+" 98 A182  ","Korrespondent Kode Titel           ","N",1,181
+"2   A183  ","Korrespondent Benaming Titel       ","A",17,192
+"1   A180  ","Korrespondent Naam                 ","A",35,199
+"1   A181  ","Korrespondent Voornaam             ","A",15,234
+" 97 A18B  ","Korrespondent Kode Taal            ","N",1,249
+"1   A184  ","Korrespondent Straat               ","A",30,250
+"1   A185  ","Korrespondent Nummer               ","A",5,280
+"1   A186  ","Korrespondent Bus                  ","A",4,285
+"1   A187  ","Korrespondent Postkode             ","A",7,289
+"1   A188  ","Korrespondent Woonplaats           ","A",24,296
+" 94 A189  ","Korrespondent Landkode             ","A",3,320
+" 19 A1ZX *","Gelijktijdige techn. handeling ?   ","N",1,413

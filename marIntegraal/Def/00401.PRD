@@ -1,0 +1,9 @@
+Eenvoudige kontrolelijst 2.07
+7   v102 - 001 013 T EAN kodenr
+2   v105   015 040 T Omschrijving
+3   v112   056 015 4 Verkoop 
+3   v113   068 015 4 Aankoop
+4   v114   080 005 2 EHB
+4   v119   091 005 2 EHA
+4   v120   102 005 2 EHV
+7   v109   118 010 T Plaats

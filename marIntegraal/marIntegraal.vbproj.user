@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+    <PublishUrlHistory>C:\Users\Jos\source\repos\JosVermoesen\mar\vss\marintegraal-vsvb\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\marintegraal-vsvb\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\marintegraal-vsvb\|C:\Users\Jos\source\repos\JosVermoesen\mar\2024-vsvb-marintegraal\Publish\|C:\Users\Jos\Source\Repos\dotnet\vsvb-marintegraal\Publish\</PublishUrlHistory>
+    <InstallUrlHistory>https://clickonce.vsoft.be/marintegraal/|https://clickonce.vsoft.be/MarIntegraal/|http://www.vsoft.be/marintegraal/|http://vsoft.be/vs2017/marIntegraal/|http://vsoft.be/vs2015/marIntegraal/</InstallUrlHistory>
+    <SupportUrlHistory>http://www.rv.be/marintegraal.aspx</SupportUrlHistory>
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+</Project>
