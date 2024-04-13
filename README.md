@@ -1,4 +1,4 @@
-# marintegraal
+# marIntegraal
 
 ## [ClickOnce][ClickOnce]
 
