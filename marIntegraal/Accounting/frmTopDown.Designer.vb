@@ -129,7 +129,7 @@ Partial Class frmTopDown
         Me._chkSelektie_0.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me._chkSelektie_0.Size = New System.Drawing.Size(195, 16)
         Me._chkSelektie_0.TabIndex = 36
-        Me._chkSelektie_0.Text = "&TableDefOnt met scheidingstekens"
+        Me._chkSelektie_0.Text = "&TABLEDEF_ONT met scheidingstekens"
         Me._chkSelektie_0.UseVisualStyleBackColor = false
         '
         '_chkSelektie_1

@@ -8,7 +8,7 @@ Public Class FormBYPERDAT
     End Sub
     Private Sub DatumVerwerking_ValueChanged(sender As Object, e As EventArgs) Handles DatumVerwerking.ValueChanged
 
-        MimGlobalDate = Format(DatumVerwerking.Value, "dd/MM/yyyy")
+        MIM_GLOBAL_DATE = Format(DatumVerwerking.Value, "dd/MM/yyyy")
 
     End Sub
     Private Sub Boekjaar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Boekjaar.SelectedIndexChanged
@@ -23,17 +23,17 @@ Public Class FormBYPERDAT
         Dim c As String
 
         PeriodeMeestLogisch = -1
-        If ActiveBookyear <> Boekjaar.SelectedIndex Then
+        If ACTIVE_BOOKYEAR <> Boekjaar.SelectedIndex Then
             JetTableClose(99)
-            TableDefOnt(TableOfCounters) = Format(Boekjaar.SelectedIndex, "00") & ".ONT"
-            JetTableName(TableOfCounters) = "jr" & Boekjaar.Text
+            TABLEDEF_ONT(TABLE_COUNTERS) = Format(Boekjaar.SelectedIndex, "00") & ".ONT"
+            JET_TABLENAME(TABLE_COUNTERS) = "jr" & Boekjaar.Text
             CloseOpenWindows()
-            ActiveBookyear = Boekjaar.SelectedIndex
+            ACTIVE_BOOKYEAR = Boekjaar.SelectedIndex
             AktievePeriode = 1
             PeriodeBoekjaar.Items.Clear()
 
             FlTemp = FreeFile()
-            FileOpen(FlTemp, LocationCompanyData & "DEF" & Format(ActiveBookyear, "00") & ".OXT", OpenMode.Input)
+            FileOpen(FlTemp, LOCATION_COMPANYDATA & "DEF" & Format(ACTIVE_BOOKYEAR, "00") & ".OXT", OpenMode.Input)
             c = LineInput(FlTemp)
             periodesBJ = Split(c, ",")
             FileClose(FlTemp)
@@ -41,9 +41,9 @@ Public Class FormBYPERDAT
             For T = 0 To UBound(periodesBJ)
                 A = periodesBJ(T)
                 If T = 0 Then
-                    BookyearFromTo = Mid(A, 1, 8)
+                    BOOKYEAR_FROMTO = Mid(A, 1, 8)
                 ElseIf T = UBound(periodesBJ) then
-                    BookyearFromTo = BookyearFromTo + Mid (A, 9, 8)
+                    BOOKYEAR_FROMTO = BOOKYEAR_FROMTO + Mid (A, 9, 8)
                 End If
                 
                 XX = Mid(A, 7, 2) & "/" & Mid(A, 5, 2) & "/" & Mid(A, 1, 4) & " - " & Mid(A, 15, 2) & "/" & Mid(A, 13, 2) & "/" & Mid(A, 9, 4)
@@ -53,26 +53,26 @@ Public Class FormBYPERDAT
                 PeriodeBoekjaar.SelectedIndex = PeriodeBoekjaar.Items.Count - 1
             End If
 
-            XisEuroWasBEF = False
-            If Len(String99(Reading, 296)) = 0 Then
+            XisEUROWasBEF = False
+            If Len(String99(READING, 296)) = 0 Then
                 MsgBox("Gelieve Setup Boekingen en algemene instellingen : munt van de Boekhouding in te stellen a.u.b.  Pér bedrijf, pér boekjaar.  Hierna wordt voorlopig verder gewerkt in BEF.")
-                bhEuro = False
-            ElseIf String99(Reading, 296) = "BEF" Then
-                bhEuro = False
-            ElseIf String99(Reading, 296) = "EUR" Then
-                bhEuro = True
+                BH_EURO = False
+            ElseIf String99(READING, 296) = "BEF" Then
+                BH_EURO = False
+            ElseIf String99(READING, 296) = "EUR" Then
+                BH_EURO = True
             Else
-                bhEuro = False
+                BH_EURO = False
             End If
-            If bhEuro Then
-                XisEuroWasBEF = False
+            If BH_EURO Then
+                XisEUROWasBEF = False
             Else
-                If XisEuroWasBEF = True And Boekjaar.SelectedIndex = 1 Then
+                If XisEUROWasBEF = True And Boekjaar.SelectedIndex = 1 Then
                 Else
-                    XisEuroWasBEF = False
+                    XisEUROWasBEF = False
                 End If
             End If
-            If Boekjaar.SelectedIndex = 1 And bhEuro = False Then
+            If Boekjaar.SelectedIndex = 1 And BH_EURO = False Then
                 MSG = "Dit bedrijf heeft een boekjaar -1 met verwerking in BEF.  Indien U nog boekingen in BEF wenst uit te voeren voor het zopas aangeduide boekjaar, gelieve een vorige versie (6.5.300 of lager) opnieuw te installeren a.u.b."
                 MsgBox(MSG, MsgBoxStyle.Exclamation)
             End If
@@ -84,13 +84,13 @@ Public Class FormBYPERDAT
         Dim A As String
         Dim aA As String = ""
 
-        Dim fullPath = LocationCompanyData & "9999.OXT"
+        Dim fullPath = LOCATION_COMPANYDATA & "9999.OXT"
         Dim FlFree As Integer
         FlFree = FreeFile()
         FileOpen(FlFree, fullPath, OpenMode.Output)
         A = PeriodeBoekjaar.Text
-        PeriodFromTo = Mid(A, 7, 4) & Mid(A, 4, 2) & Mid(A, 1, 2) & Mid(A, 20, 4) & Mid(A, 17, 2) & Mid(A, 14, 2)
-        aA = Trim(Str(ActiveBookyear)) & ","
+        PERIOD_FROMTO = Mid(A, 7, 4) & Mid(A, 4, 2) & Mid(A, 1, 2) & Mid(A, 20, 4) & Mid(A, 17, 2) & Mid(A, 14, 2)
+        aA = Trim(Str(ACTIVE_BOOKYEAR)) & ","
         aA = aA & Boekjaar.Text & ","
         aA = aA & Trim(Str(PeriodeBoekjaar.SelectedIndex + 1))
         PrintLine(FlFree, aA)

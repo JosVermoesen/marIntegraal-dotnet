@@ -19,8 +19,8 @@ Public Class xLog
         End If
     End Sub
     Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles Annuleren.Click
-        XLogKey = ""
-        GridText = ""
+        XLOG_KEY = ""
+        GRIDTEXT = ""
         WindowState = System.Windows.Forms.FormWindowState.Normal
         Hide()
     End Sub
@@ -38,7 +38,7 @@ Public Class xLog
         WijzigenLijn.Top = Height - 70
     End Sub
     Private Sub X_SelectedIndexChanged(sender As Object, e As EventArgs) Handles X.SelectedIndexChanged
-        XLogKey = X.FocusedItem.SubItems.Item(2).Text
+        XLOG_KEY = X.FocusedItem.SubItems.Item(2).Text
     End Sub
     Private Sub X_DoubleClick(sender As Object, e As EventArgs) Handles X.DoubleClick
         If selectonlyButton.Visible Then
@@ -61,9 +61,9 @@ Public Class xLog
         'MsgBox(codeString & " / " & omsString & " / " & inputString)
         If Mid(codeString, 2, 2) <> "  " And Mid(codeString, 1, 1) <> "@" Then
             XKeyDown(codeString, inputString)
-            If GridText = "" Then
+            If GRIDTEXT = "" Then
             Else
-                tijdelijk = Mid(GridText, 1, InStr(GridText, ":") - 1)
+                tijdelijk = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, ":") - 1)
                 AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))
                 ArrangeDeckChairs(flHier)
             End If
@@ -79,9 +79,9 @@ Public Class xLog
             'MSG = ""
             If Mid(codeString, 10, 1) = "-" Then
                 MSG = "Deze informatie kan niet gewijzigd worden..."
-                GridText = "Edit No"
+                GRIDTEXT = "Edit No"
             Else
-                GridText = "Edit Yes"
+                GRIDTEXT = "Edit Yes"
             End If
             If Mid(codeString, 1, 1) = "@" Then
                 MSG = Mid(codeString, 1, 3)
@@ -89,7 +89,7 @@ Public Class xLog
                 MSG = MSG & QuickHelp(Mid(codeString, 1, 3))
             End If
             'X.Col = 2
-            'ATLijn = Val(Mid(TeleBibCode(X.Row - 1), 10, 1))
+            'ATLijn = Val(Mid(TELEBIB_CODE(X.Row - 1), 10, 1))
             tijdelijk = vsfInputBox(MSG, omsString, inputString, "")
             If inputString = tijdelijk Then
             Else
@@ -117,11 +117,11 @@ Public Class xLog
         inputString = itemX.SubItems.Item(2).Text
         If codeString = "" Then
             If Mid(Text, 1, 6) = "Schade" Then
-                XLogKey = "Nieuw"
+                XLOG_KEY = "Nieuw"
             End If
         Else
-            XLogKey = codeString & vbCrLf
-            XLogKey = XLogKey & omsString '???? of inputstring ???
+            XLOG_KEY = codeString & vbCrLf
+            XLOG_KEY = XLOG_KEY & omsString '???? of inputstring ???
         End If
         Hide()
     End Sub
@@ -134,37 +134,37 @@ Public Class xLog
             Select Case Mid(xCode, 2, 2)
                 Case "K ", "L ", "LC", "R ", "R3", "R4", "R6", "R7"
                     'If EventArgs.KeyCode <> 17 Then Exit Sub
-                    SharedIndex = 0
+                    SHARED_INDEX = 0
                     Select Case Mid(xCode, 2, 1)
                         Case "K"
-                            SharedFl = TableOfCustomers
+                            SHARED_FL = TABLE_CUSTOMERS
                         Case "L"
-                            SharedFl = TableOfSuppliers
+                            SHARED_FL = TABLE_SUPPLIERS
                         Case "R"
-                            SharedFl = TableOfLedgerAccounts
+                            SHARED_FL = TABLE_LEDGERACCOUNTS
                         Case Else
                             MsgBox("nog niks")
                     End Select
-                    GridText = ""
+                    GRIDTEXT = ""
                     If Mid(xCode, 3, 2) <> "  " Then
                         If DummyText <> "" Then
-                            If SharedFl = TableOfSuppliers And Mid(xCode, 3, 2) = "CO" Then
-                                GridText = "CO" & DummyText
+                            If SHARED_FL = TABLE_SUPPLIERS And Mid(xCode, 3, 2) = "CO" Then
+                                GRIDTEXT = "CO" & DummyText
                             Else
-                                GridText = DummyText
+                                GRIDTEXT = DummyText
                             End If
                         Else
-                            GridText = Mid(xCode, 3, 2) & "@Beperk@"
+                            GRIDTEXT = Mid(xCode, 3, 2) & "@Beperk@"
                         End If
                     Else
-                        GridText = DummyText
+                        GRIDTEXT = DummyText
                     End If
                     SqlSearch.ShowDialog()
-                    If Ktrl = 0 Then
-                        If SharedFl = TableOfSuppliers And Mid(xCode, 3, 2) = "CO" Then
-                            resultString = Trim(Mid(FVT(SharedFl, 0), 3)) 'X.Text = RTrim(Mid(FVT(SharedFl, 0), 3))
+                    If KTRL = 0 Then
+                        If SHARED_FL = TABLE_SUPPLIERS And Mid(xCode, 3, 2) = "CO" Then
+                            resultString = Trim(Mid(FVT(SHARED_FL, 0), 3)) 'X.Text = RTrim(Mid(FVT(SHARED_FL, 0), 3))
                         Else
-                            resultString = FVT(SharedFl, 0) 'X.Text = FVT(SharedFl, 0)
+                            resultString = FVT(SHARED_FL, 0) 'X.Text = FVT(SHARED_FL, 0)
                         End If
                     End If
                 Case "  "
@@ -179,16 +179,16 @@ Public Class xLog
                     End Select
                     'Select Case EventArgs.KeyCode
                     'Case 17
-                    'aIndex = Val(Mid(TeleBibCode(X.Row - 1), 1, 3))
+                    'A_INDEX = Val(Mid(TELEBIB_CODE(X.Row - 1), 1, 3))
                     'If BoxType = 1 Then
-                    'aIndex = aIndex + 1000
+                    'A_INDEX = A_INDEX + 1000
                     'End If
                     'X.Col = 2
                     'DummyText = X.Text
-                    'GridText = DummyText
+                    'GRIDTEXT = DummyText
                     'KeuzeVSF.ShowDialog()
-                    'If GridText <> DummyText Then
-                    'DummyText = GridText
+                    'If GRIDTEXT <> DummyText Then
+                    'DummyText = GRIDTEXT
                     'X.Text = DummyText
                     'End If
             End Select
@@ -199,15 +199,15 @@ Public Class xLog
                 Case "0" To "9"
                     BoxType = 1
             End Select
-            SharedIndex = Val(Mid(xCode, 1, 3))
+            SHARED_INDEX = Val(Mid(xCode, 1, 3))
             If BoxType = 1 Then
-                SharedIndex = SharedIndex + 1000
+                SHARED_INDEX = SHARED_INDEX + 1000
             End If
             DummyText = xText
-            GridText = DummyText
+            GRIDTEXT = DummyText
             KeuzeVSF.ShowDialog()
-            If GridText <> DummyText Then
-                DummyText = GridText
+            If GRIDTEXT <> DummyText Then
+                DummyText = GRIDTEXT
                 xText = DummyText
             End If
         End If
@@ -250,7 +250,7 @@ Public Class xLog
         Dim itemX As ListViewItem
         itemX = X.FocusedItem
         codeString = itemX.SubItems.Item(0).Text
-        XLogKey = codeString & vbCrLf
+        XLOG_KEY = codeString & vbCrLf
         Hide()
     End Sub
 End Class

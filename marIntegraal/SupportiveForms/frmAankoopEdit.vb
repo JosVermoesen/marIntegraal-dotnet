@@ -25,7 +25,7 @@ End Class
 
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
-'		GridText = ""
+'		GRIDTEXT = ""
 '		Me.Close()
 
 '	End Sub
@@ -67,7 +67,7 @@ End Class
 '		Dim dummykey As String
 
 '		dummykey = TekstInfo(3).Text
-'		JetGet(TableOfProductsAndServices, 0, SetSpacing(TekstInfo(3).Text, 13))
+'		JetGet(TABLE_PRODUCTS, 0, SetSpacing(TekstInfo(3).Text, 13))
 '		frmProduktFiche.Close()
 '		'UPGRADE_ISSUE: Load statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B530EFF2-3132-48F8-B8BC-D88AF543D321"'
 '		Load(frmProduktFiche)
@@ -133,42 +133,42 @@ End Class
 '			Next 
 '		End If
 '		T = 0
-'		If GridText <> "" Then
-'			Do While GridText <> ""
-'				TekstInfo(T).Text = VB.Left(GridText, InStr(GridText, Chr(124)) - 1)
-'				GridText = VB.Right(GridText, Len(GridText) - (Len(TekstInfo(T).Text) + 1))
+'		If GRIDTEXT <> "" Then
+'			Do While GRIDTEXT <> ""
+'				TekstInfo(T).Text = VB.Left(GRIDTEXT, InStr(GRIDTEXT, Chr(124)) - 1)
+'				GRIDTEXT = VB.Right(GRIDTEXT, Len(GRIDTEXT) - (Len(TekstInfo(T).Text) + 1))
 '				T = T + 1
 '			Loop 
 
 
 '			If InStr(DirekteAankoop.cmdSwitch.Text, "EUR") Then
 '				'OvergangsToggle is EUR
-'				If bhEuro Then
+'				If BH_EURO Then
 '					'Toggle EUR en boekhouding EUR, geen probleem
-'					TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text), MaskEURBH)
+'					TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text), MASK_EURBH)
 '				Else
 '					'Boekhouding nog in BEF mét overgangstoggle !!
-'					'kan dus niet anders dan 1/ Euro zijn...
-'					TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text), MaskEURBH)
+'					'kan dus niet anders dan 1/ EURO zijn...
+'					TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text), MASK_EURBH)
 '				End If
 '			Else
 '				'Toggle is BEF
-'				If bhEuro Then
+'				If BH_EURO Then
 '					'Boekhouding in EUR
 '					'Boekhouding in BEF, toggle in BEF, alles zoals vroeger
-'					If dMuntL = System.Math.Round(1 / Euro, 8) Then
+'					If D_CURRENCY = System.Math.Round(1 / EURO, 8) Then
 '						'boekhouding in EUR, en fiche in BEF
 '						'niets wijzigen
-'					ElseIf dMuntL <> 1 Then 
+'					ElseIf D_CURRENCY <> 1 Then 
 '						'Boekhouding in EUR, factuur in munt buiten BEF of EUR
 '						'MsgBox "andere munt stop"
 '					Else
-'						TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text) / dMuntL, MaskEURBH)
+'						TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text) / D_CURRENCY, MASK_EURBH)
 '					End If
 '				Else
 '					'Boekhouding in BEF, toggle in BEF, alles zoals vroeger
-'					If dMuntL <> 1 Then
-'						TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text) / dMuntL, MaskEURBH)
+'					If D_CURRENCY <> 1 Then
+'						TekstInfo(2).Text = Dec(Val(TekstInfo(2).Text) / D_CURRENCY, MASK_EURBH)
 '					Else
 '						'Boekhouding in BEF, factuur in BEF, toggle in BEF
 '						'Niets te wijzigen dus
@@ -179,13 +179,13 @@ End Class
 '			TekstInfo(5).Text = Dec(Val(TekstInfo(5).Text), "#####0.000")
 '			If TekstInfo(0).Text = Space(Len(TekstInfo(0).Text)) Then
 '			Else
-'				JetGet(TableOfLedgerAccounts, 0, SetSpacing(TekstInfo(0).Text, 7))
-'				If Ktrl Then
+'				JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TekstInfo(0).Text, 7))
+'				If KTRL Then
 '					MsgBox("OnlogicaStop")
 '				Else
-'					RecordToField(TableOfLedgerAccounts)
-'					TekstInfo(0).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-'					TekstInfo(1).Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'					RecordToField(TABLE_LEDGERACCOUNTS)
+'					TekstInfo(0).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'					TekstInfo(1).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '					TekstInfo(2).TabIndex = 0
 '				End If
 '			End If
@@ -210,36 +210,36 @@ End Class
 
 '			If InStr(DirekteAankoop.cmdSwitch.Text, "EUR") Then
 '				'ingave in EUR
-'				If bhEuro Then
-'					VeldBedrag.Value = Dec(HetBedrag, MaskEURBH)
+'				If BH_EURO Then
+'					VeldBedrag.Value = Dec(HetBedrag, MASK_EURBH)
 '				Else
 '					'Boekhouding nog in BEF mét overgangstoggle !!
-'					'kan dus niet anders dan 1/ Euro zijn...
+'					'kan dus niet anders dan 1/ EURO zijn...
 '					'moet dus afgebleven worden
-'					VeldBedrag.Value = Dec(HetBedrag, MaskEURBH)
+'					VeldBedrag.Value = Dec(HetBedrag, MASK_EURBH)
 '				End If
 '			Else
 '				'ingave in BEF
-'				If bhEuro Then
+'				If BH_EURO Then
 '					'Boekhouding in EUR
-'					If System.Math.Round(dMuntL, 8) = System.Math.Round(1 / Euro, 8) Then
+'					If System.Math.Round(D_CURRENCY, 8) = System.Math.Round(1 / EURO, 8) Then
 '						'toggle in BEF dus van BEF afblijven
-'						VeldBedrag.Value = Dec(System.Math.Round(HetBedrag), MaskEURBH)
-'					ElseIf dMuntL <> 1 Then 
+'						VeldBedrag.Value = Dec(System.Math.Round(HetBedrag), MASK_EURBH)
+'					ElseIf D_CURRENCY <> 1 Then 
 '						'een echte andere munt dan BEF of EUR
-'						VeldBedrag.Value = Dec(System.Math.Round(HetBedrag * dMuntL), MaskEURBH)
+'						VeldBedrag.Value = Dec(System.Math.Round(HetBedrag * D_CURRENCY), MASK_EURBH)
 '						MsgBox("Stop")
 '					Else
 '						MsgBox("onlogica stop")
 '					End If
 '				Else
 '					'Boekhouding in BEF, toggle in BEF of andere MUNT zoals vroeger
-'					VeldBedrag.Value = Dec(System.Math.Round(HetBedrag * dMuntL), MaskEURBH)
+'					VeldBedrag.Value = Dec(System.Math.Round(HetBedrag * D_CURRENCY), MASK_EURBH)
 '				End If
 '			End If
 
 
-'			GridText = VeldRekening.Value & Chr(124) & VeldNaam.Value & Chr(124) & VeldBedrag.Value & Chr(124)
+'			GRIDTEXT = VeldRekening.Value & Chr(124) & VeldNaam.Value & Chr(124) & VeldBedrag.Value & Chr(124)
 '			If TekstInfo(3).Visible Then
 '				If TekstInfo(4).Text = "" Then
 '					Beep()
@@ -249,7 +249,7 @@ End Class
 '					VeldProdukt.Value = TekstInfo(3).Text
 '					VeldAantal.Value = Dec(Val(TekstInfo(5).Text), "#####0.000")
 '					ProduktNaam.Value = TekstInfo(4).Text
-'					GridText = GridText & VeldProdukt.Value & Chr(124) & ProduktNaam.Value & Chr(124) & VeldAantal.Value & Chr(124)
+'					GRIDTEXT = GRIDTEXT & VeldProdukt.Value & Chr(124) & ProduktNaam.Value & Chr(124) & VeldAantal.Value & Chr(124)
 '					Me.Close()
 '				End If
 '			Else
@@ -283,7 +283,7 @@ End Class
 
 '		TekstInfo(Index).SelectionLength = Len(TekstInfo(Index).Text)
 '		iTabIndex = Index
-'		If Index = 0 Then VB6.SetDefault(Ok, False) : SnelHelpPrint("[Ctrl] voor geïndexeerd zoeken", blLogging)
+'		If Index = 0 Then VB6.SetDefault(Ok, False) : SnelHelpPrint("[Ctrl] voor geïndexeerd zoeken", BL_LOGGING)
 '		CTRLFlag = False
 
 '	End Sub
@@ -312,40 +312,40 @@ End Class
 '			Case 17
 '				Select Case Index
 '					Case 0
-'						SharedFl = TableOfLedgerAccounts
-'						aIndex = 0
-'						GridText = TekstInfo(0).Text
+'						SHARED_FL = TABLE_LEDGERACCOUNTS
+'						A_INDEX = 0
+'						GRIDTEXT = TekstInfo(0).Text
 '						SqlSearch.ShowDialog()
-'						If Ktrl Then
+'						If KTRL Then
 '							TekstInfo(1).Text = ""
 '							Ok.Enabled = False
 '						Else
-'							RecordToField(TableOfLedgerAccounts)
-'							TekstInfo(0).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-'							TekstInfo(1).Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'							RecordToField(TABLE_LEDGERACCOUNTS)
+'							TekstInfo(0).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'							TekstInfo(1).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '							Ok.Enabled = True
 '							TekstInfo(2).Focus()
 '						End If
 '					Case 3
-'						SharedFl = TableOfProductsAndServices
-'						aIndex = 0
-'						GridText = TekstInfo(3).Text
+'						SHARED_FL = TABLE_PRODUCTS
+'						A_INDEX = 0
+'						GRIDTEXT = TekstInfo(3).Text
 '						SqlSearch.ShowDialog()
-'						If Ktrl Then
+'						If KTRL Then
 '							TekstInfo(4).Text = ""
 '							Ok.Enabled = False
 '						Else
-'							RecordToField(TableOfProductsAndServices)
-'							TekstInfo(3).Text = AdoGetField(TableOfProductsAndServices, "#v102 #")
-'							TekstInfo(4).Text = AdoGetField(TableOfProductsAndServices, "#v105 #")
-'							JetGet(TableOfLedgerAccounts, 0, SetSpacing(AdoGetField(TableOfProductsAndServices, "#v116 #"), 7))
-'							If Ktrl Then
+'							RecordToField(TABLE_PRODUCTS)
+'							TekstInfo(3).Text = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+'							TekstInfo(4).Text = AdoGetField(TABLE_PRODUCTS, "#v105 #")
+'							JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(AdoGetField(TABLE_PRODUCTS, "#v116 #"), 7))
+'							If KTRL Then
 '								TekstInfo(1).Text = ""
 '								Ok.Enabled = False
 '							Else
-'								RecordToField(TableOfLedgerAccounts)
-'								TekstInfo(0).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-'								TekstInfo(1).Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'								RecordToField(TABLE_LEDGERACCOUNTS)
+'								TekstInfo(0).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'								TekstInfo(1).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '								Ok.Enabled = True
 '							End If
 '						End If
@@ -387,21 +387,21 @@ End Class
 '		Select Case Index
 '			Case 0
 '				If CTRLFlag = True Then Exit Sub
-'				JetGet(TableOfLedgerAccounts, 0, SetSpacing(TekstInfo(0).Text, 7))
-'				If Ktrl Then
+'				JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TekstInfo(0).Text, 7))
+'				If KTRL Then
 '					TekstInfo(0).Text = ""
 '					TekstInfo(1).Text = ""
 '				Else
-'					RecordToField(TableOfLedgerAccounts)
-'					TekstInfo(0).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-'					TekstInfo(1).Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'					RecordToField(TABLE_LEDGERACCOUNTS)
+'					TekstInfo(0).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'					TekstInfo(1).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '				End If
 '			Case 3
 '				If CTRLFlag = True Then Exit Sub
-'				JetGet(TableOfProductsAndServices, 0, SetSpacing(TekstInfo(3).Text, 13))
-'				If Ktrl Then
-'					KtrlBox = MsgBox("Code " & TekstInfo(3).Text & " bestaat niet." & vbCr & "Nieuw produkt aanmaken", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'					If KtrlBox = MsgBoxResult.No Then
+'				JetGet(TABLE_PRODUCTS, 0, SetSpacing(TekstInfo(3).Text, 13))
+'				If KTRL Then
+'					CTRL_BOX = MsgBox("Code " & TekstInfo(3).Text & " bestaat niet." & vbCr & "Nieuw produkt aanmaken", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'					If CTRL_BOX = MsgBoxResult.No Then
 '						Annuleren_Click(Annuleren, New System.EventArgs())
 '						Exit Sub
 '					Else
@@ -415,17 +415,17 @@ End Class
 '						TekstInfo(3).Focus()
 '					End If
 '				Else
-'					RecordToField(TableOfProductsAndServices)
-'					TekstInfo(3).Text = AdoGetField(TableOfProductsAndServices, "#v102 #")
-'					TekstInfo(4).Text = AdoGetField(TableOfProductsAndServices, "#v105 #")
-'					JetGet(TableOfLedgerAccounts, 0, SetSpacing(AdoGetField(TableOfProductsAndServices, "#v116 #"), 7))
-'					If Ktrl Then
+'					RecordToField(TABLE_PRODUCTS)
+'					TekstInfo(3).Text = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+'					TekstInfo(4).Text = AdoGetField(TABLE_PRODUCTS, "#v105 #")
+'					JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(AdoGetField(TABLE_PRODUCTS, "#v116 #"), 7))
+'					If KTRL Then
 '						TekstInfo(1).Text = ""
 '						Ok.Enabled = False
 '					Else
-'						RecordToField(TableOfLedgerAccounts)
-'						TekstInfo(0).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-'						TekstInfo(1).Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'						RecordToField(TABLE_LEDGERACCOUNTS)
+'						TekstInfo(0).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'						TekstInfo(1).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '						Ok.Enabled = True
 '					End If
 '				End If
@@ -435,7 +435,7 @@ End Class
 '				If VB.Left(cbEenheidsType.Text, 1) = "1" Then
 '					tmpAantal = CSng(TekstInfo(5).Text)
 '				ElseIf VB.Left(cbEenheidsType.Text, 1) = "2" Then 
-'					tmpAantal = Val(TekstInfo(5).Text) * Val(AdoGetField(TableOfProductsAndServices, "#v107 #"))
+'					tmpAantal = Val(TekstInfo(5).Text) * Val(AdoGetField(TABLE_PRODUCTS, "#v107 #"))
 '					TekstInfo(5).Text = Trim(Dec(tmpAantal, "####.000"))
 '					cbEenheidsType.SelectedIndex = 0
 '				Else
@@ -443,12 +443,12 @@ End Class
 '				End If
 
 '				If InStr(DirekteAankoop.cmdSwitch.Text, "EUR") Then
-'					TekstInfo(2).Text = Dec(System.Math.Round(Val(TekstInfo(5).Text) * Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), 2), MaskEURBH)
+'					TekstInfo(2).Text = Dec(System.Math.Round(Val(TekstInfo(5).Text) * Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), 2), MASK_EURBH)
 '				Else
-'					TekstInfo(2).Text = Dec(System.Math.Round(Val(TekstInfo(5).Text) * Val(AdoGetField(TableOfProductsAndServices, "#v113 #")), 2), MaskEURBH)
+'					TekstInfo(2).Text = Dec(System.Math.Round(Val(TekstInfo(5).Text) * Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")), 2), MASK_EURBH)
 '				End If
 '				'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-'				XDoEvents = System.Windows.Forms.Application.DoEvents()
+'				XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
 '				TekstInfo(2).Focus()
 '		End Select
 '		CTRLFlag = False

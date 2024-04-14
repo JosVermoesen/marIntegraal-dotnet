@@ -220,7 +220,7 @@ Partial Class LayOutpdfDokument
         Me.Bestanden.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Openen, Me.lijntje1, Me.Kladblok, Me.lijntje2, Me.Afsluiten})
         Me.Bestanden.Name = "Bestanden"
         Me.Bestanden.Size = New System.Drawing.Size(61, 20)
-        Me.Bestanden.Text = "&TableDefOnt"
+        Me.Bestanden.Text = "&TABLEDEF_ONT"
         '
         'lijntje2
         '

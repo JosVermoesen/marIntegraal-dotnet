@@ -2,7 +2,7 @@
 Option Explicit On
 Module modTB2
 
-    Function tb2Indent(ByRef MAPIString As String) As String
+    Function Tb2Indent(ByRef MAPIString As String) As String
 
         Dim Xarray() As String
         Dim strComment As String
@@ -28,7 +28,7 @@ Module modTB2
             If Len(Xarray(telIndent)) = 0 Then
                 'Stop
             Else
-                strComment = TB2commentaar(Xarray(telIndent))
+                strComment = TB2Comments(Xarray(telIndent))
                 strIndent = strIndent & Xarray(telIndent) & strComment & vbCrLf
                 'Aanpassen van de tabIndent voor de volgende tekenreeks
                 Select Case Left(Xarray(telIndent), 3)
@@ -49,7 +49,7 @@ Module modTB2
 
             End If
         Next
-        tb2Indent = strIndent
+        Tb2Indent = strIndent
 
     End Function
 
@@ -59,7 +59,7 @@ Module modTB2
         rsTB2Qualifiers = New ADODB.Recordset
         rsTB2Qualifiers.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         MSG = "SELECT * From A_DE_QUALIFIANT"
-        rsTB2Qualifiers.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        rsTB2Qualifiers.Open(MSG, AD_TBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 
         If rsTB2Qualifiers.RecordCount <= 0 Then
             TB2QualifiersJSON = "null"
@@ -74,25 +74,25 @@ Module modTB2
                 Else
                     outp.Append(",")
                 End If
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("DE").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("DE").Value.ToString)
                 outp.Append("{" & c & "DE" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Version").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Version").Value.ToString)
                 outp.Append(c & "Version" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Qualifiant").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Qualifiant").Value.ToString)
                 outp.Append(c & "Qualifiant" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Lbc-1").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Lbc-1").Value.ToString)
                 outp.Append(c & "Lbc-1" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Lbc-2").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Lbc-2").Value.ToString)
                 outp.Append(c & "Lbc-2" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Lbc-3").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Lbc-3").Value.ToString)
                 outp.Append(c & "Lbc-3" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Lbc-4").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Lbc-4").Value.ToString)
                 outp.Append(c & "Lbc-4" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Datcre").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Datcre").Value.ToString)
                 outp.Append(c & "Datcre" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Datmod").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Datmod").Value.ToString)
                 outp.Append(c & "Datmod" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Qualifiers.Fields("Datdel").Value.ToString)
+                strValue = CleanMdbField(rsTB2Qualifiers.Fields("Datdel").Value.ToString)
                 outp.Append(c & "Datdel" & c & ":" & c & strValue & c & "}")
                 rsTB2Qualifiers.MoveNext()
             Loop
@@ -109,7 +109,7 @@ Module modTB2
 
         rsTB2Lists.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         MSG = "SELECT * From VALEUR"
-        rsTB2Lists.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        rsTB2Lists.Open(MSG, AD_TBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
         If rsTB2Lists.RecordCount <= 0 Then
             TB2ValeursJSON = "null"
         Else
@@ -123,27 +123,27 @@ Module modTB2
                 Else
                     outp.Append(",")
                 End If
-                strValue = cleanMdbField(rsTB2Lists.Fields("Code").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Code").Value.ToString)
                 outp.Append("{" & c & "Code" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Valeur").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Valeur").Value.ToString)
                 outp.Append(c & "Valeur" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Lbc-1").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Lbc-1").Value.ToString)
                 outp.Append(c & "Lbc-1" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Lbc-2").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Lbc-2").Value.ToString)
                 outp.Append(c & "Lbc-2" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Lbl-1").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Lbl-1").Value.ToString)
                 outp.Append(c & "Lbl-1" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Lbl-2").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Lbl-2").Value.ToString)
                 outp.Append(c & "Lbl-2" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Lbl-3").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Lbl-3").Value.ToString)
                 outp.Append(c & "Lbl-3" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Lbl-4").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Lbl-4").Value.ToString)
                 outp.Append(c & "Lbl-4" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Datcre").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Datcre").Value.ToString)
                 outp.Append(c & "Datcre" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Datmod").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Datmod").Value.ToString)
                 outp.Append(c & "Datmod" & c & ":" & c & strValue & c & ",")
-                strValue = cleanMdbField(rsTB2Lists.Fields("Datdel").Value.ToString)
+                strValue = CleanMdbField(rsTB2Lists.Fields("Datdel").Value.ToString)
                 outp.Append(c & "Datdel" & c & ":" & c & strValue & c & "}")
                 rsTB2Lists.MoveNext()
             Loop
@@ -154,7 +154,7 @@ Module modTB2
 
     End Function
 
-    Function cleanMdbField(strToCheck As String) As String
+    Function CleanMdbField(strToCheck As String) As String
 
         Dim c As String = Chr(34)
 
@@ -175,20 +175,19 @@ Module modTB2
 
     End Function
 
-
-    Function headComLists(ByRef strDE As String, ByRef strQualifiant As String, ByRef strOOD As String) As String
+    Function HeadComLists(ByRef strDE As String, ByRef strQualifiant As String, ByRef strOOD As String) As String
 
         Dim rsTB2Qualifiers As ADODB.Recordset
 
         rsTB2Qualifiers = New ADODB.Recordset
         rsTB2Qualifiers.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         MSG = "SELECT * From A_DE_QUALIFIANT WHERE DE = '" & strDE & "' AND Qualifiant = '" & strQualifiant & "'"
-        rsTB2Qualifiers.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        rsTB2Qualifiers.Open(MSG, AD_TBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
         If rsTB2Qualifiers.RecordCount <> 1 Then
-            headComLists = " - "
+            HeadComLists = " - "
             Exit Function
         Else
-            headComLists = rsTB2Qualifiers.Fields("Lbc-2").Value
+            HeadComLists = rsTB2Qualifiers.Fields("Lbc-2").Value
         End If
         'Tot slot nog controleren of gebruiksdatum niet overschreden (meestal indien problemen)..
         If rsTB2Qualifiers.Fields("Datdel").Value.ToString <> "" Then
@@ -199,28 +198,26 @@ Module modTB2
 
     End Function
 
-
-    Function subComLists(ByRef strCode As String, ByRef strValeur As String) As String
+    Function SubComLists(ByRef strCode As String, ByRef strValeur As String) As String
 
         Dim rsTB2Lists As ADODB.Recordset
 
         rsTB2Lists = New ADODB.Recordset
         rsTB2Lists.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         MSG = "SELECT * From VALEUR WHERE Code = '" & strCode & "' AND Valeur = '" & strValeur & "'"
-        rsTB2Lists.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        rsTB2Lists.Open(MSG, AD_TBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
         If rsTB2Lists.RecordCount <> 1 Then
-            subComLists = ""
+            SubComLists = ""
         Else
-            subComLists = rsTB2Lists.Fields("Lbl-2").Value
+            SubComLists = rsTB2Lists.Fields("Lbl-2").Value
         End If
         rsTB2Lists.Close()
 
     End Function
 
+    Function TB2Comments(ByRef TB2code As String) As String
 
-    Function TB2commentaar(ByRef TB2code As String) As String
-
-        TB2commentaar = ""
+        TB2Comments = ""
 
         Dim Yarray() As String
         Dim Zarray() As String
@@ -236,123 +233,124 @@ Module modTB2
         Select Case Yarray(0)
             Case "GIS"
                 If UBound(Yarray) > 1 Then
-                    subCommentaar = subComLists(Yarray(1), Yarray(2))
+                    subCommentaar = SubComLists(Yarray(1), Yarray(2))
                 End If
                 'GIS= Process indicator= X021
-                headCommentaar = headComLists("X021", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X021", Yarray(1), outOfDateSince)
 
             Case "IPD"
                 If UBound(Yarray) > 1 Then
                     Zarray = Split(Yarray(2), ":")
-                    subCommentaar = subComLists(Yarray(1), Zarray(0)) ' Yarray(2))
+                    subCommentaar = SubComLists(Yarray(1), Zarray(0)) ' Yarray(2))
                 End If
                 'IPD: Segment Product=X060, dus...
-                headCommentaar = headComLists("X060", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X060", Yarray(1), outOfDateSince)
 
             Case "ATT"
                 If UBound(Yarray) > 1 Then
-                    subCommentaar = subComLists(Yarray(1), Yarray(2))
+                    subCommentaar = SubComLists(Yarray(1), Yarray(2))
                 End If
                 'ATT: Attribute=X010, dus...
-                headCommentaar = headComLists("X010", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X010", Yarray(1), outOfDateSince)
 
             Case "RFF"
                 'RFF: Reference qualifier=X050 én subReference Details=X032, dus...
                 Zarray = Split(Yarray(1), ":")
                 If UBound(Zarray) > 1 Then
-                    subCommentaar = headComLists("X032", Zarray(2), outOfDateSince)
+                    subCommentaar = HeadComLists("X032", Zarray(2), outOfDateSince)
                 End If
-                headCommentaar = headComLists("X050", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X050", Zarray(0), outOfDateSince)
 
             Case "DTM"
                 'DTM: Date/Time qualifier=X016 én format qualifier X018, dus...
                 Zarray = Split(Yarray(1), ":")
                 If UBound(Zarray) = 2 Then
-                    subCommentaar = "=" & headComLists("X018", Zarray(2), outOfDateSince)
+                    subCommentaar = "=" & HeadComLists("X018", Zarray(2), outOfDateSince)
                 End If
-                headCommentaar = headComLists("X016", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X016", Zarray(0), outOfDateSince)
 
             Case "QRS"
                 'QRS: Declaration qualifier=X045 én eventuele response code, dus...
                 Zarray = Split(Yarray(1), ":")
                 If UBound(Yarray) = 2 Then
-                    subCommentaar = "=" & headComLists("X046", Yarray(2), outOfDateSince)
+                    subCommentaar = "=" & HeadComLists("X046", Yarray(2), outOfDateSince)
                 End If
-                headCommentaar = headComLists("X045", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X045", Zarray(0), outOfDateSince)
 
             Case "BIN"
                 'BIN: Boolean indicator=X069 én eventueel boolean indicator value X070, dus...
                 If UBound(Yarray) = 2 Then
-                    subCommentaar = headComLists("X070", Yarray(2), outOfDateSince)
+                    subCommentaar = HeadComLists("X070", Yarray(2), outOfDateSince)
                 End If
-                headCommentaar = headComLists("X069", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X069", Yarray(1), outOfDateSince)
 
             Case "QTY"
                 'QTY: Quantity qualifier=X047, cijfer zelf,
                 '     aantaldecimalen en gecodeerde maateenheid X049 dus...
                 Zarray = Split(Yarray(1), ":")
                 If UBound(Zarray) > 2 Then
-                    subCommentaar = headComLists("X049", Zarray(3), outOfDateSince)
+                    subCommentaar = HeadComLists("X049", Zarray(3), outOfDateSince)
                 End If
-                headCommentaar = headComLists("X047", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X047", Zarray(0), outOfDateSince)
 
             Case "COM"
                 'COM:
                 Zarray = Split(Yarray(1), ":")
-                headCommentaar = headComLists("X013", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X013", Zarray(0), outOfDateSince)
 
             Case "ICD"
                 'ICD: Waarborgen=X058
                 Zarray = Split(Yarray(1), ":")
-                headCommentaar = headComLists("X058", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X058", Zarray(0), outOfDateSince)
 
             Case "MOA"
                 'MOA: Monetairy Amount=X028, dus...
                 Zarray = Split(Yarray(1), ":")
                 If UBound(Zarray) > 1 Then
-                    subCommentaar = headComLists("X031", Zarray(2), outOfDateSince)
+                    subCommentaar = HeadComLists("X031", Zarray(2), outOfDateSince)
                 End If
-                headCommentaar = headComLists("X028", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X028", Zarray(0), outOfDateSince)
 
             Case "PCD"
                 'Percentaga qualifier= X038, cijfer zelf, aantal decimalen
                 Zarray = Split(Yarray(1), ":")
-                headCommentaar = headComLists("X038", Zarray(0), outOfDateSince)
+                headCommentaar = HeadComLists("X038", Zarray(0), outOfDateSince)
 
             Case "PTY"
                 'PTY: Party Identification, party qualifier=X043, dus...
-                headCommentaar = headComLists("X043", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X043", Yarray(1), outOfDateSince)
 
             Case "NME"
                 'NME: Name qualifier=X033, dus...
-                headCommentaar = headComLists("X033", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X033", Yarray(1), outOfDateSince)
 
             Case "ADR"
                 'ADR: Adres qualifier=X001, dus...
-                headCommentaar = headComLists("X001", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X001", Yarray(1), outOfDateSince)
 
             Case "DOC"
                 'DOC: Document=X015, dus...
-                headCommentaar = headComLists("X015", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X015", Yarray(1), outOfDateSince)
 
             Case "PFN"
                 'PFN: Beroep
-                headCommentaar = headComLists("X040", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X040", Yarray(1), outOfDateSince)
 
             Case "PER"
                 'PER: Period Qualifier=X072, dus...
-                headCommentaar = headComLists("X072", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X072", Yarray(1), outOfDateSince)
 
             Case "ROD"
                 'ROD: Risico Object=X052
-                headCommentaar = headComLists("X052", Yarray(1), outOfDateSince)
+                headCommentaar = HeadComLists("X052", Yarray(1), outOfDateSince)
 
             Case Else
                 Exit Function
         End Select
-        TB2commentaar = vbTab & "(" & headCommentaar & " " & subCommentaar & Trim(" " & outOfDateSince) & ")"
+        TB2Comments = vbTab & "(" & headCommentaar & " " & subCommentaar & Trim(" " & outOfDateSince) & ")"
 
     End Function
+
     Function TLBPag2(ByRef BsDef As String) As Integer
         Dim FlInput As Integer
         Dim FFDefinitie As String
@@ -361,7 +359,7 @@ Module modTB2
         'On Local Error GoTo 0
 
         'code= 1 - 1 : Poliskontrole 1 = ON
-        '      2 - 3 : Selektiekeuze waarde (ListIDX)
+        '      2 - 3 : Selektiekeuze waarde (LIST_IDX)
         '      4 - 4 :
         '      5 - 8 : TeleBib
         '      9 - 9 : Volgnummer eventueel 1 tot 9
@@ -371,59 +369,59 @@ Module modTB2
         '               2 : xxxM    'uitbreiding makelaar
 
 
-        If Dir(ProgramLocation & "Def\" & BsDef & ".Def") = "" Then
+        If Dir(PROGRAM_LOCATION & "Def\" & BsDef & ".Def") = "" Then
             MsgBox("Geen VsoftBib definitie " & BsDef & ".Def")
             Exit Function
         End If
 
-        If Dir(ProgramLocation & "Def\" & BsDef & "U.Def") = "" Then
+        If Dir(PROGRAM_LOCATION & "Def\" & BsDef & "U.Def") = "" Then
             GoTo GeenUserDef
         Else
             FlInput = FreeFile()
             T = 0
-            FileOpen(FlInput, ProgramLocation & "Def\" & BsDef & "U.Def", OpenMode.Input)
+            FileOpen(FlInput, PROGRAM_LOCATION & "Def\" & BsDef & "U.Def", OpenMode.Input)
             Do While Not EOF(FlInput)
-                Input(FlInput, TeleBibCode(T))
-                Input(FlInput, TeleBibTekst(T))
-                Input(FlInput, TeleBibType(T))
-                Input(FlInput, TeleBibLengte(T))
+                Input(FlInput, TELEBIB_CODE(T))
+                Input(FlInput, TELEBIB_TEXT(T))
+                Input(FlInput, TELEBIB_TYPE(T))
+                Input(FlInput, TELEBIB_LENGHT(T))
                 T = T + 1
             Loop
             FileClose(FlInput)
-            TeleBibCode(T) = ""
-            TeleBibLast = T - 1
+            TELEBIB_CODE(T) = ""
+            TELEBIB_LAST = T - 1
             TLBPag2 = True
             Exit Function
         End If
 
 GeenUserDef:
         FlInput = FreeFile()
-        FileOpen(FlInput, ProgramLocation & "Def\" & BsDef & ".Def", OpenMode.Input)
+        FileOpen(FlInput, PROGRAM_LOCATION & "Def\" & BsDef & ".Def", OpenMode.Input)
         T = 0
         Do While Not EOF(FlInput)
-            Input(FlInput, TeleBibCode(T))
-            Input(FlInput, TeleBibTekst(T))
-            Input(FlInput, TeleBibType(T))
-            Input(FlInput, TeleBibLengte(T))
+            Input(FlInput, TELEBIB_CODE(T))
+            Input(FlInput, TELEBIB_TEXT(T))
+            Input(FlInput, TELEBIB_TYPE(T))
+            Input(FlInput, TELEBIB_LENGHT(T))
             T = T + 1
         Loop
         FileClose(FlInput)
-        TeleBibCode(T) = ""
+        TELEBIB_CODE(T) = ""
 
-        If Trim(ProducentNummer) = "" Then
-        ElseIf Dir(ProgramLocation & "Def\" & BsDef & "M.Def") = "" Then
+        If Trim(AGENT_NUMBER) = "" Then
+        ElseIf Dir(PROGRAM_LOCATION & "Def\" & BsDef & "M.Def") = "" Then
         Else
             FlInput = FreeFile()
-            FileOpen(FlInput, ProgramLocation & "Def\" & BsDef & "M.Def", OpenMode.Input)
+            FileOpen(FlInput, PROGRAM_LOCATION & "Def\" & BsDef & "M.Def", OpenMode.Input)
             Do While Not EOF(FlInput)
-                Input(FlInput, TeleBibCode(T))
-                Input(FlInput, TeleBibTekst(T))
-                Input(FlInput, TeleBibType(T))
-                Input(FlInput, TeleBibLengte(T))
+                Input(FlInput, TELEBIB_CODE(T))
+                Input(FlInput, TELEBIB_TEXT(T))
+                Input(FlInput, TELEBIB_TYPE(T))
+                Input(FlInput, TELEBIB_LENGHT(T))
                 T = T + 1
             Loop
             FileClose(FlInput)
-            TeleBibCode(T) = ""
+            TELEBIB_CODE(T) = ""
         End If
         TLBPag2 = True
         Exit Function
@@ -436,6 +434,7 @@ TLBError:
         Resume
 
     End Function
+
     Function TLBPag3(ByRef BsDef As String) As Boolean
 
         TLBPag3 = False
@@ -443,35 +442,35 @@ TLBError:
         Dim FlTemp As Integer
         Dim T As Integer
         'code= 1 - 1 : Poliskontrole 1 = ON
-        '      2 - 3 : Selektiekeuze waarde (ListIDX)
+        '      2 - 3 : Selektiekeuze waarde (LIST_IDX)
         '      4 - 4 :
         '      5 - 8 : TeleBib
         '      9 - 9 : * voor verplichte invulling
 
 
-        If Dir(ProgramLocation & "Def\" & BsDef & ".Def") = "" Then
+        If Dir(PROGRAM_LOCATION & "Def\" & BsDef & ".Def") = "" Then
             MsgBox("Geen VsoftBib definitie " & BsDef & ".Def")
             Exit Function
         End If
 
         FlTemp = FreeFile()
-        FileOpen(FlTemp, ProgramLocation & "Def\" & BsDef & ".DEF", OpenMode.Input)
+        FileOpen(FlTemp, PROGRAM_LOCATION & "Def\" & BsDef & ".DEF", OpenMode.Input)
         T = 0
         Do While Not EOF(FlTemp)
-            Input(FlTemp, TeleBibCode(T))
-            Input(FlTemp, TeleBibTekst(T))
-            Input(FlTemp, TeleBibType(T))
-            Input(FlTemp, TeleBibLengte(T))
-            Input(FlTemp, TeleBibPos(T))
+            Input(FlTemp, TELEBIB_CODE(T))
+            Input(FlTemp, TELEBIB_TEXT(T))
+            Input(FlTemp, TELEBIB_TYPE(T))
+            Input(FlTemp, TELEBIB_LENGHT(T))
+            Input(FlTemp, TELEBIB_POS(T))
             T = T + 1
         Loop
         FileClose(FlTemp)
-        TeleBibCode(T) = ""
+        TELEBIB_CODE(T) = ""
         TLBPag3 = True
 
     End Function
 
-    Function rodCheck(ByRef MAPIString As String) As String
+    Function RODCheck(ByRef MAPIString As String) As String
 
         Dim rodArray() As String
         Dim telRod As Short
@@ -481,7 +480,7 @@ TLBError:
         rodArray = Split(MAPIString, "ROD+")
 
         For telRod = 1 To UBound(rodArray)
-            rodHier = headComLists("X052", Left(rodArray(telRod), 3), "")
+            rodHier = HeadComLists("X052", Left(rodArray(telRod), 3), "")
             If InStr(rodTmp, rodHier) Then
             Else
                 If telRod = UBound(rodArray) Then
@@ -492,14 +491,14 @@ TLBError:
             End If
         Next
         If rodTmp <> "" Then
-            rodCheck = "Verzekerd risico: " & rodTmp
+            RODCheck = "Verzekerd risico: " & rodTmp
         Else
-            rodCheck = ""
+            RODCheck = ""
         End If
 
     End Function
 
-    Function icdCheck(ByRef MAPIString As String) As String
+    Function ICDCheck(ByRef MAPIString As String) As String
 
         Dim icdArray() As String
         Dim telIcd As Integer
@@ -509,7 +508,7 @@ TLBError:
         icdArray = Split(MAPIString, "ICD+")
 
         For telIcd = 1 To UBound(icdArray)
-            icdHier = headComLists("X058", Left(icdArray(telIcd), 3), "")
+            icdHier = HeadComLists("X058", Left(icdArray(telIcd), 3), "")
             If InStr(icdTmp, icdHier) Then
             Else
                 If telIcd = UBound(icdArray) Then
@@ -520,14 +519,14 @@ TLBError:
             End If
         Next
         If icdTmp <> "" Then
-            icdCheck = "Waarborgen: " & icdTmp
+            ICDCheck = "Waarborgen: " & icdTmp
         Else
-            icdCheck = ""
+            ICDCheck = ""
         End If
 
     End Function
 
-    Function ftxCheck(ByRef MAPIString As String) As String
+    Function FTXCheck(ByRef MAPIString As String) As String
 
         Dim ftxArray() As String
         Dim telFtx As Short
@@ -545,31 +544,31 @@ TLBError:
         Loop
 
         If ftxTmp <> "" Then
-            ftxCheck = "Bericht van de verzekeraar:" & vbCrLf & ftxTmp
+            FTXCheck = "Bericht van de verzekeraar:" & vbCrLf & ftxTmp
         Else
-            ftxCheck = ""
+            FTXCheck = ""
         End If
 
     End Function
 
-    Function ScrLeesBestandAlleTekst(ByRef TekstZelf As String, ByRef Bestandsnaam As String) As Boolean
+    Function ScrReadFileAllText(ByRef TekstZelf As String, ByRef Bestandsnaam As String) As Boolean
 
         On Error Resume Next
         Const ForReading As Integer = 1
         Dim A As Scripting.TextStream
 
-        A = fs.OpenTextFile(Bestandsnaam, ForReading, False, Scripting.Tristate.TristateFalse)
+        A = FS.OpenTextFile(Bestandsnaam, ForReading, False, Scripting.Tristate.TristateFalse)
         If Err.Number Then
             TekstZelf = Err.Description
-            ScrLeesBestandAlleTekst = False
+            ScrReadFileAllText = False
         Else
             TekstZelf = A.ReadAll
-            ScrLeesBestandAlleTekst = True
+            ScrReadFileAllText = True
         End If
 
     End Function
 
-    Sub EdiFactREKENINGUITTREKSEL(ByRef UserArea As String)
+    Sub EdiFactAccountStatement(ByRef UserArea As String)
         Dim ddag As String
         Dim Bedrag0 As Short
         Dim Tel As Short
@@ -620,16 +619,16 @@ TLBError:
         '		XGHarray = Split(Xarray(0), "+")
         '		Maatschappij = VB6.Format(Val(XGHarray(2)), "0000")
 
-        '		blLogging = True
+        '		BL_LOGGING = True
         '		boekLijn = ""
-        '		If bhEuro Then
+        '		If BH_EURO Then
         '			MaskerHier = "######0.00"
         '		Else
         '			MaskerHier = "#########0"
         '		End If
 
         '		BorderelTxt = ""
-        '		GridText = ""
+        '		GRIDTEXT = ""
         '		MaandVerwerkingTermijn = 0
 
         '		LijnTeller = 0
@@ -652,7 +651,7 @@ TLBError:
         '							boekLijn = boekLijn & DatumKwijting & vbTab
 
         '						Case Else
-        '							SnelHelpPrint("Nog geen controle voor " & Mid(Xarray(Telhier), 5, 3), blLogging)
+        '							SnelHelpPrint("Nog geen controle voor " & Mid(Xarray(Telhier), 5, 3), BL_LOGGING)
         '					End Select
 
         '				Case "DTM"
@@ -707,7 +706,7 @@ TLBError:
         '						Case "MOA+012" 'Totale premie
 
         '						Case Else
-        '							SnelHelpPrint("MOA-stop voor " & MOAarray(0), blLogging)
+        '							SnelHelpPrint("MOA-stop voor " & MOAarray(0), BL_LOGGING)
         '					End Select
 
         '				Case "NME"
@@ -716,7 +715,7 @@ TLBError:
         '				Case "PTY"
         '					PTYarray = Split(Xarray(Telhier), "+")
         '					If PTYarray(1) = "006" Then
-        '						SnelHelpPrint("maatschappij info" & Xarray(Telhier), blLogging)
+        '						SnelHelpPrint("maatschappij info" & Xarray(Telhier), BL_LOGGING)
         '						Maatschappij = VB6.Format(Val(PTYarray(2)), "0000")
         '					End If
 
@@ -725,7 +724,7 @@ TLBError:
         '					'voorlopig over te slaan...
 
         '				Case Else
-        '					SnelHelpPrint("nog niets voorzien voor " & Left(Xarray(Telhier), 3), blLogging)
+        '					SnelHelpPrint("nog niets voorzien voor " & Left(Xarray(Telhier), 3), BL_LOGGING)
         '			End Select
         '		Next 
 
@@ -739,12 +738,12 @@ TLBError:
         '			GoSub ruWegschrijven
         '		End If
 
-        '		If GridText = "" Then
-        '			SnelHelpPrint("Er zijn geen commissielonen te boeken", blLogging)
+        '		If GRIDTEXT = "" Then
+        '			SnelHelpPrint("Er zijn geen commissielonen te boeken", BL_LOGGING)
         '		Else
         '			'BJPERDAT!Boekjaar.ListIndex = 0
         '			PeriodeVoor = BoekjaarKontrole.Value & MaandVerwerking.Value
-        '			'If PeriodeVoor < Left(BookyearFromTo, 6) Then
+        '			'If PeriodeVoor < Left(BOOKYEAR_FROMTO, 6) Then
         '			'    If BJPERDAT!Boekjaar.ListCount > 1 Then
         '			'        BJPERDAT!Boekjaar.ListIndex = 1
         '			'    End If
@@ -754,13 +753,13 @@ TLBError:
         '				CType(BJPERDAT.Controls("Boekjaar"), Object).SelectedIndex = Teljaar
         '				For Tel = 0 To CType(BJPERDAT.Controls("PeriodeBoekjaar"), Object).Items.Count - 1
         '					CType(BJPERDAT.Controls("PeriodeBoekjaar"), Object).SelectedIndex = Tel
-        '					If PeriodeVoor >= Left(PeriodFromTo.Value, 6) And PeriodeVoor <= Mid(PeriodFromTo.Value, 9, 6) Then
+        '					If PeriodeVoor >= Left(PERIOD_FROMTO.Value, 6) And PeriodeVoor <= Mid(PERIOD_FROMTO.Value, 9, 6) Then
         '						'JetTableClose 99
         '						KwijtingBoeken.Close()
-        '						GridTextIs = "006" & vbTab & Maatschappij & vbTab & "Commissies"
-        '						blLogging = False
+        '						GRIDTEXT_IS = "006" & vbTab & Maatschappij & vbTab & "Commissies"
+        '						BL_LOGGING = False
         '						KwijtingBoeken.ShowDialog()
-        '						GridText = ""
+        '						GRIDTEXT = ""
         '						KtrlFlag = True
         '						Exit For
         '					End If
@@ -786,32 +785,32 @@ TLBError:
         '			Return 
         '		End If
 
-        '		If bhEuro = True And MOAarray(2) = "EUR" Then
+        '		If BH_EURO = True And MOAarray(2) = "EUR" Then
         '			'boekhouding en bericht in EURO, niets te doen
-        '		ElseIf bhEuro = False And MOAarray(2) = "BEF" Then 
+        '		ElseIf BH_EURO = False And MOAarray(2) = "BEF" Then 
         '			'boekhouding en bericht in BEF, niets te doen
         '		ElseIf MOAarray(2) = "BEF" Then 
         '			'boekhouding in EURO en bericht in BEF !
-        '			Bedrag0 = System.Math.Round(Bedrag9 / Euro, 2)
+        '			Bedrag0 = System.Math.Round(Bedrag9 / EURO, 2)
         '		ElseIf MOAarray(2) = "EUR" Then 
         '			'boekhouding in EURO en bericht in BEF !
-        '			Bedrag9 = System.Math.Round(Bedrag9 * Euro)
+        '			Bedrag9 = System.Math.Round(Bedrag9 * EURO)
         '		Else
         '			MsgBox("ONMOGELIJKE SITUATIE")
         '		End If
 
-        '		JetGet(TableOfContracts, 0, PolisNummer.Value)
-        '		If Ktrl Then
+        '		JetGet(TABLE_CONTRACTS, 0, PolisNummer.Value)
+        '		If KTRL Then
         '			MsgBox("polis niet aanwezig. EDIFACT nieuw nog in te brengen !!!", MsgBoxStyle.Critical)
-        '			TLBRecord(TableOfContracts) = ""
+        '			TLB_RECORD(TABLE_CONTRACTS) = ""
         '			MsgBox("Stop.  Polis bestaat nog niet :" & PolisNummer.Value)
-        '			AdoInsertToRecord(TableOfContracts, Mid(iolijn, 23, 2), "v164")
-        '			AdoInsertToRecord(TableOfContracts, "NONAME", "A110")
-        '			AdoInsertToRecord(TableOfContracts, Maatschappij, "A010")
-        '			AdoInsertToRecord(TableOfContracts, PolisNummer.Value, "A000")
-        '			AdoInsertToRecord(TableOfContracts, Mid(iolijn, 30, 10), "vs99")
-        '			JetInsert(TableOfContracts, 0)
-        '			If Ktrl Then
+        '			AdoInsertToRecord(TABLE_CONTRACTS, Mid(iolijn, 23, 2), "v164")
+        '			AdoInsertToRecord(TABLE_CONTRACTS, "NONAME", "A110")
+        '			AdoInsertToRecord(TABLE_CONTRACTS, Maatschappij, "A010")
+        '			AdoInsertToRecord(TABLE_CONTRACTS, PolisNummer.Value, "A000")
+        '			AdoInsertToRecord(TABLE_CONTRACTS, Mid(iolijn, 30, 10), "vs99")
+        '			JetInsert(TABLE_CONTRACTS, 0)
+        '			If KTRL Then
         '				MsgBox("onbekende soldaat ! STOP!!!")
         '			End If
         '			Infolijn = Infolijn & " " & TempoNaamKlant & " aanvullen a.u.b."
@@ -819,62 +818,62 @@ TLBError:
         '			As2TelebibIn.UserInfo(3).Text = Str(Val(As2TelebibIn.UserInfo(3).Text) + 1)
         '			ddag = "01"
         '		Else
-        '			RecordToField(TableOfContracts)
+        '			RecordToField(TABLE_CONTRACTS)
         '			PolisTeWijzigen = False
-        '			DagKtrl1.Value = AdoGetField(TableOfContracts, "#v165 #")
-        '			DagKtrl2.Value = Mid(AdoGetField(TableOfContracts, "#AW_2 #"), 7, 2)
-        '			If MaandKwijting.Value = AdoGetField(TableOfContracts, "#v164 #") Then
+        '			DagKtrl1.Value = AdoGetField(TABLE_CONTRACTS, "#v165 #")
+        '			DagKtrl2.Value = Mid(AdoGetField(TABLE_CONTRACTS, "#AW_2 #"), 7, 2)
+        '			If MaandKwijting.Value = AdoGetField(TABLE_CONTRACTS, "#v164 #") Then
         '			Else
-        '				AdoInsertToRecord(TableOfContracts, MaandKwijting.Value, "v164")
+        '				AdoInsertToRecord(TABLE_CONTRACTS, MaandKwijting.Value, "v164")
         '				PolisTeWijzigen = True
         '			End If
         '			If DagKtrl1.Value = DagKtrl2.Value Then
         '				'alles ok
         '			Else
-        '				KtrlBox = MsgBox(DagKtrl2.Value & " correctie vervalDAG", MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
-        '				If KtrlBox = MsgBoxResult.Yes Then
-        '					AdoInsertToRecord(TableOfContracts, DagKtrl2.Value, "v165")
+        '				CTRL_BOX = MsgBox(DagKtrl2.Value & " correctie vervalDAG", MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
+        '				If CTRL_BOX = MsgBoxResult.Yes Then
+        '					AdoInsertToRecord(TABLE_CONTRACTS, DagKtrl2.Value, "v165")
         '					PolisTeWijzigen = True
         '				End If
         '			End If
         '			DagKwijting.Value = DagKtrl2.Value
-        '			If Maatschappij <> AdoGetField(TableOfContracts, "#A010 #") Then
-        '				As2TelebibIn.UserInfo(1).Text = "Maatschappij conflict!  Polis " & PolisNummer.Value & "bestaat reeds bij maatschappij !" & AdoGetField(TableOfContracts, "#A010 #")
-        '				AdoInsertToRecord(TableOfContracts, Maatschappij, "A010")
+        '			If Maatschappij <> AdoGetField(TABLE_CONTRACTS, "#A010 #") Then
+        '				As2TelebibIn.UserInfo(1).Text = "Maatschappij conflict!  Polis " & PolisNummer.Value & "bestaat reeds bij maatschappij !" & AdoGetField(TABLE_CONTRACTS, "#A010 #")
+        '				AdoInsertToRecord(TABLE_CONTRACTS, Maatschappij, "A010")
         '				PolisTeWijzigen = True
         '			End If
         '			If PolisTeWijzigen = True Then
-        '				bUpdate(TableOfContracts, 0)
+        '				bUpdate(TABLE_CONTRACTS, 0)
         '			End If
         '			As2TelebibIn.UserInfo(2).Text = Str(Val(As2TelebibIn.UserInfo(2).Text) + 1)
-        '			JetGet(TableOfCustomers, 0, SetSpacing(AdoGetField(TableOfContracts, "#A110 #"), 12))
-        '			If Ktrl Then
+        '			JetGet(TABLE_CUSTOMERS, 0, SetSpacing(AdoGetField(TABLE_CONTRACTS, "#A110 #"), 12))
+        '			If KTRL Then
         '				Dummy.Value = "Verbeter !!! " & TempoNaamKlant
         '			Else
-        '				RecordToField(TableOfCustomers)
-        '				Dummy.Value = AdoGetField(TableOfCustomers, "#A100 #")
+        '				RecordToField(TABLE_CUSTOMERS)
+        '				Dummy.Value = AdoGetField(TABLE_CUSTOMERS, "#A100 #")
         '			End If
         '		End If
         '		'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
         '		GoSub ruTeleBibKTRL
 
-        '		GridText = GridText & PolisNummer.Value & vbTab
-        '		GridText = GridText & DatumKwijting & vbTab
-        '		GridText = GridText & Dec(0, MaskerHier) & vbTab
-        '		GridText = GridText & Dec(Bedrag9, MaskerHier) & vbTab
-        '		GridText = GridText & Dummy.Value & vbTab
-        '		GridText = GridText & SnippetXEH(UserArea, Trim(PolisNummer.Value), False) & vbCr
+        '		GRIDTEXT = GRIDTEXT & PolisNummer.Value & vbTab
+        '		GRIDTEXT = GRIDTEXT & DatumKwijting & vbTab
+        '		GRIDTEXT = GRIDTEXT & Dec(0, MaskerHier) & vbTab
+        '		GRIDTEXT = GRIDTEXT & Dec(Bedrag9, MaskerHier) & vbTab
+        '		GRIDTEXT = GRIDTEXT & Dummy.Value & vbTab
+        '		GRIDTEXT = GRIDTEXT & SnippetXEH(UserArea, Trim(PolisNummer.Value), False) & vbCr
         '		'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
         '		GoSub ruInitialiseren
         '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
         '		Return 
 
         'ruTeleBibKTRL: 
-        '		JetGet(TableOfVarious, 1, "25" & Maatschappij & PolisNummer.Value)
-        '		If Ktrl Then
-        '			TLBRecord(TableOfVarious) = ""
+        '		JetGet(TABLE_VARIOUS, 1, "25" & Maatschappij & PolisNummer.Value)
+        '		If KTRL Then
+        '			TLB_RECORD(TABLE_VARIOUS) = ""
         '		Else
-        '			RecordToField(TableOfVarious)
+        '			RecordToField(TABLE_VARIOUS)
         '		End If
 
         '		Select Case Mid(iolijn, 42, 1)
@@ -882,34 +881,34 @@ TLBError:
         '				'AUTO ?
         '				'If Maatschappij = "0145" And Mid(iolijn, 42, 6) = "000000" Then
         '				'Else
-        '				'    AdoInsertToRecord TableOfVarious, "P11", "AW00"
-        '				'    AdoInsertToRecord TableOfVarious, "4", "AW06"
-        '				'    AdoInsertToRecord TableOfVarious, Str$(Bedrag1 + Bedrag2 + Bedrag3), "AW04"
-        '				'    AdoInsertToRecord TableOfVarious, Mid(iolijn, 40, 2), "5315"
+        '				'    AdoInsertToRecord TABLE_VARIOUS, "P11", "AW00"
+        '				'    AdoInsertToRecord TABLE_VARIOUS, "4", "AW06"
+        '				'    AdoInsertToRecord TABLE_VARIOUS, Str$(Bedrag1 + Bedrag2 + Bedrag3), "AW04"
+        '				'    AdoInsertToRecord TABLE_VARIOUS, Mid(iolijn, 40, 2), "5315"
         '				'End If
         '		End Select
 
-        '		AdoInsertToRecord(TableOfVarious, Str(Bedrag9), "B014") 'commissieloon
-        '		AdoInsertToRecord(TableOfVarious, SetSpacing("K" & AdoGetField(TableOfContracts, "#A110 #"), 13), "v004")
-        '		AdoInsertToRecord(TableOfVarious, SetSpacing(AdoGetField(TableOfContracts, "#A110 #"), 12), "A110")
-        '		AdoInsertToRecord(TableOfVarious, Maatschappij, "A010")
-        '		AdoInsertToRecord(TableOfVarious, PolisNummer.Value, "A000")
-        '		AdoInsertToRecord(TableOfVarious, SetSpacing("25" & Maatschappij & PolisNummer.Value, 20), "v005")
+        '		AdoInsertToRecord(TABLE_VARIOUS, Str(Bedrag9), "B014") 'commissieloon
+        '		AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("K" & AdoGetField(TABLE_CONTRACTS, "#A110 #"), 13), "v004")
+        '		AdoInsertToRecord(TABLE_VARIOUS, SetSpacing(AdoGetField(TABLE_CONTRACTS, "#A110 #"), 12), "A110")
+        '		AdoInsertToRecord(TABLE_VARIOUS, Maatschappij, "A010")
+        '		AdoInsertToRecord(TABLE_VARIOUS, PolisNummer.Value, "A000")
+        '		AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("25" & Maatschappij & PolisNummer.Value, 20), "v005")
 
-        '		If Ktrl Then
-        '			JetInsert(TableOfVarious, 1)
+        '		If KTRL Then
+        '			JetInsert(TABLE_VARIOUS, 1)
         '		Else
-        '			bUpdate(TableOfVarious, 1)
+        '			bUpdate(TABLE_VARIOUS, 1)
         '		End If
-        '		If Ktrl Then
-        '			MsgBox("Stopkode " & Str(Ktrl))
+        '		If KTRL Then
+        '			MsgBox("Stopkode " & Str(KTRL))
         '		End If
         '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
         '		Return 
 
     End Sub
 
-    Sub EdiFactTERMIJN(ByRef UserArea As String)
+    Sub EdiFactTermRenewal(ByRef UserArea As String)
         Dim Tel As Short
         Dim ddag As String
 
@@ -986,7 +985,7 @@ TLBError:
 
         'MaskerHier = "######0.00"
         'BorderelTxt = ""
-        'GridText = ""
+        'GRIDTEXT = ""
         'MaandVerwerkingTermijn = 0
         'XRHniveau = 0
         'LijnTeller = 0
@@ -997,7 +996,7 @@ TLBError:
         'txtQTY = ""
 
         'For Telhier = 0 To UBound(Xarray) - 1
-        '	blLogging = True
+        '	BL_LOGGING = True
         '	'Bedrag1 = 0
         '	'Bedrag2 = 0
         '	'Bedrag3 = 0
@@ -1116,7 +1115,7 @@ TLBError:
 
         '				Case "MOA+015" 'commissie
         '					If XRHniveau > 0 Then
-        '						SnelHelpPrint("XRHniveau is : " & XRHniveau, blLogging)
+        '						SnelHelpPrint("XRHniveau is : " & XRHniveau, BL_LOGGING)
         '					Else
         '						If MOAarray(2) = "EUR" Then
         '							If CDbl(Left(MOAarray(3), 1)) = 2 Then
@@ -1238,7 +1237,7 @@ TLBError:
 
 
         '				Case Else
-        '					SnelHelpPrint("MOA-stop voor " & MOAarray(0), blLogging)
+        '					SnelHelpPrint("MOA-stop voor " & MOAarray(0), BL_LOGGING)
         '			End Select
 
         '		Case "NME"
@@ -1254,7 +1253,7 @@ TLBError:
         '					'ATT+B003+3  =  inning maatschappij vanaf 2008
         '					'ATT+A600+3  =  inning maatschappij tot 2008
         '					If ATTarray(2) = "3" Then 'Inning Maatschappij
-        '						SnelHelpPrint("Kwitantie voor polis " & Trim(PolisNummer.Value) & " staat inning Maatschappij", blLogging)
+        '						SnelHelpPrint("Kwitantie voor polis " & Trim(PolisNummer.Value) & " staat inning Maatschappij", BL_LOGGING)
         '						Bedrag0 = 0
         '						Bedrag1 = 0
         '						Bedrag2 = 0
@@ -1287,23 +1286,23 @@ TLBError:
         '				Bedrag8 = Bedrag2 + Bedrag3 + Bedrag5
 
         '				'GoSub Wegschrijven
-        '				If bhEuro = True And MOAarray(2) = "EUR" Then
+        '				If BH_EURO = True And MOAarray(2) = "EUR" Then
         '					'boekhouding en bericht in EURO, niets te doen
-        '				ElseIf bhEuro = False And MOAarray(2) = "BEF" Then 
+        '				ElseIf BH_EURO = False And MOAarray(2) = "BEF" Then 
         '					'boekhouding en bericht in BEF, niets te doen
         '				ElseIf MOAarray(2) = "BEF" Then 
         '					'boekhouding in EURO en bericht in BEF !
-        '					Bedrag7 = System.Math.Round(Bedrag7 / Euro, 2)
-        '					Bedrag8 = System.Math.Round(Bedrag8 / Euro, 2)
-        '					Bedrag9 = System.Math.Round(Bedrag9 / Euro, 2)
-        '					Bedrag0 = System.Math.Round(Bedrag0 / Euro, 2)
+        '					Bedrag7 = System.Math.Round(Bedrag7 / EURO, 2)
+        '					Bedrag8 = System.Math.Round(Bedrag8 / EURO, 2)
+        '					Bedrag9 = System.Math.Round(Bedrag9 / EURO, 2)
+        '					Bedrag0 = System.Math.Round(Bedrag0 / EURO, 2)
 
         '				ElseIf MOAarray(2) = "EUR" Then 
         '					'boekhouding in EURO en bericht in BEF !
-        '					Bedrag7 = System.Math.Round(Bedrag7 * Euro)
-        '					Bedrag8 = System.Math.Round(Bedrag8 * Euro)
-        '					Bedrag9 = System.Math.Round(Bedrag9 * Euro)
-        '					Bedrag0 = System.Math.Round(Bedrag0 * Euro)
+        '					Bedrag7 = System.Math.Round(Bedrag7 * EURO)
+        '					Bedrag8 = System.Math.Round(Bedrag8 * EURO)
+        '					Bedrag9 = System.Math.Round(Bedrag9 * EURO)
+        '					Bedrag0 = System.Math.Round(Bedrag0 * EURO)
         '				Else
         '					MsgBox("ONMOGELIJKE SITUATIE")
         '				End If
@@ -1314,18 +1313,18 @@ TLBError:
         '					BedragPremie = Dec(Bedrag0, MaskerHier)
         '					'MsgBox "Totaal premie werd meegegeven: " & BedragPremie
         '				End If
-        '				JetGet(TableOfContracts, 0, PolisNummer.Value)
-        '				If Ktrl Then
+        '				JetGet(TABLE_CONTRACTS, 0, PolisNummer.Value)
+        '				If KTRL Then
         '					MsgBox("polis niet aanwezig. EDIFACT nieuw nog in te brengen !!!", MsgBoxStyle.Critical)
-        '					TLBRecord(TableOfContracts) = ""
+        '					TLB_RECORD(TABLE_CONTRACTS) = ""
         '					MsgBox("Stop.  Polis bestaat nog niet :" & PolisNummer.Value)
-        '					AdoInsertToRecord(TableOfContracts, MaandKwijting.Value, "v164")
-        '					AdoInsertToRecord(TableOfContracts, "NONAME", "A110")
-        '					AdoInsertToRecord(TableOfContracts, Maatschappij, "A010")
-        '					AdoInsertToRecord(TableOfContracts, PolisNummer.Value, "A000")
-        '					AdoInsertToRecord(TableOfContracts, TempoNaamKlant, "vs99")
-        '					JetInsert(TableOfContracts, 0)
-        '					If Ktrl Then
+        '					AdoInsertToRecord(TABLE_CONTRACTS, MaandKwijting.Value, "v164")
+        '					AdoInsertToRecord(TABLE_CONTRACTS, "NONAME", "A110")
+        '					AdoInsertToRecord(TABLE_CONTRACTS, Maatschappij, "A010")
+        '					AdoInsertToRecord(TABLE_CONTRACTS, PolisNummer.Value, "A000")
+        '					AdoInsertToRecord(TABLE_CONTRACTS, TempoNaamKlant, "vs99")
+        '					JetInsert(TABLE_CONTRACTS, 0)
+        '					If KTRL Then
         '						MsgBox("onbekende soldaat ! STOP!!!")
         '					End If
         '					Infolijn = Infolijn & " " & TempoNaamKlant & " aanvullen a.u.b."
@@ -1333,54 +1332,54 @@ TLBError:
         '					'As2TelebibIn.UserInfo(3).Caption = Str$(Val(As2TelebibIn.UserInfo(3).Caption) + 1)
         '					ddag = "01"
         '				Else
-        '					RecordToField(TableOfContracts)
+        '					RecordToField(TABLE_CONTRACTS)
         '					PolisTeWijzigen = False
-        '					DagKtrl1.Value = AdoGetField(TableOfContracts, "#v165 #")
-        '					DagKtrl2.Value = Mid(AdoGetField(TableOfContracts, "#AW_2 #"), 7, 2)
-        '					If rsMAR(TableOfContracts).Fields("vs97").Value > "2" Then
-        '						MsgBox("Polis " & PolisNummer.Value & vbCrLf & "Aktiecode staat op: " & rsMAR(TableOfContracts).Fields("vs97").Value & vbCr & vbCr & "Wordt automatisch op 1 (Post) geplaatst", MsgBoxStyle.Information)
-        '						AdoInsertToRecord(TableOfContracts, "1", "vs97")
+        '					DagKtrl1.Value = AdoGetField(TABLE_CONTRACTS, "#v165 #")
+        '					DagKtrl2.Value = Mid(AdoGetField(TABLE_CONTRACTS, "#AW_2 #"), 7, 2)
+        '					If RS_MAR(TABLE_CONTRACTS).Fields("vs97").Value > "2" Then
+        '						MsgBox("Polis " & PolisNummer.Value & vbCrLf & "Aktiecode staat op: " & RS_MAR(TABLE_CONTRACTS).Fields("vs97").Value & vbCr & vbCr & "Wordt automatisch op 1 (Post) geplaatst", MsgBoxStyle.Information)
+        '						AdoInsertToRecord(TABLE_CONTRACTS, "1", "vs97")
         '						PolisTeWijzigen = True
         '					End If
-        '					If MaandKwijting.Value = AdoGetField(TableOfContracts, "#v164 #") Then
+        '					If MaandKwijting.Value = AdoGetField(TABLE_CONTRACTS, "#v164 #") Then
         '					Else
-        '						AdoInsertToRecord(TableOfContracts, MaandKwijting.Value, "v164")
+        '						AdoInsertToRecord(TABLE_CONTRACTS, MaandKwijting.Value, "v164")
         '						PolisTeWijzigen = True
         '					End If
         '					If DagKtrl1.Value = DagKtrl2.Value Then
         '						'alles ok
         '					Else
-        '						KtrlBox = MsgBox(DagKtrl2.Value & " correctie vervalDAG", MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
-        '						If KtrlBox = MsgBoxResult.Yes Then
-        '							AdoInsertToRecord(TableOfContracts, DagKtrl2.Value, "v165")
+        '						CTRL_BOX = MsgBox(DagKtrl2.Value & " correctie vervalDAG", MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
+        '						If CTRL_BOX = MsgBoxResult.Yes Then
+        '							AdoInsertToRecord(TABLE_CONTRACTS, DagKtrl2.Value, "v165")
         '							PolisTeWijzigen = True
         '						End If
         '					End If
         '					DagKwijting.Value = DagKtrl2.Value
-        '					If Maatschappij <> AdoGetField(TableOfContracts, "#A010 #") Then
-        '						'As2TelebibIn.UserInfo(1).Caption = "Maatschappij conflict!  Polis " + PolisNummer + "bestaat reeds bij maatschappij !" + AdoGetField(TableOfContracts, "#A010 #")
-        '						AdoInsertToRecord(TableOfContracts, Maatschappij, "A010")
+        '					If Maatschappij <> AdoGetField(TABLE_CONTRACTS, "#A010 #") Then
+        '						'As2TelebibIn.UserInfo(1).Caption = "Maatschappij conflict!  Polis " + PolisNummer + "bestaat reeds bij maatschappij !" + AdoGetField(TABLE_CONTRACTS, "#A010 #")
+        '						AdoInsertToRecord(TABLE_CONTRACTS, Maatschappij, "A010")
         '						PolisTeWijzigen = True
         '					End If
         '					If PolisTeWijzigen = True Then
-        '						bUpdate(TableOfContracts, 0)
+        '						bUpdate(TABLE_CONTRACTS, 0)
         '					End If
         '					'As2TelebibIn.UserInfo(2).Caption = Str$(Val(As2TelebibIn.UserInfo(2).Caption) + 1)
-        '					JetGet(TableOfCustomers, 0, SetSpacing(AdoGetField(TableOfContracts, "#A110 #"), 12))
-        '					If Ktrl Then
+        '					JetGet(TABLE_CUSTOMERS, 0, SetSpacing(AdoGetField(TABLE_CONTRACTS, "#A110 #"), 12))
+        '					If KTRL Then
         '						Dummy.Value = "Verbeter !!! " & TempoNaamKlant
         '					Else
-        '						RecordToField(TableOfCustomers)
-        '						Dummy.Value = AdoGetField(TableOfCustomers, "#A100 #")
+        '						RecordToField(TABLE_CUSTOMERS)
+        '						Dummy.Value = AdoGetField(TABLE_CUSTOMERS, "#A100 #")
         '					End If
         '				End If
 
         '				'GoSub TeleBibKTRL
-        '				JetGet(TableOfVarious, 1, "25" & Maatschappij & PolisNummer.Value)
-        '				If Ktrl Then
-        '					TLBRecord(TableOfVarious) = ""
+        '				JetGet(TABLE_VARIOUS, 1, "25" & Maatschappij & PolisNummer.Value)
+        '				If KTRL Then
+        '					TLB_RECORD(TABLE_VARIOUS) = ""
         '				Else
-        '					RecordToField(TableOfVarious)
+        '					RecordToField(TABLE_VARIOUS)
         '				End If
 
         '				Select Case Mid(iolijn, 42, 1)
@@ -1388,47 +1387,47 @@ TLBError:
         '						'AUTO ?
         '						'If Maatschappij = "0145" And Mid$(iolijn, 42, 6) = "000000" Then
         '						'Else
-        '						'    AdoInsertToRecord TableOfVarious, "P11", "AW00"
-        '						'    AdoInsertToRecord TableOfVarious, "4", "AW06"
-        '						'    AdoInsertToRecord TableOfVarious, Str$(Bedrag1 + Bedrag2 + Bedrag3), "AW04"
-        '						'    AdoInsertToRecord TableOfVarious, Mid$(iolijn, 40, 2), "5315"
+        '						'    AdoInsertToRecord TABLE_VARIOUS, "P11", "AW00"
+        '						'    AdoInsertToRecord TABLE_VARIOUS, "4", "AW06"
+        '						'    AdoInsertToRecord TABLE_VARIOUS, Str$(Bedrag1 + Bedrag2 + Bedrag3), "AW04"
+        '						'    AdoInsertToRecord TABLE_VARIOUS, Mid$(iolijn, 40, 2), "5315"
         '						'End If
         '				End Select
 
         '				If Trim(HuidigeIndex) <> "" Then
-        '					AdoInsertToRecord(TableOfVarious, HuidigeIndex, "AW.R") 'index
+        '					AdoInsertToRecord(TABLE_VARIOUS, HuidigeIndex, "AW.R") 'index
         '				End If
         '				If Trim(HuidigeBM.Value) <> "" Then
         '					'Debug.Assert False
-        '					AdoInsertToRecord(TableOfVarious, HuidigeBM.Value, "5315")
-        '					AdoInsertToRecord(TableOfVarious, HuidigeBM.Value, "5300")
+        '					AdoInsertToRecord(TABLE_VARIOUS, HuidigeBM.Value, "5315")
+        '					AdoInsertToRecord(TABLE_VARIOUS, HuidigeBM.Value, "5300")
         '				End If
-        '				AdoInsertToRecord(TableOfVarious, Str(Bedrag7 + Bedrag8), "B010") 'premie taksen en kosten inbegrepen
-        '				AdoInsertToRecord(TableOfVarious, Str(Bedrag8), "B011") 'taksen en kosten
-        '				AdoInsertToRecord(TableOfVarious, Str(Bedrag7), "B013") 'premie zonder taksen en kosten
-        '				AdoInsertToRecord(TableOfVarious, Str(Bedrag9), "B014") 'commissieloon
-        '				AdoInsertToRecord(TableOfVarious, SetSpacing("K" & AdoGetField(TableOfContracts, "#A110 #"), 13), "v004")
-        '				AdoInsertToRecord(TableOfVarious, SetSpacing(AdoGetField(TableOfContracts, "#A110 #"), 12), "A110")
-        '				AdoInsertToRecord(TableOfVarious, Maatschappij, "A010")
-        '				AdoInsertToRecord(TableOfVarious, PolisNummer.Value, "A000")
-        '				AdoInsertToRecord(TableOfVarious, SetSpacing("25" & Maatschappij & PolisNummer.Value, 20), "v005")
+        '				AdoInsertToRecord(TABLE_VARIOUS, Str(Bedrag7 + Bedrag8), "B010") 'premie taksen en kosten inbegrepen
+        '				AdoInsertToRecord(TABLE_VARIOUS, Str(Bedrag8), "B011") 'taksen en kosten
+        '				AdoInsertToRecord(TABLE_VARIOUS, Str(Bedrag7), "B013") 'premie zonder taksen en kosten
+        '				AdoInsertToRecord(TABLE_VARIOUS, Str(Bedrag9), "B014") 'commissieloon
+        '				AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("K" & AdoGetField(TABLE_CONTRACTS, "#A110 #"), 13), "v004")
+        '				AdoInsertToRecord(TABLE_VARIOUS, SetSpacing(AdoGetField(TABLE_CONTRACTS, "#A110 #"), 12), "A110")
+        '				AdoInsertToRecord(TABLE_VARIOUS, Maatschappij, "A010")
+        '				AdoInsertToRecord(TABLE_VARIOUS, PolisNummer.Value, "A000")
+        '				AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("25" & Maatschappij & PolisNummer.Value, 20), "v005")
 
-        '				If Ktrl Then
-        '					JetInsert(TableOfVarious, 1)
+        '				If KTRL Then
+        '					JetInsert(TABLE_VARIOUS, 1)
         '				Else
-        '					bUpdate(TableOfVarious, 1)
+        '					bUpdate(TABLE_VARIOUS, 1)
         '				End If
-        '				If Ktrl Then
-        '					MsgBox("Stopkode " & Str(Ktrl))
+        '				If KTRL Then
+        '					MsgBox("Stopkode " & Str(KTRL))
         '				End If
 
         '				On Error Resume Next
         '				Mid(DatumKwijting, 1, 2) = DagKwijting.Value
-        '				GridText = GridText & PolisNummer.Value & vbTab
-        '				GridText = GridText & DatumKwijting & vbTab
-        '				GridText = GridText & BedragPremie & vbTab
-        '				GridText = GridText & Dec(Bedrag9, MaskerHier) & vbTab
-        '				GridText = GridText & Dummy.Value & vbTab & SnippetXEH(UserArea, Trim(PolisNummer.Value), False) & vbTab & Str(TotaalNettoPremie) & vbTab & Str(TotaalLasten) & vbCr
+        '				GRIDTEXT = GRIDTEXT & PolisNummer.Value & vbTab
+        '				GRIDTEXT = GRIDTEXT & DatumKwijting & vbTab
+        '				GRIDTEXT = GRIDTEXT & BedragPremie & vbTab
+        '				GRIDTEXT = GRIDTEXT & Dec(Bedrag9, MaskerHier) & vbTab
+        '				GRIDTEXT = GRIDTEXT & Dummy.Value & vbTab & SnippetXEH(UserArea, Trim(PolisNummer.Value), False) & vbTab & Str(TotaalNettoPremie) & vbTab & Str(TotaalLasten) & vbCr
         '				Bedrag0 = 0
         '				Bedrag1 = 0
         '				Bedrag2 = 0
@@ -1497,11 +1496,11 @@ TLBError:
         'Dim PeriodeVoor As String
         'Dim KtrlFlag As Short
 
-        'If GridText = "" Then
+        'If GRIDTEXT = "" Then
         'Else
         '	CType(BJPERDAT.Controls("Boekjaar"), Object).SelectedIndex = 0
         '	PeriodeVoor = BoekjaarKontrole.Value & MaandVerwerking.Value
-        '	If PeriodeVoor < Left(BookyearFromTo.Value, 6) Then
+        '	If PeriodeVoor < Left(BOOKYEAR_FROMTO.Value, 6) Then
         '		If CType(BJPERDAT.Controls("Boekjaar"), Object).Items.Count > 1 Then
         '			CType(BJPERDAT.Controls("Boekjaar"), Object).SelectedIndex = 1
         '		End If
@@ -1509,13 +1508,13 @@ TLBError:
         '	KtrlFlag = False
         '	For Tel = 0 To CType(BJPERDAT.Controls("PeriodeBoekjaar"), Object).Items.Count - 1
         '		CType(BJPERDAT.Controls("PeriodeBoekjaar"), Object).SelectedIndex = Tel
-        '		If PeriodeVoor >= Left(PeriodFromTo.Value, 6) And PeriodeVoor <= Mid(PeriodFromTo.Value, 9, 6) Then
+        '		If PeriodeVoor >= Left(PERIOD_FROMTO.Value, 6) And PeriodeVoor <= Mid(PERIOD_FROMTO.Value, 9, 6) Then
         '			'JetTableClose 99
         '			KwijtingBoeken.Close()
-        '			GridTextIs = "001" & vbTab & Maatschappij & vbTab & "Termijn"
-        '			blLogging = False
+        '			GRIDTEXT_IS = "001" & vbTab & Maatschappij & vbTab & "Termijn"
+        '			BL_LOGGING = False
         '			KwijtingBoeken.ShowDialog()
-        '			GridText = ""
+        '			GRIDTEXT = ""
         '			KtrlFlag = True
         '			Exit For
         '		End If

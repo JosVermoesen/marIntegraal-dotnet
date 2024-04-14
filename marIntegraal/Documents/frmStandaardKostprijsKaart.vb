@@ -42,42 +42,42 @@ End Class
 '			Case 45, 107 'Insert
 '				If LblProduktInfo.Text = "" Then Exit Sub
 '				aa = ""
-'				aIndex = 0
-'				SharedFl = TableOfProductsAndServices
-'				GridText = ""
+'				A_INDEX = 0
+'				SHARED_FL = TABLE_PRODUCTS
+'				GRIDTEXT = ""
 '				SqlSearch.ShowDialog()
-'				If Ktrl = 0 Then
-'					If bhEuro Then
-'						vkBedrag = Val(AdoGetField(TableOfProductsAndServices, "#e112 #"))
-'						akBedrag = Val(AdoGetField(TableOfProductsAndServices, "#e113 #"))
+'				If KTRL = 0 Then
+'					If BH_EURO Then
+'						vkBedrag = Val(AdoGetField(TABLE_PRODUCTS, "#e112 #"))
+'						akBedrag = Val(AdoGetField(TABLE_PRODUCTS, "#e113 #"))
 '					Else
-'						vkBedrag = Val(AdoGetField(TableOfProductsAndServices, "#v112 #"))
-'						akBedrag = Val(AdoGetField(TableOfProductsAndServices, "#v113 #"))
+'						vkBedrag = Val(AdoGetField(TABLE_PRODUCTS, "#v112 #"))
+'						akBedrag = Val(AdoGetField(TABLE_PRODUCTS, "#v113 #"))
 '					End If
 '					If vkBedrag = 0 Then
-'						MsgBox("Verkoopprijs staat nog op 0 van dit produkt.  Eerst de nodige wijzigingen aanbrengen a.u.b.",  , LTrim(AdoGetField(TableOfProductsAndServices, "#v105 #")))
+'						MsgBox("Verkoopprijs staat nog op 0 van dit produkt.  Eerst de nodige wijzigingen aanbrengen a.u.b.",  , LTrim(AdoGetField(TABLE_PRODUCTS, "#v105 #")))
 '						Exit Sub
 '					ElseIf akBedrag = 0 Then 
-'						MsgBox("Aankoopkoopprijs staat nog op 0 van dit produkt.  Eerst de nodige wijzigingen aanbrengen a.u.b.",  , LTrim(AdoGetField(TableOfProductsAndServices, "#v105 #")))
+'						MsgBox("Aankoopkoopprijs staat nog op 0 van dit produkt.  Eerst de nodige wijzigingen aanbrengen a.u.b.",  , LTrim(AdoGetField(TABLE_PRODUCTS, "#v105 #")))
 '						Exit Sub
 '					End If
 
-'					aa = fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #"))
-'					Antwoord = vsfInputBox("Verkoopprijs per eenheid in BEF : " & Dec(Val(AdoGetField(TableOfProductsAndServices, "#v112 #")), MaskSy(4)), "Geef het verbruik aan (in " & Mid(aa, 4) & ")", "", "")
+'					aa = fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #"))
+'					Antwoord = vsfInputBox("Verkoopprijs per eenheid in BEF : " & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), MASK_SY(4)), "Geef het verbruik aan (in " & Mid(aa, 4) & ")", "", "")
 '					If Antwoord = "" Then
 '						Exit Sub
 '					Else
-'						aa = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbTab
-'						aa = aa & AdoGetField(TableOfProductsAndServices, "#v105 #") & vbTab
-'						If bhEuro Then
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), MaskSy(2) & "0000") & vbTab
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), MaskSy(2) & "0000") & vbTab
+'						aa = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbTab
+'						aa = aa & AdoGetField(TABLE_PRODUCTS, "#v105 #") & vbTab
+'						If BH_EURO Then
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), MASK_SY(2) & "0000") & vbTab
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), MASK_SY(2) & "0000") & vbTab
 '						Else
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#v113 #")), MaskSy(2) & "0000") & vbTab
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#v112 #")), MaskSy(2) & "0000") & vbTab
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")), MASK_SY(2) & "0000") & vbTab
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), MASK_SY(2) & "0000") & vbTab
 '						End If
-'						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4) & vbTab
-'						aa = aa & Dec(Val(Antwoord), MaskSy(4) & "0")
+'						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4) & vbTab
+'						aa = aa & Dec(Val(Antwoord), MASK_SY(4) & "0")
 '						grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
 '						X = MaakTotaal
 '						GrdProduktIsGewijzigd = True
@@ -92,8 +92,8 @@ End Class
 '				grdProduktDetail.Col = 0
 '				If grdProduktDetail.Text = "" Or grdProduktDetail.Rows < 3 Then
 '				ElseIf grdProduktDetail.Row > 0 Then 
-'					KtrlBox = MsgBox(grdProduktDetail.Text & "-lijn verwijderen.  Bent U zeker ?", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'					If KtrlBox = MsgBoxResult.Yes Then
+'					CTRL_BOX = MsgBox(grdProduktDetail.Text & "-lijn verwijderen.  Bent U zeker ?", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'					If CTRL_BOX = MsgBoxResult.Yes Then
 '						grdProduktDetail.RemoveItem(grdProduktDetail.Row)
 '						X = MaakTotaal
 '					End If
@@ -103,7 +103,7 @@ End Class
 '			Case Else
 
 '		End Select
-'		SnelHelpPrint("Deelprodukten : [Insert]/[+] om toe te voegen, [Delete]/[-] om te verwijderen", blLogging)
+'		SnelHelpPrint("Deelprodukten : [Insert]/[+] om toe te voegen, [Delete]/[-] om te verwijderen", BL_LOGGING)
 
 '	End Sub
 
@@ -114,14 +114,14 @@ End Class
 '		For Teller = 1 To grdProduktDetail.Rows - 2
 '			grdProduktDetail.Row = Teller
 '			grdProduktDetail.Col = 0
-'			JetGet(TableOfProductsAndServices, 0, (grdProduktDetail.Text))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, (grdProduktDetail.Text))
+'			If KTRL Then
 '				MsgBox("Onlogische situatie!")
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 '				grdProduktDetail.Col = 5
-'				LblAankoopNieuw.Text = VB6.Format(CDbl(LblAankoopNieuw.Text) + (Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(grdProduktDetail.Text)), "#,##0.000000")
-'				LblVerkoopNieuw.Text = VB6.Format(CDbl(LblVerkoopNieuw.Text) + (Val(AdoGetField(TableOfProductsAndServices, "#e112 #")) * Val(grdProduktDetail.Text)), "#,##0.000000")
+'				LblAankoopNieuw.Text = VB6.Format(CDbl(LblAankoopNieuw.Text) + (Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(grdProduktDetail.Text)), "#,##0.000000")
+'				LblVerkoopNieuw.Text = VB6.Format(CDbl(LblVerkoopNieuw.Text) + (Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * Val(grdProduktDetail.Text)), "#,##0.000000")
 '			End If
 '		Next 
 
@@ -134,14 +134,14 @@ End Class
 '		For Teller = 1 To grdProduktDetail.Rows - 2
 '			grdProduktDetail.Row = Teller
 '			grdProduktDetail.Col = 0
-'			JetGet(TableOfProductsAndServices, 0, (grdProduktDetail.Text))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, (grdProduktDetail.Text))
+'			If KTRL Then
 '				MsgBox("Onlogische situatie!")
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 '				grdProduktDetail.Col = 5
-'				TotaalAankoopNieuw = TotaalAankoopNieuw + (Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(grdProduktDetail.Text))
-'				TotaalVerkoopNieuw = TotaalVerkoopNieuw + (Val(AdoGetField(TableOfProductsAndServices, "#e112 #")) * Val(grdProduktDetail.Text))
+'				TotaalAankoopNieuw = TotaalAankoopNieuw + (Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(grdProduktDetail.Text))
+'				TotaalVerkoopNieuw = TotaalVerkoopNieuw + (Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * Val(grdProduktDetail.Text))
 '			End If
 '		Next 
 
@@ -151,8 +151,8 @@ End Class
 '	Private Sub CmdAnnuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CmdAnnuleren.Click
 
 '		If GrdProduktIsGewijzigd And grdProduktDetail.Rows <> 2 Then
-'			KtrlBox = MsgBox("Wijzigingen negeren.  Bent U zeker ?", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'			If KtrlBox = MsgBoxResult.Yes Then
+'			CTRL_BOX = MsgBox("Wijzigingen negeren.  Bent U zeker ?", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'			If CTRL_BOX = MsgBoxResult.Yes Then
 '				Me.Close()
 '			End If
 '		Else
@@ -193,7 +193,7 @@ End Class
 '		End If
 
 '		'UPGRADE_WARNING: Couldn't resolve default property of object KtrlInput. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		KtrlInput = InputBox("Aanmaakdatum", "ProduktieFiche " & CmdSProdukt.Text, MimGlobalDate.Value)
+'		KtrlInput = InputBox("Aanmaakdatum", "ProduktieFiche " & CmdSProdukt.Text, MIM_GLOBAL_DATE.Value)
 '		'UPGRADE_WARNING: Couldn't resolve default property of object KtrlInput. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		If KtrlInput = "" Or Len(KtrlInput) <> 10 Then
 '			Exit Sub
@@ -203,7 +203,7 @@ End Class
 '		End If
 
 '		'UPGRADE_WARNING: Couldn't resolve default property of object KtrlInput. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		KtrlInput = InputBox("Klaar tegen", "ProduktieFiche " & CmdSProdukt.Text, MimGlobalDate.Value)
+'		KtrlInput = InputBox("Klaar tegen", "ProduktieFiche " & CmdSProdukt.Text, MIM_GLOBAL_DATE.Value)
 '		'UPGRADE_WARNING: Couldn't resolve default property of object KtrlInput. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		If KtrlInput = "" Or Len(KtrlInput) <> 10 Then
 '			Exit Sub
@@ -220,8 +220,8 @@ End Class
 '		dokumentSleutel.Value = SleutelDok(188)
 
 'DeAfdrukVraag: 
-'		KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche " & dokumentSleutel.Value & " afdrukken/aanmaken")
-'		Select Case KtrlBox
+'		CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche " & dokumentSleutel.Value & " afdrukken/aanmaken")
+'		Select Case CTRL_BOX
 '			Case MsgBoxResult.Yes
 '			Case MsgBoxResult.No
 '				Exit Sub
@@ -232,33 +232,33 @@ End Class
 '		End Select
 
 'AfdrukProduktieFiche: 
-'		Printer = Printers(LijstPrinterNr)
+'		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
 '		Printer.FontName = "Courier New"
 '		Printer.FontSize = 7.2
-'		Printer.Write(vbCrLf & vbCrLf & FullLine.Value & vbCrLf)
-'		Printer.Write(TAB(10), "PRODUKTIEFICHE : " & dokumentSleutel.Value, TAB(100), MimGlobalDate.Value & vbCrLf)
+'		Printer.Write(vbCrLf & vbCrLf & FULL_LINE.Value & vbCrLf)
+'		Printer.Write(TAB(10), "PRODUKTIEFICHE : " & dokumentSleutel.Value, TAB(100), MIM_GLOBAL_DATE.Value & vbCrLf)
 '		Printer.Write(vbCrLf, TAB(10), CmdSProdukt.Text & " : " & Mid(LblProduktInfo.Text, InStr(LblProduktInfo.Text, vbCrLf) + 2) & vbCrLf)
 '		Printer.Write(vbCrLf & vbCrLf)
 '		Printer.Write(TAB(20), "STANDAARD    WERKELIJK" & vbCrLf)
 '		Printer.Write(TAB(10), "AANMAAK : " & DatumAanmaak.Value & "  ../../...." & vbCrLf)
 '		Printer.Write(TAB(10), "KLAAR OP: " & DatumKlaar.Value & "  ../../...." & vbCrLf)
-'		Printer.Write(TAB(10), "AANTAL  : " & Dec(Aantal, MaskSy(2)) & "  .........." & vbCrLf)
+'		Printer.Write(TAB(10), "AANTAL  : " & Dec(Aantal, MASK_SY(2)) & "  .........." & vbCrLf)
 '		Printer.Write(vbCrLf & vbCrLf)
 '		Printer.Write("Anal. produkt Omschrijving                             Maat   Stand.hoev. Stand.prijs Werk.hoev. Werk.prijs" & vbCrLf)
-'		Printer.Print(FullLine.Value)
+'		Printer.Print(FULL_LINE.Value)
 
 '		TotaalPrijs = 0
 '		For Teller = 1 To grdProduktDetail.Rows - 2
 '			grdProduktDetail.Row = Teller
 '			grdProduktDetail.Col = 0
-'			JetGet(TableOfProductsAndServices, 0, (grdProduktDetail.Text))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, (grdProduktDetail.Text))
+'			If KTRL Then
 '				MsgBox("Onlogische situatie!")
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 '			End If
 '			Printer.Write(SetSpacing((grdProduktDetail.Text), 13) & " ")
 '			grdProduktDetail.Col = 1
@@ -266,20 +266,20 @@ End Class
 '			grdProduktDetail.Col = 4
 '			Printer.Write(SetSpacing((grdProduktDetail.Text), 5) & " ")
 '			grdProduktDetail.Col = 5
-'			Printer.Write(Dec(Val(grdProduktDetail.Text), MaskSy(4) & "0") & " ")
-'			BedragX = CDbl(VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(grdProduktDetail.Text), "#.##"))
+'			Printer.Write(Dec(Val(grdProduktDetail.Text), MASK_SY(4) & "0") & " ")
+'			BedragX = CDbl(VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(grdProduktDetail.Text), "#.##"))
 '			TotaalPrijs = TotaalPrijs + BedragX
-'			Printer.Write(Dec(BedragX, MaskSy(4)))
-'			Printer.Write(" ........   ........." & Dec(BedragX * Aantal, MaskSy(4)) & vbCrLf)
+'			Printer.Write(Dec(BedragX, MASK_SY(4)))
+'			Printer.Write(" ........   ........." & Dec(BedragX * Aantal, MASK_SY(4)) & vbCrLf)
 '		Next 
-'		Printer.Write(FullLine.Value & vbCrLf)
-'		Printer.Write(TAB(75), Dec(TotaalPrijs, MaskSy(4)) & vbCrLf)
-'		Printer.Write(TAB(20), "Totaal voor aantal", TAB(75), Dec(TotaalPrijs * Aantal, MaskSy(4)))
+'		Printer.Write(FULL_LINE.Value & vbCrLf)
+'		Printer.Write(TAB(75), Dec(TotaalPrijs, MASK_SY(4)) & vbCrLf)
+'		Printer.Write(TAB(20), "Totaal voor aantal", TAB(75), Dec(TotaalPrijs * Aantal, MASK_SY(4)))
 '		Printer.EndDoc()
 
 'DeWegschrijfVraag: 
-'		KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche verwerken")
-'		Select Case KtrlBox
+'		CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche verwerken")
+'		Select Case CTRL_BOX
 '			Case MsgBoxResult.Yes
 '			Case MsgBoxResult.No
 '				Exit Sub
@@ -290,47 +290,47 @@ End Class
 '		End Select
 
 'BijwerkenVanStock: 
-'		dKtrlCumul = 0 : dKtrlBEF = 0 : dKtrlEUR = 0
+'		DKTRL_CUMUL = 0 : DKTRL_BEF = 0 : DKTRL_EUR = 0
 '		TransBegin()
 '		For Teller = 1 To grdProduktDetail.Rows - 2
 '			grdProduktDetail.Row = Teller
 '			grdProduktDetail.Col = 0
-'			JetGet(TableOfProductsAndServices, 0, (grdProduktDetail.Text))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, (grdProduktDetail.Text))
+'			If KTRL Then
 '				MsgBox("Onlogische situatie!")
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 '				grdProduktDetail.Col = 5
 
-'				If bhEuro Then
-'					dKtrlCumul = dKtrlCumul + CDbl(VB6.Format(Aantal * Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(grdProduktDetail.Text), "0"))
-'					Bedragv122 = Val(AdoGetField(TableOfProductsAndServices, "#e122 #")) + CDbl(VB6.Format(Aantal * Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(grdProduktDetail.Text), "0"))
-'					Aantalv120 = Val(AdoGetField(TableOfProductsAndServices, "#v120 #")) + (Aantal * Val(grdProduktDetail.Text))
-'					AdoInsertToRecord(TableOfProductsAndServices, Str(Bedragv122), "e122")
-'					AdoInsertToRecord(TableOfProductsAndServices, Dec(Aantalv120, MaskEUR), "v120")
+'				If BH_EURO Then
+'					DKTRL_CUMUL = DKTRL_CUMUL + CDbl(VB6.Format(Aantal * Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(grdProduktDetail.Text), "0"))
+'					Bedragv122 = Val(AdoGetField(TABLE_PRODUCTS, "#e122 #")) + CDbl(VB6.Format(Aantal * Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(grdProduktDetail.Text), "0"))
+'					Aantalv120 = Val(AdoGetField(TABLE_PRODUCTS, "#v120 #")) + (Aantal * Val(grdProduktDetail.Text))
+'					AdoInsertToRecord(TABLE_PRODUCTS, Str(Bedragv122), "e122")
+'					AdoInsertToRecord(TABLE_PRODUCTS, Dec(Aantalv120, MASK_EUR), "v120")
 '				Else
-'					dKtrlCumul = dKtrlCumul + CDbl(VB6.Format(Aantal * Val(AdoGetField(TableOfProductsAndServices, "#v113 #")) * Val(grdProduktDetail.Text), "0"))
-'					Bedragv122 = Val(AdoGetField(TableOfProductsAndServices, "#v122 #")) + CDbl(VB6.Format(Aantal * Val(AdoGetField(TableOfProductsAndServices, "#v113 #")) * Val(grdProduktDetail.Text), "0"))
-'					Aantalv120 = Val(AdoGetField(TableOfProductsAndServices, "#v120 #")) + (Aantal * Val(grdProduktDetail.Text))
-'					AdoInsertToRecord(TableOfProductsAndServices, Str(Bedragv122), "v122")
-'					AdoInsertToRecord(TableOfProductsAndServices, Dec(Aantalv120, MaskEUR), "v120")
+'					DKTRL_CUMUL = DKTRL_CUMUL + CDbl(VB6.Format(Aantal * Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")) * Val(grdProduktDetail.Text), "0"))
+'					Bedragv122 = Val(AdoGetField(TABLE_PRODUCTS, "#v122 #")) + CDbl(VB6.Format(Aantal * Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")) * Val(grdProduktDetail.Text), "0"))
+'					Aantalv120 = Val(AdoGetField(TABLE_PRODUCTS, "#v120 #")) + (Aantal * Val(grdProduktDetail.Text))
+'					AdoInsertToRecord(TABLE_PRODUCTS, Str(Bedragv122), "v122")
+'					AdoInsertToRecord(TABLE_PRODUCTS, Dec(Aantalv120, MASK_EUR), "v120")
 '				End If
-'				bUpdate(TableOfProductsAndServices, 0)
+'				bUpdate(TABLE_PRODUCTS, 0)
 '			End If
 '		Next 
 
 'StelDEVraag: 
-'		If dKtrlCumul <> CDbl(VB6.Format(TotaalPrijs * Aantal, "0")) Then
-'			MSG = "Vierkantskontrole..." & vbCrLf & Str(dKtrlCumul) & "/" & Str(TotaalPrijs * Aantal) & vbCrLf & vbCrLf
-'			MSG = MSG & "Rekenverschil : " & VB6.Format(dKtrlCumul - CDbl(VB6.Format(TotaalPrijs * Aantal))) & vbCrLf
+'		If DKTRL_CUMUL <> CDbl(VB6.Format(TotaalPrijs * Aantal, "0")) Then
+'			MSG = "Vierkantskontrole..." & vbCrLf & Str(DKTRL_CUMUL) & "/" & Str(TotaalPrijs * Aantal) & vbCrLf & vbCrLf
+'			MSG = MSG & "Rekenverschil : " & VB6.Format(DKTRL_CUMUL - CDbl(VB6.Format(TotaalPrijs * Aantal))) & vbCrLf
 '			MSG = MSG & "mag genegeerd worden ?"
-'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Critical)
-'			If KtrlBox = MsgBoxResult.Yes Then
+'			CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Critical)
+'			If CTRL_BOX = MsgBoxResult.Yes Then
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub SKPKUpdate
-'			ElseIf KtrlBox = MsgBoxResult.No Then 
+'			ElseIf CTRL_BOX = MsgBoxResult.No Then 
 '				TransAbort()
-'			ElseIf KtrlBox = MsgBoxResult.Cancel Then 
+'			ElseIf CTRL_BOX = MsgBoxResult.Cancel Then 
 '				GoTo StelDEVraag
 '			Else
 '				MsgBox("ongeldige keuzemogelijkheid")
@@ -344,23 +344,23 @@ End Class
 '		Exit Sub
 
 'SKPKUpdate: 
-'		JetGet(TableOfProductsAndServices, 0, (CmdSProdukt.Text))
-'		If Ktrl Then
+'		JetGet(TABLE_PRODUCTS, 0, (CmdSProdukt.Text))
+'		If KTRL Then
 '			MsgBox("Onlogische situatie!")
 '		Else
-'			RecordToField(TableOfProductsAndServices)
+'			RecordToField(TABLE_PRODUCTS)
 '		End If
-'		If bhEuro Then
-'			Bedragv121 = Val(AdoGetField(TableOfProductsAndServices, "#e121 #")) + (Aantal * TotaalPrijs)
-'			Aantalv119 = Val(AdoGetField(TableOfProductsAndServices, "#v119 #")) + Aantal
-'			AdoInsertToRecord(TableOfProductsAndServices, Str(Bedragv121), "e121")
+'		If BH_EURO Then
+'			Bedragv121 = Val(AdoGetField(TABLE_PRODUCTS, "#e121 #")) + (Aantal * TotaalPrijs)
+'			Aantalv119 = Val(AdoGetField(TABLE_PRODUCTS, "#v119 #")) + Aantal
+'			AdoInsertToRecord(TABLE_PRODUCTS, Str(Bedragv121), "e121")
 '		Else
-'			Bedragv121 = Val(AdoGetField(TableOfProductsAndServices, "#v121 #")) + (Aantal * TotaalPrijs)
-'			Aantalv119 = Val(AdoGetField(TableOfProductsAndServices, "#v119 #")) + Aantal
-'			AdoInsertToRecord(TableOfProductsAndServices, Str(Bedragv121), "v121")
+'			Bedragv121 = Val(AdoGetField(TABLE_PRODUCTS, "#v121 #")) + (Aantal * TotaalPrijs)
+'			Aantalv119 = Val(AdoGetField(TABLE_PRODUCTS, "#v119 #")) + Aantal
+'			AdoInsertToRecord(TABLE_PRODUCTS, Str(Bedragv121), "v121")
 '		End If
-'		AdoInsertToRecord(TableOfProductsAndServices, Dec(Aantalv119, MaskEUR), "v119")
-'		bUpdate(TableOfProductsAndServices, 0)
+'		AdoInsertToRecord(TABLE_PRODUCTS, Dec(Aantalv119, MASK_EUR), "v119")
+'		bUpdate(TABLE_PRODUCTS, 0)
 '		TransCommit()
 '		SS99(VB.Right(dokumentSleutel.Value, 5), 188)
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -412,10 +412,10 @@ End Class
 '		Err.Clear()
 '		rsKPK.CursorLocation = ADODB.CursorLocationEnum.adUseClient
 '		MSG = "SELECT * FROM Allerlei WHERE v005 Like '11%'"
-'		SnelHelpPrint(MSG, blLogging)
+'		SnelHelpPrint(MSG, BL_LOGGING)
 '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'		rsKPK.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsKPK.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		If Err.Number Then
 '			MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '			'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
@@ -432,7 +432,7 @@ End Class
 '			rsKPK.Close()
 '			Exit Sub
 '		End If
-'		SnelHelpPrint("Lijst samenstellen voor " & rsKPK.RecordCount & " lijnen", blLogging)
+'		SnelHelpPrint("Lijst samenstellen voor " & rsKPK.RecordCount & " lijnen", BL_LOGGING)
 '		frmADOXlog.Close()
 '		frmADOXlog.Hide()
 
@@ -459,33 +459,33 @@ End Class
 '		Dim itmX As System.Windows.Forms.ListViewItem
 '		Do While Not rsKPK.EOF
 '			cmdSchoon_Click(cmdSchoon, New System.EventArgs())
-'			JetGet(TableOfProductsAndServices, 0, Mid(rsKPK.Fields("v005").Value, 3))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, Mid(rsKPK.Fields("v005").Value, 3))
+'			If KTRL Then
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 
-'				LblProduktInfo.Text = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbCr & AdoGetField(TableOfProductsAndServices, "#v105 #")
-'				CmdSProdukt.Text = AdoGetField(TableOfProductsAndServices, "#v102 #")
-'				LblAankoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), "#,##0.000000")
-'				LblVerkoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), "#,##0.000000")
-'				GridText = adoBibTekst(rsKPK.Fields("MEMO"), "#v214 #")
-'				Do While GridText <> ""
+'				LblProduktInfo.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbCr & AdoGetField(TABLE_PRODUCTS, "#v105 #")
+'				CmdSProdukt.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+'				LblAankoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), "#,##0.000000")
+'				LblVerkoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), "#,##0.000000")
+'				GRIDTEXT = adoBibTekst(rsKPK.Fields("MEMO"), "#v214 #")
+'				Do While GRIDTEXT <> ""
 '					'UPGRADE_WARNING: Couldn't resolve default property of object AAA. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					AAA = Mid(GridText, 1, InStr(GridText, vbTab) - 1)
-'					JetGet(TableOfProductsAndServices, 0, (AAA))
-'					If Ktrl Then
+'					AAA = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, vbTab) - 1)
+'					JetGet(TABLE_PRODUCTS, 0, (AAA))
+'					If KTRL Then
 '					Else
-'						RecordToField(TableOfProductsAndServices)
-'						aa = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbTab
-'						aa = aa & AdoGetField(TableOfProductsAndServices, "#v105 #") & vbTab
-'						aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), MaskSy(2) & "00") & vbTab
-'						aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), MaskSy(2) & "00") & vbTab
-'						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4) & vbTab
+'						RecordToField(TABLE_PRODUCTS)
+'						aa = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbTab
+'						aa = aa & AdoGetField(TABLE_PRODUCTS, "#v105 #") & vbTab
+'						aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), MASK_SY(2) & "00") & vbTab
+'						aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), MASK_SY(2) & "00") & vbTab
+'						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4) & vbTab
 '					End If
-'					Antwoord = Mid(GridText, InStr(GridText, vbTab) + 1, InStr(GridText, vbCrLf) - InStr(GridText, vbTab) - 1)
-'					aa = aa & Dec(Val(Antwoord), MaskSy(4) & "0")
+'					Antwoord = Mid(GRIDTEXT, InStr(GRIDTEXT, vbTab) + 1, InStr(GRIDTEXT, vbCrLf) - InStr(GRIDTEXT, vbTab) - 1)
+'					aa = aa & Dec(Val(Antwoord), MASK_SY(4) & "0")
 '					grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
-'					GridText = Mid(GridText, InStr(GridText, vbCrLf) + 2)
+'					GRIDTEXT = Mid(GRIDTEXT, InStr(GRIDTEXT, vbCrLf) + 2)
 '				Loop 
 '				X = MaakTotaal
 '				If Not PrijsAantepassen Then
@@ -576,64 +576,64 @@ End Class
 '		frmADOXlog.ShowDialog()
 
 '		Dim TempoTekst As String
-'		TempoTekst = GridText
+'		TempoTekst = GRIDTEXT
 '		Do While TempoTekst <> ""
 '			cmdSchoon_Click(cmdSchoon, New System.EventArgs())
 '			MSG = "11" & VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1)
-'			X = adoGet(TableOfVarious, 1, "=", MSG)
+'			X = adoGet(TABLE_VARIOUS, 1, "=", MSG)
 '			If Not X Then MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
-'			JetGet(TableOfProductsAndServices, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
+'			If KTRL Then
 '				MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
 '			Else
-'				RecordToField(TableOfProductsAndServices)
-'				LblProduktInfo.Text = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbCr & AdoGetField(TableOfProductsAndServices, "#v105 #")
-'				CmdSProdukt.Text = AdoGetField(TableOfProductsAndServices, "#v102 #")
-'				If bhEuro Then
-'					LblAankoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), "#,##0.000000")
-'					LblVerkoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), "#,##0.000000")
+'				RecordToField(TABLE_PRODUCTS)
+'				LblProduktInfo.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbCr & AdoGetField(TABLE_PRODUCTS, "#v105 #")
+'				CmdSProdukt.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+'				If BH_EURO Then
+'					LblAankoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), "#,##0.000000")
+'					LblVerkoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), "#,##0.000000")
 '				Else
-'					LblAankoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#v113 #")), "#,##0.000000")
-'					LblVerkoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#v112 #")), "#,##0.000000")
+'					LblAankoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")), "#,##0.000000")
+'					LblVerkoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), "#,##0.000000")
 '				End If
-'				GridText = adoBibTekst(rsMAR(TableOfVarious).Fields("MEMO"), "#v214 #")
-'				Do While GridText <> ""
+'				GRIDTEXT = adoBibTekst(RS_MAR(TABLE_VARIOUS).Fields("MEMO"), "#v214 #")
+'				Do While GRIDTEXT <> ""
 '					'UPGRADE_WARNING: Couldn't resolve default property of object AAA. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					AAA = Mid(GridText, 1, InStr(GridText, vbTab) - 1)
-'					JetGet(TableOfProductsAndServices, 0, (AAA))
-'					If Ktrl Then
+'					AAA = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, vbTab) - 1)
+'					JetGet(TABLE_PRODUCTS, 0, (AAA))
+'					If KTRL Then
 '					Else
-'						RecordToField(TableOfProductsAndServices)
-'						aa = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbTab
-'						aa = aa & AdoGetField(TableOfProductsAndServices, "#v105 #") & vbTab
-'						If bhEuro Then
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), MaskSy(2) & "0000") & vbTab
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), MaskSy(2) & "0000") & vbTab
+'						RecordToField(TABLE_PRODUCTS)
+'						aa = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbTab
+'						aa = aa & AdoGetField(TABLE_PRODUCTS, "#v105 #") & vbTab
+'						If BH_EURO Then
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), MASK_SY(2) & "0000") & vbTab
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), MASK_SY(2) & "0000") & vbTab
 '						Else
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#v113 #")), MaskSy(2) & "0000") & vbTab
-'							aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#v112 #")), MaskSy(2) & "0000") & vbTab
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")), MASK_SY(2) & "0000") & vbTab
+'							aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), MASK_SY(2) & "0000") & vbTab
 '						End If
-'						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4) & vbTab
+'						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4) & vbTab
 '					End If
-'					Antwoord = Mid(GridText, InStr(GridText, vbTab) + 1, InStr(GridText, vbCrLf) - InStr(GridText, vbTab) - 1)
-'					aa = aa & Dec(Val(Antwoord), MaskSy(4) & "0")
+'					Antwoord = Mid(GRIDTEXT, InStr(GRIDTEXT, vbTab) + 1, InStr(GRIDTEXT, vbCrLf) - InStr(GRIDTEXT, vbTab) - 1)
+'					aa = aa & Dec(Val(Antwoord), MASK_SY(4) & "0")
 '					grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
-'					GridText = Mid(GridText, InStr(GridText, vbCrLf) + 2)
+'					GRIDTEXT = Mid(GRIDTEXT, InStr(GRIDTEXT, vbCrLf) + 2)
 '				Loop 
 '				X = MaakTotaal
-'				JetGet(TableOfProductsAndServices, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
-'				If Ktrl Then
+'				JetGet(TABLE_PRODUCTS, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
+'				If KTRL Then
 '					MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
 '				Else
-'					RecordToField(TableOfProductsAndServices)
-'					If bhEuro Then
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "e112")
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "e113")
+'					RecordToField(TABLE_PRODUCTS)
+'					If BH_EURO Then
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "e112")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "e113")
 '					Else
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "v112")
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "v113")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "v112")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "v113")
 '					End If
-'					bUpdate(TableOfProductsAndServices, 0)
+'					bUpdate(TABLE_PRODUCTS, 0)
 '				End If
 '			End If
 '			TempoTekst = Mid(TempoTekst, InStr(TempoTekst, vbCr) + 1)
@@ -655,18 +655,18 @@ End Class
 '		If GrdProduktIsGewijzigd Then
 '			MSG = "Huidige wijzigingen negeren." & vbCrLf & vbCrLf
 '			MSG = MSG & "Bent U zeker ?"
-'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wijziging wegschrijven")
-'			If KtrlBox = MsgBoxResult.Yes Then
+'			CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wijziging wegschrijven")
+'			If CTRL_BOX = MsgBoxResult.Yes Then
 '			Else
 '				Exit Sub
 '			End If
 '		End If
 
-'		aIndex = 0
-'		SharedFl = TableOfProductsAndServices
+'		A_INDEX = 0
+'		SHARED_FL = TABLE_PRODUCTS
 '		SqlSearch.ShowDialog()
-'		If Ktrl = 0 Then
-'			If AdoGetField(TableOfProductsAndServices, "#v108 #") <> "S" Then
+'		If KTRL = 0 Then
+'			If AdoGetField(TABLE_PRODUCTS, "#v108 #") <> "S" Then
 '				MsgBox("Dit is geen produkt van het type 'standaardkostprijs' !")
 '				Exit Sub
 '			Else
@@ -682,8 +682,8 @@ End Class
 
 '	Private Sub cmdVerbruik_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cmdVerbruik.Click
 
-'		JetGet(TableOfProductsAndServices, 0, (LblProduktInfo.Text))
-'		If Ktrl Then
+'		JetGet(TABLE_PRODUCTS, 0, (LblProduktInfo.Text))
+'		If KTRL Then
 '			MsgBox("onlogica")
 '		Else
 '			Schoon()
@@ -700,15 +700,15 @@ End Class
 
 '		MSG = "Huidige definitie wegschrijven." & vbCrLf & vbCrLf
 '		MSG = MSG & "Bent U zeker ?"
-'		KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wegschrijven")
-'		If KtrlBox = MsgBoxResult.Yes Then
-'			JetGet(TableOfVarious, 1, SetSpacing("11" & CmdSProdukt.Text, 20))
-'			If Ktrl Then
+'		CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wegschrijven")
+'		If CTRL_BOX = MsgBoxResult.Yes Then
+'			JetGet(TABLE_VARIOUS, 1, SetSpacing("11" & CmdSProdukt.Text, 20))
+'			If KTRL Then
 '			Else
 '				Do 
-'					Bdelete(TableOfVarious)
-'					bNext(TableOfVarious)
-'					If Ktrl Or SetSpacing(KeyBuf(TableOfVarious), 20) <> SetSpacing("11" & CmdSProdukt.Text, 20) Then
+'					Bdelete(TABLE_VARIOUS)
+'					bNext(TABLE_VARIOUS)
+'					If KTRL Or SetSpacing(KEY_BUF(TABLE_VARIOUS), 20) <> SetSpacing("11" & CmdSProdukt.Text, 20) Then
 '						Exit Do
 '					End If
 '				Loop 
@@ -730,21 +730,21 @@ End Class
 
 '			MSG = "Gewijzigde aankoop- en/of verkoopprijs wegschrijven." & vbCrLf & vbCrLf
 '			MSG = MSG & "Bent U zeker ?"
-'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1, "Prijzen bijwerken")
-'			If KtrlBox = MsgBoxResult.Yes Then
-'				JetGet(TableOfProductsAndServices, 0, (CmdSProdukt.Text))
-'				If Ktrl Then
+'			CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1, "Prijzen bijwerken")
+'			If CTRL_BOX = MsgBoxResult.Yes Then
+'				JetGet(TABLE_PRODUCTS, 0, (CmdSProdukt.Text))
+'				If KTRL Then
 '					MsgBox("onlogische situatie")
 '				Else
-'					RecordToField(TableOfProductsAndServices)
-'					If bhEuro Then
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "e112")
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "e113")
+'					RecordToField(TABLE_PRODUCTS)
+'					If BH_EURO Then
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "e112")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "e113")
 '					Else
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "v112")
-'						AdoInsertToRecord(TableOfProductsAndServices, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "v113")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblVerkoopNieuw.Text), "#######.000000"), "v112")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Dec(CDbl(LblAankoopNieuw.Text), "#######.000000"), "v113")
 '					End If
-'					bUpdate(TableOfProductsAndServices, 0)
+'					bUpdate(TABLE_PRODUCTS, 0)
 '				End If
 '			End If
 '			Schoon()
@@ -752,11 +752,11 @@ End Class
 '		Exit Sub
 
 'SchrijfEensWeg: 
-'		TLBRecord(TableOfVarious) = ""
-'		AdoInsertToRecord(TableOfVarious, (CmdSProdukt.Text), "v102")
-'		AdoInsertToRecord(TableOfVarious, "11" & CmdSProdukt.Text, "v005")
-'		AdoInsertToRecord(TableOfVarious, aa, "v214")
-'		JetInsert(TableOfVarious, 1)
+'		TLB_RECORD(TABLE_VARIOUS) = ""
+'		AdoInsertToRecord(TABLE_VARIOUS, (CmdSProdukt.Text), "v102")
+'		AdoInsertToRecord(TABLE_VARIOUS, "11" & CmdSProdukt.Text, "v005")
+'		AdoInsertToRecord(TABLE_VARIOUS, aa, "v214")
+'		JetInsert(TABLE_VARIOUS, 1)
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		Return 
 
@@ -780,10 +780,10 @@ End Class
 '		Err.Clear()
 '		rsKPK.CursorLocation = ADODB.CursorLocationEnum.adUseClient
 '		MSG = "SELECT * FROM Allerlei WHERE v005 Like '11%'"
-'		SnelHelpPrint(MSG, blLogging)
+'		SnelHelpPrint(MSG, BL_LOGGING)
 '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'		rsKPK.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsKPK.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		If Err.Number Then
 '			MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '			'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
@@ -800,7 +800,7 @@ End Class
 '			rsKPK.Close()
 '			Exit Sub
 '		End If
-'		SnelHelpPrint("Lijst samenstellen voor " & rsKPK.RecordCount & " lijnen", blLogging)
+'		SnelHelpPrint("Lijst samenstellen voor " & rsKPK.RecordCount & " lijnen", BL_LOGGING)
 '		frmADOXlog.Close()
 '		frmADOXlog.Hide()
 
@@ -832,10 +832,10 @@ End Class
 '			TotaalAankoopNieuw = 0
 '			TotaalVerkoopNieuw = 0
 
-'			JetGet(TableOfProductsAndServices, 0, Mid(rsKPK.Fields("v005").Value, 3))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, Mid(rsKPK.Fields("v005").Value, 3))
+'			If KTRL Then
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 '				X = LijstInstal
 '				If Not PrijsAantepassen Then
 '					' Add a ListItem object.
@@ -925,26 +925,26 @@ End Class
 '		frmADOXlog.ShowDialog()
 
 '		Dim TempoTekst As String
-'		TempoTekst = GridText
+'		TempoTekst = GRIDTEXT
 '		Do While TempoTekst <> ""
 '			TotaalAankoop = 0
 '			TotaalVerkoop = 0
 '			TotaalAankoopNieuw = 0
 '			TotaalVerkoopNieuw = 0
 '			MSG = "11" & VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1)
-'			X = adoGet(TableOfVarious, 1, "=", MSG)
+'			X = adoGet(TABLE_VARIOUS, 1, "=", MSG)
 '			If Not X Then MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
-'			JetGet(TableOfProductsAndServices, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
-'			If Ktrl Then
+'			JetGet(TABLE_PRODUCTS, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
+'			If KTRL Then
 '				MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
 '			Else
-'				RecordToField(TableOfProductsAndServices)
+'				RecordToField(TABLE_PRODUCTS)
 '				X = LijstInstal
-'				JetGet(TableOfProductsAndServices, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
-'				RecordToField(TableOfProductsAndServices)
-'				AdoInsertToRecord(TableOfProductsAndServices, Dec(TotaalVerkoopNieuw, "#######.000000"), "e112")
-'				AdoInsertToRecord(TableOfProductsAndServices, Dec(TotaalAankoopNieuw, "#######.000000"), "e113")
-'				bUpdate(TableOfProductsAndServices, 0)
+'				JetGet(TABLE_PRODUCTS, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
+'				RecordToField(TABLE_PRODUCTS)
+'				AdoInsertToRecord(TABLE_PRODUCTS, Dec(TotaalVerkoopNieuw, "#######.000000"), "e112")
+'				AdoInsertToRecord(TABLE_PRODUCTS, Dec(TotaalAankoopNieuw, "#######.000000"), "e113")
+'				bUpdate(TABLE_PRODUCTS, 0)
 '			End If
 '			TempoTekst = Mid(TempoTekst, InStr(TempoTekst, vbCr) + 1)
 '		Loop 
@@ -1032,7 +1032,7 @@ End Class
 
 '	Private Sub GrdProduktDetail_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles GrdProduktDetail.Enter
 
-'		SnelHelpPrint("Deelprodukten : [Insert]/[+] om toe te voegen, [Delete]/[-] om te verwijderen", blLogging)
+'		SnelHelpPrint("Deelprodukten : [Insert]/[+] om toe te voegen, [Delete]/[-] om te verwijderen", BL_LOGGING)
 
 '	End Sub
 
@@ -1051,19 +1051,19 @@ End Class
 '		Dim productieBedrag As Decimal
 '		Dim productiecumul As Decimal
 
-'		LblProduktInfo.Text = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbCrLf & AdoGetField(TableOfProductsAndServices, "#v105 #")
-'		CmdSProdukt.Text = AdoGetField(TableOfProductsAndServices, "#v102 #")
+'		LblProduktInfo.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbCrLf & AdoGetField(TABLE_PRODUCTS, "#v105 #")
+'		CmdSProdukt.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #")
 
-'		JetGet(TableOfVarious, 1, SetSpacing("11" & CmdSProdukt.Text, 20))
-'		NietAanwezig = Ktrl
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing("11" & CmdSProdukt.Text, 20))
+'		NietAanwezig = KTRL
 '		GrdProduktIsGewijzigd = False
 
-'		If bhEuro Then
-'			LblAankoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), "#,##0.000000")
-'			LblVerkoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), "#,##0.000000")
+'		If BH_EURO Then
+'			LblAankoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), "#,##0.000000")
+'			LblVerkoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), "#,##0.000000")
 '		Else
-'			LblAankoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#v113 #")), "#,##0.000000")
-'			LblVerkoop.Text = VB6.Format(Val(AdoGetField(TableOfProductsAndServices, "#v112 #")), "#,##0.000000")
+'			LblAankoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#v113 #")), "#,##0.000000")
+'			LblVerkoop.Text = VB6.Format(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), "#,##0.000000")
 '		End If
 '		If NietAanwezig Then
 '			CmdWegschrijven.Enabled = False
@@ -1073,11 +1073,11 @@ End Class
 '			LblVerkoopNieuw.Text = VB6.Format(0, "#,##0.000000")
 '		Else
 '			Do 
-'				RecordToField(TableOfVarious)
+'				RecordToField(TABLE_VARIOUS)
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub VoegLijnERBij
-'				bNext(TableOfVarious)
-'				If Ktrl Or SetSpacing(KeyBuf(TableOfVarious), 20) <> SetSpacing("11" & CmdSProdukt.Text, 20) Then
+'				bNext(TABLE_VARIOUS)
+'				If KTRL Or SetSpacing(KEY_BUF(TABLE_VARIOUS), 20) <> SetSpacing("11" & CmdSProdukt.Text, 20) Then
 '					Exit Do
 '				End If
 '			Loop 
@@ -1088,32 +1088,32 @@ End Class
 '		Exit Function
 
 'VoegLijnERBij: 
-'		GridText = AdoGetField(TableOfVarious, "#v214 #")
-'		Do While GridText <> ""
-'			JetGet(TableOfProductsAndServices, 0, Mid(GridText, 1, InStr(GridText, vbTab) - 1))
-'			If Ktrl Then
-'				aa = Mid(GridText, 1, InStr(GridText, vbTab) - 1) & vbTab
+'		GRIDTEXT = AdoGetField(TABLE_VARIOUS, "#v214 #")
+'		Do While GRIDTEXT <> ""
+'			JetGet(TABLE_PRODUCTS, 0, Mid(GRIDTEXT, 1, InStr(GRIDTEXT, vbTab) - 1))
+'			If KTRL Then
+'				aa = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, vbTab) - 1) & vbTab
 '				aa = aa & "Niet meer aanwezig !!" & vbTab
 '				aa = aa & "0" & vbTab
 '				aa = aa & "--" & vbTab
 '			Else
-'				RecordToField(TableOfProductsAndServices)
-'				aa = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbTab
-'				aa = aa & AdoGetField(TableOfProductsAndServices, "#v105 #") & vbTab
-'				aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), MaskSy(2) & "00") & vbTab
-'				aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), MaskSy(2) & "00") & vbTab
-'				aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4) & vbTab
+'				RecordToField(TABLE_PRODUCTS)
+'				aa = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbTab
+'				aa = aa & AdoGetField(TABLE_PRODUCTS, "#v105 #") & vbTab
+'				aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), MASK_SY(2) & "00") & vbTab
+'				aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), MASK_SY(2) & "00") & vbTab
+'				aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4) & vbTab
 '			End If
-'			Antwoord = Mid(GridText, InStr(GridText, vbTab) + 1, InStr(GridText, vbCrLf) - InStr(GridText, vbTab) - 1)
-'			aa = aa & Dec(Val(Antwoord), MaskSy(4) & "0") & vbTab
+'			Antwoord = Mid(GRIDTEXT, InStr(GRIDTEXT, vbTab) + 1, InStr(GRIDTEXT, vbCrLf) - InStr(GRIDTEXT, vbTab) - 1)
+'			aa = aa & Dec(Val(Antwoord), MASK_SY(4) & "0") & vbTab
 
-'			verbruikBedrag = Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(Antwoord)
+'			verbruikBedrag = Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(Antwoord)
 '			aa = aa & VB6.Format(verbruikBedrag, "#,##0.00") & vbTab
 '			productieBedrag = verbruikBedrag * Val(txtVerbruik.Text)
 '			productiecumul = productiecumul + productieBedrag
 '			aa = aa & VB6.Format(productieBedrag, "#,##0.00")
 '			grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
-'			GridText = Mid(GridText, InStr(GridText, vbCrLf) + 2)
+'			GRIDTEXT = Mid(GRIDTEXT, InStr(GRIDTEXT, vbCrLf) + 2)
 '		Loop 
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		Return 
@@ -1171,15 +1171,15 @@ End Class
 '		Dim Antwoord As String
 
 '		LijstInstal = False
-'		kpkProductOMS = AdoGetField(TableOfProductsAndServices, "#v105 #")
-'		kpkProductNR = AdoGetField(TableOfProductsAndServices, "#v102 #")
+'		kpkProductOMS = AdoGetField(TABLE_PRODUCTS, "#v105 #")
+'		kpkProductNR = AdoGetField(TABLE_PRODUCTS, "#v102 #")
 
-'		JetGet(TableOfVarious, 1, SetSpacing("11" & kpkProductNR, 20))
-'		NietAanwezig = Ktrl
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing("11" & kpkProductNR, 20))
+'		NietAanwezig = KTRL
 '		GrdProduktIsGewijzigd = False
 
-'		TotaalAankoop = Val(AdoGetField(TableOfProductsAndServices, "#e113 #"))
-'		TotaalVerkoop = Val(AdoGetField(TableOfProductsAndServices, "#e112 #"))
+'		TotaalAankoop = Val(AdoGetField(TABLE_PRODUCTS, "#e113 #"))
+'		TotaalVerkoop = Val(AdoGetField(TABLE_PRODUCTS, "#e112 #"))
 '		TotaalAankoopNieuw = 0
 '		TotaalVerkoopNieuw = 0
 
@@ -1187,11 +1187,11 @@ End Class
 '			AantalDeelProdukten = 0
 '		Else
 '			Do 
-'				RecordToField(TableOfVarious)
+'				RecordToField(TABLE_VARIOUS)
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub VoegLijnERBij2
-'				bNext(TableOfVarious)
-'				If Ktrl Or SetSpacing(KeyBuf(TableOfVarious), 20) <> SetSpacing("11" & kpkProductNR, 20) Then
+'				bNext(TABLE_VARIOUS)
+'				If KTRL Or SetSpacing(KEY_BUF(TABLE_VARIOUS), 20) <> SetSpacing("11" & kpkProductNR, 20) Then
 '					Exit Do
 '				End If
 '			Loop 
@@ -1200,34 +1200,34 @@ End Class
 '		Exit Function
 
 'VoegLijnERBij2: 
-'		GridText = AdoGetField(TableOfVarious, "#v214 #")
-'		Do While GridText <> ""
-'			JetGet(TableOfProductsAndServices, 0, Mid(GridText, 1, InStr(GridText, vbTab) - 1))
-'			If Ktrl Then
-'				aa = Mid(GridText, 1, InStr(GridText, vbTab) - 1) & vbTab
+'		GRIDTEXT = AdoGetField(TABLE_VARIOUS, "#v214 #")
+'		Do While GRIDTEXT <> ""
+'			JetGet(TABLE_PRODUCTS, 0, Mid(GRIDTEXT, 1, InStr(GRIDTEXT, vbTab) - 1))
+'			If KTRL Then
+'				aa = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, vbTab) - 1) & vbTab
 '				aa = aa & "Niet meer aanwezig !!" & vbTab
 '				aa = aa & "0" & vbTab
 '				aa = aa & "--" & vbTab
 '			Else
-'				RecordToField(TableOfProductsAndServices)
-'				aa = AdoGetField(TableOfProductsAndServices, "#v102 #") & vbTab
-'				aa = aa & AdoGetField(TableOfProductsAndServices, "#v105 #") & vbTab
-'				aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), MaskSy(2) & "00") & vbTab
-'				aa = aa & Dec(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), MaskSy(2) & "00") & vbTab
-'				aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4) & vbTab
+'				RecordToField(TABLE_PRODUCTS)
+'				aa = AdoGetField(TABLE_PRODUCTS, "#v102 #") & vbTab
+'				aa = aa & AdoGetField(TABLE_PRODUCTS, "#v105 #") & vbTab
+'				aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), MASK_SY(2) & "00") & vbTab
+'				aa = aa & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), MASK_SY(2) & "00") & vbTab
+'				aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4) & vbTab
 '			End If
 
-'			Antwoord = Mid(GridText, InStr(GridText, vbTab) + 1, InStr(GridText, vbCrLf) - InStr(GridText, vbTab) - 1)
-'			aa = aa & Dec(Val(Antwoord), MaskSy(4) & "0") & vbTab
+'			Antwoord = Mid(GRIDTEXT, InStr(GRIDTEXT, vbTab) + 1, InStr(GRIDTEXT, vbCrLf) - InStr(GRIDTEXT, vbTab) - 1)
+'			aa = aa & Dec(Val(Antwoord), MASK_SY(4) & "0") & vbTab
 
-'			verbruikBedrag = Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(Antwoord)
+'			verbruikBedrag = Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(Antwoord)
 '			aa = aa & VB6.Format(verbruikBedrag, "#,##0.00") & vbTab
 '			productieBedrag = verbruikBedrag * Val(txtVerbruik.Text)
 '			productiecumul = productiecumul + productieBedrag
 '			aa = aa & VB6.Format(productieBedrag, "#,##0.00")
-'			GridText = Mid(GridText, InStr(GridText, vbCrLf) + 2)
-'			TotaalAankoopNieuw = TotaalAankoopNieuw + (Val(AdoGetField(TableOfProductsAndServices, "#e113 #")) * Val(Antwoord))
-'			TotaalVerkoopNieuw = TotaalVerkoopNieuw + (Val(AdoGetField(TableOfProductsAndServices, "#e112 #")) * Val(Antwoord))
+'			GRIDTEXT = Mid(GRIDTEXT, InStr(GRIDTEXT, vbCrLf) + 2)
+'			TotaalAankoopNieuw = TotaalAankoopNieuw + (Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) * Val(Antwoord))
+'			TotaalVerkoopNieuw = TotaalVerkoopNieuw + (Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * Val(Antwoord))
 '		Loop 
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		Return 

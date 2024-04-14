@@ -31,7 +31,7 @@ Public Class HistoriekRekeningScherm
         End With
 
         TxtLijnen.Text = "300" 'LaadTekst("HistoriekInScherm", "MaxLijnen")
-        tbVanTot.Text = FunctionDateText(mid(BookyearFromTo, 1, 8)) & " - " & FunctionDateText(Mid(BookyearFromTo, 9, 8))
+        tbVanTot.Text = FunctionDateText(mid(BOOKYEAR_FROMTO, 1, 8)) & " - " & FunctionDateText(Mid(BOOKYEAR_FROMTO, 9, 8))
 
         ' Set up the delays for the ToolTip.
         ' Force the ToolTip text to be displayed whether or not the form is active.
@@ -47,14 +47,14 @@ Public Class HistoriekRekeningScherm
         
         tbRekening.Text = ""
         Try
-            tbRekening.Text = trim(BasisB(TableOfLedgerAccounts).codeTextBox.Text )
+            tbRekening.Text = trim(BASIC(TABLE_LEDGERACCOUNTS).codeTextBox.Text )
         Catch ex As Exception
             
         End Try
 
         If tbRekening.Text= "" Then
         Else
-            Me.Text = "Historiek (" & RTrim(AdoGetField(TableOfLedgerAccounts, "#v020 #")) & ")"
+            Me.Text = "Historiek (" & RTrim(AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")) & ")"
             btnSearch.PerformClick 
         End If		
 
@@ -93,12 +93,12 @@ Public Class HistoriekRekeningScherm
         Tot = RekeningNummer & Mid(tbVanTot.Text, 20, 4) & Mid(tbVanTot.Text, 17, 2) & Mid(tbVanTot.Text, 14, 2)
 
 GetIt: 
-        JetGet(TableOfLedgerAccounts, 0, RekeningNummer)
-        If Ktrl Then
+        JetGet(TABLE_LEDGERACCOUNTS, 0, RekeningNummer)
+        If KTRL Then
             Me.Text = "Historiek"
         Else
-            RecordToField(TableOfLedgerAccounts)
-            Me.Text = "Historiek (" & Trim(rsMAR(TableOfLedgerAccounts).Fields("v020").Value) & ")"
+            RecordToField(TABLE_LEDGERACCOUNTS)
+            Me.Text = "Historiek (" & Trim(RS_MAR(TABLE_LEDGERACCOUNTS).Fields("v020").Value) & ")"
             lvJournaalDetail.Visible = False
             Me.Refresh()
         End If
@@ -111,21 +111,21 @@ GetIt:
         rsJourHier = New ADODB.Recordset With {
             .CursorLocation = ADODB.CursorLocationEnum.adUseClient
         }
-        rsJourHier.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        rsJourHier.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If rsJourHier.RecordCount < 1 Then
             lvJournaalDetail.Items.Clear 
             GoTo JournaalJump
         Else
-            'RecordToField FlJournaal
+            'RecordToField TABLE_JOURNAL
             tbRekening.Text = rsJourHier.Fields("v019").Value
             Mid(Van, 1, 7) = Mid(rsJourHier.Fields("v070").Value, 1, 7)
             Mid(Tot, 1, 7) = Mid(rsJourHier.Fields("v070").Value, 1, 7)
-            JetGet(TableOfLedgerAccounts, 0, rsJourHier.Fields("v019").Value.ToString)
-            If Ktrl Then
+            JetGet(TABLE_LEDGERACCOUNTS, 0, rsJourHier.Fields("v019").Value.ToString)
+            If KTRL Then
                 Me.Text = "Historiek"
             Else
-                RecordToField(TableOfLedgerAccounts)
-                Me.Text = "Historiek (" & Trim(rsMAR(TableOfLedgerAccounts).Fields("v020").Value) & ")"
+                RecordToField(TABLE_LEDGERACCOUNTS)
+                Me.Text = "Historiek (" & Trim(RS_MAR(TABLE_LEDGERACCOUNTS).Fields("v020").Value) & ")"
             End If
             rsJourHier.MoveFirst 
             Do While Not rsJourHier.EOF
@@ -137,7 +137,7 @@ GetIt:
                     .Add (rsJourHier.Fields("v038").Value.ToString)
                     .Add (rsJourHier.Fields("v067").Value.ToString)
                     .Add (Format(rsJourHier.Fields("dece068").Value, "#,##0.00"))
-                    .Add (Format(Euro * rsJourHier.Fields("dece068").Value, "#,##0"))
+                    .Add (Format(EURO * rsJourHier.Fields("dece068").Value, "#,##0"))
                     .Add (rsJourHier.Fields("v069").Value.ToString)
                 End With
                 lvJournaalDetail.Items.Add(itemHier)	
@@ -147,8 +147,8 @@ GetIt:
                     If Zoekverder Then
                     Else
                         MSG = "Meer dan " & Format(maxLijn - 2) & " journaallijnen.  Enkel de eerste " & Format(maxLijn - 2) & " tonen ?"
-                        KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
-                        If KtrlBox = MsgBoxResult.Yes Then
+                        CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
+                        If CTRL_BOX = MsgBoxResult.Yes Then
                             GoTo JournaalJump 
                         Else
                             Zoekverder = True
@@ -177,14 +177,14 @@ JournaalJump:
     Private Sub tbRekening_KeyDown(sender As Object, e As KeyEventArgs) Handles tbRekening.KeyDown
         
         If e.KeyCode = 17 Then
-            SharedFl = TableOfLedgerAccounts 
-            SharedIndex = 0
-            GridText = tbRekening.Text
-            XLogKey = ""
+            SHARED_FL = TABLE_LEDGERACCOUNTS 
+            SHARED_INDEX = 0
+            GRIDTEXT = tbRekening.Text
+            XLOG_KEY = ""
             SqlSearch.ShowDialog()
             SqlSearch.Dispose()
-            If Ktrl = 0 Then
-                tbRekening.Text = XLogKey 
+            If KTRL = 0 Then
+                tbRekening.Text = XLOG_KEY 
                 btnSearch.PerformClick 			
             End If
         End If
@@ -197,18 +197,18 @@ JournaalJump:
         If DateWrongFormat(Mid(tbVanTot.Text, 14, 10)) Then
             MsgBox("Respecteer : " & vbCrLf & vbCrLf & "DD/MM/EEJJ - DD/MM/EEJJ a.u.b. !")
             If GansePeriode.CheckState Then
-                tbVanTot.Text = FunctionDateText(Mid(BookyearFromTo, 1, 8)) & " - " & FunctionDateText(Mid(BookyearFromTo, 9, 8))
+                tbVanTot.Text = FunctionDateText(Mid(BOOKYEAR_FROMTO, 1, 8)) & " - " & FunctionDateText(Mid(BOOKYEAR_FROMTO, 9, 8))
             Else
-                tbVanTot.Text = FunctionDateText(Mid(PeriodFromTo, 1, 8)) & " - " & FunctionDateText(Mid(PeriodFromTo, 9, 8))
+                tbVanTot.Text = FunctionDateText(Mid(PERIOD_FROMTO, 1, 8)) & " - " & FunctionDateText(Mid(PERIOD_FROMTO, 9, 8))
             End If
             tbVanTot.Focus()
             Exit Sub
         ElseIf Len(tbVanTot.Text) <> 23 Then 
             MsgBox("Respecteer : " & vbCrLf & vbCrLf & "DD/MM/EEJJ - DD/MM/EEJJ a.u.b. !")
             If GansePeriode.CheckState Then
-                tbVanTot.Text = FunctionDateText(Mid(BookyearFromTo, 1, 8)) & " - " & FunctionDateText(Mid(BookyearFromTo, 9, 8))
+                tbVanTot.Text = FunctionDateText(Mid(BOOKYEAR_FROMTO, 1, 8)) & " - " & FunctionDateText(Mid(BOOKYEAR_FROMTO, 9, 8))
             Else
-                tbVanTot.Text = FunctionDateText(Mid(PeriodFromTo, 1, 8)) & " - " & FunctionDateText(Mid(PeriodFromTo, 9, 8))
+                tbVanTot.Text = FunctionDateText(Mid(PERIOD_FROMTO, 1, 8)) & " - " & FunctionDateText(Mid(PERIOD_FROMTO, 9, 8))
             End If
             tbVanTot.Focus()
         Else

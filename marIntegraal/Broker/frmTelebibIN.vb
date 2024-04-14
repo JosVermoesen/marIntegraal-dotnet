@@ -47,7 +47,7 @@ Public Class TelebibIN
 			rsTB2.Close()
 		End If
 		MSG = "SELECT TOP 1 * FROM TB2"
-		rsTB2.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+		rsTB2.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 
 		gboDIR = LaadTekst("TelebibIN", "gboLocatie")
 		gboFILE = "PRENOT.GBO"
@@ -55,7 +55,7 @@ Public Class TelebibIN
 			Me.cbGBO.Enabled = False
 		Else
 			Me.cbGBO.Enabled = True
-			If ScrLeesBestandAlleTekst(gboCPstr, gboDIR & gboFILE) Then
+			If ScrReadFileAllText(gboCPstr, gboDIR & gboFILE) Then
 				Me.RichTextBox2.Text = gboCPstr                    
 			ElseIf Trim(gboCPstr) <> "" then
 				RichTextBox2.Text = gboCPstr    
@@ -71,7 +71,7 @@ Public Class TelebibIN
 			Me.cbASWEB.Enabled = False
 		Else
 			Me.cbASWEB.Enabled = True
-			If ScrLeesBestandAlleTekst(aswebCPstr, aswebDIR & aswebFILE) Then
+			If ScrReadFileAllText(aswebCPstr, aswebDIR & aswebFILE) Then
 				Me.RichTextBox3.Text = aswebCPstr                    
 			ElseIf Trim(gboCPstr) <> "" then
 				RichTextBox3.Text = aswebCPstr    
@@ -81,7 +81,7 @@ Public Class TelebibIN
 		End If
 		lblAswebFile.Text = aswebDIR & aswebFILE
 
-		GridTextPolis = ""
+		GRIDTEXT_POLICY = ""
 		
 		cbAS2BerichtTypeHistoriek.Items.Add("E1: IPC Edifact Bericht (AS2)")
 		cbAS2BerichtTypeHistoriek.Items.Add("P1: IPC positioneel Bericht (AS2)")
@@ -102,7 +102,7 @@ Public Class TelebibIN
 		' Create a recordset using the provided collection
 		companiesRS = New ADODB.Recordset
 		companiesRS.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-		companiesRS.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+		companiesRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 		If companiesRS.RecordCount <= 0 Then
 			'MsgBox("Geen diverse posten binnen deze selectie", vbInformation)
 			Beep()
@@ -144,7 +144,7 @@ Public Class TelebibIN
 			Me.cbASWEB.Enabled = True
 			'CURRAC= rekeninguittreksel
 			'PRENOT= termijnborderel
-			If ScrLeesBestandAlleTekst(aswebCPstr, aswebDIR & aswebFILE) Then
+			If ScrReadFileAllText(aswebCPstr, aswebDIR & aswebFILE) Then
 				Me.RichTextBox3.Text = aswebCPstr
 			Else
 				Me.RichTextBox3.Text = ""
@@ -172,7 +172,7 @@ Public Class TelebibIN
 			Me.cbGBO.Enabled = True
 			'CURRAC= rekeninguittreksel
 			'PRENOT= termijnborderel
-			If ScrLeesBestandAlleTekst(gboCPstr, gboDIR & gboFILE) Then
+			If ScrReadFileAllText(gboCPstr, gboDIR & gboFILE) Then
 				Me.RichTextBox2.Text = gboCPstr
 			Else
 				Me.RichTextBox2.Text = ""
@@ -202,7 +202,7 @@ Public Class TelebibIN
 			gboFILE = "PRENOT.GBO"
 			lblGboFile.Text = gboDIR & gboFILE
 			RichTextBox2.Text = ""
-			If ScrLeesBestandAlleTekst(gboCPstr, gboDIR & gboFILE) Then
+			If ScrReadFileAllText(gboCPstr, gboDIR & gboFILE) Then
 				RichTextBox2.Text = gboCPstr    
 			ElseIf Trim(gboCPstr) <> "" then
 				RichTextBox2.Text = gboCPstr    
@@ -217,7 +217,7 @@ Public Class TelebibIN
 			gboFILE = "CURRAC.GBO"
 			lblGboFile.Text = gboDIR & gboFILE
 			RichTextBox2.Text = ""
-			If ScrLeesBestandAlleTekst(gboCPstr, gboDIR & gboFILE) Then
+			If ScrReadFileAllText(gboCPstr, gboDIR & gboFILE) Then
 				RichTextBox2.Text = gboCPstr                    
 			ElseIf Trim(gboCPstr) <> "" then
 				RichTextBox2.Text = gboCPstr    
@@ -232,7 +232,7 @@ Public Class TelebibIN
 			gboFILE = "UNIFEP.300"
 			lblGboFile.Text = gboDIR & gboFILE
 			RichTextBox2.Text = ""
-			If ScrLeesBestandAlleTekst(gboCPstr, gboDIR & gboFILE) Then
+			If ScrReadFileAllText(gboCPstr, gboDIR & gboFILE) Then
 				RichTextBox2.Text = gboCPstr    
 			ElseIf Trim(gboCPstr) <> "" then
 				RichTextBox2.Text = gboCPstr                
@@ -250,8 +250,8 @@ Public Class TelebibIN
 		Dim atXGHarray() As String
 
 		atXGHarray = Split(Me.RichTextBox3.Text, "XGT+1'")
-		For CountTo = 0 To UBound(atXGHarray) - 1
-			atXGHarray(CountTo) = atXGHarray(CountTo) & "XGT+1'"
+		For COUNT_TO = 0 To UBound(atXGHarray) - 1
+			atXGHarray(COUNT_TO) = atXGHarray(COUNT_TO) & "XGT+1'"
 		Next
 		
 		With Mim.Report
@@ -268,21 +268,21 @@ Public Class TelebibIN
 			.PenSize = 0.01
 		End With
 
-		For CountTo = 0 To UBound(atXGHarray) - 1
-			RichTextBox1.Text = atXGHarray(CountTo)
+		For COUNT_TO = 0 To UBound(atXGHarray) - 1
+			RichTextBox1.Text = atXGHarray(COUNT_TO)
 			tb2infoHier = tb2Indent((Me.RichTextBox1.Text))
 			pdfY = Mim.Report.Print(1, 1, tb2infoHier & vbCrLf)
 			Mim.Report.PageBreak()
-			KtrlBox = DoTheGBO()
+			CTRL_BOX = DoTheGBO()
 		Next
 
-		Mim.Report.WriteDoc(ProgramLocation & Format(Now, "YYYYMMDDHHMMSS") & "-ASWEB_EDI.pdf")
+		Mim.Report.WriteDoc(PROGRAM_LOCATION & Format(Now, "YYYYMMDDHHMMSS") & "-ASWEB_EDI.pdf")
 		Mim.Report.Preview()
 		'!Mim.Report.CloseDoc
 
 ASWEBeinde:
-		KtrlBox = MsgBox("Hierna wordt het AS1.EDI bestand verwijderd (alle ontvangen berichten worden inmmers automatisch in het logboek opgenomen.)" & vbCrLf & vbCrLf & "Verwijderen GBO bestand, bent U zeker", MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3)
-		If KtrlBox = MsgBoxResult.Yes Then
+		CTRL_BOX = MsgBox("Hierna wordt het AS1.EDI bestand verwijderd (alle ontvangen berichten worden inmmers automatisch in het logboek opgenomen.)" & vbCrLf & vbCrLf & "Verwijderen GBO bestand, bent U zeker", MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3)
+		If CTRL_BOX = MsgBoxResult.Yes Then
 			Err.Clear()
 			On Error Resume Next
 			Kill(lblAswebFile.Text)
@@ -291,7 +291,7 @@ ASWEBeinde:
 			Else
 				RichTextBox3.Text = ""
 			End If
-		ElseIf KtrlBox = MsgBoxResult.Cancel Then
+		ElseIf CTRL_BOX = MsgBoxResult.Cancel Then
 			GoTo ASWEBeinde        
 		End If
 
@@ -306,8 +306,8 @@ ASWEBeinde:
 		Dim atXGHarray() As String
 
 		atXGHarray = Split(Me.RichTextBox2.Text, "XGT+1'")
-		For CountTo = 0 To UBound(atXGHarray) - 1
-			atXGHarray(CountTo) = atXGHarray(CountTo) & "XGT+1'"
+		For COUNT_TO = 0 To UBound(atXGHarray) - 1
+			atXGHarray(COUNT_TO) = atXGHarray(COUNT_TO) & "XGT+1'"
 		Next
 
 		With Mim.Report
@@ -325,26 +325,26 @@ ASWEBeinde:
 		End With
 
 
-		For CountTo = 0 To UBound(atXGHarray) - 1
-			RichTextBox1.Text = atXGHarray(CountTo)
+		For COUNT_TO = 0 To UBound(atXGHarray) - 1
+			RichTextBox1.Text = atXGHarray(COUNT_TO)
 			tb2infoHier = tb2Indent((Me.RichTextBox1.Text))
 			pdfY = Mim.Report.Print(1, 1, tb2infoHier & vbCrLf)
 			Mim.Report.PageBreak()
-			KtrlBox = DoTheGBO()
+			CTRL_BOX = DoTheGBO()
 		Next
-		Mim.Report.WriteDoc(ProgramLocation & Format(Now, "YYYYMMDDHHMMSS") & "-GBO_EDI.pdf")
+		Mim.Report.WriteDoc(PROGRAM_LOCATION & Format(Now, "YYYYMMDDHHMMSS") & "-GBO_EDI.pdf")
 		Mim.Report.Preview()
 		'!Mim.Report.CloseDoc
 
 GBOeinde:
-		KtrlBox = MsgBox("Hierna wordt het GBO bestand verwijderd (alle ontvangen berichten worden inmmers automatisch in het logboek opgenomen.)" & vbCrLf & vbCrLf & "Verwijderen GBO bestand, bent U zeker", MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3)
-		If KtrlBox = MsgBoxResult.Yes Then
+		CTRL_BOX = MsgBox("Hierna wordt het GBO bestand verwijderd (alle ontvangen berichten worden inmmers automatisch in het logboek opgenomen.)" & vbCrLf & vbCrLf & "Verwijderen GBO bestand, bent U zeker", MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3)
+		If CTRL_BOX = MsgBoxResult.Yes Then
 			Err.Clear()
 			On Error Resume Next
 			Kill(lblGboFile.Text)
 			If Err.Number Then MsgBox(ErrorToString())
 			rbRekeningUittreksel.Checked = Not rbRekeningUittreksel.Checked
-		ElseIf KtrlBox = MsgBoxResult.Cancel Then
+		ElseIf CTRL_BOX = MsgBoxResult.Cancel Then
 			GoTo GBOeinde
 		Else
 			'Stop
@@ -401,7 +401,7 @@ GBOeinde:
 					Stop
 				End If
 			End If
-			ktrl = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
+			KTRL = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
 		ElseIf InStr(MAPIString, "XEH+02") Then            
 			MsgBox("Uitwisseling Schadedossier " & XGHarray(2), MsgBoxStyle.Information)
 			XEHcodeHier = "02"
@@ -416,7 +416,7 @@ GBOeinde:
 					Stop
 				End If
 			End If
-			ktrl = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
+			KTRL = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
 		ElseIf InStr(MAPIString, "XEH+03") Then 
 			'XEH+03 = KWIJTING KOMT BIJ BIJVOEGSELS ACHTERAAN DUS HIER ZIJN HET HERNIEUWINGEN
 			MsgBox("Uitwisseling Termijn " & XGHarray(2), MsgBoxStyle.Information)
@@ -424,7 +424,7 @@ GBOeinde:
 			If obVerwerking0.Checked = True Then
 				EdiFactTERMIJN(MAPIString)
 			End If
-			ktrl = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
+			KTRL = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
 		ElseIf InStr(MAPIString, "XEH+07") Then 
 			'XEH+07 = REKENINGUITTREKSELS  ?
 			MsgBox("Rekeninguittreksel " & XGHarray(2), MsgBoxStyle.Information)
@@ -432,10 +432,10 @@ GBOeinde:
 			If obVerwerking0.Checked = True Then
 				EdiFactREKENINGUITTREKSEL(MAPIString)
 			End If			
-			ktrl = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
+			KTRL = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
 		Else
 			MsgBox("Nog niets voorzien voor verzoek " & XEHarray(3) & " maatschappij " & XGHarray(2))
-			ktrl = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
+			KTRL = VerwijderENslaOP(MAPIString, XEHcodeHier, strA000RB, XEHcode)
 		End If
 
 	End Function
@@ -444,14 +444,14 @@ GBOeinde:
 		
 		Dim posSTR As Integer 
 		
-		TLBRecord(TableOfVarious) = ""
-		AdoInsertToRecord(TableOfVarious, SetSpacing("L" & "CO" & XEHCODE, 13), "v004")
-		AdoInsertToRecord(TableOfVarious, XEHCODE, "A010")
-		AdoInsertToRecord(TableOfVarious, "E1", "v400")
-		AdoInsertToRecord(TableOfVarious, SetSpacing("30" & XEHCODE & "E1", 20), "v005")
-		AdoInsertToRecord(TableOfVarious, (RichTextBox1.Text), "v132")
+		TLB_RECORD(TABLE_VARIOUS) = ""
+		AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("L" & "CO" & XEHCODE, 13), "v004")
+		AdoInsertToRecord(TABLE_VARIOUS, XEHCODE, "A010")
+		AdoInsertToRecord(TABLE_VARIOUS, "E1", "v400")
+		AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("30" & XEHCODE & "E1", 20), "v005")
+		AdoInsertToRecord(TABLE_VARIOUS, (RichTextBox1.Text), "v132")
 		'rsmar(flallerlei)("A000")= djfkddk
-		'rsMAR(TableOfVarious).Update
+		'RS_MAR(TABLE_VARIOUS).Update
 
 		rsTB2.AddNew()
 		rsTB2.Fields("Mij").Value = XEHCODE 
@@ -524,9 +524,9 @@ GBOeinde:
 			rsTB2.Fields("status").Value = "0"
 		End If
 		rsTB2.Update()
-		JetInsert(TableOfVarious, 1)
+		JetInsert(TABLE_VARIOUS, 1)
 		'MsgBox "Stop"
-		If Ktrl Then
+		If KTRL Then
 			MsgBox(ErrorToString())
 		Else
 			RichTextBox1.Text = ""

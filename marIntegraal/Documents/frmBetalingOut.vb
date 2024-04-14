@@ -21,31 +21,31 @@ End Class
 '	Private Sub InitialiseFields()
 '		Dim T As Short
 
-'		ReportField(0) = "Line"
-'		ReportTab(0) = 2
+'		REPORT_FIELD(0) = "Line"
+'		REPORT_TAB(0) = 2
 
-'		ReportField(1) = "MemoDatum"
-'		ReportTab(1) = 7
+'		REPORT_FIELD(1) = "MemoDatum"
+'		REPORT_TAB(1) = 7
 
-'		ReportField(2) = "    Bedrag"
-'		ReportTab(2) = 18
+'		REPORT_FIELD(2) = "    Bedrag"
+'		REPORT_TAB(2) = 18
 
-'		ReportField(3) = "Munt"
-'		ReportTab(3) = 29
+'		REPORT_FIELD(3) = "Munt"
+'		REPORT_TAB(3) = 29
 
-'		ReportField(4) = "Begunstigde"
-'		ReportTab(4) = 34
+'		REPORT_FIELD(4) = "Begunstigde"
+'		REPORT_TAB(4) = 34
 
-'		ReportField(5) = "Rekeningnr."
-'		ReportTab(5) = 65
+'		REPORT_FIELD(5) = "Rekeningnr."
+'		REPORT_TAB(5) = 65
 
-'		ReportField(6) = "OGM/Referte"
-'		ReportTab(6) = 80
+'		REPORT_FIELD(6) = "OGM/Referte"
+'		REPORT_TAB(6) = 80
 
-'		ReportField(7) = "DocumentID"
-'		ReportTab(7) = 95
+'		REPORT_FIELD(7) = "DocumentID"
+'		REPORT_TAB(7) = 95
 
-'		ReportTab(8) = 0
+'		REPORT_TAB(8) = 0
 
 '		If chkAfdrukInVenster.CheckState Then
 '			Me.Hide()
@@ -56,7 +56,7 @@ End Class
 '			Xlog.X.Row = 0
 '			For T = 0 To 6
 '				Xlog.X.Col = T
-'				Xlog.X.Text = ReportField(T)
+'				Xlog.X.Text = REPORT_FIELD(T)
 '			Next 
 '			Me.Show()
 '		End If
@@ -72,30 +72,30 @@ End Class
 
 '		If chkAfdrukInVenster.CheckState Then Exit Sub
 
-'		If usrLicentieInfo <> "" Then
+'		If USER_LICENSEINFO <> "" Then
 '			Printer.CurrentX = 50
 '			Printer.CurrentY = 50
-'			Printer.Write(usrLicentieInfo)
+'			Printer.Write(USER_LICENSEINFO)
 '		End If
-'		PageCounter = PageCounter + 1
+'		PAGE_COUNTER = PAGE_COUNTER + 1
 '		Printer.CurrentY = 400
-'		Printer.Write(TAB(1), ReportText(2), TAB(108), "Pagina : " & Dec(PageCounter, "##########"))
+'		Printer.Write(TAB(1), ReportText(2), TAB(108), "Pagina : " & Dec(PAGE_COUNTER, "##########"))
 
 '		Printer.Write(TAB(108), "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(1), UCase(ReportText(3)))
 
-'		Printer.Print(vbCrLf & FullLine.Value)
+'		Printer.Print(vbCrLf & FULL_LINE.Value)
 
-'		Do While ReportTab(T) <> 0
-'			Printer.Print(TAB(ReportTab(T)))
-'			Printer.Write(ReportField(T))
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'		Do While REPORT_TAB(T) <> 0
+'			Printer.Print(TAB(REPORT_TAB(T)))
+'			Printer.Write(REPORT_FIELD(T))
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				Printer.Write(vbCrLf)
 '			End If
 '			T = T + 1
 '		Loop 
 
-'		Printer.Write(FullLine.Value & vbCrLf & vbCrLf)
+'		Printer.Write(FULL_LINE.Value & vbCrLf & vbCrLf)
 
 '		Exit Sub
 
@@ -113,14 +113,14 @@ End Class
 
 '		T = 0
 '		aa = ""
-'		Do While ReportTab(T) <> 0
+'		Do While REPORT_TAB(T) <> 0
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -155,14 +155,14 @@ End Class
 
 '		If chkAfdrukInVenster.CheckState Then
 '		Else
-'			Printer.Print(vbCrLf & FullLine.Value)
+'			Printer.Print(vbCrLf & FULL_LINE.Value)
 '		End If
 '		For T = 0 To 6
 '			FieldText(T) = ""
 '		Next 
 
 '		FieldText(1) = "Totaal BEF"
-'		FieldText(2) = Dec(CDbl(lblBEF.Text), MaskBEF)
+'		FieldText(2) = Dec(CDbl(lblBEF.Text), MASK_BEF)
 '		T = 0
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		aa = ""
@@ -171,10 +171,10 @@ End Class
 '				'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				aa = aa + FieldText(T) + vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -186,7 +186,7 @@ End Class
 '		If chkAfdrukInVenster.CheckState Then Xlog.X.AddItem(aa, Xlog.X.Rows - 1)
 
 '		FieldText(1) = "Totaal EUR"
-'		FieldText(2) = Dec(CDbl(lblEUR.Text), MaskEUR)
+'		FieldText(2) = Dec(CDbl(lblEUR.Text), MASK_EUR)
 '		T = 0
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		aa = ""
@@ -195,10 +195,10 @@ End Class
 '				'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				aa = aa + FieldText(T) + vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -230,7 +230,7 @@ End Class
 '			Xlog.Afsluiten.TabStop = False
 '			Xlog.cbAfbeelding.Visible = False
 '			Xlog.SSTab1.TabPages.Item(1).Visible = False
-'			XLogKey = ""
+'			XLOG_KEY = ""
 '			Xlog.ShowDialog()
 '			Xlog.Close()
 '		End If
@@ -253,7 +253,7 @@ End Class
 '		Dim rekNummerTotaal As Double
 
 '		boString.Value = "" : goString1.Value = "" : goString2.Value = "" : eoString.Value = ""
-'		Mim.TekenSave.InitialDirectory = LocationCompanyData
+'		Mim.TekenSave.InitialDirectory = LOCATION_COMPANYDATA
 '		Mim.TekenSave.FileName = ""
 '		Mim.TekenSave.ShowDialog()
 '		If Mim.TekenSave.FileName = "" Then Exit Function
@@ -268,10 +268,10 @@ End Class
 '		Mid(boString.Value, 17, 6) = Mid(boString.Value, 6, 6) 'gevraagde uitvoeringsdatum
 '		Mid(boString.Value, 24, 3) = "000"
 '		Mid(boString.Value, 27, 12) = Mid(cbBank.Text, InStr(cbBank.Text, "[") + 1, 12) 'rekeningnummer opdrachtgever
-'		Mid(boString.Value, 39, 26) = String99(Reading, 46) 'Naam opdrachtgever
-'		Mid(boString.Value, 65, 26) = String99(Reading, 47) 'Adres opdrachtgever
-'		Mid(boString.Value, 91, 4) = String99(Reading, 48) 'Postnummer opdrachtgever
-'		Mid(boString.Value, 95, 22) = Mid(String99(Reading, 48), 6) 'Lokaliteit opdrachtgever
+'		Mid(boString.Value, 39, 26) = String99(READING, 46) 'Naam opdrachtgever
+'		Mid(boString.Value, 65, 26) = String99(READING, 47) 'Adres opdrachtgever
+'		Mid(boString.Value, 91, 4) = String99(READING, 48) 'Postnummer opdrachtgever
+'		Mid(boString.Value, 95, 22) = Mid(String99(READING, 48), 6) 'Lokaliteit opdrachtgever
 '		Mid(boString.Value, 117, 1) = "1" 'Taalcode opdrachtgever
 '		Mid(boString.Value, 128, 1) = "5" 'Versiecode 5=EUR, 3=BEF
 '		Print(FlHier, boString.Value & vbNewLine)
@@ -323,10 +323,10 @@ End Class
 '			Mid(goString2.Value, 112, 1) = "0" 'code chequekost 1= opdrgever, 2= begunstig.
 '			Print(FlHier, goString2.Value & vbNewLine)
 '			goString1.Value = "" : goString2.Value = ""
-'			JetGet(TableOfInvoices, 0, grdDokumentDetail.get_TextMatrix(volgNr, 2))
-'			RecordToField(TableOfInvoices)
-'			AdoInsertToRecord(TableOfInvoices, "0", "rvDM")
-'			bUpdate(TableOfInvoices, 0)
+'			JetGet(TABLE_INVOICES, 0, grdDokumentDetail.get_TextMatrix(volgNr, 2))
+'			RecordToField(TABLE_INVOICES)
+'			AdoInsertToRecord(TABLE_INVOICES, "0", "rvDM")
+'			bUpdate(TABLE_INVOICES, 0)
 '		Next 
 
 '		'Eindopname
@@ -335,7 +335,7 @@ End Class
 '		Mid(eoString.Value, 6, 4) = VB6.Format(volgNr - 1, "0000")
 '		Mid(eoString.Value, 10, 12) = VB6.Format(bdrgTotaal * 100, "000000000000") 'Totaal Bedragen
 '		Mid(eoString.Value, 22, 15) = VB6.Format(rekNummerTotaal, "000000000000000") 'Totaal Rekeningnummers
-'		Mid(eoString.Value, 37, 11) = "00" & Mid(String99(Reading, 51), 1, 3) & Mid(String99(Reading, 51), 5, 3) & Mid(String99(Reading, 51), 9, 3) 'Identificatie afgever
+'		Mid(eoString.Value, 37, 11) = "00" & Mid(String99(READING, 51), 1, 3) & Mid(String99(READING, 51), 5, 3) & Mid(String99(READING, 51), 9, 3) 'Identificatie afgever
 '		Print(FlHier, eoString.Value)
 '		FileClose(FlHier)
 '		MsgBox(Mim.TekenSave.FileName & vbCrLf & vbCrLf & "staat klaar voor IMPORT door uw banksoftware.", MsgBoxStyle.Information)
@@ -352,7 +352,7 @@ End Class
 '		TotaalBedraginBef = 0
 '		For Teller = 1 To grdDokumentDetail.Rows - 1
 '			If grdDokumentDetail.get_TextMatrix(Teller, 4) = "EUR" Then
-'				TotaalBedraginBef = TotaalBedraginBef + (CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5)) * Euro)
+'				TotaalBedraginBef = TotaalBedraginBef + (CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5)) * EURO)
 '			ElseIf grdDokumentDetail.get_TextMatrix(Teller, 4) = "BEF" Then 
 '				TotaalBedraginBef = TotaalBedraginBef + CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5))
 '			Else
@@ -360,7 +360,7 @@ End Class
 '			End If
 '		Next 
 '		lblBEF.Text = VB6.Format(System.Math.Round(TotaalBedraginBef, 0), "#,###")
-'		lblEUR.Text = VB6.Format(System.Math.Round(TotaalBedraginBef / Euro, 2), "#,###.00")
+'		lblEUR.Text = VB6.Format(System.Math.Round(TotaalBedraginBef / EURO, 2), "#,###.00")
 
 '	End Sub
 
@@ -381,13 +381,13 @@ End Class
 '		Dim Teller As Short
 
 '		ReportText(2) = "Lijst Overschrijvingen " & Mid(Mim.Text, InStr(Mim.Text, "["))
-'		ReportText(0) = MimGlobalDate.Value
+'		ReportText(0) = MIM_GLOBAL_DATE.Value
 '		ReportText(3) = "Bank " & cbBank.Text
 
 '		InitialiseFields()
-'		PageCounter = 0
+'		PAGE_COUNTER = 0
 '		If chkAfdrukInVenster.CheckState = 0 Then
-'			Printer = Printers(LijstPrinterNr)
+'			Printer = Printers(LISTPRINTER_NUMBER)
 '			On Error Resume Next
 '			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -412,9 +412,9 @@ End Class
 '			FieldText(1) = grdDokumentDetail.get_TextMatrix(Teller, 3)
 '			FieldText(3) = grdDokumentDetail.get_TextMatrix(Teller, 4)
 '			If FieldText(3) = "BEF" Then
-'				FieldText(2) = Dec(CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5)), MaskBEF)
+'				FieldText(2) = Dec(CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5)), MASK_BEF)
 '			Else
-'				FieldText(2) = Dec(CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5)), MaskEUR)
+'				FieldText(2) = Dec(CDbl(grdDokumentDetail.get_TextMatrix(Teller, 5)), MASK_EUR)
 '			End If
 '			FieldText(4) = VB.Left(grdDokumentDetail.get_TextMatrix(Teller, 1), 30)
 '			FieldText(5) = grdDokumentDetail.get_TextMatrix(Teller, 6)
@@ -446,24 +446,24 @@ End Class
 
 '		dtpMemoDatum.MinDate = Now
 
-'		JetGetOrGreater(TableOfVarious, 1, "28")
-'		If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "28" Then
+'		JetGetOrGreater(TABLE_VARIOUS, 1, "28")
+'		If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "28" Then
 '			MsgBox("Eerst financiële instelling parameters inbrengen via 'Diverse Gebruikersfiches' a.u.b.", MsgBoxStyle.Information)
 '			Me.Close()
 '			Exit Sub
 '		Else
 '			Do 
-'				RecordToField(TableOfVarious)
-'				cbBank.Items.Add(AdoGetField(TableOfVarious, "#v231 #") & ": " & AdoGetField(TableOfVarious, "#v232 #") & " [" & AdoGetField(TableOfVarious, "#v236 #") & "]")
-'				bNext(TableOfVarious)
-'				If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "28" Then
+'				RecordToField(TABLE_VARIOUS)
+'				cbBank.Items.Add(AdoGetField(TABLE_VARIOUS, "#v231 #") & ": " & AdoGetField(TABLE_VARIOUS, "#v232 #") & " [" & AdoGetField(TABLE_VARIOUS, "#v236 #") & "]")
+'				bNext(TABLE_VARIOUS)
+'				If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "28" Then
 '					Exit Do
 '				End If
 '			Loop 
 '		End If
 
 '		cbBank.SelectedIndex = 0
-'		Datum.Value = MimGlobalDate.Value
+'		Datum.Value = MIM_GLOBAL_DATE.Value
 
 '		TekstLijn(2).Text = "0"
 '		TekstLijn(3).Text = New String("z", 12)
@@ -502,7 +502,7 @@ End Class
 '	End Sub
 
 
-'	Private Sub KTRLBalans(ByRef Fl As Short)
+'	Private Sub KTRLBalans(ByRef FL As Short)
 '		Dim Cumul As Double
 '		Dim dTotaal As Double
 '		Dim dBetaald As Double
@@ -519,7 +519,7 @@ End Class
 
 '		Dim aa As Object
 
-'		If Fl = TableOfSuppliers Then
+'		If FL = TABLE_SUPPLIERS Then
 '			VoorLetter.Value = "L"
 '		Else
 '			VoorLetter.Value = "K"
@@ -528,16 +528,16 @@ End Class
 '		ktrlMemoDatum = VB6.Format(Now, "yyyymmdd")
 
 '		T = 0
-'		JetGetOrGreater(TableOfInvoices, 1, VoorLetter.Value & TekstLijn(2).Text)
-'		If Ktrl Or KeyBuf(TableOfInvoices) > VoorLetter.Value & TekstLijn(3).Text Then
+'		JetGetOrGreater(TABLE_INVOICES, 1, VoorLetter.Value & TekstLijn(2).Text)
+'		If KTRL Or KEY_BUF(TABLE_INVOICES) > VoorLetter.Value & TekstLijn(3).Text Then
 '			Beep()
 '			MsgBox("Selectie buiten mogelijke documenten")
 '			Exit Sub
 '		End If
 '		If VoorLetter.Value & TekstLijn(2).Text = VoorLetter.Value & TekstLijn(3).Text Then
-'			If KeyBuf(TableOfInvoices) <> VoorLetter.Value & Trim(TekstLijn(2).Text) Then
+'			If KEY_BUF(TABLE_INVOICES) <> VoorLetter.Value & Trim(TekstLijn(2).Text) Then
 '				Beep()
-'				MsgBox("Geen documenten voor " & AdoGetField(Fl, "#A100 #"))
+'				MsgBox("Geen documenten voor " & AdoGetField(FL, "#A100 #"))
 '				Exit Sub
 '			End If
 '		End If
@@ -545,8 +545,8 @@ End Class
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 '		If grdDokumentDetail.Rows = 2 Then
 '		Else
-'			KtrlBox = MsgBox("Verrichtingen reeds aanwezig behouden.", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'			If KtrlBox = MsgBoxResult.No Then
+'			CTRL_BOX = MsgBox("Verrichtingen reeds aanwezig behouden.", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'			If CTRL_BOX = MsgBoxResult.No Then
 '				GridSchoon(grdDokumentDetail)
 '			End If
 '		End If
@@ -555,8 +555,8 @@ End Class
 '		Do 
 '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '			GoSub VolgendeLijn
-'			bNext(TableOfInvoices)
-'			If Ktrl Or KeyBuf(TableOfInvoices) > "L" & TekstLijn(3).Text Then
+'			bNext(TABLE_INVOICES)
+'			If KTRL Or KEY_BUF(TABLE_INVOICES) > "L" & TekstLijn(3).Text Then
 '				Exit Do
 '			End If
 '		Loop 
@@ -570,16 +570,16 @@ End Class
 '			MSG = "Er zijn " & Str(GeenRekening) & " verrichtingen zonder rekeningnummer" & vbCrLf
 '			MSG = MSG & "Mogen deze verwijderd worden" & vbCrLf & vbCrLf
 '			MSG = MSG & "(zonder verwijdering enkel afdruk op papier mogelijk)"
-'			KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
-'			If KtrlBox = MsgBoxResult.Yes Then
-'				CountTo = 1
+'			CTRL_BOX = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
+'			If CTRL_BOX = MsgBoxResult.Yes Then
+'				COUNT_TO = 1
 '				CmdEmailNBB.Enabled = True
-'				Do While CountTo < grdDokumentDetail.Rows - 1
-'					Debug.Print(grdDokumentDetail.get_TextMatrix(CountTo, 6))
-'					If Mid(grdDokumentDetail.get_TextMatrix(CountTo, 6), 1, 2) = "!!" Then
-'						grdDokumentDetail.RemoveItem(CountTo)
+'				Do While COUNT_TO < grdDokumentDetail.Rows - 1
+'					Debug.Print(grdDokumentDetail.get_TextMatrix(COUNT_TO, 6))
+'					If Mid(grdDokumentDetail.get_TextMatrix(COUNT_TO, 6), 1, 2) = "!!" Then
+'						grdDokumentDetail.RemoveItem(COUNT_TO)
 '					Else
-'						CountTo = CountTo + 1
+'						COUNT_TO = COUNT_TO + 1
 '					End If
 '				Loop 
 '			End If
@@ -604,18 +604,18 @@ End Class
 '		Exit Sub
 
 'VolgendeLijn: 
-'		RecordToField(TableOfInvoices)
-'		dBetaald = Val(AdoGetField(TableOfInvoices, "#v037 #"))
-'		dTotaal = Val(AdoGetField(TableOfInvoices, "#v249 #"))
+'		RecordToField(TABLE_INVOICES)
+'		dBetaald = Val(AdoGetField(TABLE_INVOICES, "#v037 #"))
+'		dTotaal = Val(AdoGetField(TABLE_INVOICES, "#v249 #"))
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		If System.Math.Round(dBetaald) = System.Math.Round(dTotaal) Then Return 
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If AdoGetField(TableOfInvoices, "#rvDM #") = "0" And Me.Selektie(1).CheckState = System.Windows.Forms.CheckState.Checked Then Return 
+'		If AdoGetField(TABLE_INVOICES, "#rvDM #") = "0" And Me.Selektie(1).CheckState = System.Windows.Forms.CheckState.Checked Then Return 
 
 '		'TO DO creditnota's leveranciers, facturen klanten en kwitanties klanten uitsluiten !!
-'		Select Case Mid(AdoGetField(TableOfInvoices, "#v033 #"), 1, 2)
+'		Select Case Mid(AdoGetField(TABLE_INVOICES, "#v033 #"), 1, 2)
 '			Case "V0", "A1" 'Verkoopfactuur of Creditnota Aankoop
-'				'If Mid(AdoGetField(TableOfInvoices, "#v033 #"), 2, 1) = "1" Then
+'				'If Mid(AdoGetField(TABLE_INVOICES, "#v033 #"), 2, 1) = "1" Then
 '				'Return
 '				'End If
 '				'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -633,7 +633,7 @@ End Class
 
 '		'Selektie(2)= enkel dit boekjaar
 '		If Selektie(2).CheckState = 1 Then
-'			If rsMAR(TableOfInvoices).Fields("v035").Value >= VB.Left(BookyearFromTo.Value, 8) And rsMAR(TableOfInvoices).Fields("v035").Value <= VB.Right(BookyearFromTo.Value, 8) Then
+'			If RS_MAR(TABLE_INVOICES).Fields("v035").Value >= VB.Left(BOOKYEAR_FROMTO.Value, 8) And RS_MAR(TABLE_INVOICES).Fields("v035").Value <= VB.Right(BOOKYEAR_FROMTO.Value, 8) Then
 '			Else
 '				'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '				Return 
@@ -641,15 +641,15 @@ End Class
 '		End If
 
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		aa = AdoGetField(TableOfInvoices, "#v034 #") & vbTab
-'		JetGet(Fl, 0, Mid(AdoGetField(TableOfInvoices, "#v034 #"), 2))
-'		If Ktrl Then
+'		aa = AdoGetField(TABLE_INVOICES, "#v034 #") & vbTab
+'		JetGet(FL, 0, Mid(AdoGetField(TABLE_INVOICES, "#v034 #"), 2))
+'		If KTRL Then
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			aa = aa & "Is verwijderd" & vbTab
 '			ZwareFout = ZwareFout + 1
 '		Else
-'			RecordToField(Fl)
-'			Select Case AdoGetField(Fl, "#vs03 #")
+'			RecordToField(FL)
+'			Select Case AdoGetField(FL, "#vs03 #")
 '				Case "EUR"
 '				Case Else
 '					'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -657,52 +657,52 @@ End Class
 '			End Select
 '			'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			aa = aa & ObjectValue(rsMAR(Fl).Fields("A100")) & vbTab
+'			aa = aa & ObjectValue(RS_MAR(FL).Fields("A100")) & vbTab
 '		End If
 '		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		aa = aa & ObjectValue(rsMAR(TableOfInvoices).Fields("v033")) & vbTab
+'		aa = aa & ObjectValue(RS_MAR(TABLE_INVOICES).Fields("v033")) & vbTab
 '		'vervaldag < memodatum?
-'		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(rsMAR(TableOfInvoices)(v036)). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		If ktrlMemoDatum > ObjectValue(rsMAR(TableOfInvoices).Fields("v036")) Then
+'		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(RS_MAR(TABLE_INVOICES)(v036)). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		If ktrlMemoDatum > ObjectValue(RS_MAR(TABLE_INVOICES).Fields("v036")) Then
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			aa = aa & FunctionDateText(ktrlMemoDatum) & vbTab
 '		Else
 '			'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			aa = aa & FunctionDateText(ObjectValue(rsMAR(TableOfInvoices).Fields("v036"))) & vbTab
+'			aa = aa & FunctionDateText(ObjectValue(RS_MAR(TABLE_INVOICES).Fields("v036"))) & vbTab
 '		End If
 '		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		aa = aa & ObjectValue(rsMAR(Fl).Fields("vs03")) & vbTab
-'		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(rsMAR(Fl)(vs03)). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		If ObjectValue(rsMAR(Fl).Fields("vs03")) = "EUR" And bhEuro = False Then
+'		aa = aa & ObjectValue(RS_MAR(FL).Fields("vs03")) & vbTab
+'		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(RS_MAR(FL)(vs03)). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		If ObjectValue(RS_MAR(FL).Fields("vs03")) = "EUR" And BH_EURO = False Then
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			aa = aa & System.Math.Round((dTotaal - dBetaald) / Euro, 2) & vbTab
-'			'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(rsMAR(Fl)(vs03)). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		ElseIf ObjectValue(rsMAR(Fl).Fields("vs03")) = "BEF" And bhEuro = True Then 
+'			aa = aa & System.Math.Round((dTotaal - dBetaald) / EURO, 2) & vbTab
+'			'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(RS_MAR(FL)(vs03)). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		ElseIf ObjectValue(RS_MAR(FL).Fields("vs03")) = "BEF" And BH_EURO = True Then 
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			aa = aa & System.Math.Round((dTotaal - dBetaald) * Euro, 0) & vbTab
-'		ElseIf bhEuro = True Then 
+'			aa = aa & System.Math.Round((dTotaal - dBetaald) * EURO, 0) & vbTab
+'		ElseIf BH_EURO = True Then 
 '			'MsgBox "kontrolestop"
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			aa = aa & System.Math.Round(dTotaal - dBetaald, 2) & vbTab
-'		ElseIf bhEuro = False Then 
+'		ElseIf BH_EURO = False Then 
 '			'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			aa = aa & System.Math.Round(dTotaal - dBetaald, 0) & vbTab
 '		Else
 '			MsgBox("onlogische situatie")
 '		End If
 '		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		If Len(Trim(ObjectValue(rsMAR(Fl).Fields("A170")))) = 14 Then
+'		If Len(Trim(ObjectValue(RS_MAR(FL).Fields("A170")))) = 14 Then
 '			'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			If BankOk(ObjectValue(rsMAR(Fl).Fields("A170"))) Then
+'			If BankOk(ObjectValue(RS_MAR(FL).Fields("A170"))) Then
 '				'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'				aa = aa & Mid(ObjectValue(rsMAR(Fl).Fields("A170")), 1, 3) & Mid(ObjectValue(rsMAR(Fl).Fields("A170")), 5, 7) & Mid(ObjectValue(rsMAR(Fl).Fields("A170")), 13, 2) & vbTab
+'				aa = aa & Mid(ObjectValue(RS_MAR(FL).Fields("A170")), 1, 3) & Mid(ObjectValue(RS_MAR(FL).Fields("A170")), 5, 7) & Mid(ObjectValue(RS_MAR(FL).Fields("A170")), 13, 2) & vbTab
 '			Else
 '				'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'				aa = aa & "!!" & AdoGetField(Fl, "#A170 #") & vbTab
+'				aa = aa & "!!" & AdoGetField(FL, "#A170 #") & vbTab
 '				TeVerbeteren = TeVerbeteren + 1
 '			End If
 '		Else
@@ -711,11 +711,11 @@ End Class
 '			GeenRekening = GeenRekening + 1
 '		End If
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		aa = aa & AdoGetField(TableOfInvoices, "#v039 #") & vbTab
+'		aa = aa & AdoGetField(TABLE_INVOICES, "#v039 #") & vbTab
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object ObjectValue(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		aa = aa & ObjectValue(rsMAR(TableOfInvoices).Fields("rvID"))
+'		aa = aa & ObjectValue(RS_MAR(TABLE_INVOICES).Fields("rvID"))
 '		'UPGRADE_WARNING: Couldn't resolve default property of object aa. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		grdDokumentDetail.AddItem(aa, grdDokumentDetail.Rows - 1)
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -734,16 +734,16 @@ End Class
 '			dtpMemoDatum.Enabled = False
 '			tbBedrag.Enabled = False
 '		Else
-'			JetGet(TableOfSuppliers, 0, Mid(grdDokumentDetail.get_TextMatrix(grdDokumentDetail.Row, 0), 2))
-'			If Ktrl Then
+'			JetGet(TABLE_SUPPLIERS, 0, Mid(grdDokumentDetail.get_TextMatrix(grdDokumentDetail.Row, 0), 2))
+'			If KTRL Then
 '				MsgBox("Breng leverancier opnieuw in via fiches a.u.b.", MsgBoxStyle.Critical)
 '			Else
 '				If Len(grdDokumentDetail.get_TextMatrix(grdDokumentDetail.Row, 6)) <> 12 Then
 '					MsgBox("Breng eerst 'juiste' rekeningnummer in a.u.b. voor " & vbCr & vbCr & grdDokumentDetail.get_TextMatrix(grdDokumentDetail.Row, 1), MsgBoxStyle.Information)
 '				End If
-'				RecordToField(TableOfSuppliers)
+'				RecordToField(TABLE_SUPPLIERS)
 
-'				If AdoGetField(TableOfSuppliers, "#v017 #") = "1" Then
+'				If AdoGetField(TABLE_SUPPLIERS, "#v017 #") = "1" Then
 '					'UPGRADE_ISSUE: MSMask.MaskEdBox property mebRekening.AutoTab was not upgraded. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'
 '					mebRekening.AutoTab = True
 '					'UPGRADE_WARNING: MSMask.MaskEdBox property mebRekening.ClipMode has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
@@ -820,7 +820,7 @@ End Class
 
 '	Private Sub Samenstellen_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Samenstellen.Click
 
-'		KTRLBalans(TableOfSuppliers)
+'		KTRLBalans(TABLE_SUPPLIERS)
 
 '		grdDokumentDetail.Row = 1
 '		grdDokumentDetail.Col = 0
@@ -852,7 +852,7 @@ End Class
 '			Case 0
 '				VB6.SetDefault(Samenstellen, False)
 '			Case 2, 3
-'				SnelHelpPrint("Dubbelklikken of [Ctrl] voor geïndexeerd zoeken", blLogging)
+'				SnelHelpPrint("Dubbelklikken of [Ctrl] voor geïndexeerd zoeken", BL_LOGGING)
 '				VB6.SetDefault(Samenstellen, True)
 '		End Select
 
@@ -867,12 +867,12 @@ End Class
 '			Case 2, 3
 '				Select Case KeyCode
 '					Case 17
-'						aIndex = 0
-'						SharedFl = TableOfSuppliers
-'						GridText = TekstLijn(Index).Text
+'						A_INDEX = 0
+'						SHARED_FL = TABLE_SUPPLIERS
+'						GRIDTEXT = TekstLijn(Index).Text
 '						SqlSearch.ShowDialog()
-'						If Ktrl = 0 Then
-'							TekstLijn(Index).Text = AdoGetField(TableOfSuppliers, "#A110 #")
+'						If KTRL = 0 Then
+'							TekstLijn(Index).Text = AdoGetField(TABLE_SUPPLIERS, "#A110 #")
 '							If Index = 2 Then
 '								TekstLijn(3).Text = TekstLijn(2).Text
 '							End If
@@ -891,7 +891,7 @@ End Class
 '				VB6.SetDefault(Samenstellen, False)
 '				If DateWrongFormat(TekstLijn(1).Text) Then
 '					Beep()
-'					TekstLijn(1).Text = MimGlobalDate.Value
+'					TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
 '					TekstLijn(1).Focus()
 '				End If
 '			Case 2, 3

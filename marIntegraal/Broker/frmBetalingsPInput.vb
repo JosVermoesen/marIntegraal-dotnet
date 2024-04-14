@@ -13,7 +13,7 @@ End Class
 
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
-'		GridText = "ESC"
+'		GRIDTEXT = "ESC"
 '		Me.Close()
 
 '	End Sub
@@ -72,7 +72,7 @@ End Class
 '				'.SelEndRow = .Row
 '			End With
 
-'			GridText = "OK"
+'			GRIDTEXT = "OK"
 '			Me.Close()
 '		End If
 
@@ -98,40 +98,40 @@ End Class
 
 '		If Index = 1 Then
 '			If KeyCode = 17 Then
-'				SharedFl = TableOfCustomers
-'				aIndex = 1
-'				GridText = TekstInfo(1).Text
+'				SHARED_FL = TABLE_CUSTOMERS
+'				A_INDEX = 1
+'				GRIDTEXT = TekstInfo(1).Text
 '				SqlSearch.ShowDialog()
-'				If Ktrl Then
+'				If KTRL Then
 '					TekstInfo(1).Text = "-"
 '					CType(KwijtingEdit.Controls("Ok"), Object).Enabled = False
 '					Exit Sub
 '				Else
-'					RecordToField(TableOfCustomers)
-'					TekstInfo(1).Text = AdoGetField(TableOfCustomers, "#A100 #")
-'					JetGet(TableOfContracts, 1, AdoGetField(TableOfCustomers, "#A110 #"))
-'					If Ktrl Or SetSpacing(KeyBuf(TableOfContracts), 12) <> SetSpacing(AdoGetField(TableOfCustomers, "#A110 #"), 12) Then
+'					RecordToField(TABLE_CUSTOMERS)
+'					TekstInfo(1).Text = AdoGetField(TABLE_CUSTOMERS, "#A100 #")
+'					JetGet(TABLE_CONTRACTS, 1, AdoGetField(TABLE_CUSTOMERS, "#A110 #"))
+'					If KTRL Or SetSpacing(KEY_BUF(TABLE_CONTRACTS), 12) <> SetSpacing(AdoGetField(TABLE_CUSTOMERS, "#A110 #"), 12) Then
 '						MsgBox("Geen polissen voor deze klant te vinden !!")
 '						TekstInfo(1).Text = "-"
 '						CType(KwijtingEdit.Controls("Ok"), Object).Enabled = False
 '						Exit Sub
 '					Else
 '						Do 
-'							RecordToField(TableOfContracts)
-'							If VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(0).Text, 4) = AdoGetField(TableOfContracts, "#A010 #") Then
-'								MSG = "Boeking voor polisnummer : " & AdoGetField(TableOfContracts, "#A000 #") & vbCrLf & vbCrLf
-'								MSG = MSG & AdoGetField(TableOfContracts, "#vs99 #") & vbCrLf
-'								MSG = MSG & AdoGetField(TableOfContracts, "#vs98 #") & vbCrLf & vbCrLf
+'							RecordToField(TABLE_CONTRACTS)
+'							If VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(0).Text, 4) = AdoGetField(TABLE_CONTRACTS, "#A010 #") Then
+'								MSG = "Boeking voor polisnummer : " & AdoGetField(TABLE_CONTRACTS, "#A000 #") & vbCrLf & vbCrLf
+'								MSG = MSG & AdoGetField(TABLE_CONTRACTS, "#vs99 #") & vbCrLf
+'								MSG = MSG & AdoGetField(TABLE_CONTRACTS, "#vs98 #") & vbCrLf & vbCrLf
 '								MSG = MSG & "Bent U zeker ?"
-'								KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'								If KtrlBox = MsgBoxResult.Yes Then
-'									TekstInfo(0).Text = AdoGetField(TableOfContracts, "#A000 #")
+'								CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'								If CTRL_BOX = MsgBoxResult.Yes Then
+'									TekstInfo(0).Text = AdoGetField(TABLE_CONTRACTS, "#A000 #")
 '									TekstInfo(0).Focus()
 '									Exit Do
 '								End If
 '							End If
-'							bNext(TableOfContracts)
-'							If Ktrl Or SetSpacing(KeyBuf(TableOfContracts), 12) <> SetSpacing(AdoGetField(TableOfCustomers, "#A110 #"), 12) Then
+'							bNext(TABLE_CONTRACTS)
+'							If KTRL Or SetSpacing(KEY_BUF(TABLE_CONTRACTS), 12) <> SetSpacing(AdoGetField(TABLE_CUSTOMERS, "#A110 #"), 12) Then
 '								MsgBox("Geen polissen meer voor deze klant te vinden !!")
 '								TekstInfo(1).Text = "-"
 '								CType(KwijtingEdit.Controls("Ok"), Object).Enabled = False
@@ -150,33 +150,33 @@ End Class
 
 '		Select Case Index
 '			Case 0
-'				JetGet(TableOfContracts, 0, SetSpacing(TekstInfo(0).Text, 12))
-'				If Ktrl Then
+'				JetGet(TABLE_CONTRACTS, 0, SetSpacing(TekstInfo(0).Text, 12))
+'				If KTRL Then
 '					CType(KwijtingEdit.Controls("Ok"), Object).Enabled = False
 '					TekstInfo(1).Focus()
 '					TekstInfo(0).Text = ""
 '					Exit Sub
 '				Else
-'					RecordToField(TableOfContracts)
-'					If VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(0).Text, 4) = AdoGetField(TableOfContracts, "#A010 #") Then
-'						TekstInfo(0).Text = AdoGetField(TableOfContracts, "#A000 #")
-'						JetGet(TableOfCustomers, 0, AdoGetField(TableOfContracts, "#A110 #"))
-'						If Ktrl Then
+'					RecordToField(TABLE_CONTRACTS)
+'					If VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(0).Text, 4) = AdoGetField(TABLE_CONTRACTS, "#A010 #") Then
+'						TekstInfo(0).Text = AdoGetField(TABLE_CONTRACTS, "#A000 #")
+'						JetGet(TABLE_CUSTOMERS, 0, AdoGetField(TABLE_CONTRACTS, "#A110 #"))
+'						If KTRL Then
 '							TekstInfo(1).Text = "KlantLink onmogelijk !!! Kontroleer !!!"
 '							CType(KwijtingEdit.Controls("Ok"), Object).Enabled = False
 '						Else
-'							RecordToField(TableOfCustomers)
-'							TekstInfo(1).Text = AdoGetField(TableOfCustomers, "#A100 #")
+'							RecordToField(TABLE_CUSTOMERS)
+'							TekstInfo(1).Text = AdoGetField(TABLE_CUSTOMERS, "#A100 #")
 '							If VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(1).Text, 1) = "1" Then
-'								'TekstInfo(2).Text = Format(Val(AdoGetField(TableOfContracts, "#v165 #")), "00") + "/" + Format(Val(AdoGetField(TableOfContracts, "#v164 #")), "00") + "/" + Right(KwijtingBoeken!TekstInfo(0).Text, 4)
-'								TekstInfo(2).Text = VB6.Format(Val(AdoGetField(TableOfContracts, "#v165 #")), "00") & "/" & VB.Right(CType(KwijtingBoeken.Controls("TekstInfo"), Object)(0).Text, 7)
+'								'TekstInfo(2).Text = Format(Val(AdoGetField(TABLE_CONTRACTS, "#v165 #")), "00") + "/" + Format(Val(AdoGetField(TABLE_CONTRACTS, "#v164 #")), "00") + "/" + Right(KwijtingBoeken!TekstInfo(0).Text, 4)
+'								TekstInfo(2).Text = VB6.Format(Val(AdoGetField(TABLE_CONTRACTS, "#v165 #")), "00") & "/" & VB.Right(CType(KwijtingBoeken.Controls("TekstInfo"), Object)(0).Text, 7)
 '							Else
-'								TekstInfo(2).Text = CType(KwijtingBoeken.Controls("TekstInfo"), Object)(0).Text 'Format(Val(AdoGetField(TableOfContracts, "#v165 #")), "00") + "/" + Format(Val(AdoGetField(TableOfContracts, "#v164 #")), "00") + "/" + Right(KwijtingBoeken!TekstInfo(0).Text, 4)
+'								TekstInfo(2).Text = CType(KwijtingBoeken.Controls("TekstInfo"), Object)(0).Text 'Format(Val(AdoGetField(TABLE_CONTRACTS, "#v165 #")), "00") + "/" + Format(Val(AdoGetField(TABLE_CONTRACTS, "#v164 #")), "00") + "/" + Right(KwijtingBoeken!TekstInfo(0).Text, 4)
 '							End If
 '							Ok.Enabled = True
 '						End If
 '					Else
-'						MsgBox("Maatschappij : " & VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(0).Text, 4) & " <> " & AdoGetField(TableOfContracts, "#A010 #"))
+'						MsgBox("Maatschappij : " & VB.Left(CType(KwijtingBoeken.Controls("KeuzeInfo"), Object)(0).Text, 4) & " <> " & AdoGetField(TABLE_CONTRACTS, "#A010 #"))
 '						TekstInfo(Index).Text = ""
 '					End If
 '				End If
@@ -188,10 +188,10 @@ End Class
 '					TekstInfo(2).Focus()
 '				End If
 '			Case 3, 4
-'				If bhEuro Then
-'					TekstInfo(Index).Text = Dec(Val(TekstInfo(Index).Text), MaskEUR)
+'				If BH_EURO Then
+'					TekstInfo(Index).Text = Dec(Val(TekstInfo(Index).Text), MASK_EUR)
 '				Else
-'					TekstInfo(Index).Text = Dec(Val(TekstInfo(Index).Text), MaskBEF)
+'					TekstInfo(Index).Text = Dec(Val(TekstInfo(Index).Text), MASK_BEF)
 '				End If
 '		End Select
 

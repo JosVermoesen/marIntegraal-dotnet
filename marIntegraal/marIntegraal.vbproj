@@ -409,7 +409,7 @@
     <Compile Include="SupportiveForms\frmXLog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\modDatabaseRoutines.vb" />
+    <Compile Include="Modules\modDatabase.vb" />
     <Compile Include="Modules\modLibs.vb" />
     <Compile Include="Modules\modMIM.vb" />
     <Compile Include="Modules\modTB2.vb" />

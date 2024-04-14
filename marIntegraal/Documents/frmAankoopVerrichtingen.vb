@@ -12,8 +12,8 @@ Public Class frmAankoopVerrichtingen
 
         If lbAankoopDetail.Items.Count Then
             MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-            Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
-            If Ktrl = 6 Then
+            KTRL = MsgBox(MSG, 292, "Voortijdig stoppen...")
+            If KTRL = 6 Then
             Else
                 Exit Sub
             End If
@@ -74,7 +74,7 @@ End Class
 
 '	Private Sub AankoopDetail_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles AankoopDetail.Enter
 
-'		SnelHelpPrint("[Insert] lijn bijvoegen, [Delete] lijn verwijderen, [spatie],[Enter] om te wijzigen", blLogging)
+'		SnelHelpPrint("[Insert] lijn bijvoegen, [Delete] lijn verwijderen, [spatie],[Enter] om te wijzigen", BL_LOGGING)
 '		If AankoopDetail.Items.Count Then
 '			AankoopDetail.SelectedIndex = AankoopDetail.Items.Count - 1
 '		End If
@@ -91,12 +91,12 @@ End Class
 '		Positie = AankoopDetail.SelectedIndex
 '		Select Case KeyCode
 '			Case 45, 107
-'				GridText = ""
+'				GRIDTEXT = ""
 '				Wijzigen.ShowDialog()
-'				If GridText = "" Then
+'				If GRIDTEXT = "" Then
 '				Else
-'					If RekeningOK(VB.Left(GridText, 7)) Then
-'						AankoopDetail.Items.Insert(Positie + 1, GridText)
+'					If RekeningOK(VB.Left(GRIDTEXT, 7)) Then
+'						AankoopDetail.Items.Insert(Positie + 1, GRIDTEXT)
 '						X = InvestKtrl()
 '					End If
 '				End If
@@ -106,8 +106,8 @@ End Class
 '					Exit Sub
 '				End If
 '				MSG = "Line verwijderen !  Bent U zeker ?"
-'				Ktrl = MsgBox(MSG, 292)
-'				If Ktrl = 6 Then
+'				KTRL = MsgBox(MSG, 292)
+'				If KTRL = 6 Then
 '					AankoopDetail.Items.RemoveAt(Positie)
 '				End If
 '		End Select
@@ -128,13 +128,13 @@ End Class
 '					MsgBox("Eerst een lijn selekteren !", 0, "Line wijzigen")
 '					GoTo EventExitSub
 '				End If
-'				GridText = AankoopDetail.Text
+'				GRIDTEXT = AankoopDetail.Text
 '				Wijzigen.ShowDialog()
-'				If GridText = "" Then
+'				If GRIDTEXT = "" Then
 '				Else
-'					If RekeningOK(VB.Left(GridText, 7)) Then
+'					If RekeningOK(VB.Left(GRIDTEXT, 7)) Then
 '						AankoopDetail.Items.RemoveAt(Positie)
-'						AankoopDetail.Items.Insert(Positie, GridText)
+'						AankoopDetail.Items.Insert(Positie, GRIDTEXT)
 '						X = InvestKtrl()
 '					End If
 '				End If
@@ -165,12 +165,12 @@ End Class
 '					dokumentSleutel.Value = SleutelDok(Ar)
 
 '				Case 2
-'					'MsgBox Now & " beschikbaar eerstvolgende versie(s) (ijdele hoop...  Euro gaat voor!)", vbInformation
+'					'MsgBox Now & " beschikbaar eerstvolgende versie(s) (ijdele hoop...  EURO gaat voor!)", vbInformation
 '					AankoopOptie(0).Checked = True
 '			End Select
 '			Me.Text = "Ctrl+F1 Direkte aankoopverrichting (" & dokumentSleutel.Value & ")"
-'			JetGet(TableOfInvoices, 0, dokumentSleutel.Value)
-'			If Ktrl = 0 Then
+'			JetGet(TABLE_INVOICES, 0, dokumentSleutel.Value)
+'			If KTRL = 0 Then
 '				MsgBox("Document " & dokumentSleutel.Value & " is reeds aanwezig..." & vbCr & vbCr & "Controleer eventueel uw tellerbestand voor het active boekjaar.  Indien U zopas wisselde van boekjaar met het aankoopvenster open, mag U (na controle) deze melding negeren..." & vbCr & vbCr & "NIET BOEKJAAR GEWISSELD ZOPAS ?  EERST UW TELLEBESTAND + PROEF- SALDI BALANS CONTROLEREN !!!", MsgBoxStyle.Exclamation)
 '			End If
 
@@ -184,16 +184,16 @@ End Class
 '		Dim DummySleutel As String
 
 '		If AankoopDetail.Items.Count = 0 Then Exit Sub
-'		If bhEuro And cmdSwitch.Text = "Ingave in EUR" Then
+'		If BH_EURO And cmdSwitch.Text = "Ingave in EUR" Then
 '			'ok VOOR EUR boekhouding
-'		ElseIf Not bhEuro And cmdSwitch.Text = "Ingave in BEF" Then 
+'		ElseIf Not BH_EURO And cmdSwitch.Text = "Ingave in BEF" Then 
 '			'ok VOOR BEF boekhouding
 '		Else
 '			MsgBox("Uw boekjaar draait in de andere munt.  De Toggle is er enkel informatief.  Eerst de Toggle terugplaatsen op munt van de boekhouding a.u.b.", MsgBoxStyle.Information)
 '			Exit Sub
 '		End If
 
-'		If Not DatumKtrl(TekstInfo(0).Text, PeriodAsText) Then
+'		If Not DatumKtrl(TekstInfo(0).Text, PERIODAS_TEXT) Then
 '			Beep()
 '			On Error Resume Next
 '			TekstInfo(0).Focus()
@@ -214,15 +214,15 @@ End Class
 '		End If
 
 '		MSG = "Document wegschrijven, boekhouding bijwerken."
-'		Ktrl = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, dokumentSleutel.Value & " verwerken.")
-'		Select Case Ktrl
+'		KTRL = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, dokumentSleutel.Value & " verwerken.")
+'		Select Case KTRL
 '			Case 7
 '				Exit Sub
 '		End Select
 
-'		Ktrl = JetTableOpen(TableOfLedgerAccounts)
-'		Ktrl = JetTableOpen(FlJournaal)
-'		Ktrl = JetTableOpen(TableOfInvoices)
+'		KTRL = JetTableOpen(TABLE_LEDGERACCOUNTS)
+'		KTRL = JetTableOpen(TABLE_JOURNAL)
+'		KTRL = JetTableOpen(TABLE_INVOICES)
 '		TransBegin()
 '		If WegBoekFout() Then
 '			TransAbort()
@@ -230,15 +230,15 @@ End Class
 '			Exit Sub
 '		Else
 '			TransCommit()
-'			If Ktrl Then
+'			If KTRL Then
 '				TransAbort()
 '				Exit Sub
 '			End If
 '			If AankoopFlg = 1 And sIsIntraFlg.Value = "1" Then
-'				Fl = TableOfSuppliers
-'				aIndex = 19
-'				dTTwb = Val(AdoGetField(TableOfInvoices, "#v048 #")) + Val(AdoGetField(TableOfInvoices, "#v047 #")) + Val(AdoGetField(TableOfInvoices, "#v046 #")) + Val(AdoGetField(TableOfInvoices, "#v049 #"))
-'				GridText = Dec(dTTwb, MaskSy(0)) & vbTab
+'				FL = TABLE_SUPPLIERS
+'				A_INDEX = 19
+'				dTTwb = Val(AdoGetField(TABLE_INVOICES, "#v048 #")) + Val(AdoGetField(TABLE_INVOICES, "#v047 #")) + Val(AdoGetField(TABLE_INVOICES, "#v046 #")) + Val(AdoGetField(TABLE_INVOICES, "#v049 #"))
+'				GRIDTEXT = Dec(dTTwb, MASK_SY(0)) & vbTab
 '				Intrastat.ShowDialog()
 '			End If
 '			SS99(VB.Right(dokumentSleutel.Value, 5), Ar) 's001 of s003
@@ -262,8 +262,8 @@ End Class
 '		If AankoopDetail.Items.Count = 0 Then
 '		Else
 '			MSG = "Aanwezige bewerkingen negeren !  Bent U zeker ?"
-'			Ktrl = MsgBox(MSG, 292, "Aankoopverrichtingen sluiten")
-'			If Ktrl <> 6 Then
+'			KTRL = MsgBox(MSG, 292, "Aankoopverrichtingen sluiten")
+'			If KTRL <> 6 Then
 '				Exit Sub
 '			End If
 '		End If
@@ -283,7 +283,7 @@ End Class
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		If LaadTekst("dnnInstellingen", "PostvakIO") = "" Then
 '			MsgBox("Nieuwe PC of nog geen instellingen voor PDF Postvak In.  Aanbevolen in te te stellen a.u.b. via submenu DotNetNuke.", MsgBoxStyle.Information)
-'			Mim.TekenOpen.InitialDirectory = LocationCompanyData
+'			Mim.TekenOpen.InitialDirectory = LOCATION_COMPANYDATA
 '		Else
 '			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -337,14 +337,14 @@ End Class
 '			MsgBox("LogicaStop lengte rekeningnummer")
 '		Else
 '			'controle of de leverancier (nog) actief is en daarna wegschrijven
-'			JetGet(TableOfSuppliers, 0, VB.Left(LeverancierInfo.Text, 12))
-'			If Ktrl Then
+'			JetGet(TABLE_SUPPLIERS, 0, VB.Left(LeverancierInfo.Text, 12))
+'			If KTRL Then
 '				MsgBox("LogicaStop zoeken leveranciersfiche")
 '			Else
-'				RecordToField(TableOfSuppliers)
-'				AdoInsertToRecord(TableOfSuppliers, TekstInfo(11).Text, "A170")
-'				bUpdate(TableOfSuppliers, 0)
-'				If Ktrl Then
+'				RecordToField(TABLE_SUPPLIERS)
+'				AdoInsertToRecord(TABLE_SUPPLIERS, TekstInfo(11).Text, "A170")
+'				bUpdate(TABLE_SUPPLIERS, 0)
+'				If KTRL Then
 '					MsgBox("Onverwacht situatie")
 '				Else
 '					Me.cbBank.CheckState = System.Windows.Forms.CheckState.Unchecked
@@ -357,14 +357,14 @@ End Class
 
 '	Private Sub cmdSQLInfo_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cmdSQLInfo.Click
 
-'		JetGet(TableOfSuppliers, 0, VB.Left(LeverancierInfo.Text, 12))
-'		If Ktrl Then
+'		JetGet(TABLE_SUPPLIERS, 0, VB.Left(LeverancierInfo.Text, 12))
+'		If KTRL Then
 '			MsgBox("Onlogica.")
 '			cmdSQLInfo.Visible = False
 '		Else
-'			RecordToField(TableOfSuppliers)
-'			If AdoGetField(TableOfSuppliers, "#v254 #") <> "" Then
-'				KtrlBox = SQLPopUp(AdoGetField(TableOfSuppliers, "#v254 #"), JetTableName(TableOfSuppliers), "A110", AdoGetField(TableOfSuppliers, "#A110 #"))
+'			RecordToField(TABLE_SUPPLIERS)
+'			If AdoGetField(TABLE_SUPPLIERS, "#v254 #") <> "" Then
+'				CTRL_BOX = SQLPopUp(AdoGetField(TABLE_SUPPLIERS, "#v254 #"), JET_TABLENAME(TABLE_SUPPLIERS), "A110", AdoGetField(TABLE_SUPPLIERS, "#A110 #"))
 '			Else
 '				cmdSQLInfo.Visible = False
 '			End If
@@ -388,61 +388,61 @@ End Class
 '		TekstInfo(7).Text = ""
 '		TekstInfo(8).Text = ""
 '		If cmdSwitch.Text = "Ingave in EUR" Then
-'			TekstInfo(6).Text = Dec(Val(TekstInfo(6).Text) * Euro, MaskSy(0))
+'			TekstInfo(6).Text = Dec(Val(TekstInfo(6).Text) * EURO, MASK_SY(0))
 '			cmdSwitch.Text = "Ingave in BEF"
 '			'Stap 2: de nodige schermopmaak voor BEF
-'			If bhEuro Then
+'			If BH_EURO Then
 '				'EUR boekhouding
-'				dMuntL = 1 / Euro
-'				For CountTo = 0 To AankoopDetail.Items.Count - 1
+'				D_CURRENCY = 1 / EURO
+'				For COUNT_TO = 0 To AankoopDetail.Items.Count - 1
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					TempoVar = VB6.GetItemString(AankoopDetail, CountTo)
+'					TempoVar = VB6.GetItemString(AankoopDetail, COUNT_TO)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) * Euro, 0), MaskEURBH)
+'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) * EURO, 0), MASK_EURBH)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					VB6.SetItemString(AankoopDetail, CountTo, TempoVar)
+'					VB6.SetItemString(AankoopDetail, COUNT_TO, TempoVar)
 '				Next 
 '			Else
 '				'BEF boekhouding
-'				dMuntL = 1
-'				For CountTo = 0 To AankoopDetail.Items.Count - 1
+'				D_CURRENCY = 1
+'				For COUNT_TO = 0 To AankoopDetail.Items.Count - 1
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					TempoVar = VB6.GetItemString(AankoopDetail, CountTo)
+'					TempoVar = VB6.GetItemString(AankoopDetail, COUNT_TO)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) * Euro, 0), MaskEURBH)
+'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) * EURO, 0), MASK_EURBH)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					VB6.SetItemString(AankoopDetail, CountTo, TempoVar)
+'					VB6.SetItemString(AankoopDetail, COUNT_TO, TempoVar)
 '				Next 
 '			End If
 '		Else
-'			TekstInfo(6).Text = Dec(Val(TekstInfo(6).Text) / Euro, MaskEURBH)
+'			TekstInfo(6).Text = Dec(Val(TekstInfo(6).Text) / EURO, MASK_EURBH)
 '			cmdSwitch.Text = "Ingave in EUR"
 '			'Stap 2: de nodige schermopmaak voor EUR
-'			If bhEuro Then
+'			If BH_EURO Then
 '				'EUR boekhouding
-'				dMuntL = 1
-'				For CountTo = 0 To AankoopDetail.Items.Count - 1
+'				D_CURRENCY = 1
+'				For COUNT_TO = 0 To AankoopDetail.Items.Count - 1
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					TempoVar = VB6.GetItemString(AankoopDetail, CountTo)
+'					TempoVar = VB6.GetItemString(AankoopDetail, COUNT_TO)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) / Euro, 2), MaskEURBH)
+'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) / EURO, 2), MASK_EURBH)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					VB6.SetItemString(AankoopDetail, CountTo, TempoVar)
+'					VB6.SetItemString(AankoopDetail, COUNT_TO, TempoVar)
 '				Next 
 '			Else
 '				'BEF boekhouding
-'				dMuntL = 1 / Euro
-'				For CountTo = 0 To AankoopDetail.Items.Count - 1
+'				D_CURRENCY = 1 / EURO
+'				For COUNT_TO = 0 To AankoopDetail.Items.Count - 1
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					TempoVar = VB6.GetItemString(AankoopDetail, CountTo)
+'					TempoVar = VB6.GetItemString(AankoopDetail, COUNT_TO)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) / Euro, 2), MaskEURBH)
+'					Mid(TempoVar, 50, 12) = Dec(System.Math.Round(Val(Mid(TempoVar, 50, 12)) / EURO, 2), MASK_EURBH)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object TempoVar. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					VB6.SetItemString(AankoopDetail, CountTo, TempoVar)
+'					VB6.SetItemString(AankoopDetail, COUNT_TO, TempoVar)
 '				Next 
 '			End If
 '		End If
-'		TekstInfo(9).Text = Dec(dMuntL, "##0.########")
+'		TekstInfo(9).Text = Dec(D_CURRENCY, "##0.########")
 '		VernieuwDirecteAankoopEUR()
 '		TekstInfo(6).Focus()
 
@@ -465,14 +465,14 @@ End Class
 '			Exit Sub
 '		End If
 
-'		'rsMAR(TableOfInvoices).Close
-'		Ktrl = ktrlBLOBRecord
-'		If Ktrl = False Then
+'		'RS_MAR(TABLE_INVOICES).Close
+'		KTRL = ktrlBLOBRecord
+'		If KTRL = False Then
 '			AutoUnloadCompany()
 '			Exit Sub
 '		End If
 
-'		If bhEuro Then
+'		If BH_EURO Then
 '			cmdSwitch.Text = "Ingave in EUR"
 '		Else
 '			cmdSwitch.Text = "Ingave in BEF"
@@ -495,39 +495,39 @@ End Class
 '		Left = 0
 
 '		For Tel = 16 To 19
-'			rbtwVAK(Tel - 16) = String99(Reading, Tel)
-'			rbtwVAK(Tel - 12) = String99(Reading, Tel + 6)
+'			rbtwVAK(Tel - 16) = String99(READING, Tel)
+'			rbtwVAK(Tel - 12) = String99(READING, Tel + 6)
 '		Next 
 
-'		LeverancierRekening.Value = String99(Reading, 10)
-'		sIsIntraFlg.Value = String99(Reading, 200)
+'		LeverancierRekening.Value = String99(READING, 10)
+'		sIsIntraFlg.Value = String99(READING, 200)
 
 
-'		PriveRekening.Value = String99(Reading, 145)
+'		PriveRekening.Value = String99(READING, 145)
 
 '		GrensDetail(0) = ""
-'		Fl99Record = String99(Reading, 148)
-'		Mid(GrensDetail(0), 1, 7) = VB.Left(Fl99Record, 7)
-'		Fl99Record = String99(Reading, 149)
-'		Mid(GrensDetail(0), 8, 7) = VB.Left(Fl99Record, 7)
+'		FL99_RECORD = String99(READING, 148)
+'		Mid(GrensDetail(0), 1, 7) = VB.Left(FL99_RECORD, 7)
+'		FL99_RECORD = String99(READING, 149)
+'		Mid(GrensDetail(0), 8, 7) = VB.Left(FL99_RECORD, 7)
 
 '		GrensDetail(1) = ""
-'		Fl99Record = String99(Reading, 146)
-'		Mid(GrensDetail(1), 1, 7) = VB.Left(Fl99Record, 7)
-'		Fl99Record = String99(Reading, 147)
-'		Mid(GrensDetail(1), 8, 7) = VB.Left(Fl99Record, 7)
+'		FL99_RECORD = String99(READING, 146)
+'		Mid(GrensDetail(1), 1, 7) = VB.Left(FL99_RECORD, 7)
+'		FL99_RECORD = String99(READING, 147)
+'		Mid(GrensDetail(1), 8, 7) = VB.Left(FL99_RECORD, 7)
 
 '		GrensDetail(2) = ""
-'		Fl99Record = String99(Reading, 150)
-'		Mid(GrensDetail(2), 1, 7) = VB.Left(Fl99Record, 7)
-'		Fl99Record = String99(Reading, 151)
-'		Mid(GrensDetail(2), 8, 7) = VB.Left(Fl99Record, 7)
+'		FL99_RECORD = String99(READING, 150)
+'		Mid(GrensDetail(2), 1, 7) = VB.Left(FL99_RECORD, 7)
+'		FL99_RECORD = String99(READING, 151)
+'		Mid(GrensDetail(2), 8, 7) = VB.Left(FL99_RECORD, 7)
 
 '		GrensDetail(3) = ""
-'		Fl99Record = String99(Reading, 152)
-'		Mid(GrensDetail(3), 1, 7) = VB.Left(Fl99Record, 7)
-'		Fl99Record = String99(Reading, 153)
-'		Mid(GrensDetail(3), 8, 7) = VB.Left(Fl99Record, 7)
+'		FL99_RECORD = String99(READING, 152)
+'		Mid(GrensDetail(3), 1, 7) = VB.Left(FL99_RECORD, 7)
+'		FL99_RECORD = String99(READING, 153)
+'		Mid(GrensDetail(3), 8, 7) = VB.Left(FL99_RECORD, 7)
 
 '		'InstalleerRecenteCrediteuren
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -558,15 +558,15 @@ End Class
 '		AankoopDetail.Enabled = True
 '		'InvoerLijn.Enabled = True
 
-'		Lever = vbCrLf & AdoGetField(TableOfSuppliers, "#A100 #") & vbCrLf & AdoGetField(TableOfSuppliers, "#A125 #") & vbCrLf & AdoGetField(TableOfSuppliers, "#A104 #") & vbCrLf & AdoGetField(TableOfSuppliers, "#A109 #") & " " & AdoGetField(TableOfSuppliers, "#A107 #") & " " & AdoGetField(TableOfSuppliers, "#A108 #")
+'		Lever = vbCrLf & AdoGetField(TABLE_SUPPLIERS, "#A100 #") & vbCrLf & AdoGetField(TABLE_SUPPLIERS, "#A125 #") & vbCrLf & AdoGetField(TABLE_SUPPLIERS, "#A104 #") & vbCrLf & AdoGetField(TABLE_SUPPLIERS, "#A109 #") & " " & AdoGetField(TABLE_SUPPLIERS, "#A107 #") & " " & AdoGetField(TABLE_SUPPLIERS, "#A108 #")
 '		Schoonvegen.Enabled = True
 '		'ReturnRooster.Enabled = True
 
-'		If AdoGetField(TableOfSuppliers, "#v149 #") = "" Then
+'		If AdoGetField(TABLE_SUPPLIERS, "#v149 #") = "" Then
 '			MsgBox("Landnummer is verplicht !")
 '			Exit Sub
-'		ElseIf AdoGetField(TableOfSuppliers, "#v149 #") = "002" Then 
-'			LeverancierInfo.Text = SetSpacing(AdoGetField(TableOfSuppliers, "#A110 #"), 12) & "* Binnenland * " & Lever
+'		ElseIf AdoGetField(TABLE_SUPPLIERS, "#v149 #") = "002" Then 
+'			LeverancierInfo.Text = SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#A110 #"), 12) & "* Binnenland * " & Lever
 '			AankoopFlg = 0
 '			Medekontraktant.Enabled = True
 '			TekstInfo(7).Visible = False
@@ -575,8 +575,8 @@ End Class
 '			TekstInfo(8).Text = "0"
 '			Label1(12).Visible = False
 '			Label1(13).Visible = False
-'		ElseIf InStr(SISO, AdoGetField(TableOfSuppliers, "#v149 #")) Then 
-'			LeverancierInfo.Text = SetSpacing(AdoGetField(TableOfSuppliers, "#A110 #"), 12) & "* E.U. Verschuldigde BTW * " & Lever
+'		ElseIf InStr(SISO, AdoGetField(TABLE_SUPPLIERS, "#v149 #")) Then 
+'			LeverancierInfo.Text = SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#A110 #"), 12) & "* E.U. Verschuldigde BTW * " & Lever
 '			AankoopFlg = 1
 '			Medekontraktant.Enabled = False
 '			TekstInfo(7).Visible = True
@@ -586,7 +586,7 @@ End Class
 '			Label1(12).Visible = True
 '			Label1(13).Visible = True
 '		Else
-'			LeverancierInfo.Text = SetSpacing(AdoGetField(TableOfSuppliers, "#A110 #"), 12) & "* Niet E.U. + BTW ! *" & Lever
+'			LeverancierInfo.Text = SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#A110 #"), 12) & "* Niet E.U. + BTW ! *" & Lever
 '			AankoopFlg = 2
 '			Medekontraktant.Enabled = False
 '			TekstInfo(7).Visible = True
@@ -601,26 +601,26 @@ End Class
 '			TekstInfo(T).Enabled = True
 '		Next 
 
-'		sMuntLever.Value = UCase(AdoGetField(TableOfSuppliers, "#vs03 #"))
-'		JetGet(TableOfVarious, 1, SetSpacing("10" & sMuntLever.Value, 20))
-'		If Ktrl Then
+'		sMuntLever.Value = UCase(AdoGetField(TABLE_SUPPLIERS, "#vs03 #"))
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing("10" & sMuntLever.Value, 20))
+'		If KTRL Then
 '			MsgBox("Dagkoers voor muntkode " & sMuntLever.Value & " niet te vinden !  Eerst aanmaken via gebruikersfiches a.u.b.")
-'			If bhEuro Then
+'			If BH_EURO Then
 '				sMuntLever.Value = "EUR"
 '			Else
 '				sMuntLever.Value = "BEF"
 '			End If
 '			TekstInfo(9).Text = Dec(1, "###.########")
 '		Else
-'			RecordToField(TableOfVarious)
-'			TekstInfo(9).Text = Dec(Val(AdoGetField(TableOfVarious, "#v040 #")), "###.########")
+'			RecordToField(TABLE_VARIOUS)
+'			TekstInfo(9).Text = Dec(Val(AdoGetField(TABLE_VARIOUS, "#v040 #")), "###.########")
 '		End If
 
-'		If bhEuro Then
+'		If BH_EURO Then
 '			If sMuntLever.Value = "BEF" Then
 '				cmdSwitch.Text = "Ingave in BEF"
 '				cmdSwitch.Enabled = True
-'				TekstInfo(9).Text = Dec(1 / Euro, "##0.########")
+'				TekstInfo(9).Text = Dec(1 / EURO, "##0.########")
 '			ElseIf sMuntLever.Value = "EUR" Then 
 '				cmdSwitch.Text = "Ingave in EUR"
 '				cmdSwitch.Enabled = True
@@ -634,7 +634,7 @@ End Class
 '			If sMuntLever.Value = "EUR" Then
 '				cmdSwitch.Text = "Ingave in EUR"
 '				cmdSwitch.Enabled = True
-'				TekstInfo(9).Text = Dec(1 / Euro, "##0.########")
+'				TekstInfo(9).Text = Dec(1 / EURO, "##0.########")
 '			ElseIf sMuntLever.Value = "BEF" Then 
 '				cmdSwitch.Text = "Ingave in BEF"
 '				cmdSwitch.Enabled = True
@@ -645,14 +645,14 @@ End Class
 '				'TekstInfo(9).Text = Dec$(1, "##0.########")
 '			End If
 '		End If
-'		dMuntL = Val(TekstInfo(9).Text)
+'		D_CURRENCY = Val(TekstInfo(9).Text)
 
-'		If AdoGetField(TableOfSuppliers, "#v151 #") = "1" Then
+'		If AdoGetField(TABLE_SUPPLIERS, "#v151 #") = "1" Then
 '			Medekontraktant.CheckState = System.Windows.Forms.CheckState.Checked
 '		Else
 '			Medekontraktant.CheckState = System.Windows.Forms.CheckState.Unchecked
 '		End If
-'		If AdoGetField(TableOfSuppliers, "#v163 #") = "1" Then
+'		If AdoGetField(TABLE_SUPPLIERS, "#v163 #") = "1" Then
 '			StockBeheer.CheckState = System.Windows.Forms.CheckState.Checked
 '		Else
 '			StockBeheer.CheckState = System.Windows.Forms.CheckState.Unchecked
@@ -660,30 +660,30 @@ End Class
 
 '		Err.Clear()
 '		On Error Resume Next
-'		TekstInfo(11).Text = AdoGetField(TableOfSuppliers, "#A170 #")
+'		TekstInfo(11).Text = AdoGetField(TABLE_SUPPLIERS, "#A170 #")
 
-'		If SetSpacing(AdoGetField(TableOfSuppliers, "#v016 #"), 7) <> Space(7) Then
+'		If SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#v016 #"), 7) <> Space(7) Then
 '			If AankoopDetail.Items.Count = 0 Then
 '				RasterSchoon()
-'				VeldRekening.Value = AdoGetField(TableOfSuppliers, "#v016 #")
+'				VeldRekening.Value = AdoGetField(TABLE_SUPPLIERS, "#v016 #")
 '				VeldNaam.Value = ""
 '				VeldBedrag.Value = ""
-'				GridText = VeldRekening.Value & Chr(124) & VeldNaam.Value & Chr(124) & VeldBedrag.Value & Chr(124)
+'				GRIDTEXT = VeldRekening.Value & Chr(124) & VeldNaam.Value & Chr(124) & VeldBedrag.Value & Chr(124)
 '				Wijzigen.ShowDialog()
-'				If GridText = "" Then
+'				If GRIDTEXT = "" Then
 '				Else
-'					If RekeningOK(VB.Left(GridText, 7)) Then
-'						AankoopDetail.Items.Add(GridText)
+'					If RekeningOK(VB.Left(GRIDTEXT, 7)) Then
+'						AankoopDetail.Items.Add(GRIDTEXT)
 '						X = InvestKtrl()
 '					End If
 '				End If
 '			End If
 '		End If
 
-'		If VB.Left(AdoGetField(TableOfSuppliers, "#v162 #"), 3) = "440" Then
-'			TekstInfo(3).Text = AdoGetField(TableOfSuppliers, "#v162 #")
-'			JetGet(TableOfLedgerAccounts, 0, SetSpacing(AdoGetField(TableOfSuppliers, "#v162 #"), 7))
-'			If Ktrl Then
+'		If VB.Left(AdoGetField(TABLE_SUPPLIERS, "#v162 #"), 3) = "440" Then
+'			TekstInfo(3).Text = AdoGetField(TABLE_SUPPLIERS, "#v162 #")
+'			JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#v162 #"), 7))
+'			If KTRL Then
 '				Beep()
 '				TekstInfo(3).Text = LeverancierRekening.Value
 '			End If
@@ -692,8 +692,8 @@ End Class
 '		End If
 '		TekstInfo(10).Enabled = True
 
-'		TekstInfo(2).Text = VValdag(TekstInfo(0).Text, AdoGetField(TableOfSuppliers, "#vs04 #"))
-'		If AdoGetField(TableOfSuppliers, "#v017 #") = "1" Then
+'		TekstInfo(2).Text = VValdag(TekstInfo(0).Text, AdoGetField(TABLE_SUPPLIERS, "#vs04 #"))
+'		If AdoGetField(TABLE_SUPPLIERS, "#v017 #") = "1" Then
 '			'UPGRADE_ISSUE: MSMask.MaskEdBox property TekstInfo.AutoTab was not upgraded. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'
 '			TekstInfo(4).AutoTab = True
 '			'UPGRADE_WARNING: MSMask.MaskEdBox property TekstInfo.ClipMode has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
@@ -709,7 +709,7 @@ End Class
 '			TekstInfo(4).Mask = ""
 '			TekstInfo(4).Text = ""
 '		End If
-'		If AdoGetField(TableOfSuppliers, "#v254 #") <> "" Then
+'		If AdoGetField(TABLE_SUPPLIERS, "#v254 #") <> "" Then
 '			cmdSQLInfo.Visible = True
 '		End If
 '		Me.AankoopDetail.Focus()
@@ -719,10 +719,10 @@ End Class
 '	Private Function InvestKtrl() As Short
 '		Dim fRekNum As New VB6.FixedLengthString(7)
 
-'		fRekNum.Value = VB.Left(GridText, 7)
+'		fRekNum.Value = VB.Left(GRIDTEXT, 7)
 '		If fRekNum.Value < VB.Left(GrensDetail(0), 7) Or fRekNum.Value > VB.Right(GrensDetail(0), 7) Then
 '		Else
-'			GridText = TekstInfo(0).Text & Dec(Val(Mid(GridText, 50, 12)), MaskEURBH)
+'			GRIDTEXT = TekstInfo(0).Text & Dec(Val(Mid(GRIDTEXT, 50, 12)), MASK_EURBH)
 '			InvesteringsFiche.ShowDialog()
 '		End If
 
@@ -745,7 +745,7 @@ End Class
 '		Dim BedragBtw7 As Decimal
 '		Dim BedragBtw8 As Decimal
 
-'		If DatumKey(TekstInfo(1).Text) < VB.Left(BookyearFromTo.Value, 8) Or DatumKey(TekstInfo(1).Text) > VB.Right(BookyearFromTo.Value, 8) Then
+'		If DatumKey(TekstInfo(1).Text) < VB.Left(BOOKYEAR_FROMTO.Value, 8) Or DatumKey(TekstInfo(1).Text) > VB.Right(BOOKYEAR_FROMTO.Value, 8) Then
 '			MSG = "Datum aankoopdocument valt BUITEN het actieve boekjaar." & vbCr
 '			MSG = MSG & "De optie 'boekhoudcontrole' in balans leveranciers zal" & vbCr
 '			MSG = MSG & "mogelijk niet goed functioneren." & vbCr & vbCr
@@ -756,7 +756,7 @@ End Class
 '		VB6.SetDefault(Kontrole, True)
 '		For T = 0 To AankoopDetail.Items.Count - 1
 '			BedragTot = Val(Mid(VB6.GetItemString(AankoopDetail, T), 50, 12))
-'			If bhEuro Then
+'			If BH_EURO Then
 '				BedragTotaal = BedragTotaal + BedragTot
 '			Else
 '				BedragTotaal = BedragTotaal + BedragTot
@@ -788,16 +788,16 @@ End Class
 '			'UPGRADE_WARNING: Lower bound of collection ListView1.SelectedItem has changed from 1 to 0. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="A3B628A0-A810-4AE2-BFA2-9E7A29EB9AD0"'
 '			lvLeverancier = ListView1.FocusedItem.SubItems(1).Text
 '			SSTab1.SelectedIndex = 0
-'			JetGet(TableOfSuppliers, 0, lvLeverancier)
-'			If Ktrl Then
+'			JetGet(TABLE_SUPPLIERS, 0, lvLeverancier)
+'			If KTRL Then
 '				MsgBox("stop")
 '			Else
-'				RecordToField(TableOfSuppliers)
+'				RecordToField(TABLE_SUPPLIERS)
 '				InstalLeverancier()
 '			End If
 '		Else
-'			KtrlBox = MsgBox("Historiek van reeds bestaande leveranciers tonen", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'			If KtrlBox = MsgBoxResult.Yes Then
+'			CTRL_BOX = MsgBox("Historiek van reeds bestaande leveranciers tonen", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'			If CTRL_BOX = MsgBoxResult.Yes Then
 '				InstalleerRecenteCrediteuren()
 '			End If
 '		End If
@@ -917,7 +917,7 @@ End Class
 '			TekstInfo(T).Enabled = False
 '			TekstInfo(T).Mask = ""
 '			TekstInfo(T).Mask = "##/##/####"
-'			TekstInfo(T).Text = MimGlobalDate.Value
+'			TekstInfo(T).Text = MIM_GLOBAL_DATE.Value
 '			If Err.Number Then MsgBox("Landinstellingen voor België voorzien a.u.b.  Het programma wordt hierna beëindigd.", MsgBoxStyle.Critical) : End
 '		Next 
 '		On Error GoTo 0
@@ -962,17 +962,17 @@ End Class
 '	Function SQLZoekLeverancier() As Short
 
 '		If LeverancierInfo.Text <> "" Then
-'			KtrlBox = MsgBox("Andere leverancier aanduiden.  Bent U zeker", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'			If KtrlBox = MsgBoxResult.No Then
+'			CTRL_BOX = MsgBox("Andere leverancier aanduiden.  Bent U zeker", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'			If CTRL_BOX = MsgBoxResult.No Then
 '				AankoopDetail.Focus()
 '				Exit Function
 '			End If
 '		End If
-'		aIndex = 1
-'		SharedFl = TableOfSuppliers
-'		GridText = ""
+'		A_INDEX = 1
+'		SHARED_FL = TABLE_SUPPLIERS
+'		GRIDTEXT = ""
 '		SqlSearch.ShowDialog()
-'		If Ktrl = 0 Then
+'		If KTRL = 0 Then
 '			InstalLeverancier()
 '		Else
 '			Schoon()
@@ -987,8 +987,8 @@ End Class
 '		If SSTab1.SelectedIndex = 1 Then
 '			If ListView1.Items.Count Then
 '			ElseIf KeyCode = 13 Then 
-'				KtrlBox = MsgBox("Historiek van reeds bestaande leveranciers tonen", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'				If KtrlBox = MsgBoxResult.Yes Then
+'				CTRL_BOX = MsgBox("Historiek van reeds bestaande leveranciers tonen", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'				If CTRL_BOX = MsgBoxResult.Yes Then
 '					InstalleerRecenteCrediteuren()
 '				End If
 '			End If
@@ -1054,12 +1054,12 @@ End Class
 '		Select Case Index
 '			Case 3, 10
 '				If KeyCode = 17 Then
-'					aIndex = 0
-'					SharedFl = TableOfLedgerAccounts
-'					GridText = Trim(TekstInfo(Index).Text)
+'					A_INDEX = 0
+'					SHARED_FL = TABLE_LEDGERACCOUNTS
+'					GRIDTEXT = Trim(TekstInfo(Index).Text)
 '					SqlSearch.ShowDialog()
-'					If Ktrl = 0 Then
-'						TekstInfo(Index).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
+'					If KTRL = 0 Then
+'						TekstInfo(Index).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
 '					End If
 '				End If
 '		End Select
@@ -1110,22 +1110,22 @@ End Class
 '		Select Case Index
 '			Case 0
 '				If DateWrongFormat(TekstInfo(0).Text) Then
-'					TekstInfo(0).Text = MimGlobalDate.Value
+'					TekstInfo(0).Text = MIM_GLOBAL_DATE.Value
 '					TekstInfo(0).Focus()
-'				ElseIf Not DatumKtrl(TekstInfo(0).Text, PeriodAsText) Then 
+'				ElseIf Not DatumKtrl(TekstInfo(0).Text, PERIODAS_TEXT) Then 
 '					BJPERDAT.WindowState = System.Windows.Forms.FormWindowState.Normal
 '					BJPERDAT.PeriodeBoekjaar.Focus()
 '				End If
 
 '			Case 1
 '				If DateWrongFormat(TekstInfo(1).Text) Then
-'					TekstInfo(1).Text = MimGlobalDate.Value
+'					TekstInfo(1).Text = MIM_GLOBAL_DATE.Value
 '					TekstInfo(1).Focus()
 '				Else
-'					TekstInfo(2).Text = VValdag(TekstInfo(1).Text, AdoGetField(TableOfSuppliers, "#vs04 #"))
-'					TekstInfo(0).Text = MimGlobalDate.Value
+'					TekstInfo(2).Text = VValdag(TekstInfo(1).Text, AdoGetField(TABLE_SUPPLIERS, "#vs04 #"))
+'					TekstInfo(0).Text = MIM_GLOBAL_DATE.Value
 '				End If
-'				If DatumKey(TekstInfo(1).Text) < VB.Left(BookyearFromTo.Value, 8) Or DatumKey(TekstInfo(1).Text) > VB.Right(BookyearFromTo.Value, 8) Then
+'				If DatumKey(TekstInfo(1).Text) < VB.Left(BOOKYEAR_FROMTO.Value, 8) Or DatumKey(TekstInfo(1).Text) > VB.Right(BOOKYEAR_FROMTO.Value, 8) Then
 '					MSG = "Datum aankoopdocument valt BUITEN het actieve boekjaar." & vbCr
 '					MSG = MSG & "De optie 'boekhoudcontrole' in balans leveranciers zal" & vbCr
 '					MSG = MSG & "mogelijk niet goed functioneren." & vbCr & vbCr
@@ -1135,7 +1135,7 @@ End Class
 
 '			Case 2
 '				If DateWrongFormat(TekstInfo(2).Text) Then
-'					TekstInfo(2).Text = VValdag(TekstInfo(1).Text, AdoGetField(TableOfSuppliers, "#vs04 #"))
+'					TekstInfo(2).Text = VValdag(TekstInfo(1).Text, AdoGetField(TABLE_SUPPLIERS, "#vs04 #"))
 '					TekstInfo(2).Focus()
 '				End If
 
@@ -1146,8 +1146,8 @@ End Class
 '					TekstInfo(Index).Focus()
 '					Exit Sub
 '				End If
-'				JetGet(TableOfLedgerAccounts, 0, SetSpacing(TekstInfo(Index).Text, 7))
-'				If Ktrl Then
+'				JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TekstInfo(Index).Text, 7))
+'				If KTRL Then
 '					Beep()
 '					TekstInfo(Index).Text = LeverancierRekening.Value
 '					TekstInfo(Index).Focus()
@@ -1160,20 +1160,20 @@ End Class
 '					TekstInfo(Index).Focus()
 '					Exit Sub
 '				End If
-'				JetGet(TableOfLedgerAccounts, 0, SetSpacing(TekstInfo(Index).Text, 7))
-'				If Ktrl Then
+'				JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TekstInfo(Index).Text, 7))
+'				If KTRL Then
 '					Beep()
 '					TekstInfo(Index).Text = rbtwVAK(4)
 '					TekstInfo(Index).Focus()
 '				End If
 
 '			Case 4
-'				If AdoGetField(TableOfSuppliers, "#v017 #") = "1" Then
+'				If AdoGetField(TABLE_SUPPLIERS, "#v017 #") = "1" Then
 '					If BankOk(TekstInfo(4).Text) Then
 '					Else
 '						Beep()
 '						On Error Resume Next
-'						SnelHelpPrint("Gestructureerde betaalreferte onjuist !", blLogging)
+'						SnelHelpPrint("Gestructureerde betaalreferte onjuist !", BL_LOGGING)
 '						TekstInfo(4).Text = "OGM onjuist"
 '						On Error GoTo 0
 '						Exit Sub
@@ -1182,8 +1182,8 @@ End Class
 '			Case 5
 '				If AankoopFlg = 1 And AankoopOptie(1).Checked = True Then
 '					If Val(TekstInfo(5).Text) <> 0 Then
-'						KtrlBox = MsgBox("De aanbeveling door meeste BTW-diensten om bij creditnota E.U. géén B.T.W op te nemen negeren", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
-'						If KtrlBox = MsgBoxResult.Yes Then
+'						CTRL_BOX = MsgBox("De aanbeveling door meeste BTW-diensten om bij creditnota E.U. géén B.T.W op te nemen negeren", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
+'						If CTRL_BOX = MsgBoxResult.Yes Then
 '							TekstInfo(5).Text = "0"
 '						End If
 '					End If
@@ -1229,49 +1229,49 @@ End Class
 '		Dim DVT99 As String
 '		Dim LokRekening As New VB6.FixedLengthString(7)
 
-'		JetGet(TableOfSuppliers, 0, VB.Left(LeverancierInfo.Text, 12))
-'		If Ktrl Then
+'		JetGet(TABLE_SUPPLIERS, 0, VB.Left(LeverancierInfo.Text, 12))
+'		If KTRL Then
 '			WegBoekFout = True
 '			Exit Function
 '		Else
-'			RecordToField(TableOfSuppliers)
-'			dMuntL = Val(TekstInfo(9).Text)
+'			RecordToField(TABLE_SUPPLIERS)
+'			D_CURRENCY = Val(TekstInfo(9).Text)
 '		End If
 
 '		'gewijzigd voor scanning
 '		WegBoekFout = False
-'		dKtrlCumul = 0 : dKtrlBEF = 0 : dKtrlEUR = 0
+'		DKTRL_CUMUL = 0 : DKTRL_BEF = 0 : DKTRL_EUR = 0
 '		frmBoeking.Close()
 '		frmBoeking.Hide()
-'		TLBRecord(FlJournaal) = ""
-'		TLBRecord(TableOfInvoices) = ""
+'		TLB_RECORD(TABLE_JOURNAL) = ""
+'		TLB_RECORD(TABLE_INVOICES) = ""
 '		'bijgevoegd voor scanning
-'		If rsMAR(TableOfInvoices).State = ADODB.ObjectStateEnum.adStateClosed Then
-'			Ktrl = JetTableOpen(TableOfInvoices)
+'		If RS_MAR(TABLE_INVOICES).State = ADODB.ObjectStateEnum.adStateClosed Then
+'			KTRL = JetTableOpen(TABLE_INVOICES)
 '		End If
-'		rsMAR(TableOfInvoices).AddNew()
+'		RS_MAR(TABLE_INVOICES).AddNew()
 
-'		AdoInsertToRecord(FlJournaal, "L" & AdoGetField(TableOfSuppliers, "#A110 #"), "v034")
+'		AdoInsertToRecord(TABLE_JOURNAL, "L" & AdoGetField(TABLE_SUPPLIERS, "#A110 #"), "v034")
 '		'19
-'		AdoInsertToRecord(FlJournaal, DatumKey(TekstInfo(0).Text), "v066")
-'		AdoInsertToRecord(FlJournaal, dokumentSleutel.Value, "v033")
-'		AdoInsertToRecord(FlJournaal, DatumKey(TekstInfo(1).Text), "v035")
-'		AdoInsertToRecord(FlJournaal, (TekstInfo(3).Text), "v069")
+'		AdoInsertToRecord(TABLE_JOURNAL, DatumKey(TekstInfo(0).Text), "v066")
+'		AdoInsertToRecord(TABLE_JOURNAL, dokumentSleutel.Value, "v033")
+'		AdoInsertToRecord(TABLE_JOURNAL, DatumKey(TekstInfo(1).Text), "v035")
+'		AdoInsertToRecord(TABLE_JOURNAL, (TekstInfo(3).Text), "v069")
 
-'		AdoInsertToRecord(TableOfInvoices, dokumentSleutel.Value, "v033")
-'		AdoInsertToRecord(TableOfInvoices, "L" & AdoGetField(TableOfSuppliers, "#A110 #"), "v034")
-'		AdoInsertToRecord(TableOfInvoices, DatumKey(TekstInfo(1).Text), "v035")
-'		AdoInsertToRecord(TableOfInvoices, DatumKey(TekstInfo(2).Text), "v036")
-'		AdoInsertToRecord(TableOfInvoices, (TekstInfo(4).Text), "v039")
-'		AdoInsertToRecord(TableOfInvoices, Dec(dMuntL, "###.##########"), "v040")
-'		AdoInsertToRecord(TableOfInvoices, AdoGetField(TableOfSuppliers, "#vs03 #"), "vs03")
-'		AdoInsertToRecord(FlJournaal, AdoGetField(TableOfSuppliers, "#A100 #"), "v067")
+'		AdoInsertToRecord(TABLE_INVOICES, dokumentSleutel.Value, "v033")
+'		AdoInsertToRecord(TABLE_INVOICES, "L" & AdoGetField(TABLE_SUPPLIERS, "#A110 #"), "v034")
+'		AdoInsertToRecord(TABLE_INVOICES, DatumKey(TekstInfo(1).Text), "v035")
+'		AdoInsertToRecord(TABLE_INVOICES, DatumKey(TekstInfo(2).Text), "v036")
+'		AdoInsertToRecord(TABLE_INVOICES, (TekstInfo(4).Text), "v039")
+'		AdoInsertToRecord(TABLE_INVOICES, Dec(D_CURRENCY, "###.##########"), "v040")
+'		AdoInsertToRecord(TABLE_INVOICES, AdoGetField(TABLE_SUPPLIERS, "#vs03 #"), "vs03")
+'		AdoInsertToRecord(TABLE_JOURNAL, AdoGetField(TABLE_SUPPLIERS, "#A100 #"), "v067")
 '		For T = 0 To AankoopDetail.Items.Count - 1
 '			AankoopDetail.SelectedIndex = T
 '			LokRekening.Value = VB.Left(AankoopDetail.Text, 7)
-'			AdoInsertToRecord(FlJournaal, LokRekening.Value, "v019")
-'			JetGet(TableOfLedgerAccounts, 0, LokRekening.Value)
-'			If Ktrl Then
+'			AdoInsertToRecord(TABLE_JOURNAL, LokRekening.Value, "v019")
+'			JetGet(TABLE_LEDGERACCOUNTS, 0, LokRekening.Value)
+'			If KTRL Then
 '				WegBoekFout = True
 '				Exit Function
 '			End If
@@ -1279,50 +1279,50 @@ End Class
 '			TotaalBedrag = TotaalBedrag + Bedrag
 '			If AankoopOptie(0).Checked = True Then
 '				'factuur
-'				AdoInsertToRecord(FlJournaal, Dec(Bedrag, MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(Bedrag, MASK_EURBH), "v068")
 '			ElseIf AankoopOptie(1).Checked = True Then 
 '				'creditnota
-'				AdoInsertToRecord(FlJournaal, Dec(-Bedrag, MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(-Bedrag, MASK_EURBH), "v068")
 '			Else
 '				MsgBox("logicafout")
 '			End If
 
-'			AdoInsertToRecord(FlJournaal, "", "v102")
+'			AdoInsertToRecord(TABLE_JOURNAL, "", "v102")
 '			If Len(AankoopDetail.Text) > 62 Then
 
-'				JetGet(TableOfProductsAndServices, 0, Mid(AankoopDetail.Text, 63, 13))
-'				If Ktrl Then
+'				JetGet(TABLE_PRODUCTS, 0, Mid(AankoopDetail.Text, 63, 13))
+'				If KTRL Then
 '					MsgBox("Onverwacht situatie")
 '					WegBoekFout = True
 '					Exit Function
 '				Else
-'					RecordToField(TableOfProductsAndServices)
-'					AdoInsertToRecord(FlJournaal, Mid(AankoopDetail.Text, 77, 30), "v067")
-'					AdoInsertToRecord(FlJournaal, Mid(AankoopDetail.Text, 63, 13), "v102")
+'					RecordToField(TABLE_PRODUCTS)
+'					AdoInsertToRecord(TABLE_JOURNAL, Mid(AankoopDetail.Text, 77, 30), "v067")
+'					AdoInsertToRecord(TABLE_JOURNAL, Mid(AankoopDetail.Text, 63, 13), "v102")
 '					AantalStuks = Val(Mid(AankoopDetail.Text, 77 + 41, 10))
 '					If AankoopOptie(0).Checked = True Then
 '						'IseenFactuur
 '						'AankoopPrijs
-'						AdoInsertToRecord(TableOfProductsAndServices, Str(Bedrag / AantalStuks), "e113")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Str(Bedrag / AantalStuks), "e113")
 '						'Leveranciernummer
-'						AdoInsertToRecord(TableOfProductsAndServices, FVT(TableOfSuppliers, 0), "v124")
+'						AdoInsertToRecord(TABLE_PRODUCTS, FVT(TABLE_SUPPLIERS, 0), "v124")
 '						'Aantal stuks aankoop bijvoegen
-'						AdoInsertToRecord(TableOfProductsAndServices, Str(AantalStuks + Val(AdoGetField(TableOfProductsAndServices, "#v119 #"))), "v119")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Str(AantalStuks + Val(AdoGetField(TABLE_PRODUCTS, "#v119 #"))), "v119")
 '						'Totaal bedrag bijtellen
-'						AdoInsertToRecord(TableOfProductsAndServices, Str(Bedrag + Val(AdoGetField(TableOfProductsAndServices, "#e121 #"))), "e121")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Str(Bedrag + Val(AdoGetField(TABLE_PRODUCTS, "#e121 #"))), "e121")
 '						'Laatste kostenrekening onthouden
-'						AdoInsertToRecord(TableOfProductsAndServices, LokRekening.Value, "v116")
+'						AdoInsertToRecord(TABLE_PRODUCTS, LokRekening.Value, "v116")
 '					ElseIf AankoopOptie(1).Checked = True Then 
 '						'IsCreditnota
 '						'Aantal stuks aankoop aftrekken
-'						AdoInsertToRecord(TableOfProductsAndServices, Str(-AantalStuks + Val(AdoGetField(TableOfProductsAndServices, "#v119 #"))), "v119")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Str(-AantalStuks + Val(AdoGetField(TABLE_PRODUCTS, "#v119 #"))), "v119")
 '						'Totaal bedrag aftrekken
-'						AdoInsertToRecord(TableOfProductsAndServices, Str(-Bedrag + Val(AdoGetField(TableOfProductsAndServices, "#e121 #"))), "e121")
+'						AdoInsertToRecord(TABLE_PRODUCTS, Str(-Bedrag + Val(AdoGetField(TABLE_PRODUCTS, "#e121 #"))), "e121")
 '					Else
 '						MsgBox("logicafout")
 '					End If
-'					bUpdate(TableOfProductsAndServices, 0)
-'					If Ktrl Then
+'					bUpdate(TABLE_PRODUCTS, 0)
+'					If KTRL Then
 '						MsgBox("Onverwacht situatie")
 '						WegBoekFout = True
 '						Exit Function
@@ -1349,141 +1349,141 @@ End Class
 '				MsgBox("Stop in begrenzing")
 '			End If
 '			'1310 IF Left(svkf(1),2)="ON"THEN 1525
-'			JetInsert(FlJournaal, 0)
-'			If Ktrl Then
+'			JetInsert(TABLE_JOURNAL, 0)
+'			If KTRL Then
 '				WegBoekFout = True
 '				Exit Function
 '			End If
 '		Next 
-'		AdoInsertToRecord(FlJournaal, AdoGetField(TableOfSuppliers, "#A100 #"), "v067")
+'		AdoInsertToRecord(TABLE_JOURNAL, AdoGetField(TABLE_SUPPLIERS, "#A100 #"), "v067")
 
-'		AdoInsertToRecord(TableOfInvoices, (TekstInfo(5).Text), "v045")
+'		AdoInsertToRecord(TABLE_INVOICES, (TekstInfo(5).Text), "v045")
 '		'If Ar = 3 Then
-'		'    AdoInsertToRecord TableOfInvoices, "0", "v048"
-'		'    AdoInsertToRecord TableOfInvoices, "0", "v049"
-'		'    AdoInsertToRecord TableOfInvoices, "0", "v046"
-'		'    AdoInsertToRecord TableOfInvoices, "0", "v047"
+'		'    AdoInsertToRecord TABLE_INVOICES, "0", "v048"
+'		'    AdoInsertToRecord TABLE_INVOICES, "0", "v049"
+'		'    AdoInsertToRecord TABLE_INVOICES, "0", "v046"
+'		'    AdoInsertToRecord TABLE_INVOICES, "0", "v047"
 '		'Else
-'		AdoInsertToRecord(TableOfInvoices, Str(dInvest), "v048")
-'		AdoInsertToRecord(TableOfInvoices, Str(dPrive + Val(TekstInfo(8).Text)), "v049")
-'		AdoInsertToRecord(TableOfInvoices, Str(dHandel), "v046")
-'		AdoInsertToRecord(TableOfInvoices, Str(dAlKost), "v047")
+'		AdoInsertToRecord(TABLE_INVOICES, Str(dInvest), "v048")
+'		AdoInsertToRecord(TABLE_INVOICES, Str(dPrive + Val(TekstInfo(8).Text)), "v049")
+'		AdoInsertToRecord(TABLE_INVOICES, Str(dHandel), "v046")
+'		AdoInsertToRecord(TABLE_INVOICES, Str(dAlKost), "v047")
 '		'End If
 '		DVT99 = Str(dInvest + dAlKost + dHandel + dPrive)
 
 '		If Medekontraktant.CheckState Then
-'			AdoInsertToRecord(TableOfInvoices, (TekstInfo(7).Text), "v043")
+'			AdoInsertToRecord(TABLE_INVOICES, (TekstInfo(7).Text), "v043")
 '			If Ar = 1 Then
-'				AdoInsertToRecord(TableOfInvoices, DVT99, "v053")
+'				AdoInsertToRecord(TABLE_INVOICES, DVT99, "v053")
 '			Else
-'				AdoInsertToRecord(TableOfInvoices, DVT99, "v051")
+'				AdoInsertToRecord(TABLE_INVOICES, DVT99, "v051")
 '			End If
 '		Else
 '			If Medekontraktant.CheckState = 0 And AankoopFlg = 0 Then
 '				If Ar = 3 Then
-'					AdoInsertToRecord(TableOfInvoices, DVT99, "v051")
+'					AdoInsertToRecord(TABLE_INVOICES, DVT99, "v051")
 '				End If
 '			End If
 '		End If
 '		If AankoopFlg = 1 Then
-'			AdoInsertToRecord(TableOfInvoices, (TekstInfo(7).Text), "v042")
+'			AdoInsertToRecord(TABLE_INVOICES, (TekstInfo(7).Text), "v042")
 '			If Ar = 1 Then
-'				AdoInsertToRecord(TableOfInvoices, DVT99, "v052")
+'				AdoInsertToRecord(TABLE_INVOICES, DVT99, "v052")
 '			Else
-'				AdoInsertToRecord(TableOfInvoices, DVT99, "v050")
+'				AdoInsertToRecord(TABLE_INVOICES, DVT99, "v050")
 '			End If
 '		End If
 '		If AankoopFlg = 2 Then
-'			AdoInsertToRecord(TableOfInvoices, (TekstInfo(7).Text), "v044")
+'			AdoInsertToRecord(TABLE_INVOICES, (TekstInfo(7).Text), "v044")
 '			If Ar = 1 Then
 '				MsgBox("in pseudo vak 88 wordt " & DVT99 & " bijgevoegd.  Bij de eigenlijke BTW aangifte dient U de cijfers van kolom '88!'  bij te tellen bij vak 87", MsgBoxStyle.Information)
-'				AdoInsertToRecord(TableOfInvoices, DVT99, "v054")
+'				AdoInsertToRecord(TABLE_INVOICES, DVT99, "v054")
 '			Else
-'				AdoInsertToRecord(TableOfInvoices, DVT99, "v051")
+'				AdoInsertToRecord(TABLE_INVOICES, DVT99, "v051")
 '			End If
 '		End If
 
 '		If Val(TekstInfo(5).Text) <> 0 Then
 '			If Ar = 3 Then
-'				AdoInsertToRecord(FlJournaal, Dec(-Val(TekstInfo(5).Text), MaskEURBH), "v068")
-'				AdoInsertToRecord(FlJournaal, rbtwVAK(5), "v019")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(-Val(TekstInfo(5).Text), MASK_EURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, rbtwVAK(5), "v019")
 '			Else
-'				AdoInsertToRecord(FlJournaal, Dec(Val(TekstInfo(5).Text), MaskEURBH), "v068")
-'				AdoInsertToRecord(FlJournaal, SetSpacing(TekstInfo(10).Text, 7), "v019")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(Val(TekstInfo(5).Text), MASK_EURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, SetSpacing(TekstInfo(10).Text, 7), "v019")
 '			End If
-'			JetInsert(FlJournaal, 0)
+'			JetInsert(TABLE_JOURNAL, 0)
 '		End If
 
 '		If AankoopFlg = 0 Then
 '			If Medekontraktant.CheckState Then
 '				If Ar = 1 Then
-'					AdoInsertToRecord(FlJournaal, Dec(-Val(TekstInfo(7).Text), MaskEURBH), "v068")
+'					AdoInsertToRecord(TABLE_JOURNAL, Dec(-Val(TekstInfo(7).Text), MASK_EURBH), "v068")
 '				Else
-'					AdoInsertToRecord(FlJournaal, Dec(Val(TekstInfo(7).Text), MaskEURBH), "v068")
+'					AdoInsertToRecord(TABLE_JOURNAL, Dec(Val(TekstInfo(7).Text), MASK_EURBH), "v068")
 '				End If
-'				FVT(FlJournaal, 1) = rbtwVAK(2)
-'				AdoInsertToRecord(FlJournaal, rbtwVAK(2), "v019")
-'				JetInsert(FlJournaal, 0)
+'				FVT(TABLE_JOURNAL, 1) = rbtwVAK(2)
+'				AdoInsertToRecord(TABLE_JOURNAL, rbtwVAK(2), "v019")
+'				JetInsert(TABLE_JOURNAL, 0)
 '			End If
 '			GoTo Label1440
 '		End If
 
 '		If AankoopFlg = 2 Then
 '			If Ar = 1 Then
-'				AdoInsertToRecord(FlJournaal, Dec(-Val(TekstInfo(7).Text), MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(-Val(TekstInfo(7).Text), MASK_EURBH), "v068")
 '			Else
-'				AdoInsertToRecord(FlJournaal, Dec(Val(TekstInfo(7).Text), MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(Val(TekstInfo(7).Text), MASK_EURBH), "v068")
 '			End If
-'			AdoInsertToRecord(FlJournaal, rbtwVAK(3), "v019")
+'			AdoInsertToRecord(TABLE_JOURNAL, rbtwVAK(3), "v019")
 '		Else
 '			If Ar = 1 Then
-'				AdoInsertToRecord(FlJournaal, Dec(-Val(TekstInfo(7).Text), MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(-Val(TekstInfo(7).Text), MASK_EURBH), "v068")
 '			Else
-'				AdoInsertToRecord(FlJournaal, Dec(Val(TekstInfo(7).Text), MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(Val(TekstInfo(7).Text), MASK_EURBH), "v068")
 '			End If
-'			AdoInsertToRecord(FlJournaal, rbtwVAK(1), "v019")
+'			AdoInsertToRecord(TABLE_JOURNAL, rbtwVAK(1), "v019")
 '		End If
-'		JetInsert(FlJournaal, 0)
+'		JetInsert(TABLE_JOURNAL, 0)
 
 'Label1440: 
 '		If Val(TekstInfo(8).Text) <> 0 Then
 '			If Ar = 3 Then
-'				AdoInsertToRecord(FlJournaal, Dec(-Val(TekstInfo(8).Text), MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(-Val(TekstInfo(8).Text), MASK_EURBH), "v068")
 '			Else
-'				AdoInsertToRecord(FlJournaal, Dec(Val(TekstInfo(8).Text), MaskEURBH), "v068")
+'				AdoInsertToRecord(TABLE_JOURNAL, Dec(Val(TekstInfo(8).Text), MASK_EURBH), "v068")
 '			End If
-'			AdoInsertToRecord(FlJournaal, PriveRekening.Value, "v019")
-'			JetInsert(FlJournaal, 0)
+'			AdoInsertToRecord(TABLE_JOURNAL, PriveRekening.Value, "v019")
+'			JetInsert(TABLE_JOURNAL, 0)
 '		End If
 
 '		DVT99 = Str(Val(DVT99) + Val(TekstInfo(5).Text) + Val(TekstInfo(8).Text) - Val(TekstInfo(7).Text))
 '		If Ar = 1 Then
-'			AdoInsertToRecord(FlJournaal, Dec(-Val(DVT99), MaskEURBH), "v068")
+'			AdoInsertToRecord(TABLE_JOURNAL, Dec(-Val(DVT99), MASK_EURBH), "v068")
 '		Else
-'			AdoInsertToRecord(FlJournaal, Dec(Val(DVT99), MaskEURBH), "v068")
+'			AdoInsertToRecord(TABLE_JOURNAL, Dec(Val(DVT99), MASK_EURBH), "v068")
 '		End If
-'		AdoInsertToRecord(FlJournaal, SetSpacing(TekstInfo(3).Text, 7), "v019")
-'		JetInsert(FlJournaal, 0)
+'		AdoInsertToRecord(TABLE_JOURNAL, SetSpacing(TekstInfo(3).Text, 7), "v019")
+'		JetInsert(TABLE_JOURNAL, 0)
 
-'		If XisEuroWasBEF = False Then
-'			AdoInsertToRecord(TableOfInvoices, DVT99, "v249")
+'		If XisEUROWasBEF = False Then
+'			AdoInsertToRecord(TABLE_INVOICES, DVT99, "v249")
 '		Else
-'			AdoInsertToRecord(TableOfInvoices, Str(System.Math.Round(CDbl(DVT99) / Euro, 2)), "v249")
+'			AdoInsertToRecord(TABLE_INVOICES, Str(System.Math.Round(CDbl(DVT99) / EURO, 2)), "v249")
 '		End If
 
 '		If GeScanBestand <> "" Then
-'			FileToBlob(rsMAR(TableOfInvoices).Fields("bstBLOB37"), GeScanBestand)
-'			rsMAR(TableOfInvoices).Fields("bstndNaam37").Value = GeScanBestand
-'			rsMAR(TableOfInvoices).Fields("typeZending37").Value = Mid(GeScanBestand, InStr(GeScanBestand, ".") + 1)
+'			FileToBlob(RS_MAR(TABLE_INVOICES).Fields("bstBLOB37"), GeScanBestand)
+'			RS_MAR(TABLE_INVOICES).Fields("bstndNaam37").Value = GeScanBestand
+'			RS_MAR(TABLE_INVOICES).Fields("typeZending37").Value = Mid(GeScanBestand, InStr(GeScanBestand, ".") + 1)
 '		End If
-'		JetInsert(TableOfInvoices, 0)
+'		JetInsert(TABLE_INVOICES, 0)
 
-'		If dKtrlCumul <> 0 Then
+'		If DKTRL_CUMUL <> 0 Then
 '			frmBoeking.cmdBoeken.Enabled = False
 '			MsgBox("LogikaFout bij vierkantskontrole journaal." & vbCrLf & vbCrLf & "Deze verrichting wordt geannuleerd.  Controleer zelf eerst en/of raadpleeg ons.")
 '			frmBoeking.ShowDialog()
 '			WegBoekFout = True
-'		ElseIf JournaalLocked = True Then 
+'		ElseIf JOURNAL_LOCKED = True Then 
 '			frmBoeking.cmdBoeken.Enabled = False
 '			frmBoeking.ShowDialog()
 '			WegBoekFout = True
@@ -1491,7 +1491,7 @@ End Class
 '			Select Case VB.Left(Mim.cmdWegBoekModus.Text, 1)
 '				Case "0"
 '				Case "1"
-'					If dKtrlBEF Or dKtrlEUR Then
+'					If DKTRL_BEF Or DKTRL_EUR Then
 '						frmBoeking.ShowDialog()
 '					End If
 '				Case "2"
@@ -1499,7 +1499,7 @@ End Class
 '				Case Else
 '					MsgBox("situatie...")
 '			End Select
-'			If dKtrlCumul Then WegBoekFout = True
+'			If DKTRL_CUMUL Then WegBoekFout = True
 '		End If
 
 '	End Function
@@ -1510,7 +1510,7 @@ End Class
 '		Dim rsRecent As ADODB.Recordset
 '		rsRecent = New ADODB.Recordset
 '		rsRecent.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-'		rsRecent.Open("SELECT DISTINCT v067 AS Naam, Mid(v034,2) AS IdCode FROM Journalen WHERE Mid(v066,1,4)>=2002 AND v033 Like 'A%'", adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsRecent.Open("SELECT DISTINCT v067 AS Naam, Mid(v034,2) AS IdCode FROM Journalen WHERE Mid(v066,1,4)>=2002 AND v033 Like 'A%'", AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		MsgBox(rsRecent.RecordCount & " leveranciers aangewend laatste 2 jaren", MsgBoxStyle.Information)
 '		Dim itmX As System.Windows.Forms.ListViewItem
 '		ListView1.Items.Clear()
@@ -1580,16 +1580,16 @@ End Class
 '		'nieuwe poging 03/2007
 
 '		ktrlBLOBRecord = True
-'		ktrlString = rsMAR(TableOfInvoices).Fields("bstndNaam37").Name
+'		ktrlString = RS_MAR(TABLE_INVOICES).Fields("bstndNaam37").Name
 
 '		'bstndNaam
 '		'typeZending 'TIF, PDF, enz...
 '		'bstBLOB inhoud bestand
 '		If Err.Number = 3265 Then
-'			rsMAR(TableOfInvoices).Close()
+'			RS_MAR(TABLE_INVOICES).Close()
 '			MSG = "ALTER TABLE Dokumenten ADD COLUMN bstndNaam37 varchar;"
 '			Err.Clear()
-'			adntDB.Execute(MSG)
+'			AD_NTDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else
@@ -1597,7 +1597,7 @@ End Class
 '			End If
 '			MSG = "ALTER TABLE Dokumenten ADD COLUMN typeZending37 TEXT(5);"
 '			Err.Clear()
-'			adntDB.Execute(MSG)
+'			AD_NTDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else
@@ -1605,7 +1605,7 @@ End Class
 '			End If
 '			MSG = "ALTER TABLE Dokumenten ADD COLUMN bstBLOB37 OLEobject;"
 '			Err.Clear()
-'			adntDB.Execute(MSG)
+'			AD_NTDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else

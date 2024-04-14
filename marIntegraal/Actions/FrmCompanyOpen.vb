@@ -24,12 +24,12 @@ Public Class FrmCompanyOpen
             localdataRadioButton.Checked = True
         End If
 
-        vsfPro = False
+        VSF_PRO = False
         Err.Clear()
         On Error Resume Next
-        'dlbFolder.path = Location
+        'dlbFolder.path = LOCATION
         If Err.Number Then
-            MsgBox("Location bedrijven onvindbaar.  Kontroleer manueel a.u.b.", MsgBoxStyle.Critical)
+            MsgBox("LOCATION bedrijven onvindbaar.  Kontroleer manueel a.u.b.", MsgBoxStyle.Critical)
         Else
             KeuzeLijstVullen()
         End If
@@ -47,8 +47,8 @@ Public Class FrmCompanyOpen
         Else
             If localdataRadioButton.Checked = True Then
                 If locatieTextBox.Text <> LaadTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave") Then
-                    KtrlBox = MsgBox(locatieTextBox.Text & vbCrLf & vbCrLf & "Wordt dit de nieuwe 'lokale' opstartinhoudsopgave ?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
-                    If KtrlBox = MsgBoxResult.Yes Then
+                    CTRL_BOX = MsgBox(locatieTextBox.Text & vbCrLf & vbCrLf & "Wordt dit de nieuwe 'lokale' opstartinhoudsopgave ?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
+                    If CTRL_BOX = MsgBoxResult.Yes Then
                         BeWaarTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave", locatieTextBox.Text)
                         MsgBox("Hierna wordt er afgesloten.  Start het programma opnieuw op")
                         End
@@ -58,8 +58,8 @@ Public Class FrmCompanyOpen
                 End If
             Else
                 If locatieTextBox.Text <> LaadTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") Then
-                    KtrlBox = MsgBox(locatieTextBox.Text & vbCrLf & vbCrLf & "Wordt dit de nieuwe 'server' opstartinhoudsopgave ?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
-                    If KtrlBox = MsgBoxResult.Yes Then
+                    CTRL_BOX = MsgBox(locatieTextBox.Text & vbCrLf & vbCrLf & "Wordt dit de nieuwe 'server' opstartinhoudsopgave ?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
+                    If CTRL_BOX = MsgBoxResult.Yes Then
                         BeWaarTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave", locatieTextBox.Text)
                         MsgBox("Hierna wordt er afgesloten.  Start het programma opnieuw op")
                         End
@@ -87,7 +87,7 @@ Public Class FrmCompanyOpen
             verwijderenButton.Enabled = True
             onedriveButton.Enabled = True
         End If
-        ModLibs.Location = locatieTextBox.Text & "\"
+        ModLibs.LOCATION = locatieTextBox.Text & "\"
         'TODO: KeuzeLijstVullen()
     End Sub
 
@@ -105,7 +105,7 @@ Public Class FrmCompanyOpen
             verwijderenButton.Enabled = True
             onedriveButton.Enabled = True
         End If
-        ModLibs.Location = locatieTextBox.Text & "\"
+        ModLibs.LOCATION = locatieTextBox.Text & "\"
         KeuzeLijstVullen()
     End Sub
 
@@ -121,7 +121,7 @@ Public Class FrmCompanyOpen
 
         bedrijvenListView.Items.Clear()
 
-        MyPath = locatieTextBox.Text & "\" 'Location ' Set the path.
+        MyPath = locatieTextBox.Text & "\" 'LOCATION ' Set the path.
 
         Err.Clear()
         On Error Resume Next
@@ -173,9 +173,9 @@ Public Class FrmCompanyOpen
 
     Private Sub StartAutoLoad()
 
-        LocationCompanyData = ModLibs.Location & bedrijvenListView.FocusedItem.SubItems.Item(1).Text & "\"
-        marVersion = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
-        Mim.Text = "marIntegraal.NET " & marVersion & " - [" & Trim(bedrijvenListView.FocusedItem.Text) & "]"
+        LOCATION_COMPANYDATA = ModLibs.LOCATION & bedrijvenListView.FocusedItem.SubItems.Item(1).Text & "\"
+        MAR_VERSION = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
+        Mim.Text = "marIntegraal.NET " & MAR_VERSION & " - [" & Trim(bedrijvenListView.FocusedItem.Text) & "]"
 
         AutoLoadCompany(BYPERDAT:=FormBYPERDAT)
         sluitenButton.PerformClick()

@@ -7,27 +7,27 @@ Public Class KeuzeVSF
         Dim Aantallijnen As Short
         Dim Keuze As Short
         Dim OptieTxt As String
-        OptieTxt = GridText
+        OptieTxt = GRIDTEXT
         NTBoxLijst.Items.Clear()
         ZoekTekst = "NTKB2"
-        If SharedIndex >= 1000 Then
-            ZoekTekst = ZoekTekst & Format(SharedIndex - 1000, "000")
+        If SHARED_INDEX >= 1000 Then
+            ZoekTekst = ZoekTekst & Format(SHARED_INDEX - 1000, "000")
         Else
-            ZoekTekst = ZoekTekst & "9" & Format(SharedIndex, "00")
+            ZoekTekst = ZoekTekst & "9" & Format(SHARED_INDEX, "00")
         End If
         Keuze = -1
-        X = ZoekEnPlaats((NTBoxLijst), ZoekTekst, Aantallijnen, Keuze, GridText)
+        X = ZoekEnPlaats((NTBoxLijst), ZoekTekst, Aantallijnen, Keuze, GRIDTEXT)
         If Keuze = -1 Then
         Else
             NTBoxLijst.SelectedIndex = Keuze
         End If
     End Sub
     Private Sub okButton_Click(sender As Object, e As EventArgs) Handles okButton.Click
-        GridText = NTBoxLijst.Text
+        GRIDTEXT = NTBoxLijst.Text
         Close()
     End Sub
     Private Sub negerenButton_Click(sender As Object, e As EventArgs) Handles negerenButton.Click
-        GridText = ""
+        GRIDTEXT = ""
         Close()
     End Sub
     Private Sub NTBoxLijst_DoubleClick(sender As Object, e As EventArgs) Handles NTBoxLijst.DoubleClick

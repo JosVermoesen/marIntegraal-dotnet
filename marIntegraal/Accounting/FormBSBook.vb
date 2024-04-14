@@ -43,10 +43,10 @@ Public Class BSBook
 	Sub InvoiceCreditNoteCheck()
 
 		InitialiseFields()
-		Select Case aIndex
-			Case TableOfSuppliers
+		Select Case A_INDEX
+			Case TABLE_SUPPLIERS
 				T = 0
-			Case TableOfCustomers
+			Case TABLE_CUSTOMERS
 				T = 10
 			Case Else
 				MsgBox("Stop")
@@ -56,41 +56,41 @@ Public Class BSBook
 		Select Case RbInvoices.Checked
 			Case True 'Factuur
 				ListSubName = "Facturen"
-				Fl99Record = String99(Reading, 1 + T)
-				tbUntil.Text = Format(Val(Fl99Record), "00000")
-				Fl99Record = String99(Reading, 2 + T)
-				If Format(Val(Fl99Record), "00000") = tbUntil.Text Then
+				FL99_RECORD = String99(READING, 1 + T)
+				tbUntil.Text = Format(Val(FL99_RECORD), "00000")
+				FL99_RECORD = String99(READING, 2 + T)
+				If Format(Val(FL99_RECORD), "00000") = tbUntil.Text Then
 					BtnGenerateReport.Enabled = False
-					lblFrom.Text = Format(Val(Fl99Record), "00000")
+					lblFrom.Text = Format(Val(FL99_RECORD), "00000")
 				Else
 					BtnGenerateReport.Enabled = True
-					lblFrom.Text = Format(Val(Fl99Record) + 1, "00000")
+					lblFrom.Text = Format(Val(FL99_RECORD) + 1, "00000")
 				End If
-				If aIndex = TableOfSuppliers Then
+				If A_INDEX = TABLE_SUPPLIERS Then
 					Ar = 1
-					NumberHere = Val(AdoGetField(TableOfVarious, "#v092 #")) + Val(AdoGetField(TableOfVarious, "#v093 #"))
+					NumberHere = Val(AdoGetField(TABLE_VARIOUS, "#v092 #")) + Val(AdoGetField(TABLE_VARIOUS, "#v093 #"))
 				Else
 					Ar = 12
-					NumberHere = Val(AdoGetField(TableOfVarious, "#v096 #")) + Val(AdoGetField(TableOfVarious, "#v097 #"))
+					NumberHere = Val(AdoGetField(TABLE_VARIOUS, "#v096 #")) + Val(AdoGetField(TABLE_VARIOUS, "#v097 #"))
 				End If
 			Case Else
 				ListSubName = "Creditnota's"
-				Fl99Record = String99(Reading, 3 + T)
-				tbUntil.Text = Format(Val(Fl99Record), "00000")
-				Fl99Record = String99(Reading, 4 + T)
-				If Format(Val(Fl99Record), "00000") = tbUntil.Text Then
+				FL99_RECORD = String99(READING, 3 + T)
+				tbUntil.Text = Format(Val(FL99_RECORD), "00000")
+				FL99_RECORD = String99(READING, 4 + T)
+				If Format(Val(FL99_RECORD), "00000") = tbUntil.Text Then
 					BtnGenerateReport.Enabled = False
-					lblFrom.Text = Format(Val(Fl99Record), "00000")
+					lblFrom.Text = Format(Val(FL99_RECORD), "00000")
 				Else
 					BtnGenerateReport.Enabled = True
-					lblFrom.Text = Format(Val(Fl99Record) + 1, "00000")
+					lblFrom.Text = Format(Val(FL99_RECORD) + 1, "00000")
 				End If
-				If aIndex = TableOfSuppliers Then
+				If A_INDEX = TABLE_SUPPLIERS Then
 					Ar = 3
-					NumberHere = Val(AdoGetField(TableOfVarious, "#v094 #")) + Val(AdoGetField(TableOfVarious, "#v095 #"))
+					NumberHere = Val(AdoGetField(TABLE_VARIOUS, "#v094 #")) + Val(AdoGetField(TABLE_VARIOUS, "#v095 #"))
 				Else
 					Ar = 14
-					NumberHere = Val(AdoGetField(TableOfVarious, "#v098 #")) + Val(AdoGetField(TableOfVarious, "#v099 #"))
+					NumberHere = Val(AdoGetField(TABLE_VARIOUS, "#v098 #")) + Val(AdoGetField(TABLE_VARIOUS, "#v099 #"))
 				End If
 		End Select
 		If NumberHere Then
@@ -107,22 +107,22 @@ Public Class BSBook
 		Dim T As Integer
 		Dim PeriodeMax As Integer
 
-		Ktrl = 0
+		KTRL = 0
 		PeriodeMax = FormBYPERDAT.PeriodeBoekjaar.Items.Count + 1
 		Do While PeriodeMax > FormBYPERDAT.PeriodeBoekjaar.SelectedIndex + 1
 			PeriodeSleutel = "17" & FormBYPERDAT.Boekjaar.Text & Format(PeriodeMax, "00")
-			JetGet(TableOfVarious, 1, PeriodeSleutel)
-			If Ktrl Then
-				TLBRecord(TableOfVarious) = ""
-				AdoInsertToRecord(TableOfVarious, (FormBYPERDAT.Boekjaar.Text), "v090")
-				AdoInsertToRecord(TableOfVarious, Format(PeriodeMax, "00"), "v091")
-				AdoInsertToRecord(TableOfVarious, "17" & AdoGetField(TableOfVarious, "#v090 #") & AdoGetField(TableOfVarious, "#v091 #"), "v005")
-				JetInsert(TableOfVarious, 1)
+			JetGet(TABLE_VARIOUS, 1, PeriodeSleutel)
+			If KTRL Then
+				TLB_RECORD(TABLE_VARIOUS) = ""
+				AdoInsertToRecord(TABLE_VARIOUS, (FormBYPERDAT.Boekjaar.Text), "v090")
+				AdoInsertToRecord(TABLE_VARIOUS, Format(PeriodeMax, "00"), "v091")
+				AdoInsertToRecord(TABLE_VARIOUS, "17" & AdoGetField(TABLE_VARIOUS, "#v090 #") & AdoGetField(TABLE_VARIOUS, "#v091 #"), "v005")
+				JetInsert(TABLE_VARIOUS, 1)
 			Else
-				RecordToField(TableOfVarious)
+				RecordToField(TABLE_VARIOUS)
 				NumberHere = 0
 				For T = 92 To 99
-					NumberHere += Val(AdoGetField(TableOfVarious, "#v" & Format(T, "000") & " #"))
+					NumberHere += Val(AdoGetField(TABLE_VARIOUS, "#v" & Format(T, "000") & " #"))
 				Next
 				If NumberHere Then
 					NumberHere = PeriodeMax
@@ -139,20 +139,20 @@ jump:
 			Exit Sub
 		Else
 			PeriodeSleutel = "17" & FormBYPERDAT.Boekjaar.Text & Format(FormBYPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00")
-			JetGet(TableOfVarious, 1, PeriodeSleutel)
-			If Ktrl Then
-				TLBRecord(TableOfVarious) = ""
-				AdoInsertToRecord(TableOfVarious, (FormBYPERDAT.Boekjaar.Text), "v090")
-				AdoInsertToRecord(TableOfVarious, Format(FormBYPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
-				AdoInsertToRecord(TableOfVarious, "17" & AdoGetField(TableOfVarious, "#v090 #") & AdoGetField(TableOfVarious, "#v091 #"), "v005")
-				JetInsert(TableOfVarious, 1)
+			JetGet(TABLE_VARIOUS, 1, PeriodeSleutel)
+			If KTRL Then
+				TLB_RECORD(TABLE_VARIOUS) = ""
+				AdoInsertToRecord(TABLE_VARIOUS, (FormBYPERDAT.Boekjaar.Text), "v090")
+				AdoInsertToRecord(TABLE_VARIOUS, Format(FormBYPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
+				AdoInsertToRecord(TABLE_VARIOUS, "17" & AdoGetField(TABLE_VARIOUS, "#v090 #") & AdoGetField(TABLE_VARIOUS, "#v091 #"), "v005")
+				JetInsert(TABLE_VARIOUS, 1)
 				GoTo jump
 			Else
-				RecordToField(TableOfVarious)
+				RecordToField(TABLE_VARIOUS)
 			End If
 		End If
 
-		If Mid(String99(Reading, 20), 1, 1) = "4" Then
+		If Mid(String99(READING, 20), 1, 1) = "4" Then
 			Fixed = 1
 		Else
 			Fixed = 0
@@ -165,163 +165,163 @@ jump:
 
 		ReportFieldNr(0) = 33
 		ReportWay(0) = 0 'niks omwerken gewoon afdrukken
-		ReportField(0) = "Document"
-		ReportTab(0) = 2
+		REPORT_FIELD(0) = "Document"
+		REPORT_TAB(0) = 2
 
 		ReportFieldNr(1) = 35
 		ReportWay(1) = 5 'datum omwerken
-		ReportField(1) = "Datum doc."
-		ReportTab(1) = 14
+		REPORT_FIELD(1) = "Datum doc."
+		REPORT_TAB(1) = 14
 
-		Select Case aIndex
-			Case TableOfSuppliers
+		Select Case A_INDEX
+			Case TABLE_SUPPLIERS
 				ReportFieldNr(2) = 39
 				ReportWay(2) = 0
-				ReportField(2) = "Referte"
-				ReportTab(2) = 25
+				REPORT_FIELD(2) = "Referte"
+				REPORT_TAB(2) = 25
 
 				ReportFieldNr(3) = 46
 				ReportWay(3) = 9 'geheel NumberHere geformateerd
-				ReportField(3) = "   VAK 81"
-				ReportTab(3) = 46
+				REPORT_FIELD(3) = "   VAK 81"
+				REPORT_TAB(3) = 46
 
 				ReportFieldNr(4) = 47
 				ReportWay(4) = 9
-				ReportField(4) = "   VAK 82"
-				ReportTab(4) = 56
+				REPORT_FIELD(4) = "   VAK 82"
+				REPORT_TAB(4) = 56
 
 				ReportFieldNr(5) = 48
 				ReportWay(5) = 9
-				ReportField(5) = "   VAK 83"
-				ReportTab(5) = 66
+				REPORT_FIELD(5) = "   VAK 83"
+				REPORT_TAB(5) = 66
 
 				ReportFieldNr(6) = 49
 				ReportWay(6) = 9
-				ReportField(6) = "   DERDEN"
-				ReportTab(6) = 76
+				REPORT_FIELD(6) = "   DERDEN"
+				REPORT_TAB(6) = 76
 
 				ReportFieldNr(7) = 50
 				ReportWay(7) = 9
-				ReportField(7) = "   VAK 84"
-				ReportTab(7) = 86
+				REPORT_FIELD(7) = "   VAK 84"
+				REPORT_TAB(7) = 86
 
 				ReportFieldNr(8) = 51
 				ReportWay(8) = 9
-				ReportField(8) = "   VAK 85"
-				ReportTab(8) = 96
+				REPORT_FIELD(8) = "   VAK 85"
+				REPORT_TAB(8) = 96
 
 				ReportFieldNr(9) = 52
 				ReportWay(9) = 9
-				ReportField(9) = "   VAK 86"
-				ReportTab(9) = 106
+				REPORT_FIELD(9) = "   VAK 86"
+				REPORT_TAB(9) = 106
 
 				ReportFieldNr(10) = 99
 				ReportWay(10) = 1 'zoek flpartij kode+naam1
-				ReportField(10) = "ID.Kode/Naam"
-				ReportTab(10) = 2
+				REPORT_FIELD(10) = "ID.Kode/Naam"
+				REPORT_TAB(10) = 2
 
 				ReportFieldNr(11) = 53
 				ReportWay(11) = 9
-				ReportField(11) = "   VAK 87"
-				ReportTab(11) = 56
+				REPORT_FIELD(11) = "   VAK 87"
+				REPORT_TAB(11) = 56
 
 				ReportFieldNr(12) = 54
 				ReportWay(12) = 9
-				ReportField(12) = "   VAK 88"
-				ReportTab(12) = 66
+				REPORT_FIELD(12) = "   VAK 88"
+				REPORT_TAB(12) = 66
 
 				ReportFieldNr(13) = 42
 				ReportWay(13) = 9
-				ReportField(13) = "   VAK 55"
-				ReportTab(13) = 76
+				REPORT_FIELD(13) = "   VAK 55"
+				REPORT_TAB(13) = 76
 
 				ReportFieldNr(14) = 43
 				ReportWay(14) = 9
-				ReportField(14) = "   VAK 56"
-				ReportTab(14) = 86
+				REPORT_FIELD(14) = "   VAK 56"
+				REPORT_TAB(14) = 86
 
 				ReportFieldNr(15) = 44
 				ReportWay(15) = 9
-				ReportField(15) = "   VAK 57"
-				ReportTab(15) = 96
+				REPORT_FIELD(15) = "   VAK 57"
+				REPORT_TAB(15) = 96
 
 				ReportFieldNr(16) = 45
 				ReportWay(16) = 9
-				ReportTab(16) = 106
+				REPORT_TAB(16) = 106
 
 				Select Case Ar
 					Case 1
-						ReportField(16) = "   VAK 59"
+						REPORT_FIELD(16) = "   VAK 59"
 					Case Else
-						ReportField(16) = "   VAK 63"
+						REPORT_FIELD(16) = "   VAK 63"
 				End Select
-				ReportTab(17) = 0
+				REPORT_TAB(17) = 0
 				tMaxField = 16
 
-			Case TableOfCustomers
+			Case TABLE_CUSTOMERS
 				ReportFieldNr(2) = 55
 				ReportWay(2) = 9 'geheel NumberHere geformateerd
-				ReportField(2) = "VAK 00"
-				ReportTab(2) = 44
+				REPORT_FIELD(2) = "VAK 00"
+				REPORT_TAB(2) = 44
 
 				ReportFieldNr(3) = 56
 				ReportWay(3) = 9
-				ReportField(3) = "VAK 01"
-				ReportTab(3) = 55
+				REPORT_FIELD(3) = "VAK 01"
+				REPORT_TAB(3) = 55
 
 				ReportFieldNr(4) = 57
 				ReportWay(4) = 9
-				ReportField(4) = "VAK 02"
-				ReportTab(4) = 66
+				REPORT_FIELD(4) = "VAK 02"
+				REPORT_TAB(4) = 66
 
 				ReportFieldNr(5) = 58
 				ReportWay(5) = 9
-				ReportField(5) = "VAK 03"
-				ReportTab(5) = 77
+				REPORT_FIELD(5) = "VAK 03"
+				REPORT_TAB(5) = 77
 
 				ReportFieldNr(6) = 59
 				ReportWay(6) = 9
-				ReportField(6) = "VAK 45"
-				ReportTab(6) = 88
+				REPORT_FIELD(6) = "VAK 45"
+				REPORT_TAB(6) = 88
 
 				ReportFieldNr(7) = 60
 				ReportWay(7) = 9
-				ReportField(7) = "VAK 46"
-				ReportTab(7) = 99
+				REPORT_FIELD(7) = "VAK 46"
+				REPORT_TAB(7) = 99
 
 				ReportFieldNr(8) = 61
 				ReportWay(8) = 9
-				ReportField(8) = "VAK 47"
-				ReportTab(8) = 110
+				REPORT_FIELD(8) = "VAK 47"
+				REPORT_TAB(8) = 110
 
 				ReportFieldNr(9) = 99
 				ReportWay(9) = 1
-				ReportField(9) = "ID.Kode/Naam"
-				ReportTab(9) = 2
+				REPORT_FIELD(9) = "ID.Kode/Naam"
+				REPORT_TAB(9) = 2
 
 				ReportFieldNr(10) = 62
 				ReportWay(10) = 9
-				ReportField(10) = "VAK 48"
-				ReportTab(10) = 77
+				REPORT_FIELD(10) = "VAK 48"
+				REPORT_TAB(10) = 77
 
 
 				ReportFieldNr(11) = 63
 				ReportWay(11) = 9
-				ReportField(11) = "VAK 49"
-				ReportTab(11) = 88
+				REPORT_FIELD(11) = "VAK 49"
+				REPORT_TAB(11) = 88
 
 				ReportFieldNr(12) = 64
 				ReportWay(12) = 9
-				ReportTab(12) = 99
+				REPORT_TAB(12) = 99
 
 				Select Case Ar
 					Case 12
-						ReportField(12) = "VAK 54"
+						REPORT_FIELD(12) = "VAK 54"
 					Case Else
-						ReportField(12) = "VAK 64"
+						REPORT_FIELD(12) = "VAK 64"
 				End Select
 				tMaxField = 12
-				ReportTab(13) = 0
+				REPORT_TAB(13) = 0
 		End Select
 
 		For T = 0 To 17
@@ -334,10 +334,10 @@ jump:
 		For T = 0 To tMaxField
 			Select Case SecondLine
 				Case False
-					Mid(pdfReportTitle, ReportTab(T)) = ReportField(T)
-					If ReportTab(T + 1) < ReportTab(T) Then SecondLine = True
+					Mid(pdfReportTitle, REPORT_TAB(T)) = REPORT_FIELD(T)
+					If REPORT_TAB(T + 1) < REPORT_TAB(T) Then SecondLine = True
 				Case True
-					Mid(pdfReportTitle2, ReportTab(T)) = ReportField(T)
+					Mid(pdfReportTitle2, REPORT_TAB(T)) = REPORT_FIELD(T)
 			End Select
 		Next
 
@@ -357,14 +357,14 @@ jump:
 			.PenSize = 0.01
 		End With
 
-		PageCounter += 1
+		PAGE_COUNTER += 1
 		pdfY = Mim.Report.Print(1, 1, ReportText(2))
-		pdfY = Mim.Report.Print(17, 1, "Pagina : " & Dec(PageCounter, "##########") & vbCrLf)
+		pdfY = Mim.Report.Print(17, 1, "Pagina : " & Dec(PAGE_COUNTER, "##########") & vbCrLf)
 		pdfY = Mim.Report.Print(17, pdfY, "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
-		pdfY = Mim.Report.Print(1, pdfY, FullLine & vbCrLf)
+		pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf)
 		pdfY = Mim.Report.Print(1, pdfY, pdfReportTitle & vbCrLf)
 		pdfY = Mim.Report.Print(1, pdfY, pdfReportTitle2 & vbCrLf)
-		pdfY = Mim.Report.Print(1, pdfY, FullLine & vbCrLf & vbCrLf)
+		pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf & vbCrLf)
 
 	End Sub
 
@@ -375,13 +375,13 @@ jump:
 		Dim T = 0
 		Dim VeldTekst = ""
 
-		Do While ReportTab(T) <> 0
+		Do While REPORT_TAB(T) <> 0
 			Select Case ReportWay(T)
 				Case 1
-					JetGet(aIndex, 0, SetSpacing(Mid(RV(rsSellersOrBuyersHere, "v034"), 2), FlIndexLen(aIndex, 0)))
-					If Ktrl = 0 Then
-						'RecordToField(aIndex)
-						VeldTekst = Trim(RV(rsMAR(aIndex), "A110")) & " " & Trim(RV(rsMAR(aIndex), "A100"))
+					JetGet(A_INDEX, 0, SetSpacing(Mid(RV(rsSellersOrBuyersHere, "v034"), 2), FLINDEX_LEN(A_INDEX, 0)))
+					If KTRL = 0 Then
+						'RecordToField(A_INDEX)
+						VeldTekst = Trim(RV(RS_MAR(A_INDEX), "A110")) & " " & Trim(RV(RS_MAR(A_INDEX), "A100"))
 					Else
 						VeldTekst = Mid(RV(rsSellersOrBuyersHere, "v034"), 2) & " is niet meer aanwezig"
 						MsgBox(VeldTekst)
@@ -398,10 +398,10 @@ jump:
 			End Select
 			Select Case SecondLine
 				Case False
-					Mid(PdfLine, ReportTab(T)) = VeldTekst
-					If ReportTab(T + 1) < ReportTab(T) Then SecondLine = True
+					Mid(PdfLine, REPORT_TAB(T)) = VeldTekst
+					If REPORT_TAB(T + 1) < REPORT_TAB(T) Then SecondLine = True
 				Case True
-					Mid(PdfLine2, ReportTab(T)) = VeldTekst
+					Mid(PdfLine2, REPORT_TAB(T)) = VeldTekst
 			End Select
 			aa = aa & VeldTekst & vbTab
 			T += 1
@@ -422,7 +422,7 @@ jump:
 		Dim T = 0
 		Dim VeldTekst As String
 
-		Do While ReportTab(T) <> 0
+		Do While REPORT_TAB(T) <> 0
 			VeldTekst = ""
 			Select Case ReportWay(T)
 				Case 9
@@ -430,14 +430,14 @@ jump:
 			End Select
 			Select Case SecondLine
 				Case True
-					Mid(PdfLine2, ReportTab(T)) = VeldTekst
+					Mid(PdfLine2, REPORT_TAB(T)) = VeldTekst
 				Case False
-					Mid(PdfLine, ReportTab(T)) = VeldTekst
-					If ReportTab(T + 1) < ReportTab(T) Then SecondLine = True
+					Mid(PdfLine, REPORT_TAB(T)) = VeldTekst
+					If REPORT_TAB(T + 1) < REPORT_TAB(T) Then SecondLine = True
 			End Select
 			T += 1
 		Loop
-		pdfY = Mim.Report.Print(1, pdfY, FullLine & vbCrLf)
+		pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf)
 		pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf)
 		pdfY = Mim.Report.Print(1, pdfY, PdfLine2 & vbCrLf & vbCrLf)
 
@@ -452,8 +452,8 @@ jump:
 		Dim VeldTekst As String
 		Dim Ktrl44 As Boolean = False
 
-		Ktrl = GetJourRecordSet(key33)
-		If Not Ktrl Then
+		KTRL = GetJourRecordSet(key33)
+		If Not KTRL Then
 			MsgBox("Geen journaalgegevens gevonden voor dit document")
 			Exit Sub
 		End If
@@ -472,9 +472,9 @@ jump:
 					End If
 				End If
 			Else
-				JetGet(TableOfLedgerAccounts, 0, rsSorBJournalHere("v019").Value.ToString)
-				If Ktrl = 0 Then
-					RekeningNaam = SetSpacing(Trim(RV(rsMAR(TableOfLedgerAccounts), "v020")), 30)
+				JetGet(TABLE_LEDGERACCOUNTS, 0, rsSorBJournalHere("v019").Value.ToString)
+				If KTRL = 0 Then
+					RekeningNaam = SetSpacing(Trim(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v020")), 30)
 				Else
 					RekeningNaam = SetSpacing("Rekening reeds vernietigd!", 30)
 					MsgBox(RekeningNaam)
@@ -516,22 +516,22 @@ jump:
 
 		'ForFaitBerekening: 
 		'		'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-		'		If RTrim(RV(rsMAR(TableOfLedgerAccounts), "v216")) <> "" Then
+		'		If RTrim(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v216")) <> "" Then
 		'			'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-		'			ForfaitNr = Val(RV(rsMAR(TableOfLedgerAccounts), "v216"))
+		'			ForfaitNr = Val(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v216"))
 		'			'UPGRADE_WARNING: Couldn't resolve default property of object RV(rsSorBJournalHere, dece068). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 		'			FixedAmount(ForfaitNr) = FixedAmount(ForfaitNr) + RV(rsSorBJournalHere, "dece068")
 		'			If FixedPercentage(ForfaitNr) = 0 Then
 		'				'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-		'				JetGet(TableOfVarious, 1, SetSpacing("21" + RV(rsMAR(TableOfLedgerAccounts), "v216"), 20))
-		'				If Ktrl Then
+		'				JetGet(TABLE_VARIOUS, 1, SetSpacing("21" + RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v216"), 20))
+		'				If KTRL Then
 		'					'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-		'					MsgBox("Forfaitaire Kode : " + RV(rsMAR(TableOfLedgerAccounts), "v216") + " en waarde nog niet aanwezig.  Eerst inbrengen via diverse gebruikersfiches pér bedrijf a.u.b. !")
+		'					MsgBox("Forfaitaire Kode : " + RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v216") + " en waarde nog niet aanwezig.  Eerst inbrengen via diverse gebruikersfiches pér bedrijf a.u.b. !")
 		'				Else
-		'					RecordToVeld(TableOfVarious)
-		'					FixedPercentage(ForfaitNr) = Val(AdoGetField(TableOfVarious, "#v218 #"))
-		'					BtwForfait(ForfaitNr) = Val(Mid(fmarBoxText("002", "2", AdoGetField(TableOfVarious, "#v111 #")), 4, 4))
-		'					KortingForfait(ForfaitNr) = Val(AdoGetField(TableOfVarious, "#v230 #"))
+		'					RecordToVeld(TABLE_VARIOUS)
+		'					FixedPercentage(ForfaitNr) = Val(AdoGetField(TABLE_VARIOUS, "#v218 #"))
+		'					BtwForfait(ForfaitNr) = Val(Mid(fmarBoxText("002", "2", AdoGetField(TABLE_VARIOUS, "#v111 #")), 4, 4))
+		'					KortingForfait(ForfaitNr) = Val(AdoGetField(TABLE_VARIOUS, "#v230 #"))
 		'				End If
 		'			End If
 		'		End If
@@ -543,19 +543,19 @@ jump:
 	Private Sub CumulUpdate(account As String, amount As Double)
 
 StartPunt:
-		JetGet(TableDummy, 0, account)
-		If Ktrl Then
-			TLBRecord(TableDummy) = ""
-			AdoInsertToRecord(TableDummy, account, "v089")
-			AdoInsertToRecord(TableDummy, "0", "v013")
-			AdoInsertToRecord(TableDummy, "0", "v068")
-			JetInsert(TableDummy, 0)
+		JetGet(TABLE_DUMMY, 0, account)
+		If KTRL Then
+			TLB_RECORD(TABLE_DUMMY) = ""
+			AdoInsertToRecord(TABLE_DUMMY, account, "v089")
+			AdoInsertToRecord(TABLE_DUMMY, "0", "v013")
+			AdoInsertToRecord(TABLE_DUMMY, "0", "v068")
+			JetInsert(TABLE_DUMMY, 0)
 			GoTo StartPunt
 		Else
-			RecordToField(TableDummy)
-			AdoInsertToRecord(TableDummy, Str(Val(AdoGetField(TableDummy, "#v013 #")) + 1), "v013")
-			AdoInsertToRecord(TableDummy, Str(Val(AdoGetField(TableDummy, "#v068 #")) + amount), "v068")
-			bUpdate(TableDummy, 0)
+			RecordToField(TABLE_DUMMY)
+			AdoInsertToRecord(TABLE_DUMMY, Str(Val(AdoGetField(TABLE_DUMMY, "#v013 #")) + 1), "v013")
+			AdoInsertToRecord(TABLE_DUMMY, Str(Val(AdoGetField(TABLE_DUMMY, "#v068 #")) + amount), "v068")
+			bUpdate(TABLE_DUMMY, 0)
 		End If
 
 	End Sub
@@ -578,7 +578,7 @@ StartPunt:
 		rsSellersOrBuyersHere = New ADODB.Recordset With {
 			.CursorLocation = ADODB.CursorLocationEnum.adUseClient
 		}
-		rsSellersOrBuyersHere.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+		rsSellersOrBuyersHere.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 		If rsSellersOrBuyersHere.RecordCount <= 0 Then
 			'Message something
 		Else
@@ -597,7 +597,7 @@ StartPunt:
 		rsDummy = New ADODB.Recordset With {
 			.CursorLocation = ADODB.CursorLocationEnum.adUseClient
 		}
-		rsDummy.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+		rsDummy.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 		If rsDummy.RecordCount <= 0 Then
 			'Message something
 		Else
@@ -616,7 +616,7 @@ StartPunt:
 		rsSorBJournalHere = New ADODB.Recordset With {
 			.CursorLocation = ADODB.CursorLocationEnum.adUseClient
 		}
-		rsSorBJournalHere.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+		rsSorBJournalHere.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 		If rsSorBJournalHere.RecordCount <= 0 Then
 			'Message something
 		Else
@@ -645,41 +645,41 @@ StartPunt:
 		Dim bedrag As Double = 0
 		Dim Ktrl44 As Boolean = False
 
-		JetTableClose(TableDummy)
-		JetGetFirst(TableDummy, 0)
-		RecordToField(TableDummy)
-		rekeningNummer = SetSpacing(AdoGetField(TableDummy, "#v089 #"), 7)
-		JetGet(TableOfLedgerAccounts, 0, rekeningNummer)
-		If Ktrl Then
+		JetTableClose(TABLE_DUMMY)
+		JetGetFirst(TABLE_DUMMY, 0)
+		RecordToField(TABLE_DUMMY)
+		rekeningNummer = SetSpacing(AdoGetField(TABLE_DUMMY, "#v089 #"), 7)
+		JetGet(TABLE_LEDGERACCOUNTS, 0, rekeningNummer)
+		If KTRL Then
 			rekeningNaam = SetSpacing("Rekening reeds vernietigd !!!", 30)
 		Else
-			RecordToField(TableOfLedgerAccounts)
-			rekeningNummer = SetSpacing(rsMAR(TableOfLedgerAccounts).Fields("v019").Value, 7)
-			rekeningNaam = SetSpacing(rsMAR(TableOfLedgerAccounts).Fields("v020").Value, 30)
+			RecordToField(TABLE_LEDGERACCOUNTS)
+			rekeningNummer = SetSpacing(RS_MAR(TABLE_LEDGERACCOUNTS).Fields("v019").Value, 7)
+			rekeningNaam = SetSpacing(RS_MAR(TABLE_LEDGERACCOUNTS).Fields("v020").Value, 30)
 		End If
-		aantalKeer = Val(AdoGetField(TableDummy, "#v013 #"))
-		bedrag = Val(AdoGetField(TableDummy, "#v068 #"))
+		aantalKeer = Val(AdoGetField(TABLE_DUMMY, "#v013 #"))
+		bedrag = Val(AdoGetField(TABLE_DUMMY, "#v068 #"))
 
 		Tabul = 0
 		Mid(PdfDetailLine, Tabul + 2) = Dec(aantalKeer, "####") & " x " & rekeningNummer & " " & rekeningNaam & " " & Dec(bedrag, MaskHere)
 
 		Do
-			bNext(TableDummy, 0, rekeningNummer)
-			If Ktrl Then
+			bNext(TABLE_DUMMY, 0, rekeningNummer)
+			If KTRL Then
 				Exit Do
 			End If
-			RecordToField(TableDummy)
-			rekeningNummer = SetSpacing(AdoGetField(TableDummy, "#v089 #"), 7)
-			JetGet(TableOfLedgerAccounts, 0, rekeningNummer)
-			If Ktrl Then
+			RecordToField(TABLE_DUMMY)
+			rekeningNummer = SetSpacing(AdoGetField(TABLE_DUMMY, "#v089 #"), 7)
+			JetGet(TABLE_LEDGERACCOUNTS, 0, rekeningNummer)
+			If KTRL Then
 				rekeningNaam = SetSpacing("Rekening reeds vernietigd !!!", 30)
 			Else
-				RecordToField(TableOfLedgerAccounts)
-				rekeningNummer = SetSpacing(rsMAR(TableOfLedgerAccounts).Fields("v019").Value, 7)
-				rekeningNaam = SetSpacing(rsMAR(TableOfLedgerAccounts).Fields("v020").Value, 30)
+				RecordToField(TABLE_LEDGERACCOUNTS)
+				rekeningNummer = SetSpacing(RS_MAR(TABLE_LEDGERACCOUNTS).Fields("v019").Value, 7)
+				rekeningNaam = SetSpacing(RS_MAR(TABLE_LEDGERACCOUNTS).Fields("v020").Value, 30)
 			End If
-			aantalKeer = Val(AdoGetField(TableDummy, "#v013 #"))
-			bedrag = Val(AdoGetField(TableDummy, "#v068 #"))
+			aantalKeer = Val(AdoGetField(TABLE_DUMMY, "#v013 #"))
+			bedrag = Val(AdoGetField(TABLE_DUMMY, "#v068 #"))
 
 			If Tabul = 0 Then
 				Tabul = 56
@@ -746,21 +746,21 @@ StartPunt:
 
 	Private Sub BSBook_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-		If bhEuro Then
+		If BH_EURO Then
 			MaskHere = "#####0.00"
 		Else
 			MaskHere = "########0"
 		End If
 
-		DateTimePickerProcessingDate.Text = MimGlobalDate
+		DateTimePickerProcessingDate.Text = MIM_GLOBAL_DATE
 
-		Select Case aIndex
-			Case TableOfSuppliers
+		Select Case A_INDEX
+			Case TABLE_SUPPLIERS
 				ListName = "Aankoopboek"
-				aIndex = TableOfSuppliers
-			Case TableOfCustomers
+				A_INDEX = TABLE_SUPPLIERS
+			Case TABLE_CUSTOMERS
 				ListName = "Verkoopboek"
-				aIndex = TableOfCustomers
+				A_INDEX = TABLE_CUSTOMERS
 			Case Else
 				MsgBox("Stop")
 		End Select
@@ -769,14 +769,14 @@ StartPunt:
 		AgfControl()
 		RbInvoices.Checked = True
 
-		adntDB.Execute("DELETE * FROM TmpBestand")
+		AD_NTDB.Execute("DELETE * FROM TmpBestand")
 		'ClearFlDummy()
 
 	End Sub
 
 	Private Sub DateTimePickerProcessingDate_Leave(sender As Object, e As EventArgs) Handles DateTimePickerProcessingDate.Leave
 
-		If Not DatumKtrl(Format(DateTimePickerProcessingDate.Value, "ddMMyyyy"), PeriodAsText) Then
+		If Not DatumKtrl(Format(DateTimePickerProcessingDate.Value, "ddMMyyyy"), PERIODAS_TEXT) Then
 			MessageBox.Show("Datum verwerking buiten periode" & vbCrLf & vbCrLf & FormBYPERDAT.PeriodeBoekjaar.Text & "!", "Datum controle", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 			DateTimePickerProcessingDate.Focus()
 		End If
@@ -806,11 +806,11 @@ StartPunt:
 			FixedPercentage(T) = 0
 		Next
 
-		Select Case aIndex
-			Case TableOfSuppliers
+		Select Case A_INDEX
+			Case TABLE_SUPPLIERS
 				BeginAV = "A"
 				EindAV = "A"
-			Case TableOfCustomers
+			Case TABLE_CUSTOMERS
 				BeginAV = "V"
 				EindAV = "V"
 			Case Else
@@ -818,12 +818,12 @@ StartPunt:
 		End Select
 		Select Case RbInvoices.Checked
 			Case -1
-				BeginSleutel = BeginAV & "0" & Mid(PeriodFromTo, 1, 4) & Dec(Val(lblFrom.Text), "00000")
-				EindSleutel = EindAV & "0" & Mid(PeriodFromTo, 1, 4) & Dec(Val(tbUntil.Text), "00000")
+				BeginSleutel = BeginAV & "0" & Mid(PERIOD_FROMTO, 1, 4) & Dec(Val(lblFrom.Text), "00000")
+				EindSleutel = EindAV & "0" & Mid(PERIOD_FROMTO, 1, 4) & Dec(Val(tbUntil.Text), "00000")
 				Tekst = RbInvoices.Text
 			Case Else
-				BeginSleutel = BeginAV & "1" & Mid(PeriodFromTo, 1, 4) & Dec(Val(lblFrom.Text), "00000")
-				EindSleutel = EindAV & "1" & Mid(PeriodFromTo, 1, 4) & Dec(Val(tbUntil.Text), "00000")
+				BeginSleutel = BeginAV & "1" & Mid(PERIOD_FROMTO, 1, 4) & Dec(Val(lblFrom.Text), "00000")
+				EindSleutel = EindAV & "1" & Mid(PERIOD_FROMTO, 1, 4) & Dec(Val(tbUntil.Text), "00000")
 				Tekst = RbCreditNotes.Text
 		End Select
 
@@ -869,8 +869,8 @@ StartPunt:
 		If RbInvoices.Checked Then
 			MSG = MSG & vbCrLf & vbCrLf & "Opgelet !  Creditnota's niet vergeten straks..."
 		End If
-		Ktrl = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1, "BTW Aangifte")
-		If Ktrl = MsgBoxResult.Yes Then
+		KTRL = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1, "BTW Aangifte")
+		If KTRL = MsgBoxResult.Yes Then
 			'GoSub BTWAangifte
 		End If
 		Refresh()
@@ -886,42 +886,42 @@ StartPunt:
 		Exit Sub
 
 		' BTWAangifte: 
-		'		JetGet(TableOfVarious, 1, SetSpacing("17" & BJPERDAT.Boekjaar.Text & VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), 20))
-		'		If Ktrl Then
+		'		JetGet(TABLE_VARIOUS, 1, SetSpacing("17" & BJPERDAT.Boekjaar.Text & VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), 20))
+		'		If KTRL Then
 		'			MsgBox("Stop")
 		'		Else
-		'			RecordToVeld(TableOfVarious)
+		'			RecordToVeld(TABLE_VARIOUS)
 		'		End If
 
 		'		'btwperiode bijvoegen vanaf 07/2008 voor Intervat
-		'		If Mid(PeriodFromTo.Value, 5, 2) = Mid(PeriodFromTo.Value, 13, 2) Then
+		'		If Mid(PERIOD_FROMTO.Value, 5, 2) = Mid(PERIOD_FROMTO.Value, 13, 2) Then
 		'			'ok de periode marIntegraal staan op maandelijks
-		'			AdoInsertToRecord(TableOfVarious, Mid(PeriodFromTo.Value, 5, 2), "i001") 'werkelijke maand
-		'			AdoInsertToRecord(TableOfVarious, Mid(PeriodFromTo.Value, 1, 4), "i002") 'werkelijk jaar
+		'			AdoInsertToRecord(TABLE_VARIOUS, Mid(PERIOD_FROMTO.Value, 5, 2), "i001") 'werkelijke maand
+		'			AdoInsertToRecord(TABLE_VARIOUS, Mid(PERIOD_FROMTO.Value, 1, 4), "i002") 'werkelijk jaar
 		'		Else
 		'			MsgBox("marIntegraal boekhoudperiodes staan nog altijd op 3-maandelijks.  Geen Intervat aangifte mogelijk met deze werkwijze die dateert van 1985-1994 en vermoedelijk overgenomen werd uit marIntegraal DOS periode. Contacteer ons 0475/292255 voor manuele tussenkomst!!)", MsgBoxStyle.Critical)
 		'		End If
 
-		'		Select Case aIndex
-		'			Case TableOfSuppliers
+		'		Select Case A_INDEX
+		'			Case TABLE_SUPPLIERS
 		'				Select Case Ar
 		'					Case 1
 		'						'Record Kontroleren, zou MOETEN op nul staan...
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(16)), "v045") 'vak 59
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(9)), "v052") 'vak 86
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(11)), "v053") 'vak 87
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(12)), "v054") 'vak 88
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(16)), "v045") 'vak 59
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(9)), "v052") 'vak 86
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(11)), "v053") 'vak 87
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v054") 'vak 88
 
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstVan.Text), "00000"), "v092")
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v093")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v092")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v093")
 
 		'					Case 3
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(16)), "v100") 'vak 63
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(7)), "v050") 'vak 84
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(8)), "v051") 'vak 85
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(16)), "v100") 'vak 63
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(7)), "v050") 'vak 84
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(8)), "v051") 'vak 85
 
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstVan.Text), "00000"), "v094")
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v095")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v094")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v095")
 		'						For Tel = 3 To 16
 		'							ColumnTotal(Tel) = -ColumnTotal(Tel)
 		'						Next 
@@ -929,46 +929,46 @@ StartPunt:
 		'						MsgBox("Stop")
 		'				End Select
 
-		'				AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(13) + Val(AdoGetField(TableOfVarious, "#v042 #"))), "v042") 'vak 55
-		'				AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(14) + Val(AdoGetField(TableOfVarious, "#v043 #"))), "v043") 'vak 56
-		'				AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(15) + Val(AdoGetField(TableOfVarious, "#v044 #"))), "v044") 'vak 57
-		'				AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(3) + Val(AdoGetField(TableOfVarious, "#v046 #"))), "v046") 'vak 81
-		'				AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(4) + Val(AdoGetField(TableOfVarious, "#v047 #"))), "v047") 'vak 82
-		'				AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(5) + Val(AdoGetField(TableOfVarious, "#v048 #"))), "v048") 'vak 83
+		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(13) + Val(AdoGetField(TABLE_VARIOUS, "#v042 #"))), "v042") 'vak 55
+		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(14) + Val(AdoGetField(TABLE_VARIOUS, "#v043 #"))), "v043") 'vak 56
+		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(15) + Val(AdoGetField(TABLE_VARIOUS, "#v044 #"))), "v044") 'vak 57
+		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(3) + Val(AdoGetField(TABLE_VARIOUS, "#v046 #"))), "v046") 'vak 81
+		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(4) + Val(AdoGetField(TABLE_VARIOUS, "#v047 #"))), "v047") 'vak 82
+		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(5) + Val(AdoGetField(TABLE_VARIOUS, "#v048 #"))), "v048") 'vak 83
 
 		'				If Fixed Then
-		'					AdoInsertToRecord(TableOfVarious, Str(VakForfait(0)), "v055") 'vak 00
-		'					AdoInsertToRecord(TableOfVarious, Str(VakForfait(1)), "v056") 'vak 01
-		'					AdoInsertToRecord(TableOfVarious, Str(VakForfait(2)), "v057") 'vak 02
-		'					AdoInsertToRecord(TableOfVarious, Str(VakForfait(3)), "v058") 'vak 03
-		'					AdoInsertToRecord(TableOfVarious, Str(BtwTotaalForfait), "v064") 'vak 54
+		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(0)), "v055") 'vak 00
+		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(1)), "v056") 'vak 01
+		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(2)), "v057") 'vak 02
+		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(3)), "v058") 'vak 03
+		'					AdoInsertToRecord(TABLE_VARIOUS, Str(BtwTotaalForfait), "v064") 'vak 54
 		'				End If
 
-		'			Case TableOfCustomers
+		'			Case TABLE_CUSTOMERS
 		'				Select Case Ar
 		'					Case 12
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(12)), "v064") 'vak 54
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(2) + Val(AdoGetField(TableOfVarious, "#v055 #"))), "v055") 'vak 00 bijtellen ?
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v064") 'vak 54
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(2) + Val(AdoGetField(TABLE_VARIOUS, "#v055 #"))), "v055") 'vak 00 bijtellen ?
 
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(3)), "v056") 'vak 01
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(4)), "v057") 'vak 02
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(5)), "v058") 'vak 03
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(6)), "v059") 'vak 45
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(7)), "v060") 'vak 46
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(8)), "v061") 'vak 47
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(3)), "v056") 'vak 01
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(4)), "v057") 'vak 02
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(5)), "v058") 'vak 03
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(6)), "v059") 'vak 45
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(7)), "v060") 'vak 46
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(8)), "v061") 'vak 47
 
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstVan.Text), "00000"), "v096")
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v097")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v096")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v097")
 
 		'					Case 14
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(12)), "v101") 'vak 64
-		'						AdoInsertToRecord(TableOfVarious, Str(Val(AdoGetField(TableOfVarious, "#v055 #")) - ColumnTotal(2)), "v055") 'vak 00 aftrekken ?
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v101") 'vak 64
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(Val(AdoGetField(TABLE_VARIOUS, "#v055 #")) - ColumnTotal(2)), "v055") 'vak 00 aftrekken ?
 
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(10)), "v062") 'vak 48
-		'						AdoInsertToRecord(TableOfVarious, Str(ColumnTotal(11)), "v063") 'vak 49
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(10)), "v062") 'vak 48
+		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(11)), "v063") 'vak 49
 
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstVan.Text), "00000"), "v098")
-		'						AdoInsertToRecord(TableOfVarious, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v099")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v098")
+		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v099")
 
 		'					Case Else
 		'						MsgBox("Stop")
@@ -977,21 +977,21 @@ StartPunt:
 		'				MsgBox("Stop")
 		'		End Select
 
-		'		If bhEuro Then
-		'			AdoInsertToRecord(TableOfVarious, "EUR", "vEUR")
+		'		If BH_EURO Then
+		'			AdoInsertToRecord(TABLE_VARIOUS, "EUR", "vEUR")
 		'		End If
 
-		'		bUpdate(TableOfVarious, 1)
+		'		bUpdate(TABLE_VARIOUS, 1)
 		'		Select Case FaktuurCreditnota(0).Checked
 		'			Case True 'Faktuur
-		'				If aIndex = TableOfSuppliers Then
+		'				If A_INDEX = TABLE_SUPPLIERS Then
 		'					SS99(TekstLijn(3).Text, 2)
 		'				Else
 		'					SS99(TekstLijn(3).Text, 12)
 		'				End If
 
 		'			Case False
-		'				If aIndex = TableOfSuppliers Then
+		'				If A_INDEX = TABLE_SUPPLIERS Then
 		'					SS99(TekstLijn(3).Text, 4)
 		'				Else
 		'					SS99(TekstLijn(3).Text, 14)

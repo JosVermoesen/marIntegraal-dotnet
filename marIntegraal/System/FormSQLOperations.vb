@@ -41,12 +41,12 @@ Public Class SqlOperations
             MSG &= "    Rekeningen" & vbCrLf
             MSG &= "ORDER BY" & vbCrLf
             MSG &= "    v020 DESC"
-            TLBRecord(TableOfVarious) = ""
-            AdoInsertToRecord(TableOfVarious, MSG, "v132")
-            AdoInsertToRecord(TableOfVarious, "Query voorbeeld", "v250")
-            AdoInsertToRecord(TableOfVarious, "29" & AdoGetField(TableOfVarious, "#v250 #"), "v005")
-            JetInsert(TableOfVarious, 1)
-            If Ktrl = 0 Then
+            TLB_RECORD(TABLE_VARIOUS) = ""
+            AdoInsertToRecord(TABLE_VARIOUS, MSG, "v132")
+            AdoInsertToRecord(TABLE_VARIOUS, "Query voorbeeld", "v250")
+            AdoInsertToRecord(TABLE_VARIOUS, "29" & AdoGetField(TABLE_VARIOUS, "#v250 #"), "v005")
+            JetInsert(TABLE_VARIOUS, 1)
+            If KTRL = 0 Then
                 GetStartUpRecordSet()
             End If
         End If
@@ -64,7 +64,7 @@ Public Class SqlOperations
         availableSqlDefRS = New ADODB.Recordset With {
             .CursorLocation = ADODB.CursorLocationEnum.adUseClient
         }
-        availableSqlDefRS.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        availableSqlDefRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If availableSqlDefRS.RecordCount > 0 Then
             GetStartUpRecordSet = True
         End If
@@ -110,8 +110,8 @@ Public Class SqlOperations
         CbAvailableSqlDef.Items.Clear()
         availableSqlDefRS.MoveFirst()
         Do While Not availableSqlDefRS.EOF
-            TLBRecord(TableOfVarious) = availableSqlDefRS.Fields("MEMO").Value
-            CbAvailableSqlDef.Items.Add(AdoGetField(TableOfVarious, "#v250 #"))
+            TLB_RECORD(TABLE_VARIOUS) = availableSqlDefRS.Fields("MEMO").Value
+            CbAvailableSqlDef.Items.Add(AdoGetField(TABLE_VARIOUS, "#v250 #"))
             availableSqlDefRS.MoveNext()
         Loop
         If CbAvailableSqlDef.Items.Count = 0 Then
@@ -154,7 +154,7 @@ Public Class SqlOperations
         DgvSQL.DataSource = Nothing
         dataGridViewRS.Close()
         On Error Resume Next
-        dataGridViewRS.Open(TbSql.Text, adntDB)
+        dataGridViewRS.Open(TbSql.Text, AD_NTDB)
         If Err.Number Then
             MsgBox("SQLQuery: " & TbSql.Text & vbCrLf & vbCrLf & "Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
             DgvSQL.Refresh()
@@ -268,19 +268,19 @@ Public Class SqlOperations
 
     Private Sub CmbSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbAvailableSqlDef.SelectedIndexChanged
 
-        JetGet(TableOfVarious, 1, "29" & CbAvailableSqlDef.Text)
-        If Ktrl Then
+        JetGet(TABLE_VARIOUS, 1, "29" & CbAvailableSqlDef.Text)
+        If KTRL Then
         Else
-            RecordToField(TableOfVarious)
-            If InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") Then
-                TbSql.Text = Mid(AdoGetField(TableOfVarious, "#v132 #"), 1, InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") - 1)
+            RecordToField(TABLE_VARIOUS)
+            If InStr(AdoGetField(TABLE_VARIOUS, "#v132 #"), "[Colwidth]") Then
+                TbSql.Text = Mid(AdoGetField(TABLE_VARIOUS, "#v132 #"), 1, InStr(AdoGetField(TABLE_VARIOUS, "#v132 #"), "[Colwidth]") - 1)
             Else
-                TbSql.Text = AdoGetField(TableOfVarious, "#v132 #")
+                TbSql.Text = AdoGetField(TABLE_VARIOUS, "#v132 #")
             End If
 
             On Error Resume Next
             'Ignore old code from vb6
-            MSG = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
+            MSG = Mid(AdoGetField(TABLE_VARIOUS, "#v132 #"), InStr(AdoGetField(TABLE_VARIOUS, "#v132 #"), "[Colwidth]") + 10)
         End If
 
     End Sub
@@ -291,11 +291,11 @@ Public Class SqlOperations
         Dim Shift As Short = e.KeyData \ &H10000
 
         If KeyCode = 46 Then
-            JetGet(TableOfVarious, 1, "29" & CbAvailableSqlDef.Text)
-            If Ktrl Or Mid(KeyBuf(TableOfVarious), 1, 2) <> "29" Then
+            JetGet(TABLE_VARIOUS, 1, "29" & CbAvailableSqlDef.Text)
+            If KTRL Or Mid(KEY_BUF(TABLE_VARIOUS), 1, 2) <> "29" Then
             ElseIf MsgBox("Bestaande definitie '" & CbAvailableSqlDef.Text & "' verwijderen ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2) = MsgBoxResult.Yes Then
-                RecordToField(TableOfVarious)
-                Bdelete(TableOfVarious)
+                RecordToField(TABLE_VARIOUS)
+                Bdelete(TABLE_VARIOUS)
                 SelectComboVullen()
             Else
                 Exit Sub
@@ -337,11 +337,11 @@ Public Class SqlOperations
 
         '		MSG = "Kies 'Ja' voor kopij als XML bestand" & vbCr & "Kies 'Nee' voor kopij naar het klassieke plakbord"
 
-        '		KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3)
+        '		CTRL_BOX = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3)
         '		Dim BestandHier As String
-        '		If KtrlBox = MsgBoxResult.Cancel Then
+        '		If CTRL_BOX = MsgBoxResult.Cancel Then
         '			Exit Sub
-        '		ElseIf KtrlBox = MsgBoxResult.No Then 
+        '		ElseIf CTRL_BOX = MsgBoxResult.No Then 
         '			On Error Resume Next
         '			My.Computer.Clipboard.Clear()
         '			My.Computer.Clipboard.SetText(msfSQL.Clip)
@@ -430,15 +430,15 @@ Public Class SqlOperations
         '		Dim RecordTeller As Integer
         '		Dim msgStringHier As String
 
-        '		jetConnectSubHier = adoJetProvider & "Data Source=" & LocationCompanyData & "\marnt.mdv;" & "Persist Security Info=False"
+        '		jetConnectSubHier = ADOJET_PROVIDER & "Data Source=" & LOCATION_COMPANYDATA & "\marnt.mdv;" & "Persist Security Info=False"
 
         '		cnnSubHier = New ADODB.Connection
         '		cnnSubHier.Open(jetConnectSubHier)
         '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '		If Dir(LocationCompanyData & "\marnt.mdb") <> "" Then
-        '			Kill(LocationCompanyData & "\marnt.mdb")
+        '		If Dir(LOCATION_COMPANYDATA & "\marnt.mdb") <> "" Then
+        '			Kill(LOCATION_COMPANYDATA & "\marnt.mdb")
         '		End If
-        '		If Not CopyFile(ProgramLocation, LocationCompanyData, "marnt.mdb") Then
+        '		If Not CopyFile(PROGRAM_LOCATION, LOCATION_COMPANYDATA, "marnt.mdb") Then
         '			MsgBox("Stop" & vbCr & ErrorToString())
         '		End If
 
@@ -447,10 +447,10 @@ Public Class SqlOperations
         '		Do While TQString <> ""
         '			sTBLName = Mid(TQString, 1, InStr(TQString, vbCr) - 1)
         '			TQString = Mid(TQString, InStr(TQString, vbCr) + 1)
-        '			SQLstring = "SELECT * INTO [" & LocationCompanyData & "marnt.mdb].[" & sTBLName & "] FROM " & sTBLName
+        '			SQLstring = "SELECT * INTO [" & LOCATION_COMPANYDATA & "marnt.mdb].[" & sTBLName & "] FROM " & sTBLName
         '			Err.Clear()
         '			On Error Resume Next
-        '			SnelHelpPrint("Bezig aan tabel " & sTBLName, blLogging)
+        '			SnelHelpPrint("Bezig aan tabel " & sTBLName, BL_LOGGING)
         '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
         '			System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
         '			cnnSubHier.Execute(SQLstring, RecordTeller)
@@ -465,7 +465,7 @@ Public Class SqlOperations
         '			System.Windows.Forms.Cursor.Current = vbNormal
         '		Loop 
         '		MsgBox("Einde backup database" & vbCr & vbCr & msgStringHier, MsgBoxStyle.Information)
-        '		MsgBox("Backup nog op veilige plaats bewaren: " & LocationCompanyData & "marnt.mdb", MsgBoxStyle.Information)
+        '		MsgBox("Backup nog op veilige plaats bewaren: " & LOCATION_COMPANYDATA & "marnt.mdb", MsgBoxStyle.Information)
         '		MsgBox("Hierna worden de belangrijkste indexen nog aangemaakt in de marnt.mdb database")
 
     End Sub
@@ -475,7 +475,7 @@ Public Class SqlOperations
         Dim strVersionInfo As String
 
         On Error Resume Next
-        strVersionInfo = "ADO Versie: " & adntDB.Version & vbCr & "DBMS Naam: " & adntDB.Properties("DBMS Name").Value & vbCr & "DBMS Versie: " & adntDB.Properties("DBMS Version").Value & vbCr & "OLE DB Versie: " & adntDB.Properties("OLE DB Version").Value & vbCr & "Provider Naam: " & adntDB.Properties("Provider Name").Value & vbCr & "Provider Versie: " & adntDB.Properties("Provider Version").Value & vbCr
+        strVersionInfo = "ADO Versie: " & AD_NTDB.Version & vbCr & "DBMS Naam: " & AD_NTDB.Properties("DBMS Name").Value & vbCr & "DBMS Versie: " & AD_NTDB.Properties("DBMS Version").Value & vbCr & "OLE DB Versie: " & AD_NTDB.Properties("OLE DB Version").Value & vbCr & "Provider Naam: " & AD_NTDB.Properties("Provider Name").Value & vbCr & "Provider Versie: " & AD_NTDB.Properties("Provider Version").Value & vbCr
         MsgBox(strVersionInfo)
 
     End Sub
@@ -489,7 +489,7 @@ Public Class SqlOperations
         '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 
         '		Err.Clear()
-        '		adntDB.Execute(txtSQL.Text, recAantal)
+        '		AD_NTDB.Execute(txtSQL.Text, recAantal)
         '		'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
         '		'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'
         '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
@@ -505,33 +505,33 @@ Public Class SqlOperations
 
     Private Sub BtnSaveDefinition_Click(sender As Object, e As EventArgs) Handles BtnSaveDefinition.Click
 
-        '		JetGet(TableOfVarious, 1, "29" & cmbSelect.Text)
-        '		If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "29" Then
+        '		JetGet(TABLE_VARIOUS, 1, "29" & cmbSelect.Text)
+        '		If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "29" Then
         '			'Als nieuw bijvoegen
-        '			TLBRecord(TableOfVarious) = ""
+        '			TLB_RECORD(TABLE_VARIOUS) = ""
         '			MSG = ""
-        '			For CountTo = 0 To msfSQL.get_Cols() - 1
-        '				MSG = MSG & VB6.Format(msfSQL.get_ColWidth(CountTo)) & vbTab
+        '			For COUNT_TO = 0 To msfSQL.get_Cols() - 1
+        '				MSG = MSG & VB6.Format(msfSQL.get_ColWidth(COUNT_TO)) & vbTab
         '			Next 
         '			MSG = "[Colwidth]" & MSG
         '			MSG = txtSQL.Text & MSG
-        '			AdoInsertToRecord(TableOfVarious, MSG, "v132")
-        '			AdoInsertToRecord(TableOfVarious, (cmbSelect.Text), "v250")
-        '			AdoInsertToRecord(TableOfVarious, "29" & AdoGetField(TableOfVarious, "#v250 #"), "v005")
-        '			JetInsert(TableOfVarious, 1)
+        '			AdoInsertToRecord(TABLE_VARIOUS, MSG, "v132")
+        '			AdoInsertToRecord(TABLE_VARIOUS, (cmbSelect.Text), "v250")
+        '			AdoInsertToRecord(TABLE_VARIOUS, "29" & AdoGetField(TABLE_VARIOUS, "#v250 #"), "v005")
+        '			JetInsert(TABLE_VARIOUS, 1)
         '		ElseIf MsgBox("Bestaande definitie '" & cmbSelect.Text & "' overschrijven ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2) = MsgBoxResult.Yes Then 
-        '			RecordToField(TableOfVarious)
+        '			RecordToField(TABLE_VARIOUS)
         '			MSG = ""
-        '			For CountTo = 0 To msfSQL.get_Cols() - 1
-        '				MSG = MSG & VB6.Format(msfSQL.get_ColWidth(CountTo)) & vbTab
+        '			For COUNT_TO = 0 To msfSQL.get_Cols() - 1
+        '				MSG = MSG & VB6.Format(msfSQL.get_ColWidth(COUNT_TO)) & vbTab
         '			Next 
         '			MSG = "[Colwidth]" & MSG
         '			MSG = txtSQL.Text & MSG
 
-        '			AdoInsertToRecord(TableOfVarious, MSG, "v132")
-        '			AdoInsertToRecord(TableOfVarious, (cmbSelect.Text), "v250")
-        '			AdoInsertToRecord(TableOfVarious, "29" & AdoGetField(TableOfVarious, "#v250 #"), "v005")
-        '			bUpdate(TableOfVarious, 1)
+        '			AdoInsertToRecord(TABLE_VARIOUS, MSG, "v132")
+        '			AdoInsertToRecord(TABLE_VARIOUS, (cmbSelect.Text), "v250")
+        '			AdoInsertToRecord(TABLE_VARIOUS, "29" & AdoGetField(TABLE_VARIOUS, "#v250 #"), "v005")
+        '			bUpdate(TABLE_VARIOUS, 1)
         '		Else
         '			Exit Sub
         '		End If

@@ -95,7 +95,7 @@ End Class
 '		Mid(A.Value, 50, 1) = "X"
 '		SchrijfWeg(A.Value & aa)
 '		asDirectOK = True
-'		SnelHelpPrint("Bewaard in asLogboek", blLogging)
+'		SnelHelpPrint("Bewaard in asLogboek", BL_LOGGING)
 
 '	End Function
 
@@ -141,7 +141,7 @@ End Class
 '		Dim TabIs As Short
 '		Dim MSG As String
 
-'		Printer = Printers(dokumentPrinterNr)
+'		Printer = Printers(DOCUMENTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "dokumentPRINTER")
@@ -150,11 +150,11 @@ End Class
 '			System.Windows.Forms.Application.DoEvents()
 '		End If
 
-'		JetGet(TableOfSuppliers, 0, SetSpacing(VB.Left(KeuzeInfo(6).Text, 2) & VB.Left(KeuzeInfo(0).Text, 4), 12))
-'		If Ktrl Then
+'		JetGet(TABLE_SUPPLIERS, 0, SetSpacing(VB.Left(KeuzeInfo(6).Text, 2) & VB.Left(KeuzeInfo(0).Text, 4), 12))
+'		If KTRL Then
 '			MsgBox("stop")
 '		Else
-'			RecordToField(TableOfSuppliers)
+'			RecordToField(TABLE_SUPPLIERS)
 '		End If
 
 'PrintSteedsOpnieuw: 
@@ -167,21 +167,21 @@ End Class
 
 '		'On Local Error GoTo FileHandler
 
-'		Taal = Val(AdoGetField(TableOfSuppliers, "#A10C #"))
-'		If Val(AdoGetField(TableOfSuppliers, "#A102 #")) = 0 Then
-'			rSip(0) = AdoGetField(TableOfSuppliers, "#A100 #")
+'		Taal = Val(AdoGetField(TABLE_SUPPLIERS, "#A10C #"))
+'		If Val(AdoGetField(TABLE_SUPPLIERS, "#A102 #")) = 0 Then
+'			rSip(0) = AdoGetField(TABLE_SUPPLIERS, "#A100 #")
 '		Else
-'			rSip(0) = Mid(fmarBoxText("003", VB6.Format(Taal), AdoGetField(TableOfSuppliers, "#A102 #")), 4, 10) & " " & AdoGetField(TableOfSuppliers, "#A100 #")
+'			rSip(0) = Mid(fmarBoxText("003", VB6.Format(Taal), AdoGetField(TABLE_SUPPLIERS, "#A102 #")), 4, 10) & " " & AdoGetField(TABLE_SUPPLIERS, "#A100 #")
 '		End If
 
-'		If Val(AdoGetField(TableOfSuppliers, "#vs01 #")) = 0 Then
-'			rSip(1) = AdoGetField(TableOfSuppliers, "#A125 #")
+'		If Val(AdoGetField(TABLE_SUPPLIERS, "#vs01 #")) = 0 Then
+'			rSip(1) = AdoGetField(TABLE_SUPPLIERS, "#A125 #")
 '		Else
-'			rSip(1) = Mid(fmarBoxText("003", VB6.Format(Taal), AdoGetField(TableOfSuppliers, "#vs01 #")), 4, 10) & " " & AdoGetField(TableOfSuppliers, "#A125 #")
+'			rSip(1) = Mid(fmarBoxText("003", VB6.Format(Taal), AdoGetField(TABLE_SUPPLIERS, "#vs01 #")), 4, 10) & " " & AdoGetField(TABLE_SUPPLIERS, "#A125 #")
 '		End If
 
-'		rSip(2) = AdoGetField(TableOfSuppliers, "#A104 #") & " " & AdoGetField(TableOfSuppliers, "#A105 #") & " " & AdoGetField(TableOfSuppliers, "#A106 #")
-'		rSip(4) = AdoGetField(TableOfSuppliers, "#A109 #") & " " & AdoGetField(TableOfSuppliers, "#A107 #") & " " & AdoGetField(TableOfSuppliers, "#A108 #")
+'		rSip(2) = AdoGetField(TABLE_SUPPLIERS, "#A104 #") & " " & AdoGetField(TABLE_SUPPLIERS, "#A105 #") & " " & AdoGetField(TABLE_SUPPLIERS, "#A106 #")
+'		rSip(4) = AdoGetField(TABLE_SUPPLIERS, "#A109 #") & " " & AdoGetField(TABLE_SUPPLIERS, "#A107 #") & " " & AdoGetField(TABLE_SUPPLIERS, "#A108 #")
 
 '		On Error GoTo PrintHandler
 
@@ -195,8 +195,8 @@ End Class
 '		MSG = "Herdrukken van dit dokument ?" & vbCrLf
 '		MSG = MSG & "Bent U zeker ?" & vbCrLf & vbCrLf
 '		MSG = MSG & "Cancel of ESC om nog iets te wijzigen..."
-'		Ktrl = MsgBox(MSG, 3, "Afdruk via printer")
-'		Select Case Ktrl
+'		KTRL = MsgBox(MSG, 3, "Afdruk via printer")
+'		Select Case KTRL
 '			Case 2, 7
 '			Case Else
 '				GoTo PrintSteedsOpnieuw
@@ -306,7 +306,7 @@ End Class
 '	'UPGRADE_WARNING: Event cbDocumentPrinterHier.SelectedIndexChanged may fire when form is initialized. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="88B12AE1-6DE0-48A0-86F1-60C0686C026A"'
 '	Private Sub cbDocumentPrinterHier_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbDocumentPrinterHier.SelectedIndexChanged
 
-'		dokumentPrinterNr = cbDocumentPrinterHier.SelectedIndex
+'		DOCUMENTPRINTER_NUMBER = cbDocumentPrinterHier.SelectedIndex
 
 '	End Sub
 
@@ -322,13 +322,13 @@ End Class
 
 '		cbDocumentPrinterHier.Items.Clear()
 '		If Printers.Count = 0 Then MsgBox("Installeer eerst een printerdriver a.u.b. (ook al beschikt U nog over geen printer.  Bij blijvende problemen in netwerk gelieve op te starten met het command '/P=FALSE' en uw netwerkbeheerder te informeren)", MsgBoxStyle.Exclamation) : End
-'		For CountTo = 0 To Printers.Count - 1
+'		For COUNT_TO = 0 To Printers.Count - 1
 '			'UPGRADE_ISSUE: Printer property Printers.Port was not upgraded. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'
-'			Me.cbDocumentPrinterHier.Items.Add(Printers(CountTo).Port & " " & Printers(CountTo).DeviceName)
+'			Me.cbDocumentPrinterHier.Items.Add(Printers(COUNT_TO).Port & " " & Printers(COUNT_TO).DeviceName)
 '		Next 
-'		cbDocumentPrinterHier.SelectedIndex = dokumentPrinterNr
+'		cbDocumentPrinterHier.SelectedIndex = DOCUMENTPRINTER_NUMBER
 
-'		PageCounter = 0
+'		PAGE_COUNTER = 0
 '		KeuzeInfo(1).Items.Add("A: Produktie/uitgifte")
 '		KeuzeInfo(1).Items.Add("B: Boekhouding")
 '		KeuzeInfo(1).Items.Add("C: Schade")
@@ -402,7 +402,7 @@ End Class
 '		Dim Keuze As Short
 '		Dim Aantallijnen As Short
 
-'		Pipo = ZoekEnPlaats(KeuzeInfo(2), "NTKB2897", 0, Keuze, AdoGetField(TableOfContracts, "#v223 #"))
+'		Pipo = ZoekEnPlaats(KeuzeInfo(2), "NTKB2897", 0, Keuze, AdoGetField(TABLE_CONTRACTS, "#v223 #"))
 '		'KeuzeInfo(1).ListIndex = Keuze
 
 '	End Sub
@@ -410,7 +410,7 @@ End Class
 
 '	Private Sub AS1VrijBericht_FormClosed(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
 
-'		JetTableClose(TableOfVarious)
+'		JetTableClose(TABLE_VARIOUS)
 
 '	End Sub
 
@@ -419,28 +419,28 @@ End Class
 
 '		KeuzeInfo(0).Items.Clear()
 '		T = -1
-'		JetGetOrGreater(TableOfSuppliers, 0, SetSpacing(VoorLetter, 12))
-'		If Ktrl Then
+'		JetGetOrGreater(TABLE_SUPPLIERS, 0, SetSpacing(VoorLetter, 12))
+'		If KTRL Then
 '			Beep()
 '			Exit Sub
 '		Else
-'			RecordToField(TableOfSuppliers)
+'			RecordToField(TABLE_SUPPLIERS)
 '		End If
 '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'		If VB.Left(KeyBuf(TableOfSuppliers), 2) <> VoorLetter Then
+'		If VB.Left(KEY_BUF(TABLE_SUPPLIERS), 2) <> VoorLetter Then
 '			Beep()
 '		Else
 '			T = T + 1
-'			KeuzeInfo(0).Items.Add(Mid(AdoGetField(TableOfSuppliers, "#A110 #"), 3, 4) & ": " & AdoGetField(TableOfSuppliers, "#A100 #") & "/" & SetSpacing(AdoGetField(TableOfSuppliers, "#A400 #"), 8))
+'			KeuzeInfo(0).Items.Add(Mid(AdoGetField(TABLE_SUPPLIERS, "#A110 #"), 3, 4) & ": " & AdoGetField(TABLE_SUPPLIERS, "#A100 #") & "/" & SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#A400 #"), 8))
 '			Do 
-'				bNext(TableOfSuppliers)
-'				If Ktrl Or VB.Left(KeyBuf(TableOfSuppliers), 2) <> VoorLetter Then
+'				bNext(TABLE_SUPPLIERS)
+'				If KTRL Or VB.Left(KEY_BUF(TABLE_SUPPLIERS), 2) <> VoorLetter Then
 '					Exit Do
 '				Else
-'					RecordToField(TableOfSuppliers)
+'					RecordToField(TABLE_SUPPLIERS)
 '					T = T + 1
-'					KeuzeInfo(0).Items.Add(Mid(AdoGetField(TableOfSuppliers, "#A110 #"), 3, 4) & ": " & AdoGetField(TableOfSuppliers, "#A100 #") & "/" & SetSpacing(AdoGetField(TableOfSuppliers, "#A400 #"), 8))
+'					KeuzeInfo(0).Items.Add(Mid(AdoGetField(TABLE_SUPPLIERS, "#A110 #"), 3, 4) & ": " & AdoGetField(TABLE_SUPPLIERS, "#A100 #") & "/" & SetSpacing(AdoGetField(TABLE_SUPPLIERS, "#A400 #"), 8))
 '				End If
 '			Loop 
 '		End If
@@ -528,22 +528,22 @@ End Class
 '		'check voor faxnummer & email
 '		OpzoekSleutel = "27" & VB.Left(KeuzeInfo(2).Text, 3) & VB.Left(KeuzeInfo(0).Text, 4)
 '		If Len(OpzoekSleutel) = 9 Then
-'			JetGet(TableOfVarious, 1, OpzoekSleutel)
-'			If Ktrl Then
+'			JetGet(TABLE_VARIOUS, 1, OpzoekSleutel)
+'			If KTRL Then
 '				Me.lFax.Text = ""
 '				Me.lMail.Text = ""
 '			Else
-'				RecordToField(TableOfVarious)
+'				RecordToField(TABLE_VARIOUS)
 '				Select Case VB.Left(Me.KeuzeInfo(1).Text, 1)
 '					Case "C"
-'						Me.lFax.Text = AdoGetField(TableOfVarious, "ss02") 'Fax Schade
-'						Me.lMail.Text = AdoGetField(TableOfVarious, "s224") 'email Schade
+'						Me.lFax.Text = AdoGetField(TABLE_VARIOUS, "ss02") 'Fax Schade
+'						Me.lMail.Text = AdoGetField(TABLE_VARIOUS, "s224") 'email Schade
 '					Case "P"
-'						Me.lFax.Text = AdoGetField(TableOfVarious, "vs02") 'Fax Productie
-'						Me.lMail.Text = AdoGetField(TableOfVarious, "v224") 'email Productie
+'						Me.lFax.Text = AdoGetField(TABLE_VARIOUS, "vs02") 'Fax Productie
+'						Me.lMail.Text = AdoGetField(TABLE_VARIOUS, "v224") 'email Productie
 '					Case Else
-'						Me.lFax.Text = AdoGetField(TableOfVarious, "vs02") 'Fax Productie
-'						Me.lMail.Text = AdoGetField(TableOfVarious, "v224") 'email Productie
+'						Me.lFax.Text = AdoGetField(TABLE_VARIOUS, "vs02") 'Fax Productie
+'						Me.lMail.Text = AdoGetField(TABLE_VARIOUS, "v224") 'email Productie
 '				End Select
 '			End If
 '		End If
@@ -581,12 +581,12 @@ End Class
 '		On Error GoTo ErrorLoad
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(LocationCompanyData & "DDEF" & TypeEnTaal & ".Txt") = "" Then
+'		If Dir(LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & ".Txt") = "" Then
 '			Beep()
 '			Exit Sub
 '		Else
 '			FlFree = FreeFile
-'			FileOpen(FlFree, LocationCompanyData & "DDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
+'			FileOpen(FlFree, LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
 '			Input(FlFree, Dummy)
 '			Input(FlFree, VsoftVanaf)
 '			Input(FlFree, VsoftTot)
@@ -649,15 +649,15 @@ End Class
 '		Dim Breedte As Object
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(LocationCompanyData & "DDEF" & TypeEnTaal & "G.Txt") = "" Then
+'		If Dir(LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & "G.Txt") = "" Then
 '		Else
 '			FlFree = FreeFile
-'			FileOpen(FlFree, LocationCompanyData & "DDEF" & TypeEnTaal & "G.Txt", OpenMode.Input)
+'			FileOpen(FlFree, LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & "G.Txt", OpenMode.Input)
 '			While Not EOF(FlFree)
 '				Input(FlFree, FiguurX)
 '				Input(FlFree, FiguurY)
 '				Input(FlFree, FiguurName)
-'				If ScrLeesTekstBestand(MSG, LocationCompanyData & FiguurName & ".mfd") Then
+'				If ScrLeesTekstBestand(MSG, LOCATION_COMPANYDATA & FiguurName & ".mfd") Then
 '					FigBestandsnaam = VB.Left(MSG, InStr(MSG, vbTab) - 1)
 '					Mim.imgFiguur.Image = System.Drawing.Image.FromFile(FigBestandsnaam)
 '					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
@@ -710,7 +710,7 @@ End Class
 
 'SchrijfWegError: 
 '		FlAsNet = FreeFile
-'		FileOpen(FlAsNet, LocationAsWeb & "AS1.SND", OpenMode.Append, , OpenShare.LockWrite)
+'		FileOpen(FlAsNet, LOCATION_ASWEB & "AS1.SND", OpenMode.Append, , OpenShare.LockWrite)
 '		Resume 
 
 '	End Sub
@@ -718,8 +718,8 @@ End Class
 '	Private Sub sluiten_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles sluiten.Click
 
 '		If VrijeTekst.Text <> "" Then
-'			KtrlBox = MsgBox("Aanwezige tekst negeren en venster sluiten.  Bent U zeker ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
-'			If KtrlBox = MsgBoxResult.No Then
+'			CTRL_BOX = MsgBox("Aanwezige tekst negeren en venster sluiten.  Bent U zeker ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
+'			If CTRL_BOX = MsgBoxResult.No Then
 '				Exit Sub
 '			End If
 '		End If
@@ -730,7 +730,7 @@ End Class
 '	Private Sub VoorVoegsel()
 
 '		A.Value = ""
-'		ProducentNummer.Value = "60423"
+'		AGENT_NUMBER.Value = "60423"
 '		Mid(A.Value, 1, 3) = "AS1" 'constante
 '		Mid(A.Value, 16, 1) = "0" 'constante
 
@@ -742,7 +742,7 @@ End Class
 '		Mid(A.Value, 17, 3) = "020" 'vrij bericht
 '		Mid(A.Value, 20, 1) = "0" 'vrije inhoud
 '		Mid(A.Value, 21, 1) = "1" 'producent
-'		Mid(A.Value, 22, 8) = SetSpacing(ProducentNummer.Value, 8) 'ASNET prod.nr.
+'		Mid(A.Value, 22, 8) = SetSpacing(AGENT_NUMBER.Value, 8) 'ASNET prod.nr.
 '		Mid(A.Value, 30, 12) = VB6.Format(Now, "yymmddhhmmss") 'datum
 '		Mid(A.Value, 42, 1) = "1" 'gewoon niet vertrouwelijk
 '		If VB.Left(KeuzeInfo(0).Text, 4) = "9000" Then
@@ -837,14 +837,14 @@ End Class
 '			MSG = MSG & "Bent U zeker ?" & vbCrLf & vbCrLf
 '			MSG = MSG & "Kies No om enkel te versturen via ASSURNET !" & vbCrLf
 '			MSG = MSG & "Cancel of ESC om terug te keren..."
-'			Ktrl = MsgBox(MSG, 3, "Vrij bericht versturen en/of afdrukken")
-'			Select Case Ktrl
+'			KTRL = MsgBox(MSG, 3, "Vrij bericht versturen en/of afdrukken")
+'			Select Case KTRL
 '				Case 2
 '					Exit Sub
 '				Case 7
 '				Case Else
 '					DrukAf()
-'					If Ktrl = 2 Then
+'					If KTRL = 2 Then
 '						Exit Sub
 '					End If
 '			End Select
@@ -881,12 +881,12 @@ End Class
 '			MSG = "Afdrukken van " & Str(TelLijn) & " tekstlijnen" & vbCrLf
 '			MSG = MSG & "voor " & MijKeuze & vbCrLf & vbCrLf
 '			MSG = MSG & "Bent U zeker ?"
-'			Ktrl = MsgBox(MSG, 292, "Afdruk via PRINTER")
-'			If Ktrl = MsgBoxResult.Yes Then
+'			KTRL = MsgBox(MSG, 292, "Afdruk via PRINTER")
+'			If KTRL = MsgBoxResult.Yes Then
 '				DrukAf()
 '				'MsgBox "asDirectOK hier..."
 '				'result = asDirectOK
-'				If Ktrl = MsgBoxResult.Cancel Then
+'				If KTRL = MsgBoxResult.Cancel Then
 '					Exit Sub
 '				Else
 '					result = asDirectOK
@@ -903,11 +903,11 @@ End Class
 '		Venster.Hide()
 '		Venster.ShowDialog()
 '		Me.Activate()
-'		TekstInfo(0).Text = rsMAR(TableOfCustomers).Fields("A100").Value & " - " & rsMAR(TableOfCustomers).Fields("A125").Value
-'		TekstInfo(1).Text = AdoGetField(TableOfContracts, "#A000 #")
+'		TekstInfo(0).Text = RS_MAR(TABLE_CUSTOMERS).Fields("A100").Value & " - " & RS_MAR(TABLE_CUSTOMERS).Fields("A125").Value
+'		TekstInfo(1).Text = AdoGetField(TABLE_CONTRACTS, "#A000 #")
 '		KeuzeInfo(0).SelectedIndex = 0
 '		Do While VB.Left(KeuzeInfo(0).Text, 4) < "9999"
-'			If VB.Left(KeuzeInfo(0).Text, 4) = AdoGetField(TableOfContracts, "#A010 #") Then
+'			If VB.Left(KeuzeInfo(0).Text, 4) = AdoGetField(TABLE_CONTRACTS, "#A010 #") Then
 '				Exit Do
 '			Else
 '				KeuzeInfo(0).SelectedIndex = KeuzeInfo(0).SelectedIndex + 1
@@ -917,39 +917,39 @@ End Class
 '		KeuzeInfo(2).SelectedIndex = 0
 '		On Error Resume Next
 '		Do While KeuzeInfo(2).SelectedIndex <> KeuzeInfo(2).Items.Count
-'			If VB.Left(KeuzeInfo(2).Text, 3) = VB.Left(AdoGetField(TableOfContracts, "#v223 #"), 3) Then
+'			If VB.Left(KeuzeInfo(2).Text, 3) = VB.Left(AdoGetField(TABLE_CONTRACTS, "#v223 #"), 3) Then
 '				Exit Do
 '			Else
 '				KeuzeInfo(2).SelectedIndex = KeuzeInfo(2).SelectedIndex + 1
 '				If Err.Number Then Exit Do
 '			End If
 '		Loop 
-'		If VB.Left(KeuzeInfo(2).Text, 3) <> VB.Left(AdoGetField(TableOfContracts, "#v223 #"), 3) Then
+'		If VB.Left(KeuzeInfo(2).Text, 3) <> VB.Left(AdoGetField(TABLE_CONTRACTS, "#v223 #"), 3) Then
 '			MsgBox("Takkode van deze polis onbekend.  Verbeter a.u.b. !")
 '		End If
-'		JetGet(TableOfVarious, 1, SetSpacing("25" & AdoGetField(TableOfContracts, "#A010 #") & AdoGetField(TableOfContracts, "#A000 #"), 20))
-'		If Ktrl Then
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing("25" & AdoGetField(TABLE_CONTRACTS, "#A010 #") & AdoGetField(TABLE_CONTRACTS, "#A000 #"), 20))
+'		If KTRL Then
 '			'niks
 '		Else
-'			RecordToField(TableOfVarious)
-'			Select Case VB.Left(AdoGetField(TableOfVarious, "#A500 #"), 1)
+'			RecordToField(TABLE_VARIOUS)
+'			Select Case VB.Left(AdoGetField(TABLE_VARIOUS, "#A500 #"), 1)
 '				Case "5" 'Voertuigen
-'					GridText = "Klient vervangt zijn voertuig door een ander met volgende kenmerken :" & vbCrLf & vbCrLf
-'					GridText = GridText & "VOERTUIG Aard : " & fmarBoxText("21", "2", AdoGetField(TableOfVarious, "#5003 #")) & vbCrLf
-'					GridText = GridText & "Merk : " & AdoGetField(TableOfVarious, "#500A #") & vbCrLf
-'					GridText = GridText & "Type : " & AdoGetField(TableOfVarious, "#500B #") & vbCrLf
-'					GridText = GridText & "P.V.G. nummer : " & AdoGetField(TableOfVarious, "#5004 #") & vbCrLf
-'					GridText = GridText & "Bouwjaar : " & AdoGetField(TableOfVarious, "#5002 #") & vbCrLf
-'					GridText = GridText & "Plaatnummer : " & AdoGetField(TableOfVarious, "#5020 #") & vbCrLf
-'					GridText = GridText & "Onderstelnummer : " & AdoGetField(TableOfVarious, "#5021 #") & vbCrLf
-'					GridText = GridText & "Datum 1e omloop : " & AdoGetField(TableOfVarious, "#5060 #") & vbCrLf
-'					GridText = GridText & "Vermogen of cylinderinhoud : " & AdoGetField(TableOfVarious, "#5011 #") & vbCrLf
-'					GridText = GridText & "Eenheid vermogen : " & fmarBoxText("22", "2", AdoGetField(TableOfVarious, "#5010 #")) & vbCrLf
-'					GridText = GridText & "Brandstof : " & fmarBoxText("23", "2", AdoGetField(TableOfVarious, "#5015 #")) & vbCrLf & vbCrLf
-'					GridText = GridText & "De aanvraag tot inschrijving is rechtstreeks overgemaakt aan D.I.V."
-'					KtrlBox = MsgBox(GridText, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "In te voegen.  Bent U zeker ?")
-'					If KtrlBox = MsgBoxResult.Yes Then
-'						VrijeTekst.Text = GridText
+'					GRIDTEXT = "Klient vervangt zijn voertuig door een ander met volgende kenmerken :" & vbCrLf & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "VOERTUIG Aard : " & fmarBoxText("21", "2", AdoGetField(TABLE_VARIOUS, "#5003 #")) & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Merk : " & AdoGetField(TABLE_VARIOUS, "#500A #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Type : " & AdoGetField(TABLE_VARIOUS, "#500B #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "P.V.G. nummer : " & AdoGetField(TABLE_VARIOUS, "#5004 #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Bouwjaar : " & AdoGetField(TABLE_VARIOUS, "#5002 #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Plaatnummer : " & AdoGetField(TABLE_VARIOUS, "#5020 #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Onderstelnummer : " & AdoGetField(TABLE_VARIOUS, "#5021 #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Datum 1e omloop : " & AdoGetField(TABLE_VARIOUS, "#5060 #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Vermogen of cylinderinhoud : " & AdoGetField(TABLE_VARIOUS, "#5011 #") & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Eenheid vermogen : " & fmarBoxText("22", "2", AdoGetField(TABLE_VARIOUS, "#5010 #")) & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "Brandstof : " & fmarBoxText("23", "2", AdoGetField(TABLE_VARIOUS, "#5015 #")) & vbCrLf & vbCrLf
+'					GRIDTEXT = GRIDTEXT & "De aanvraag tot inschrijving is rechtstreeks overgemaakt aan D.I.V."
+'					CTRL_BOX = MsgBox(GRIDTEXT, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "In te voegen.  Bent U zeker ?")
+'					If CTRL_BOX = MsgBoxResult.Yes Then
+'						VrijeTekst.Text = GRIDTEXT
 '					End If
 '			End Select
 '		End If

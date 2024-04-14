@@ -9,8 +9,8 @@ Public Class Briefwisseling
 
         If rtbTekst.Text <> "" Then
             MSG = "Huidige inhoud negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-            Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
-            If Ktrl = 6 Then
+            KTRL = MsgBox(MSG, 292, "Voortijdig stoppen...")
+            If KTRL = 6 Then
             Else
                 Exit Sub
             End If
@@ -84,7 +84,7 @@ End Class
 '			rsBrief.CursorLocation = ADODB.CursorLocationEnum.adUseClient
 '			MSG = "SELECT * FROM Briefwisseling WHERE A110 = " & "'" & AdoGetField(FlPartij, "#A110 #") & "'"
 
-'			rsBrief.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
+'			rsBrief.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
 '			If Err.Number Then
 '				MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '				Exit Sub
@@ -98,19 +98,19 @@ End Class
 '					rsBrief.Close()
 '					MSG = "ALTER TABLE Briefwisseling ADD COLUMN bstndNaam varchar;"
 '					Err.Clear()
-'					adntDB.Execute(MSG)
+'					AD_NTDB.Execute(MSG)
 '					If Err.Number Then
 '						MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '					End If
 '					MSG = "ALTER TABLE Briefwisseling ADD COLUMN typeZending TEXT(5);"
 '					Err.Clear()
-'					adntDB.Execute(MSG)
+'					AD_NTDB.Execute(MSG)
 '					If Err.Number Then
 '						MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '					End If
 '					MSG = "ALTER TABLE Briefwisseling ADD COLUMN bstndBLOB OLEobject;"
 '					Err.Clear()
-'					adntDB.Execute(MSG)
+'					AD_NTDB.Execute(MSG)
 '					If Err.Number Then
 '						MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '					End If
@@ -153,10 +153,10 @@ End Class
 '				Xlog.X.set_ColWidth(1, 4785)
 '				Xlog.X.set_ColAlignment(0, MSFlexGridLib.AlignmentSettings.flexAlignLeftTop)
 '				Xlog.X.set_ColAlignment(1, MSFlexGridLib.AlignmentSettings.flexAlignLeftTop)
-'				XLogKey = ""
+'				XLOG_KEY = ""
 '				Xlog.SSTab1.TabPages.Item(1).Visible = False
 '				Xlog.ShowDialog()
-'				If XLogKey <> "" Then
+'				If XLOG_KEY <> "" Then
 '					ReedsBestaand = True
 '					rsBrief.MoveFirst()
 '					rsBrief.Move(Xlog.X.Row - 1)
@@ -199,8 +199,8 @@ End Class
 '				Else
 '					MSG = "Wijzigingen aan bestaand bericht bewaren" & vbCrLf
 '					MSG = MSG & "Bent U zeker ?"
-'					KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
-'					If KtrlBox = MsgBoxResult.Yes Then
+'					CTRL_BOX = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
+'					If CTRL_BOX = MsgBoxResult.Yes Then
 '					Else
 '						Exit Sub
 '					End If
@@ -249,7 +249,7 @@ End Class
 'VolgendeLijn: 
 '		T = T + 1
 '		Select Case FlPartij
-'			Case TableOfCustomers, TableOfSuppliers
+'			Case TABLE_CUSTOMERS, TABLE_SUPPLIERS
 '				Xlog.X.AddItem(rsBrief.Fields("v128").Value & vbTab & rsBrief.Fields("v129").Value)
 '		End Select
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -277,7 +277,7 @@ End Class
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		If LaadTekst("dnnInstellingen", "PostvakIO") = "" Then
 '			MsgBox("Nieuwe PC of nog geen instellingen voor PDF Postvak In.  Aanbevolen in te te stellen a.u.b. via submenu DotNetNuke.", MsgBoxStyle.Information)
-'			Mim.TekenOpen.InitialDirectory = LocationCompanyData
+'			Mim.TekenOpen.InitialDirectory = LOCATION_COMPANYDATA
 '		Else
 '			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -293,14 +293,14 @@ End Class
 '	'UPGRADE_WARNING: Event cbDocumentPrinterHier.SelectedIndexChanged may fire when form is initialized. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="88B12AE1-6DE0-48A0-86F1-60C0686C026A"'
 '	Private Sub cbDocumentPrinterHier_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbDocumentPrinterHier.SelectedIndexChanged
 
-'		dokumentPrinterNr = cbDocumentPrinterHier.SelectedIndex
+'		DOCUMENTPRINTER_NUMBER = cbDocumentPrinterHier.SelectedIndex
 
 '	End Sub
 
 '	Private Sub cbFaxBijlage_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbFaxBijlage.Click
 
 '		Mim.TekenOpen.FileName = mailBijlage
-'		'Mim.Teken.InitDir = LocationCompanyData
+'		'Mim.Teken.InitDir = LOCATION_COMPANYDATA
 '		Mim.TekenOpen.ShowDialog()
 '		If Mim.TekenOpen.FileName = "" Then Exit Sub
 '		faxBijlage = Mim.TekenOpen.FileName
@@ -346,12 +346,12 @@ End Class
 '						'MSG = MSG & "Probeer eventueel later opnieuw E-mail aan te duiden" & vbCr & vbCr
 '						'MSG = MSG & "Foutmelding van het systeem: " & Err.Description
 '						'MsgBox MSG, vbExclamation
-'						SnelHelpPrint(Err.Description, blLogging)
+'						SnelHelpPrint(Err.Description, BL_LOGGING)
 '						CmbAfdrukModus.SelectedIndex = 2
 '					Else
 '						On Error GoTo 0
 '						Me.MPIBericht.SessionID = Me.MPISessie.SessionID
-'						SnelHelpPrint("E-mail sessie met succes opgestart. IDkode :" & VB6.Format(Me.MPISessie.SessionID), blLogging)
+'						SnelHelpPrint("E-mail sessie met succes opgestart. IDkode :" & VB6.Format(Me.MPISessie.SessionID), BL_LOGGING)
 '					End If
 '				End If
 '			Case "2"
@@ -362,7 +362,7 @@ End Class
 '					If Err.Number Then
 '						MsgBox("Fout tijdens afsluiten van een sessie...  Postvak In (InBox) werd voortijdig gesloten.")
 '					Else
-'						SnelHelpPrint("E-mail sessie werd met succes beëindigd...", blLogging)
+'						SnelHelpPrint("E-mail sessie werd met succes beëindigd...", BL_LOGGING)
 '					End If
 '				End If
 '			Case Else
@@ -471,10 +471,10 @@ End Class
 
 '			'Address message
 '			If CmbAfdrukModus.SelectedIndex = 0 Then
-'				Me.MPIBericht.RecipDisplayName = rsMAR(FlPartij).Fields("A100").Value
+'				Me.MPIBericht.RecipDisplayName = RS_MAR(FlPartij).Fields("A100").Value
 '				Me.MPIBericht.RecipAddress = "SMTP:" & TxtTekst(14).Text
 '			Else
-'				Me.MPIBericht.RecipDisplayName = rsMAR(FlPartij).Fields("A100").Value
+'				Me.MPIBericht.RecipDisplayName = RS_MAR(FlPartij).Fields("A100").Value
 '				Me.MPIBericht.RecipAddress = "SMTP:" & TxtTekst(14).Text
 '			End If
 '			'Resolve recipient name
@@ -488,7 +488,7 @@ End Class
 '			Else
 '				Me.MPIBericht.MsgSubject = TxtTekst(1).Text
 '				Me.MPIBericht.MsgNoteText = "Briefwisseling in bijlage als MS Word Document" 'txtTekst0.Text
-'				'KtrlBox = MsgBox("Verstuurde E-mail aan " & AdoGetField(FlPartij, "#v224 #") & vbCr & vbCr & "Afdruk maken ?", vbQuestion + vbYesNo + vbDefaultButton2)
+'				'CTRL_BOX = MsgBox("Verstuurde E-mail aan " & AdoGetField(FlPartij, "#v224 #") & vbCr & vbCr & "Afdruk maken ?", vbQuestion + vbYesNo + vbDefaultButton2)
 '				Me.MPIBericht.AttachmentPathName = BestandHier
 '			End If
 '			If mailBijlage <> "" Then
@@ -560,25 +560,25 @@ End Class
 
 '		cbDocumentPrinterHier.Items.Clear()
 '		If Printers.Count = 0 Then MsgBox("Installeer eerst een printerdriver a.u.b. (ook al beschikt U nog over geen printer.  Bij blijvende problemen in netwerk gelieve op te starten met het command '/P=FALSE' en uw netwerkbeheerder te informeren)", MsgBoxStyle.Exclamation) : End
-'		For CountTo = 0 To Printers.Count - 1
+'		For COUNT_TO = 0 To Printers.Count - 1
 '			'UPGRADE_ISSUE: Printer property Printers.Port was not upgraded. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"'
-'			Me.cbDocumentPrinterHier.Items.Add(Printers(CountTo).Port & " " & Printers(CountTo).DeviceName)
+'			Me.cbDocumentPrinterHier.Items.Add(Printers(COUNT_TO).Port & " " & Printers(COUNT_TO).DeviceName)
 '		Next 
-'		cbDocumentPrinterHier.SelectedIndex = dokumentPrinterNr
-'		If String99(Reading, 299) = "2" Then
+'		cbDocumentPrinterHier.SelectedIndex = DOCUMENTPRINTER_NUMBER
+'		If String99(READING, 299) = "2" Then
 '			Me.cbPDF.CheckState = System.Windows.Forms.CheckState.Unchecked
 '		Else
 '			Me.cbPDF.CheckState = System.Windows.Forms.CheckState.Checked
 '		End If
 
-'		PageCounter = 0
+'		PAGE_COUNTER = 0
 '		Partij(0).Checked = True
 '		txtTekst0.Font = VB6.FontChangeName(txtTekst0.Font, "Courier New")
 '		MaxLijn79 = 90
 '		Briefwisseling(1).Enabled = True
 '		Briefwisseling(0).Checked = True
 
-'		KontaktPersoon = Val(String99(Reading, 201))
+'		KontaktPersoon = Val(String99(READING, 201))
 
 '		CmbAfdrukModus.Items.Clear()
 '		CmbAfdrukModus.Items.Add("0: E-mail via normale tekst")
@@ -612,17 +612,17 @@ End Class
 '			Select Case Partij(0).Checked
 '				Case True
 '					PartijKode.Value = "K"
-'					FlPartij = TableOfCustomers
+'					FlPartij = TABLE_CUSTOMERS
 '				Case False
 '					PartijKode.Value = "L"
-'					FlPartij = TableOfSuppliers
+'					FlPartij = TABLE_SUPPLIERS
 '			End Select
 '			BriefType.Value = "B"
 '			Briefwisseling(0).Checked = 1
 
 '			Sortering.Items.Clear()
 '			For T = 0 To FlAantalIndexen(FlPartij)
-'				Sortering.Items.Add(VB6.Format(T, "00") & ":" & FLIndexCaption(FlPartij, T))
+'				Sortering.Items.Add(VB6.Format(T, "00") & ":" & FLINDEX_CAPTION(FlPartij, T))
 '			Next 
 '			Sortering.SelectedIndex = 1
 
@@ -661,12 +661,12 @@ End Class
 '		On Error GoTo ErrorLoad
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(LocationCompanyData & "DDEF" & TypeEnTaal & ".Txt") = "" Then
+'		If Dir(LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & ".Txt") = "" Then
 '			Beep()
 '			Exit Sub
 '		Else
 '			FlFree = FreeFile
-'			FileOpen(FlFree, LocationCompanyData & "DDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
+'			FileOpen(FlFree, LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
 '			Input(FlFree, Dummy)
 '			Input(FlFree, VsoftVanaf)
 '			Input(FlFree, VsoftTot)
@@ -729,15 +729,15 @@ End Class
 '		Dim Breedte As Object
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(LocationCompanyData & "DDEF" & TypeEnTaal & "G.Txt") = "" Then
+'		If Dir(LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & "G.Txt") = "" Then
 '		Else
 '			FlFree = FreeFile
-'			FileOpen(FlFree, LocationCompanyData & "DDEF" & TypeEnTaal & "G.Txt", OpenMode.Input)
+'			FileOpen(FlFree, LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & "G.Txt", OpenMode.Input)
 '			While Not EOF(FlFree)
 '				Input(FlFree, FiguurX)
 '				Input(FlFree, FiguurY)
 '				Input(FlFree, FiguurName)
-'				If ScrLeesTekstBestand(MSG, LocationCompanyData & FiguurName & ".mfd") Then
+'				If ScrLeesTekstBestand(MSG, LOCATION_COMPANYDATA & FiguurName & ".mfd") Then
 '					FigBestandsnaam = VB.Left(MSG, InStr(MSG, vbTab) - 1)
 '					Mim.imgFiguur.Image = System.Drawing.Image.FromFile(FigBestandsnaam)
 '					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
@@ -781,7 +781,7 @@ End Class
 '		BerichtInofUit(1).Enabled = False
 '		BerichtInofUit(0).Enabled = True
 '		Zoeken.Enabled = True
-'		TLBRecord(TableOfVarious) = ""
+'		TLB_RECORD(TABLE_VARIOUS) = ""
 
 '		Partij_CheckedChanged(Partij.Item(0), New System.EventArgs())
 
@@ -798,8 +798,8 @@ End Class
 '		If txtTekst0.Text <> "" Then
 '			MSG = "Huidige inbreng - al dan niet - reeds weggeschreven.  Venster sluiten." & vbCrLf & vbCrLf
 '			MSG = MSG & "Bent U zeker ?"
-'			Ktrl = MsgBox(MSG, 292, "Vrije berichtgeving verlaten")
-'			If Ktrl = 6 Then
+'			KTRL = MsgBox(MSG, 292, "Vrije berichtgeving verlaten")
+'			If KTRL = 6 Then
 '			Else
 '				Exit Sub
 '			End If
@@ -939,7 +939,7 @@ End Class
 '				.Title = "dnnBriefwisseling"
 '			End With
 '			pdfDrukAf()
-'			Mim.Report.WriteDoc(ProgramLocation & VB6.Format(Now, "YYYYMMDDHHMMSS") & "-dnnBriefwisseling.pdf")
+'			Mim.Report.WriteDoc(PROGRAM_LOCATION & VB6.Format(Now, "YYYYMMDDHHMMSS") & "-dnnBriefwisseling.pdf")
 '			'If Me.cbPdfExport.Value = vbChecked Then
 '			'    MsgBox "exporteren naar DNN folder of andere nog te definiëren"
 '			'    Mim.Report.CloseDoc
@@ -968,28 +968,28 @@ End Class
 
 'Jumper: 
 '		JumpTeller = JumpTeller + 1
-'		aIndex = Sortering.SelectedIndex
-'		SharedFl = FlPartij
-'		GridText = ""
+'		A_INDEX = Sortering.SelectedIndex
+'		SHARED_FL = FlPartij
+'		GRIDTEXT = ""
 '		SqlSearch.ShowDialog()
 '		Me.Activate()
 '		On Error Resume Next
-'		If Trim(rsMAR(FlPartij).Fields("v224").Value) <> "" Then 'email
-'			txtMailIs = rsMAR(FlPartij).Fields("v224").Value
+'		If Trim(RS_MAR(FlPartij).Fields("v224").Value) <> "" Then 'email
+'			txtMailIs = RS_MAR(FlPartij).Fields("v224").Value
 '			TxtTekst(14).Text = txtMailIs
 '		Else
 '			txtMailIs = ""
 '			TxtTekst(14).Text = ""
 '		End If
-'		If Trim(rsMAR(FlPartij).Fields("vs02").Value) <> "" Then 'fax
-'			txtFaxIs = rsMAR(FlPartij).Fields("vs02").Value
+'		If Trim(RS_MAR(FlPartij).Fields("vs02").Value) <> "" Then 'fax
+'			txtFaxIs = RS_MAR(FlPartij).Fields("vs02").Value
 '			TxtTekst(13).Text = txtFaxIs
 '		Else
 '			txtFaxIs = ""
 '			TxtTekst(13).Text = ""
 '		End If
 
-'		If Ktrl Then
+'		If KTRL Then
 '			BerichtInofUit(1).Enabled = False
 '			Exit Sub
 '		Else
@@ -1059,11 +1059,11 @@ End Class
 '		Cursor = System.Windows.Forms.Cursors.WaitCursor
 '		Mim.Enabled = False
 '		'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-'		XDoEvents = System.Windows.Forms.Application.DoEvents()
+'		XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
 '		Select Case Briefwisseling(0).Checked
 '			Case True
 '				JetGet(FlPartij, 0, SetSpacing(VanTot(2).Text, 12))
-'				If Ktrl Then
+'				If KTRL Then
 '					MsgBox("Partij '" & Trim(VanTot(2).Text) & "' niet gevonden.  Gelieve klant of leveranciers nogmaals te SELECTeren en opnieuw proberen afdrukken a.u.b.")
 '				Else
 '					RecordToField(FlPartij)
@@ -1071,15 +1071,15 @@ End Class
 '					GoSub PrintHetPDFdokument
 '				End If
 '			Case False
-'				JetGetOrGreater(FlPartij, (Sortering.SelectedIndex), SetSpacing(VanTot(0).Text, FlIndexLen(FlPartij, Sortering.SelectedIndex)))
-'				If Ktrl Or KeyBuf(FlPartij) > SetSpacing(VanTot(1).Text, FlIndexLen(FlPartij, Sortering.SelectedIndex)) Then
+'				JetGetOrGreater(FlPartij, (Sortering.SelectedIndex), SetSpacing(VanTot(0).Text, FLINDEX_LEN(FlPartij, Sortering.SelectedIndex)))
+'				If KTRL Or KEY_BUF(FlPartij) > SetSpacing(VanTot(1).Text, FLINDEX_LEN(FlPartij, Sortering.SelectedIndex)) Then
 '				Else
 '					RecordToField(FlPartij)
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '					GoSub PrintHetPDFdokument
 '					Do 
 '						bNext(FlPartij)
-'						If Ktrl Or KeyBuf(FlPartij) > SetSpacing(VanTot(1).Text, FlIndexLen(FlPartij, Sortering.SelectedIndex)) Then
+'						If KTRL Or KEY_BUF(FlPartij) > SetSpacing(VanTot(1).Text, FLINDEX_LEN(FlPartij, Sortering.SelectedIndex)) Then
 '							Exit Do
 '						Else
 '							RecordToField(FlPartij)
@@ -1248,7 +1248,7 @@ End Class
 
 'FileHandler: 
 '		MsgBox("Onverwachte fout bij openen briefhoofdbestand." & vbCrLf & vbCrLf & "Stopkode : " & VB6.Format(Err.Number) & vbCrLf & vbCrLf & "Rapporteer aan R&&Vsoft en/of kontroleer uw setup.")
-'		Ktrl = 100
+'		KTRL = 100
 '		Exit Sub
 
 '	End Sub
@@ -1272,7 +1272,7 @@ End Class
 '		Dim XX As Short
 
 '		If DDEFlag <> 1 Then
-'			Printer = Printers(dokumentPrinterNr)
+'			Printer = Printers(DOCUMENTPRINTER_NUMBER)
 '			On Error Resume Next
 '			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			Printer.PaperBin = LaadTekst(My.Application.Info.Title, "dokumentPRINTER")
@@ -1285,11 +1285,11 @@ End Class
 '		Cursor = System.Windows.Forms.Cursors.WaitCursor
 '		Mim.Enabled = False
 '		'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-'		XDoEvents = System.Windows.Forms.Application.DoEvents()
+'		XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
 '		Select Case Briefwisseling(0).Checked
 '			Case True
 '				JetGet(FlPartij, 0, SetSpacing(VanTot(2).Text, 12))
-'				If Ktrl Then
+'				If KTRL Then
 '					MsgBox("Partij '" & Trim(VanTot(2).Text) & "' niet gevonden.  Gelieve klant of leveranciers nogmaals te SELECTeren en opnieuw proberen afdrukken a.u.b.")
 '				Else
 '					RecordToField(FlPartij)
@@ -1297,15 +1297,15 @@ End Class
 '					GoSub PrintHetdokument
 '				End If
 '			Case False
-'				JetGetOrGreater(FlPartij, (Sortering.SelectedIndex), SetSpacing(VanTot(0).Text, FlIndexLen(FlPartij, Sortering.SelectedIndex)))
-'				If Ktrl Or KeyBuf(FlPartij) > SetSpacing(VanTot(1).Text, FlIndexLen(FlPartij, Sortering.SelectedIndex)) Then
+'				JetGetOrGreater(FlPartij, (Sortering.SelectedIndex), SetSpacing(VanTot(0).Text, FLINDEX_LEN(FlPartij, Sortering.SelectedIndex)))
+'				If KTRL Or KEY_BUF(FlPartij) > SetSpacing(VanTot(1).Text, FLINDEX_LEN(FlPartij, Sortering.SelectedIndex)) Then
 '				Else
 '					RecordToField(FlPartij)
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '					GoSub PrintHetdokument
 '					Do 
 '						bNext(FlPartij)
-'						If Ktrl Or KeyBuf(FlPartij) > SetSpacing(VanTot(1).Text, FlIndexLen(FlPartij, Sortering.SelectedIndex)) Then
+'						If KTRL Or KEY_BUF(FlPartij) > SetSpacing(VanTot(1).Text, FLINDEX_LEN(FlPartij, Sortering.SelectedIndex)) Then
 '							Exit Do
 '						Else
 '							RecordToField(FlPartij)
@@ -1488,13 +1488,13 @@ End Class
 '				On Error Resume Next
 '				Err.Clear()
 '				'UPGRADE_WARNING: Use of Null/IsNull() detected. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="2EED02CB-5C0E-4DC1-AE94-4FAA3A30F51A"'
-'				If IsDbNull(rsMAR(FlPartij).Fields(Trim(Mid(pVARcode, 3, 5))).Value) Then
+'				If IsDbNull(RS_MAR(FlPartij).Fields(Trim(Mid(pVARcode, 3, 5))).Value) Then
 '					pVARhier = ""
 '					If Err.Number Then
 '						MsgBox(Err.Description & vbCrLf & vbCrLf & Mid(pVARcode, 3, 5))
 '					End If
 '				Else
-'					pVARhier = rsMAR(FlPartij).Fields(Trim(Mid(pVARcode, 3, 5))).Value
+'					pVARhier = RS_MAR(FlPartij).Fields(Trim(Mid(pVARcode, 3, 5))).Value
 '				End If
 '				Tekst = Replace(Tekst, pVARcode, pVARhier)
 '			End If
@@ -1513,7 +1513,7 @@ End Class
 
 'FileHandler: 
 '		MsgBox("Onverwachte fout bij openen briefhoofdbestand." & vbCrLf & vbCrLf & "Stopkode : " & VB6.Format(Err.Number) & vbCrLf & vbCrLf & "Rapporteer aan R&&Vsoft en/of kontroleer uw setup.")
-'		Ktrl = 100
+'		KTRL = 100
 '		Exit Sub
 
 '	End Sub

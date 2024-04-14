@@ -13,7 +13,7 @@ End Class
 
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
-'		GridText = ""
+'		GRIDTEXT = ""
 '		Me.Close()
 
 '	End Sub
@@ -39,27 +39,27 @@ End Class
 '		MSG = MSG & "Kies Ja  om enkel bij te voegen." & vbCrLf
 '		MSG = MSG & "Kies Nee om bestaande invoer te overschrijven !" & vbCrLf
 '		MSG = MSG & "Cancel of ESC voor nieuwe selectie..."
-'		Ktrl = MsgBox(MSG, 3, "Sjabloon invoegen")
-'		Select Case Ktrl
+'		KTRL = MsgBox(MSG, 3, "Sjabloon invoegen")
+'		Select Case KTRL
 '			Case 2
 '				Exit Sub
 '			Case 7
-'				GridText = ""
+'				GRIDTEXT = ""
 '		End Select
 
 '		Select Case SoortSjabloon(0).Checked
 '			Case True
 '				BsType.Value = "A999999"
 '			Case Else
-'				BsType.Value = "K" & VB.Left(FVT(TableOfCustomers, 0), 6)
+'				BsType.Value = "K" & VB.Left(FVT(TABLE_CUSTOMERS, 0), 6)
 '		End Select
 
 '		FlX = FreeFile
-'		FileOpen(FlX, LocationCompanyData & BsType.Value & VB.Left(SjabloonLijst.Text, 1) & ".SJB", OpenMode.Input)
+'		FileOpen(FlX, LOCATION_COMPANYDATA & BsType.Value & VB.Left(SjabloonLijst.Text, 1) & ".SJB", OpenMode.Input)
 '		BsTekst = LineInput(FlX)
 '		Do While Not EOF(FlX)
 '			BsTekst = LineInput(FlX)
-'			GridText = GridText & BsTekst & Chr(13)
+'			GRIDTEXT = GRIDTEXT & BsTekst & Chr(13)
 '		Loop 
 '		FileClose(FlX)
 '		Me.Close()
@@ -97,16 +97,16 @@ End Class
 '				Case 0
 '					BsType.Value = "A999999"
 '				Case Else
-'					BsType.Value = "K" & VB.Left(FVT(TableOfCustomers, 0), 6)
+'					BsType.Value = "K" & VB.Left(FVT(TABLE_CUSTOMERS, 0), 6)
 '			End Select
 
 '			For T = 0 To 9
 '				'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'				If Dir(LocationCompanyData & BsType.Value & VB6.Format(T, "0") & ".SJB") = "" Then
+'				If Dir(LOCATION_COMPANYDATA & BsType.Value & VB6.Format(T, "0") & ".SJB") = "" Then
 '					SjabloonLijst.Items.Add(VB6.Format(T, "0") & ": " & Space(40))
 '				Else
 '					FlX = FreeFile
-'					FileOpen(FlX, LocationCompanyData & BsType.Value & VB6.Format(T, "0") & ".SJB", OpenMode.Input)
+'					FileOpen(FlX, LOCATION_COMPANYDATA & BsType.Value & VB6.Format(T, "0") & ".SJB", OpenMode.Input)
 '					Input(FlX, BsTekst.Value)
 '					FileClose(FlX)
 '					SjabloonLijst.Items.Add(VB6.Format(T, "0") & ": " & BsTekst.Value)
@@ -137,8 +137,8 @@ End Class
 
 '		MSG = "'" & BsTekst.Value & "'" & vbCrLf & vbCrLf
 '		MSG = MSG & "Wegschrijven, bent U zeker ?"
-'		Ktrl = MsgBox(MSG, 292)
-'		If Ktrl = 6 Then
+'		KTRL = MsgBox(MSG, 292)
+'		If KTRL = 6 Then
 '		Else
 '			Exit Sub
 '		End If
@@ -147,23 +147,23 @@ End Class
 '			Case True
 '				BsType.Value = "A999999"
 '			Case Else
-'				BsType.Value = "K" & VB.Left(FVT(TableOfCustomers, 0), 6)
+'				BsType.Value = "K" & VB.Left(FVT(TABLE_CUSTOMERS, 0), 6)
 '		End Select
 
 '		FlX = FreeFile
-'		FileOpen(FlX, LocationCompanyData & BsType.Value & VB.Left(SjabloonLijst.Text, 1) & ".SJB", OpenMode.Output)
+'		FileOpen(FlX, LOCATION_COMPANYDATA & BsType.Value & VB.Left(SjabloonLijst.Text, 1) & ".SJB", OpenMode.Output)
 '		PrintLine(FlX, BsTekst.Value)
-'		Do While GridText <> ""
-'			LeftPos = InStr(GridText, Chr(13))
+'		Do While GRIDTEXT <> ""
+'			LeftPos = InStr(GRIDTEXT, Chr(13))
 '			If LeftPos <= 1 Then
-'				GridText = ""
+'				GRIDTEXT = ""
 '				Exit Do
 '			End If
-'			Print(FlX, VB.Left(GridText, InStr(GridText, Chr(13)) - 1) & vbCrLf)
-'			GridText = VB.Right(GridText, Len(GridText) - LeftPos)
+'			Print(FlX, VB.Left(GRIDTEXT, InStr(GRIDTEXT, Chr(13)) - 1) & vbCrLf)
+'			GRIDTEXT = VB.Right(GRIDTEXT, Len(GRIDTEXT) - LeftPos)
 '		Loop 
 '		FileClose(FlX)
-'		GridText = ""
+'		GRIDTEXT = ""
 '		Me.Close()
 
 '	End Sub

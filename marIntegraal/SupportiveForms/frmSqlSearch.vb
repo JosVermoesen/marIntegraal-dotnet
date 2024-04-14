@@ -12,25 +12,25 @@ Public Class SqlSearch
 
         'eerst kontrole voorkeurSQL
         comboTekst = sorteringComboBox.Text
-        Sleuteltje = "marSQL" & Format(SharedFl, "00") & Mid(comboTekst, 1, InStr(comboTekst, ";") - 1)
+        Sleuteltje = "marSQL" & Format(SHARED_FL, "00") & Mid(comboTekst, 1, InStr(comboTekst, ";") - 1)
         TelOrde = 0
         Do
-            CountTo = InStr(TelOrde + 1, comboTekst, ";") - 1
-            If CountTo < 0 Then
+            COUNT_TO = InStr(TelOrde + 1, comboTekst, ";") - 1
+            If COUNT_TO < 0 Then
                 Exit Do
             Else
                 If TelOrde = 0 Then
-                    SorteerIndex = Mid(comboTekst, CountTo - 3, 4)
-                    SorteerOrde = Mid(comboTekst, CountTo - 3, 4)
-                    If Mid(comboTekst, CountTo - 4, 1) = "+" Then
+                    SorteerIndex = Mid(comboTekst, COUNT_TO - 3, 4)
+                    SorteerOrde = Mid(comboTekst, COUNT_TO - 3, 4)
+                    If Mid(comboTekst, COUNT_TO - 4, 1) = "+" Then
                         SorteerOrde &= " ASC"
                     Else
                         SorteerOrde &= " DESC"
                     End If
                 Else
-                    SorteerIndex = SorteerIndex & "+" & Mid(comboTekst, CountTo - 3, 4)
-                    SorteerOrde = SorteerOrde & ", " & Mid(comboTekst, CountTo - 3, 4)
-                    If Mid(comboTekst, CountTo - 4, 1) = "+" Then
+                    SorteerIndex = SorteerIndex & "+" & Mid(comboTekst, COUNT_TO - 3, 4)
+                    SorteerOrde = SorteerOrde & ", " & Mid(comboTekst, COUNT_TO - 3, 4)
+                    If Mid(comboTekst, COUNT_TO - 4, 1) = "+" Then
                         SorteerOrde &= " ASC"
                     Else
                         SorteerOrde &= " DESC"
@@ -38,37 +38,37 @@ Public Class SqlSearch
                 End If
 
             End If
-            TelOrde = CountTo + 1
+            TelOrde = COUNT_TO + 1
         Loop
 
-        JetGet(TableOfVarious, 1, "29" & Sleuteltje)
-        If Ktrl Then
+        JetGet(TABLE_VARIOUS, 1, "29" & Sleuteltje)
+        If KTRL Then
             MsgBox("InitSQL")
         Else
-            RecordToField(TableOfVarious)
-            MSG = AdoGetField(TableOfVarious, "#v132 #")
+            RecordToField(TABLE_VARIOUS)
+            MSG = AdoGetField(TABLE_VARIOUS, "#v132 #")
             If InStr(UCase(MSG), "WHERE") Then
                 MSG = Mid(MSG, 1, InStr(UCase(MSG), " WHERE ") - 1)
                 MSG = MSG & " WHERE " & SorteerIndex & " Like " & Chr(34) & txtTeZoeken.Text & Chr(34)
                 MSG = MSG & " ORDER BY " & SorteerOrde
                 rtbSQLTekst.Text = MSG
-                MSG = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
+                MSG = Mid(AdoGetField(TABLE_VARIOUS, "#v132 #"), InStr(AdoGetField(TABLE_VARIOUS, "#v132 #"), "[Colwidth]") + 10)
                 If MSG = "" Then
                     Stop
                     'grdColWidth(0) = 0
                 Else
 
-                    CountTo = 0
+                    COUNT_TO = 0
                     Do While MSG <> ""
                         If InStr(MSG, vbTab) <> 0 Then
-                            'grdColWidth(CountTo) = Val(VB.Left(MSG, InStr(MSG, vbTab) - 1))
+                            'grdColWidth(COUNT_TO) = Val(VB.Left(MSG, InStr(MSG, vbTab) - 1))
                             MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
-                            CountTo = CountTo + 1
+                            COUNT_TO = COUNT_TO + 1
                         Else
                             Exit Do
                         End If
                     Loop
-                    'grdColWidth(CountTo) = 0
+                    'grdColWidth(COUNT_TO) = 0
                 End If
             Else
                 MsgBox("InitSQL")
@@ -83,35 +83,35 @@ InitSQL:
         'Delaatste = False
         'eerst eerste index verzekeren !
         'Stop
-        'For CountTo = 0 To Sortering.Items.Count - 1
-        'If Trim(JetTableUseIndex(SharedFl, 0)) = Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2) Then
-        'MSG = MSG & " " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2)
-        'MSG = MSG & " AS [" & Mid(VB6.GetItemString(Sortering, CountTo), InStr(VB6.GetItemString(Sortering, CountTo), ";") + 2) & "]"
+        'For COUNT_TO = 0 To Sortering.Items.Count - 1
+        'If Trim(JETTABLEUSE_INDEX(SHARED_FL, 0)) = Mid(VB6.GetItemString(Sortering, COUNT_TO), 2, InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") - 2) Then
+        'MSG = MSG & " " & Mid(VB6.GetItemString(Sortering, COUNT_TO), 2, InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") - 2)
+        'MSG = MSG & " AS [" & Mid(VB6.GetItemString(Sortering, COUNT_TO), InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") + 2) & "]"
         'MSG = MSG & ","
-        'If CountTo = Sortering.Items.Count - 1 Then
+        'If COUNT_TO = Sortering.Items.Count - 1 Then
         'Delaatste = True
         'End If
         'Exit For
         'End If
         'Next
         'If MSG = "SELECT" Then
-        'MsgBox("Hoofdindex " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2) & " bestaat niet (meer)", MsgBoxStyle.Critical)
+        'MsgBox("Hoofdindex " & Mid(VB6.GetItemString(Sortering, COUNT_TO), 2, InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") - 2) & " bestaat niet (meer)", MsgBoxStyle.Critical)
         'End If
 
         'dan de rest bijvoegen
-        'For CountTo = 0 To Sortering.Items.Count - 1
-        'If Trim(JetTableUseIndex(SharedFl, 0)) = Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2) Then
+        'For COUNT_TO = 0 To Sortering.Items.Count - 1
+        'If Trim(JETTABLEUSE_INDEX(SHARED_FL, 0)) = Mid(VB6.GetItemString(Sortering, COUNT_TO), 2, InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") - 2) Then
         'Else
-        'MSG = MSG & " " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2)
-        'MSG = MSG & " AS [" & Mid(VB6.GetItemString(Sortering, CountTo), InStr(VB6.GetItemString(Sortering, CountTo), ";") + 2) & "]"
+        'MSG = MSG & " " & Mid(VB6.GetItemString(Sortering, COUNT_TO), 2, InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") - 2)
+        'MSG = MSG & " AS [" & Mid(VB6.GetItemString(Sortering, COUNT_TO), InStr(VB6.GetItemString(Sortering, COUNT_TO), ";") + 2) & "]"
         'If Delaatste = True And Sortering.Items.Count = 1 Then
-        'ElseIf Delaatste = True And CountTo = Sortering.Items.Count - 2 Then
-        'ElseIf CountTo < Sortering.Items.Count - 1 Then
+        'ElseIf Delaatste = True And COUNT_TO = Sortering.Items.Count - 2 Then
+        'ElseIf COUNT_TO < Sortering.Items.Count - 1 Then
         'MSG = MSG & ","
         'End If
         'End If
         'Next
-        'MSG = MSG & " FROM " & JetTableName(SharedFl)
+        'MSG = MSG & " FROM " & JET_TABLENAME(SHARED_FL)
         'MSG = MSG & " WHERE " & SorteerIndex & " Like " & Chr(34) & txtTeZoeken.Text & Chr(34)
         'MSG = MSG & " ORDER BY " & SorteerOrde
         'UPGRADE_WARNING: TextRTF was upgraded to Text and has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -126,16 +126,16 @@ InitSQL:
         Dim SorteringTel As Short
         sqlresultListView.Clear()
         SorteringTel = 0
-        Text = Text & ": " & JetTableName(SharedFl)
+        Text = Text & ": " & JET_TABLENAME(SHARED_FL)
         VulcmbSortering()
-        XLogKey = ""
+        XLOG_KEY = ""
 
-        If InStr(GridText, "@Beperk@") Then
-            txtTeZoeken.Text = Mid(GridText, 2) & "%"
+        If InStr(GRIDTEXT, "@Beperk@") Then
+            txtTeZoeken.Text = Mid(GRIDTEXT, 2) & "%"
             refreshView()
 
-        ElseIf GridText <> "" Then
-            txtTeZoeken.Text = Trim(GridText) & "%"
+        ElseIf GRIDTEXT <> "" Then
+            txtTeZoeken.Text = Trim(GRIDTEXT) & "%"
             refreshView()
 
         Else
@@ -147,12 +147,12 @@ InitSQL:
     Private Sub VulcmbSortering()
         Dim T As Short
         sorteringComboBox.Items.Clear()
-        For T = 0 To FlAantalIndexen(SharedFl)
-            Dim sortveldString As String = Trim(JetTableUseIndex(SharedFl, T))
-            sorteringComboBox.Items.Add("+" & sortveldString & "; " & FLIndexCaption(SharedFl, T))
+        For T = 0 To FlAantalIndexen(SHARED_FL)
+            Dim sortveldString As String = Trim(JETTABLEUSE_INDEX(SHARED_FL, T))
+            sorteringComboBox.Items.Add("+" & sortveldString & "; " & FLINDEX_CAPTION(SHARED_FL, T))
         Next
-        If SharedIndex Then
-            sorteringComboBox.SelectedIndex = SharedIndex
+        If SHARED_INDEX Then
+            sorteringComboBox.SelectedIndex = SHARED_INDEX
         Else
             sorteringComboBox.SelectedIndex = 0
         End If
@@ -168,7 +168,7 @@ InitSQL:
 
     Private Sub sluitenButton_Click(sender As Object, e As EventArgs) Handles sluitenButton.Click
 
-        Ktrl = 9
+        KTRL = 9
 
     End Sub
 
@@ -176,23 +176,23 @@ InitSQL:
 
         On Error Resume Next
         If zoekenButton.Text = "Ok" Then
-            If XLogKey = "" Then
+            If XLOG_KEY = "" Then
                 'MsgBox("er is iets mis")
                 'poging om de eerste record door te geven van recordset...
                 If datPrimaryRS.RecordCount Then
                     datPrimaryRS.MoveFirst()
-                    XLogKey = datPrimaryRS.Fields(datPrimaryRS.Fields.Item(0).Name).Value
+                    XLOG_KEY = datPrimaryRS.Fields(datPrimaryRS.Fields.Item(0).Name).Value
                 End If
                 datPrimaryRS.Close()
             End If
 
-            JetGet(SharedFl, 0, XLogKey)
-            If Ktrl Then
+            JetGet(SHARED_FL, 0, XLOG_KEY)
+            If KTRL Then
                 Beep()
                 txtTeZoeken.Focus()
                 Exit Sub
             Else
-                RecordToField(SharedFl)
+                RecordToField(SHARED_FL)
             End If
             Close()
 
@@ -220,7 +220,7 @@ InitSQL:
         ' Create a recordset using the provided collection
         datPrimaryRS = New ADODB.Recordset
         datPrimaryRS.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        datPrimaryRS.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        datPrimaryRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Then
             Stop
             'UPGRADE_NOTE: Object mfgLijst.DataSource may not be destroyed until it is garbage collected. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6E35BFF6-CD74-4B09-9689-3E1A43DF8969"'
@@ -233,8 +233,8 @@ InitSQL:
         Else
             Try
                 sqlresultListView.Clear()
-                For CountTo = 0 To datPrimaryRS.Fields.Count - 1
-                    sqlresultListView.Columns.Add(datPrimaryRS.Fields.Item(CountTo).Name, 100)
+                For COUNT_TO = 0 To datPrimaryRS.Fields.Count - 1
+                    sqlresultListView.Columns.Add(datPrimaryRS.Fields.Item(COUNT_TO).Name, 100)
                 Next
                 sqlresultListView.View = View.Details
                 Dim dataVeld As String
@@ -243,11 +243,11 @@ InitSQL:
                     Do While Not datPrimaryRS.EOF
                         dataVeld = datPrimaryRS.Fields(datPrimaryRS.Fields.Item(0).Name).Value
                         Dim itemHier As New ListViewItem(dataVeld)
-                        For CountTo = 1 To datPrimaryRS.Fields.Count - 1
-                            If IsDBNull(datPrimaryRS.Fields(datPrimaryRS.Fields.Item(CountTo).Name).Value) Then
+                        For COUNT_TO = 1 To datPrimaryRS.Fields.Count - 1
+                            If IsDBNull(datPrimaryRS.Fields(datPrimaryRS.Fields.Item(COUNT_TO).Name).Value) Then
                                 dataVeld = " "
                             Else
-                                dataVeld = datPrimaryRS.Fields(datPrimaryRS.Fields.Item(CountTo).Name).Value
+                                dataVeld = datPrimaryRS.Fields(datPrimaryRS.Fields.Item(COUNT_TO).Name).Value
                             End If
                             itemHier.SubItems.Add(dataVeld)
                         Next
@@ -265,8 +265,8 @@ InitSQL:
                 sqlresultListView.FullRowSelect = True
                 Dim itemX As ListViewItem
                 itemX = sqlresultListView.Items.Item(0)
-                XLogKey = itemX.SubItems.Item(0).Text
-                txtTeZoeken.Text = XLogKey
+                XLOG_KEY = itemX.SubItems.Item(0).Text
+                txtTeZoeken.Text = XLOG_KEY
                 sqlresultListView.Enabled = True
                 sqlresultListView.Focus()
             Else
@@ -277,11 +277,11 @@ InitSQL:
             'dataGridViewRS.Close()
         End If
 
-        'For CountTo = 0 To mfgLijst.get_Cols() - 1
-        'If grdColWidth(CountTo) = 0 Then
+        'For COUNT_TO = 0 To mfgLijst.get_Cols() - 1
+        'If grdColWidth(COUNT_TO) = 0 Then
         'Exit For
         'Else
-        'mfgLijst.set_ColWidth(CountTo,  , grdColWidth(CountTo))
+        'mfgLijst.set_ColWidth(COUNT_TO,  , grdColWidth(COUNT_TO))
         'End If
         '   Next
 
@@ -319,8 +319,8 @@ InitSQL:
 
     Private Sub sqlresultListView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles sqlresultListView.SelectedIndexChanged
 
-        XLogKey = sqlresultListView.FocusedItem.SubItems.Item(0).Text
-        txtTeZoeken.Text = XLogKey
+        XLOG_KEY = sqlresultListView.FocusedItem.SubItems.Item(0).Text
+        txtTeZoeken.Text = XLOG_KEY
 
     End Sub
 

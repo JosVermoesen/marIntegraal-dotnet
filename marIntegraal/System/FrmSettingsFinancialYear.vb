@@ -45,13 +45,13 @@ End Class
 '		On Error GoTo TeleBibError
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(ProgramLocation & "Def\" & "099.Def") = "" Then
+'		If Dir(PROGRAM_LOCATION & "Def\" & "099.Def") = "" Then
 '			MsgBox("Geen TeleBib definitie 099.Def")
 '			Exit Function
 '		End If
 
 '		FlInput = FreeFile
-'		FileOpen(FlInput, ProgramLocation & "Def\" & "099.Def", OpenMode.Input)
+'		FileOpen(FlInput, PROGRAM_LOCATION & "Def\" & "099.Def", OpenMode.Input)
 '		Do While Not EOF(FlInput)
 '			LokatieString = LineInput(FlInput)
 '			If LokatieString = TeZoeken Then
@@ -64,18 +64,18 @@ End Class
 
 '		T = 0
 '		Do While Not EOF(FlInput)
-'			Input(FlInput, TeleBibCode(T))
-'			Input(FlInput, TeleBibTekst(T))
-'			Input(FlInput, TeleBibType(T))
-'			Input(FlInput, TeleBibLengte(T))
-'			If VB.Left(TeleBibCode(T), 1) = ";" Then
+'			Input(FlInput, TELEBIB_CODE(T))
+'			Input(FlInput, TELEBIB_TEXT(T))
+'			Input(FlInput, TELEBIB_TYPE(T))
+'			Input(FlInput, TELEBIB_LENGHT(T))
+'			If VB.Left(TELEBIB_CODE(T), 1) = ";" Then
 '				Exit Do
 '			Else
 '				T = T + 1
 '			End If
 '		Loop 
 '		FileClose(FlInput)
-'		TeleBibCode(T) = ""
+'		TELEBIB_CODE(T) = ""
 '		TeleBibDEF = True
 '		Exit Function
 
@@ -103,13 +103,13 @@ End Class
 '		Dim BoxMask As String
 '		Dim BoxType As Short
 
-'		For CountTo = 0 To 8
-'			If SetupOption(CountTo).Checked = True Then
+'		For COUNT_TO = 0 To 8
+'			If SetupOption(COUNT_TO).Checked = True Then
 '				Exit For
 '			End If
 '		Next 
 
-'		If TeleBibDEF(";" & SetupOption(CountTo).Text) Then
+'		If TeleBibDEF(";" & SetupOption(COUNT_TO).Text) Then
 '		Else
 '			Beep()
 '			MsgBox("Definitiebestand 099.DEF defekt ?")
@@ -125,19 +125,19 @@ End Class
 
 '		aa = ""
 '		T = 0
-'		Do While TeleBibCode(T) <> Space(10)
-'			JetGet(TableOfCounters, 0, Mid(TeleBibCode(T), 5, 5))
-'			If Ktrl Then
+'		Do While TELEBIB_CODE(T) <> Space(10)
+'			JetGet(TABLE_COUNTERS, 0, Mid(TELEBIB_CODE(T), 5, 5))
+'			If KTRL Then
 '				CrText = ""
 '			Else
-'				RecordToField(TableOfCounters)
-'				'CrText = ntRS(TableOfCounters).Fields("v217")
-'				CrText = rsMAR(TableOfCounters).Fields("v217").Value
-'				Select Case Mid(TeleBibCode(T), 2, 2)
+'				RecordToField(TABLE_COUNTERS)
+'				'CrText = NT_RS(TABLE_COUNTERS).Fields("v217")
+'				CrText = RS_MAR(TABLE_COUNTERS).Fields("v217").Value
+'				Select Case Mid(TELEBIB_CODE(T), 2, 2)
 '					Case "  ", "K ", "L ", "LC", "R ", "R3", "R4", "R6", "R7"
 '						'niks
 '					Case Else
-'						Select Case Mid(TeleBibCode(T), 1, 1)
+'						Select Case Mid(TELEBIB_CODE(T), 1, 1)
 '							Case " "
 '								BoxMask = "00"
 '								BoxType = 0
@@ -145,13 +145,13 @@ End Class
 '								BoxMask = "000"
 '								BoxType = 1
 '						End Select
-'						If VB.Left(TeleBibCode(T), 1) = "@" Or CrText = "" Then
+'						If VB.Left(TELEBIB_CODE(T), 1) = "@" Or CrText = "" Then
 '						Else
-'							CrText = fmarBoxText(VB6.Format(Val(Mid(TeleBibCode(T), 1, 3)), BoxMask), "2", CrText) 'hier eventueel taaloptie
+'							CrText = fmarBoxText(VB6.Format(Val(Mid(TELEBIB_CODE(T), 1, 3)), BoxMask), "2", CrText) 'hier eventueel taaloptie
 '						End If
 '				End Select
 '			End If
-'			aa = TeleBibCode(T) & vbTab & TeleBibTekst(T) & vbTab & CrText
+'			aa = TELEBIB_CODE(T) & vbTab & TELEBIB_TEXT(T) & vbTab & CrText
 '			T = T + 1
 '			Xlog.X.AddItem(aa)
 '		Loop 
@@ -178,41 +178,41 @@ End Class
 'XLogShow: 
 '		VB6.SetDefault(Xlog.WijzigenLijn, True)
 '		Xlog.Afsluiten.TabStop = True
-'		XLogKey = ""
+'		XLOG_KEY = ""
 '		Xlog.SSTab1.TabPages.Item(1).Visible = False
 '		Xlog.ShowDialog()
-'		If XLogKey <> "" Then
+'		If XLOG_KEY <> "" Then
 '			MSG = "Boekjaarparameters overschrijven.  Bent U zeker ?"
-'			KtrlBox = MsgBox(MSG, 292)
-'			If KtrlBox = 6 Then
+'			CTRL_BOX = MsgBox(MSG, 292)
+'			If CTRL_BOX = 6 Then
 '				T = 0
 '				Xlog.X.Col = 2
-'				Do While TeleBibCode(T) <> Space(10)
+'				Do While TELEBIB_CODE(T) <> Space(10)
 '					Xlog.X.Row = T + 1
 '					CrText2 = Xlog.X.Text
-'					JetGet(TableOfCounters, 0, Mid(TeleBibCode(T), 5, 5))
-'					If Ktrl Then
-'						TLBRecord(TableOfCounters) = ""
-'						AdoInsertToRecord(TableOfCounters, Mid(TeleBibCode(T), 5, 5), "v071")
+'					JetGet(TABLE_COUNTERS, 0, Mid(TELEBIB_CODE(T), 5, 5))
+'					If KTRL Then
+'						TLB_RECORD(TABLE_COUNTERS) = ""
+'						AdoInsertToRecord(TABLE_COUNTERS, Mid(TELEBIB_CODE(T), 5, 5), "v071")
 '					Else
-'						RecordToField(TableOfCounters)
+'						RecordToField(TABLE_COUNTERS)
 '					End If
 
-'					Select Case Mid(TeleBibCode(T), 2, 2)
+'					Select Case Mid(TELEBIB_CODE(T), 2, 2)
 '						Case "  "
 '						Case Else
-'							If VB.Left(TeleBibCode(T), 1) = "@" Then
+'							If VB.Left(TELEBIB_CODE(T), 1) = "@" Then
 '							Else
 '								On Error Resume Next
 '								CrText2 = VB.Left(CrText2, InStr(CrText2, ":") - 1)
 '								On Error GoTo 0
 '							End If
 '					End Select
-'					AdoInsertToRecord(TableOfCounters, CrText2, "v217")
-'					If Ktrl Then
-'						JetInsert(TableOfCounters, 0)
+'					AdoInsertToRecord(TABLE_COUNTERS, CrText2, "v217")
+'					If KTRL Then
+'						JetInsert(TABLE_COUNTERS, 0)
 '					Else
-'						bUpdate(TableOfCounters, 0)
+'						bUpdate(TABLE_COUNTERS, 0)
 '					End If
 '					T = T + 1
 '				Loop 

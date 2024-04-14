@@ -37,9 +37,9 @@ End Class
 '		On Error Resume Next
 '		Err.Clear()
 '		rsLijst.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-'		SnelHelpPrint(sqlSELECTLijst, blLogging)
+'		SnelHelpPrint(sqlSELECTLijst, BL_LOGGING)
 
-'		rsLijst.Open(sqlSELECTLijst, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsLijst.Open(sqlSELECTLijst, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		If Err.Number Then
 '			MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '			Exit Sub
@@ -53,13 +53,13 @@ End Class
 '	Function sqlSELECTLijst() As String
 '		Dim IndexeerVeld As String
 
-'		IndexeerVeld = Trim(JetTableUseIndex(Val(Mid(Tabel.Text, 1, 1)), Val(Mid(Me.Sortering.Text, 1, 2))))
+'		IndexeerVeld = Trim(JETTABLEUSE_INDEX(Val(Mid(Tabel.Text, 1, 1)), Val(Mid(Me.Sortering.Text, 1, 2))))
 
 '		MSG = "SELECT"
-'		For CountTo = 0 To Me.RapportVelden.Items.Count - 1
-'			MSG = MSG & " " & Trim(Mid(VB6.GetItemString(Me.RapportVelden, CountTo), 5, 5))
-'			MSG = MSG & " AS [" & Trim(Mid(VB6.GetItemString(RapportVelden, CountTo), 22)) & "]"
-'			If CountTo < Me.RapportVelden.Items.Count - 1 Then
+'		For COUNT_TO = 0 To Me.RapportVelden.Items.Count - 1
+'			MSG = MSG & " " & Trim(Mid(VB6.GetItemString(Me.RapportVelden, COUNT_TO), 5, 5))
+'			MSG = MSG & " AS [" & Trim(Mid(VB6.GetItemString(RapportVelden, COUNT_TO), 22)) & "]"
+'			If COUNT_TO < Me.RapportVelden.Items.Count - 1 Then
 '				MSG = MSG & ","
 '			End If
 '		Next 
@@ -98,10 +98,10 @@ End Class
 '			rsLijst.MoveFirst()
 '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '			System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'			PageCounter = 0
+'			PAGE_COUNTER = 0
 '			If chkAfdrukInVenster.CheckState Then
 '			Else
-'				Printer = Printers(LijstPrinterNr)
+'				Printer = Printers(LISTPRINTER_NUMBER)
 '				On Error Resume Next
 '				'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -153,7 +153,7 @@ End Class
 '	Private Sub chkAfdrukLiggend_CheckStateChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles chkAfdrukLiggend.CheckStateChanged
 '		Dim Printer As New Printer
 
-'		Printer = Printers(LijstPrinterNr)
+'		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -163,7 +163,7 @@ End Class
 '			Printer.Orientation = PrinterObjectConstants.vbPRORPortrait
 '		End If
 '		'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-'		XDoEvents = System.Windows.Forms.Application.DoEvents()
+'		XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
 
 '	End Sub
 
@@ -240,8 +240,8 @@ End Class
 '			If TLBPag2(VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000")) Then
 '				T = 0
 '				TabelVelden.Items.Clear()
-'				Do While TeleBibCode(T) <> Space(10)
-'					TabelVelden.Items.Add(TeleBibCode(T) & " " & "000 " & VB6.Format(TeleBibLengte(T), "000") & " T " & RTrim(TeleBibTekst(T)))
+'				Do While TELEBIB_CODE(T) <> Space(10)
+'					TabelVelden.Items.Add(TELEBIB_CODE(T) & " " & "000 " & VB6.Format(TELEBIB_LENGHT(T), "000") & " T " & RTrim(TELEBIB_TEXT(T)))
 '					T = T + 1
 '				Loop 
 '			Else
@@ -272,7 +272,7 @@ End Class
 '			WindowState = System.Windows.Forms.FormWindowState.Normal
 '			FlTemp = FreeFile
 '			VolgNummer = RapportDefinitie.Items.Count
-'			FileOpen(FlTemp, ProgramLocation & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB6.Format(VolgNummer, "00") & ".PRD", OpenMode.Output)
+'			FileOpen(FlTemp, PROGRAM_LOCATION & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB6.Format(VolgNummer, "00") & ".PRD", OpenMode.Output)
 '			PrintLine(FlTemp, TekstInfo(2).Text)
 '			For T = 0 To RapportVelden.Items.Count - 1
 '				PrintLine(FlTemp, VB6.GetItemString(RapportVelden, T))
@@ -292,7 +292,7 @@ End Class
 '			Exit Sub
 '		End If
 
-'		Printer = Printers(LijstPrinterNr)
+'		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -367,7 +367,7 @@ End Class
 '			Xlog.Afsluiten.Enabled = False
 '			Xlog.Afsluiten.TabStop = False
 '			Xlog.cbAfbeelding.Visible = False
-'			XLogKey = ""
+'			XLOG_KEY = ""
 '			Xlog.SSTab1.TabPages.Item(1).Visible = False
 '			Xlog.ShowDialog()
 '			Xlog.WindowState = System.Windows.Forms.FormWindowState.Normal
@@ -382,7 +382,7 @@ End Class
 '		Dim TabNu As Short
 '		Dim TabNext As Short
 
-'		If chkAfdrukInVenster.CheckState = 1 And PageCounter = 0 Then
+'		If chkAfdrukInVenster.CheckState = 1 And PAGE_COUNTER = 0 Then
 '			Me.Hide()
 '			Xlog.Close()
 '			Xlog.Hide()
@@ -391,7 +391,7 @@ End Class
 '			Xlog.X.Row = 0
 '			For T = 0 To RapportVelden.Items.Count - 1
 '				RapportVelden.SelectedIndex = T
-'				ReportTab(T) = Val(Mid(RapportVelden.Text, 12, 3))
+'				REPORT_TAB(T) = Val(Mid(RapportVelden.Text, 12, 3))
 '				Xlog.X.Col = T
 '				Xlog.X.Text = RTrim(Mid(RapportVelden.Text, 22))
 '				Xlog.X.set_ColWidth(T, 1860)
@@ -400,19 +400,19 @@ End Class
 '			Exit Sub
 '		End If
 
-'		If usrLicentieInfo <> "" Then
+'		If USER_LICENSEINFO <> "" Then
 '			Printer.CurrentX = 50
 '			Printer.CurrentY = 50
-'			Printer.Write(usrLicentieInfo)
+'			Printer.Write(USER_LICENSEINFO)
 '		End If
-'		PageCounter = PageCounter + 1
+'		PAGE_COUNTER = PAGE_COUNTER + 1
 '		Printer.CurrentY = 400
-'		Printer.Write(TAB(1), HoofdTitel, TAB(108), "Pagina : " & Dec(PageCounter, "##########"))
+'		Printer.Write(TAB(1), HoofdTitel, TAB(108), "Pagina : " & Dec(PAGE_COUNTER, "##########"))
 
-'		Printer.Write(TAB(108), "Datum  : " & MimGlobalDate.Value & vbCrLf & vbCrLf)
+'		Printer.Write(TAB(108), "Datum  : " & MIM_GLOBAL_DATE.Value & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(1), OnderTitel)
 
-'		Printer.Print(vbCrLf & FullLine.Value)
+'		Printer.Print(vbCrLf & FULL_LINE.Value)
 
 '		For T = 0 To RapportVelden.Items.Count - 1
 '			RapportVelden.SelectedIndex = T
@@ -420,7 +420,7 @@ End Class
 '			Printer.Write(TAB(TabNu), Mid(RapportVelden.Text, 22))
 '		Next 
 
-'		Printer.Write(vbCrLf & FullLine.Value & vbCrLf & vbCrLf)
+'		Printer.Write(vbCrLf & FULL_LINE.Value & vbCrLf & vbCrLf)
 
 '	End Sub
 
@@ -443,12 +443,12 @@ End Class
 '				Case "D"
 '					VeldInfo = FunctionDateText(VeldInfo)
 '				Case "0" To "6"
-'					VeldInfo = Dec(Val(VeldInfo), MaskSy(Val(VeldInfoSh)))
+'					VeldInfo = Dec(Val(VeldInfo), MASK_SY(Val(VeldInfoSh)))
 '				Case Else
 '					MsgBox(Mid(VB6.GetItemString(RapportVelden, T), 20, 1) & " werd nog niet voorzien...")
 '			End Select
 '			If T = 0 Then
-'				SnelHelpPrint(VeldInfo, blLogging)
+'				SnelHelpPrint(VeldInfo, BL_LOGGING)
 '			End If
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & VeldInfo
@@ -486,12 +486,12 @@ End Class
 '		FlTemp = FreeFile
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(ProgramLocation & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD") = "" Then
+'		If Dir(PROGRAM_LOCATION & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD") = "" Then
 '			MsgBox(VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD" & " bestaat niet meer...")
 '			Exit Sub
 '		End If
 
-'		FileOpen(FlTemp, ProgramLocation & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD", OpenMode.Input)
+'		FileOpen(FlTemp, PROGRAM_LOCATION & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD", OpenMode.Input)
 '		RapportTekst = LineInput(FlTemp)
 '		TekstInfo(2).Text = RapportTekst
 '		RapportVelden.Items.Clear()
@@ -512,9 +512,9 @@ End Class
 '		Select Case KeyCode
 '			Case 46
 '				MSG = "Rapportdefinitie " & vbCrLf & vbCrLf & RapportDefinitie.Text & vbCrLf & vbCrLf & "verwijderen.  Bent U zeker ?"
-'				KtrlBox = MsgBox(MSG, 292)
-'				If KtrlBox = 6 Then
-'					Kill(ProgramLocation & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD")
+'				CTRL_BOX = MsgBox(MSG, 292)
+'				If CTRL_BOX = 6 Then
+'					Kill(PROGRAM_LOCATION & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD")
 '					RapportDefinitie.Items.RemoveAt(RapportDefinitie.SelectedIndex)
 
 '				End If
@@ -563,7 +563,7 @@ End Class
 '	Private Sub SorTering_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles SorTering.SelectedIndexChanged
 
 '		IndexKeuze = Val(VB.Left(Sortering.Text, 2))
-'		TekstInfo(5).Text = Str(FlIndexLen(FlKeuze, IndexKeuze))
+'		TekstInfo(5).Text = Str(FLINDEX_LEN(FlKeuze, IndexKeuze))
 '		TekstInfo(0).Text = "0"
 '		TekstInfo(1).Text = New String("z", Val(TekstInfo(5).Text))
 
@@ -580,18 +580,18 @@ End Class
 '		Sortering.Items.Clear()
 '		FlKeuze = Val(VB.Left(Tabel.Text, 1))
 '		For T = 0 To FlAantalIndexen(FlKeuze)
-'			Sortering.Items.Add(VB6.Format(T, "00") & ":" & FLIndexCaption(FlKeuze, T))
+'			Sortering.Items.Add(VB6.Format(T, "00") & ":" & FLINDEX_CAPTION(FlKeuze, T))
 '		Next 
 '		Sortering.SelectedIndex = 0
 '		RapportDefinitie.Items.Clear()
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		X = Dir(ProgramLocation & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & "??.PRD")
+'		X = Dir(PROGRAM_LOCATION & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & "??.PRD")
 '		If X = "" Then
 '			Exit Sub
 '		Else
 '			FlL = FreeFile
 '			Do While X <> ""
-'				FileOpen(FlL, ProgramLocation & "Def\" & X, OpenMode.Input)
+'				FileOpen(FlL, PROGRAM_LOCATION & "Def\" & X, OpenMode.Input)
 '				TekstLijn = LineInput(FlL)
 '				FileClose(FlL)
 '				RapportDefinitie.Items.Add(Mid(X, 4, 2) & ": " & TekstLijn)
@@ -608,7 +608,7 @@ End Class
 '	'UPGRADE_WARNING: Event TabelVelden.SelectedIndexChanged may fire when form is initialized. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="88B12AE1-6DE0-48A0-86F1-60C0686C026A"'
 '	Private Sub TabelVelden_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles TabelVelden.SelectedIndexChanged
 
-'		SnelHelpPrint((TabelVelden.Text), blLogging)
+'		SnelHelpPrint((TabelVelden.Text), BL_LOGGING)
 
 '	End Sub
 
@@ -668,9 +668,9 @@ End Class
 '			Case 3, 4
 '				TekstInfo(Index).Visible = False
 '			Case 5
-'				If Val(TekstInfo(5).Text) < 1 Or Val(TekstInfo(5).Text) > FlIndexLen(FlKeuze, IndexKeuze) Then
+'				If Val(TekstInfo(5).Text) < 1 Or Val(TekstInfo(5).Text) > FLINDEX_LEN(FlKeuze, IndexKeuze) Then
 '					Beep()
-'					TekstInfo(Index).Text = Str(FlIndexLen(FlKeuze, IndexKeuze))
+'					TekstInfo(Index).Text = Str(FLINDEX_LEN(FlKeuze, IndexKeuze))
 '					TekstInfo(Index).Focus()
 '				End If
 '		End Select

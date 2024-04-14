@@ -11,7 +11,7 @@ Public Class KwijtingEdit
 
 		Dim kwijtingArray() as String 
 
-		kwijtingArray = Split (GridTextKwijting, vbTab)
+		kwijtingArray = Split (GRIDTEXT_REMISSION, vbTab)
 		tbPolisNummer.Text = kwijtingArray(0)
 		tbVervaldag.Text = kwijtingArray(1)
 		tbPremie.Text = kwijtingArray(2)
@@ -24,7 +24,7 @@ Public Class KwijtingEdit
 
 	Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
 
-		GridTextKwijting = "ESC"
+		GRIDTEXT_REMISSION = "ESC"
 		Me.Close()
 
 	End Sub
@@ -32,24 +32,24 @@ Public Class KwijtingEdit
 	Private Sub tbPolisNummer_Leave(sender As Object, e As EventArgs) Handles tbPolisNummer.Leave
 
 		If tbPolisNummer.Text="" Then Exit Sub 
-		JetGet(TableOfContracts, 0, SetSpacing(tbPolisNummer.Text, 12))
-		If Ktrl Then
+		JetGet(TABLE_CONTRACTS, 0, SetSpacing(tbPolisNummer.Text, 12))
+		If KTRL Then
 			btnOK.Enabled= False
 			btnRefresh.Enabled = False 
 			tbKlant.Text="":tbPolisNummer.Text=""
 			tbPolisNummer.Focus
 			Exit Sub
 		Else
-			RecordToField(TableOfContracts)
-			tbPolisNummer.Text = AdoGetField(TableOfContracts, "#A000 #")
-			JetGet(TableOfCustomers, 0, AdoGetField(TableOfContracts, "#A110 #"))
-			If Ktrl Then
+			RecordToField(TABLE_CONTRACTS)
+			tbPolisNummer.Text = AdoGetField(TABLE_CONTRACTS, "#A000 #")
+			JetGet(TABLE_CUSTOMERS, 0, AdoGetField(TABLE_CONTRACTS, "#A110 #"))
+			If KTRL Then
 				tbKlant.Text = "KlantLink onmogelijk !!! Kontroleer !!!"
 				btnOK.Enabled= False
 				btnRefresh.Enabled = False 
 			Else
-				RecordToField(TableOfCustomers)
-				tbKlant.Text = AdoGetField(TableOfCustomers, "#A100 #")
+				RecordToField(TABLE_CUSTOMERS)
+				tbKlant.Text = AdoGetField(TABLE_CUSTOMERS, "#A100 #")
 				btnOk.Enabled = True
 				btnRefresh.Enabled = True 
 			End If
@@ -69,7 +69,7 @@ Public Class KwijtingEdit
 
 	Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
 
-		GridTextKwijting =  tbPolisNummer.Text & vbTab & tbVervaldag.Text & vbTab & tbPremie.Text & vbTab & tbCommissie.Text & vbTab & tbKlant.Text & vbTab & tbComPct.Text & vbTab & tbTB2.Text 
+		GRIDTEXT_REMISSION =  tbPolisNummer.Text & vbTab & tbVervaldag.Text & vbTab & tbPremie.Text & vbTab & tbCommissie.Text & vbTab & tbKlant.Text & vbTab & tbComPct.Text & vbTab & tbTB2.Text 
 		Close 
 
 	End Sub
@@ -105,7 +105,7 @@ Public Class KwijtingEdit
 
 		Dim sSQL As String
 		sSQL = "SELECT * FROM Polissen WHERE A000 = '" & sPolis & "'"
-		policiesRS.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+		policiesRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 		If policiesRS.RecordCount <> 1 Then
 			MsgBox  ("Controleer")
 			Exit Sub
@@ -116,16 +116,16 @@ Public Class KwijtingEdit
 			'select beperken tot: A110, vs97, v164
 			getClient = policiesRS.Fields("A110").Value
 
-			JetGet(TableOfCustomers, 0, getClient)
-			If Ktrl Then
+			JetGet(TABLE_CUSTOMERS, 0, getClient)
+			If KTRL Then
 				Dummy = "KlantLink onmogelijk !!! Kontroleer !!!"
 			Else
-				RecordToField(TableOfCustomers)
-				Dummy = Trim(AdoGetField(TableOfCustomers, "#A100 #") & " " & AdoGetField(TableOfCustomers, "#A101 #"))
+				RecordToField(TABLE_CUSTOMERS)
+				Dummy = Trim(AdoGetField(TABLE_CUSTOMERS, "#A100 #") & " " & AdoGetField(TABLE_CUSTOMERS, "#A101 #"))
 			End If
 			getPolice = policiesRS.Fields("A000").Value
 			sSQL = "SELECT * FROM Dokumenten WHERE A000 = '" & getPolice & "' ORDER BY rvID DESC" 'topmost
-			invoicesRS.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+			invoicesRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 			If invoicesRS.RecordCount <= 0 Then
 				Dummy = "!" & Dummy
 			Else
@@ -155,14 +155,14 @@ Public Class KwijtingEdit
 						Dim strA000 As String = policiesRS.Fields("A000").Value
 						Dim strB010 As String = policiesRS.Fields("B010").Value
 
-						'JetGet(TableOfVarious, 1, "25" & SetSpacing(AdoGetField(TableOfContracts, "#A010 #"), 4) & AdoGetField(TableOfContracts, "#A000 #"))
+						'JetGet(TABLE_VARIOUS, 1, "25" & SetSpacing(AdoGetField(TABLE_CONTRACTS, "#A010 #"), 4) & AdoGetField(TABLE_CONTRACTS, "#A000 #"))
 						comPercentage = 0 'CommissieCheck(strA010, strA000)
 						TaksEnKost = 0
-						If Ktrl Then
+						If KTRL Then
 						Else
-							RecordToField(TableOfVarious)
-							If Val(strB010) = Val(AdoGetField(TableOfVarious, "#B010 #")) Then
-								TaksEnKost = Val(AdoGetField(TableOfVarious, "#B011 #"))
+							RecordToField(TABLE_VARIOUS)
+							If Val(strB010) = Val(AdoGetField(TABLE_VARIOUS, "#B010 #")) Then
+								TaksEnKost = Val(AdoGetField(TABLE_VARIOUS, "#B011 #"))
 							End If
 						End If
 
@@ -170,7 +170,7 @@ Public Class KwijtingEdit
 						'hier bijvoegen voor alle maatschappijen
 						Dim dataVeld As String = policiesRS.Fields("A000").Value
 						Dim itemHier As New ListViewItem(dataVeld)
-						Dim vervaldagHier As String = Mid(policiesRS.Fields("v165").Value, 1, 2) & "/" & Mid(policiesRS.Fields("v164").Value, 1, 2) & "/" & Mid(PeriodFromTo, 1, 4)
+						Dim vervaldagHier As String = Mid(policiesRS.Fields("v165").Value, 1, 2) & "/" & Mid(policiesRS.Fields("v164").Value, 1, 2) & "/" & Mid(PERIOD_FROMTO, 1, 4)
 		
 						tbVervaldag.Text = vervaldagHier
 						tbPremie.Text = str(dbBA010 )
@@ -250,7 +250,7 @@ End Class
 '			CType(KwijtingDrukken.Controls("PolisDetail"), Object).Col = 4
 '			CType(KwijtingDrukken.Controls("PolisDetail"), Object).Text = TekstInfo(1).Text
 			
-'			GridText = "OK"
+'			GRIDTEXT = "OK"
 '			Me.Close()
 '		End If
 		
@@ -259,7 +259,7 @@ End Class
 '	Private Sub TekstInfo_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles TekstInfo.Enter
 '		Dim Index As Short = TekstInfo.GetIndex(eventSender)
 		
-'		If Index = 1 Then SnelHelpPrint("Eén of meer tekens gevolgd door [Ctrl] om geïndexeerd te zoeken", blLogging)
+'		If Index = 1 Then SnelHelpPrint("Eén of meer tekens gevolgd door [Ctrl] om geïndexeerd te zoeken", BL_LOGGING)
 '		TekstInfo(Index).SelectionLength = Len(TekstInfo(Index).Text)
 		
 '	End Sub
@@ -273,42 +273,42 @@ End Class
 		
 '		If Index = 1 Then
 '			If KeyCode = 17 Then
-'				SharedFl = TableOfCustomers
-'				aIndex = 1
-'				GridText = TekstInfo(1).Text
+'				SHARED_FL = TABLE_CUSTOMERS
+'				A_INDEX = 1
+'				GRIDTEXT = TekstInfo(1).Text
 '				SqlSearch.ShowDialog()
-'				If Ktrl Then
+'				If KTRL Then
 '					TekstInfo(1).Text = "-"
 '					CType(Me.Controls("Ok"), Object).Enabled = False
 '					Exit Sub
 '				Else
-'					RecordToField(TableOfCustomers)
-'					TekstInfo(1).Text = AdoGetField(TableOfCustomers, "#A100 #")
-'					JetGet(TableOfContracts, 1, AdoGetField(TableOfCustomers, "#A110 #"))
-'					If Ktrl Or SetSpacing(KeyBuf(TableOfContracts), 12) <> SetSpacing(AdoGetField(TableOfCustomers, "#A110 #"), 12) Then
+'					RecordToField(TABLE_CUSTOMERS)
+'					TekstInfo(1).Text = AdoGetField(TABLE_CUSTOMERS, "#A100 #")
+'					JetGet(TABLE_CONTRACTS, 1, AdoGetField(TABLE_CUSTOMERS, "#A110 #"))
+'					If KTRL Or SetSpacing(KEY_BUF(TABLE_CONTRACTS), 12) <> SetSpacing(AdoGetField(TABLE_CUSTOMERS, "#A110 #"), 12) Then
 '						MsgBox("Geen polissen voor deze klant te vinden !!")
 '						TekstInfo(1).Text = "-"
 '						CType(Me.Controls("Ok"), Object).Enabled = False
 '						Exit Sub
 '					Else
 '						Do 
-'							RecordToField(TableOfContracts)
-'							msgTitel = AdoGetField(TableOfContracts, "#B010 #") & " " & AdoGetField(TableOfContracts, "#e069 #")
+'							RecordToField(TABLE_CONTRACTS)
+'							msgTitel = AdoGetField(TABLE_CONTRACTS, "#B010 #") & " " & AdoGetField(TABLE_CONTRACTS, "#e069 #")
 							
-'							MSG = "Kwijting voor polisnummer : " & AdoGetField(TableOfContracts, "#A000 #") & vbCrLf & vbCrLf
-'							MSG = MSG & AdoGetField(TableOfContracts, "#vs99 #") & vbCrLf
-'							MSG = MSG & AdoGetField(TableOfContracts, "#vs98 #") & vbCrLf & vbCrLf
+'							MSG = "Kwijting voor polisnummer : " & AdoGetField(TABLE_CONTRACTS, "#A000 #") & vbCrLf & vbCrLf
+'							MSG = MSG & AdoGetField(TABLE_CONTRACTS, "#vs99 #") & vbCrLf
+'							MSG = MSG & AdoGetField(TABLE_CONTRACTS, "#vs98 #") & vbCrLf & vbCrLf
 '							MSG = MSG & "Bent U zeker ?"
-'							KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, msgTitel)
-'							If KtrlBox = MsgBoxResult.Yes Then
-'								TekstInfo(0).Text = AdoGetField(TableOfContracts, "#A000 #")
+'							CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, msgTitel)
+'							If CTRL_BOX = MsgBoxResult.Yes Then
+'								TekstInfo(0).Text = AdoGetField(TABLE_CONTRACTS, "#A000 #")
 '								TekstInfo(0).Focus()
-'								TekstInfo(3).Text = CStr(Val(AdoGetField(TableOfContracts, "#B010 #")))
-'								TekstInfo(4).Text = CStr(Val(AdoGetField(TableOfContracts, "#B014 #")))
+'								TekstInfo(3).Text = CStr(Val(AdoGetField(TABLE_CONTRACTS, "#B010 #")))
+'								TekstInfo(4).Text = CStr(Val(AdoGetField(TABLE_CONTRACTS, "#B014 #")))
 '								Exit Do
 '							End If
-'							bNext(TableOfContracts)
-'							If Ktrl Or SetSpacing(KeyBuf(TableOfContracts), 12) <> SetSpacing(AdoGetField(TableOfCustomers, "#A110 #"), 12) Then
+'							bNext(TABLE_CONTRACTS)
+'							If KTRL Or SetSpacing(KEY_BUF(TABLE_CONTRACTS), 12) <> SetSpacing(AdoGetField(TABLE_CUSTOMERS, "#A110 #"), 12) Then
 '								MsgBox("Geen polissen meer voor deze klant te vinden !!")
 '								TekstInfo(1).Text = "-"
 '								CType(Me.Controls("Ok"), Object).Enabled = False

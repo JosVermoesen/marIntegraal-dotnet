@@ -249,7 +249,7 @@ Partial Class FrmCompanyNew
         Me._Label1_6.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me._Label1_6.Size = New System.Drawing.Size(85, 17)
         Me._Label1_6.TabIndex = 46
-        Me._Label1_6.Text = "&DATA Location"
+        Me._Label1_6.Text = "&DATA LOCATION"
         '
         '_Label1_5
         '

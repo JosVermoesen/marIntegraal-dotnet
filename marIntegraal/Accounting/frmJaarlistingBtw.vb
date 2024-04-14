@@ -74,11 +74,11 @@ End Class
 
 '		ktrlEur = EurBefJaar()
 
-'		JetGetOrGreater(TableOfInvoices, 1, BeginSleutel)
-'		If Ktrl Or UCase(KeyBuf(TableOfInvoices)) > UCase(EindSleutel) Then
+'		JetGetOrGreater(TABLE_INVOICES, 1, BeginSleutel)
+'		If KTRL Or UCase(KEY_BUF(TABLE_INVOICES)) > UCase(EindSleutel) Then
 '			Beep()
 '			Exit Sub
-'		ElseIf VB.Left(KeyBuf(TableOfInvoices), 1) <> VB.Left(BeginSleutel, 1) Then 
+'		ElseIf VB.Left(KEY_BUF(TABLE_INVOICES), 1) <> VB.Left(BeginSleutel, 1) Then 
 '			Beep()
 '			Exit Sub
 '		Else
@@ -87,14 +87,14 @@ End Class
 '			GoSub OpenTabBestand
 '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '			System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'			PageCounter = 0
+'			PAGE_COUNTER = 0
 '			If chkAfdrukInVenster.CheckState = 0 Then
-'				Printer = Printers(LijstPrinterNr)
+'				Printer = Printers(LISTPRINTER_NUMBER)
 '				On Error Resume Next
 '				'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
 '				'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-'				XDoEvents = System.Windows.Forms.Application.DoEvents()
+'				XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
 '				If Printer.Width > 12000 Then
 '					Printer.FontSize = 10
 '					Printer.FontName = "Courier New"
@@ -108,7 +108,7 @@ End Class
 '				End If
 '			End If
 '			VpePrintHeader()
-'			RecordToField(TableOfInvoices)
+'			RecordToField(TABLE_INVOICES)
 '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '			GoSub KontroleVoorwaarden
 '		End If
@@ -116,21 +116,21 @@ End Class
 '		Me.Refresh()
 
 '		Do 
-'			bNext(TableOfInvoices)
-'			If Ktrl Or UCase(KeyBuf(TableOfInvoices)) > UCase(EindSleutel) Then
+'			bNext(TABLE_INVOICES)
+'			If KTRL Or UCase(KEY_BUF(TABLE_INVOICES)) > UCase(EindSleutel) Then
 '				Exit Do
 '			End If
-'			RecordToField(TableOfInvoices)
+'			RecordToField(TABLE_INVOICES)
 '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '			GoSub KontroleVoorwaarden
 '		Loop 
 
 '		If obMunt(0).Checked Then
-'			FieldText(7) = Dec(dTnt1, MaskBEF)
-'			FieldText(8) = Dec(dTnt2, MaskBEF)
+'			FieldText(7) = Dec(dTnt1, MASK_BEF)
+'			FieldText(8) = Dec(dTnt2, MASK_BEF)
 '		Else
-'			FieldText(7) = Dec(dTnt1, MaskEUR)
-'			FieldText(8) = Dec(dTnt2, MaskEUR)
+'			FieldText(7) = Dec(dTnt1, MASK_EUR)
+'			FieldText(8) = Dec(dTnt2, MASK_EUR)
 '		End If
 '		'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '		GoSub PrintDeLijn
@@ -153,28 +153,28 @@ End Class
 
 'KontroleVoorwaarden: 
 '		'Enkel het reële jaar
-'		If VB.Left(AdoGetField(TableOfInvoices, "#v035 #"), 4) <> VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) Then
+'		If VB.Left(AdoGetField(TABLE_INVOICES, "#v035 #"), 4) <> VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) Then
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
 '		End If
 
 '		dTOT = 0
-'		Select Case VB.Left(AdoGetField(TableOfInvoices, "#v033 #"), 1)
+'		Select Case VB.Left(AdoGetField(TABLE_INVOICES, "#v033 #"), 1)
 '			Case "V"
 '				For Teller = 55 To 63
-'					dTOT = dTOT + Val(AdoGetField(TableOfInvoices, "#v" & VB6.Format(Teller, "000") & " #"))
+'					dTOT = dTOT + Val(AdoGetField(TABLE_INVOICES, "#v" & VB6.Format(Teller, "000") & " #"))
 '				Next 
-'				dTOT = dTOT + Val(AdoGetField(TableOfInvoices, "#v089 #"))
-'				dBTW = Val(AdoGetField(TableOfInvoices, "#v064 #"))
-'				If Mid(AdoGetField(TableOfInvoices, "#v033 #"), 2, 1) = "1" Then
+'				dTOT = dTOT + Val(AdoGetField(TABLE_INVOICES, "#v089 #"))
+'				dBTW = Val(AdoGetField(TABLE_INVOICES, "#v064 #"))
+'				If Mid(AdoGetField(TABLE_INVOICES, "#v033 #"), 2, 1) = "1" Then
 '					dTOT = -dTOT
 '					dBTW = -dBTW
 '				End If
 '				If ktrlEur = True Then
-'					If AdoGetField(TableOfInvoices, "#v035 #") > VB.Left(BookyearFromTo.Value, 8) Then
+'					If AdoGetField(TABLE_INVOICES, "#v035 #") > VB.Left(BOOKYEAR_FROMTO.Value, 8) Then
 '					Else
-'						dTOT = System.Math.Round(dTOT / Euro, 2)
-'						dBTW = System.Math.Round(dBTW / Euro, 2)
+'						dTOT = System.Math.Round(dTOT / EURO, 2)
+'						dBTW = System.Math.Round(dBTW / EURO, 2)
 '					End If
 '				End If
 
@@ -183,15 +183,15 @@ End Class
 '				Return 
 '		End Select
 
-'		If Trim(AdoGetField(TableOfInvoices, "#v034 #")) <> Trim(KopBuf) Then
+'		If Trim(AdoGetField(TABLE_INVOICES, "#v034 #")) <> Trim(KopBuf) Then
 '			If FieldText(0) = Chr(0) Then
 '			Else
 '				If obMunt(0).Checked Then
-'					FieldText(7) = Dec(dTnt1, MaskBEF)
-'					FieldText(8) = Dec(dTnt2, MaskBEF)
+'					FieldText(7) = Dec(dTnt1, MASK_BEF)
+'					FieldText(8) = Dec(dTnt2, MASK_BEF)
 '				Else
-'					FieldText(7) = Dec(dTnt1, MaskEUR)
-'					FieldText(8) = Dec(dTnt2, MaskEUR)
+'					FieldText(7) = Dec(dTnt1, MASK_EUR)
+'					FieldText(8) = Dec(dTnt2, MASK_EUR)
 '				End If
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub PrintDeLijn
@@ -199,20 +199,20 @@ End Class
 
 '			dTnt1 = 0
 '			dTnt2 = 0
-'			JetGet(TableOfCustomers, 0, SetSpacing(Mid(AdoGetField(TableOfInvoices, "#v034 #"), 2, 12), 12))
-'			KopBuf = AdoGetField(TableOfInvoices, "#v034 #")
-'			FieldText(0) = Mid(AdoGetField(TableOfInvoices, "#v034 #"), 2, 12)
-'			If Ktrl Then
+'			JetGet(TABLE_CUSTOMERS, 0, SetSpacing(Mid(AdoGetField(TABLE_INVOICES, "#v034 #"), 2, 12), 12))
+'			KopBuf = AdoGetField(TABLE_INVOICES, "#v034 #")
+'			FieldText(0) = Mid(AdoGetField(TABLE_INVOICES, "#v034 #"), 2, 12)
+'			If KTRL Then
 '				FieldText(1) = "* niet meer aanwezig *"
 '			Else
-'				RecordToField(TableOfCustomers)
-'				FieldText(1) = SetSpacing(AdoGetField(TableOfCustomers, "#A100 #"), 32)
-'				SnelHelpPrint(FieldText(1), blLogging)
-'				FieldText(2) = SetSpacing(RTrim(RTrim(AdoGetField(TableOfCustomers, "#A104 #")) & " " & RTrim(AdoGetField(aIndex, "#A105 #")) & " " & RTrim(AdoGetField(aIndex, "#A106 #"))), 24)
-'				FieldText(3) = SetSpacing(AdoGetField(TableOfCustomers, "#A107 #"), 4)
-'				FieldText(4) = SetSpacing(RTrim(AdoGetField(TableOfCustomers, "#A108 #")), 23)
+'				RecordToField(TABLE_CUSTOMERS)
+'				FieldText(1) = SetSpacing(AdoGetField(TABLE_CUSTOMERS, "#A100 #"), 32)
+'				SnelHelpPrint(FieldText(1), BL_LOGGING)
+'				FieldText(2) = SetSpacing(RTrim(RTrim(AdoGetField(TABLE_CUSTOMERS, "#A104 #")) & " " & RTrim(AdoGetField(A_INDEX, "#A105 #")) & " " & RTrim(AdoGetField(A_INDEX, "#A106 #"))), 24)
+'				FieldText(3) = SetSpacing(AdoGetField(TABLE_CUSTOMERS, "#A107 #"), 4)
+'				FieldText(4) = SetSpacing(RTrim(AdoGetField(TABLE_CUSTOMERS, "#A108 #")), 23)
 '				FieldText(5) = "BE"
-'				FieldText(6) = SetSpacing(Mid(AdoGetField(TableOfCustomers, "#A161 #"), 1, 3) & Mid(AdoGetField(TableOfCustomers, "#A161 #"), 5, 3) & Mid(AdoGetField(TableOfCustomers, "#A161 #"), 9, 3), 9)
+'				FieldText(6) = SetSpacing(Mid(AdoGetField(TABLE_CUSTOMERS, "#A161 #"), 1, 3) & Mid(AdoGetField(TABLE_CUSTOMERS, "#A161 #"), 5, 3) & Mid(AdoGetField(TABLE_CUSTOMERS, "#A161 #"), 9, 3), 9)
 '			End If
 '		End If
 
@@ -221,8 +221,8 @@ End Class
 '			dTnt1 = dTnt1 + dTOT
 '			dTnt2 = dTnt2 + dBTW
 '		ElseIf obMunt(0).Enabled = True And obMunt(1).Checked = True Then 
-'			dTnt1 = dTnt1 + System.Math.Round(dTOT / Euro, 2)
-'			dTnt2 = dTnt2 + System.Math.Round(dBTW / Euro, 2)
+'			dTnt1 = dTnt1 + System.Math.Round(dTOT / EURO, 2)
+'			dTnt2 = dTnt2 + System.Math.Round(dBTW / EURO, 2)
 '		Else
 '			dTnt1 = dTnt1 + dTOT
 '			dTnt2 = dTnt2 + dBTW
@@ -234,23 +234,23 @@ End Class
 '		If dTnt1 < BedragMinstens Then
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
-'		ElseIf AdoGetField(TableOfCustomers, "#v150 #") <> "BE" Then 
+'		ElseIf AdoGetField(TABLE_CUSTOMERS, "#v150 #") <> "BE" Then 
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
-'		ElseIf RTrim(AdoGetField(TableOfCustomers, "#A161 #")) = "" Then 
+'		ElseIf RTrim(AdoGetField(TABLE_CUSTOMERS, "#A161 #")) = "" Then 
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
 '		Else
-'			If RTrim(AdoGetField(TableOfCustomers, "#A161 #")) = BtwKontrole(RTrim(AdoGetField(TableOfCustomers, "#A161 #")), False) Then
+'			If RTrim(AdoGetField(TABLE_CUSTOMERS, "#A161 #")) = BtwKontrole(RTrim(AdoGetField(TABLE_CUSTOMERS, "#A161 #")), False) Then
 '			Else
-'				MSG = "Het BTW nummer : " & RTrim(AdoGetField(TableOfCustomers, "#A161 #")) & " is foutief !" & vbCrLf
-'				MSG = MSG & "Klant : " & AdoGetField(TableOfCustomers, "#A110 #") & " " & AdoGetField(TableOfCustomers, "#A100 #") & vbCrLf & vbCrLf
+'				MSG = "Het BTW nummer : " & RTrim(AdoGetField(TABLE_CUSTOMERS, "#A161 #")) & " is foutief !" & vbCrLf
+'				MSG = MSG & "Klant : " & AdoGetField(TABLE_CUSTOMERS, "#A110 #") & " " & AdoGetField(TABLE_CUSTOMERS, "#A100 #") & vbCrLf & vbCrLf
 '				MSG = MSG & "Een 000-000-000 nummer wordt ingevoegd.  Gelieve de kontrolelijst" & vbCrLf
 '				MSG = MSG & "na te kijken én te verbeteren a.u.b. vooraleer door te sturen..."
 '				MsgBox(MSG)
-'				AdoInsertToRecord(TableOfCustomers, "000-000-000", "A161 ")
-'				FieldText(6) = SetSpacing(Mid(AdoGetField(TableOfCustomers, "#A161 #"), 1, 3) & Mid(AdoGetField(TableOfCustomers, "#A161 #"), 5, 3) & Mid(AdoGetField(TableOfCustomers, "#A161 #"), 9, 3), 9)
-'				bUpdate(TableOfCustomers, 0)
+'				AdoInsertToRecord(TABLE_CUSTOMERS, "000-000-000", "A161 ")
+'				FieldText(6) = SetSpacing(Mid(AdoGetField(TABLE_CUSTOMERS, "#A161 #"), 1, 3) & Mid(AdoGetField(TABLE_CUSTOMERS, "#A161 #"), 5, 3) & Mid(AdoGetField(TABLE_CUSTOMERS, "#A161 #"), 9, 3), 9)
+'				bUpdate(TABLE_CUSTOMERS, 0)
 '			End If
 '			'kontrole btw nummer
 '			If chkAfdrukInVenster.CheckState Then
@@ -272,15 +272,15 @@ End Class
 
 'OpenTabBestand: 
 '		FlTabBestand = FreeFile
-'		FileOpen(FlTabBestand, LocationCompanyData & VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW", OpenMode.Output)
+'		FileOpen(FlTabBestand, LOCATION_COMPANYDATA & VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW", OpenMode.Output)
 
 '		FieldText(0) = "000000"
-'		FieldText(1) = SetSpacing(String99(Reading, 46), 32) 'Naam aangever
-'		FieldText(2) = SetSpacing(String99(Reading, 47), 24) 'Straat en nr.
-'		FieldText(3) = SetSpacing(String99(Reading, 48), 4) 'Postcode
-'		FieldText(4) = SetSpacing(Mid(String99(Reading, 48), 6), 23) 'Plaats
+'		FieldText(1) = SetSpacing(String99(READING, 46), 32) 'Naam aangever
+'		FieldText(2) = SetSpacing(String99(READING, 47), 24) 'Straat en nr.
+'		FieldText(3) = SetSpacing(String99(READING, 48), 4) 'Postcode
+'		FieldText(4) = SetSpacing(Mid(String99(READING, 48), 6), 23) 'Plaats
 '		FieldText(5) = "BE"
-'		FieldText(6) = Mid(String99(Reading, 51), 1, 3) & Mid(String99(Reading, 51), 5, 3) & Mid(String99(Reading, 51), 9, 3)
+'		FieldText(6) = Mid(String99(READING, 51), 1, 3) & Mid(String99(READING, 51), 5, 3) & Mid(String99(READING, 51), 9, 3)
 '		FieldText(7) = Space(10)
 '		FieldText(8) = Space(10)
 '		FieldText(9) = Space(8)
@@ -326,7 +326,7 @@ End Class
 '		FieldText(3) = Space(4)
 '		FieldText(4) = Space(23)
 '		FieldText(5) = "BE"
-'		FieldText(6) = Mid(String99(Reading, 51), 1, 3) & Mid(String99(Reading, 51), 5, 3) & Mid(String99(Reading, 51), 9, 3)
+'		FieldText(6) = Mid(String99(READING, 51), 1, 3) & Mid(String99(READING, 51), 5, 3) & Mid(String99(READING, 51), 9, 3)
 '		FieldText(7) = Space(10)
 '		FieldText(8) = Space(10)
 '		FieldText(9) = Space(8)
@@ -340,19 +340,19 @@ End Class
 'BegeleidingsNota: 
 '		RetInteger = SHGetFolderPath(0, rvDesktop2, 0, 0, pathString.Value)
 '		BureauBlad = VB.Left(pathString.Value, InStr(pathString.Value, Chr(0)) - 1)
-'		If Not CopyFile(LocationCompanyData, BureauBlad, VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW") Then
+'		If Not CopyFile(LOCATION_COMPANYDATA, BureauBlad, VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW") Then
 '			MsgBox("Fout tijdens het copiëren.  Probeer opnieuw !")
 '			GoTo BegeleidingsNota
 '		End If
 
 'BNvraag: 
 '		MSG = "Positionele jaarlisting op uw Bureaublad doormailen naar Vsoft voor afhandeling" & vbCrLf & vbCrLf & "Kies 'ja' voor doormailen (aanbevolen), 'nee' indien U zelf afhandelt (afleveringnota's worden afgedrukt)"
-'		Ktrl = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
-'		Select Case Ktrl
+'		KTRL = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
+'		Select Case KTRL
 '			Case 2
 '				MSG = "Taak verlaten zonder enige verwerking.  Bent U zeker"
-'				Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
-'				If Ktrl = 7 Then
+'				KTRL = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
+'				If KTRL = 7 Then
 '					GoTo BNvraag
 '				Else
 '					Exit Sub
@@ -367,11 +367,11 @@ End Class
 '					On Error Resume Next
 '					Me.MPISessie.SignOn()
 '					If Err.Number Then
-'						SnelHelpPrint(Err.Description, blLogging)
+'						SnelHelpPrint(Err.Description, BL_LOGGING)
 '					Else
 '						On Error GoTo 0
 '						Me.MPIBericht.SessionID = Me.MPISessie.SessionID
-'						SnelHelpPrint("E-mail sessie met succes opgestart. IDkode :" & VB6.Format(Me.MPISessie.SessionID), blLogging)
+'						SnelHelpPrint("E-mail sessie met succes opgestart. IDkode :" & VB6.Format(Me.MPISessie.SessionID), BL_LOGGING)
 '					End If
 '				End If
 '				On Error GoTo MPIError
@@ -387,7 +387,7 @@ End Class
 
 '				'Create the message
 '				Me.MPIBericht.MsgSubject = "Btwjaarlisting"
-'				Me.MPIBericht.MsgNoteText = "Formaat:Positioneel Bericht.  Aangemaakt met marIntegraal versie " & marVersion
+'				Me.MPIBericht.MsgNoteText = "Formaat:Positioneel Bericht.  Aangemaakt met marIntegraal versie " & MAR_VERSION
 '				Me.MPIBericht.AttachmentPathName = BureauBlad & "\" & VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW"
 
 '				'Send the message
@@ -418,7 +418,7 @@ End Class
 
 '		On Error Resume Next
 
-'		For AntEx = 1 To CShort(3 / Val(VB.Left(String99(Reading, 185), 1)))
+'		For AntEx = 1 To CShort(3 / Val(VB.Left(String99(READING, 185), 1)))
 '			PrintUserDef("124")
 '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '			GoSub TekstBlok
@@ -439,20 +439,20 @@ End Class
 '		Printer.Write("                               op CD-Rom of Diskette" & vbCrLf & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(5), "Naam van de belastingplichtige : ")
 '		Printer.FontBold = True
-'		Printer.Write(String99(Reading, 46) & vbCrLf & vbCrLf)
+'		Printer.Write(String99(READING, 46) & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "Adres :" & vbCrLf)
 '		Printer.FontBold = True
-'		Printer.Write(TAB(20), String99(Reading, 47) & vbCrLf)
-'		Printer.Write(TAB(20), String99(Reading, 48) & vbCrLf & vbCrLf & vbCrLf & vbCrLf)
+'		Printer.Write(TAB(20), String99(READING, 47) & vbCrLf)
+'		Printer.Write(TAB(20), String99(READING, 48) & vbCrLf & vbCrLf & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "BTW-registratienummer : " & "BE-0")
 '		Printer.FontBold = True
-'		Printer.Write(String99(Reading, 51) & vbCrLf & vbCrLf)
+'		Printer.Write(String99(READING, 51) & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "Telefoonnummer bevoegd persoon en binnenpost : ")
 '		Printer.FontBold = True
-'		Printer.Write(String99(Reading, 49) & vbCrLf & vbCrLf)
+'		Printer.Write(String99(READING, 49) & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "Jaar van de handelingen, opgenomen in de opgave : ")
 '		Printer.FontBold = True
@@ -460,15 +460,15 @@ End Class
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "Aantal in de opgave opgenomen afnemers : ")
 '		Printer.FontBold = True
-'		Printer.Write(Dec(Line, MaskSy(0)) & vbCrLf & vbCrLf)
+'		Printer.Write(Dec(Line, MASK_SY(0)) & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "Totaal omzetcijfers (belastingen niet inbegrepen) : EUR ")
 '		Printer.FontBold = True
-'		Printer.Write(Dec(dTotaal, MaskEUR) & vbCrLf & vbCrLf)
+'		Printer.Write(Dec(dTotaal, MASK_EUR) & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(5), "Totaal bedrag van de belastingen : EUR ")
 '		Printer.FontBold = True
-'		Printer.Write(Dec(dBeTeWe, MaskEUR) & vbCrLf & vbCrLf & vbCrLf)
+'		Printer.Write(Dec(dBeTeWe, MASK_EUR) & vbCrLf & vbCrLf & vbCrLf)
 '		Printer.FontBold = False
 '		Printer.Write(TAB(50), "Oprecht en waar verklaard" & vbCrLf & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(10), "datum" & vbCrLf)
@@ -505,23 +505,23 @@ End Class
 '		Next 
 '		FieldText(0) = "Totaal"
 '		If obMunt(0).Checked Then
-'			FieldText(7) = Dec(dTotaal, MaskBEF)
-'			FieldText(8) = Dec(dBeTeWe, MaskBEF)
+'			FieldText(7) = Dec(dTotaal, MASK_BEF)
+'			FieldText(8) = Dec(dBeTeWe, MASK_BEF)
 '		Else
-'			FieldText(7) = Dec(dTotaal, MaskEUR)
-'			FieldText(8) = Dec(dBeTeWe, MaskEUR)
+'			FieldText(7) = Dec(dTotaal, MASK_EUR)
+'			FieldText(8) = Dec(dBeTeWe, MASK_EUR)
 '		End If
 
 '		T = 0
 '		aa = ""
-'		Do While ReportTab(T) <> 0
+'		Do While REPORT_TAB(T) <> 0
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -555,7 +555,7 @@ End Class
 '			Xlog.WijzigenLijn.Visible = False
 '			Xlog.Afsluiten.TabStop = False
 '			Xlog.cbAfbeelding.Visible = False
-'			XLogKey = ""
+'			XLOG_KEY = ""
 '			Xlog.SSTab1.TabPages.Item(1).Visible = False
 '			Xlog.ShowDialog()
 '			Xlog.Close()
@@ -577,9 +577,9 @@ End Class
 
 '		Dim TempbModus As Short
 
-'		For CountTo = 0 To BJPERDAT.PeriodeBoekjaar.Items.Count
-'			If Mid(VB6.GetItemString(BJPERDAT.PeriodeBoekjaar, CountTo), 14, 5) = "31/12" Then
-'				Datum.Value = Mid(VB6.GetItemString(BJPERDAT.PeriodeBoekjaar, CountTo), 14)
+'		For COUNT_TO = 0 To BJPERDAT.PeriodeBoekjaar.Items.Count
+'			If Mid(VB6.GetItemString(BJPERDAT.PeriodeBoekjaar, COUNT_TO), 14, 5) = "31/12" Then
+'				Datum.Value = Mid(VB6.GetItemString(BJPERDAT.PeriodeBoekjaar, COUNT_TO), 14)
 '				Datum.Enabled = False
 '				Exit For
 '			End If
@@ -588,7 +588,7 @@ End Class
 '		Me.Text = "Jaarlisting B.T.W. België " & VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & " !!!"
 '		ListName = Me.Text
 '		TopDown.Text = ListName
-'		If bhEuro Then
+'		If BH_EURO Then
 '			Me.obMunt(1).Checked = True
 '			Me.obMunt(0).Enabled = False
 '			'MsgBox "Huidig boekjaar reeds in EURO.  Enkel uitdruk in EURO mogelijk voor jaar " + Right(Format(Datum, "dd/mm/yyyy"), 4), vbInformation
@@ -602,34 +602,34 @@ End Class
 '	Private Sub InitialiseFields()
 '		Dim T As Short
 
-'		ReportField(0) = "Line"
-'		ReportTab(0) = 2
+'		REPORT_FIELD(0) = "Line"
+'		REPORT_TAB(0) = 2
 
-'		ReportField(1) = "Naam"
-'		ReportTab(1) = 9
+'		REPORT_FIELD(1) = "Naam"
+'		REPORT_TAB(1) = 9
 
-'		ReportField(2) = "Straat en Nummer"
-'		ReportTab(2) = 42
+'		REPORT_FIELD(2) = "Straat en Nummer"
+'		REPORT_TAB(2) = 42
 
-'		ReportField(3) = "P/C"
-'		ReportTab(3) = 67
+'		REPORT_FIELD(3) = "P/C"
+'		REPORT_TAB(3) = 67
 
-'		ReportField(4) = "Stad"
-'		ReportTab(4) = 72
+'		REPORT_FIELD(4) = "Stad"
+'		REPORT_TAB(4) = 72
 
-'		ReportField(5) = "LN"
-'		ReportTab(5) = 96
+'		REPORT_FIELD(5) = "LN"
+'		REPORT_TAB(5) = 96
 
-'		ReportField(6) = "BTW Nr."
-'		ReportTab(6) = 99
+'		REPORT_FIELD(6) = "BTW Nr."
+'		REPORT_TAB(6) = 99
 
-'		ReportField(7) = "Goederen"
-'		ReportTab(7) = 109
+'		REPORT_FIELD(7) = "Goederen"
+'		REPORT_TAB(7) = 109
 
-'		ReportField(8) = "BTW"
-'		ReportTab(8) = 119
+'		REPORT_FIELD(8) = "BTW"
+'		REPORT_TAB(8) = 119
 
-'		ReportTab(9) = 0
+'		REPORT_TAB(9) = 0
 
 '		If chkAfdrukInVenster.CheckState Then
 '			Me.Hide()
@@ -640,7 +640,7 @@ End Class
 '			Xlog.X.Row = 0
 '			For T = 0 To 8
 '				Xlog.X.Col = T
-'				Xlog.X.Text = ReportField(T)
+'				Xlog.X.Text = REPORT_FIELD(T)
 '			Next 
 '			Me.Show()
 '		End If
@@ -653,28 +653,28 @@ End Class
 
 '		If chkAfdrukInVenster.CheckState Then Exit Sub
 
-'		If usrLicentieInfo <> "" Then
+'		If USER_LICENSEINFO <> "" Then
 '			Printer.CurrentX = 50
 '			Printer.CurrentY = 50
-'			Printer.Write(usrLicentieInfo)
+'			Printer.Write(USER_LICENSEINFO)
 '		End If
-'		PageCounter = PageCounter + 1
+'		PAGE_COUNTER = PAGE_COUNTER + 1
 '		Printer.CurrentY = 400
 '		Printer.Write(TAB(1), ReportText(2))
-'		Printer.Write(TAB(108), "Pagina : " & Dec(PageCounter, "##########") & vbCrLf)
+'		Printer.Write(TAB(108), "Pagina : " & Dec(PAGE_COUNTER, "##########") & vbCrLf)
 '		Printer.Write(TAB(108), "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(1), UCase(ReportText(3)) & vbCrLf)
 
-'		Printer.Write(TAB(1), FullLine.Value & vbCrLf)
+'		Printer.Write(TAB(1), FULL_LINE.Value & vbCrLf)
 
-'		Do While ReportTab(T) <> 0
-'			Printer.Write(TAB(ReportTab(T)), ReportField(T))
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'		Do While REPORT_TAB(T) <> 0
+'			Printer.Write(TAB(REPORT_TAB(T)), REPORT_FIELD(T))
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				Printer.Write(vbCrLf)
 '			End If
 '			T = T + 1
 '		Loop 
-'		Printer.Write(TAB(1), FullLine.Value & vbCrLf & vbCrLf)
+'		Printer.Write(TAB(1), FULL_LINE.Value & vbCrLf & vbCrLf)
 
 '	End Sub
 
@@ -711,12 +711,12 @@ End Class
 '		On Error GoTo ErrorLoad
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(LocationCompanyData & "DDEF" & TypeEnTaal & ".Txt") = "" Then
+'		If Dir(LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & ".Txt") = "" Then
 '			Beep()
 '			Exit Sub
 '		Else
 '			FlFree = FreeFile
-'			FileOpen(FlFree, LocationCompanyData & "DDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
+'			FileOpen(FlFree, LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
 '			Input(FlFree, Dummy)
 '			Input(FlFree, VsoftVanaf)
 '			Input(FlFree, VsoftTot)
@@ -779,15 +779,15 @@ End Class
 '		Dim Breedte As Object
 
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		If Dir(LocationCompanyData & "DDEF" & TypeEnTaal & "G.Txt") = "" Then
+'		If Dir(LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & "G.Txt") = "" Then
 '		Else
 '			FlFree = FreeFile
-'			FileOpen(FlFree, LocationCompanyData & "DDEF" & TypeEnTaal & "G.Txt", OpenMode.Input)
+'			FileOpen(FlFree, LOCATION_COMPANYDATA & "DDEF" & TypeEnTaal & "G.Txt", OpenMode.Input)
 '			While Not EOF(FlFree)
 '				Input(FlFree, FiguurX)
 '				Input(FlFree, FiguurY)
 '				Input(FlFree, FiguurName)
-'				If ScrLeesTekstBestand(MSG, LocationCompanyData & FiguurName & ".mfd") Then
+'				If ScrLeesTekstBestand(MSG, LOCATION_COMPANYDATA & FiguurName & ".mfd") Then
 '					FigBestandsnaam = VB.Left(MSG, InStr(MSG, vbTab) - 1)
 '					Mim.imgFiguur.Image = System.Drawing.Image.FromFile(FigBestandsnaam)
 '					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
@@ -819,14 +819,14 @@ End Class
 
 '		T = 0
 '		aa = ""
-'		Do While ReportTab(T) <> 0
+'		Do While REPORT_TAB(T) <> 0
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -858,19 +858,19 @@ End Class
 '		Dim tempoBoekjaar As String
 
 '		EurBefJaar = False
-'		If VB.Right(BookyearFromTo.Value, 4) <> "1231" Then
-'			If bhEuro Then
+'		If VB.Right(BOOKYEAR_FROMTO.Value, 4) <> "1231" Then
+'			If BH_EURO Then
 '				'eventjes kijken naar vorig jaar
-'				JetTableClose(TableOfCounters)
-'				tempoBoekjaar = JetTableName(TableOfCounters)
-'				JetTableName(TableOfCounters) = "jr" & CDbl(BJPERDAT.Boekjaar.Text) - 1
-'				If String99(Reading, 296) <> "EUR" Then
+'				JetTableClose(TABLE_COUNTERS)
+'				tempoBoekjaar = JET_TABLENAME(TABLE_COUNTERS)
+'				JET_TABLENAME(TABLE_COUNTERS) = "jr" & CDbl(BJPERDAT.Boekjaar.Text) - 1
+'				If String99(READING, 296) <> "EUR" Then
 '					'extra controle nodig...
 '					EurBefJaar = True
 '					MsgBox("Werkelijke jaar met documenten in EUR en BEF.", MsgBoxStyle.Information)
 '				End If
-'				JetTableClose(TableOfCounters)
-'				JetTableName(TableOfCounters) = tempoBoekjaar
+'				JetTableClose(TABLE_COUNTERS)
+'				JET_TABLENAME(TABLE_COUNTERS) = tempoBoekjaar
 '			End If
 '		End If
 

@@ -502,7 +502,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.ckEURINFO.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.ckEURINFO.Size = New System.Drawing.Size(97, 17)
         Me.ckEURINFO.TabIndex = 2
-        Me.ckEURINFO.Text = "&Euro && Bef Info"
+        Me.ckEURINFO.Text = "&EURO && Bef Info"
         Me.ckEURINFO.UseVisualStyleBackColor = false
         '
         'chkBTWBouw

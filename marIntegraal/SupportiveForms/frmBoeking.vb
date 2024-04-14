@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub cmdNegeren_Click(sender As Object, e As EventArgs) Handles cmdNegeren.Click
-        dKtrlCumul = 99
+        DKTRL_CUMUL = 99
         Close()
     End Sub
 End Class

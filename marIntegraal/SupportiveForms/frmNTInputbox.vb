@@ -5,7 +5,7 @@
 
     Private Sub Sluiten_Click(sender As Object, e As EventArgs) Handles Sluiten.Click
 
-        Ktrl = 9
+        KTRL = 9
         TekstInfo.Text = Chr(255)
 
     End Sub
@@ -15,7 +15,7 @@
         On Error Resume Next
 
         TekstInfo.Focus()
-        Ktrl = 0
+        KTRL = 0
         Hide()
 
     End Sub

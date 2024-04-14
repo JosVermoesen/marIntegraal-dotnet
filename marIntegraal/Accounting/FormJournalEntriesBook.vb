@@ -20,9 +20,9 @@ Public Class FormJournalEntriesBook
         TotalDebit = 0
         TotalCredit = 0
         TextBoxPeriodFromTo.Text = FormBYPERDAT.PeriodeBoekjaar.Text
-        DateTimePickerProcessingDate.Text = MimGlobalDate
-        PeriodFromChosen = Mid(PeriodFromTo, 1, 8)
-        PeriodToChosen = Mid(PeriodFromTo, 9)
+        DateTimePickerProcessingDate.Text = MIM_GLOBAL_DATE
+        PeriodFromChosen = Mid(PERIOD_FROMTO, 1, 8)
+        PeriodToChosen = Mid(PERIOD_FROMTO, 9)
         CheckRecordSet()
     End Sub
 
@@ -47,7 +47,7 @@ Public Class FormJournalEntriesBook
         JournalEntriesRS = New ADODB.Recordset With {
             .CursorLocation = ADODB.CursorLocationEnum.adUseClient
         }
-        JournalEntriesRS.Open(sSQL, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        JournalEntriesRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If JournalEntriesRS.RecordCount <= 0 Then
             ButtonGenerateReport.Enabled = False
             TextBoxRecordLines.Text = "0"
@@ -72,38 +72,38 @@ Public Class FormJournalEntriesBook
             .PenSize = 0.01
         End With
 
-        PageCounter += 1
+        PAGE_COUNTER += 1
         pdfY = Mim.Report.Print(1, 1, ReportText(2))
-        pdfY = Mim.Report.Print(17, 1, "Pagina : " & Dec(PageCounter, "##########") & vbCrLf)
+        pdfY = Mim.Report.Print(17, 1, "Pagina : " & Dec(PAGE_COUNTER, "##########") & vbCrLf)
         pdfY = Mim.Report.Print(17, pdfY, "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
         pdfY = Mim.Report.Print(1, pdfY, UCase(ReportText(3)) & vbCrLf)
-        pdfY = Mim.Report.Print(1, pdfY, FullLine & vbCrLf)
+        pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf)
         pdfY = Mim.Report.Print(1, pdfY, PdfReportTitle & vbCrLf)
-        pdfY = Mim.Report.Print(1, pdfY, FullLine & vbCrLf & vbCrLf)
+        pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf & vbCrLf)
     End Sub
 
     Private Sub InitialiseFields()
 
         Dim T As Integer
-        ReportField(0) = "Line"
-        ReportTab(0) = 1 'was 2
-        ReportField(1) = "Datum"
-        ReportTab(1) = 6 'was 7
-        ReportField(2) = "Nummer"
-        ReportTab(2) = 17 'was 18
-        ReportField(3) = "Naam Rekening"
-        ReportTab(3) = 25 ' was 26
-        ReportField(4) = "Betreft"
-        ReportTab(4) = 62 'was 63
-        ReportField(5) = "       Debet"
-        ReportTab(5) = 93 ' was 94
-        ReportField(6) = "      Credit"
-        ReportTab(6) = 105 'was 106
-        ReportField(7) = "T.Rekening"
-        ReportTab(7) = 118 ' was 119
+        REPORT_FIELD(0) = "Line"
+        REPORT_TAB(0) = 1 'was 2
+        REPORT_FIELD(1) = "Datum"
+        REPORT_TAB(1) = 6 'was 7
+        REPORT_FIELD(2) = "Nummer"
+        REPORT_TAB(2) = 17 'was 18
+        REPORT_FIELD(3) = "Naam Rekening"
+        REPORT_TAB(3) = 25 ' was 26
+        REPORT_FIELD(4) = "Betreft"
+        REPORT_TAB(4) = 62 'was 63
+        REPORT_FIELD(5) = "       Debet"
+        REPORT_TAB(5) = 93 ' was 94
+        REPORT_FIELD(6) = "      Credit"
+        REPORT_TAB(6) = 105 'was 106
+        REPORT_FIELD(7) = "T.Rekening"
+        REPORT_TAB(7) = 118 ' was 119
         PdfReportTitle = Space(128)
         For T = 0 To 7
-            Mid(PdfReportTitle, ReportTab(T)) = ReportField(T)
+            Mid(PdfReportTitle, REPORT_TAB(T)) = REPORT_FIELD(T)
         Next
 
     End Sub
@@ -114,22 +114,22 @@ Public Class FormJournalEntriesBook
         Dim DCAmount As Double
 
         Line += 1
-        mid(PdfLine, ReportTab(0)) = Format(Line, "0000") 'lijn
-        Mid(PdfLine, ReportTab(1)) = FunctionDateText(ObjectValue((JournalEntriesRS.Fields("v066").Value))) 'datum
-        Mid(PdfLine, ReportTab(2)) = JournalEntriesRS.Fields("v019").Value 'nummer
-        Mid(PdfLine, ReportTab(3)) = Mid(JournalEntriesRS.Fields("v020").Value, 1, 36) 'naam rekening
-        Mid(PdfLine, ReportTab(4)) = JournalEntriesRS.Fields("v067").Value 'betreft
+        mid(PdfLine, REPORT_TAB(0)) = Format(Line, "0000") 'lijn
+        Mid(PdfLine, REPORT_TAB(1)) = FunctionDateText(ObjectValue((JournalEntriesRS.Fields("v066").Value))) 'datum
+        Mid(PdfLine, REPORT_TAB(2)) = JournalEntriesRS.Fields("v019").Value 'nummer
+        Mid(PdfLine, REPORT_TAB(3)) = Mid(JournalEntriesRS.Fields("v020").Value, 1, 36) 'naam rekening
+        Mid(PdfLine, REPORT_TAB(4)) = JournalEntriesRS.Fields("v067").Value 'betreft
 
         DCAmount = ObjectValue((JournalEntriesRS.Fields("dece068").Value))
         Select Case DCAmount
             Case Is < 0
                 TotalCredit += DCAmount
-                Mid(PdfLine, ReportTab(6)) = Dec(System.Math.Abs(DCAmount), MaskEURBH) 'bedrag credit
+                Mid(PdfLine, REPORT_TAB(6)) = Dec(System.Math.Abs(DCAmount), MASK_EURBH) 'bedrag credit
             Case Else
                 TotalDebit += DCAmount
-                mid(PdfLine, ReportTab(5)) = Dec(DCAmount, MaskEURBH) 'bedrag debet
+                mid(PdfLine, REPORT_TAB(5)) = Dec(DCAmount, MASK_EURBH) 'bedrag debet
         End Select
-        Mid(PdfLine, ReportTab(7)) = JournalEntriesRS.Fields("v069").Value 'tegenrekening
+        Mid(PdfLine, REPORT_TAB(7)) = JournalEntriesRS.Fields("v069").Value 'tegenrekening
         pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf)
         If pdfY > 27.5 Then
             Mim.Report.PageBreak()
@@ -140,10 +140,10 @@ Public Class FormJournalEntriesBook
 
     Private Sub PrintTotal()
         Dim PdfLine As String = Space(128)
-        mid(PdfLine, ReportTab(4)) = "Periodiek totaal :"
-        mid(PdfLine, ReportTab(5)) = Dec(Math.Abs(TotalDebit), MaskEURBH)
-        mid(PdfLine, ReportTab(6)) = Dec(Math.Abs(TotalCredit), MaskEURBH)
-        pdfY = Mim.Report.Print(1, pdfY, vbCrLf & FullLine & vbCrLf & PdfLine)
+        mid(PdfLine, REPORT_TAB(4)) = "Periodiek totaal :"
+        mid(PdfLine, REPORT_TAB(5)) = Dec(Math.Abs(TotalDebit), MASK_EURBH)
+        mid(PdfLine, REPORT_TAB(6)) = Dec(Math.Abs(TotalCredit), MASK_EURBH)
+        pdfY = Mim.Report.Print(1, pdfY, vbCrLf & FULL_LINE & vbCrLf & PdfLine)
     End Sub
 
     Private Sub TextBoxPeriodFromTo_Leave()
@@ -192,7 +192,7 @@ Public Class FormJournalEntriesBook
         Loop
         PrintTotal()
         With Mim.Report
-            .WriteDoc(LocationCompanyData & Format(Now, "YYYYMMDDHHMMSS") & "-diverseposten.pdf")
+            .WriteDoc(LOCATION_COMPANYDATA & Format(Now, "YYYYMMDDHHMMSS") & "-diverseposten.pdf")
             .MailSubject = "Diverse Posten bedrijfx"
             .MailText = "diverseposten bedrijf ix in bijlage."
         End With

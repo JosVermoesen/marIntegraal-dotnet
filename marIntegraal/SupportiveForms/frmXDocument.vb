@@ -42,23 +42,23 @@ End Class
 '			FieldText(T) = ""
 '		Next 
 '		FieldText(1) = "Totaal :"
-'		FieldText(10) = Dec(dTas, Mask2002.Value)
+'		FieldText(10) = Dec(dTas, MASK_2002.Value)
 
 '		If chkAfdrukInVenster.CheckState Then
 '		Else
-'			Printer.Print(vbCrLf & FullLine.Value)
+'			Printer.Print(vbCrLf & FULL_LINE.Value)
 '		End If
 
 '		T = 0
 '		aa = ""
-'		Do While ReportTab(T) <> 0
+'		Do While REPORT_TAB(T) <> 0
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -97,7 +97,7 @@ End Class
 '			Xlog.Afsluiten.TabStop = False
 '			'Xlog.cbAfbeelding.Visible = False
 '			Xlog.cbAfbeelding.Visible = False
-'			XLogKey = ""
+'			XLOG_KEY = ""
 '			Xlog.SSTab1.TabPages.Item(1).Visible = False
 '			Xlog.ShowDialog()
 '			Xlog.Close()
@@ -113,14 +113,14 @@ End Class
 
 '		T = 0
 '		aa = ""
-'		Do While ReportTab(T) <> 0
+'		Do While REPORT_TAB(T) <> 0
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -149,30 +149,30 @@ End Class
 
 '		If chkAfdrukInVenster.CheckState Then Exit Sub
 
-'		If usrLicentieInfo <> "" Then
+'		If USER_LICENSEINFO <> "" Then
 '			Printer.CurrentX = 50
 '			Printer.CurrentY = 50
-'			Printer.Write(usrLicentieInfo)
+'			Printer.Write(USER_LICENSEINFO)
 '		End If
-'		PageCounter = PageCounter + 1
+'		PAGE_COUNTER = PAGE_COUNTER + 1
 '		Printer.CurrentY = 400
-'		Printer.Write(TAB(1), ReportText(2), TAB(108), "Pagina : " & Dec(PageCounter, "##########"))
+'		Printer.Write(TAB(1), ReportText(2), TAB(108), "Pagina : " & Dec(PAGE_COUNTER, "##########"))
 
 '		Printer.Write(TAB(108), "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(1), UCase(ReportText(3)))
 
-'		Printer.Print(vbCrLf & FullLine.Value)
+'		Printer.Print(vbCrLf & FULL_LINE.Value)
 
-'		Do While ReportTab(T) <> 0
-'			Printer.Print(TAB(ReportTab(T)))
-'			Printer.Write(ReportField(T))
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'		Do While REPORT_TAB(T) <> 0
+'			Printer.Print(TAB(REPORT_TAB(T)))
+'			Printer.Write(REPORT_FIELD(T))
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				Printer.Write(vbCrLf)
 '			End If
 '			T = T + 1
 '		Loop 
 
-'		Printer.Write(FullLine.Value & vbCrLf & vbCrLf)
+'		Printer.Write(FULL_LINE.Value & vbCrLf & vbCrLf)
 
 '		Exit Sub
 
@@ -193,36 +193,36 @@ End Class
 
 '	Private Sub FicheNaarRecord()
 
-'		JetGet(TableOfVarious, 1, SetSpacing(AdoGetField(TableOfVarious, "#" & JetTableUseIndex(TableOfVarious, 1) & "#"), FlIndexLen(TableOfVarious, 1)))
-'		If Ktrl = 0 Then
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing(AdoGetField(TABLE_VARIOUS, "#" & JETTABLEUSE_INDEX(TABLE_VARIOUS, 1) & "#"), FLINDEX_LEN(TABLE_VARIOUS, 1)))
+'		If KTRL = 0 Then
 '			MSG = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
-'			KtrlBox = MsgBox(MSG, 292)
-'			If KtrlBox = 6 Then
+'			CTRL_BOX = MsgBox(MSG, 292)
+'			If CTRL_BOX = 6 Then
 '				Select Case VB.Left(cmbDokumentType.Text, 2)
 '					Case "10"
-'						AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "vs03")
-'						AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#vs03 #"), "v005")
+'						AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "vs03")
+'						AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#vs03 #"), "v005")
 '					Case "12"
-'						AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v152")
-'						AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v152 #"), "v005")
+'						AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v152")
+'						AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v152 #"), "v005")
 '					Case "18"
-'						AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v087")
-'						AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v087 #"), "v005")
+'						AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v087")
+'						AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v087 #"), "v005")
 '					Case "21"
-'						AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v216")
-'						AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v216 #"), "v005")
+'						AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v216")
+'						AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v216 #"), "v005")
 '					Case "28"
-'						AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v231")
-'						AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v231 #"), "v005")
+'						AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v231")
+'						AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v231 #"), "v005")
 '					Case Else
 '						MsgBox("stop")
 '				End Select
-'				bUpdate(TableOfVarious, 1)
+'				bUpdate(TABLE_VARIOUS, 1)
 '			Else
 '				Exit Sub
 '			End If
 '		Else
-'			JetInsert(TableOfVarious, 1)
+'			JetInsert(TABLE_VARIOUS, 1)
 '		End If
 
 '	End Sub
@@ -230,7 +230,7 @@ End Class
 '	'UPGRADE_WARNING: Form event xDokument.Activate has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '	Private Sub xDokument_Activated(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Activated
 
-'		TekstInfo(0).Text = "" 'Right(FVT(TableOfVarious, 1), 18)
+'		TekstInfo(0).Text = "" 'Right(FVT(TABLE_VARIOUS, 1), 18)
 
 '	End Sub
 
@@ -266,7 +266,7 @@ End Class
 '				Select Case VB.Left(cmbDokumentType.Text, 2)
 '					Case "18"
 '						If AfschrijvingenLijstOk Then
-'							XLogKey = "SchrijfAF!"
+'							XLOG_KEY = "SchrijfAF!"
 '							DiversePosten.Close()
 '							DiversePosten.Show()
 '						End If
@@ -288,42 +288,42 @@ End Class
 '				End If
 
 '			Case 6 'Fiche Lager
-'				bPrev(TableOfVarious)
-'				If Ktrl = 9 Then
-'					JetGetFirst(TableOfVarious, 1)
-'					If Ktrl Then
+'				bPrev(TABLE_VARIOUS)
+'				If KTRL = 9 Then
+'					JetGetFirst(TABLE_VARIOUS, 1)
+'					If KTRL Then
 '						Beep()
 '						Knop(5).Enabled = False
 '					End If
-'				ElseIf VB.Left(cmbDokumentType.Text, 2) = VB.Left(KeyBuf(TableOfVarious), 2) Then 
-'					InsertFlag(TableOfVarious) = 0
+'				ElseIf VB.Left(cmbDokumentType.Text, 2) = VB.Left(KEY_BUF(TABLE_VARIOUS), 2) Then 
+'					INSERT_FLAG(TABLE_VARIOUS) = 0
 '					RecordNaarFiche()
 '					Knop(5).Enabled = True
 '					Exit Sub
 '				End If
-'				If Ktrl Then
+'				If KTRL Then
 '				Else
-'					JetGetOrGreater(TableOfVarious, 1, SetSpacing(VB.Left(cmbDokumentType.Text, 2), 20))
-'					If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> VB.Left(cmbDokumentType.Text, 2) Then
+'					JetGetOrGreater(TABLE_VARIOUS, 1, SetSpacing(VB.Left(cmbDokumentType.Text, 2), 20))
+'					If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> VB.Left(cmbDokumentType.Text, 2) Then
 '					Else
-'						InsertFlag(TableOfVarious) = 0
+'						INSERT_FLAG(TABLE_VARIOUS) = 0
 '						RecordNaarFiche()
 '						Knop(5).Enabled = True
 '					End If
 '				End If
 
 '			Case 7 'fiche hoger
-'				bNext(TableOfVarious)
-'				If Ktrl = 9 Then
-'					bLast(TableOfVarious, 1)
-'					If Ktrl Then
+'				bNext(TABLE_VARIOUS)
+'				If KTRL = 9 Then
+'					bLast(TABLE_VARIOUS, 1)
+'					If KTRL Then
 '						Beep()
 '						Knop(5).Enabled = False
 '					End If
 '				Else
-'					If VB.Left(KeyBuf(TableOfVarious), 2) <> VB.Left(cmbDokumentType.Text, 2) Then
+'					If VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> VB.Left(cmbDokumentType.Text, 2) Then
 '					Else
-'						InsertFlag(TableOfVarious) = 0
+'						INSERT_FLAG(TABLE_VARIOUS) = 0
 '						RecordNaarFiche()
 '						Knop(5).Enabled = True
 '					End If
@@ -341,12 +341,12 @@ End Class
 '		Dim Index As Short = Knop.GetIndex(eventSender)
 
 '		If KeyCode = 46 Then
-'			RecordToField(TableOfVarious)
-'			If VB.Left(cmbDokumentType.Text, 2) = VB.Left(FVT(TableOfVarious, 1), 2) And RTrim(TekstInfo(0).Text) = RTrim(Mid(FVT(TableOfVarious, 1), 3)) Then
+'			RecordToField(TABLE_VARIOUS)
+'			If VB.Left(cmbDokumentType.Text, 2) = VB.Left(FVT(TABLE_VARIOUS, 1), 2) And RTrim(TekstInfo(0).Text) = RTrim(Mid(FVT(TABLE_VARIOUS, 1), 3)) Then
 '				MSG = "Bestaande fiche verwijderen.  Bent U zeker ?"
-'				KtrlBox = MsgBox(MSG, 292)
-'				If KtrlBox = 6 Then
-'					Bdelete(TableOfVarious)
+'				CTRL_BOX = MsgBox(MSG, 292)
+'				If CTRL_BOX = 6 Then
+'					Bdelete(TABLE_VARIOUS)
 '					Knop_Click(Knop.Item(3), New System.EventArgs())
 '				End If
 '			End If
@@ -377,9 +377,9 @@ End Class
 '	Private Sub NieuweFiche()
 
 '		TekstInfo(0).Text = ""
-'		TLBRecord(TableOfVarious) = ""
+'		TLB_RECORD(TABLE_VARIOUS) = ""
 
-'		InsertFlag(TableOfVarious) = 1
+'		INSERT_FLAG(TABLE_VARIOUS) = 1
 '		Knop(1).Enabled = False 'wegschrijven uitschakelen
 '		Knop(5).Enabled = False 'editeren uitschakelen
 '		TekstInfo(0).Enabled = True
@@ -388,14 +388,14 @@ End Class
 
 '	Private Sub RecordNaarFiche()
 
-'		TLBRecord(TableOfVarious) = ""
-'		If Ktrl Then
+'		TLB_RECORD(TABLE_VARIOUS) = ""
+'		If KTRL Then
 '			MsgBox("stop")
 '		Else
-'			RecordToField(TableOfVarious)
+'			RecordToField(TABLE_VARIOUS)
 '		End If
-'		TekstInfo(0).Text = Mid(AdoGetField(TableOfVarious, "#v005 #"), 3)
-'		InsertFlag(TableOfVarious) = 0
+'		TekstInfo(0).Text = Mid(AdoGetField(TABLE_VARIOUS, "#v005 #"), 3)
+'		INSERT_FLAG(TABLE_VARIOUS) = 0
 
 '	End Sub
 
@@ -419,32 +419,32 @@ End Class
 '		Select Case Index
 '			Case 0
 '				If TekstInfo(0).Text = Space(Len(TekstInfo(0).Text)) Then Exit Sub
-'				JetGet(TableOfVarious, 1, VB.Left(cmbDokumentType.Text, 2) & SetSpacing(TekstInfo(0).Text, 18))
-'				If Ktrl = 0 Then
+'				JetGet(TABLE_VARIOUS, 1, VB.Left(cmbDokumentType.Text, 2) & SetSpacing(TekstInfo(0).Text, 18))
+'				If KTRL = 0 Then
 '					RecordNaarFiche()
-'					InsertFlag(TableOfVarious) = 0
+'					INSERT_FLAG(TABLE_VARIOUS) = 0
 '					Knop(1).Enabled = True
 '					VB6.SetDefault(Knop(1), True)
 '				Else
 '					Knop(1).Enabled = False
 '				End If
-'				If InsertFlag(TableOfVarious) = 1 Then
+'				If INSERT_FLAG(TABLE_VARIOUS) = 1 Then
 '					Select Case VB.Left(cmbDokumentType.Text, 2)
 '						Case "10"
-'							AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "vs03")
-'							AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#vs03 #"), "v005")
+'							AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "vs03")
+'							AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#vs03 #"), "v005")
 '						Case "12"
-'							AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v152")
-'							AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v152 #"), "v005")
+'							AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v152")
+'							AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v152 #"), "v005")
 '						Case "18"
-'							AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v087")
-'							AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v087 #"), "v005")
+'							AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v087")
+'							AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v087 #"), "v005")
 '						Case "21"
-'							AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v216")
-'							AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v216 #"), "v005")
+'							AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v216")
+'							AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v216 #"), "v005")
 '						Case "28"
-'							AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v231")
-'							AdoInsertToRecord(TableOfVarious, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TableOfVarious, "#v231 #"), "v005")
+'							AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v231")
+'							AdoInsertToRecord(TABLE_VARIOUS, VB.Left(cmbDokumentType.Text, 2) & AdoGetField(TABLE_VARIOUS, "#v231 #"), "v005")
 
 '						Case Else
 '							MsgBox("stop")
@@ -482,31 +482,31 @@ End Class
 '		Dim DummyDatum As New VB6.FixedLengthString(8)
 
 '		bhKontrole = False
-'		If String99(Reading, 63) = "1" Then
+'		If String99(READING, 63) = "1" Then
 '			MSG = "Afschrijvingsposten reeds gegenereerd voor dit boekjaar !" & vbCrLf & vbCrLf
 '			MSG = MSG & "Bijkomende posten kunnen uitsluitend via 'Diverse post'-optie" & vbCrLf
 '			MSG = MSG & "ingebracht worden !" & vbCrLf & vbCrLf
 '			MSG = MSG & "Wenst U boekhoudkundige kontrolelijst ?"
-'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
-'			If KtrlBox = MsgBoxResult.Yes Then
+'			CTRL_BOX = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
+'			If CTRL_BOX = MsgBoxResult.Yes Then
 '				bhKontrole = True
 '			Else
 '				AfschrijvingenLijstOk = False
 '				Exit Function
 '			End If
-'		ElseIf String99(Reading, 63) <> "0" Then 
+'		ElseIf String99(READING, 63) <> "0" Then 
 '			MsgBox("Setup boekjaar en parameters bevat niet de juiste vlag geboekt of niet geboekt.  Kontroleer")
 '			AfschrijvingenLijstOk = False
 '			Exit Function
-'		ElseIf String99(Reading, 64) <> "1" Then 
+'		ElseIf String99(READING, 64) <> "1" Then 
 '			MsgBox("Onlogische situatie.  Dit boekjaar bevat nog geen beginbalans ?  De beginbalans dient aanwezig te zijn.  Mogelijk bevindt U zich in het verkeerde boekjaar ?")
 '			AfschrijvingenLijstOk = False
 '			Exit Function
 '		End If
 
 '		dTas = 0
-'		JetGetOrGreater(TableOfVarious, 1, SetSpacing("18", 20))
-'		If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "18" Then
+'		JetGetOrGreater(TABLE_VARIOUS, 1, SetSpacing("18", 20))
+'		If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "18" Then
 '			MsgBox("Er zijn geen investeringsfiches !")
 '			AfschrijvingenLijstOk = False
 '			Exit Function
@@ -514,9 +514,9 @@ End Class
 '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '			System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 '			Me.Enabled = False
-'			PageCounter = 0
+'			PAGE_COUNTER = 0
 '			If chkAfdrukInVenster.CheckState = 0 Then
-'				Printer = Printers(LijstPrinterNr)
+'				Printer = Printers(LISTPRINTER_NUMBER)
 '				On Error Resume Next
 '				'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -533,15 +533,15 @@ End Class
 '					Printer.FontSize = 7.2
 '				End If
 '			End If
-'			ReportText(0) = MimGlobalDate.Value
+'			ReportText(0) = MIM_GLOBAL_DATE.Value
 '			ReportText(2) = Mid(cmbDokumentType.Text, 4) & " " & Mid(Mim.Text, InStr(Mim.Text, "["))
 '			InitialiseFields()
 '			VpePrintHeader()
 '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '			GoSub AfschrijvingsLijnErBij
 '			Do 
-'				bNext(TableOfVarious)
-'				If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "18" Then
+'				bNext(TABLE_VARIOUS)
+'				If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "18" Then
 '					Exit Do
 '				Else
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
@@ -565,60 +565,60 @@ End Class
 
 'AfschrijvingsLijnErBij: 
 '		omsLijn = ""
-'		RecordToField(TableOfVarious)
-'		If Len(AdoGetField(TableOfVarious, "#v083 #")) <> 8 Then
-'			omsLijn = "Datumformaat '" & AdoGetField(TableOfVarious, "#v083 #") & "' onjuist voor " & AdoGetField(TableOfVarious, "#v087 #")
+'		RecordToField(TABLE_VARIOUS)
+'		If Len(AdoGetField(TABLE_VARIOUS, "#v083 #")) <> 8 Then
+'			omsLijn = "Datumformaat '" & AdoGetField(TABLE_VARIOUS, "#v083 #") & "' onjuist voor " & AdoGetField(TABLE_VARIOUS, "#v087 #")
 '			MsgBox(omsLijn)
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
 '		End If
 
-'		DatumJaarInvest = AdoGetField(TableOfVarious, "#v083 #")
+'		DatumJaarInvest = AdoGetField(TABLE_VARIOUS, "#v083 #")
 '		DatumJaarInvest = Mid(DatumJaarInvest, 1, 2) & "/" & Mid(DatumJaarInvest, 3)
 '		DatumJaarInvest = Mid(DatumJaarInvest, 1, 5) & "/" & Mid(DatumJaarInvest, 6)
 
-'		If DatumKey(DatumJaarInvest) > Mid(BookyearFromTo.Value, 9) Then
+'		If DatumKey(DatumJaarInvest) > Mid(BOOKYEAR_FROMTO.Value, 9) Then
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
 '		Else
-'			ipct = Val(AdoGetField(TableOfVarious, "#v082 #"))
-'			dbdrg = Val(AdoGetField(TableOfVarious, "#v084 #"))
+'			ipct = Val(AdoGetField(TABLE_VARIOUS, "#v082 #"))
+'			dbdrg = Val(AdoGetField(TABLE_VARIOUS, "#v084 #"))
 '			FieldText(4) = DatumJaarInvest
-'			FieldText(5) = Dec(dbdrg, Mask2002.Value)
+'			FieldText(5) = Dec(dbdrg, MASK_2002.Value)
 '			FieldText(7) = Dec(ipct, "#####")
 '			'investeringsrekening
-'			FieldText(3) = Trim(AdoGetField(TableOfVarious, "#v019 #"))
-'			JetGet(TableOfLedgerAccounts, 0, FieldText(3))
-'			If Ktrl Then
+'			FieldText(3) = Trim(AdoGetField(TABLE_VARIOUS, "#v019 #"))
+'			JetGet(TABLE_LEDGERACCOUNTS, 0, FieldText(3))
+'			If KTRL Then
 '				FieldText(0) = "Niet (meer) aanwezig..."
 '			Else
-'				RecordToField(TableOfLedgerAccounts)
-'				FieldText(0) = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'				RecordToField(TABLE_LEDGERACCOUNTS)
+'				FieldText(0) = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '			End If
 '			'afschrijvingsrekening
-'			FieldText(6) = Trim(AdoGetField(TableOfVarious, "#v087 #"))
-'			JetGet(TableOfLedgerAccounts, 0, FieldText(6))
-'			If Ktrl Then
+'			FieldText(6) = Trim(AdoGetField(TABLE_VARIOUS, "#v087 #"))
+'			JetGet(TABLE_LEDGERACCOUNTS, 0, FieldText(6))
+'			If KTRL Then
 '				FieldText(1) = "Niet (meer) aanwezig..."
 '			Else
-'				RecordToField(TableOfLedgerAccounts)
-'				FieldText(1) = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'				RecordToField(TABLE_LEDGERACCOUNTS)
+'				FieldText(1) = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '			End If
 '			'afschrijvingsKOSTrekening
-'			FieldText(9) = Trim(AdoGetField(TableOfVarious, "#v088 #"))
-'			JetGet(TableOfLedgerAccounts, 0, FieldText(9))
-'			If Ktrl Then
+'			FieldText(9) = Trim(AdoGetField(TABLE_VARIOUS, "#v088 #"))
+'			JetGet(TABLE_LEDGERACCOUNTS, 0, FieldText(9))
+'			If KTRL Then
 '				FieldText(2) = "Niet (meer) aanwezig..."
 '			Else
-'				RecordToField(TableOfLedgerAccounts)
-'				FieldText(2) = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'				RecordToField(TABLE_LEDGERACCOUNTS)
+'				FieldText(2) = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '			End If
 '			If bhKontrole Then
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub bhSPECIAAL
 '			Else
-'				dRa = Val(AdoGetField(TableOfVarious, "#v085 #"))
-'				If Val(AdoGetField(TableOfVarious, "#v084 #")) = Val(AdoGetField(TableOfVarious, "#v085 #")) Then
+'				dRa = Val(AdoGetField(TABLE_VARIOUS, "#v085 #"))
+'				If Val(AdoGetField(TABLE_VARIOUS, "#v084 #")) = Val(AdoGetField(TABLE_VARIOUS, "#v085 #")) Then
 '					Das = 0
 '				Else
 '					'Bereken nieuwe afschrijving
@@ -630,8 +630,8 @@ End Class
 '						Das = Val(VB6.Format(dbdrg / ipct, "000000000"))
 '					End If
 '				End If
-'				FieldText(8) = Dec(dRa, Mask2002.Value)
-'				FieldText(10) = Dec(Das, Mask2002.Value)
+'				FieldText(8) = Dec(dRa, MASK_2002.Value)
+'				FieldText(10) = Dec(Das, MASK_2002.Value)
 '			End If
 '			dTas = dTas + Das
 '			VpePrintLines()
@@ -642,11 +642,11 @@ End Class
 
 'bhSPECIAAL: 
 '		'Investeringsrekening
-'		FieldText(3) = Trim(AdoGetField(TableOfVarious, "#v019 #"))
+'		FieldText(3) = Trim(AdoGetField(TABLE_VARIOUS, "#v019 #"))
 '		'Afschrijvingsrekening
-'		FieldText(6) = Trim(AdoGetField(TableOfVarious, "#v087 #"))
+'		FieldText(6) = Trim(AdoGetField(TABLE_VARIOUS, "#v087 #"))
 '		'AfschrijvingsKOSTrekening
-'		FieldText(9) = Trim(AdoGetField(TableOfVarious, "#v088 #"))
+'		FieldText(9) = Trim(AdoGetField(TABLE_VARIOUS, "#v088 #"))
 
 '		'Reeds boekhoudkundig afgeschreven kontroleren
 '		BedragBegin = 0
@@ -655,39 +655,39 @@ End Class
 '		'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '		GoSub OverLOOPJournaal
 '		If Das <> 0 Then
-'			dRa = Val(AdoGetField(TableOfVarious, "#v085 #")) - Das
+'			dRa = Val(AdoGetField(TABLE_VARIOUS, "#v085 #")) - Das
 '		Else
-'			dRa = Val(AdoGetField(TableOfVarious, "#v085 #"))
+'			dRa = Val(AdoGetField(TABLE_VARIOUS, "#v085 #"))
 '		End If
-'		FieldText(8) = Dec(dRa, Mask2002.Value)
-'		FieldText(10) = Dec(Das, Mask2002.Value)
+'		FieldText(8) = Dec(dRa, MASK_2002.Value)
+'		FieldText(10) = Dec(Das, MASK_2002.Value)
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		Return 
 
 'OverLOOPJournaal: 
 '		DummyDatum.Value = ""
-'		JetGetOrGreater(FlJournaal, 0, RekKontrole.Value & VB.Left(BookyearFromTo.Value, 8))
-'		If Ktrl Or KeyBuf(FlJournaal) > RekKontrole.Value & VB.Right(BookyearFromTo.Value, 8) Then
+'		JetGetOrGreater(TABLE_JOURNAL, 0, RekKontrole.Value & VB.Left(BOOKYEAR_FROMTO.Value, 8))
+'		If KTRL Or KEY_BUF(TABLE_JOURNAL) > RekKontrole.Value & VB.Right(BOOKYEAR_FROMTO.Value, 8) Then
 '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '			Return 
 '		Else
 '			Do 
-'				RecordToField(FlJournaal)
+'				RecordToField(TABLE_JOURNAL)
 '				If Trim(DummyDatum.Value) = "" Then
-'					DummyDatum.Value = AdoGetField(FlJournaal, "#v066 #")
-'					BedragBegin = Val(AdoGetField(FlJournaal, "#v068 #"))
-'				ElseIf DummyDatum.Value = AdoGetField(FlJournaal, "#v066 #") Then 
-'					BedragBegin = BedragBegin + Val(AdoGetField(FlJournaal, "#v068 #"))
+'					DummyDatum.Value = AdoGetField(TABLE_JOURNAL, "#v066 #")
+'					BedragBegin = Val(AdoGetField(TABLE_JOURNAL, "#v068 #"))
+'				ElseIf DummyDatum.Value = AdoGetField(TABLE_JOURNAL, "#v066 #") Then 
+'					BedragBegin = BedragBegin + Val(AdoGetField(TABLE_JOURNAL, "#v068 #"))
 '				Else
-'					Das = Das + Val(AdoGetField(FlJournaal, "#v068 #"))
+'					Das = Das + Val(AdoGetField(TABLE_JOURNAL, "#v068 #"))
 '				End If
-'				bNext(FlJournaal)
-'				If Ktrl Or KeyBuf(FlJournaal) > RekKontrole.Value & VB.Right(BookyearFromTo.Value, 8) Then
+'				bNext(TABLE_JOURNAL)
+'				If KTRL Or KEY_BUF(TABLE_JOURNAL) > RekKontrole.Value & VB.Right(BOOKYEAR_FROMTO.Value, 8) Then
 '					Exit Do
 '				End If
 '			Loop 
 '			If Das = 0 Then
-'				If Val(AdoGetField(TableOfVarious, "#v084 #")) = Val(AdoGetField(TableOfVarious, "#v085 #")) Then
+'				If Val(AdoGetField(TABLE_VARIOUS, "#v084 #")) = Val(AdoGetField(TABLE_VARIOUS, "#v085 #")) Then
 '					Das = 0
 '				Else
 '					Das = System.Math.Abs(BedragBegin)
@@ -706,38 +706,38 @@ End Class
 
 '		Select Case VB.Left(cmbDokumentType.Text, 2)
 '			Case "18"
-'				ReportField(0) = "Investeringsrekening"
-'				ReportTab(0) = 2
+'				REPORT_FIELD(0) = "Investeringsrekening"
+'				REPORT_TAB(0) = 2
 
-'				ReportField(1) = "Rekening Afschrijvingen"
-'				ReportTab(1) = 43
+'				REPORT_FIELD(1) = "Rekening Afschrijvingen"
+'				REPORT_TAB(1) = 43
 
-'				ReportField(2) = "Afschrijvingskosten Rekening"
-'				ReportTab(2) = 84
+'				REPORT_FIELD(2) = "Afschrijvingskosten Rekening"
+'				REPORT_TAB(2) = 84
 
-'				ReportField(3) = "Nummer"
-'				ReportTab(3) = 2
+'				REPORT_FIELD(3) = "Nummer"
+'				REPORT_TAB(3) = 2
 
-'				ReportField(4) = "AankpDatum"
-'				ReportTab(4) = 10
+'				REPORT_FIELD(4) = "AankpDatum"
+'				REPORT_TAB(4) = 10
 
-'				ReportField(5) = "Tot.Bedrag"
-'				ReportTab(5) = 21
+'				REPORT_FIELD(5) = "Tot.Bedrag"
+'				REPORT_TAB(5) = 21
 
-'				ReportField(6) = "Nummer"
-'				ReportTab(6) = 43
+'				REPORT_FIELD(6) = "Nummer"
+'				REPORT_TAB(6) = 43
 
-'				ReportField(7) = "Jaren"
-'				ReportTab(7) = 51
+'				REPORT_FIELD(7) = "Jaren"
+'				REPORT_TAB(7) = 51
 
-'				ReportField(8) = "Reeds afg."
-'				ReportTab(8) = 57
+'				REPORT_FIELD(8) = "Reeds afg."
+'				REPORT_TAB(8) = 57
 
-'				ReportField(9) = "Nummer"
-'				ReportTab(9) = 84
+'				REPORT_FIELD(9) = "Nummer"
+'				REPORT_TAB(9) = 84
 
-'				ReportField(10) = " Bedrag Af"
-'				ReportTab(10) = 92
+'				REPORT_FIELD(10) = " Bedrag Af"
+'				REPORT_TAB(10) = 92
 '				tMaxField = 10
 '			Case Else
 '				MsgBox("Stop, nog niets voorzien.")
@@ -752,7 +752,7 @@ End Class
 '			Xlog.X.Row = 0
 '			For T = 0 To tMaxField
 '				Xlog.X.Col = T
-'				Xlog.X.Text = ReportField(T)
+'				Xlog.X.Text = REPORT_FIELD(T)
 '			Next 
 '			Me.Show()
 '		End If

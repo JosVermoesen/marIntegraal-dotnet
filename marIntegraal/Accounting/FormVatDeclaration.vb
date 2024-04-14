@@ -126,7 +126,7 @@ End Class
 '		Dim btwContactTelefoon As String
 '		Dim btwContactMailAdres As String
 
-'		Select Case String99(Reading, 301)
+'		Select Case String99(READING, 301)
 '			Case "1", "2"
 '			Case Else
 '				MsgBox("Eerst Setup BTW instellen a.u.b.", MsgBoxStyle.Information)
@@ -138,19 +138,19 @@ End Class
 '			Exit Sub
 '		End If
 
-'		BTWNummer = BtwKontrole(String99(Reading, 51), True)
+'		BTWNummer = BtwKontrole(String99(READING, 51), True)
 '		btwDatum = VB6.Format(TekstInfo(29).Text, "yymmdd")
 '		btwDatumFull = VB6.Format(TekstInfo(29).Text, "yyyymmdd")
 '		btwWatIsDit = "777"
 '		btwPeriode = ""
-'		btwContactPersoon = String99(Reading, 52)
-'		btwContactTelefoon = String99(Reading, 49)
-'		btwContactMailAdres = String99(Reading, 50) '= mail!
+'		btwContactPersoon = String99(READING, 52)
+'		btwContactTelefoon = String99(READING, 49)
+'		btwContactMailAdres = String99(READING, 50) '= mail!
 
 '		Dim btwOnderwerp As String
 
 '		btwOnderwerp = "$marNT$BTWAGF$" & BTWNummer & "$" & btwPeriode
-'		vatTmp = "UNB*UNOA:3*" & BTWNummer & "*VAT-ADMIN*" & btwDatum & ":1246*" & BTWNummer & "00001*" & btwWatIsDit & "*VATDEC-EUR***1.0" & "'UNH*1*RDRMES:D:96A:UN:VAT001" & "'BGM*937*124980407*2" & "'DTM*137:" & btwDatumFull & ":102" & "'DTM*320:" & btwPeriode & ":608" & "'NAD*DT*" & BTWNummer & ":52:129" & "'CTA*IC*:" & btwContactPersoon & "'COM*" & btwContactTelefoon & ":TE" & "'COM*" & btwContactMailAdres & ":ML" & "'IDE*1*VATDEC" & "'NAD*DT*" & BTWNummer & ":52:129" & "'FTX*AAI***0000:EUR" & btwVakken & "'UNT*32*1" & "'UNZ*1*" & BTWNummer & "00001'" & "'RVS:" & String99(Reading, 301) & "*" & String99(Reading, 302) & "*" & String99(Reading, 303) & "'"
+'		vatTmp = "UNB*UNOA:3*" & BTWNummer & "*VAT-ADMIN*" & btwDatum & ":1246*" & BTWNummer & "00001*" & btwWatIsDit & "*VATDEC-EUR***1.0" & "'UNH*1*RDRMES:D:96A:UN:VAT001" & "'BGM*937*124980407*2" & "'DTM*137:" & btwDatumFull & ":102" & "'DTM*320:" & btwPeriode & ":608" & "'NAD*DT*" & BTWNummer & ":52:129" & "'CTA*IC*:" & btwContactPersoon & "'COM*" & btwContactTelefoon & ":TE" & "'COM*" & btwContactMailAdres & ":ML" & "'IDE*1*VATDEC" & "'NAD*DT*" & BTWNummer & ":52:129" & "'FTX*AAI***0000:EUR" & btwVakken & "'UNT*32*1" & "'UNZ*1*" & BTWNummer & "00001'" & "'RVS:" & String99(READING, 301) & "*" & String99(READING, 302) & "*" & String99(READING, 303) & "'"
 
 '		MsgBox("Dit venster wordt hierna gesloten en de gestructureerde aangifte verzonden via de ingebouwde Internet Explorer.  Wacht in de 'Explorer' op bevestiging van verzending a.u.b !", MsgBoxStyle.Exclamation)
 
@@ -162,7 +162,7 @@ End Class
 '		frmB = New frmBrowser
 
 '		If Err.Number Then MsgBox(ErrorToString()) : Exit Sub
-'		'If usrMailAdres = "demo@rv.be" Then
+'		'If USER_MAILADDRESS = "demo@rv.be" Then
 '		'    MsgBox "Programma gebruikt default 'demo@rv.be' met paswoord '9999'.  Gelieve zo spoedig mogelijk uw eigen aanmelding en paswoord op te slaan in uw programma a.u.b." & vbCrLf & vbCrLf & "Hierna wordt vervolgd met aanmelding via de beperkte functionaliteit van demo@rv.be als demonstratie...", vbExclamation
 '		'End If
 '		frmB.StartingAddress = "http://www.rv.be/Services/mar/BtwIO/BtwIO.aspx?rvA100=" & btwContactMailAdres & "&rvBTW=" & vatTmp
@@ -181,7 +181,7 @@ End Class
 '		If Mim.TekenSave.FileName = "" Then Exit Sub
 '		Dim tmpXMLHier As String
 '		tmpXMLHier = Me.RichTextBox1.Text
-'		Ktrl = ScrMaakTekstBestand(tmpXMLHier, (Mim.TekenSave.FileName))
+'		KTRL = ScrMaakTekstBestand(tmpXMLHier, (Mim.TekenSave.FileName))
 
 '	End Sub
 
@@ -190,13 +190,13 @@ End Class
 
 'XMLvraag: 
 '		MSG = "Btwaangifte doormailen voor afhandeling" & vbCrLf & vbCrLf & "Kies 'ja' voor doormailen (aanbevolen, ontvangstbewijs volgt), 'nee' indien U zelf het XML bestand afhandelt"
-'		Ktrl = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
+'		KTRL = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
 '		Dim tmpXMLHier As String
-'		Select Case Ktrl
+'		Select Case KTRL
 '			Case 2
 '				MSG = "Taak verlaten zonder enige verwerking.  Bent U zeker"
-'				Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
-'				If Ktrl = 7 Then
+'				KTRL = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
+'				If KTRL = 7 Then
 '					GoTo XMLvraag
 '				Else
 '					Exit Sub
@@ -212,11 +212,11 @@ End Class
 '					On Error Resume Next
 '					Me.MPISessie.SignOn()
 '					If Err.Number Then
-'						SnelHelpPrint(Err.Description, blLogging)
+'						SnelHelpPrint(Err.Description, BL_LOGGING)
 '					Else
 '						On Error GoTo 0
 '						Me.MPIBericht.SessionID = Me.MPISessie.SessionID
-'						SnelHelpPrint("E-mail sessie met succes opgestart. IDkode :" & VB6.Format(Me.MPISessie.SessionID), blLogging)
+'						SnelHelpPrint("E-mail sessie met succes opgestart. IDkode :" & VB6.Format(Me.MPISessie.SessionID), BL_LOGGING)
 '					End If
 '				End If
 '				On Error GoTo MPIErrorXML
@@ -234,13 +234,13 @@ End Class
 '				Me.MPIBericht.MsgSubject = "Verzoek tot BTW controle en aangifte"
 
 '				If Me.tbmailbtw.Text = "info@rv.be" Then
-'					Me.MPIBericht.MsgNoteText = "Formaat:XML bestand" & vbCrLf & "In bijlage onze aangifte aangemaakt met marIntegraal versie " & marVersion & " voor controle en verzending.  Graag ontvangstbewijs binnen de 24 uur via mail of onze DNN postbus" & vbCrLf & vbCrLf & Now
+'					Me.MPIBericht.MsgNoteText = "Formaat:XML bestand" & vbCrLf & "In bijlage onze aangifte aangemaakt met marIntegraal versie " & MAR_VERSION & " voor controle en verzending.  Graag ontvangstbewijs binnen de 24 uur via mail of onze DNN postbus" & vbCrLf & vbCrLf & Now
 '				Else
 '					Me.MPIBericht.MsgNoteText = "Formaat:XML bestand" & vbCrLf & "In bijlage XML btw aangifte gegenereerd door ons boekhoudpakket.  Graag de aangifte door uw diensten na de gebruikelijke controles a.u.b." & vbCrLf & "Bezorgt U ons tevens nog ontvangstbevestiging ?" & vbCrLf & vbCrLf & "Dank bij voorbaat!" & vbCrLf & vbCrLf & Now
 '				End If
 
 '				tmpXMLHier = Me.RichTextBox1.Text
-'				Ktrl = ScrMaakTekstBestand(tmpXMLHier, "btwaangifte.xml")
+'				KTRL = ScrMaakTekstBestand(tmpXMLHier, "btwaangifte.xml")
 '				'
 
 '				Me.MPIBericht.AttachmentPathName = "btwaangifte.xml"
@@ -289,34 +289,34 @@ End Class
 
 '		Dim dokumentTot As Integer
 
-'		JetGetOrGreater(TableOfVarious, 1, SetSpacing("17", 20))
-'		If Ktrl Then
+'		JetGetOrGreater(TABLE_VARIOUS, 1, SetSpacing("17", 20))
+'		If KTRL Then
 '		Else
 '			Do 
-'				RecordToField(TableOfVarious)
+'				RecordToField(TABLE_VARIOUS)
 '				dokumentTot = 0
-'				For CountTo = 92 To 98 Step 2
-'					dokumentTot = dokumentTot + Val(AdoGetField(TableOfVarious, "#v" & VB6.Format(CountTo, "000") & " #"))
+'				For COUNT_TO = 92 To 98 Step 2
+'					dokumentTot = dokumentTot + Val(AdoGetField(TABLE_VARIOUS, "#v" & VB6.Format(COUNT_TO, "000") & " #"))
 '				Next 
 '				If dokumentTot Then
 '					'UPGRADE_WARNING: Cannot determine Node location Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="196D987F-2118-46D0-80D2-92FB2909C206"'
 '					mNode = tvwBtwAangiftes.Nodes.Insert(1, "")
-'					mNode.Text = AdoGetField(TableOfVarious, "#v090 #") & " " & AdoGetField(TableOfVarious, "#v091 #")
+'					mNode.Text = AdoGetField(TABLE_VARIOUS, "#v090 #") & " " & AdoGetField(TABLE_VARIOUS, "#v091 #")
 '				End If
-'				bNext(TableOfVarious)
-'				If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "17" Then
+'				bNext(TABLE_VARIOUS)
+'				If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "17" Then
 '					Exit Do
 '				End If
 '			Loop 
 '		End If
-'		SnelHelpPrint(Now & ":In verdere ontwikkeling voor BEF/EUR/E-mail", blLogging)
+'		SnelHelpPrint(Now & ":In verdere ontwikkeling voor BEF/EUR/E-mail", BL_LOGGING)
 '		VulDeVelden((BJPERDAT.Boekjaar.Text), VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"))
 '		'BJPERDAT.Boekjaar.Text + Format(BJPERDAT.PeriodeBoekjaar.ListIndex + 1, "00")
 '	End Sub
 
 '	Private Sub frmBTWAangifte_FormClosed(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
 
-'		JetTableClose(TableOfVarious)
+'		JetTableClose(TABLE_VARIOUS)
 
 '	End Sub
 
@@ -330,30 +330,30 @@ End Class
 '		Dim number As Integer
 
 '		MSG = "BTW Aangifte periode initializeren." & vbCrLf & "Bent U zeker ?"
-'		Ktrl = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Alle boeken opnieuw uitdrukken !?!")
-'		If Ktrl = MsgBoxResult.Yes Then
+'		KTRL = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Alle boeken opnieuw uitdrukken !?!")
+'		If KTRL = MsgBoxResult.Yes Then
 '		Else
 '			Exit Sub
 '		End If
 
-'		Ktrl = 0
-'		SnelHelpPrint("Kontrole hogere periodes...", blLogging)
+'		KTRL = 0
+'		SnelHelpPrint("Kontrole hogere periodes...", BL_LOGGING)
 '		PeriodeMax = BJPERDAT.PeriodeBoekjaar.Items.Count + 1
 '		Do While PeriodeMax > BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1
 '			PeriodeSleutel.Value = "17" & BJPERDAT.Boekjaar.Text & VB6.Format(PeriodeMax, "00")
-'			JetGet(TableOfVarious, 1, PeriodeSleutel.Value)
-'			If Ktrl Then
-'				TLBRecord(TableOfVarious) = ""
-'				AdoInsertToRecord(TableOfVarious, (BJPERDAT.Boekjaar.Text), "v090")
-'				AdoInsertToRecord(TableOfVarious, VB6.Format(PeriodeMax, "00"), "v091")
-'				AdoInsertToRecord(TableOfVarious, "17" & AdoGetField(TableOfVarious, "#v090 #") & AdoGetField(TableOfVarious, "#v091 #"), "v005")
-'				JetInsert(TableOfVarious, 1)
+'			JetGet(TABLE_VARIOUS, 1, PeriodeSleutel.Value)
+'			If KTRL Then
+'				TLB_RECORD(TABLE_VARIOUS) = ""
+'				AdoInsertToRecord(TABLE_VARIOUS, (BJPERDAT.Boekjaar.Text), "v090")
+'				AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(PeriodeMax, "00"), "v091")
+'				AdoInsertToRecord(TABLE_VARIOUS, "17" & AdoGetField(TABLE_VARIOUS, "#v090 #") & AdoGetField(TABLE_VARIOUS, "#v091 #"), "v005")
+'				JetInsert(TABLE_VARIOUS, 1)
 '			Else
-'				RecordToField(TableOfVarious)
+'				RecordToField(TABLE_VARIOUS)
 '				number = 0
 
 '				For T = 92 To 99
-'					number = number + Val(AdoGetField(TableOfVarious, "#v" & VB6.Format(T, "000") & " #"))
+'					number = number + Val(AdoGetField(TABLE_VARIOUS, "#v" & VB6.Format(T, "000") & " #"))
 '				Next 
 '				If number Then
 '					number = PeriodeMax
@@ -372,16 +372,16 @@ End Class
 '			Exit Sub
 '		Else
 '			PeriodeSleutel.Value = "17" & BJPERDAT.Boekjaar.Text & VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00")
-'			JetGet(TableOfVarious, 1, PeriodeSleutel.Value)
-'			If Ktrl Then
-'				TLBRecord(TableOfVarious) = ""
-'				AdoInsertToRecord(TableOfVarious, (BJPERDAT.Boekjaar.Text), "v090")
-'				AdoInsertToRecord(TableOfVarious, VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
-'				AdoInsertToRecord(TableOfVarious, "17" & AdoGetField(TableOfVarious, "#v090 #") & AdoGetField(TableOfVarious, "#v091 #"), "v005")
-'				JetInsert(TableOfVarious, 1)
+'			JetGet(TABLE_VARIOUS, 1, PeriodeSleutel.Value)
+'			If KTRL Then
+'				TLB_RECORD(TABLE_VARIOUS) = ""
+'				AdoInsertToRecord(TABLE_VARIOUS, (BJPERDAT.Boekjaar.Text), "v090")
+'				AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
+'				AdoInsertToRecord(TABLE_VARIOUS, "17" & AdoGetField(TABLE_VARIOUS, "#v090 #") & AdoGetField(TABLE_VARIOUS, "#v091 #"), "v005")
+'				JetInsert(TABLE_VARIOUS, 1)
 '				GoTo jump
 '			Else
-'				RecordToField(TableOfVarious)
+'				RecordToField(TABLE_VARIOUS)
 '			End If
 '		End If
 
@@ -390,17 +390,17 @@ End Class
 '		pTrec(5) = 12
 '		pTrec(7) = 14
 '		For T = 1 To 8 Step 2
-'			If Val(AdoGetField(TableOfVarious, "#v" & VB6.Format(T + 91, "000") & " #")) = 0 Then
+'			If Val(AdoGetField(TABLE_VARIOUS, "#v" & VB6.Format(T + 91, "000") & " #")) = 0 Then
 '			Else
-'				Nrr = Val(AdoGetField(TableOfVarious, "#v" & VB6.Format(T + 91, "000") & " #")) - 1
+'				Nrr = Val(AdoGetField(TABLE_VARIOUS, "#v" & VB6.Format(T + 91, "000") & " #")) - 1
 '				SS99(VB6.Format(Nrr, "00000"), pTrec(T))
 '			End If
 '		Next 
-'		TLBRecord(TableOfVarious) = ""
-'		AdoInsertToRecord(TableOfVarious, (BJPERDAT.Boekjaar.Text), "v090")
-'		AdoInsertToRecord(TableOfVarious, VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
-'		AdoInsertToRecord(TableOfVarious, "17" & AdoGetField(TableOfVarious, "#v090 #") & AdoGetField(TableOfVarious, "#v091 #"), "v005")
-'		bUpdate(TableOfVarious, 1)
+'		TLB_RECORD(TABLE_VARIOUS) = ""
+'		AdoInsertToRecord(TABLE_VARIOUS, (BJPERDAT.Boekjaar.Text), "v090")
+'		AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
+'		AdoInsertToRecord(TABLE_VARIOUS, "17" & AdoGetField(TABLE_VARIOUS, "#v090 #") & AdoGetField(TABLE_VARIOUS, "#v091 #"), "v005")
+'		bUpdate(TABLE_VARIOUS, 1)
 '		Initialiseren.Enabled = False
 '		CmdEmailNBB.Enabled = False
 '		VulDeVelden((BJPERDAT.Boekjaar.Text), VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"))
@@ -414,25 +414,25 @@ End Class
 '		Dim lblBEFVak As Short
 
 '		btwVakken = ""
-'		JetGet(TableOfVarious, 1, SetSpacing("17" & strJaar & strPeriode, 20))
-'		If Ktrl Then
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing("17" & strJaar & strPeriode, 20))
+'		If KTRL Then
 '			Beep()
 '			'UPGRADE_WARNING: Couldn't resolve default property of object Me.SSTab1. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			Me.SSTab1.TabEnabled(2) = False
 '			Exit Sub
 '		Else
-'			RecordToField(TableOfVarious)
+'			RecordToField(TABLE_VARIOUS)
 '		End If
 
 '		TekstInfo(28).Text = VB6.Format(BJPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00")
 '		TekstInfo(29).Text = VB.Right(BJPERDAT.PeriodeBoekjaar.Text, 10)
 
-'		Label2(0).Text = VB6.Format(Val(AdoGetField(TableOfVarious, "#v092 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v093 #")), "00000")
-'		Label2(2).Text = VB6.Format(Val(AdoGetField(TableOfVarious, "#v096 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v097 #")), "00000")
-'		Label2(1).Text = VB6.Format(Val(AdoGetField(TableOfVarious, "#v094 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v095 #")), "00000")
-'		Label2(3).Text = VB6.Format(Val(AdoGetField(TableOfVarious, "#v098 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v099 #")), "00000")
+'		Label2(0).Text = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v092 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v093 #")), "00000")
+'		Label2(2).Text = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v096 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v097 #")), "00000")
+'		Label2(1).Text = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v094 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v095 #")), "00000")
+'		Label2(3).Text = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v098 #")), "00000") & " - " & VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v099 #")), "00000")
 
-'		If AdoGetField(TableOfVarious, "i001") = "" Then
+'		If AdoGetField(TABLE_VARIOUS, "i001") = "" Then
 '			MsgBox("Aan- en verkoopboeken voor Intervat nog af te drukken.  Intervat tabblad blijft uitgeschakeld.  Intervat enkel mogelijk met boeken uitgedrukt via versie 6.6.900 of hoger.  TIP: initialiseer fiche en druk de boeken opnieuw uit met versie 900 of hoger", MsgBoxStyle.Information)
 '			'UPGRADE_WARNING: Couldn't resolve default property of object Me.SSTab1. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			Me.SSTab1.TabVisible(2) = False
@@ -451,7 +451,7 @@ End Class
 '		tmpXMLHier = RichTextBox1.Text
 
 '		tmpVak = "<VATNUMBER>9999999999</VATNUMBER>"
-'		tmpVakHier = String99(Reading, 51)
+'		tmpVakHier = String99(READING, 51)
 '		If Len(tmpVakHier) <> 11 Then
 '			MsgBox("btw notatie in setup behouden zoals in de jaren voorheen a.u.b. xxx.xxx.xxx  Verbeter setup vooraleer verder te gaan", MsgBoxStyle.Exclamation)
 '			'UPGRADE_WARNING: Couldn't resolve default property of object Me.SSTab1. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -467,29 +467,29 @@ End Class
 '		End If
 
 '		tmpVak = "<NAME>Contactpersoon</NAME>"
-'		tmpVakHier = String99(Reading, 52)
+'		tmpVakHier = String99(READING, 52)
 '		If InStr(tmpVakHier, "&") Then 'verbeteren voor XML bestand!!!
 '			tmpVakHier = Replace(tmpVakHier, "&", "&amp;")
 '		End If
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<NAME>" & tmpVakHier & "</NAME>")
 
 '		tmpVak = "<ADDRESS>StraatContact</ADDRESS>"
-'		tmpVakHier = String99(Reading, 47)
+'		tmpVakHier = String99(READING, 47)
 '		If InStr(tmpVakHier, "&") Then 'verbeteren voor XML bestand!!!
 '			tmpVakHier = Replace(tmpVakHier, "&", "&amp;")
 '		End If
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<ADDRESS>" & tmpVakHier & "</ADDRESS>")
 
 '		tmpVak = "<POSTCODE>0000</POSTCODE>"
-'		tmpVakHier = VB.Left(String99(Reading, 48), 4)
+'		tmpVakHier = VB.Left(String99(READING, 48), 4)
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<POSTCODE>" & tmpVakHier & "</POSTCODE>")
 
 '		tmpVak = "<CITY>Plaatscontact</CITY>"
-'		tmpVakHier = Trim(Mid(String99(Reading, 48), 5))
+'		tmpVakHier = Trim(Mid(String99(READING, 48), 5))
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<CITY>" & tmpVakHier & "</CITY>")
 
 '		tmpVak = "<SENDINGREFERENCE>99999999900000</SENDINGREFERENCE>"
-'		tmpVakHier = String99(Reading, 51)
+'		tmpVakHier = String99(READING, 51)
 '		If Len(tmpVakHier) <> 11 Then
 '			MsgBox("btw notatie in setup behouden zoals in de jaren voorheen a.u.b. xxx.xxx.xxx  Verbeter setup vooraleer verder te gaan", MsgBoxStyle.Exclamation)
 '			'UPGRADE_WARNING: Couldn't resolve default property of object Me.SSTab1. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -505,7 +505,7 @@ End Class
 '		End If
 
 '		tmpVak = "<VATNUMBER>0000000000</VATNUMBER>"
-'		tmpVakHier = String99(Reading, 51)
+'		tmpVakHier = String99(READING, 51)
 '		If Len(tmpVakHier) <> 11 Then
 '			MsgBox("btw notatie in setup behouden zoals in de jaren voorheen a.u.b. xxx.xxx.xxx  Verbeter setup vooraleer verder te gaan", MsgBoxStyle.Exclamation)
 '			'UPGRADE_WARNING: Couldn't resolve default property of object Me.SSTab1. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -521,40 +521,40 @@ End Class
 '		End If
 
 '		tmpVak = "<NAME>NaamBedrijf</NAME>"
-'		tmpVakHier = String99(Reading, 46)
+'		tmpVakHier = String99(READING, 46)
 '		If InStr(tmpVakHier, "&") Then 'verbeteren voor XML bestand!!!
 '			tmpVakHier = Replace(tmpVakHier, "&", "&amp;")
 '		End If
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<NAME>" & tmpVakHier & "</NAME>")
 
 '		tmpVak = "<ADDRESS>StraatBedrijf</ADDRESS>"
-'		tmpVakHier = String99(Reading, 47)
+'		tmpVakHier = String99(READING, 47)
 '		If InStr(tmpVakHier, "&") Then 'verbeteren voor XML bestand!!!
 '			tmpVakHier = Replace(tmpVakHier, "&", "&amp;")
 '		End If
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<ADDRESS>" & tmpVakHier & "</ADDRESS>")
 
 '		tmpVak = "<POSTCODE>9999</POSTCODE>"
-'		tmpVakHier = VB.Left(String99(Reading, 48), 4)
+'		tmpVakHier = VB.Left(String99(READING, 48), 4)
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<POSTCODE>" & tmpVakHier & "</POSTCODE>")
 
 '		tmpVak = "<CITY>PlaatsBedrijf</CITY>"
-'		tmpVakHier = Trim(Mid(String99(Reading, 48), 5))
+'		tmpVakHier = Trim(Mid(String99(READING, 48), 5))
 '		tmpXMLHier = Replace(tmpXMLHier, tmpVak, "<CITY>" & tmpVakHier & "</CITY>")
 
-'		Select Case String99(Reading, 301)
+'		Select Case String99(READING, 301)
 '			Case "2"
-'				tmpXMLHier = Replace(tmpXMLHier, "<QUARTERORMONTH>0</QUARTERORMONTH>", "<QUARTER>" & Trim(Str(Int(Val(AdoGetField(TableOfVarious, "i001")) / 3))) & "</QUARTER>")
+'				tmpXMLHier = Replace(tmpXMLHier, "<QUARTERORMONTH>0</QUARTERORMONTH>", "<QUARTER>" & Trim(Str(Int(Val(AdoGetField(TABLE_VARIOUS, "i001")) / 3))) & "</QUARTER>")
 
 '			Case "1"
-'				tmpXMLHier = Replace(tmpXMLHier, "<QUARTERORMONTH>0</QUARTERORMONTH>", "<MONTH>" & Trim(Str(Val(AdoGetField(TableOfVarious, "i001")))) & "</MONTH>")
+'				tmpXMLHier = Replace(tmpXMLHier, "<QUARTERORMONTH>0</QUARTERORMONTH>", "<MONTH>" & Trim(Str(Val(AdoGetField(TABLE_VARIOUS, "i001")))) & "</MONTH>")
 '			Case Else
 '				MsgBox("Setup BTW instellen a.u.b.", MsgBoxStyle.Critical)
 '				'UPGRADE_WARNING: Couldn't resolve default property of object Me.SSTab1. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '				Me.SSTab1.TabVisible(2) = False
 '				Me.Command2.Enabled = False
 '		End Select
-'		tmpXMLHier = Replace(tmpXMLHier, "<YEAR>1985</YEAR>", "<YEAR>" & Trim(Str(Val(AdoGetField(TableOfVarious, "i002")))) & "</YEAR>")
+'		tmpXMLHier = Replace(tmpXMLHier, "<YEAR>1985</YEAR>", "<YEAR>" & Trim(Str(Val(AdoGetField(TABLE_VARIOUS, "i002")))) & "</YEAR>")
 
 
 '		On Error Resume Next
@@ -570,7 +570,7 @@ End Class
 '		lblEURVak(62).Caption = VB6.Format(0, "#,##0.00")
 '		lblEvak(62).Text = VB6.Format(0, "#,##0.00")
 
-'		If AdoGetField(TableOfVarious, "#vEUR #") = "EUR" Then
+'		If AdoGetField(TABLE_VARIOUS, "#vEUR #") = "EUR" Then
 '			'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak.UBound. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '			For T = 0 To lblBEFVak.UBound
 '				'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak(T).Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
@@ -579,20 +579,20 @@ End Class
 '					Debug.Print(lblBEFVak(T).Tag)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak(T).Caption. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak().Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					lblBEFVak(T).Caption = VB6.Format(Val(AdoGetField(TableOfVarious, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) * Euro, "#,##0")
+'					lblBEFVak(T).Caption = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) * EURO, "#,##0")
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblEURVak(T).Caption. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak().Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					lblEURVak(T).Caption = VB6.Format(Val(AdoGetField(TableOfVarious, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))), "#,##0.00")
+'					lblEURVak(T).Caption = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))), "#,##0.00")
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblEURVak(T).Caption. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '					lblEvak(T).Text = lblEURVak(T).Caption
 '					If CDec(lblEvak(T).Text) = 0 Then
 '						'Debug.Print lblEvak(T).Caption, CCur(lblEvak(T).Caption)
 '					Else
 '						'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak().Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'						btwVakken = btwVakken & "'SCD*3*" & VB6.Format(T, "00") & "'ARR**" & Trim(Str(Val(AdoGetField(TableOfVarious, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) * 100))
+'						btwVakken = btwVakken & "'SCD*3*" & VB6.Format(T, "00") & "'ARR**" & Trim(Str(Val(AdoGetField(TABLE_VARIOUS, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) * 100))
 '						tmpVak = "<D" & Trim(Str(T)) & ">0</D" & Trim(Str(T)) & ">"
 '						'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak().Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'						tmpVakHier = "<D" & Trim(Str(T)) & ">" & Trim(Str(Val(AdoGetField(TableOfVarious, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) * 100)) & "</D" & Trim(Str(T)) & ">"
+'						tmpVakHier = "<D" & Trim(Str(T)) & ">" & Trim(Str(Val(AdoGetField(TABLE_VARIOUS, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) * 100)) & "</D" & Trim(Str(T)) & ">"
 '						tmpXMLHier = Replace(tmpXMLHier, tmpVak, tmpVakHier)
 '					End If
 '				End If
@@ -605,10 +605,10 @@ End Class
 '				If lblBEFVak(T).Tag <> "" Then
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak(T).Caption. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak().Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					lblBEFVak(T).Caption = VB6.Format(Val(AdoGetField(TableOfVarious, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))), "#,##0")
+'					lblBEFVak(T).Caption = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))), "#,##0")
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblEURVak(T).Caption. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblBEFVak().Tag. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					lblEURVak(T).Caption = VB6.Format(Val(AdoGetField(TableOfVarious, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) / Euro, "#,##0.00")
+'					lblEURVak(T).Caption = VB6.Format(Val(AdoGetField(TABLE_VARIOUS, CStr(CDbl("#") + lblBEFVak(T).Tag + CDbl(" #")))) / EURO, "#,##0.00")
 '					'UPGRADE_WARNING: Couldn't resolve default property of object lblEURVak(T).Caption. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '					lblEvak(T).Text = lblEURVak(T).Caption
 '				End If
@@ -652,7 +652,7 @@ End Class
 
 '		'Select Case SSTab1.Tab
 '		'    Case 2
-'		'        Select Case String99(Reading, 301)
+'		'        Select Case String99(READING, 301)
 '		'            Case "2"
 '		'                Me.RichTextBox1.LoadFile App.path & "\QbtwAangifte.rtf"
 '		'

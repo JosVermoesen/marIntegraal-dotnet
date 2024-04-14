@@ -16,8 +16,8 @@ End Class
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
 '		MSG = "InvesteringFiche negeren !  Bent U zeker ?"
-'		Ktrl = MsgBox(MSG, 292, "Investeringsfiche overslaan")
-'		If Ktrl = 6 Then
+'		KTRL = MsgBox(MSG, 292, "Investeringsfiche overslaan")
+'		If KTRL = 6 Then
 '			Me.Close()
 '		End If
 
@@ -30,11 +30,11 @@ End Class
 '		Dim RekeningNaam As New VB6.FixedLengthString(40)
 '		Dim RekeningTest2 As String
 
-'		TekstInfo(3).Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-'		RekeningTest2 = RTrim(AdoGetField(TableOfLedgerAccounts, "#v019 #"))
-'		TekstInfo(0).Text = Mid(GridText, 1, 10)
-'		TekstInfo(1).Text = Dec(Val(Mid(GridText, 11, 12)), MaskEURBH)
-'		TLBRecord(TableOfVarious) = ""
+'		TekstInfo(3).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'		RekeningTest2 = RTrim(AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #"))
+'		TekstInfo(0).Text = Mid(GRIDTEXT, 1, 10)
+'		TekstInfo(1).Text = Dec(Val(Mid(GRIDTEXT, 11, 12)), MASK_EURBH)
+'		TLB_RECORD(TABLE_VARIOUS) = ""
 
 '		Teller = Len(RekeningTest2)
 '		Do While Teller >= 0
@@ -51,47 +51,47 @@ End Class
 '		Else
 '			RekeningTest.Value = RekeningTest2
 '			TekstInfo(4).Text = RekeningTest.Value
-'			JetGet(TableOfLedgerAccounts, 0, RekeningTest.Value)
-'			If Ktrl Then
-'				RekeningNaam.Value = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+'			JetGet(TABLE_LEDGERACCOUNTS, 0, RekeningTest.Value)
+'			If KTRL Then
+'				RekeningNaam.Value = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
 '				MSG = "Afschrijving op " & RTrim(RekeningNaam.Value) & vbCrLf
 '				MSG = MSG & "Rekeningnr. : " & RekeningTest.Value & " bestaat nog niet." & vbCrLf & vbCrLf
 '				MSG = MSG & "Wordt hierna automatisch aangemaakt..."
 '				MsgBox(MSG, 0, "Aanmaak afschrijfrekening")
 
-'				TLBRecord(TableOfLedgerAccounts) = ""
-'				AdoInsertToRecord(TableOfLedgerAccounts, RekeningTest.Value, "v019")
-'				AdoInsertToRecord(TableOfLedgerAccounts, "Afschrijving op " & RTrim(RekeningNaam.Value), "v020")
-'				AdoInsertToRecord(TableOfLedgerAccounts, "O", "v032")
-'				JetInsert(TableOfLedgerAccounts, 0)
+'				TLB_RECORD(TABLE_LEDGERACCOUNTS) = ""
+'				AdoInsertToRecord(TABLE_LEDGERACCOUNTS, RekeningTest.Value, "v019")
+'				AdoInsertToRecord(TABLE_LEDGERACCOUNTS, "Afschrijving op " & RTrim(RekeningNaam.Value), "v020")
+'				AdoInsertToRecord(TABLE_LEDGERACCOUNTS, "O", "v032")
+'				JetInsert(TABLE_LEDGERACCOUNTS, 0)
 '			End If
 '		End If
 
-'		JetGet(TableOfVarious, 1, SetSpacing("18" & RekeningTest.Value, 20))
-'		NietAanwezig = Ktrl
-'		If Ktrl Then
+'		JetGet(TABLE_VARIOUS, 1, SetSpacing("18" & RekeningTest.Value, 20))
+'		NietAanwezig = KTRL
+'		If KTRL Then
 '			TekstInfo(6).Text = ""
 '			For T = 7 To 8
-'				TekstInfo(T).Text = Dec(0, MaskEURBH)
+'				TekstInfo(T).Text = Dec(0, MASK_EURBH)
 '			Next 
 '			TekstInfo(2).Text = Dec(5, "###")
 '			TekstInfo(5).Text = "6300000"
 '			Versneld.CheckState = System.Windows.Forms.CheckState.Checked
 '		Else
-'			RecordToField(TableOfVarious)
-'			TekstInfo(2).Text = Dec(Val(AdoGetField(TableOfVarious, "#v082 #")), "###") 'lineair over aantal jaar
-'			TekstInfo(6).Text = (AdoGetField(TableOfVarious, "#v083 #")) 'datum vorige bewerking
-'			TekstInfo(7).Text = Dec(Val(AdoGetField(TableOfVarious, "#v084 #")), MaskEURBH) 'totaal vorige bewerkingen
-'			TekstInfo(8).Text = Dec(Val(AdoGetField(TableOfVarious, "#v085 #")), MaskEURBH) 'reeds afgeschreven
-'			Versneld.CheckState = Val(AdoGetField(TableOfVarious, "#v086 #")) 'versnelde afschrijving
-'			TekstInfo(4).Text = AdoGetField(TableOfVarious, "#v087 #")
-'			TekstInfo(5).Text = AdoGetField(TableOfVarious, "#v088 #")
+'			RecordToField(TABLE_VARIOUS)
+'			TekstInfo(2).Text = Dec(Val(AdoGetField(TABLE_VARIOUS, "#v082 #")), "###") 'lineair over aantal jaar
+'			TekstInfo(6).Text = (AdoGetField(TABLE_VARIOUS, "#v083 #")) 'datum vorige bewerking
+'			TekstInfo(7).Text = Dec(Val(AdoGetField(TABLE_VARIOUS, "#v084 #")), MASK_EURBH) 'totaal vorige bewerkingen
+'			TekstInfo(8).Text = Dec(Val(AdoGetField(TABLE_VARIOUS, "#v085 #")), MASK_EURBH) 'reeds afgeschreven
+'			Versneld.CheckState = Val(AdoGetField(TABLE_VARIOUS, "#v086 #")) 'versnelde afschrijving
+'			TekstInfo(4).Text = AdoGetField(TABLE_VARIOUS, "#v087 #")
+'			TekstInfo(5).Text = AdoGetField(TABLE_VARIOUS, "#v088 #")
 '			If TekstInfo(6).Text = TekstInfo(0).Text Then
 '				MSG = "Opgelet, laatste bijwerking op dezelfde dag" & vbCrLf
 '				MSG = MSG & "reeds aanwezig.  Vermijdt dubbele optellingen !" & vbCrLf & vbCrLf
 '				MSG = MSG & "Kies Sluiten indien U zopas de fiche reeds bijgewerkt hebt."
 '				MsgBox(MSG, 48, "Investeringsfiche éénzelfde datum")
-'			ElseIf Not DatumKtrl(TekstInfo(6).Text, BookyearAsText) Then 
+'			ElseIf Not DatumKtrl(TekstInfo(6).Text, BOOKYEARAS_TEXT) Then 
 '				MSG = "Opgelet, U probeert een investeringsfiche" & vbCrLf
 '				MSG = MSG & "van een ander boekjaar bij te werken !" & vbCrLf & vbCrLf
 '				MSG = MSG & "Kies Sluiten en neem de juiste rekening."
@@ -104,7 +104,7 @@ End Class
 
 '	Private Sub InvesteringsFiche_FormClosed(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
 
-'		JetTableClose(TableOfVarious)
+'		JetTableClose(TABLE_VARIOUS)
 
 '	End Sub
 
@@ -112,23 +112,23 @@ End Class
 '		Dim TempoTel As Short
 '		Dim Ktrl2 As Short
 
-'		AdoInsertToRecord(TableOfVarious, (TekstInfo(3).Text), "v019")
-'		AdoInsertToRecord(TableOfVarious, (TekstInfo(2).Text), "v082")
-'		AdoInsertToRecord(TableOfVarious, (TekstInfo(0).Text), "v083")
-'		AdoInsertToRecord(TableOfVarious, Dec(Val(TekstInfo(1).Text) + Val(TekstInfo(7).Text), MaskEURBH), "v084")
+'		AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(3).Text), "v019")
+'		AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(2).Text), "v082")
+'		AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(0).Text), "v083")
+'		AdoInsertToRecord(TABLE_VARIOUS, Dec(Val(TekstInfo(1).Text) + Val(TekstInfo(7).Text), MASK_EURBH), "v084")
 '		'v085 TekstInfo(8).Text reeds afgeschreven mag niet gewijzigd worden
-'		AdoInsertToRecord(TableOfVarious, VB6.Format(Versneld.CheckState, "0"), "v086")
-'		AdoInsertToRecord(TableOfVarious, (TekstInfo(4).Text), "v087")
-'		AdoInsertToRecord(TableOfVarious, (TekstInfo(5).Text), "v088")
-'		AdoInsertToRecord(TableOfVarious, "18" & AdoGetField(TableOfVarious, "#v087 #"), "v005")
+'		AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Versneld.CheckState, "0"), "v086")
+'		AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(4).Text), "v087")
+'		AdoInsertToRecord(TABLE_VARIOUS, (TekstInfo(5).Text), "v088")
+'		AdoInsertToRecord(TABLE_VARIOUS, "18" & AdoGetField(TABLE_VARIOUS, "#v087 #"), "v005")
 '		MSG = "Informatielijn opslaan..." & vbCrLf
 '		MSG = MSG & "Bent U zeker ?"
 '		Ktrl2 = MsgBox(MSG, 292, "Fiche bijwerken/wegschrijven")
 '		If Ktrl2 = 6 Then
 '			If NietAanwezig Then
-'				JetInsert(TableOfVarious, 1)
+'				JetInsert(TABLE_VARIOUS, 1)
 '			Else
-'				bUpdate(TableOfVarious, 1)
+'				bUpdate(TABLE_VARIOUS, 1)
 '			End If
 '			Me.Close()
 '		End If
@@ -149,11 +149,11 @@ End Class
 '		Select Case Index
 '			Case 0
 '				If DateWrongFormat(TekstInfo(Index).Text) Then
-'					TekstInfo(Index).Text = Mid(GridText, 1, 10)
+'					TekstInfo(Index).Text = Mid(GRIDTEXT, 1, 10)
 '					Beep()
 '				End If
 '			Case 1, 8
-'				TekstInfo(Index).Text = Dec(Val(TekstInfo(Index).Text), MaskEURBH)
+'				TekstInfo(Index).Text = Dec(Val(TekstInfo(Index).Text), MASK_EURBH)
 '			Case 2
 '				TempoBdrg = Val(TekstInfo(Index).Text)
 '				If TempoBdrg < 1 Or TempoBdrg > 50 Then

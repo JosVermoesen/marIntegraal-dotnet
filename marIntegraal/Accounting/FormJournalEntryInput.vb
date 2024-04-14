@@ -12,7 +12,7 @@ Public Class FormJournalEntryInput
 
         DateTimePickerBookingDate.Value = FormBYPERDAT.DatumVerwerking.Value
         ButtonEraseAll.PerformClick()
-        If XLogKey = "SchrijfAF!" Then
+        If XLOG_KEY = "SchrijfAF!" Then
             ComboBoxBookType.SelectedIndex = 1
         End If
     End Sub
@@ -22,57 +22,57 @@ Public Class FormJournalEntryInput
         Dim T As Short
 
         BookingError = False
-        dKtrlCumul = 0 : dKtrlBEF = 0 : dKtrlEUR = 0
+        DKTRL_CUMUL = 0 : DKTRL_BEF = 0 : DKTRL_EUR = 0
 
         Boeking.Close()
         Boeking.Hide()
 
         For T = 0 To ListBoxJournalEntries.Items.Count - 1
             MSG = ListBoxJournalEntries.Items.Item(T)
-            rsJournaal.AddNew()
-            rsJournaal.Fields("v041").Value = "0"
-            rsJournaal.Fields("v066").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'Boekdatum
-            rsJournaal.Fields("v033").Value = "D0" & Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokument
-            rsJournaal.Fields("v035").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokumentdatum
-            rsJournaal.Fields("v067").Value = Mid(TextBoxDescription.Text, 1, 35) 'Omschrijving
-            rsJournaal.Fields("v019").Value = Mid(MSG, 1, 7) 'Rekening
-            rsJournaal.Fields("v068").Value = Mid(MSG, 50, 12) 'Bedrag
-            rsJournaal.Fields("dece068").Value = Val(Mid(MSG, 50, 12)) 'Bedrag
-            rsJournaal.Fields("v069").Value = Mid(MSG, 63, 7) 'TegenRekening
+            RS_JOURNAL.AddNew()
+            RS_JOURNAL.Fields("v041").Value = "0"
+            RS_JOURNAL.Fields("v066").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'Boekdatum
+            RS_JOURNAL.Fields("v033").Value = "D0" & Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokument
+            RS_JOURNAL.Fields("v035").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokumentdatum
+            RS_JOURNAL.Fields("v067").Value = Mid(TextBoxDescription.Text, 1, 35) 'Omschrijving
+            RS_JOURNAL.Fields("v019").Value = Mid(MSG, 1, 7) 'Rekening
+            RS_JOURNAL.Fields("v068").Value = Mid(MSG, 50, 12) 'Bedrag
+            RS_JOURNAL.Fields("dece068").Value = Val(Mid(MSG, 50, 12)) 'Bedrag
+            RS_JOURNAL.Fields("v069").Value = Mid(MSG, 63, 7) 'TegenRekening
             If Not adoJournaalOK() Then
                 BookingError = True
-                dKtrlCumul = 999
+                DKTRL_CUMUL = 999
             ElseIf Mid(MSG, 63, 7) <> "       " Then
-                rsJournaal.AddNew()
-                rsJournaal.Fields("v041").Value = "0"
-                rsJournaal.Fields("v066").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'Boekdatum
-                rsJournaal.Fields("v033").Value = "D0" & Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokument
-                rsJournaal.Fields("v035").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokumentdatum
-                rsJournaal.Fields("v067").Value = Mid(TextBoxDescription.Text, 1, 35) 'Omschrijving
+                RS_JOURNAL.AddNew()
+                RS_JOURNAL.Fields("v041").Value = "0"
+                RS_JOURNAL.Fields("v066").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'Boekdatum
+                RS_JOURNAL.Fields("v033").Value = "D0" & Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokument
+                RS_JOURNAL.Fields("v035").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokumentdatum
+                RS_JOURNAL.Fields("v067").Value = Mid(TextBoxDescription.Text, 1, 35) 'Omschrijving
 
-                rsJournaal.Fields("v019").Value = Mid(MSG, 63, 7) 'Rekening
-                rsJournaal.Fields("v068").Value = Str(-Val(Mid(MSG, 50, 12))) 'Bedrag
-                rsJournaal.Fields("dece068").Value = -Val(Mid(MSG, 50, 12)) 'Bedrag
-                rsJournaal.Fields("v069").Value = Mid(MSG, 1, 7) 'TegenRekening
+                RS_JOURNAL.Fields("v019").Value = Mid(MSG, 63, 7) 'Rekening
+                RS_JOURNAL.Fields("v068").Value = Str(-Val(Mid(MSG, 50, 12))) 'Bedrag
+                RS_JOURNAL.Fields("dece068").Value = -Val(Mid(MSG, 50, 12)) 'Bedrag
+                RS_JOURNAL.Fields("v069").Value = Mid(MSG, 1, 7) 'TegenRekening
                 If Not adoJournaalOK() Then
                     BookingError = True
-                    dKtrlCumul = 999
+                    DKTRL_CUMUL = 999
                 End If
             End If
         Next
 
-        If dKtrlCumul Then
+        If DKTRL_CUMUL Then
             MsgBox("Fout bij vierkantskontrole journaal." & vbCrLf & vbCrLf & "Deze verrichting wordt genegeerd.")
             Boeking.cmdBoeken.Enabled = False
             Boeking.ShowDialog()
             BookingError = True
-        ElseIf JournaalLocked = True Then
+        ElseIf JOURNAL_LOCKED = True Then
             Boeking.cmdBoeken.Enabled = False
             Boeking.ShowDialog()
             BookingError = True
         Else
             Boeking.ShowDialog()
-            If dKtrlCumul Then BookingError = True
+            If DKTRL_CUMUL Then BookingError = True
         End If
 
     End Function
@@ -116,15 +116,15 @@ Public Class FormJournalEntryInput
 
     Function LedgerAccountOk(rekTextBox As TextBox, rekLabel As Label) As Boolean
         LedgerAccountOk = False
-        SharedFl = TableOfLedgerAccounts
-        SharedIndex = 0
-        GridText = rekTextBox.Text
+        SHARED_FL = TABLE_LEDGERACCOUNTS
+        SHARED_INDEX = 0
+        GRIDTEXT = rekTextBox.Text
         SqlSearch.ShowDialog()
-        If Ktrl Then
+        If KTRL Then
             rekLabel.Text = ""
         Else
-            rekTextBox.Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-            rekLabel.Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+            rekTextBox.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+            rekLabel.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
             LedgerAccountOk = True
         End If
     End Function
@@ -138,7 +138,7 @@ Public Class FormJournalEntryInput
                 TotalDCAmount += Val(Mid(MSG, 50, 12))
             End If
         Next
-        LabelSoldeAmount.Text = Dec(TotalDCAmount, MaskEURBH)
+        LabelSoldeAmount.Text = Dec(TotalDCAmount, MASK_EURBH)
         If Val(LabelSoldeAmount.Text) = 0 Then
             ButtonBookEntries.Enabled = True
             AcceptButton = ButtonBookEntries
@@ -155,12 +155,12 @@ Public Class FormJournalEntryInput
         'Dim Verwittigen As Boolean
 
         'Verwittigen = False
-        'If String99(Reading, 64) = "1" Then
+        'If String99(READING, 64) = "1" Then
         '    MsgBox("Beginbalans reeds gegenereerd voor dit boekjaar.  Bijkomende posten kunnen uitsluitend via 'Diverse post'-optie ingebracht worden !")
         '    'UPGRADE_WARNING: Couldn't resolve default property of object BoekBeginBalans. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
         '    BoekBeginBalans = False
         '    Exit Function
-        'ElseIf String99(Reading, 64) <> "0" Then
+        'ElseIf String99(READING, 64) <> "0" Then
         '    MsgBox("Setup beginbalans bevat niet de juiste vlag geboekt of niet geboekt.  Kontroleer")
         '    'UPGRADE_WARNING: Couldn't resolve default property of object BoekBeginBalans. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
         '    BoekBeginBalans = False
@@ -173,37 +173,37 @@ Public Class FormJournalEntryInput
         ''kontrole vanaf eerst 1 tot laatste 5
         'TotaalBalans = 0
 
-        ''If Not adoGet(TableOfLedgerAccounts, 0, "=", XLogKey) Then
+        ''If Not adoGet(TABLE_LEDGERACCOUNTS, 0, "=", XLOG_KEY) Then
         ''Else
-        ''    RekeningNummer = RV(rsMAR(TableOfLedgerAccounts), "v019")
-        ''    NaamRekening = RV(rsMAR(TableOfLedgerAccounts), "v020")
+        ''    RekeningNummer = RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v019")
+        ''    NaamRekening = RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v020")
 
-        'If Not adoGet(TableOfLedgerAccounts, 0, ">=", SetSpacing("1", 7)) Then
+        'If Not adoGet(TABLE_LEDGERACCOUNTS, 0, ">=", SetSpacing("1", 7)) Then
         '    MsgBox("Geen rekeningen ???")
         '    'UPGRADE_WARNING: Couldn't resolve default property of object BoekBeginBalans. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
         '    BoekBeginBalans = False
         '    Exit Function
         '    'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        'ElseIf VB.Left(RV(rsMAR(TableOfLedgerAccounts), "v019"), 1) < "6" Then
-        '    If bhEuro Then
+        'ElseIf VB.Left(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v019"), 1) < "6" Then
+        '    If BH_EURO Then
         '        'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '        TotaalBalans = TotaalBalans + Val(RV(rsMAR(TableOfLedgerAccounts), "e" & VB6.Format(ActiveBookyear + 23, "000")))
+        '        TotaalBalans = TotaalBalans + Val(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "e" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000")))
         '    Else
         '        'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '        TotaalBalans = TotaalBalans + Val(RV(rsMAR(TableOfLedgerAccounts), "v" & VB6.Format(ActiveBookyear + 23, "000")))
+        '        TotaalBalans = TotaalBalans + Val(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000")))
         '    End If
-        '    Do While Not rsMAR(TableOfLedgerAccounts).EOF
-        '        rsMAR(TableOfLedgerAccounts).MoveNext()
+        '    Do While Not RS_MAR(TABLE_LEDGERACCOUNTS).EOF
+        '        RS_MAR(TABLE_LEDGERACCOUNTS).MoveNext()
         '        'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '        If VB.Left(RV(rsMAR(TableOfLedgerAccounts), "v019"), 1) >= "6" Then
+        '        If VB.Left(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v019"), 1) >= "6" Then
         '            Exit Do
         '        Else
-        '            If bhEuro Then
+        '            If BH_EURO Then
         '                'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '                TotaalBalans = TotaalBalans + Val(RV(rsMAR(TableOfLedgerAccounts), "e" & VB6.Format(ActiveBookyear + 23, "000")))
+        '                TotaalBalans = TotaalBalans + Val(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "e" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000")))
         '            Else
         '                'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '                TotaalBalans = TotaalBalans + Val(RV(rsMAR(TableOfLedgerAccounts), "v" & VB6.Format(ActiveBookyear + 23, "000")))
+        '                TotaalBalans = TotaalBalans + Val(RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000")))
         '            End If
         '        End If
         '    Loop
@@ -211,29 +211,29 @@ Public Class FormJournalEntryInput
 
         ''+ eerste 6 tot laatste 7
         'TotaalResultaat = 0
-        'JetGetOrGreater(TableOfLedgerAccounts, 0, SetSpacing("6", 7))
-        'If Ktrl Then
+        'JetGetOrGreater(TABLE_LEDGERACCOUNTS, 0, SetSpacing("6", 7))
+        'If KTRL Then
         '    MsgBox("Geen rekeningen ???")
         '    'UPGRADE_WARNING: Couldn't resolve default property of object BoekBeginBalans. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
         '    BoekBeginBalans = False
         '    Exit Function
-        'ElseIf VB.Left(KeyBuf(TableOfLedgerAccounts), 1) < "8" Then
-        '    RecordToField(TableOfLedgerAccounts)
-        '    If bhEuro Then
-        '        TotaalResultaat = TotaalResultaat + Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        'ElseIf VB.Left(KEY_BUF(TABLE_LEDGERACCOUNTS), 1) < "8" Then
+        '    RecordToField(TABLE_LEDGERACCOUNTS)
+        '    If BH_EURO Then
+        '        TotaalResultaat = TotaalResultaat + Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '    Else
-        '        TotaalResultaat = TotaalResultaat + Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        '        TotaalResultaat = TotaalResultaat + Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '    End If
         '    Do
-        '        bNext(TableOfLedgerAccounts)
-        '        If Ktrl Or VB.Left(KeyBuf(TableOfLedgerAccounts), 1) > "7" Then
+        '        bNext(TABLE_LEDGERACCOUNTS)
+        '        If KTRL Or VB.Left(KEY_BUF(TABLE_LEDGERACCOUNTS), 1) > "7" Then
         '            Exit Do
         '        Else
-        '            RecordToField(TableOfLedgerAccounts)
-        '            If bhEuro Then
-        '                TotaalResultaat = TotaalResultaat + Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        '            RecordToField(TABLE_LEDGERACCOUNTS)
+        '            If BH_EURO Then
+        '                TotaalResultaat = TotaalResultaat + Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '            Else
-        '                TotaalResultaat = TotaalResultaat + Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        '                TotaalResultaat = TotaalResultaat + Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '            End If
         '        End If
         '    Loop
@@ -241,14 +241,14 @@ Public Class FormJournalEntryInput
 
         'MSG = ""
         'If TotaalResultaat <> 0 Then
-        '    MSG = MSG & "Resultatenbalans verschil  : " & Dec(TotaalResultaat, MaskEURBH) & vbCrLf
+        '    MSG = MSG & "Resultatenbalans verschil  : " & Dec(TotaalResultaat, MASK_EURBH) & vbCrLf
         'End If
         'If TotaalBalans <> 0 Then
         '    If MSG = "" Then
         '        Verwittigen = True
         '        MSG = "Blijkbaar is het resultaat verleden jaar GOED geboekt maar actief/passief is verschillend.  Straks wordt U de mogelijkheid geboden om de verschillen bij te werken OP EIGEN VERANTWOORDELIJKHEID" & vbCrLf & vbCrLf
         '    End If
-        '    MSG = MSG & "ACTIVE/PASSIVA verschil   : " & Dec(TotaalBalans, MaskEURBH) & vbCrLf
+        '    MSG = MSG & "ACTIVE/PASSIVA verschil   : " & Dec(TotaalBalans, MASK_EURBH) & vbCrLf
         'End If
         'If MSG = "" Then
         'Else
@@ -264,38 +264,38 @@ Public Class FormJournalEntryInput
         'Dim dTotaalKtrl As Decimal
         'Dim dBedrag As Decimal
         'Dim TextLine As String
-        'JetGetOrGreater(TableOfLedgerAccounts, 0, SetSpacing("1", 7))
-        'If Ktrl Then
+        'JetGetOrGreater(TABLE_LEDGERACCOUNTS, 0, SetSpacing("1", 7))
+        'If KTRL Then
         '    MsgBox("Geen rekeningen ???")
         '    'UPGRADE_WARNING: Couldn't resolve default property of object BoekBeginBalans. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
         '    BoekBeginBalans = False
         '    Exit Function
-        'ElseIf VB.Left(KeyBuf(TableOfLedgerAccounts), 1) < "6" Then
-        '    RecordToField(TableOfLedgerAccounts)
-        '    If bhEuro Then
-        '        dBedrag = Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        'ElseIf VB.Left(KEY_BUF(TABLE_LEDGERACCOUNTS), 1) < "6" Then
+        '    RecordToField(TABLE_LEDGERACCOUNTS)
+        '    If BH_EURO Then
+        '        dBedrag = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '    Else
-        '        dBedrag = Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        '        dBedrag = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '    End If
         '    dTotaalKtrl = dTotaalKtrl + dBedrag
         '    If dBedrag <> 0 Then
-        '        TextLine = SetSpacing(AdoGetField(TableOfLedgerAccounts, "#v019 #"), 7) & " " & SetSpacing(AdoGetField(TableOfLedgerAccounts, "#v020 #"), 40) & " " & Dec(dBedrag, MaskEURBH) & " " & SetSpacing("", 7)
+        '        TextLine = SetSpacing(AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #"), 7) & " " & SetSpacing(AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), 40) & " " & Dec(dBedrag, MASK_EURBH) & " " & SetSpacing("", 7)
         '        JournaalPost.Items.Add(TextLine)
         '    End If
         '    Do
-        '        bNext(TableOfLedgerAccounts)
-        '        If Ktrl Or VB.Left(KeyBuf(TableOfLedgerAccounts), 1) >= "6" Then
+        '        bNext(TABLE_LEDGERACCOUNTS)
+        '        If KTRL Or VB.Left(KEY_BUF(TABLE_LEDGERACCOUNTS), 1) >= "6" Then
         '            Exit Do
         '        Else
-        '            RecordToField(TableOfLedgerAccounts)
-        '            If bhEuro Then
-        '                dBedrag = Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        '            RecordToField(TABLE_LEDGERACCOUNTS)
+        '            If BH_EURO Then
+        '                dBedrag = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '            Else
-        '                dBedrag = Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(ActiveBookyear + 23, "000") & " #"))
+        '                dBedrag = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(ACTIVE_BOOKYEAR + 23, "000") & " #"))
         '            End If
         '            dTotaalKtrl = dTotaalKtrl + dBedrag
         '            If dBedrag <> 0 Then
-        '                TextLine = SetSpacing(AdoGetField(TableOfLedgerAccounts, "#v019 #"), 7) & " " & SetSpacing(AdoGetField(TableOfLedgerAccounts, "#v020 #"), 40) & " " & Dec(dBedrag, MaskEURBH) & " " & SetSpacing("", 7)
+        '                TextLine = SetSpacing(AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #"), 7) & " " & SetSpacing(AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), 40) & " " & Dec(dBedrag, MASK_EURBH) & " " & SetSpacing("", 7)
         '                JournaalPost.Items.Add(TextLine)
         '            End If
         '        End If
@@ -325,22 +325,22 @@ Public Class FormJournalEntryInput
         'Dim Succes As Short
         'On Error Resume Next
         'Succes = True
-        'If String99(Reading, 63) = "1" Then
+        'If String99(READING, 63) = "1" Then
         'MsgBox("Afschrijvingsposten reeds gegenereerd voor dit boekjaar.  Bijkomende posten kunnen uitsluitend via 'Diverse post'-optie ingebracht worden !")
         '        AfschrijfBoeking = False
         '            Exit Function
-        '        ElseIf String99(Reading, 63) <> "0" Then
+        '        ElseIf String99(READING, 63) <> "0" Then
         '            MsgBox("Setup boekjaar en parameters bevat niet de juiste vlag geboekt of niet geboekt.  Kontroleer")
         '            AfschrijfBoeking = False
         '            Exit Function
-        '        ElseIf String99(Reading, 64) <> "1" Then
+        '        ElseIf String99(READING, 64) <> "1" Then
         '            MsgBox("Onlogische situatie.  Dit boekjaar bevat nog geen beginbalans ?  De beginbalans dient aanwezig te zijn.  Mogelijk bevindt U zich in het verkeerde boekjaar ?")
         '            AfschrijfBoeking = False
         '            Exit Function
         '        End If
 
-        '        JetGetOrGreater(TableOfVarious, 1, SetSpacing("18", 20))
-        '        If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "18" Then
+        '        JetGetOrGreater(TABLE_VARIOUS, 1, SetSpacing("18", 20))
+        '        If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "18" Then
         '            MsgBox("Er zijn geen investeringsfiches !")
         '            AfschrijfBoeking = False
         '            Exit Function
@@ -349,8 +349,8 @@ Public Class FormJournalEntryInput
         '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
         '			GoSub AfschrijvingsLijnErBij
         '			Do
-        '                bNext(TableOfVarious)
-        '                If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "18" Then
+        '                bNext(TABLE_VARIOUS)
+        '                If KTRL Or VB.Left(KEY_BUF(TABLE_VARIOUS), 2) <> "18" Then
         '                    Exit Do
         '                Else
         '					'FIXIT: Keyword 'GoSub' not supported in Visual Basic .NET                                 FixIT90210ae-R6614-H1984
@@ -375,10 +375,10 @@ Public Class FormJournalEntryInput
 
         'AfschrijvingsLijnErBij:
         '        OmschrijvingsLijn.Value = ""
-        '        RecordToField(TableOfVarious)
-        '        If Len(AdoGetField(TableOfVarious, "#v083 #")) <> 8 Then
-        '            OmschrijvingsLijn.Value = "Datumformaat onjuist voor " & AdoGetField(TableOfVarious, "#v087 #")
-        '            MsgBox("dokumentendatum niet in formaat DDMMJJEE" & vbCrLf & vbCrLf & OmschrijvingsLijn.Value & vbCrLf & vbCrLf & AdoGetField(TableOfVarious, "#v083 #"))
+        '        RecordToField(TABLE_VARIOUS)
+        '        If Len(AdoGetField(TABLE_VARIOUS, "#v083 #")) <> 8 Then
+        '            OmschrijvingsLijn.Value = "Datumformaat onjuist voor " & AdoGetField(TABLE_VARIOUS, "#v087 #")
+        '            MsgBox("dokumentendatum niet in formaat DDMMJJEE" & vbCrLf & vbCrLf & OmschrijvingsLijn.Value & vbCrLf & vbCrLf & AdoGetField(TABLE_VARIOUS, "#v083 #"))
         '            AfschrijfBoeking = False
         '            Exit Function
         '        End If
@@ -391,17 +391,17 @@ Public Class FormJournalEntryInput
         '        Dim Das As Double
         '        Dim restKtrl As Double
         '        Dim MaskerHier As String
-        '        If Mid(AdoGetField(TableOfVarious, "#v083 #"), 5, 4) > Mid(BookyearFromTo.Value, 9, 4) Then
+        '        If Mid(AdoGetField(TABLE_VARIOUS, "#v083 #"), 5, 4) > Mid(BOOKYEAR_FROMTO.Value, 9, 4) Then
         '            'FIXIT: Return has new meaning in Visual Basic .NET                                        FixIT90210ae-R9642-H1984
         '            'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
         '            Return
-        '        ElseIf Val(AdoGetField(TableOfVarious, "#v084 #")) = Val(AdoGetField(TableOfVarious, "#v085 #")) Then
-        '            MSG = "Alles is afgeschreven voor " & AdoGetField(TableOfVarious, "#v087 #") & vbCrLf & vbCrLf & "Totaal : " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v084 #")), MaskSy(0)) & vbCrLf & vbCrLf
-        '            If Not adoGet(TableOfLedgerAccounts, 0, "=", AdoGetField(TableOfVarious, "#v087 #")) Then
+        '        ElseIf Val(AdoGetField(TABLE_VARIOUS, "#v084 #")) = Val(AdoGetField(TABLE_VARIOUS, "#v085 #")) Then
+        '            MSG = "Alles is afgeschreven voor " & AdoGetField(TABLE_VARIOUS, "#v087 #") & vbCrLf & vbCrLf & "Totaal : " & VB6.Format(Val(AdoGetField(TABLE_VARIOUS, "#v084 #")), MASK_SY(0)) & vbCrLf & vbCrLf
+        '            If Not adoGet(TABLE_LEDGERACCOUNTS, 0, "=", AdoGetField(TABLE_VARIOUS, "#v087 #")) Then
         '                MSG = MSG & "Rekening bestaat zelfs niet eens..."
         '            Else
         '                'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '                MSG = MSG + RV(rsMAR(TableOfLedgerAccounts), "v020")
+        '                MSG = MSG + RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v020")
         '            End If
         '            MsgBox(MSG)
         '            'FIXIT: Return has new meaning in Visual Basic .NET                                        FixIT90210ae-R9642-H1984
@@ -409,16 +409,16 @@ Public Class FormJournalEntryInput
         '            Return
         '        Else
 
-        '            ipct = Val(AdoGetField(TableOfVarious, "#v082 #"))
-        '            dbdrg = Val(AdoGetField(TableOfVarious, "#v084 #"))
-        '            dRa = Val(AdoGetField(TableOfVarious, "#v085 #"))
+        '            ipct = Val(AdoGetField(TABLE_VARIOUS, "#v082 #"))
+        '            dbdrg = Val(AdoGetField(TABLE_VARIOUS, "#v084 #"))
+        '            dRa = Val(AdoGetField(TABLE_VARIOUS, "#v085 #"))
 
-        '            If bhEuro = True Then
+        '            If BH_EURO = True Then
         '                restKtrl = 0.5
-        '                MaskerHier = MaskEURBH
+        '                MaskerHier = MASK_EURBH
         '            Else
         '                restKtrl = 20
-        '                MaskerHier = MaskSy(0)
+        '                MaskerHier = MASK_SY(0)
         '            End If
 
         '            dRest = dbdrg - (dRa + Val(Dec(dbdrg / ipct, MaskerHier)))
@@ -432,15 +432,15 @@ Public Class FormJournalEntryInput
         '            End If
         '        End If
 
-        '        If Not adoGet(TableOfLedgerAccounts, 0, "=", AdoGetField(TableOfVarious, "#v087 #")) Then
+        '        If Not adoGet(TABLE_LEDGERACCOUNTS, 0, "=", AdoGetField(TABLE_VARIOUS, "#v087 #")) Then
         '            OmschrijvingsLijn.Value = RTrim(OmschrijvingsLijn.Value) & " Afschr. op!!!"
         '        End If
-        '        If Not adoGet(TableOfLedgerAccounts, 0, "=", AdoGetField(TableOfVarious, "#v088 #")) Then
+        '        If Not adoGet(TABLE_LEDGERACCOUNTS, 0, "=", AdoGetField(TABLE_VARIOUS, "#v088 #")) Then
         '            OmschrijvingsLijn.Value = RTrim(OmschrijvingsLijn.Value) & " Kostrekening !!"
         '        Else
         '            If OmschrijvingsLijn.Value = Space(40) Then
         '                'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '                OmschrijvingsLijn.Value = "Ok, " + RV(rsMAR(TableOfLedgerAccounts), "v020")
+        '                OmschrijvingsLijn.Value = "Ok, " + RV(RS_MAR(TABLE_LEDGERACCOUNTS), "v020")
         '            End If
         '        End If
 
@@ -448,7 +448,7 @@ Public Class FormJournalEntryInput
         '        Else
         '            Succes = False
         '        End If
-        '        TextLine = SetSpacing(AdoGetField(TableOfVarious, "#v088 #"), 7) & " " & OmschrijvingsLijn.Value & " " & Dec(Das, MaskEURBH) & " " & SetSpacing(AdoGetField(TableOfVarious, "#v087 #"), 7)
+        '        TextLine = SetSpacing(AdoGetField(TABLE_VARIOUS, "#v088 #"), 7) & " " & OmschrijvingsLijn.Value & " " & Dec(Das, MASK_EURBH) & " " & SetSpacing(AdoGetField(TABLE_VARIOUS, "#v087 #"), 7)
         '        JournaalPost.Items.Add(TextLine)
         '        'FIXIT: Return has new meaning in Visual Basic .NET                                        FixIT90210ae-R9642-H1984
         '        'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -460,7 +460,7 @@ Public Class FormJournalEntryInput
         'Dim DummySleutel As String
         'Dim T As Short
 
-        'If XisEuroWasBEF = True Then
+        'If XisEUROWasBEF = True Then
         'MSG = "Laatste afschrijving in BEF is geboekt." & vbCr & vbCr
         'MSG = MSG & "Uw hoogste boekjaar is in EUR" & vbCr & vbCr
         'MSG = MSG & "Hierna worden alle nog openstaande afschrijvingslijnen eveneens omgerekend naar EUR voor toekomstige bewerkingen"
@@ -468,20 +468,20 @@ Public Class FormJournalEntryInput
         'End If
 
         'For T = 0 To JournaalPost.Items.Count - 1
-        'JetGetOrGreater(TableOfVarious, 1, SetSpacing("18" & VB.Right(VB6.GetItemString(JournaalPost, T), 7), 20))
-        'If Ktrl Then
+        'JetGetOrGreater(TABLE_VARIOUS, 1, SetSpacing("18" & VB.Right(VB6.GetItemString(JournaalPost, T), 7), 20))
+        'If KTRL Then
         'MsgBox("Stop")
         'Else
-        'RecordToField(TableOfVarious)
-        'dRa = Val(AdoGetField(TableOfVarious, "#v085 #")) + Val(Mid(VB6.GetItemString(JournaalPost, T), 50, 12))
-        'AdoInsertToRecord(TableOfVarious, Str(dRa), "v085")
-        'If XisEuroWasBEF = True Then
-        'AdoInsertToRecord(TableOfVarious, Str(Val(Dec(dRa / Euro, "########0.00"))), "v085")
-        'dRa = Val(AdoGetField(TableOfVarious, "#v084 #"))
-        'AdoInsertToRecord(TableOfVarious, Str(Val(Dec(dRa / Euro, "########0.00"))), "v084")
+        'RecordToField(TABLE_VARIOUS)
+        'dRa = Val(AdoGetField(TABLE_VARIOUS, "#v085 #")) + Val(Mid(VB6.GetItemString(JournaalPost, T), 50, 12))
+        'AdoInsertToRecord(TABLE_VARIOUS, Str(dRa), "v085")
+        'If XisEUROWasBEF = True Then
+        'AdoInsertToRecord(TABLE_VARIOUS, Str(Val(Dec(dRa / EURO, "########0.00"))), "v085")
+        'dRa = Val(AdoGetField(TABLE_VARIOUS, "#v084 #"))
+        'AdoInsertToRecord(TABLE_VARIOUS, Str(Val(Dec(dRa / EURO, "########0.00"))), "v084")
         'End If
-        'bUpdate(TableOfVarious, 1)
-        'If Ktrl Then MsgBox("stop tijdens update investeringsfiche")
+        'bUpdate(TABLE_VARIOUS, 1)
+        'If KTRL Then MsgBox("stop tijdens update investeringsfiche")
         'End If
         'Next
         'SS99("1", 63)
@@ -499,8 +499,8 @@ Public Class FormJournalEntryInput
             Case Else
                 MSG = ComboBoxBookType.Text & " aktiveren !" & vbCrLf & vbCrLf
                 MSG &= "Bent U zeker ?"
-                Ktrl = MsgBox(MSG, 292)
-                If Ktrl = 6 Then
+                KTRL = MsgBox(MSG, 292)
+                If KTRL = 6 Then
                     Select Case Mid(ComboBoxBookType.Text, 1, 1)
                         Case "1"
                             'If AfschrijfBoeking() Then
@@ -532,7 +532,7 @@ Public Class FormJournalEntryInput
             TextBoxDescription.Focus()
             Exit Sub
         End If
-        If Not DatumKtrl(Format(DateTimePickerBookingDate.Value, "dd/MM/yyyy"), PeriodAsText) Then
+        If Not DatumKtrl(Format(DateTimePickerBookingDate.Value, "dd/MM/yyyy"), PERIODAS_TEXT) Then
             Beep()
             FormBYPERDAT.WindowState = FormWindowState.Normal
             FormBYPERDAT.Focus()
@@ -543,8 +543,8 @@ Public Class FormJournalEntryInput
             Exit Sub
         End If
 
-        Ktrl = MsgBox("Journaalpost bestaande uit" & Str(ListBoxJournalEntries.Items.Count) & " Lijnen wegboeken.  Bent U zeker ?", 292)
-        If Ktrl = 6 Then
+        KTRL = MsgBox("Journaalpost bestaande uit" & Str(ListBoxJournalEntries.Items.Count) & " Lijnen wegboeken.  Bent U zeker ?", 292)
+        If KTRL = 6 Then
             TransBegin()
             Cursor.Current = Cursors.WaitCursor
             If BookingError() Then
@@ -591,7 +591,7 @@ Public Class FormJournalEntryInput
         Else
             TotalDCAmount = -TotalDCAmount
         End If
-        TextLine = SetSpacing((TextBoxLedgerAccount.Text), 7) & " " & SetSpacing((LabelLedgerAccountName.Text), 40) & " " & Dec(TotalDCAmount, MaskEURBH) & " "
+        TextLine = SetSpacing((TextBoxLedgerAccount.Text), 7) & " " & SetSpacing((LabelLedgerAccountName.Text), 40) & " " & Dec(TotalDCAmount, MASK_EURBH) & " "
         If CheckBoxDCFlag.CheckState Then
             TextLine &= SetSpacing((TextBoxOffsetAccount.Text), 7)
         Else
@@ -630,8 +630,8 @@ Public Class FormJournalEntryInput
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         If ListBoxJournalEntries.Items.Count Then
             MSG = Format(ListBoxJournalEntries.Items.Count) & " Journaallijnen negeren.  Bent U zeker ?"
-            Ktrl = MsgBox(MSG, 292, "Inbreng Journaalpost")
-            If Ktrl <> 6 Then
+            KTRL = MsgBox(MSG, 292, "Inbreng Journaalpost")
+            If KTRL <> 6 Then
                 Exit Sub
             End If
         End If
@@ -695,14 +695,14 @@ Public Class FormJournalEntryInput
     Private Sub TextBoxLedgerAccount_Leave(sender As Object, e As EventArgs) Handles TextBoxLedgerAccount.Leave
         If Trim(TextBoxLedgerAccount.Text) = "" Then
         Else
-            JetGet(TableOfLedgerAccounts, 0, TextBoxLedgerAccount.Text)
-            If Ktrl Then
+            JetGet(TABLE_LEDGERACCOUNTS, 0, TextBoxLedgerAccount.Text)
+            If KTRL Then
                 TextBoxLedgerAccount.Focus()
                 Beep()
             Else
-                RecordToField(TableOfLedgerAccounts)
-                TextBoxLedgerAccount.Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-                LabelLedgerAccountName.Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+                RecordToField(TABLE_LEDGERACCOUNTS)
+                TextBoxLedgerAccount.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+                LabelLedgerAccountName.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
             End If
         End If
     End Sub
@@ -720,14 +720,14 @@ Public Class FormJournalEntryInput
     Private Sub TextBoxOffsetAccount_Leave(sender As Object, e As EventArgs) Handles TextBoxOffsetAccount.Leave
         If Trim(TextBoxOffsetAccount.Text) = "" Then
         Else
-            JetGet(TableOfLedgerAccounts, 0, TextBoxOffsetAccount.Text)
-            If Ktrl Then
+            JetGet(TABLE_LEDGERACCOUNTS, 0, TextBoxOffsetAccount.Text)
+            If KTRL Then
                 TextBoxOffsetAccount.Focus()
                 Beep()
             Else
-                RecordToField(TableOfLedgerAccounts)
-                TextBoxOffsetAccount.Text = AdoGetField(TableOfLedgerAccounts, "#v019 #")
-                LabelOffsetAccountName.Text = AdoGetField(TableOfLedgerAccounts, "#v020 #")
+                RecordToField(TABLE_LEDGERACCOUNTS)
+                TextBoxOffsetAccount.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+                LabelOffsetAccountName.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
             End If
         End If
     End Sub

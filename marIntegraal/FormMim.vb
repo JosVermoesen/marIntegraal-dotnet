@@ -7,74 +7,74 @@ Public Class Mim
 
     Sub InitFirst()
 
-        TableDefOnt(TableOfVarious) = "0000000.ONT" '00
-        TableDefOnt(TableOfCustomers) = "0010000.ONT" '01
-        TableDefOnt(TableOfSuppliers) = "0020000.ONT" '02
-        TableDefOnt(TableOfLedgerAccounts) = "0030000.ONT" '03
-        TableDefOnt(TableOfProductsAndServices) = "0040000.ONT" '04
-        TableDefOnt(FlJournaal) = "0600000.ONT" '05
-        TableDefOnt(TableOfInvoices) = "0200000.ONT" '06
-        TableDefOnt(TableOfContracts) = "0700000.ONT" '07
-        TableDefOnt(TableDummy) = "90DUMMY.ONT" '08
-        TableDefOnt(TableOfCounters) = "00.ONT" '09
+        TABLEDEF_ONT(TABLE_VARIOUS) = "0000000.ONT" '00
+        TABLEDEF_ONT(TABLE_CUSTOMERS) = "0010000.ONT" '01
+        TABLEDEF_ONT(TABLE_SUPPLIERS) = "0020000.ONT" '02
+        TABLEDEF_ONT(TABLE_LEDGERACCOUNTS) = "0030000.ONT" '03
+        TABLEDEF_ONT(TABLE_PRODUCTS) = "0040000.ONT" '04
+        TABLEDEF_ONT(TABLE_JOURNAL) = "0600000.ONT" '05
+        TABLEDEF_ONT(TABLE_INVOICES) = "0200000.ONT" '06
+        TABLEDEF_ONT(TABLE_CONTRACTS) = "0700000.ONT" '07
+        TABLEDEF_ONT(TABLE_DUMMY) = "90DUMMY.ONT" '08
+        TABLEDEF_ONT(TABLE_COUNTERS) = "00.ONT" '09
 
-        JetTableName(TableOfVarious) = "Allerlei" '00
-        JetTableName(TableOfCustomers) = "Klanten" '01
-        JetTableName(TableOfSuppliers) = "Leveranciers" '02
-        JetTableName(TableOfLedgerAccounts) = "Rekeningen" '03
-        JetTableName(TableOfProductsAndServices) = "Produkten" '04
-        JetTableName(FlJournaal) = "Journalen" '05
-        JetTableName(TableOfInvoices) = "dokumenten" '06
-        JetTableName(TableOfContracts) = "Polissen" '07
-        JetTableName(TableDummy) = "TmpBestand" '08
-        JetTableName(TableOfCounters) = "Tell" '09
+        JET_TABLENAME(TABLE_VARIOUS) = "Allerlei" '00
+        JET_TABLENAME(TABLE_CUSTOMERS) = "Klanten" '01
+        JET_TABLENAME(TABLE_SUPPLIERS) = "Leveranciers" '02
+        JET_TABLENAME(TABLE_LEDGERACCOUNTS) = "Rekeningen" '03
+        JET_TABLENAME(TABLE_PRODUCTS) = "Produkten" '04
+        JET_TABLENAME(TABLE_JOURNAL) = "Journalen" '05
+        JET_TABLENAME(TABLE_INVOICES) = "dokumenten" '06
+        JET_TABLENAME(TABLE_CONTRACTS) = "Polissen" '07
+        JET_TABLENAME(TABLE_DUMMY) = "TmpBestand" '08
+        JET_TABLENAME(TABLE_COUNTERS) = "Tell" '09
 
-        DaysInAMonth(1) = 31
-        DaysInAMonth(2) = 29
-        DaysInAMonth(3) = 31
-        DaysInAMonth(4) = 30
-        DaysInAMonth(5) = 31
-        DaysInAMonth(6) = 30
-        DaysInAMonth(7) = 31
-        DaysInAMonth(8) = 31
-        DaysInAMonth(9) = 30
-        DaysInAMonth(10) = 31
-        DaysInAMonth(11) = 30
-        DaysInAMonth(12) = 31
+        DAYS_IN_MONTH(1) = 31
+        DAYS_IN_MONTH(2) = 29
+        DAYS_IN_MONTH(3) = 31
+        DAYS_IN_MONTH(4) = 30
+        DAYS_IN_MONTH(5) = 31
+        DAYS_IN_MONTH(6) = 30
+        DAYS_IN_MONTH(7) = 31
+        DAYS_IN_MONTH(8) = 31
+        DAYS_IN_MONTH(9) = 30
+        DAYS_IN_MONTH(10) = 31
+        DAYS_IN_MONTH(11) = 30
+        DAYS_IN_MONTH(12) = 31
 
-        MonthText(1) = "Januari  "
-        MonthText(2) = "Februari "
-        MonthText(3) = "Maart    "
-        MonthText(4) = "April    "
-        MonthText(5) = "Mei      "
-        MonthText(6) = "Juni     "
-        MonthText(7) = "Juli     "
-        MonthText(8) = "Augustus "
-        MonthText(9) = "September"
-        MonthText(10) = "October  "
-        MonthText(11) = "November "
-        MonthText(12) = "December "
+        MONTH_AS_TEXT(1) = "Januari  "
+        MONTH_AS_TEXT(2) = "Februari "
+        MONTH_AS_TEXT(3) = "Maart    "
+        MONTH_AS_TEXT(4) = "April    "
+        MONTH_AS_TEXT(5) = "Mei      "
+        MONTH_AS_TEXT(6) = "Juni     "
+        MONTH_AS_TEXT(7) = "Juli     "
+        MONTH_AS_TEXT(8) = "Augustus "
+        MONTH_AS_TEXT(9) = "September"
+        MONTH_AS_TEXT(10) = "October  "
+        MONTH_AS_TEXT(11) = "November "
+        MONTH_AS_TEXT(12) = "December "
         InitTables()
 
     End Sub
 
     Private Sub TotalClose()
 
-        marVersion = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
+        MAR_VERSION = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
         AutoUnloadCompany(BJPERDAT:=FormBYPERDAT)
-        For CountTo = 0 To 9
-            rsMAR(CountTo) = Nothing
+        For COUNT_TO = 0 To 9
+            RS_MAR(COUNT_TO) = Nothing
         Next
-        'TODO: adKBDB.Close()
-        adKBDB = Nothing
+        'TODO: AD_KBDB.Close()
+        AD_KBDB = Nothing
 
         On Error Resume Next
-        adntDB.Close()
+        AD_NTDB.Close()
         If Err.Number Then Exit Sub
-        ntDB.Close()
+        NT_DB.Close()
 
-        adntDB = Nothing
-        ntDB = Nothing
+        AD_NTDB = Nothing
+        NT_DB = Nothing
 
     End Sub
 
@@ -103,32 +103,32 @@ Public Class Mim
     Private Sub Mim_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         InitFirst()
-        MimGlobalDate = Format(Now, "dd/MM/yyyy")
-        ProgramLocation = My.Application.Info.DirectoryPath & "\"
+        MIM_GLOBAL_DATE = Format(Now, "dd/MM/yyyy")
+        PROGRAM_LOCATION = My.Application.Info.DirectoryPath & "\"
 
-        marVersion = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
-        Text = "marIntegraal.NET " & marVersion
+        MAR_VERSION = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
+        Text = "marIntegraal.NET " & MAR_VERSION
         StartUp()
         SettingsLoading(Me)
 
         On Error GoTo 0
 
-        adKBDB = New ADODB.Connection
-        adTBIB = New ADODB.Connection
+        AD_KBDB = New ADODB.Connection
+        AD_TBIB = New ADODB.Connection
 
-        'adKBDB.ConnectionString = marIntegraal.My.Settings.defaultConnectionString
-        adKBDB.ConnectionString = adoJetProvider & "Data Source=" & ProgramLocation & "Def\default.def;" & "Persist Security Info=False"
-        adKBDB.Open()
+        'AD_KBDB.ConnectionString = marIntegraal.My.Settings.defaultConnectionString
+        AD_KBDB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "Def\default.def;" & "Persist Security Info=False"
+        AD_KBDB.Open()
 
-        adTBIB.ConnectionString = adoJetProvider & "Data Source=" & ProgramLocation & "\Def\Telebib2.def;" & "Persist Security Info=False"
-        adTBIB.Open()
+        AD_TBIB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "\Def\Telebib2.def;" & "Persist Security Info=False"
+        AD_TBIB.Open()
 
-        adKBTable = New ADODB.Recordset With {
+        AD_KBTable = New ADODB.Recordset With {
             .CursorLocation = ADODB.CursorLocationEnum.adUseServer
         }
-        adKBTable.Open("KeuzeBoxData", adKBDB, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdTableDirect) '  adLockReadOnly, adCmdTableDirect
-        adKBTable.Index = "BestandsNaam"
-        With CustomerSheet
+        AD_KBTable.Open("KeuzeBoxData", AD_KBDB, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdTableDirect) '  adLockReadOnly, adCmdTableDirect
+        AD_KBTable.Index = "BestandsNaam"
+        With CUSTOMERS_SHEET
             .MdiParent = Me
             .Text = "Klanten"
             .BackColor = ColorTranslator.FromOle(QBColor(9))
@@ -138,7 +138,7 @@ Public Class Mim
             .Show()
         End With
 
-        With SupplierSheet
+        With SUPPLIERS_SHEET
             .MdiParent = Me
             .Text = "Leveranciers"
             .BackColor = ColorTranslator.FromOle(QBColor(12))
@@ -148,7 +148,7 @@ Public Class Mim
             .Show()
         End With
 
-        With LedgerAccountSheet
+        With LEDGERACCOUNTS_SHEET
             .MdiParent = Me
             .Text = "Rekeningen"
             .BackColor = ColorTranslator.FromOle(QBColor(15))
@@ -163,14 +163,14 @@ Public Class Mim
 
     Private Function GaVerder(ByRef Bericht As String, ByRef BedrijfOpenKontrole As Short, ByRef Titel As String) As Short
         If BedrijfOpenKontrole Then
-            If CustomerSheet.Enabled = True Then
+            If CUSTOMERS_SHEET.Enabled = True Then
             Else
                 GaVerder = True
                 Exit Function
             End If
         End If
-        KtrlBox = MsgBox(Bericht & vbCrLf & vbCrLf & "Bent U zeker ?", 292, Titel)
-        If KtrlBox = 6 Then
+        CTRL_BOX = MsgBox(Bericht & vbCrLf & vbCrLf & "Bent U zeker ?", 292, Titel)
+        If CTRL_BOX = 6 Then
             GaVerder = True
         Else
             GaVerder = False
@@ -181,10 +181,10 @@ Public Class Mim
     Private Sub CompanyOpenMenuItem_Click(sender As Object, e As EventArgs)
         MSG = "Hierna worden eerst alle bestanden en openstaande vensters van een actief bedrijf gesloten."
         If GaVerder(MSG, 1, "Bedrijf Openen") Then
-            Ktrl = 100
+            KTRL = 100
             AutoUnloadCompany(BJPERDAT:=FormBYPERDAT)
             On Error Resume Next
-            ntDB.Close()
+            NT_DB.Close()
             On Error GoTo 0
             CompanyOpenMenuItem.Enabled = False
             CompanyNewMenuItem.Enabled = False
@@ -197,10 +197,10 @@ Public Class Mim
     Private Sub CompanyNewMenuItem_Click(sender As Object, e As EventArgs)
         MSG = "Hierna worden eerst alle bestanden en openstaande vensters van een actief bedrijf gesloten."
         If GaVerder(MSG, 1, "Nieuw Bedrijf") Then
-            Ktrl = 100
+            KTRL = 100
             AutoUnloadCompany(BJPERDAT:=FormBYPERDAT)
             On Error Resume Next
-            ntDB.Close()
+            NT_DB.Close()
             On Error GoTo 0
             CompanyOpenMenuItem.Enabled = False
             CompanyNewMenuItem.Enabled = False
@@ -211,7 +211,7 @@ Public Class Mim
         End If
     End Sub
     Private Sub CloseAppMenuItem_Click(sender As Object, e As EventArgs)
-        Ktrl = 100
+        KTRL = 100
         'TotalClose()
         Close()
     End Sub
@@ -253,13 +253,13 @@ Public Class Mim
 
     ' Sheets
     Private Sub CustomerSheetMenuItem_Click(sender As Object, e As EventArgs)
-        CustomerSheet.WindowState = FormWindowState.Normal
+        CUSTOMERS_SHEET.WindowState = FormWindowState.Normal
     End Sub
     Private Sub SupplierSheetMenuItem_Click(sender As Object, e As EventArgs)
-        SupplierSheet.WindowState = FormWindowState.Normal
+        SUPPLIERS_SHEET.WindowState = FormWindowState.Normal
     End Sub
     Private Sub LedgerAccountSheetMenuItem_Click(sender As Object, e As EventArgs)
-        LedgerAccountSheet.WindowState = FormWindowState.Normal
+        LEDGERACCOUNTS_SHEET.WindowState = FormWindowState.Normal
     End Sub
     Private Sub ProductSheetMenuItem_Click(sender As Object, e As EventArgs)
         Dim ProductFiche As New frmProductFiche With {
@@ -354,7 +354,7 @@ Public Class Mim
         JournalEntriesBook.ShowDialog()
     End Sub
     Private Sub PurchaseDiaryMenuItem_Click(sender As Object, e As EventArgs)
-        aIndex = TableOfSuppliers
+        A_INDEX = TABLE_SUPPLIERS
         With BSBook
             .WindowState = FormWindowState.Normal
             .Enabled = True
@@ -363,7 +363,7 @@ Public Class Mim
         End With
     End Sub
     Private Sub SalesDiaryMenuItem_Click(sender As Object, e As EventArgs)
-        aIndex = TableOfCustomers
+        A_INDEX = TABLE_CUSTOMERS
         With BSBook
             .WindowState = FormWindowState.Normal
             .Enabled = True
@@ -463,10 +463,10 @@ Public Class Mim
         myDocProcess.StartInfo.CreateNoWindow = True
         myDocProcess.Start()
 
-        If LocationCompanyData IsNot "" Then
+        If LOCATION_COMPANYDATA IsNot "" Then
             Dim myCompanyProcess As New Process
             myCompanyProcess.StartInfo.FileName = "cmd.exe"
-            myCompanyProcess.StartInfo.WorkingDirectory = LocationCompanyData
+            myCompanyProcess.StartInfo.WorkingDirectory = LOCATION_COMPANYDATA
             myCompanyProcess.StartInfo.UseShellExecute = True
             myCompanyProcess.StartInfo.CreateNoWindow = True
             myCompanyProcess.Start()

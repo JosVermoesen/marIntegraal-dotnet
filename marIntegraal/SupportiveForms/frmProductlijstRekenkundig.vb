@@ -34,7 +34,7 @@ End Class
 '	Private Sub chkAfdrukLiggend_CheckStateChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles chkAfdrukLiggend.CheckStateChanged
 '		Dim Printer As New Printer
 
-'		Printer = Printers(LijstPrinterNr)
+'		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -83,20 +83,20 @@ End Class
 '		ReportText(3) = TekstLijn(0).Text
 
 '		InitialiseFields()
-'		JetTableClose(TableOfProductsAndServices)
+'		JetTableClose(TABLE_PRODUCTS)
 '		'Set rsLijstProducten = New ADODB.Recordset
 '		'SQLstring = "SELECT * FROM Produkten WHERE "
 '		'Stop
 
-'		JetGetFirst(TableOfProductsAndServices, IndexNR)
-'		JetGetOrGreater(TableOfProductsAndServices, IndexNR, BeginSleutel)
-'		If Ktrl Or UCase(KeyBuf(TableOfProductsAndServices)) > UCase(EindSleutel) Then
+'		JetGetFirst(TABLE_PRODUCTS, IndexNR)
+'		JetGetOrGreater(TABLE_PRODUCTS, IndexNR, BeginSleutel)
+'		If KTRL Or UCase(KEY_BUF(TABLE_PRODUCTS)) > UCase(EindSleutel) Then
 '			Beep()
 '			Exit Sub
 '		Else
 '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '			System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'			PageCounter = 0
+'			PAGE_COUNTER = 0
 '			If chkAfdrukInVenster.CheckState = 0 Then
 '				If Printer.Width > 12000 Then
 '					Printer.FontSize = 10
@@ -116,8 +116,8 @@ End Class
 '		End If
 
 '		Do 
-'			bNext(TableOfProductsAndServices)
-'			If Ktrl Or UCase(Trim(KeyBuf(TableOfProductsAndServices))) > UCase(EindSleutel) Then
+'			bNext(TABLE_PRODUCTS)
+'			If KTRL Or UCase(Trim(KEY_BUF(TABLE_PRODUCTS))) > UCase(EindSleutel) Then
 '				Exit Do
 '			Else
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
@@ -139,46 +139,46 @@ End Class
 '		Dim BasisAantal As Single
 
 'PrintInfo: 
-'		RecordToField(TableOfProductsAndServices)
+'		RecordToField(TABLE_PRODUCTS)
 '		Select Case CmbLijstType.SelectedIndex
 '			Case 0
-'				FieldText(0) = AdoGetField(TableOfProductsAndServices, "#v102 #")
-'				FieldText(1) = AdoGetField(TableOfProductsAndServices, "#v105 #")
+'				FieldText(0) = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+'				FieldText(1) = AdoGetField(TABLE_PRODUCTS, "#v105 #")
 
-'				Basisbedrag = Val(AdoGetField(TableOfProductsAndServices, "#e112 #"))
-'				FieldText(2) = Dec(Val(AdoGetField(TableOfProductsAndServices, "#e112 #")), MaskEUR & "00")
+'				Basisbedrag = Val(AdoGetField(TABLE_PRODUCTS, "#e112 #"))
+'				FieldText(2) = Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), MASK_EUR & "00")
 
-'				FieldText(3) = AdoGetField(TableOfProductsAndServices, "#v111 #")
+'				FieldText(3) = AdoGetField(TABLE_PRODUCTS, "#v111 #")
 '				VeldTXT3 = Mid(fmarBoxText("002", "2", FieldText(3)), 4)
 
-'				BasisAantal = Val(AdoGetField(TableOfProductsAndServices, "#v107 #"))
-'				FieldText(4) = VB.Right(Dec(Val(AdoGetField(TableOfProductsAndServices, "#v107 #")), MaskSy(7)), 6)
+'				BasisAantal = Val(AdoGetField(TABLE_PRODUCTS, "#v107 #"))
+'				FieldText(4) = VB.Right(Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v107 #")), MASK_SY(7)), 6)
 
-'				FieldText(5) = Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4)
+'				FieldText(5) = Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4)
 '				TicketEUR2005 = ((Basisbedrag * BasisAantal) + ((Basisbedrag * BasisAantal * Val(VeldTXT3) / 100)))
-'				FieldText(6) = VB.Right(Dec(TicketEUR2005, MaskEUR), 8)
-'				FieldText(7) = VB.Right(Dec(Val(AdoGetField(TableOfProductsAndServices, "#v114 #")) + Val(AdoGetField(TableOfProductsAndServices, "#v119 #")) - Val(AdoGetField(TableOfProductsAndServices, "#v120 #")), MaskSy(7)), 6)
-'				FieldText(8) = AdoGetField(TableOfProductsAndServices, "#v109 #")
+'				FieldText(6) = VB.Right(Dec(TicketEUR2005, MASK_EUR), 8)
+'				FieldText(7) = VB.Right(Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v114 #")) + Val(AdoGetField(TABLE_PRODUCTS, "#v119 #")) - Val(AdoGetField(TABLE_PRODUCTS, "#v120 #")), MASK_SY(7)), 6)
+'				FieldText(8) = AdoGetField(TABLE_PRODUCTS, "#v109 #")
 
 '			Case 1
-'				FieldText(0) = AdoGetField(TableOfProductsAndServices, "#v102 #")
-'				FieldText(1) = AdoGetField(TableOfProductsAndServices, "#v105 #")
+'				FieldText(0) = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+'				FieldText(1) = AdoGetField(TABLE_PRODUCTS, "#v105 #")
 
-'				Basisbedrag = Val(AdoGetField(TableOfProductsAndServices, "#e113 #"))
-'				FieldText(2) = Dec(Val(AdoGetField(TableOfProductsAndServices, "#e113 #")), MaskEUR & "00")
+'				Basisbedrag = Val(AdoGetField(TABLE_PRODUCTS, "#e113 #"))
+'				FieldText(2) = Dec(Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")), MASK_EUR & "00")
 
-'				FieldText(3) = AdoGetField(TableOfProductsAndServices, "#v111 #")
+'				FieldText(3) = AdoGetField(TABLE_PRODUCTS, "#v111 #")
 '				VeldTXT3 = Mid(fmarBoxText("002", "2", FieldText(3)), 4)
 
-'				BasisAantal = Val(AdoGetField(TableOfProductsAndServices, "#v107 #"))
-'				FieldText(4) = VB.Right(Dec(Val(AdoGetField(TableOfProductsAndServices, "#v107 #")), MaskSy(7)), 6)
-'				FieldText(5) = Mid(fmarBoxText("004", "2", AdoGetField(TableOfProductsAndServices, "#v106 #")), 4)
+'				BasisAantal = Val(AdoGetField(TABLE_PRODUCTS, "#v107 #"))
+'				FieldText(4) = VB.Right(Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v107 #")), MASK_SY(7)), 6)
+'				FieldText(5) = Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4)
 
 '				'TicketEUR2005 = ((Basisbedrag * BasisAantal) + ((Basisbedrag * BasisAantal * Val(VeldTXT3) / 100)))
-'				'FieldText(6) = Right(Dec((TicketEUR2005), MaskEUR), 8)
-'				FieldText(6) = VB.Right(Dec(Val(AdoGetField(TableOfProductsAndServices, "#v115 #")), MaskSy(7)), 6)
-'				FieldText(7) = VB.Right(Dec(Val(AdoGetField(TableOfProductsAndServices, "#v114 #")) + Val(AdoGetField(TableOfProductsAndServices, "#v119 #")) - Val(AdoGetField(TableOfProductsAndServices, "#v120 #")), MaskSy(7)), 6)
-'				FieldText(8) = Dec(Val(FieldText(6)) - Val(FieldText(7)), MaskSy(7))
+'				'FieldText(6) = Right(Dec((TicketEUR2005), MASK_EUR), 8)
+'				FieldText(6) = VB.Right(Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v115 #")), MASK_SY(7)), 6)
+'				FieldText(7) = VB.Right(Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v114 #")) + Val(AdoGetField(TABLE_PRODUCTS, "#v119 #")) - Val(AdoGetField(TABLE_PRODUCTS, "#v120 #")), MASK_SY(7)), 6)
+'				FieldText(8) = Dec(Val(FieldText(6)) - Val(FieldText(7)), MASK_SY(7))
 '		End Select
 '		VpePrintLines()
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
@@ -199,9 +199,9 @@ End Class
 '		Dim SorteringTel As Short
 
 '		TekstLijn(0).Text = ""
-'		TekstLijn(1).Text = MimGlobalDate.Value
+'		TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
 
-'		Printer = Printers(LijstPrinterNr)
+'		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -218,9 +218,9 @@ End Class
 '		CmbLijstType.SelectedIndex = 0
 
 '		SorteringTel = -1
-'		ToonIndexen(JetTableName(TableOfProductsAndServices), Sortering)
+'		ToonIndexen(JET_TABLENAME(TABLE_PRODUCTS), Sortering)
 '		For T = 0 To Sortering.Items.Count - 1
-'			If InStr(VB6.GetItemString(Sortering, T), FLIndexCaption(TableOfProductsAndServices, 0)) Then
+'			If InStr(VB6.GetItemString(Sortering, T), FLINDEX_CAPTION(TABLE_PRODUCTS, 0)) Then
 '				Sortering.SelectedIndex = T
 '				Exit For
 '			End If
@@ -233,61 +233,61 @@ End Class
 
 '		Select Case CmbLijstType.SelectedIndex
 '			Case 0
-'				ReportField(0) = "Nummer"
-'				ReportTab(0) = 5
+'				REPORT_FIELD(0) = "Nummer"
+'				REPORT_TAB(0) = 5
 
-'				ReportField(1) = "Omschrijving"
-'				ReportTab(1) = 19
+'				REPORT_FIELD(1) = "Omschrijving"
+'				REPORT_TAB(1) = 19
 
-'				ReportField(2) = "VK EUR Ex."
-'				ReportTab(2) = 60
+'				REPORT_FIELD(2) = "VK EUR Ex."
+'				REPORT_TAB(2) = 60
 
-'				ReportField(3) = "B"
-'				ReportTab(3) = 73
+'				REPORT_FIELD(3) = "B"
+'				REPORT_TAB(3) = 73
 
-'				ReportField(4) = "Verpak"
-'				ReportTab(4) = 75
+'				REPORT_FIELD(4) = "Verpak"
+'				REPORT_TAB(4) = 75
 
-'				ReportField(5) = "Maat"
-'				ReportTab(5) = 83
+'				REPORT_FIELD(5) = "Maat"
+'				REPORT_TAB(5) = 83
 
-'				ReportField(6) = "EUR incl"
-'				ReportTab(6) = 89
+'				REPORT_FIELD(6) = "EUR incl"
+'				REPORT_TAB(6) = 89
 
-'				ReportField(7) = " Stock"
-'				ReportTab(7) = 98
+'				REPORT_FIELD(7) = " Stock"
+'				REPORT_TAB(7) = 98
 
-'				ReportField(8) = "Plaats"
-'				ReportTab(8) = 107
+'				REPORT_FIELD(8) = "Plaats"
+'				REPORT_TAB(8) = 107
 '				tMaxField = 8
 
 '			Case 1
-'				ReportField(0) = "Nummer"
-'				ReportTab(0) = 5
+'				REPORT_FIELD(0) = "Nummer"
+'				REPORT_TAB(0) = 5
 
-'				ReportField(1) = "Omschrijving"
-'				ReportTab(1) = 19
+'				REPORT_FIELD(1) = "Omschrijving"
+'				REPORT_TAB(1) = 19
 
-'				ReportField(2) = "AK EUR Ex."
-'				ReportTab(2) = 60
+'				REPORT_FIELD(2) = "AK EUR Ex."
+'				REPORT_TAB(2) = 60
 
-'				ReportField(3) = "B"
-'				ReportTab(3) = 73
+'				REPORT_FIELD(3) = "B"
+'				REPORT_TAB(3) = 73
 
-'				ReportField(4) = "Verpak"
-'				ReportTab(4) = 75
+'				REPORT_FIELD(4) = "Verpak"
+'				REPORT_TAB(4) = 75
 
-'				ReportField(5) = "Maat"
-'				ReportTab(5) = 83
+'				REPORT_FIELD(5) = "Maat"
+'				REPORT_TAB(5) = 83
 
-'				ReportField(6) = "Min.Stock"
-'				ReportTab(6) = 89
+'				REPORT_FIELD(6) = "Min.Stock"
+'				REPORT_TAB(6) = 89
 
-'				ReportField(7) = " Stock"
-'				ReportTab(7) = 98
+'				REPORT_FIELD(7) = " Stock"
+'				REPORT_TAB(7) = 98
 
-'				ReportField(8) = "Bestellen"
-'				ReportTab(8) = 107
+'				REPORT_FIELD(8) = "Bestellen"
+'				REPORT_TAB(8) = 107
 '				tMaxField = 8
 
 '			Case Else
@@ -303,7 +303,7 @@ End Class
 '			Xlog.X.Row = 0
 '			For T = 0 To tMaxField
 '				Xlog.X.Col = T
-'				Xlog.X.Text = ReportField(T)
+'				Xlog.X.Text = REPORT_FIELD(T)
 '			Next 
 '			Me.Show()
 '		End If
@@ -318,30 +318,30 @@ End Class
 
 '		If chkAfdrukInVenster.CheckState Then Exit Sub
 
-'		If usrLicentieInfo <> "" Then
+'		If USER_LICENSEINFO <> "" Then
 '			Printer.CurrentX = 50
 '			Printer.CurrentY = 50
-'			Printer.Write(usrLicentieInfo)
+'			Printer.Write(USER_LICENSEINFO)
 '		End If
-'		PageCounter = PageCounter + 1
+'		PAGE_COUNTER = PAGE_COUNTER + 1
 '		Printer.CurrentY = 400
-'		Printer.Write(TAB(1), ReportText(2), TAB(107), Dec(PageCounter, "##########"))
+'		Printer.Write(TAB(1), ReportText(2), TAB(107), Dec(PAGE_COUNTER, "##########"))
 
 '		Printer.Write(TAB(107), ReportText(0) & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(1), UCase(ReportText(3)))
 
-'		Printer.Print(vbCrLf & FullLine.Value)
+'		Printer.Print(vbCrLf & FULL_LINE.Value)
 
-'		Do While ReportTab(T) <> 0
-'			Printer.Print(TAB(ReportTab(T)))
-'			Printer.Write(ReportField(T))
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'		Do While REPORT_TAB(T) <> 0
+'			Printer.Print(TAB(REPORT_TAB(T)))
+'			Printer.Write(REPORT_FIELD(T))
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				Printer.Write(vbCrLf)
 '			End If
 '			T = T + 1
 '		Loop 
 
-'		Printer.Write(FullLine.Value & vbCrLf & vbCrLf)
+'		Printer.Write(FULL_LINE.Value & vbCrLf & vbCrLf)
 
 '		Exit Sub
 
@@ -362,7 +362,7 @@ End Class
 
 '		If chkAfdrukInVenster.CheckState Then
 '		Else
-'			Printer.Print(vbCrLf & FullLine.Value)
+'			Printer.Print(vbCrLf & FULL_LINE.Value)
 '		End If
 
 '		T = 0
@@ -371,10 +371,10 @@ End Class
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -415,7 +415,7 @@ End Class
 '			Xlog.Afsluiten.TabStop = False
 '			Xlog.Afsluiten.Enabled = False
 '			Xlog.cbAfbeelding.Visible = False
-'			XLogKey = ""
+'			XLOG_KEY = ""
 '			Xlog.SSTab1.TabPages.Item(1).Visible = False
 '			Xlog.ShowDialog()
 '			'Unload Xlog
@@ -441,14 +441,14 @@ End Class
 '		End If
 '		TotalLines = TotalLines + 1
 
-'		Do While ReportTab(T) <> 0
+'		Do While REPORT_TAB(T) <> 0
 '			If chkAfdrukInVenster.CheckState Then
 '				aa = aa & FieldText(T) & vbTab
 '			Else
-'				Printer.Print(TAB(ReportTab(T)))
+'				Printer.Print(TAB(REPORT_TAB(T)))
 '				Printer.Write(FieldText(T))
 '			End If
-'			If ReportTab(T + 1) < ReportTab(T) Then
+'			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
 '				If chkAfdrukInVenster.CheckState Then
 '				Else
 '					Printer.Write(vbCrLf)
@@ -477,7 +477,7 @@ End Class
 
 '		IndexNR = -1
 '		For T = 0 To Sortering.Items.Count - 1
-'			If InStr(Sortering.Text, FLIndexCaption(TableOfProductsAndServices, T)) Then
+'			If InStr(Sortering.Text, FLINDEX_CAPTION(TABLE_PRODUCTS, T)) Then
 '				IndexNR = T
 '				Exit For
 '			End If
@@ -503,7 +503,7 @@ End Class
 '			Case 1
 '				If DateWrongFormat(TekstLijn(1).Text) Then
 '					Beep()
-'					TekstLijn(1).Text = MimGlobalDate.Value
+'					TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
 '				End If
 '		End Select
 

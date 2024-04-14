@@ -23,12 +23,12 @@ VPETEST:
             .GridVisible = True
         End With
 
-        If Dir(LocationCompanyData & "pdfDDEF" & TypeEnTaal & ".Txt") = "" Then
+        If Dir(LOCATION_COMPANYDATA & "pdfDDEF" & TypeEnTaal & ".Txt") = "" Then
             Beep()
             Mim.Report.CloseDoc()
             MsgBox("pdfDDEF" & TypeEnTaal & ".Txt niet gevonden in de bedrijfsinhoudsopgave. Hierna wordt een voorbeelddocument vanuit de programmainhoudsopgave gecopiëerd", MsgBoxStyle.Information)
 
-            If Not CopyFile(My.Application.Info.DirectoryPath & "\Def", LocationCompanyData, "pdfDDEF" & TypeEnTaal & ".Txt") Then
+            If Not CopyFile(My.Application.Info.DirectoryPath & "\Def", LOCATION_COMPANYDATA, "pdfDDEF" & TypeEnTaal & ".Txt") Then
                 MsgBox(My.Application.Info.DirectoryPath & "\Def\pdfDDEF" & TypeEnTaal & ".Txt kan als voorbeelddocument niet vanuit de programmainhoudsopgave gecopiëerd worden.  Probeer eventueel manueel", MsgBoxStyle.Information)
             Else
                 GoTo VPETEST
@@ -36,7 +36,7 @@ VPETEST:
             Exit Sub
         Else
             FlFree = FreeFile()
-            FileOpen(FlFree, LocationCompanyData & "pdfDDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
+            FileOpen(FlFree, LOCATION_COMPANYDATA & "pdfDDEF" & TypeEnTaal & ".Txt", OpenMode.Input)
 
             Do While Not EOF(FlFree)
                 pdfCmd = LineInput(FlFree)
@@ -63,7 +63,7 @@ VPETEST:
                 End If
             Loop
             FileClose(FlFree)
-            Mim.Report.WriteDoc(ProgramLocation & "marrapport.pdf")
+            Mim.Report.WriteDoc(PROGRAM_LOCATION & "marrapport.pdf")
             Mim.Report.Preview()
         End If
     End Sub
@@ -81,8 +81,8 @@ VPETEST:
         Mim.Report.TextBold = 0
         Mim.Report.TextItalic = 0
         Mim.Report.TextUnderline = 0
-        Ktrl = Mim.Report.Print(1, vsoftVAN, FullLine) 'was vpeprint
-        Ktrl = Mim.Report.Print(1, VsoftTot, FullLine)
+        KTRL = Mim.Report.Print(1, vsoftVAN, FULL_LINE) 'was vpeprint
+        KTRL = Mim.Report.Print(1, VsoftTot, FULL_LINE)
         Exit Sub
 
 errorCMDVSOFTSPACE:
@@ -106,11 +106,11 @@ errorCMDVSOFTSPACE:
         Mim.Report.PictureBestFit = True
         '2.5, 0.5, 19, 2.5
         If Mid(filename, 1, 4) = "[BL]" Then
-            filename = LocationCompanyData & Mid(filename, 5)
+            filename = LOCATION_COMPANYDATA & Mid(filename, 5)
         ElseIf Mid(filename, 1, 4) = "[PL]" Then
-            filename = ProgramLocation & Mid(filename, 5)
+            filename = PROGRAM_LOCATION & Mid(filename, 5)
         End If
-        Ktrl = Mim.Report.Picture(xPos, YPOS, xPos2, YPOS2, filename)
+        KTRL = Mim.Report.Picture(xPos, YPOS, xPos2, YPOS2, filename)
         Exit Sub
 
 errorCMDPICTURE:
@@ -127,7 +127,7 @@ errorCMDPICTURE:
         Input(Flfree, adresYpos)
         Input(Flfree, adresXpos2)
         Input(Flfree, adresYpos2) ', adresBox
-        Ktrl = Mim.Report.WriteBox(adresXpos, adresYpos, adresXpos2, adresYpos2, "")
+        KTRL = Mim.Report.WriteBox(adresXpos, adresYpos, adresXpos2, adresYpos2, "")
         Exit Sub
 
 errorCMDADRESSPACE:
@@ -178,7 +178,7 @@ errorCMDADRESSPACE:
         Mim.Report.TextItalic = pdfFontItalic
         Mim.Report.TextUnderline = pdfFontUnderLine
         Mim.Report.TextAlignment = pdfAlign
-        Ktrl = Mim.Report.Write(xPos, YPOS, xPos2, YPOS2, textstring)
+        KTRL = Mim.Report.Write(xPos, YPOS, xPos2, YPOS2, textstring)
         Exit Sub
 
 errorCMDWRITE:
@@ -230,7 +230,7 @@ errorCMDWRITE:
         Mim.Report.TextUnderline = pdfFontUnderLine
 
         Mim.Report.TextAlignment = pdfAlign
-        Ktrl = Mim.Report.WriteBox(xPos, YPOS, xPos2, YPOS2, textstring)
+        KTRL = Mim.Report.WriteBox(xPos, YPOS, xPos2, YPOS2, textstring)
         Exit Sub
 
 errorCMDWRITEBOX:
@@ -264,7 +264,7 @@ errorCMDWRITEBOX:
         Mim.Report.TextBold = pdfFontBold
         Mim.Report.TextItalic = pdfFontItalic
         Mim.Report.TextUnderline = pdfFontUnderLine
-        Ktrl = Mim.Report.Print(xPos, YPOS, textstring) 'vpeprint vb6
+        KTRL = Mim.Report.Print(xPos, YPOS, textstring) 'vpeprint vb6
         Exit Sub
 
 errorCMDPRINT:
@@ -354,7 +354,7 @@ errorCMDPRINT:
     End Sub
     Private Sub viakladblok_Click(sender As Object, e As EventArgs) Handles viakladblok.Click
         Dim HetBESTAND As String
-        HetBESTAND = LocationCompanyData & "pdfDDEF" & Format(KopVoet) & Format(TaalKode) & Format(DocuType) & ".Txt"
+        HetBESTAND = LOCATION_COMPANYDATA & "pdfDDEF" & Format(KopVoet) & Format(TaalKode) & Format(DocuType) & ".Txt"
         If Dir(HetBESTAND) = "" Then
             MsgBox(HetBESTAND & " is niet aanwezig", MsgBoxStyle.Information)
         Else

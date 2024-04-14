@@ -69,8 +69,8 @@ End Class
 
 '		On Error GoTo PrtHandler2
 
-'		PageCounter = 0
-'		Printer = Printers(LijstPrinterNr)
+'		PAGE_COUNTER = 0
+'		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
 '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
@@ -88,7 +88,7 @@ End Class
 '		End If
 
 '		FlTemp = FreeFile
-'		FileOpen(FlTemp, ProgramLocation & "Def\" & sFile(Keuzelijst.SelectedIndex), OpenMode.Input)
+'		FileOpen(FlTemp, PROGRAM_LOCATION & "Def\" & sFile(Keuzelijst.SelectedIndex), OpenMode.Input)
 '		Input(FlTemp, smg(9))
 '		Input(FlTemp, smg(2))
 '		Input(FlTemp, smg(3))
@@ -125,7 +125,7 @@ End Class
 '			For T = 0 To alijn - 1
 '				lijntel = lijntel + 1
 '				Input(FlTemp, stekst(T))
-'				SnelHelpPrint("LN:" & Dec(lijntel, "###") & "  " & stekst(T), blLogging)
+'				SnelHelpPrint("LN:" & Dec(lijntel, "###") & "  " & stekst(T), BL_LOGGING)
 '			Next T
 
 '			lijntel = lijntel + 1
@@ -198,7 +198,7 @@ End Class
 '				If rTotaal1 = 0 Or rTotaal2 = 0 Then
 '				Else
 '					MSG = Mid(Mim.SnelHelp.Text, 9) & vbCrLf & vbCrLf
-'					MSG = MSG & VB6.Format(rTotaal1, MaskEURBH) & " ? " & VB6.Format(rTotaal2, MaskEURBH)
+'					MSG = MSG & VB6.Format(rTotaal1, MASK_EURBH) & " ? " & VB6.Format(rTotaal2, MASK_EURBH)
 '					MsgBox(MSG, 0, "Kontroleer a.u.b. !")
 '				End If
 '			Case Else
@@ -235,29 +235,29 @@ End Class
 '		End Select
 
 'Vooraan: 
-'		JetGetFirst(TableOfLedgerAccounts, 0)
-'		JetGetOrGreater(TableOfLedgerAccounts, 0, sminsl.Value)
-'		If Ktrl Then
+'		JetGetFirst(TABLE_LEDGERACCOUNTS, 0)
+'		JetGetOrGreater(TABLE_LEDGERACCOUNTS, 0, sminsl.Value)
+'		If KTRL Then
 '			GoTo PrintAf
 '		Else
-'			If SetSpacing(KeyBuf(TableOfLedgerAccounts), 7) > smaxsl.Value Then
+'			If SetSpacing(KEY_BUF(TABLE_LEDGERACCOUNTS), 7) > smaxsl.Value Then
 '				GoTo PrintAf
 '			Else
-'				RecordToField(TableOfLedgerAccounts)
+'				RecordToField(TABLE_LEDGERACCOUNTS)
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub TelOp
 '			End If
 '		End If
 
 '		Do 
-'			bNext(TableOfLedgerAccounts)
-'			If Ktrl Then
+'			bNext(TABLE_LEDGERACCOUNTS)
+'			If KTRL Then
 '				GoTo PrintAf
 '			Else
-'				If SetSpacing(KeyBuf(TableOfLedgerAccounts), 7) > smaxsl.Value Then
+'				If SetSpacing(KEY_BUF(TABLE_LEDGERACCOUNTS), 7) > smaxsl.Value Then
 '					GoTo PrintAf
 '				Else
-'					RecordToField(TableOfLedgerAccounts)
+'					RecordToField(TABLE_LEDGERACCOUNTS)
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '					GoSub TelOp
 '				End If
@@ -266,12 +266,12 @@ End Class
 '		MsgBox("stop na DO-LOOP")
 
 'TelOp: 
-'		If bhEuro Then
-'			dbdhbj = Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"))
-'			dbdvbj = Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex + 1, "000") & " #"))
+'		If BH_EURO Then
+'			dbdhbj = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"))
+'			dbdvbj = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex + 1, "000") & " #"))
 '		Else
-'			dbdhbj = Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"))
-'			dbdvbj = Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex + 1, "000") & " #"))
+'			dbdhbj = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"))
+'			dbdvbj = Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex + 1, "000") & " #"))
 '		End If
 '		dTOT = dTOT + dbdhbj
 '		dvtot = dvtot + dbdvbj
@@ -323,8 +323,8 @@ End Class
 '			End If
 '		End If
 
-'		Printer.Write(Scode & Chr(ichr(5)), TAB(72 + apos - 2), Dec(dTOT / ideler, MaskEURBH))
-'		Printer.Write(TAB(93), Chr(ichr(5)), TAB(95 + apos), Dec(dvtot / ideler, MaskEURBH))
+'		Printer.Write(Scode & Chr(ichr(5)), TAB(72 + apos - 2), Dec(dTOT / ideler, MASK_EURBH))
+'		Printer.Write(TAB(93), Chr(ichr(5)), TAB(95 + apos), Dec(dvtot / ideler, MASK_EURBH))
 '		Printer.Print(TAB(117), " " & Chr(ichr(5)))
 '		dTOT = 0
 '		dvtot = 0
@@ -389,18 +389,18 @@ End Class
 
 '		SetBounds(VB6.TwipsToPixelsX((VB6.PixelsToTwipsX(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width) - VB6.PixelsToTwipsX(Width)) \ 2), VB6.TwipsToPixelsY((VB6.PixelsToTwipsY(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height) - VB6.PixelsToTwipsY(Height)) \ 2), 0, 0, Windows.Forms.BoundsSpecified.X Or Windows.Forms.BoundsSpecified.Y)
 
-'		TekstLijn(1).Text = MimGlobalDate.Value
+'		TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
 '		Text = Text & " " & BJPERDAT.Boekjaar.Text
 
 '		i = 0
 '		'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'		Bedrijf = Dir(ProgramLocation & "Def\" & "99MAR*.SRN")
+'		Bedrijf = Dir(PROGRAM_LOCATION & "Def\" & "99MAR*.SRN")
 '		If Bedrijf = Space(Len(Bedrijf)) Then
 '			Drukken.Enabled = False
 '		Else
 '			Do While Bedrijf <> ""
 '				FlTemp = FreeFile
-'				FileOpen(FlTemp, ProgramLocation & "Def\" & Bedrijf, OpenMode.Input)
+'				FileOpen(FlTemp, PROGRAM_LOCATION & "Def\" & Bedrijf, OpenMode.Input)
 '				Input(FlTemp, sInfo)
 '				FileClose(FlTemp)
 '				sInfo = UCase(VB.Left(sInfo, 1)) & LCase(VB.Right(sInfo, Len(sInfo) - 1))
@@ -434,18 +434,18 @@ End Class
 
 '		On Error GoTo PrtHandler1
 
-'		If usrLicentieInfo <> "" Then
+'		If USER_LICENSEINFO <> "" Then
 '			Printer.CurrentX = 50
 '			Printer.CurrentY = 50
-'			Printer.Write(usrLicentieInfo)
+'			Printer.Write(USER_LICENSEINFO)
 '		End If
-'		PageCounter = PageCounter + 1
+'		PAGE_COUNTER = PAGE_COUNTER + 1
 '		Printer.CurrentY = 400
-'		Printer.Write(TAB(1), ReportText(2), TAB(108), "Pagina : " & Dec(PageCounter, "##########"))
+'		Printer.Write(TAB(1), ReportText(2), TAB(108), "Pagina : " & Dec(PAGE_COUNTER, "##########"))
 '		Printer.Write(TAB(108), "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
 '		Printer.Write(TAB(1), UCase(ReportText(3)))
 
-'		Printer.Write(vbCrLf & FullLine.Value & vbCrLf & vbCrLf)
+'		Printer.Write(vbCrLf & FULL_LINE.Value & vbCrLf & vbCrLf)
 '		Exit Sub
 
 'PrtHandler1: 
@@ -461,7 +461,7 @@ End Class
 '			Case 1
 '				If DateWrongFormat(TekstLijn(1).Text) Then
 '					Beep()
-'					TekstLijn(1).Text = MimGlobalDate.Value
+'					TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
 '					TekstLijn(1).Focus()
 '				End If
 '		End Select

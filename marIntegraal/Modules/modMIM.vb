@@ -13,7 +13,7 @@
         Dim Titel As String
         Dim AT As String
 
-        XisEuroWasBEF = False
+        XisEUROWasBEF = False
         Static ProducentKopij As String
 
         Err.Clear()
@@ -24,21 +24,21 @@
         Mim.SheetsToolStrip.Enabled = True
         Mim.DocumentToolStrip.Enabled = True
         Mim.AccountingToolStrip.Enabled = True
-        If Trim(ProducentNummer) = "" Then
+        If Trim(AGENT_NUMBER) = "" Then
         Else
             Mim.InsuranceBrokerToolStrip.Enabled = True
         End If
 
-        'For CountTo = 1 To 5
-        ' Mim.MenuTitel(CountTo).Enabled = True
+        'For COUNT_TO = 1 To 5
+        ' Mim.MenuTitel(COUNT_TO).Enabled = True
         ' Next
         ' For T = 1 To 4
-        ' BasisB(T).Enabled = True
+        ' BASIC(T).Enabled = True
         ' Next
         ' Mim.Basis(11).Enabled = True
 
         BYPERDAT.Hide()
-        BYPERDAT.DatumVerwerking.Value = MimGlobalDate
+        BYPERDAT.DatumVerwerking.Value = MIM_GLOBAL_DATE
         BYPERDAT.PeriodeBoekjaar.Items.Clear()
 
         Dim c As String = ""
@@ -51,12 +51,12 @@
 
         FlTemp = FreeFile()
 
-        Dim fullPath = LocationCompanyData & "9999.OXT"
+        Dim fullPath = LOCATION_COMPANYDATA & "9999.OXT"
         Dim FlFree As Integer
 
 ProbeerNogEens:
         If Dir(fullPath) = "" Then
-            MsgBox("9999.OXT niet te vinden in " & LocationCompanyData)
+            MsgBox("9999.OXT niet te vinden in " & LOCATION_COMPANYDATA)
             FlFree = FreeFile()
             FileOpen(FlFree, fullPath, OpenMode.Output)
             PrintLine(FlFree, "0,2016,6")
@@ -73,11 +73,11 @@ ProbeerNogEens:
             actiefBJ = Split(c, ",")
         End If
 
-        ActiveBookyear = Val(actiefBJ(0))
-        For CountTo = 9 To 0 Step -1
-            If Dir(LocationCompanyData & "DEF" & Format(CountTo, "00") & ".OXT") <> "" Then
+        ACTIVE_BOOKYEAR = Val(actiefBJ(0))
+        For COUNT_TO = 9 To 0 Step -1
+            If Dir(LOCATION_COMPANYDATA & "DEF" & Format(COUNT_TO, "00") & ".OXT") <> "" Then
                 FlTemp2 = FreeFile()
-                FileOpen(FlTemp2, LocationCompanyData & "DEF" & Format(CountTo, "00") & ".OXT", OpenMode.Input)
+                FileOpen(FlTemp2, LOCATION_COMPANYDATA & "DEF" & Format(COUNT_TO, "00") & ".OXT", OpenMode.Input)
                 c = LineInput(FlTemp2)
                 'periodesBJ = Split(c, ",")
                 XX = Left(c, 4)
@@ -87,11 +87,11 @@ ProbeerNogEens:
         Next
 
         AktievePeriode = Val(actiefBJ(2))
-        BYPERDAT.Boekjaar.SelectedIndex = ActiveBookyear
-        JetTableName(TableOfCounters) = "jr" & BYPERDAT.Boekjaar.Text
+        BYPERDAT.Boekjaar.SelectedIndex = ACTIVE_BOOKYEAR
+        JET_TABLENAME(TABLE_COUNTERS) = "jr" & BYPERDAT.Boekjaar.Text
 
         FlTemp = FreeFile()
-        FileOpen(FlTemp, LocationCompanyData & "DEF" & Format(ActiveBookyear, "00") & ".OXT", OpenMode.Input)
+        FileOpen(FlTemp, LOCATION_COMPANYDATA & "DEF" & Format(ACTIVE_BOOKYEAR, "00") & ".OXT", OpenMode.Input)
         c = LineInput(FlTemp)
         periodesBJ = Split(c, ",")
         FileClose(FlTemp)
@@ -99,16 +99,16 @@ ProbeerNogEens:
         For T = 0 To UBound(periodesBJ)
             A = periodesBJ(T)
             If T = 0 Then
-                BookyearFromTo = Left(A, 8)
+                BOOKYEAR_FROMTO = Left(A, 8)
             End If
             If T = UBound(periodesBJ) Then
-                BookyearFromTo = BookyearFromTo + Right(A, 8)
+                BOOKYEAR_FROMTO = BOOKYEAR_FROMTO + Right(A, 8)
             End If
 
             If A = Space(16) Then
                 BYPERDAT.PeriodeBoekjaar.SelectedIndex = 0
                 YY = BYPERDAT.PeriodeBoekjaar.Text
-                BookyearFromTo = Mid(YY, 7, 4) & Mid(YY, 4, 2) & Mid(YY, 1, 2) & Mid(XX, 20, 4) & Mid(XX, 17, 2) & Mid(XX, 14, 2)
+                BOOKYEAR_FROMTO = Mid(YY, 7, 4) & Mid(YY, 4, 2) & Mid(YY, 1, 2) & Mid(XX, 20, 4) & Mid(XX, 17, 2) & Mid(XX, 14, 2)
                 Exit For
             Else
                 XX = Mid(A, 7, 2) & "/" & Mid(A, 5, 2) & "/" & Left(A, 4) & " - " & Right(A, 2) & "/" & Mid(A, 13, 2) & "/" & Mid(A, 9, 4)
@@ -123,40 +123,40 @@ ProbeerNogEens:
         End If
         BYPERDAT.PeriodeBoekjaar.SelectedIndex = AktievePeriode - 1
         AT = BYPERDAT.PeriodeBoekjaar.Text
-        PeriodFromTo = Mid(AT, 7, 4) & Mid(AT, 4, 2) & Left(AT, 2) & Right(AT, 4) & Mid(AT, 17, 2) & Mid(AT, 14, 2)
+        PERIOD_FROMTO = Mid(AT, 7, 4) & Mid(AT, 4, 2) & Left(AT, 2) & Right(AT, 4) & Mid(AT, 17, 2) & Mid(AT, 14, 2)
         FileClose(FlTemp)
 
-        adntDB = New ADODB.Connection
+        AD_NTDB = New ADODB.Connection
 
         On Error Resume Next
         Err.Clear()
         ' voor JET
-        'ntDB = NTRuimte.OpenDatabase(LocationCompanyData & LocationNetData & "marnt.MDV", False, False)
-        BAModus = 1
-        jetConnect = adoJetProvider & "Data Source=" & LocationCompanyData & LocationNetData & "\marnt.mdv;" & "Persist Security Info=False"
-        adntDB.Open(jetConnect)
+        'NT_DB = NT_SPACE.OpenDatabase(LOCATION_COMPANYDATA & LOCATION_NETDATA & "marnt.MDV", False, False)
+        BA_MODUS = 1
+        JET_CONNECT = ADOJET_PROVIDER & "Data Source=" & LOCATION_COMPANYDATA & LOCATION_NETDATA & "\marnt.mdv;" & "Persist Security Info=False"
+        AD_NTDB.Open(JET_CONNECT)
 
-        If String99(Reading, 20) = "5" Then
+        If String99(READING, 20) = "5" Then
             Mim.InsuranceBrokerToolStrip.Enabled = True
-            ProducentNummer = "60423"
+            AGENT_NUMBER = "60423"
         Else
-            ProducentNummer = ""
+            AGENT_NUMBER = ""
         End If
 
-        If Len(Trim(String99(Reading, 296))) = 0 Then
+        If Len(Trim(String99(READING, 296))) = 0 Then
             MsgBox("Gelieve Setup Boekingen en algemene instellingen : munt van de Boekhouding in te stellen a.u.b.  Pér bedrijf, pér boekjaar.  Hierna wordt voorlopig verder gewerkt in EUR.")
-            bhEuro = True
+            BH_EURO = True
             SS99("EUR", 296)
 
-        ElseIf String99(Reading, 296) = "BEF" Then
-            bhEuro = False
-        ElseIf String99(Reading, 296) = "EUR" Then
-            bhEuro = True
-            'MsgBox(String99(Reading, 296))
+        ElseIf String99(READING, 296) = "BEF" Then
+            BH_EURO = False
+        ElseIf String99(READING, 296) = "EUR" Then
+            BH_EURO = True
+            'MsgBox(String99(READING, 296))
         Else
-            bhEuro = False
+            BH_EURO = False
         End If
-        If bhEuro = False Then
+        If BH_EURO = False Then
             MsgBox("Hoogste boekjaar enkel nog in EUR vanaf versie 6.5.301 of hoger.  Indien U nog BEF verrichtingen wenst uit te voeren, gelieve een eerdere versie opnieuw te installeren a.u.b.", MsgBoxStyle.Information)
             End
         End If
@@ -166,23 +166,23 @@ ProbeerNogEens:
         BYPERDAT.WindowState = FormWindowState.Minimized
         BYPERDAT.Show()
 
-        CustomerSheet.Enabled = True
-        SupplierSheet.Enabled = True
-        LedgerAccountSheet.Enabled = True
+        CUSTOMERS_SHEET.Enabled = True
+        SUPPLIERS_SHEET.Enabled = True
+        LEDGERACCOUNTS_SHEET.Enabled = True
 
-        rsJournaal = New ADODB.Recordset
-        If ntDB.Connect <> "" Then
-            rsJournaal.CursorLocation = ADODB.CursorLocationEnum.adUseClient
+        RS_JOURNAL = New ADODB.Recordset
+        If NT_DB.Connect <> "" Then
+            RS_JOURNAL.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         Else
-            rsJournaal.CursorLocation = ADODB.CursorLocationEnum.adUseServer
+            RS_JOURNAL.CursorLocation = ADODB.CursorLocationEnum.adUseServer
         End If
-        rsJournaal.Open("SELECT TOP 1 * FROM Journalen", adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        RS_JOURNAL.Open("SELECT TOP 1 * FROM Journalen", AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 
         Exit Sub
 
 
 ErrorOpvang:
-        MsgBox(vBC(ktrlfl, ptel) & " " & ErrorToString())
+        MsgBox(VBC(ktrlfl, ptel) & " " & ErrorToString())
         Resume Next
 
     End Sub
@@ -191,7 +191,7 @@ ErrorOpvang:
         Dim T As Short
         Dim LastUsed As String
 
-        Ktrl = 100
+        KTRL = 100
         BJPERDAT.Close()
         'TODO:CloseOpenWindows()
 
@@ -201,11 +201,11 @@ ErrorOpvang:
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 
         On Error Resume Next
-        rsJournaal.Close()
-        rsJournaal = Nothing
+        RS_JOURNAL.Close()
+        RS_JOURNAL = Nothing
 
-        For CountTo = TableOfVarious To TableOfContracts
-            rsMAR(CountTo).Close()
+        For COUNT_TO = TABLE_VARIOUS To TABLE_CONTRACTS
+            RS_MAR(COUNT_TO).Close()
         Next
 
         'Menuopties beperken
@@ -215,20 +215,20 @@ ErrorOpvang:
         Mim.AccountingToolStrip.Enabled = False
         Mim.InsuranceBrokerToolStrip.Enabled = False
 
-        'For CountTo = 1 To 6
+        'For COUNT_TO = 1 To 6
         'TODO
-        'Mim.MenuTitel(CountTo).Enabled = False
+        'Mim.MenuTitel(COUNT_TO).Enabled = False
         'Next
 
-        With CustomerSheet
+        With CUSTOMERS_SHEET
             .Enabled = False
             .WindowState = System.Windows.Forms.FormWindowState.Minimized
         End With
-        With SupplierSheet
+        With SUPPLIERS_SHEET
             .Enabled = False
             .WindowState = System.Windows.Forms.FormWindowState.Minimized
         End With
-        With LedgerAccountSheet
+        With LEDGERACCOUNTS_SHEET
             .Enabled = False
             .WindowState = System.Windows.Forms.FormWindowState.Minimized
         End With
@@ -238,11 +238,11 @@ ErrorOpvang:
         'TODO: Mim.AV(11).Enabled = False
         'TODO: Mim.Basis(11).Enabled = False
 
-        LocationCompanyData = Location
+        LOCATION_COMPANYDATA = LOCATION
         Mim.Text = My.Application.Info.Title
         System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
         FileClose()
-        LocationCompanyData = ""
+        LOCATION_COMPANYDATA = ""
 
     End Sub
 
@@ -251,51 +251,51 @@ ErrorOpvang:
         Dim T As Integer
 
         InitTables = True
-        FlAantalIndexen(TableOfVarious) = 1
-        JetTableUseIndex(TableOfVarious, 0) = "v004 " : FlIndexLen(TableOfVarious, 0) = 13 : FLIndexCaption(TableOfVarious, 0) = "Partij"
-        JetTableUseIndex(TableOfVarious, 1) = "v005 " : FlIndexLen(TableOfVarious, 1) = 20 : FLIndexCaption(TableOfVarious, 1) = "SPtype"
+        FlAantalIndexen(TABLE_VARIOUS) = 1
+        JETTABLEUSE_INDEX(TABLE_VARIOUS, 0) = "v004 " : FLINDEX_LEN(TABLE_VARIOUS, 0) = 13 : FLINDEX_CAPTION(TABLE_VARIOUS, 0) = "Partij"
+        JETTABLEUSE_INDEX(TABLE_VARIOUS, 1) = "v005 " : FLINDEX_LEN(TABLE_VARIOUS, 1) = 20 : FLINDEX_CAPTION(TABLE_VARIOUS, 1) = "SPtype"
 
-        FlAantalIndexen(TableOfCustomers) = 1
-        JetTableUseIndex(TableOfCustomers, 0) = "A110 " : FlIndexLen(TableOfCustomers, 0) = 12 : FLIndexCaption(TableOfCustomers, 0) = "Nummer"
-        JetTableUseIndex(TableOfCustomers, 1) = "A100 " : FlIndexLen(TableOfCustomers, 1) = 10 : FLIndexCaption(TableOfCustomers, 1) = "Bedrijfsnaam"
+        FlAantalIndexen(TABLE_CUSTOMERS) = 1
+        JETTABLEUSE_INDEX(TABLE_CUSTOMERS, 0) = "A110 " : FLINDEX_LEN(TABLE_CUSTOMERS, 0) = 12 : FLINDEX_CAPTION(TABLE_CUSTOMERS, 0) = "Nummer"
+        JETTABLEUSE_INDEX(TABLE_CUSTOMERS, 1) = "A100 " : FLINDEX_LEN(TABLE_CUSTOMERS, 1) = 10 : FLINDEX_CAPTION(TABLE_CUSTOMERS, 1) = "Bedrijfsnaam"
 
-        FlAantalIndexen(TableOfSuppliers) = 1
-        JetTableUseIndex(TableOfSuppliers, 0) = "A110 " : FlIndexLen(TableOfSuppliers, 0) = 12 : FLIndexCaption(TableOfSuppliers, 0) = "Nummer"
-        JetTableUseIndex(TableOfSuppliers, 1) = "A100 " : FlIndexLen(TableOfSuppliers, 1) = 10 : FLIndexCaption(TableOfSuppliers, 1) = "Bedrijfsnaam"
+        FlAantalIndexen(TABLE_SUPPLIERS) = 1
+        JETTABLEUSE_INDEX(TABLE_SUPPLIERS, 0) = "A110 " : FLINDEX_LEN(TABLE_SUPPLIERS, 0) = 12 : FLINDEX_CAPTION(TABLE_SUPPLIERS, 0) = "Nummer"
+        JETTABLEUSE_INDEX(TABLE_SUPPLIERS, 1) = "A100 " : FLINDEX_LEN(TABLE_SUPPLIERS, 1) = 10 : FLINDEX_CAPTION(TABLE_SUPPLIERS, 1) = "Bedrijfsnaam"
 
-        FlAantalIndexen(TableOfLedgerAccounts) = 1
-        JetTableUseIndex(TableOfLedgerAccounts, 0) = "v019 " : FlIndexLen(TableOfLedgerAccounts, 0) = 7 : FLIndexCaption(TableOfLedgerAccounts, 0) = "RekeningNummer"
-        JetTableUseIndex(TableOfLedgerAccounts, 1) = "v020 " : FlIndexLen(TableOfLedgerAccounts, 1) = 10 : FLIndexCaption(TableOfLedgerAccounts, 1) = "Omschrijving"
+        FlAantalIndexen(TABLE_LEDGERACCOUNTS) = 1
+        JETTABLEUSE_INDEX(TABLE_LEDGERACCOUNTS, 0) = "v019 " : FLINDEX_LEN(TABLE_LEDGERACCOUNTS, 0) = 7 : FLINDEX_CAPTION(TABLE_LEDGERACCOUNTS, 0) = "RekeningNummer"
+        JETTABLEUSE_INDEX(TABLE_LEDGERACCOUNTS, 1) = "v020 " : FLINDEX_LEN(TABLE_LEDGERACCOUNTS, 1) = 10 : FLINDEX_CAPTION(TABLE_LEDGERACCOUNTS, 1) = "Omschrijving"
 
-        FlAantalIndexen(TableOfProductsAndServices) = 1
-        JetTableUseIndex(TableOfProductsAndServices, 0) = "v102 " : FlIndexLen(TableOfProductsAndServices, 0) = 13 : FLIndexCaption(TableOfProductsAndServices, 0) = "Artikelkode EAN"
-        JetTableUseIndex(TableOfProductsAndServices, 1) = "v105 " : FlIndexLen(TableOfProductsAndServices, 1) = 10 : FLIndexCaption(TableOfProductsAndServices, 1) = "Omschrijving"
+        FlAantalIndexen(TABLE_PRODUCTS) = 1
+        JETTABLEUSE_INDEX(TABLE_PRODUCTS, 0) = "v102 " : FLINDEX_LEN(TABLE_PRODUCTS, 0) = 13 : FLINDEX_CAPTION(TABLE_PRODUCTS, 0) = "Artikelkode EAN"
+        JETTABLEUSE_INDEX(TABLE_PRODUCTS, 1) = "v105 " : FLINDEX_LEN(TABLE_PRODUCTS, 1) = 10 : FLINDEX_CAPTION(TABLE_PRODUCTS, 1) = "Omschrijving"
 
-        FlAantalIndexen(FlJournaal) = 4
-        JetTableUseIndex(FlJournaal, 0) = "v070 " : FlIndexLen(FlJournaal, 0) = 15 : FLIndexCaption(FlJournaal, 0) = "Rekening Boekdatum"
-        JetTableUseIndex(FlJournaal, 1) = "v033 " : FlIndexLen(FlJournaal, 1) = 11 : FLIndexCaption(FlJournaal, 1) = "Dokumentnummer"
-        JetTableUseIndex(FlJournaal, 2) = "v038 " : FlIndexLen(FlJournaal, 2) = 8 : FLIndexCaption(FlJournaal, 2) = "Betalingsstuk"
-        JetTableUseIndex(FlJournaal, 3) = "v041 " : FlIndexLen(FlJournaal, 3) = 1 : FLIndexCaption(FlJournaal, 3) = "Bewerkingsvlag"
-        JetTableUseIndex(FlJournaal, 4) = "v066 " : FlIndexLen(FlJournaal, 4) = 7 : FLIndexCaption(FlJournaal, 4) = "Boekdatum"
+        FlAantalIndexen(TABLE_JOURNAL) = 4
+        JETTABLEUSE_INDEX(TABLE_JOURNAL, 0) = "v070 " : FLINDEX_LEN(TABLE_JOURNAL, 0) = 15 : FLINDEX_CAPTION(TABLE_JOURNAL, 0) = "Rekening Boekdatum"
+        JETTABLEUSE_INDEX(TABLE_JOURNAL, 1) = "v033 " : FLINDEX_LEN(TABLE_JOURNAL, 1) = 11 : FLINDEX_CAPTION(TABLE_JOURNAL, 1) = "Dokumentnummer"
+        JETTABLEUSE_INDEX(TABLE_JOURNAL, 2) = "v038 " : FLINDEX_LEN(TABLE_JOURNAL, 2) = 8 : FLINDEX_CAPTION(TABLE_JOURNAL, 2) = "Betalingsstuk"
+        JETTABLEUSE_INDEX(TABLE_JOURNAL, 3) = "v041 " : FLINDEX_LEN(TABLE_JOURNAL, 3) = 1 : FLINDEX_CAPTION(TABLE_JOURNAL, 3) = "Bewerkingsvlag"
+        JETTABLEUSE_INDEX(TABLE_JOURNAL, 4) = "v066 " : FLINDEX_LEN(TABLE_JOURNAL, 4) = 7 : FLINDEX_CAPTION(TABLE_JOURNAL, 4) = "Boekdatum"
 
-        FlAantalIndexen(TableOfInvoices) = 2
-        JetTableUseIndex(TableOfInvoices, 0) = "v033 " : FlIndexLen(TableOfInvoices, 0) = 11 : FLIndexCaption(TableOfInvoices, 0) = "DokumentNummer"
-        JetTableUseIndex(TableOfInvoices, 1) = "v034 " : FlIndexLen(TableOfInvoices, 1) = 13 : FLIndexCaption(TableOfInvoices, 1) = "Partij"
-        JetTableUseIndex(TableOfInvoices, 2) = "A000 " : FlIndexLen(TableOfInvoices, 2) = 12 : FLIndexCaption(TableOfInvoices, 2) = "KontraktNummer"
+        FlAantalIndexen(TABLE_INVOICES) = 2
+        JETTABLEUSE_INDEX(TABLE_INVOICES, 0) = "v033 " : FLINDEX_LEN(TABLE_INVOICES, 0) = 11 : FLINDEX_CAPTION(TABLE_INVOICES, 0) = "DokumentNummer"
+        JETTABLEUSE_INDEX(TABLE_INVOICES, 1) = "v034 " : FLINDEX_LEN(TABLE_INVOICES, 1) = 13 : FLINDEX_CAPTION(TABLE_INVOICES, 1) = "Partij"
+        JETTABLEUSE_INDEX(TABLE_INVOICES, 2) = "A000 " : FLINDEX_LEN(TABLE_INVOICES, 2) = 12 : FLINDEX_CAPTION(TABLE_INVOICES, 2) = "KontraktNummer"
 
-        FlAantalIndexen(TableOfContracts) = 3
-        JetTableUseIndex(TableOfContracts, 0) = "A000 " : FlIndexLen(TableOfContracts, 0) = 12 : FLIndexCaption(TableOfContracts, 0) = "Polisnummer"
-        JetTableUseIndex(TableOfContracts, 1) = "A110 " : FlIndexLen(TableOfContracts, 1) = 12 : FLIndexCaption(TableOfContracts, 1) = "Klantkode"
-        JetTableUseIndex(TableOfContracts, 2) = "A010 " : FlIndexLen(TableOfContracts, 2) = 4 : FLIndexCaption(TableOfContracts, 2) = "Maatschappij"
-        JetTableUseIndex(TableOfContracts, 3) = "v167 " : FlIndexLen(TableOfContracts, 3) = 30 : FLIndexCaption(TableOfContracts, 3) = "MaandKlantMijPolis"
+        FlAantalIndexen(TABLE_CONTRACTS) = 3
+        JETTABLEUSE_INDEX(TABLE_CONTRACTS, 0) = "A000 " : FLINDEX_LEN(TABLE_CONTRACTS, 0) = 12 : FLINDEX_CAPTION(TABLE_CONTRACTS, 0) = "Polisnummer"
+        JETTABLEUSE_INDEX(TABLE_CONTRACTS, 1) = "A110 " : FLINDEX_LEN(TABLE_CONTRACTS, 1) = 12 : FLINDEX_CAPTION(TABLE_CONTRACTS, 1) = "Klantkode"
+        JETTABLEUSE_INDEX(TABLE_CONTRACTS, 2) = "A010 " : FLINDEX_LEN(TABLE_CONTRACTS, 2) = 4 : FLINDEX_CAPTION(TABLE_CONTRACTS, 2) = "Maatschappij"
+        JETTABLEUSE_INDEX(TABLE_CONTRACTS, 3) = "v167 " : FLINDEX_LEN(TABLE_CONTRACTS, 3) = 30 : FLINDEX_CAPTION(TABLE_CONTRACTS, 3) = "MaandKlantMijPolis"
 
-        FlAantalIndexen(TableOfCounters) = 0
-        JetTableUseIndex(TableOfCounters, 0) = "v071 " : FlIndexLen(TableOfCounters, 0) = 5 : FLIndexCaption(TableOfCounters, 0) = "Setup Parameter"
+        FlAantalIndexen(TABLE_COUNTERS) = 0
+        JETTABLEUSE_INDEX(TABLE_COUNTERS, 0) = "v071 " : FLINDEX_LEN(TABLE_COUNTERS, 0) = 5 : FLINDEX_CAPTION(TABLE_COUNTERS, 0) = "Setup Parameter"
 
-        FlAantalIndexen(TableDummy) = 0
-        JetTableUseIndex(TableDummy, 0) = "v089 " : FlIndexLen(TableDummy, 0) = 20 : FLIndexCaption(TableDummy, 0) = "Plaatselijk sorteren"
+        FlAantalIndexen(TABLE_DUMMY) = 0
+        JETTABLEUSE_INDEX(TABLE_DUMMY, 0) = "v089 " : FLINDEX_LEN(TABLE_DUMMY, 0) = 20 : FLINDEX_CAPTION(TABLE_DUMMY, 0) = "Plaatselijk sorteren"
 
-        For T = TableOfVarious To TableOfCounters
+        For T = TABLE_VARIOUS To TABLE_COUNTERS
             If TeleBibPagina(T) Then
             Else
                 MsgBox("Fout tijdens inladen bestandsdefinities.  Herinstalleer het programma en/of kontakteer Vsoft")
@@ -348,7 +348,7 @@ EenFoutBijINLaden:
 
     Sub SS99(ByRef StringInhoud As String, ByRef NummerRec As Short)
 
-        Fl99Record = StringInhoud
+        FL99_RECORD = StringInhoud
         SetString99(NummerRec)
 
     End Sub
@@ -357,30 +357,30 @@ EenFoutBijINLaden:
         Dim DummySleutel As String
 
         DummySleutel = "s" & Format(NummerSleutel, "000") & " "
-        JetGet(TableOfCounters, 0, DummySleutel)
-        If Ktrl Then
-            If BAModus = 1 Then
+        JetGet(TABLE_COUNTERS, 0, DummySleutel)
+        If KTRL Then
+            If BA_MODUS = 1 Then
 
-                TLBRecord(TableOfCounters) = ""
-                AdoInsertToRecord(TableOfCounters, DummySleutel, "v071")
-                AdoInsertToRecord(TableOfCounters, Fl99Record, "v217")
-                JetInsert(TableOfCounters, 0)
+                TLB_RECORD(TABLE_COUNTERS) = ""
+                AdoInsertToRecord(TABLE_COUNTERS, DummySleutel, "v071")
+                AdoInsertToRecord(TABLE_COUNTERS, FL99_RECORD, "v217")
+                JetInsert(TABLE_COUNTERS, 0)
             Else
                 MsgBox("Onlogika btrieve versie !")
             End If
         Else
-            RecordToField(TableOfCounters)
-            If BAModus = 1 Then
-                AdoInsertToRecord(TableOfCounters, Fl99Record, "v217 ")
-                bUpdate(TableOfCounters, 0)
-                If Ktrl Then
+            RecordToField(TABLE_COUNTERS)
+            If BA_MODUS = 1 Then
+                AdoInsertToRecord(TABLE_COUNTERS, FL99_RECORD, "v217 ")
+                bUpdate(TABLE_COUNTERS, 0)
+                If KTRL Then
                     MsgBox("UpdateStop Teller. kontakteer vsoft")
                 End If
             Else
                 MsgBox("Onlogika btrieve versie !")
             End If
         End If
-        JetTableClose(TableOfCounters)
+        JetTableClose(TABLE_COUNTERS)
 
     End Sub
 
@@ -388,12 +388,12 @@ EenFoutBijINLaden:
     Public Function VeldOK(ByRef FlHier As Short, ByRef VeldNaam As String, Optional ByRef VeldDef As String = "") As Integer
         Dim AantalRC As Short
 
-        If rsMAR(FlHier).State = ADODB.ObjectStateEnum.adStateClosed Then
-            Ktrl = JetTableOpen(FlHier)
+        If RS_MAR(FlHier).State = ADODB.ObjectStateEnum.adStateClosed Then
+            KTRL = JetTableOpen(FlHier)
         End If
         On Error Resume Next
         Err.Clear()
-        MSG = rsMAR(FlHier).Fields(VeldNaam).Name
+        MSG = RS_MAR(FlHier).Fields(VeldNaam).Name
         If Err.Number = 0 Then
             VeldOK = Err.Number
             Exit Function
@@ -402,10 +402,10 @@ EenFoutBijINLaden:
             Exit Function
         Else
             JetTableClose(FlHier)
-            MSG = "ALTER TABLE " & JetTableName(FlHier) & " ADD COLUMN " & VeldNaam & " " & VeldDef & ";"
+            MSG = "ALTER TABLE " & JET_TABLENAME(FlHier) & " ADD COLUMN " & VeldNaam & " " & VeldDef & ";"
             If MsgBox(MSG & vbCr & vbCr & "SQL-instructie uitvoeren", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1 + MsgBoxStyle.Question) = MsgBoxResult.Yes Then
                 Err.Clear()
-                adntDB.Execute(MSG, AantalRC)
+                AD_NTDB.Execute(MSG, AantalRC)
                 If Err.Number Then
                     MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
                 Else
@@ -426,10 +426,10 @@ EenFoutBijINLaden:
 
         'SqlSearch.Close()
         'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-        'XDoEvents = System.Windows.Forms.Application.DoEvents()
+        'XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
         'Xlog.Close()
         ''UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-        'XDoEvents = System.Windows.Forms.Application.DoEvents()
+        'XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
         'SetupEnParameters.Close()
         'Afbeeldingen.Close()
         'xDokument.Close()
@@ -459,13 +459,13 @@ EenFoutBijINLaden:
 
         TeleBibClick = False
         Select Case Fl
-            Case TableOfCustomers To TableOfContracts 'Hoofdfiches
+            Case TABLE_CUSTOMERS To TABLE_CONTRACTS 'Hoofdfiches
                 If TeleBibPagina(Fl) = False Then
                     Beep()
                     Exit Function
                 End If
-            Case TableOfInvoices 'Aankoop verkoopdokumenten
-                If TLBPag2("020" & Left(FVT(TableOfInvoices, 0), 1)) = False Then
+            Case TABLE_INVOICES 'Aankoop verkoopdokumenten
+                If TLBPag2("020" & Left(FVT(TABLE_INVOICES, 0), 1)) = False Then
                     Beep()
                     Exit Function
                 End If
@@ -498,32 +498,32 @@ EenFoutBijINLaden:
                 MsgBox("stop in telebibclick, fl=" & Format(Fl))
         End Select
         Select Case Fl
-            Case TableOfCustomers
+            Case TABLE_CUSTOMERS
                 LogTekst = "BIB voor Klanten"
-            Case TableOfSuppliers
+            Case TABLE_SUPPLIERS
                 LogTekst = "BIB voor Leveranciers"
-            Case TableOfLedgerAccounts
+            Case TABLE_LEDGERACCOUNTS
                 LogTekst = "BIB voor Algemene Rekeningen"
-            Case TableOfProductsAndServices
+            Case TABLE_PRODUCTS
                 LogTekst = "BIB voor Artikels/Diensten"
-            Case TableOfContracts
+            Case TABLE_CONTRACTS
                 LogTekst = "BIB voor contracten"
-            Case TableOfInvoices
+            Case TABLE_INVOICES
                 LogTekst = "BIB voor Aan- en Verkoopdokumenten"
             Case 1000 To 1999
-                Fl = TableOfVarious
+                Fl = TABLE_VARIOUS
                 LogTekst = "BIB AS1/verzoeken"
             Case 2000 To 2099
-                Fl = TableOfVarious
-                LogTekst = "BIB Polis " & AdoGetField(TableOfContracts, "#A000 #")
+                Fl = TABLE_VARIOUS
+                LogTekst = "BIB Polis " & AdoGetField(TABLE_CONTRACTS, "#A000 #")
             Case 3000 To 3099
-                Fl = TableOfVarious
-                LogTekst = "Bib Schade " & AdoGetField(TableOfVarious, "#C000 #")
+                Fl = TABLE_VARIOUS
+                LogTekst = "Bib Schade " & AdoGetField(TABLE_VARIOUS, "#C000 #")
             Case 4000 To 4099
-                Fl = TableOfVarious
-                LogTekst = "BIB DetailPolis " & AdoGetField(TableOfContracts, "#A000 #")
+                Fl = TABLE_VARIOUS
+                LogTekst = "BIB DetailPolis " & AdoGetField(TABLE_CONTRACTS, "#A000 #")
             Case Else
-                Fl = TableOfVarious
+                Fl = TABLE_VARIOUS
                 LogTekst = " BIB Allerlei"
         End Select
 
@@ -532,8 +532,8 @@ EenFoutBijINLaden:
         xLog.Hide()
         xLog.Text = xLog.Text & LogTekst
         xLog.Tag = Str(Fl)
-        If Fl = TableOfInvoices Then
-            If vsfPro Then
+        If Fl = TABLE_INVOICES Then
+            If VSF_PRO Then
                 xLog.WijzigenLijn.Enabled = True
                 xLog.Afsluiten.Text = "Speciaal"
             Else
@@ -561,13 +561,13 @@ EenFoutBijINLaden:
 XLogShow:
         'SetDefault(xLog.WijzigenLijn, True)
         xLog.Afsluiten.TabStop = True
-        XLogKey = ""
+        XLOG_KEY = ""
         'xLog.SSTab1.TabPages.Item(1).Visible = False
         xLog.ShowDialog()
-        If XLogKey <> "" Then
+        If XLOG_KEY <> "" Then
             t = 0
             'xLog.X.Col = 2
-            Do While Trim(TeleBibCode(t)) <> ""
+            Do While Trim(TELEBIB_CODE(t)) <> ""
                 Dim itemX As ListViewItem
                 itemX = xLog.X.Items.Item(t)
                 codeString = itemX.SubItems.Item(0).Text
@@ -583,8 +583,8 @@ XLogShow:
             Loop
             If xLog.Afsluiten.Text = "Speciaal" Then
                 MSG = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
-                Ktrl = MsgBox(MSG, 292)
-                If Ktrl = 6 Then
+                KTRL = MsgBox(MSG, 292)
+                If KTRL = 6 Then
                     bUpdate(Fl, 0)
                 End If
             End If
@@ -608,13 +608,13 @@ XLogShow:
         End With
         aa = ""
         T = 0
-        Do While Trim(TeleBibCode(T)) <> ""
-            CrText = AdoGetField(Fl, "#" & Mid(TeleBibCode(T), 5, 5) & "#")
-            Select Case Mid(TeleBibCode(T), 2, 2)
+        Do While Trim(TELEBIB_CODE(T)) <> ""
+            CrText = AdoGetField(Fl, "#" & Mid(TELEBIB_CODE(T), 5, 5) & "#")
+            Select Case Mid(TELEBIB_CODE(T), 2, 2)
                 Case "  ", "K ", "L ", "LC", "R ", "R3", "R4", "R6", "R7"
                     'niks
                 Case Else
-                    Select Case Mid(TeleBibCode(T), 1, 1)
+                    Select Case Mid(TELEBIB_CODE(T), 1, 1)
                         Case " "
                             BoxMask = "00"
                             BoxType = 0
@@ -622,14 +622,14 @@ XLogShow:
                             BoxMask = "000"
                             BoxType = 1
                     End Select
-                    If Left(TeleBibCode(T), 1) = "@" Or CrText = "" Then
+                    If Left(TELEBIB_CODE(T), 1) = "@" Or CrText = "" Then
                     Else
-                        CrText = fmarBoxText(Format(Val(Mid(TeleBibCode(T), 1, 3)), BoxMask), "2", CrText) 'hier eventueel taaloptie
+                        CrText = fmarBoxText(Format(Val(Mid(TELEBIB_CODE(T), 1, 3)), BoxMask), "2", CrText) 'hier eventueel taaloptie
                     End If
             End Select
-            aa = TeleBibCode(T) & vbTab & TeleBibTekst(T) & vbTab & CrText
-            Dim itemHier As New ListViewItem(TeleBibCode(T))
-            itemHier.SubItems.Add(TeleBibTekst(T))
+            aa = TELEBIB_CODE(T) & vbTab & TELEBIB_TEXT(T) & vbTab & CrText
+            Dim itemHier As New ListViewItem(TELEBIB_CODE(T))
+            itemHier.SubItems.Add(TELEBIB_TEXT(T))
             itemHier.SubItems.Add(CrText)
             xLog.X.Items.Add(itemHier)
             T = T + 1
@@ -647,7 +647,7 @@ XLogShow:
         ntInputbox.Dispose()
         ntInputbox.Hide()
         ntInputbox.Text = Titel
-        SQLBevel = ""
+        SQL_COMMAND = ""
         If Mid(InfoTekst, 1, 1) = "@" Then
             ntInputbox.Hernieuw.Visible = True
             ntInputbox.cmdVooruit.Visible = True
@@ -655,16 +655,16 @@ XLogShow:
             ntInputbox.lblInfo.Visible = True
             Select Case Mid(InfoTekst, 2, 2)
                 Case "00"
-                    SQLBevel = "SELECT * FROM ISOLandKodes WHERE ISOLandNummer LIKE '" & Trim(TekstZelf) & "%';"
+                    SQL_COMMAND = "SELECT * FROM ISOLandKodes WHERE ISOLandNummer LIKE '" & Trim(TekstZelf) & "%';"
                     'ntInputbox.BindingNavigator.BindingSource = ntInputbox.ISOLandkodesBindingSource
-                    'TODO: NTInputbox.DefaultData.RecordSource = SQLBevel & RTrim(TekstZelf) & "%';"
+                    'TODO: NTInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
                     ReDim ToolDef(3)
                     ToolDef(0) = "00=v149 " 'Landnummer  ISO kode
                     ToolDef(1) = "01=vs03 " 'Munteenheid ISO kode
                     ToolDef(2) = "02=v150 " 'Landkode    ISO kode
                 Case "01"
-                    SQLBevel = "SELECT * FROM PostKodesWoonplaatsen WHERE PostKode LIKE '" & Trim(TekstZelf) & "%';"
-                    'TODO: NTInputbox.DefaultData.RecordSource = SQLBevel & RTrim(TekstZelf) & "%';"
+                    SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PostKode LIKE '" & Trim(TekstZelf) & "%';"
+                    'TODO: NTInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
                     'ntInputbox.BindingNavigator.BindingSource = ntInputbox.PostKodesWoonPlaatsenBindingSource
 
                     ReDim ToolDef(3)
@@ -672,8 +672,8 @@ XLogShow:
                     ToolDef(1) = "02=A108 " 'Plaatsnaam
 
                 Case "02"
-                    SQLBevel = "SELECT * FROM PostKodesWoonplaatsen WHERE PlaatsNaam LIKE '" & Trim(TekstZelf) & "%';"
-                    'TODO: NTInputbox.DefaultData.RecordSource = SQLBevel & RTrim(TekstZelf) & "%';"
+                    SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PlaatsNaam LIKE '" & Trim(TekstZelf) & "%';"
+                    'TODO: NTInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
                     'ntInputbox.BindingNavigator.BindingSource = ntInputbox.PostKodesWoonPlaatsenBindingSource
                     ReDim ToolDef(3)
                     ToolDef(0) = "02=A108 " 'Plaatsnaam
@@ -685,8 +685,8 @@ XLogShow:
             NTInputbox.cmdAchteruit.Visible = False
             NTInputbox.lblInfo.Visible = False
         End If
-        NTInputbox.Tag = GridText
-        If GridText = "Edit No" Then
+        NTInputbox.Tag = GRIDTEXT
+        If GRIDTEXT = "Edit No" Then
             ntInputbox.Ok.Visible = False
             ntInputbox.TekstInfo.Enabled = False
             ntInputbox.AcceptButton = ntInputbox.Sluiten
@@ -695,11 +695,11 @@ XLogShow:
             ntInputbox.TekstInfo.Enabled = True
             ntInputbox.AcceptButton = ntInputbox.Ok
         End If
-        GridText = InfoTekst
+        GRIDTEXT = InfoTekst
         If Mid(InfoTekst, 1, 1) = "@" Then
-            'ntInputbox.ToolStrip.Text = GridText ' & NTInputbox.DefaultData.RecordSource
+            'ntInputbox.ToolStrip.Text = GRIDTEXT ' & NTInputbox.DefaultData.RecordSource
         Else
-            'ntInputbox.ToolStrip.Text = GridText
+            'ntInputbox.ToolStrip.Text = GRIDTEXT
         End If
         NTInputbox.TekstInfo.Text = TekstZelf
         'nTInputBox.TekstInfo.PasswordChar = Paswoord
@@ -709,7 +709,7 @@ XLogShow:
         If NTInputbox.TekstInfo.Text = Chr(255) Then
             vsfInputBox = TekstZelf
         Else
-            If SQLBevel = "" Then
+            If SQL_COMMAND = "" Then
                 vsfInputBox = ntInputbox.TekstInfo.Text
             ElseIf Mid(InfoTekst, 1, 1) = "@" Then
                 Stop
@@ -783,11 +783,11 @@ ErrInput:
         Loop
 
         Select Case fVlag
-            Case PeriodAsText, BookyearAsText
+            Case PERIODAS_TEXT, BOOKYEARAS_TEXT
                 Dag = Mid(gDatum, 1, 2)
                 Maand = Mid(gDatum, 3, 2)
                 Jaar = Mid(gDatum, 5, 4)
-            Case PeriodeAsKey, BookyearAsKey
+            Case PERIODAS_KEY, BOOKYEARAS_KEY
                 Jaar = Mid(gDatum, 1, 4)
                 Maand = Mid(gDatum, 5, 2)
                 Dag = Mid(gDatum, 7, 2)
@@ -796,13 +796,13 @@ ErrInput:
         End Select
 
         Select Case fVlag
-            Case PeriodAsText, PeriodeAsKey
-                If Jaar & Maand & Dag < Left(PeriodFromTo, 8) Or Jaar & Maand & Dag > Right(PeriodFromTo, 8) Then
+            Case PERIODAS_TEXT, PERIODAS_KEY
+                If Jaar & Maand & Dag < Left(PERIOD_FROMTO, 8) Or Jaar & Maand & Dag > Right(PERIOD_FROMTO, 8) Then
                 Else
                     DatumKtrl = True
                 End If
-            Case BookyearAsText, BookyearAsKey
-                If Jaar & Maand & Dag < Left(BookyearFromTo, 8) Or Jaar & Maand & Dag > Right(BookyearFromTo, 8) Then
+            Case BOOKYEARAS_TEXT, BOOKYEARAS_KEY
+                If Jaar & Maand & Dag < Left(BOOKYEAR_FROMTO, 8) Or Jaar & Maand & Dag > Right(BOOKYEAR_FROMTO, 8) Then
                 Else
                     DatumKtrl = True
                 End If
@@ -825,7 +825,7 @@ ErrInput:
             Exit Function
         End If
 
-        adm1 = DaysInAMonth(irmd43)
+        adm1 = DAYS_IN_MONTH(irmd43)
         While irdg43 + avd43 > adm1
             avd43 = avd43 - (adm1 - irdg43)
             irdg43 = 0
@@ -835,7 +835,7 @@ ErrInput:
             Else
                 irmd43 = irmd43 + 1
             End If
-            adm1 = DaysInAMonth(irmd43)
+            adm1 = DAYS_IN_MONTH(irmd43)
         End While
 
         irdg43 = irdg43 + avd43
@@ -854,7 +854,7 @@ handlerVVDag:
     Function SleutelDok(ByRef fRecordNr As Short) As String
         Dim VoorLetter As String = "  "
 
-        Fl99Record = String99(ReadingLock, fRecordNr)
+        FL99_RECORD = String99(READING_LOCK, fRecordNr)
         Select Case fRecordNr
             Case 1
                 VoorLetter = "A0"
@@ -875,7 +875,7 @@ handlerVVDag:
             Case Else
                 MsgBox("Ongeldige record : " & Str(fRecordNr))
         End Select
-        SleutelDok = VoorLetter & Mid(PeriodFromTo, 1, 4) & Format(Val(Fl99Record) + 1, "00000")
+        SleutelDok = VoorLetter & Mid(PERIOD_FROMTO, 1, 4) & Format(Val(FL99_RECORD) + 1, "00000")
     End Function
     Function FunctionDateText(ByRef fDatumSleutel As String) As String
         Dim Dag As String = "  "
@@ -905,7 +905,7 @@ handlerVVDag:
             'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
             BestandReeks(1) = Dir(SourcePath & "\" & FileToCopy)
             If BestandReeks(1) = "" Then
-                MsgBox("Stop tijdens het kopieren.  TableDefOnt niet te vinden: """ & FileToCopy & """", 64, "SETUP")
+                MsgBox("Stop tijdens het kopieren.  TABLEDEF_ONT niet te vinden: """ & FileToCopy & """", 64, "SETUP")
                 GoTo CopyError
             Else
                 Do
@@ -922,23 +922,23 @@ handlerVVDag:
             BestandReeks(1) = FileToCopy
             Aantal = 1
             If Not FileExists(SourcePath & "\" & FileToCopy) Then
-                MsgBox("TableDefOnt niet te vinden: """ & FileToCopy & """", 64, "SETUP")
+                MsgBox("TABLEDEF_ONT niet te vinden: """ & FileToCopy & """", 64, "SETUP")
                 GoTo CopyError
             End If
         End If
 
-        For CountTo = 1 To Aantal
+        For COUNT_TO = 1 To Aantal
 
             'UPGRADE_WARNING: Dir has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-            If Dir(TargetPath & "\" & BestandReeks(CountTo)) <> "" Then
-                Kill(TargetPath & "\" & BestandReeks(CountTo))
+            If Dir(TargetPath & "\" & BestandReeks(COUNT_TO)) <> "" Then
+                Kill(TargetPath & "\" & BestandReeks(COUNT_TO))
             End If
 
             FlCopy1 = FreeFile()
-            FileOpen(FlCopy1, SourcePath & "\" & BestandReeks(CountTo), OpenMode.Binary)
+            FileOpen(FlCopy1, SourcePath & "\" & BestandReeks(COUNT_TO), OpenMode.Binary)
 
             FlCopy2 = FreeFile()
-            FileOpen(FlCopy2, TargetPath & "\" & BestandReeks(CountTo), OpenMode.Binary)
+            FileOpen(FlCopy2, TargetPath & "\" & BestandReeks(COUNT_TO), OpenMode.Binary)
 
             BufferVar = New String(" ", 3000)
 
@@ -1009,8 +1009,8 @@ CopyError:
     End Function
     Sub CMDVSOFTSPACE(flfree As Short)
         On Error GoTo errorCMDVSOFTSPACE
-        Input(flfree, pdfVsoftFrom)
-        Input(flfree, pdfVsoftTo)
+        Input(flfree, PDF_VSOFT_FROM)
+        Input(flfree, PDF_VSOFT_TO)
         Exit Sub
 
 errorCMDVSOFTSPACE:
@@ -1034,11 +1034,11 @@ errorCMDVSOFTSPACE:
         Mim.Report.PictureBestFit = True
         '2.5, 0.5, 19, 2.5
         If Mid(filename, 1, 4) = "[BL]" Then
-            filename = LocationCompanyData & Mid(filename, 5)
+            filename = LOCATION_COMPANYDATA & Mid(filename, 5)
         ElseIf Mid(filename, 1, 4) = "[PL]" Then
-            filename = ProgramLocation & Mid(filename, 5)
+            filename = PROGRAM_LOCATION & Mid(filename, 5)
         End If
-        Ktrl = Mim.Report.Picture(xPos, YPOS, xPos2, YPOS2, filename)
+        KTRL = Mim.Report.Picture(xPos, YPOS, xPos2, YPOS2, filename)
         Exit Sub
 
 errorCMDPICTURE:
@@ -1046,11 +1046,11 @@ errorCMDPICTURE:
     End Sub
     Sub CMDADRESSPACE(Flfree As Short)
         On Error GoTo errorCMDADRESSPACE
-        Input(Flfree, pdfAddressXpos)
-        Input(Flfree, pdfAddressYpos)
-        Input(Flfree, pdfAddressXpos2)
-        Input(Flfree, pdfAddressYpos2) ', adresBox
-        'Ktrl = Mim.Report.WriteBox(pdfAddressXpos, pdfAddressYpos, pdfAddressXpos2, pdfAddressYpos2, "")
+        Input(Flfree, PDF_ADDRESS_XPOS)
+        Input(Flfree, PDF_ADDRESS_YPOS)
+        Input(Flfree, PDF_ADDRESS_XPOS2)
+        Input(Flfree, PDF_ADDRESS_YPOS2) ', adresBox
+        'KTRL = Mim.Report.WriteBox(PDF_ADDRESS_XPOS, PDF_ADDRESS_YPOS, PDF_ADDRESS_XPOS2, PDF_ADDRESS_YPOS2, "")
         Exit Sub
 
 errorCMDADRESSPACE:
@@ -1101,7 +1101,7 @@ errorCMDADRESSPACE:
         Mim.Report.TextItalic = pdfFontItalic
         Mim.Report.TextUnderline = pdfFontUnderLine
         Mim.Report.TextAlignment = pdfAlign
-        Ktrl = Mim.Report.Write(xPos, YPOS, xPos2, YPOS2, textstring)
+        KTRL = Mim.Report.Write(xPos, YPOS, xPos2, YPOS2, textstring)
         Exit Sub
 
 errorCMDWRITE:
@@ -1153,7 +1153,7 @@ errorCMDWRITE:
         Mim.Report.TextUnderline = pdfFontUnderLine
 
         Mim.Report.TextAlignment = pdfAlign
-        Ktrl = Mim.Report.WriteBox(xPos, YPOS, xPos2, YPOS2, textstring)
+        KTRL = Mim.Report.WriteBox(xPos, YPOS, xPos2, YPOS2, textstring)
         Exit Sub
 
 errorCMDWRITEBOX:
@@ -1187,10 +1187,10 @@ errorCMDWRITEBOX:
         Mim.Report.TextBold = pdfFontBold
         Mim.Report.TextItalic = pdfFontItalic
         Mim.Report.TextUnderline = pdfFontUnderLine
-        If YPOS > pdfVsoftTo Then
-            Ktrl = Mim.Report.Print(xPos, YPOS - pdfOVSStrook, textstring)
+        If YPOS > PDF_VSOFT_TO Then
+            KTRL = Mim.Report.Print(xPos, YPOS - pdfOVSStrook, textstring)
         Else
-            Ktrl = Mim.Report.Print(xPos, YPOS, textstring)
+            KTRL = Mim.Report.Print(xPos, YPOS, textstring)
         End If
         Exit Sub
 
