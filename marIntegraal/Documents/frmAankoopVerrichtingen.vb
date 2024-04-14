@@ -11,8 +11,8 @@ Public Class frmAankoopVerrichtingen
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
 
         If lbAankoopDetail.Items.Count Then
-            Msg = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-            Ktrl = MsgBox(Msg, 292, "Voortijdig stoppen...")
+            MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
+            Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
             If Ktrl = 6 Then
             Else
                 Exit Sub
@@ -105,8 +105,8 @@ End Class
 '					MsgBox("Eerst een lijn selekteren !", 0, "Line wijzigen")
 '					Exit Sub
 '				End If
-'				Msg = "Line verwijderen !  Bent U zeker ?"
-'				Ktrl = MsgBox(Msg, 292)
+'				MSG = "Line verwijderen !  Bent U zeker ?"
+'				Ktrl = MsgBox(MSG, 292)
 '				If Ktrl = 6 Then
 '					AankoopDetail.Items.RemoveAt(Positie)
 '				End If
@@ -201,20 +201,20 @@ End Class
 '		End If
 
 '		If dokumentSleutel.Value <> SleutelDok(Ar) Then
-'			Msg = dokumentSleutel.Value & " <> " & SleutelDok(Ar) & vbCrLf & vbCrLf
-'			Msg = Msg & "MOGELIJKHEID 1: Teller is identiek, boekjaar is hoger/lager." & vbCrLf
-'			Msg = Msg & "U hebt dus het actief boekjaar of periode gewijzigd tijdens de aanmaak van dit dokument.  Probeer nogmaals NA KONTROLE." & vbCrLf & vbCrLf
-'			Msg = Msg & "MOGELIJKHEID 2: Boekjaar is identiek, teller is hoger/lager." & vbCrLf
-'			Msg = Msg & "Een andere gebruiker heeft ondertussen een dokument verwerkt." & vbCrLf & vbCrLf
-'			Msg = Msg & "Kontroleer eerst eens vooraleer de boeking nogmaals uit te voeren a.u.b. !!!"
-'			MsgBox(Msg)
+'			MSG = dokumentSleutel.Value & " <> " & SleutelDok(Ar) & vbCrLf & vbCrLf
+'			MSG = MSG & "MOGELIJKHEID 1: Teller is identiek, boekjaar is hoger/lager." & vbCrLf
+'			MSG = MSG & "U hebt dus het actief boekjaar of periode gewijzigd tijdens de aanmaak van dit dokument.  Probeer nogmaals NA KONTROLE." & vbCrLf & vbCrLf
+'			MSG = MSG & "MOGELIJKHEID 2: Boekjaar is identiek, teller is hoger/lager." & vbCrLf
+'			MSG = MSG & "Een andere gebruiker heeft ondertussen een dokument verwerkt." & vbCrLf & vbCrLf
+'			MSG = MSG & "Kontroleer eerst eens vooraleer de boeking nogmaals uit te voeren a.u.b. !!!"
+'			MsgBox(MSG)
 '			dokumentSleutel.Value = SleutelDok(Ar)
 '			Me.Text = "Ctrl+F1 Direkte aankoopverrichting (" & dokumentSleutel.Value & ")"
 '			Exit Sub
 '		End If
 
-'		Msg = "Document wegschrijven, boekhouding bijwerken."
-'		Ktrl = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, dokumentSleutel.Value & " verwerken.")
+'		MSG = "Document wegschrijven, boekhouding bijwerken."
+'		Ktrl = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, dokumentSleutel.Value & " verwerken.")
 '		Select Case Ktrl
 '			Case 7
 '				Exit Sub
@@ -261,8 +261,8 @@ End Class
 
 '		If AankoopDetail.Items.Count = 0 Then
 '		Else
-'			Msg = "Aanwezige bewerkingen negeren !  Bent U zeker ?"
-'			Ktrl = MsgBox(Msg, 292, "Aankoopverrichtingen sluiten")
+'			MSG = "Aanwezige bewerkingen negeren !  Bent U zeker ?"
+'			Ktrl = MsgBox(MSG, 292, "Aankoopverrichtingen sluiten")
 '			If Ktrl <> 6 Then
 '				Exit Sub
 '			End If
@@ -531,9 +531,9 @@ End Class
 
 '		'InstalleerRecenteCrediteuren
 '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Msg = LaadTekst("DirekteAankoop", "startBlad")
-'		If Msg = "" Then Msg = "True"
-'		StartBlad = CBool(Msg)
+'		MSG = LaadTekst("DirekteAankoop", "startBlad")
+'		If MSG = "" Then MSG = "True"
+'		StartBlad = CBool(MSG)
 '		Schoon()
 '		'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
 '		'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'
@@ -746,11 +746,11 @@ End Class
 '		Dim BedragBtw8 As Decimal
 
 '		If DatumKey(TekstInfo(1).Text) < VB.Left(BookyearFromTo.Value, 8) Or DatumKey(TekstInfo(1).Text) > VB.Right(BookyearFromTo.Value, 8) Then
-'			Msg = "Datum aankoopdocument valt BUITEN het actieve boekjaar." & vbCr
-'			Msg = Msg & "De optie 'boekhoudcontrole' in balans leveranciers zal" & vbCr
-'			Msg = Msg & "mogelijk niet goed functioneren." & vbCr & vbCr
-'			Msg = Msg & "Controleer eventueel."
-'			MsgBox(Msg, MsgBoxStyle.Exclamation)
+'			MSG = "Datum aankoopdocument valt BUITEN het actieve boekjaar." & vbCr
+'			MSG = MSG & "De optie 'boekhoudcontrole' in balans leveranciers zal" & vbCr
+'			MSG = MSG & "mogelijk niet goed functioneren." & vbCr & vbCr
+'			MSG = MSG & "Controleer eventueel."
+'			MsgBox(MSG, MsgBoxStyle.Exclamation)
 '		End If
 
 '		VB6.SetDefault(Kontrole, True)
@@ -857,12 +857,12 @@ End Class
 '			End If
 '		Next 
 '		If TFlag = False Then
-'			Msg = "Uw rekening : " & fRekeningNummer & " past niet in de begrenzing." & vbCrLf & vbCrLf
-'			Msg = Msg & "Investeringen  : vanaf " & VB.Left(GrensDetail(0), 7) & " tot " & VB.Right(GrensDetail(0), 7) & vbCrLf
-'			Msg = Msg & "Schulden/privé : vanaf " & VB.Left(GrensDetail(1), 7) & " tot " & VB.Right(GrensDetail(1), 7) & vbCrLf
-'			Msg = Msg & "Handelsgoed    : vanaf " & VB.Left(GrensDetail(2), 7) & " tot " & VB.Right(GrensDetail(2), 7) & vbCrLf
-'			Msg = Msg & "Diverse kosten : vanaf " & VB.Left(GrensDetail(3), 7) & " tot " & VB.Right(GrensDetail(3), 7)
-'			MsgBox(Msg)
+'			MSG = "Uw rekening : " & fRekeningNummer & " past niet in de begrenzing." & vbCrLf & vbCrLf
+'			MSG = MSG & "Investeringen  : vanaf " & VB.Left(GrensDetail(0), 7) & " tot " & VB.Right(GrensDetail(0), 7) & vbCrLf
+'			MSG = MSG & "Schulden/privé : vanaf " & VB.Left(GrensDetail(1), 7) & " tot " & VB.Right(GrensDetail(1), 7) & vbCrLf
+'			MSG = MSG & "Handelsgoed    : vanaf " & VB.Left(GrensDetail(2), 7) & " tot " & VB.Right(GrensDetail(2), 7) & vbCrLf
+'			MSG = MSG & "Diverse kosten : vanaf " & VB.Left(GrensDetail(3), 7) & " tot " & VB.Right(GrensDetail(3), 7)
+'			MsgBox(MSG)
 '			RekeningOK = False
 '			Exit Function
 '		Else
@@ -1126,11 +1126,11 @@ End Class
 '					TekstInfo(0).Text = MimGlobalDate.Value
 '				End If
 '				If DatumKey(TekstInfo(1).Text) < VB.Left(BookyearFromTo.Value, 8) Or DatumKey(TekstInfo(1).Text) > VB.Right(BookyearFromTo.Value, 8) Then
-'					Msg = "Datum aankoopdocument valt BUITEN het actieve boekjaar." & vbCr
-'					Msg = Msg & "De optie 'boekhoudcontrole' in balans leveranciers zal" & vbCr
-'					Msg = Msg & "mogelijk niet goed functioneren." & vbCr & vbCr
-'					Msg = Msg & "Controleer eventueel."
-'					MsgBox(Msg, MsgBoxStyle.Exclamation)
+'					MSG = "Datum aankoopdocument valt BUITEN het actieve boekjaar." & vbCr
+'					MSG = MSG & "De optie 'boekhoudcontrole' in balans leveranciers zal" & vbCr
+'					MSG = MSG & "mogelijk niet goed functioneren." & vbCr & vbCr
+'					MSG = MSG & "Controleer eventueel."
+'					MsgBox(MSG, MsgBoxStyle.Exclamation)
 '				End If
 
 '			Case 2
@@ -1587,29 +1587,29 @@ End Class
 '		'bstBLOB inhoud bestand
 '		If Err.Number = 3265 Then
 '			rsMAR(TableOfInvoices).Close()
-'			Msg = "ALTER TABLE Dokumenten ADD COLUMN bstndNaam37 varchar;"
+'			MSG = "ALTER TABLE Dokumenten ADD COLUMN bstndNaam37 varchar;"
 '			Err.Clear()
-'			adntDB.Execute(Msg)
+'			adntDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else
-'				MsgBox(Msg, MsgBoxStyle.Information, "Met succes")
+'				MsgBox(MSG, MsgBoxStyle.Information, "Met succes")
 '			End If
-'			Msg = "ALTER TABLE Dokumenten ADD COLUMN typeZending37 TEXT(5);"
+'			MSG = "ALTER TABLE Dokumenten ADD COLUMN typeZending37 TEXT(5);"
 '			Err.Clear()
-'			adntDB.Execute(Msg)
+'			adntDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else
-'				MsgBox(Msg, MsgBoxStyle.Information, "Met succes")
+'				MsgBox(MSG, MsgBoxStyle.Information, "Met succes")
 '			End If
-'			Msg = "ALTER TABLE Dokumenten ADD COLUMN bstBLOB37 OLEobject;"
+'			MSG = "ALTER TABLE Dokumenten ADD COLUMN bstBLOB37 OLEobject;"
 '			Err.Clear()
-'			adntDB.Execute(Msg)
+'			adntDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else
-'				MsgBox(Msg, MsgBoxStyle.Information, "Met succes")
+'				MsgBox(MSG, MsgBoxStyle.Information, "Met succes")
 '			End If
 '			MsgBox("Belangrijke velden werden toegevoegd. Gelieve het bedrijf opnieuw te openen a.u.b.")
 '			ktrlBLOBRecord = False

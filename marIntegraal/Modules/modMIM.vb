@@ -393,7 +393,7 @@ EenFoutBijINLaden:
         End If
         On Error Resume Next
         Err.Clear()
-        Msg = rsMAR(FlHier).Fields(VeldNaam).Name
+        MSG = rsMAR(FlHier).Fields(VeldNaam).Name
         If Err.Number = 0 Then
             VeldOK = Err.Number
             Exit Function
@@ -402,14 +402,14 @@ EenFoutBijINLaden:
             Exit Function
         Else
             JetTableClose(FlHier)
-            Msg = "ALTER TABLE " & JetTableName(FlHier) & " ADD COLUMN " & VeldNaam & " " & VeldDef & ";"
-            If MsgBox(Msg & vbCr & vbCr & "SQL-instructie uitvoeren", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1 + MsgBoxStyle.Question) = MsgBoxResult.Yes Then
+            MSG = "ALTER TABLE " & JetTableName(FlHier) & " ADD COLUMN " & VeldNaam & " " & VeldDef & ";"
+            If MsgBox(MSG & vbCr & vbCr & "SQL-instructie uitvoeren", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1 + MsgBoxStyle.Question) = MsgBoxResult.Yes Then
                 Err.Clear()
-                adntDB.Execute(Msg, AantalRC)
+                adntDB.Execute(MSG, AantalRC)
                 If Err.Number Then
                     MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
                 Else
-                    MsgBox(Msg & " met succes uitgevoerd", MsgBoxStyle.Information)
+                    MsgBox(MSG & " met succes uitgevoerd", MsgBoxStyle.Information)
 
                 End If
                 VeldOK = Err.Number
@@ -582,8 +582,8 @@ XLogShow:
                 t = t + 1
             Loop
             If xLog.Afsluiten.Text = "Speciaal" Then
-                Msg = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
-                Ktrl = MsgBox(Msg, 292)
+                MSG = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
+                Ktrl = MsgBox(MSG, 292)
                 If Ktrl = 6 Then
                     bUpdate(Fl, 0)
                 End If

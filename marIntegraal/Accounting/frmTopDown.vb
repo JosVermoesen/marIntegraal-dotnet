@@ -335,9 +335,9 @@ End Class
 'OpenTabBestand: 
 '		FlTabBestand = FreeFile
 '		FileOpen(FlTabBestand, ProgramLocation & "NTExport.TXT", OpenMode.Output)
-'		Msg = "TableDefOnt met scheidingstekens wordt aangemaakt als" & vbCr & vbCr
-'		Msg = Msg & ProgramLocation & "NTExport.TXT"
-'		MsgBox(Msg, MsgBoxStyle.Information)
+'		MSG = "TableDefOnt met scheidingstekens wordt aangemaakt als" & vbCr & vbCr
+'		MSG = MSG & ProgramLocation & "NTExport.TXT"
+'		MsgBox(MSG, MsgBoxStyle.Information)
 '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		Return 
 

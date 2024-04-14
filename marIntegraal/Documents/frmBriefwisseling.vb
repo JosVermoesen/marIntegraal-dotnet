@@ -8,8 +8,8 @@ Public Class Briefwisseling
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
 
         If rtbTekst.Text <> "" Then
-            Msg = "Huidige inhoud negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-            Ktrl = MsgBox(Msg, 292, "Voortijdig stoppen...")
+            MSG = "Huidige inhoud negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
+            Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
             If Ktrl = 6 Then
             Else
                 Exit Sub
@@ -82,9 +82,9 @@ End Class
 '			On Error Resume Next
 '			Err.Clear()
 '			rsBrief.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-'			Msg = "SELECT * FROM Briefwisseling WHERE A110 = " & "'" & AdoGetField(FlPartij, "#A110 #") & "'"
+'			MSG = "SELECT * FROM Briefwisseling WHERE A110 = " & "'" & AdoGetField(FlPartij, "#A110 #") & "'"
 
-'			rsBrief.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
+'			rsBrief.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic)
 '			If Err.Number Then
 '				MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '				Exit Sub
@@ -96,21 +96,21 @@ End Class
 '					'ok
 '				ElseIf Err.Number = 3265 Then 
 '					rsBrief.Close()
-'					Msg = "ALTER TABLE Briefwisseling ADD COLUMN bstndNaam varchar;"
+'					MSG = "ALTER TABLE Briefwisseling ADD COLUMN bstndNaam varchar;"
 '					Err.Clear()
-'					adntDB.Execute(Msg)
+'					adntDB.Execute(MSG)
 '					If Err.Number Then
 '						MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '					End If
-'					Msg = "ALTER TABLE Briefwisseling ADD COLUMN typeZending TEXT(5);"
+'					MSG = "ALTER TABLE Briefwisseling ADD COLUMN typeZending TEXT(5);"
 '					Err.Clear()
-'					adntDB.Execute(Msg)
+'					adntDB.Execute(MSG)
 '					If Err.Number Then
 '						MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '					End If
-'					Msg = "ALTER TABLE Briefwisseling ADD COLUMN bstndBLOB OLEobject;"
+'					MSG = "ALTER TABLE Briefwisseling ADD COLUMN bstndBLOB OLEobject;"
 '					Err.Clear()
-'					adntDB.Execute(Msg)
+'					adntDB.Execute(MSG)
 '					If Err.Number Then
 '						MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '					End If
@@ -197,9 +197,9 @@ End Class
 '				If Not ReedsBestaand Then
 '					rsBrief.AddNew()
 '				Else
-'					Msg = "Wijzigingen aan bestaand bericht bewaren" & vbCrLf
-'					Msg = Msg & "Bent U zeker ?"
-'					KtrlBox = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
+'					MSG = "Wijzigingen aan bestaand bericht bewaren" & vbCrLf
+'					MSG = MSG & "Bent U zeker ?"
+'					KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
 '					If KtrlBox = MsgBoxResult.Yes Then
 '					Else
 '						Exit Sub
@@ -342,10 +342,10 @@ End Class
 '					On Error Resume Next
 '					Me.MPISessie.SignOn()
 '					If Err.Number Then
-'						'Msg = "U kiest om het mailsysteem niet aan te wenden." & vbCr
-'						'Msg = Msg & "Probeer eventueel later opnieuw E-mail aan te duiden" & vbCr & vbCr
-'						'Msg = Msg & "Foutmelding van het systeem: " & Err.Description
-'						'MsgBox Msg, vbExclamation
+'						'MSG = "U kiest om het mailsysteem niet aan te wenden." & vbCr
+'						'MSG = MSG & "Probeer eventueel later opnieuw E-mail aan te duiden" & vbCr & vbCr
+'						'MSG = MSG & "Foutmelding van het systeem: " & Err.Description
+'						'MsgBox MSG, vbExclamation
 '						SnelHelpPrint(Err.Description, blLogging)
 '						CmbAfdrukModus.SelectedIndex = 2
 '					Else
@@ -737,15 +737,15 @@ End Class
 '				Input(FlFree, FiguurX)
 '				Input(FlFree, FiguurY)
 '				Input(FlFree, FiguurName)
-'				If ScrLeesTekstBestand(Msg, LocationCompanyData & FiguurName & ".mfd") Then
-'					FigBestandsnaam = VB.Left(Msg, InStr(Msg, vbTab) - 1)
+'				If ScrLeesTekstBestand(MSG, LocationCompanyData & FiguurName & ".mfd") Then
+'					FigBestandsnaam = VB.Left(MSG, InStr(MSG, vbTab) - 1)
 '					Mim.imgFiguur.Image = System.Drawing.Image.FromFile(FigBestandsnaam)
-'					Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+'					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object Hoogte. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Hoogte = VB.Left(Msg, InStr(Msg, vbTab) - 1)
-'					Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+'					Hoogte = VB.Left(MSG, InStr(MSG, vbTab) - 1)
+'					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object Breedte. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Breedte = Msg
+'					Breedte = MSG
 '					Printer.PaintPicture(Mim.imgFiguur.Image, FiguurX, FiguurY, Breedte, Hoogte)
 '				Else
 '					MsgBox("afdrukprobleemke figuurobject: " & FiguurName)
@@ -796,9 +796,9 @@ End Class
 '	Private Sub sluiten_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles sluiten.Click
 
 '		If txtTekst0.Text <> "" Then
-'			Msg = "Huidige inbreng - al dan niet - reeds weggeschreven.  Venster sluiten." & vbCrLf & vbCrLf
-'			Msg = Msg & "Bent U zeker ?"
-'			Ktrl = MsgBox(Msg, 292, "Vrije berichtgeving verlaten")
+'			MSG = "Huidige inbreng - al dan niet - reeds weggeschreven.  Venster sluiten." & vbCrLf & vbCrLf
+'			MSG = MSG & "Bent U zeker ?"
+'			Ktrl = MsgBox(MSG, 292, "Vrije berichtgeving verlaten")
 '			If Ktrl = 6 Then
 '			Else
 '				Exit Sub
@@ -993,10 +993,10 @@ End Class
 '			BerichtInofUit(1).Enabled = False
 '			Exit Sub
 '		Else
-'			Msg = AdoGetField(FlPartij, "#A100 #") & vbCrLf
-'			Msg = Msg & AdoGetField(FlPartij, "#A125 #") & vbCrLf
-'			Msg = Msg & AdoGetField(FlPartij, "#A104 #") & AdoGetField(FlPartij, "#A105 #") & AdoGetField(FlPartij, "#A106 #") & vbCrLf
-'			Msg = Msg & AdoGetField(FlPartij, "#A109 #") & " " & AdoGetField(FlPartij, "#A107 #") & " " & AdoGetField(FlPartij, "#A108 #")
+'			MSG = AdoGetField(FlPartij, "#A100 #") & vbCrLf
+'			MSG = MSG & AdoGetField(FlPartij, "#A125 #") & vbCrLf
+'			MSG = MSG & AdoGetField(FlPartij, "#A104 #") & AdoGetField(FlPartij, "#A105 #") & AdoGetField(FlPartij, "#A106 #") & vbCrLf
+'			MSG = MSG & AdoGetField(FlPartij, "#A109 #") & " " & AdoGetField(FlPartij, "#A107 #") & " " & AdoGetField(FlPartij, "#A108 #")
 
 '			txtTekst0.Enabled = True
 '			VanTot(JumpTeller).Text = FVT(FlPartij, Sortering.SelectedIndex)

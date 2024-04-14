@@ -23,248 +23,248 @@ Partial Class SqlOperations
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SqlOperations))
-        Me.cmdBackup = New System.Windows.Forms.Button()
-        Me.cmdNet1 = New System.Windows.Forms.Button()
-        Me.txtPLUS = New System.Windows.Forms.TextBox()
-        Me.txtWaarde = New System.Windows.Forms.TextBox()
-        Me.cbOperatie = New System.Windows.Forms.ComboBox()
-        Me.cbVelden = New System.Windows.Forms.ComboBox()
-        Me.cbSQLBevel = New System.Windows.Forms.ComboBox()
-        Me.cmdOpenXML = New System.Windows.Forms.Button()
-        Me.cmdSelectWegschrijven = New System.Windows.Forms.Button()
-        Me.CmbSelect = New System.Windows.Forms.ComboBox()
-        Me.txtSQL = New System.Windows.Forms.TextBox()
-        Me.cmdExecute = New System.Windows.Forms.Button()
-        Me.cmdKopij = New System.Windows.Forms.Button()
-        Me.cmdSluiten = New System.Windows.Forms.Button()
-        Me.cmdSQL = New System.Windows.Forms.Button()
-        Me.cmbVersie = New System.Windows.Forms.Button()
+        Me.BtnBackup = New System.Windows.Forms.Button()
+        Me.BtnNet = New System.Windows.Forms.Button()
+        Me.TbPlus = New System.Windows.Forms.TextBox()
+        Me.TbValue = New System.Windows.Forms.TextBox()
+        Me.CbOperator = New System.Windows.Forms.ComboBox()
+        Me.CbFields = New System.Windows.Forms.ComboBox()
+        Me.CbSQLCommand = New System.Windows.Forms.ComboBox()
+        Me.BtnOpenXML = New System.Windows.Forms.Button()
+        Me.BtnSaveDefinition = New System.Windows.Forms.Button()
+        Me.CbAvailableSqlDef = New System.Windows.Forms.ComboBox()
+        Me.TbSql = New System.Windows.Forms.TextBox()
+        Me.BtnExecute = New System.Windows.Forms.Button()
+        Me.BtnCopy = New System.Windows.Forms.Button()
+        Me.BtnClose = New System.Windows.Forms.Button()
+        Me.BtnSelect = New System.Windows.Forms.Button()
+        Me.BtnVersion = New System.Windows.Forms.Button()
         Me.lblRecordCount = New System.Windows.Forms.Label()
-        Me.msfSQL = New System.Windows.Forms.DataGridView()
-        Me.LBDatabase = New System.Windows.Forms.ListBox()
-        CType(Me.msfSQL, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.DgvSQL = New System.Windows.Forms.DataGridView()
+        Me.LbDatabase = New System.Windows.Forms.ListBox()
+        CType(Me.DgvSQL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'cmdBackup
+        'BtnBackup
         '
-        Me.cmdBackup.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdBackup.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdBackup.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdBackup.Location = New System.Drawing.Point(562, 170)
-        Me.cmdBackup.Name = "cmdBackup"
-        Me.cmdBackup.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdBackup.Size = New System.Drawing.Size(45, 25)
-        Me.cmdBackup.TabIndex = 36
-        Me.cmdBackup.Text = "Backup"
-        Me.cmdBackup.UseVisualStyleBackColor = False
+        Me.BtnBackup.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnBackup.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnBackup.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnBackup.Location = New System.Drawing.Point(562, 170)
+        Me.BtnBackup.Name = "BtnBackup"
+        Me.BtnBackup.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnBackup.Size = New System.Drawing.Size(45, 25)
+        Me.BtnBackup.TabIndex = 36
+        Me.BtnBackup.Text = "Backup"
+        Me.BtnBackup.UseVisualStyleBackColor = False
         '
-        'cmdNet1
+        'BtnNet
         '
-        Me.cmdNet1.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdNet1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdNet1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdNet1.Location = New System.Drawing.Point(526, 170)
-        Me.cmdNet1.Name = "cmdNet1"
-        Me.cmdNet1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdNet1.Size = New System.Drawing.Size(33, 25)
-        Me.cmdNet1.TabIndex = 35
-        Me.cmdNet1.Text = "Net1"
-        Me.cmdNet1.UseVisualStyleBackColor = False
+        Me.BtnNet.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnNet.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnNet.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnNet.Location = New System.Drawing.Point(526, 170)
+        Me.BtnNet.Name = "BtnNet"
+        Me.BtnNet.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnNet.Size = New System.Drawing.Size(33, 25)
+        Me.BtnNet.TabIndex = 35
+        Me.BtnNet.Text = "Net1"
+        Me.BtnNet.UseVisualStyleBackColor = False
         '
-        'txtPLUS
+        'TbPlus
         '
-        Me.txtPLUS.AcceptsReturn = True
-        Me.txtPLUS.BackColor = System.Drawing.SystemColors.Window
-        Me.txtPLUS.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPLUS.Enabled = False
-        Me.txtPLUS.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtPLUS.Location = New System.Drawing.Point(95, 432)
-        Me.txtPLUS.MaxLength = 0
-        Me.txtPLUS.Name = "txtPLUS"
-        Me.txtPLUS.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtPLUS.Size = New System.Drawing.Size(201, 20)
-        Me.txtPLUS.TabIndex = 34
+        Me.TbPlus.AcceptsReturn = True
+        Me.TbPlus.BackColor = System.Drawing.SystemColors.Window
+        Me.TbPlus.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TbPlus.Enabled = False
+        Me.TbPlus.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.TbPlus.Location = New System.Drawing.Point(95, 432)
+        Me.TbPlus.MaxLength = 0
+        Me.TbPlus.Name = "TbPlus"
+        Me.TbPlus.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TbPlus.Size = New System.Drawing.Size(201, 20)
+        Me.TbPlus.TabIndex = 34
         '
-        'txtWaarde
+        'TbValue
         '
-        Me.txtWaarde.AcceptsReturn = True
-        Me.txtWaarde.BackColor = System.Drawing.SystemColors.Window
-        Me.txtWaarde.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtWaarde.Enabled = False
-        Me.txtWaarde.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtWaarde.Location = New System.Drawing.Point(504, 433)
-        Me.txtWaarde.MaxLength = 0
-        Me.txtWaarde.Name = "txtWaarde"
-        Me.txtWaarde.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtWaarde.Size = New System.Drawing.Size(101, 20)
-        Me.txtWaarde.TabIndex = 33
+        Me.TbValue.AcceptsReturn = True
+        Me.TbValue.BackColor = System.Drawing.SystemColors.Window
+        Me.TbValue.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TbValue.Enabled = False
+        Me.TbValue.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.TbValue.Location = New System.Drawing.Point(504, 433)
+        Me.TbValue.MaxLength = 0
+        Me.TbValue.Name = "TbValue"
+        Me.TbValue.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TbValue.Size = New System.Drawing.Size(101, 20)
+        Me.TbValue.TabIndex = 33
         '
-        'cbOperatie
+        'CbOperator
         '
-        Me.cbOperatie.BackColor = System.Drawing.SystemColors.Window
-        Me.cbOperatie.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cbOperatie.Enabled = False
-        Me.cbOperatie.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.cbOperatie.Items.AddRange(New Object() {"Like", "=", "<>", "<=", ">=", ">", "<"})
-        Me.cbOperatie.Location = New System.Drawing.Point(395, 432)
-        Me.cbOperatie.Name = "cbOperatie"
-        Me.cbOperatie.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cbOperatie.Size = New System.Drawing.Size(105, 21)
-        Me.cbOperatie.TabIndex = 32
+        Me.CbOperator.BackColor = System.Drawing.SystemColors.Window
+        Me.CbOperator.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbOperator.Enabled = False
+        Me.CbOperator.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CbOperator.Items.AddRange(New Object() {"Like", "=", "<>", "<=", ">=", ">", "<"})
+        Me.CbOperator.Location = New System.Drawing.Point(395, 432)
+        Me.CbOperator.Name = "CbOperator"
+        Me.CbOperator.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbOperator.Size = New System.Drawing.Size(105, 21)
+        Me.CbOperator.TabIndex = 32
         '
-        'cbVelden
+        'CbFields
         '
-        Me.cbVelden.BackColor = System.Drawing.SystemColors.Window
-        Me.cbVelden.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cbVelden.Enabled = False
-        Me.cbVelden.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.cbVelden.Location = New System.Drawing.Point(299, 432)
-        Me.cbVelden.Name = "cbVelden"
-        Me.cbVelden.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cbVelden.Size = New System.Drawing.Size(93, 21)
-        Me.cbVelden.TabIndex = 31
+        Me.CbFields.BackColor = System.Drawing.SystemColors.Window
+        Me.CbFields.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbFields.Enabled = False
+        Me.CbFields.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CbFields.Location = New System.Drawing.Point(299, 432)
+        Me.CbFields.Name = "CbFields"
+        Me.CbFields.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbFields.Size = New System.Drawing.Size(93, 21)
+        Me.CbFields.TabIndex = 31
         '
-        'cbSQLBevel
+        'CbSQLCommand
         '
-        Me.cbSQLBevel.BackColor = System.Drawing.SystemColors.Window
-        Me.cbSQLBevel.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cbSQLBevel.Enabled = False
-        Me.cbSQLBevel.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.cbSQLBevel.Items.AddRange(New Object() {"SELECT", "DELETE", "UPDATE", "INSERT", "PROCEDURE"})
-        Me.cbSQLBevel.Location = New System.Drawing.Point(3, 432)
-        Me.cbSQLBevel.Name = "cbSQLBevel"
-        Me.cbSQLBevel.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cbSQLBevel.Size = New System.Drawing.Size(89, 21)
-        Me.cbSQLBevel.TabIndex = 30
+        Me.CbSQLCommand.BackColor = System.Drawing.SystemColors.Window
+        Me.CbSQLCommand.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbSQLCommand.Enabled = False
+        Me.CbSQLCommand.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CbSQLCommand.Items.AddRange(New Object() {"SELECT", "DELETE", "UPDATE", "INSERT", "PROCEDURE"})
+        Me.CbSQLCommand.Location = New System.Drawing.Point(3, 432)
+        Me.CbSQLCommand.Name = "CbSQLCommand"
+        Me.CbSQLCommand.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbSQLCommand.Size = New System.Drawing.Size(89, 21)
+        Me.CbSQLCommand.TabIndex = 30
         '
-        'cmdOpenXML
+        'BtnOpenXML
         '
-        Me.cmdOpenXML.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdOpenXML.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdOpenXML.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdOpenXML.Image = CType(resources.GetObject("cmdOpenXML.Image"), System.Drawing.Image)
-        Me.cmdOpenXML.Location = New System.Drawing.Point(526, 87)
-        Me.cmdOpenXML.Name = "cmdOpenXML"
-        Me.cmdOpenXML.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdOpenXML.Size = New System.Drawing.Size(80, 67)
-        Me.cmdOpenXML.TabIndex = 29
-        Me.cmdOpenXML.Text = "XML &Openen"
-        Me.cmdOpenXML.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdOpenXML.UseVisualStyleBackColor = False
+        Me.BtnOpenXML.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnOpenXML.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnOpenXML.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnOpenXML.Image = CType(resources.GetObject("BtnOpenXML.Image"), System.Drawing.Image)
+        Me.BtnOpenXML.Location = New System.Drawing.Point(526, 87)
+        Me.BtnOpenXML.Name = "BtnOpenXML"
+        Me.BtnOpenXML.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnOpenXML.Size = New System.Drawing.Size(80, 67)
+        Me.BtnOpenXML.TabIndex = 29
+        Me.BtnOpenXML.Text = "XML &Openen"
+        Me.BtnOpenXML.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnOpenXML.UseVisualStyleBackColor = False
         '
-        'cmdSelectWegschrijven
+        'BtnSaveDefinition
         '
-        Me.cmdSelectWegschrijven.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdSelectWegschrijven.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdSelectWegschrijven.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdSelectWegschrijven.Image = CType(resources.GetObject("cmdSelectWegschrijven.Image"), System.Drawing.Image)
-        Me.cmdSelectWegschrijven.Location = New System.Drawing.Point(475, 287)
-        Me.cmdSelectWegschrijven.Name = "cmdSelectWegschrijven"
-        Me.cmdSelectWegschrijven.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdSelectWegschrijven.Size = New System.Drawing.Size(25, 20)
-        Me.cmdSelectWegschrijven.TabIndex = 27
-        Me.cmdSelectWegschrijven.TabStop = False
-        Me.cmdSelectWegschrijven.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdSelectWegschrijven.UseVisualStyleBackColor = False
+        Me.BtnSaveDefinition.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnSaveDefinition.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnSaveDefinition.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnSaveDefinition.Image = CType(resources.GetObject("BtnSaveDefinition.Image"), System.Drawing.Image)
+        Me.BtnSaveDefinition.Location = New System.Drawing.Point(475, 287)
+        Me.BtnSaveDefinition.Name = "BtnSaveDefinition"
+        Me.BtnSaveDefinition.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnSaveDefinition.Size = New System.Drawing.Size(25, 20)
+        Me.BtnSaveDefinition.TabIndex = 27
+        Me.BtnSaveDefinition.TabStop = False
+        Me.BtnSaveDefinition.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnSaveDefinition.UseVisualStyleBackColor = False
         '
-        'CmbSelect
+        'CbAvailableSqlDef
         '
-        Me.CmbSelect.BackColor = System.Drawing.SystemColors.Window
-        Me.CmbSelect.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CmbSelect.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.CmbSelect.Location = New System.Drawing.Point(95, 286)
-        Me.CmbSelect.Name = "CmbSelect"
-        Me.CmbSelect.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CmbSelect.Size = New System.Drawing.Size(374, 21)
-        Me.CmbSelect.TabIndex = 20
-        Me.CmbSelect.Text = "Combo1"
+        Me.CbAvailableSqlDef.BackColor = System.Drawing.SystemColors.Window
+        Me.CbAvailableSqlDef.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbAvailableSqlDef.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CbAvailableSqlDef.Location = New System.Drawing.Point(95, 286)
+        Me.CbAvailableSqlDef.Name = "CbAvailableSqlDef"
+        Me.CbAvailableSqlDef.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbAvailableSqlDef.Size = New System.Drawing.Size(374, 21)
+        Me.CbAvailableSqlDef.Sorted = True
+        Me.CbAvailableSqlDef.TabIndex = 20
         '
-        'txtSQL
+        'TbSql
         '
-        Me.txtSQL.AcceptsReturn = True
-        Me.txtSQL.BackColor = System.Drawing.SystemColors.Window
-        Me.txtSQL.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSQL.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtSQL.Location = New System.Drawing.Point(3, 308)
-        Me.txtSQL.MaxLength = 0
-        Me.txtSQL.Multiline = True
-        Me.txtSQL.Name = "txtSQL"
-        Me.txtSQL.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtSQL.Size = New System.Drawing.Size(602, 117)
-        Me.txtSQL.TabIndex = 19
+        Me.TbSql.AcceptsReturn = True
+        Me.TbSql.BackColor = System.Drawing.SystemColors.Window
+        Me.TbSql.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TbSql.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.TbSql.Location = New System.Drawing.Point(3, 308)
+        Me.TbSql.MaxLength = 0
+        Me.TbSql.Multiline = True
+        Me.TbSql.Name = "TbSql"
+        Me.TbSql.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TbSql.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TbSql.Size = New System.Drawing.Size(602, 117)
+        Me.TbSql.TabIndex = 19
         '
-        'cmdExecute
+        'BtnExecute
         '
-        Me.cmdExecute.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdExecute.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdExecute.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdExecute.Location = New System.Drawing.Point(526, 263)
-        Me.cmdExecute.Name = "cmdExecute"
-        Me.cmdExecute.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdExecute.Size = New System.Drawing.Size(79, 44)
-        Me.cmdExecute.TabIndex = 24
-        Me.cmdExecute.TabStop = False
-        Me.cmdExecute.Text = "SQL &EXECUTE"
-        Me.cmdExecute.UseVisualStyleBackColor = False
+        Me.BtnExecute.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnExecute.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnExecute.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnExecute.Location = New System.Drawing.Point(526, 263)
+        Me.BtnExecute.Name = "BtnExecute"
+        Me.BtnExecute.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnExecute.Size = New System.Drawing.Size(79, 44)
+        Me.BtnExecute.TabIndex = 24
+        Me.BtnExecute.TabStop = False
+        Me.BtnExecute.Text = "SQL &EXECUTE"
+        Me.BtnExecute.UseVisualStyleBackColor = False
         '
-        'cmdKopij
+        'BtnCopy
         '
-        Me.cmdKopij.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdKopij.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdKopij.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdKopij.Image = CType(resources.GetObject("cmdKopij.Image"), System.Drawing.Image)
-        Me.cmdKopij.Location = New System.Drawing.Point(527, 23)
-        Me.cmdKopij.Name = "cmdKopij"
-        Me.cmdKopij.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdKopij.Size = New System.Drawing.Size(80, 58)
-        Me.cmdKopij.TabIndex = 21
-        Me.cmdKopij.Text = "XML &Kopie"
-        Me.cmdKopij.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdKopij.UseVisualStyleBackColor = False
+        Me.BtnCopy.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnCopy.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnCopy.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnCopy.Image = CType(resources.GetObject("BtnCopy.Image"), System.Drawing.Image)
+        Me.BtnCopy.Location = New System.Drawing.Point(527, 23)
+        Me.BtnCopy.Name = "BtnCopy"
+        Me.BtnCopy.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnCopy.Size = New System.Drawing.Size(80, 58)
+        Me.BtnCopy.TabIndex = 21
+        Me.BtnCopy.Text = "XML &Kopie"
+        Me.BtnCopy.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnCopy.UseVisualStyleBackColor = False
         '
-        'cmdSluiten
+        'BtnClose
         '
-        Me.cmdSluiten.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdSluiten.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdSluiten.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdSluiten.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdSluiten.Location = New System.Drawing.Point(526, 225)
-        Me.cmdSluiten.Name = "cmdSluiten"
-        Me.cmdSluiten.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdSluiten.Size = New System.Drawing.Size(79, 20)
-        Me.cmdSluiten.TabIndex = 22
-        Me.cmdSluiten.TabStop = False
-        Me.cmdSluiten.Text = "Sluiten"
-        Me.cmdSluiten.UseVisualStyleBackColor = False
+        Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnClose.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnClose.Location = New System.Drawing.Point(526, 225)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnClose.Size = New System.Drawing.Size(79, 20)
+        Me.BtnClose.TabIndex = 22
+        Me.BtnClose.TabStop = False
+        Me.BtnClose.Text = "Sluiten"
+        Me.BtnClose.UseVisualStyleBackColor = False
         '
-        'cmdSQL
+        'BtnSelect
         '
-        Me.cmdSQL.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdSQL.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdSQL.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdSQL.Location = New System.Drawing.Point(3, 286)
-        Me.cmdSQL.Name = "cmdSQL"
-        Me.cmdSQL.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdSQL.Size = New System.Drawing.Size(82, 20)
-        Me.cmdSQL.TabIndex = 26
-        Me.cmdSQL.TabStop = False
-        Me.cmdSQL.Text = "SQL &SELECT"
-        Me.cmdSQL.UseVisualStyleBackColor = False
+        Me.BtnSelect.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnSelect.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnSelect.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnSelect.Location = New System.Drawing.Point(3, 286)
+        Me.BtnSelect.Name = "BtnSelect"
+        Me.BtnSelect.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnSelect.Size = New System.Drawing.Size(82, 20)
+        Me.BtnSelect.TabIndex = 26
+        Me.BtnSelect.TabStop = False
+        Me.BtnSelect.Text = "SQL &SELECT"
+        Me.BtnSelect.UseVisualStyleBackColor = False
         '
-        'cmbVersie
+        'BtnVersion
         '
-        Me.cmbVersie.BackColor = System.Drawing.SystemColors.Control
-        Me.cmbVersie.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmbVersie.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmbVersie.Location = New System.Drawing.Point(526, 198)
-        Me.cmbVersie.Name = "cmbVersie"
-        Me.cmbVersie.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmbVersie.Size = New System.Drawing.Size(80, 20)
-        Me.cmbVersie.TabIndex = 23
-        Me.cmbVersie.TabStop = False
-        Me.cmbVersie.Text = "&Versie"
-        Me.cmbVersie.UseVisualStyleBackColor = False
+        Me.BtnVersion.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnVersion.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnVersion.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnVersion.Location = New System.Drawing.Point(526, 198)
+        Me.BtnVersion.Name = "BtnVersion"
+        Me.BtnVersion.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnVersion.Size = New System.Drawing.Size(80, 20)
+        Me.BtnVersion.TabIndex = 23
+        Me.BtnVersion.TabStop = False
+        Me.BtnVersion.Text = "&Versie"
+        Me.BtnVersion.UseVisualStyleBackColor = False
         '
         'lblRecordCount
         '
@@ -279,78 +279,78 @@ Partial Class SqlOperations
         Me.lblRecordCount.TabIndex = 28
         Me.lblRecordCount.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'msfSQL
+        'DgvSQL
         '
-        Me.msfSQL.AllowUserToAddRows = False
-        Me.msfSQL.AllowUserToDeleteRows = False
-        Me.msfSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.msfSQL.Location = New System.Drawing.Point(3, 4)
-        Me.msfSQL.Name = "msfSQL"
-        Me.msfSQL.ReadOnly = True
-        Me.msfSQL.Size = New System.Drawing.Size(518, 276)
-        Me.msfSQL.TabIndex = 88
+        Me.DgvSQL.AllowUserToAddRows = False
+        Me.DgvSQL.AllowUserToDeleteRows = False
+        Me.DgvSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvSQL.Location = New System.Drawing.Point(3, 4)
+        Me.DgvSQL.Name = "DgvSQL"
+        Me.DgvSQL.ReadOnly = True
+        Me.DgvSQL.Size = New System.Drawing.Size(518, 276)
+        Me.DgvSQL.TabIndex = 88
         '
-        'LBDatabase
+        'LbDatabase
         '
-        Me.LBDatabase.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LBDatabase.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBDatabase.FormattingEnabled = True
-        Me.LBDatabase.ItemHeight = 20
-        Me.LBDatabase.Location = New System.Drawing.Point(613, 0)
-        Me.LBDatabase.Name = "LBDatabase"
-        Me.LBDatabase.Size = New System.Drawing.Size(196, 458)
-        Me.LBDatabase.TabIndex = 89
+        Me.LbDatabase.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LbDatabase.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbDatabase.FormattingEnabled = True
+        Me.LbDatabase.ItemHeight = 20
+        Me.LbDatabase.Location = New System.Drawing.Point(613, 0)
+        Me.LbDatabase.Name = "LbDatabase"
+        Me.LbDatabase.Size = New System.Drawing.Size(196, 458)
+        Me.LbDatabase.TabIndex = 89
         '
         'SqlOperations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(809, 458)
-        Me.Controls.Add(Me.LBDatabase)
-        Me.Controls.Add(Me.msfSQL)
-        Me.Controls.Add(Me.cmdBackup)
-        Me.Controls.Add(Me.cmdNet1)
-        Me.Controls.Add(Me.txtPLUS)
-        Me.Controls.Add(Me.txtWaarde)
-        Me.Controls.Add(Me.cbOperatie)
-        Me.Controls.Add(Me.cbVelden)
-        Me.Controls.Add(Me.cbSQLBevel)
-        Me.Controls.Add(Me.cmdOpenXML)
-        Me.Controls.Add(Me.cmdSelectWegschrijven)
-        Me.Controls.Add(Me.CmbSelect)
-        Me.Controls.Add(Me.txtSQL)
-        Me.Controls.Add(Me.cmdExecute)
-        Me.Controls.Add(Me.cmdKopij)
-        Me.Controls.Add(Me.cmdSluiten)
-        Me.Controls.Add(Me.cmdSQL)
-        Me.Controls.Add(Me.cmbVersie)
+        Me.Controls.Add(Me.LbDatabase)
+        Me.Controls.Add(Me.DgvSQL)
+        Me.Controls.Add(Me.BtnBackup)
+        Me.Controls.Add(Me.BtnNet)
+        Me.Controls.Add(Me.TbPlus)
+        Me.Controls.Add(Me.TbValue)
+        Me.Controls.Add(Me.CbOperator)
+        Me.Controls.Add(Me.CbFields)
+        Me.Controls.Add(Me.CbSQLCommand)
+        Me.Controls.Add(Me.BtnOpenXML)
+        Me.Controls.Add(Me.BtnSaveDefinition)
+        Me.Controls.Add(Me.CbAvailableSqlDef)
+        Me.Controls.Add(Me.TbSql)
+        Me.Controls.Add(Me.BtnExecute)
+        Me.Controls.Add(Me.BtnCopy)
+        Me.Controls.Add(Me.BtnClose)
+        Me.Controls.Add(Me.BtnSelect)
+        Me.Controls.Add(Me.BtnVersion)
         Me.Controls.Add(Me.lblRecordCount)
         Me.Name = "SqlOperations"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmSQLBewerkingen"
-        CType(Me.msfSQL, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "SqlOperations"
+        CType(Me.DgvSQL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
 
-    Public WithEvents cmdBackup As Button
-    Public WithEvents cmdNet1 As Button
-    Public WithEvents txtPLUS As TextBox
-    Public WithEvents txtWaarde As TextBox
-    Public WithEvents cbOperatie As ComboBox
-    Public WithEvents cbVelden As ComboBox
-    Public WithEvents cbSQLBevel As ComboBox
-    Public WithEvents cmdOpenXML As Button
-    Public WithEvents cmdSelectWegschrijven As Button
-    Public WithEvents CmbSelect As ComboBox
-    Public WithEvents txtSQL As TextBox
-    Public WithEvents cmdExecute As Button
-    Public WithEvents cmdKopij As Button
-    Public WithEvents cmdSluiten As Button
-    Public WithEvents cmdSQL As Button
-    Public WithEvents cmbVersie As Button
+    Public WithEvents BtnBackup As Button
+    Public WithEvents BtnNet As Button
+    Public WithEvents TbPlus As TextBox
+    Public WithEvents TbValue As TextBox
+    Public WithEvents CbOperator As ComboBox
+    Public WithEvents CbFields As ComboBox
+    Public WithEvents CbSQLCommand As ComboBox
+    Public WithEvents BtnOpenXML As Button
+    Public WithEvents BtnSaveDefinition As Button
+    Public WithEvents CbAvailableSqlDef As ComboBox
+    Public WithEvents TbSql As TextBox
+    Public WithEvents BtnExecute As Button
+    Public WithEvents BtnCopy As Button
+    Public WithEvents BtnClose As Button
+    Public WithEvents BtnSelect As Button
+    Public WithEvents BtnVersion As Button
     Public WithEvents lblRecordCount As Label
-    Friend WithEvents msfSQL As DataGridView
-    Friend WithEvents LBDatabase As ListBox
+    Friend WithEvents DgvSQL As DataGridView
+    Friend WithEvents LbDatabase As ListBox
 End Class

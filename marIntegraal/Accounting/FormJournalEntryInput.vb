@@ -28,21 +28,21 @@ Public Class FormJournalEntryInput
         Boeking.Hide()
 
         For T = 0 To ListBoxJournalEntries.Items.Count - 1
-            Msg = ListBoxJournalEntries.Items.Item(T)
+            MSG = ListBoxJournalEntries.Items.Item(T)
             rsJournaal.AddNew()
             rsJournaal.Fields("v041").Value = "0"
             rsJournaal.Fields("v066").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'Boekdatum
             rsJournaal.Fields("v033").Value = "D0" & Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokument
             rsJournaal.Fields("v035").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokumentdatum
             rsJournaal.Fields("v067").Value = Mid(TextBoxDescription.Text, 1, 35) 'Omschrijving
-            rsJournaal.Fields("v019").Value = Mid(Msg, 1, 7) 'Rekening
-            rsJournaal.Fields("v068").Value = Mid(Msg, 50, 12) 'Bedrag
-            rsJournaal.Fields("dece068").Value = Val(Mid(Msg, 50, 12)) 'Bedrag
-            rsJournaal.Fields("v069").Value = Mid(Msg, 63, 7) 'TegenRekening
+            rsJournaal.Fields("v019").Value = Mid(MSG, 1, 7) 'Rekening
+            rsJournaal.Fields("v068").Value = Mid(MSG, 50, 12) 'Bedrag
+            rsJournaal.Fields("dece068").Value = Val(Mid(MSG, 50, 12)) 'Bedrag
+            rsJournaal.Fields("v069").Value = Mid(MSG, 63, 7) 'TegenRekening
             If Not adoJournaalOK() Then
                 BookingError = True
                 dKtrlCumul = 999
-            ElseIf Mid(Msg, 63, 7) <> "       " Then
+            ElseIf Mid(MSG, 63, 7) <> "       " Then
                 rsJournaal.AddNew()
                 rsJournaal.Fields("v041").Value = "0"
                 rsJournaal.Fields("v066").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'Boekdatum
@@ -50,10 +50,10 @@ Public Class FormJournalEntryInput
                 rsJournaal.Fields("v035").Value = Format(DateTimePickerBookingDate.Value, "yyyyMMdd") 'dokumentdatum
                 rsJournaal.Fields("v067").Value = Mid(TextBoxDescription.Text, 1, 35) 'Omschrijving
 
-                rsJournaal.Fields("v019").Value = Mid(Msg, 63, 7) 'Rekening
-                rsJournaal.Fields("v068").Value = Str(-Val(Mid(Msg, 50, 12))) 'Bedrag
-                rsJournaal.Fields("dece068").Value = -Val(Mid(Msg, 50, 12)) 'Bedrag
-                rsJournaal.Fields("v069").Value = Mid(Msg, 1, 7) 'TegenRekening
+                rsJournaal.Fields("v019").Value = Mid(MSG, 63, 7) 'Rekening
+                rsJournaal.Fields("v068").Value = Str(-Val(Mid(MSG, 50, 12))) 'Bedrag
+                rsJournaal.Fields("dece068").Value = -Val(Mid(MSG, 50, 12)) 'Bedrag
+                rsJournaal.Fields("v069").Value = Mid(MSG, 1, 7) 'TegenRekening
                 If Not adoJournaalOK() Then
                     BookingError = True
                     dKtrlCumul = 999
@@ -132,10 +132,10 @@ Public Class FormJournalEntryInput
     Sub CheckDCStatus()
         TotalDCAmount = 0
         For t = 0 To ListBoxJournalEntries.Items.Count - 1
-            Msg = ListBoxJournalEntries.Items.Item(t)
-            If Trim(Mid(Msg, 63)) <> "" Then
+            MSG = ListBoxJournalEntries.Items.Item(t)
+            If Trim(Mid(MSG, 63)) <> "" Then
             Else
-                TotalDCAmount += Val(Mid(Msg, 50, 12))
+                TotalDCAmount += Val(Mid(MSG, 50, 12))
             End If
         Next
         LabelSoldeAmount.Text = Dec(TotalDCAmount, MaskEURBH)
@@ -239,21 +239,21 @@ Public Class FormJournalEntryInput
         '    Loop
         'End If
 
-        'Msg = ""
+        'MSG = ""
         'If TotaalResultaat <> 0 Then
-        '    Msg = Msg & "Resultatenbalans verschil  : " & Dec(TotaalResultaat, MaskEURBH) & vbCrLf
+        '    MSG = MSG & "Resultatenbalans verschil  : " & Dec(TotaalResultaat, MaskEURBH) & vbCrLf
         'End If
         'If TotaalBalans <> 0 Then
-        '    If Msg = "" Then
+        '    If MSG = "" Then
         '        Verwittigen = True
-        '        Msg = "Blijkbaar is het resultaat verleden jaar GOED geboekt maar actief/passief is verschillend.  Straks wordt U de mogelijkheid geboden om de verschillen bij te werken OP EIGEN VERANTWOORDELIJKHEID" & vbCrLf & vbCrLf
+        '        MSG = "Blijkbaar is het resultaat verleden jaar GOED geboekt maar actief/passief is verschillend.  Straks wordt U de mogelijkheid geboden om de verschillen bij te werken OP EIGEN VERANTWOORDELIJKHEID" & vbCrLf & vbCrLf
         '    End If
-        '    Msg = Msg & "ACTIVE/PASSIVA verschil   : " & Dec(TotaalBalans, MaskEURBH) & vbCrLf
+        '    MSG = MSG & "ACTIVE/PASSIVA verschil   : " & Dec(TotaalBalans, MaskEURBH) & vbCrLf
         'End If
-        'If Msg = "" Then
+        'If MSG = "" Then
         'Else
-        '    Msg = Msg & vbCrLf & "Balansrekeningen Actief <> Passief, Resultaatrekeningen Debet <> Credit" & vbCrLf & vbCrLf & "Eerst resultaatsverwerking vorig jaar boeken a.u.b."
-        '    MsgBox(Msg)
+        '    MSG = MSG & vbCrLf & "Balansrekeningen Actief <> Passief, Resultaatrekeningen Debet <> Credit" & vbCrLf & vbCrLf & "Eerst resultaatsverwerking vorig jaar boeken a.u.b."
+        '    MsgBox(MSG)
         '    'If Verwittigen Then
         '    'Else
         '    'BoekBeginBalans = False
@@ -396,14 +396,14 @@ Public Class FormJournalEntryInput
         '            'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
         '            Return
         '        ElseIf Val(AdoGetField(TableOfVarious, "#v084 #")) = Val(AdoGetField(TableOfVarious, "#v085 #")) Then
-        '            Msg = "Alles is afgeschreven voor " & AdoGetField(TableOfVarious, "#v087 #") & vbCrLf & vbCrLf & "Totaal : " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v084 #")), MaskSy(0)) & vbCrLf & vbCrLf
+        '            MSG = "Alles is afgeschreven voor " & AdoGetField(TableOfVarious, "#v087 #") & vbCrLf & vbCrLf & "Totaal : " & VB6.Format(Val(AdoGetField(TableOfVarious, "#v084 #")), MaskSy(0)) & vbCrLf & vbCrLf
         '            If Not adoGet(TableOfLedgerAccounts, 0, "=", AdoGetField(TableOfVarious, "#v087 #")) Then
-        '                Msg = Msg & "Rekening bestaat zelfs niet eens..."
+        '                MSG = MSG & "Rekening bestaat zelfs niet eens..."
         '            Else
         '                'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '                Msg = Msg + RV(rsMAR(TableOfLedgerAccounts), "v020")
+        '                MSG = MSG + RV(rsMAR(TableOfLedgerAccounts), "v020")
         '            End If
-        '            MsgBox(Msg)
+        '            MsgBox(MSG)
         '            'FIXIT: Return has new meaning in Visual Basic .NET                                        FixIT90210ae-R9642-H1984
         '            'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
         '            Return
@@ -461,10 +461,10 @@ Public Class FormJournalEntryInput
         'Dim T As Short
 
         'If XisEuroWasBEF = True Then
-        'Msg = "Laatste afschrijving in BEF is geboekt." & vbCr & vbCr
-        'Msg = Msg & "Uw hoogste boekjaar is in EUR" & vbCr & vbCr
-        'Msg = Msg & "Hierna worden alle nog openstaande afschrijvingslijnen eveneens omgerekend naar EUR voor toekomstige bewerkingen"
-        'MsgBox(Msg, MsgBoxStyle.Information)
+        'MSG = "Laatste afschrijving in BEF is geboekt." & vbCr & vbCr
+        'MSG = MSG & "Uw hoogste boekjaar is in EUR" & vbCr & vbCr
+        'MSG = MSG & "Hierna worden alle nog openstaande afschrijvingslijnen eveneens omgerekend naar EUR voor toekomstige bewerkingen"
+        'MsgBox(MSG, MsgBoxStyle.Information)
         'End If
 
         'For T = 0 To JournaalPost.Items.Count - 1
@@ -497,9 +497,9 @@ Public Class FormJournalEntryInput
         Select Case Mid(ComboBoxBookType.Text, 1, 1)
             Case "0"
             Case Else
-                Msg = ComboBoxBookType.Text & " aktiveren !" & vbCrLf & vbCrLf
-                Msg &= "Bent U zeker ?"
-                Ktrl = MsgBox(Msg, 292)
+                MSG = ComboBoxBookType.Text & " aktiveren !" & vbCrLf & vbCrLf
+                MSG &= "Bent U zeker ?"
+                Ktrl = MsgBox(MSG, 292)
                 If Ktrl = 6 Then
                     Select Case Mid(ComboBoxBookType.Text, 1, 1)
                         Case "1"
@@ -629,8 +629,8 @@ Public Class FormJournalEntryInput
 
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         If ListBoxJournalEntries.Items.Count Then
-            Msg = Format(ListBoxJournalEntries.Items.Count) & " Journaallijnen negeren.  Bent U zeker ?"
-            Ktrl = MsgBox(Msg, 292, "Inbreng Journaalpost")
+            MSG = Format(ListBoxJournalEntries.Items.Count) & " Journaallijnen negeren.  Bent U zeker ?"
+            Ktrl = MsgBox(MSG, 292, "Inbreng Journaalpost")
             If Ktrl <> 6 Then
                 Exit Sub
             End If

@@ -197,9 +197,9 @@ End Class
 '			Case "? "
 '				If rTotaal1 = 0 Or rTotaal2 = 0 Then
 '				Else
-'					Msg = Mid(Mim.SnelHelp.Text, 9) & vbCrLf & vbCrLf
-'					Msg = Msg & VB6.Format(rTotaal1, MaskEURBH) & " ? " & VB6.Format(rTotaal2, MaskEURBH)
-'					MsgBox(Msg, 0, "Kontroleer a.u.b. !")
+'					MSG = Mid(Mim.SnelHelp.Text, 9) & vbCrLf & vbCrLf
+'					MSG = MSG & VB6.Format(rTotaal1, MaskEURBH) & " ? " & VB6.Format(rTotaal2, MaskEURBH)
+'					MsgBox(MSG, 0, "Kontroleer a.u.b. !")
 '				End If
 '			Case Else
 '				'Stop

@@ -865,11 +865,11 @@ StartPunt:
 		Cursor.Current = Cursors.Default
 		Mim.Report.Preview()
 
-		Msg = "Totaliseren voor BTW AANGIFTE.  Bent U zeker?"
+		MSG = "Totaliseren voor BTW AANGIFTE.  Bent U zeker?"
 		If RbInvoices.Checked Then
-			Msg = Msg & vbCrLf & vbCrLf & "Opgelet !  Creditnota's niet vergeten straks..."
+			MSG = MSG & vbCrLf & vbCrLf & "Opgelet !  Creditnota's niet vergeten straks..."
 		End If
-		Ktrl = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1, "BTW Aangifte")
+		Ktrl = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1, "BTW Aangifte")
 		If Ktrl = MsgBoxResult.Yes Then
 			'GoSub BTWAangifte
 		End If

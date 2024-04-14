@@ -243,11 +243,11 @@ End Class
 '		Else
 '			If RTrim(AdoGetField(TableOfCustomers, "#A161 #")) = BtwKontrole(RTrim(AdoGetField(TableOfCustomers, "#A161 #")), False) Then
 '			Else
-'				Msg = "Het BTW nummer : " & RTrim(AdoGetField(TableOfCustomers, "#A161 #")) & " is foutief !" & vbCrLf
-'				Msg = Msg & "Klant : " & AdoGetField(TableOfCustomers, "#A110 #") & " " & AdoGetField(TableOfCustomers, "#A100 #") & vbCrLf & vbCrLf
-'				Msg = Msg & "Een 000-000-000 nummer wordt ingevoegd.  Gelieve de kontrolelijst" & vbCrLf
-'				Msg = Msg & "na te kijken én te verbeteren a.u.b. vooraleer door te sturen..."
-'				MsgBox(Msg)
+'				MSG = "Het BTW nummer : " & RTrim(AdoGetField(TableOfCustomers, "#A161 #")) & " is foutief !" & vbCrLf
+'				MSG = MSG & "Klant : " & AdoGetField(TableOfCustomers, "#A110 #") & " " & AdoGetField(TableOfCustomers, "#A100 #") & vbCrLf & vbCrLf
+'				MSG = MSG & "Een 000-000-000 nummer wordt ingevoegd.  Gelieve de kontrolelijst" & vbCrLf
+'				MSG = MSG & "na te kijken én te verbeteren a.u.b. vooraleer door te sturen..."
+'				MsgBox(MSG)
 '				AdoInsertToRecord(TableOfCustomers, "000-000-000", "A161 ")
 '				FieldText(6) = SetSpacing(Mid(AdoGetField(TableOfCustomers, "#A161 #"), 1, 3) & Mid(AdoGetField(TableOfCustomers, "#A161 #"), 5, 3) & Mid(AdoGetField(TableOfCustomers, "#A161 #"), 9, 3), 9)
 '				bUpdate(TableOfCustomers, 0)
@@ -346,12 +346,12 @@ End Class
 '		End If
 
 'BNvraag: 
-'		Msg = "Positionele jaarlisting op uw Bureaublad doormailen naar Vsoft voor afhandeling" & vbCrLf & vbCrLf & "Kies 'ja' voor doormailen (aanbevolen), 'nee' indien U zelf afhandelt (afleveringnota's worden afgedrukt)"
-'		Ktrl = MsgBox(Msg, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
+'		MSG = "Positionele jaarlisting op uw Bureaublad doormailen naar Vsoft voor afhandeling" & vbCrLf & vbCrLf & "Kies 'ja' voor doormailen (aanbevolen), 'nee' indien U zelf afhandelt (afleveringnota's worden afgedrukt)"
+'		Ktrl = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
 '		Select Case Ktrl
 '			Case 2
-'				Msg = "Taak verlaten zonder enige verwerking.  Bent U zeker"
-'				Ktrl = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
+'				MSG = "Taak verlaten zonder enige verwerking.  Bent U zeker"
+'				Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
 '				If Ktrl = 7 Then
 '					GoTo BNvraag
 '				Else
@@ -408,8 +408,8 @@ End Class
 '			Case 7
 '				'niks
 '				'Zelf afhandelen (enkel nog afdruk afleveringnota's hierna
-'				Msg = "Het bestand " & VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW" & " staat op het bureaublad ter beschikking.  Volg bvb. de instructies in uw software voor DVD- of CDschrijver om het bestand op dergelijk medium te bewaren." & vbCrLf & vbCrLf & "Bij voorkeur AANGETEKEND of via afgifte op het plaatselijk kantoor met AFSTEMPELING van één exemplaar van de BEGELEIDINGSNOTA welke hierna wordt afgedrukt."
-'				MsgBox(Msg, MsgBoxStyle.Information)
+'				MSG = "Het bestand " & VB.Right(VB6.Format(Datum._Value, "dd/mm/yyyy"), 4) & ".BTW" & " staat op het bureaublad ter beschikking.  Volg bvb. de instructies in uw software voor DVD- of CDschrijver om het bestand op dergelijk medium te bewaren." & vbCrLf & vbCrLf & "Bij voorkeur AANGETEKEND of via afgifte op het plaatselijk kantoor met AFSTEMPELING van één exemplaar van de BEGELEIDINGSNOTA welke hierna wordt afgedrukt."
+'				MsgBox(MSG, MsgBoxStyle.Information)
 '		End Select
 
 '		Dim PrintEx1 As Short
@@ -787,15 +787,15 @@ End Class
 '				Input(FlFree, FiguurX)
 '				Input(FlFree, FiguurY)
 '				Input(FlFree, FiguurName)
-'				If ScrLeesTekstBestand(Msg, LocationCompanyData & FiguurName & ".mfd") Then
-'					FigBestandsnaam = VB.Left(Msg, InStr(Msg, vbTab) - 1)
+'				If ScrLeesTekstBestand(MSG, LocationCompanyData & FiguurName & ".mfd") Then
+'					FigBestandsnaam = VB.Left(MSG, InStr(MSG, vbTab) - 1)
 '					Mim.imgFiguur.Image = System.Drawing.Image.FromFile(FigBestandsnaam)
-'					Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+'					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object Hoogte. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Hoogte = VB.Left(Msg, InStr(Msg, vbTab) - 1)
-'					Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+'					Hoogte = VB.Left(MSG, InStr(MSG, vbTab) - 1)
+'					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object Breedte. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Breedte = Msg
+'					Breedte = MSG
 '					Printer.PaintPicture(Mim.imgFiguur.Image, FiguurX, FiguurY, Breedte, Hoogte)
 '				Else
 '					MsgBox("afdrukprobleemke figuurobject: " & FiguurName)

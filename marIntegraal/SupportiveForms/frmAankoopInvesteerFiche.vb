@@ -15,8 +15,8 @@ End Class
 
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
-'		Msg = "InvesteringFiche negeren !  Bent U zeker ?"
-'		Ktrl = MsgBox(Msg, 292, "Investeringsfiche overslaan")
+'		MSG = "InvesteringFiche negeren !  Bent U zeker ?"
+'		Ktrl = MsgBox(MSG, 292, "Investeringsfiche overslaan")
 '		If Ktrl = 6 Then
 '			Me.Close()
 '		End If
@@ -54,10 +54,10 @@ End Class
 '			JetGet(TableOfLedgerAccounts, 0, RekeningTest.Value)
 '			If Ktrl Then
 '				RekeningNaam.Value = AdoGetField(TableOfLedgerAccounts, "#v020 #")
-'				Msg = "Afschrijving op " & RTrim(RekeningNaam.Value) & vbCrLf
-'				Msg = Msg & "Rekeningnr. : " & RekeningTest.Value & " bestaat nog niet." & vbCrLf & vbCrLf
-'				Msg = Msg & "Wordt hierna automatisch aangemaakt..."
-'				MsgBox(Msg, 0, "Aanmaak afschrijfrekening")
+'				MSG = "Afschrijving op " & RTrim(RekeningNaam.Value) & vbCrLf
+'				MSG = MSG & "Rekeningnr. : " & RekeningTest.Value & " bestaat nog niet." & vbCrLf & vbCrLf
+'				MSG = MSG & "Wordt hierna automatisch aangemaakt..."
+'				MsgBox(MSG, 0, "Aanmaak afschrijfrekening")
 
 '				TLBRecord(TableOfLedgerAccounts) = ""
 '				AdoInsertToRecord(TableOfLedgerAccounts, RekeningTest.Value, "v019")
@@ -87,15 +87,15 @@ End Class
 '			TekstInfo(4).Text = AdoGetField(TableOfVarious, "#v087 #")
 '			TekstInfo(5).Text = AdoGetField(TableOfVarious, "#v088 #")
 '			If TekstInfo(6).Text = TekstInfo(0).Text Then
-'				Msg = "Opgelet, laatste bijwerking op dezelfde dag" & vbCrLf
-'				Msg = Msg & "reeds aanwezig.  Vermijdt dubbele optellingen !" & vbCrLf & vbCrLf
-'				Msg = Msg & "Kies Sluiten indien U zopas de fiche reeds bijgewerkt hebt."
-'				MsgBox(Msg, 48, "Investeringsfiche éénzelfde datum")
+'				MSG = "Opgelet, laatste bijwerking op dezelfde dag" & vbCrLf
+'				MSG = MSG & "reeds aanwezig.  Vermijdt dubbele optellingen !" & vbCrLf & vbCrLf
+'				MSG = MSG & "Kies Sluiten indien U zopas de fiche reeds bijgewerkt hebt."
+'				MsgBox(MSG, 48, "Investeringsfiche éénzelfde datum")
 '			ElseIf Not DatumKtrl(TekstInfo(6).Text, BookyearAsText) Then 
-'				Msg = "Opgelet, U probeert een investeringsfiche" & vbCrLf
-'				Msg = Msg & "van een ander boekjaar bij te werken !" & vbCrLf & vbCrLf
-'				Msg = Msg & "Kies Sluiten en neem de juiste rekening."
-'				MsgBox(Msg, 16, "Gebruikersfout !")
+'				MSG = "Opgelet, U probeert een investeringsfiche" & vbCrLf
+'				MSG = MSG & "van een ander boekjaar bij te werken !" & vbCrLf & vbCrLf
+'				MSG = MSG & "Kies Sluiten en neem de juiste rekening."
+'				MsgBox(MSG, 16, "Gebruikersfout !")
 '				Ok.Enabled = False
 '			End If
 '		End If
@@ -121,9 +121,9 @@ End Class
 '		AdoInsertToRecord(TableOfVarious, (TekstInfo(4).Text), "v087")
 '		AdoInsertToRecord(TableOfVarious, (TekstInfo(5).Text), "v088")
 '		AdoInsertToRecord(TableOfVarious, "18" & AdoGetField(TableOfVarious, "#v087 #"), "v005")
-'		Msg = "Informatielijn opslaan..." & vbCrLf
-'		Msg = Msg & "Bent U zeker ?"
-'		Ktrl2 = MsgBox(Msg, 292, "Fiche bijwerken/wegschrijven")
+'		MSG = "Informatielijn opslaan..." & vbCrLf
+'		MSG = MSG & "Bent U zeker ?"
+'		Ktrl2 = MsgBox(MSG, 292, "Fiche bijwerken/wegschrijven")
 '		If Ktrl2 = 6 Then
 '			If NietAanwezig Then
 '				JetInsert(TableOfVarious, 1)

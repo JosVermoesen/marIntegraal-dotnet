@@ -26,7 +26,7 @@ End Class
 
 '	Private Sub Invoegen_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Invoegen.Click
 '		Dim FlX As Short
-'		Dim Msg As String
+'		Dim MSG As String
 '		Dim BsType As New VB6.FixedLengthString(7)
 '		Dim BsTekst As String
 '		Dim GridIO As String
@@ -35,11 +35,11 @@ End Class
 '			Beep()
 '			Exit Sub
 '		End If
-'		Msg = "'" & VB.Right(SjabloonLijst.Text, 40) & "'" & vbCrLf & vbCrLf
-'		Msg = Msg & "Kies Ja  om enkel bij te voegen." & vbCrLf
-'		Msg = Msg & "Kies Nee om bestaande invoer te overschrijven !" & vbCrLf
-'		Msg = Msg & "Cancel of ESC voor nieuwe selectie..."
-'		Ktrl = MsgBox(Msg, 3, "Sjabloon invoegen")
+'		MSG = "'" & VB.Right(SjabloonLijst.Text, 40) & "'" & vbCrLf & vbCrLf
+'		MSG = MSG & "Kies Ja  om enkel bij te voegen." & vbCrLf
+'		MSG = MSG & "Kies Nee om bestaande invoer te overschrijven !" & vbCrLf
+'		MSG = MSG & "Cancel of ESC voor nieuwe selectie..."
+'		Ktrl = MsgBox(MSG, 3, "Sjabloon invoegen")
 '		Select Case Ktrl
 '			Case 2
 '				Exit Sub
@@ -128,16 +128,16 @@ End Class
 '	Private Sub Wegschrijven_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Wegschrijven.Click
 '		Dim LeftPos As Short
 '		Dim FlX As Short
-'		Dim Msg As String
+'		Dim MSG As String
 '		Dim BsType As New VB6.FixedLengthString(7)
 '		Dim BsTekst As New VB6.FixedLengthString(40)
 '		Dim GridIO As String
 
 '		BsTekst.Value = TekstInfo(0).Text
 
-'		Msg = "'" & BsTekst.Value & "'" & vbCrLf & vbCrLf
-'		Msg = Msg & "Wegschrijven, bent U zeker ?"
-'		Ktrl = MsgBox(Msg, 292)
+'		MSG = "'" & BsTekst.Value & "'" & vbCrLf & vbCrLf
+'		MSG = MSG & "Wegschrijven, bent U zeker ?"
+'		Ktrl = MsgBox(MSG, 292)
 '		If Ktrl = 6 Then
 '		Else
 '			Exit Sub

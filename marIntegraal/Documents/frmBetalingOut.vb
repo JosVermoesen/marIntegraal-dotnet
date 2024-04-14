@@ -567,10 +567,10 @@ End Class
 '		System.Windows.Forms.Cursor.Current = vbNormal
 '		If GeenRekening Then
 '			Me.CmdEmailNBB.Enabled = False
-'			Msg = "Er zijn " & Str(GeenRekening) & " verrichtingen zonder rekeningnummer" & vbCrLf
-'			Msg = Msg & "Mogen deze verwijderd worden" & vbCrLf & vbCrLf
-'			Msg = Msg & "(zonder verwijdering enkel afdruk op papier mogelijk)"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
+'			MSG = "Er zijn " & Str(GeenRekening) & " verrichtingen zonder rekeningnummer" & vbCrLf
+'			MSG = MSG & "Mogen deze verwijderd worden" & vbCrLf & vbCrLf
+'			MSG = MSG & "(zonder verwijdering enkel afdruk op papier mogelijk)"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
 '			If KtrlBox = MsgBoxResult.Yes Then
 '				CountTo = 1
 '				CmdEmailNBB.Enabled = True

@@ -260,12 +260,12 @@ End Class
 '		If KtrlInput = "" Then
 '			Exit Sub
 '		ElseIf Len(KtrlInput) <> 8 Then 
-'			Msg = "dokumentnummer bestaat uit 8 tekens !" & vbCrLf & vbCrLf
-'			Msg = Msg & "Voorbeeld:" & vbCrLf
-'			Msg = Msg & "Rekening 'GB', werkelijk jaar 19'98'," & vbCrLf
-'			Msg = Msg & "uittreksel 124, geeft als dokumentnummer:" & vbCrLf & vbCrLf
-'			Msg = Msg & "GB980124"
-'			MsgBox(Msg)
+'			MSG = "dokumentnummer bestaat uit 8 tekens !" & vbCrLf & vbCrLf
+'			MSG = MSG & "Voorbeeld:" & vbCrLf
+'			MSG = MSG & "Rekening 'GB', werkelijk jaar 19'98'," & vbCrLf
+'			MSG = MSG & "uittreksel 124, geeft als dokumentnummer:" & vbCrLf & vbCrLf
+'			MSG = MSG & "GB980124"
+'			MsgBox(MSG)
 '			Exit Sub
 '		End If
 '		JournaalManueelVlag = True

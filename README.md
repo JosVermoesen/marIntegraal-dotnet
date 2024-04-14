@@ -4,14 +4,14 @@
 
 ![MARINTEGRAAL](img/marIntegraalVSVB.png)
 
-## History
+## History (Dutch)
 
-marIntegraal stands for compleet accounting around Minimumindeling Algemeen Rekeningstelsel (Dutch Belgium).
+marIntegraal staat voor: complete boekhouding rond het Minimumindeling Algemeen Rekeningstelsel (België).
 
-- It is a project first commercialized end of 1985 for Amstrad/Schneider PCW on CP/M PLUS. My program written in Mallard BASIC, one of the few fast BASIC versions using B-Plus tree index sorting on CP/M and MS-DOS/PC-DOS.
-- For our program that will become later on Open-Source, the commercialized version is available at our website vsoft.be (All our cliënts since 1985 can enjoy the development from then to now and ask questions. As always data of our clients remains safe using the 'Mario' program everytime switching to the lastest development platforms
-- From 2025 we service our cliënts 100% delivering programs 'as a service'. More info will follow.
-- At the moment (2024) we have fun in this Open Source version with translating and testing the reporting functions from the commercial version. You can freely check our work in progress if you want- 
-- Have fun!
+- Het is een project dat eind 1985 voor het eerst op de markt werd gebracht voor Amstrad/Schneider PCW op CP/M PLUS. Mijn programma geschreven in Mallard BASIC, een van de weinige snelle BASIC-versies die gebruik maakt van B-Plus boomindexsortering op CP/M en MS-DOS/PC-DOS.
+- Voor ons programma dat later Open-Source zal worden, is de gecommercialiseerde versie beschikbaar op onze website vsoft.be (Al onze klanten sinds 1985 kunnen genieten van de ontwikkeling van toen tot nu en vragen stellen. Zoals altijd blijven de gegevens van onze klanten veilig met behulp van het 'Mario'-programma telkens wanneer u overschakelt naar de nieuwste ontwikkelingsplatforms
+- Vanaf 2025 bedienen wij onze klanten 100% met het leveren van programma's 'as a service'. Meer informatie volgt.
+- Op dit moment (2024) vermaken we ons in deze Open Source-versie met het vertalen en testen van de rapportagefuncties uit de commerciële versie. U kunt ons werk in uitvoering vrij bekijken als u dat wilt
+- Veel plezier!
 
 [ClickOnce]: https://clickonce.vsoft.be/MarIntegraal/publish.htm

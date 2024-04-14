@@ -189,13 +189,13 @@ End Class
 
 
 'XMLvraag: 
-'		Msg = "Btwaangifte doormailen voor afhandeling" & vbCrLf & vbCrLf & "Kies 'ja' voor doormailen (aanbevolen, ontvangstbewijs volgt), 'nee' indien U zelf het XML bestand afhandelt"
-'		Ktrl = MsgBox(Msg, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
+'		MSG = "Btwaangifte doormailen voor afhandeling" & vbCrLf & vbCrLf & "Kies 'ja' voor doormailen (aanbevolen, ontvangstbewijs volgt), 'nee' indien U zelf het XML bestand afhandelt"
+'		Ktrl = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Question)
 '		Dim tmpXMLHier As String
 '		Select Case Ktrl
 '			Case 2
-'				Msg = "Taak verlaten zonder enige verwerking.  Bent U zeker"
-'				Ktrl = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
+'				MSG = "Taak verlaten zonder enige verwerking.  Bent U zeker"
+'				Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question)
 '				If Ktrl = 7 Then
 '					GoTo XMLvraag
 '				Else
@@ -264,8 +264,8 @@ End Class
 '			Case 7
 '				'niks
 '				'Zelf afhandelen (enkel nog afdruk afleveringnota's hierna
-'				Msg = "Klik het INTERVAT tabblad en bewaar het XML bestand (bvb. op uw bureaublad).  Start de INTERVAT webapplicatie en bezorg het XML bestand of breng uw cijfers manueel in in dezelfde toepassing" & vbCrLf & vbCrLf & "Voor hulp rond INTERVAT gelieve de website FOD te raadplegen."
-'				MsgBox(Msg, MsgBoxStyle.Information, "XML Btwaangifte zelf afhandelen via INTERVAT")
+'				MSG = "Klik het INTERVAT tabblad en bewaar het XML bestand (bvb. op uw bureaublad).  Start de INTERVAT webapplicatie en bezorg het XML bestand of breng uw cijfers manueel in in dezelfde toepassing" & vbCrLf & vbCrLf & "Voor hulp rond INTERVAT gelieve de website FOD te raadplegen."
+'				MsgBox(MSG, MsgBoxStyle.Information, "XML Btwaangifte zelf afhandelen via INTERVAT")
 '		End Select
 '		Exit Sub
 
@@ -329,8 +329,8 @@ End Class
 '		Dim DummySleutel As New VB6.FixedLengthString(5)
 '		Dim number As Integer
 
-'		Msg = "BTW Aangifte periode initializeren." & vbCrLf & "Bent U zeker ?"
-'		Ktrl = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Alle boeken opnieuw uitdrukken !?!")
+'		MSG = "BTW Aangifte periode initializeren." & vbCrLf & "Bent U zeker ?"
+'		Ktrl = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Alle boeken opnieuw uitdrukken !?!")
 '		If Ktrl = MsgBoxResult.Yes Then
 '		Else
 '			Exit Sub

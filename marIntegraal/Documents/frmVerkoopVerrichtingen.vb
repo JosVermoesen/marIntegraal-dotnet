@@ -182,9 +182,9 @@ MaskAantal:
     End Sub
     Private Sub KlantAktiveren_Click(sender As Object, e As EventArgs) Handles KlantAktiveren.Click
         If VerkoopDetail.Items.Count Then
-            Msg = "Huidige inbreng en klant negeren." & vbCrLf & vbCrLf
-            Msg = Msg & "Bent U zeker."
-            KtrlBox = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Andere klant kiezen")
+            MSG = "Huidige inbreng en klant negeren." & vbCrLf & vbCrLf
+            MSG = MSG & "Bent U zeker."
+            KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Andere klant kiezen")
             If KtrlBox = MsgBoxResult.Yes Then
             Else
                 Exit Sub
@@ -209,8 +209,8 @@ MaskAantal:
         On Error Resume Next
         Err.Clear()
         rsKlant.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT TOP 1 * FROM Klanten WHERE A110 = '" & XLogKey & "'"
-        rsKlant.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        MSG = "SELECT TOP 1 * FROM Klanten WHERE A110 = '" & XLogKey & "'"
+        rsKlant.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Or rsKlant.RecordCount <> 1 Then
             MsgBox("Onverwachte situatie")
             Exit Sub
@@ -226,8 +226,8 @@ MaskAantal:
         On Error Resume Next
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT TOP 1 * FROM Allerlei WHERE v005 = '10" & sMuntKlant & "'"
-        rsDetail.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        MSG = "SELECT TOP 1 * FROM Allerlei WHERE v005 = '10" & sMuntKlant & "'"
+        rsDetail.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         'cmdSwitch.Enabled = True
         If rsDetail.RecordCount <> 1 Then
             MsgBox("Muntkode eerst inbrengen via diverse gebruikersfiches a.u.b.  Nu wordt automatisch verdergewerkt met BEF", MsgBoxStyle.Information, "Muntkode is " & sMunt)
@@ -376,8 +376,8 @@ MaskAantal:
         LblEx2Btw.Text = ""
         LblIn2Btw.Text = ""
         If lstKopiePlak.Items.Count Then
-            Msg = "Gekopiëerde lijnen behouden ?"
-            Ktrl = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
+            MSG = "Gekopiëerde lijnen behouden ?"
+            Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
             Select Case Ktrl
                 Case MsgBoxResult.No
                     lstKopiePlak.Items.Clear()
@@ -418,8 +418,8 @@ MaskAantal:
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        Msg = "SELECT TOP 1 * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%'"
-        rsDetail.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        MSG = "SELECT TOP 1 * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%'"
+        rsDetail.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Or rsDetail.RecordCount = 0 Then
             Klassement.Enabled = False
             'Klassement.Font = VB6.FontChangeBold(Klassement.Font, False)
@@ -496,9 +496,9 @@ MaskAantal:
         TekstInfo3.Text = dokumentSleutel
 
         'If Ktrl = 99 Then
-        'Msg = VerkoopOptie(Index).Text & " aktief bij andere gebruiker." & vbCrLf & vbCrLf
-        'Msg = Msg & "Verkoopverrichting afsluiten of andere optie selecteren a.u.b. !"
-        'Ktrl = MsgBox(Msg, 16)
+        'MSG = VerkoopOptie(Index).Text & " aktief bij andere gebruiker." & vbCrLf & vbCrLf
+        'MSG = MSG & "Verkoopverrichting afsluiten of andere optie selecteren a.u.b. !"
+        'Ktrl = MsgBox(MSG, 16)
         'If Index = 0 Then VerkoopOptie(1).Checked = 1
         'If Index = 1 Then VerkoopOptie(0).Checked = 1
         'If Index = 2 Then VerkoopOptie(1).Checked = 1
@@ -558,9 +558,9 @@ MaskAantal:
         On Error Resume Next
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%' ORDER BY v004, v005 DESC"
+        MSG = "SELECT * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%' ORDER BY v004, v005 DESC"
         Cursor.Current = Cursors.WaitCursor
-        rsDetail.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        rsDetail.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Then
             MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
             Exit Sub
@@ -617,9 +617,9 @@ MaskAantal:
         On Error Resume Next
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT * FROM Allerlei WHERE v005 Like '" & dokumentType & Mid(XLogKey, 1, 11) & "%'"
+        MSG = "SELECT * FROM Allerlei WHERE v005 Like '" & dokumentType & Mid(XLogKey, 1, 11) & "%'"
         Cursor.Current = Cursors.WaitCursor
-        rsDetail.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        rsDetail.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Then
             MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
             Cursor.Current = Cursors.Default
@@ -630,11 +630,11 @@ MaskAantal:
             Exit Sub
         End If
         If InStr(adoBibTekst(rsDetail.Fields("Memo"), "#v147 #"), "V") Then
-            Msg = "Document: " & Mid(XLogKey, 1, 11)
-            Msg = Msg & " reeds in relatie tot " & vbCrLf
-            Msg = Msg & "verkoopdocument(en): " & adoBibTekst(rsDetail.Fields("Memo"), "#v147 #") & vbCrLf & vbCrLf
-            Msg = Msg & "Toch ophalen ?"
-            KtrlBox = MsgBox(Msg, MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Opletten !")
+            MSG = "Document: " & Mid(XLogKey, 1, 11)
+            MSG = MSG & " reeds in relatie tot " & vbCrLf
+            MSG = MSG & "verkoopdocument(en): " & adoBibTekst(rsDetail.Fields("Memo"), "#v147 #") & vbCrLf & vbCrLf
+            MSG = MSG & "Toch ophalen ?"
+            KtrlBox = MsgBox(MSG, MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Opletten !")
             If KtrlBox = MsgBoxResult.No Then
                 Cursor.Current = Cursors.Default
                 Exit Sub
@@ -823,23 +823,23 @@ MaskAantal:
         End If
         If dokumentType = "15" Then
             If frmDokHistoriek.lstDokHistoriek.Items.Count <> 0 Then
-                Msg = ""
+                MSG = ""
                 refID = "RF:"
                 For T = 0 To frmDokHistoriek.lstDokHistoriek.Items.Count - 1
                     frmDokHistoriek.lstDokHistoriek.SelectedIndex = T
-                    Msg = Msg & frmDokHistoriek.lstDokHistoriek.Text & " "
+                    MSG = MSG & frmDokHistoriek.lstDokHistoriek.Text & " "
                 Next
-                KtrlBox = MsgBox("Bons als referte opnemen." & vbCr & vbCr & refID & Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
+                KtrlBox = MsgBox("Bons als referte opnemen." & vbCr & vbCr & refID & MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
                 If KtrlBox = MsgBoxResult.Yes Then
                     refString = New String(" ", 75) & "|2"
                     VerkoopDetail.Items.Add(refString)
-                    Do While Msg <> ""
+                    Do While MSG <> ""
                         refString = New String(" ", 75) & "|2"
-                        Mid(refString, 1) = refID & Mid(Msg, 1, 72)
-                        If Len(Msg) > 72 Then
-                            Msg = Mid(Msg, 73)
+                        Mid(refString, 1) = refID & Mid(MSG, 1, 72)
+                        If Len(MSG) > 72 Then
+                            MSG = Mid(MSG, 73)
                         Else
-                            Msg = ""
+                            MSG = ""
                         End If
                         VerkoopDetail.Items.Add(refString)
                     Loop
@@ -1291,9 +1291,9 @@ pdfKontroleLijn:
     Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles Annuleren.Click
 
         If VerkoopDetail.Items.Count Then
-            Msg = "Huidige inbreng negeren en venster sluiten." & vbCrLf & vbCrLf
-            Msg = Msg & "Bent U zeker ?"
-            Ktrl = MsgBox(Msg, 292, "Verkoopverrichtingen verlaten")
+            MSG = "Huidige inbreng negeren en venster sluiten." & vbCrLf & vbCrLf
+            MSG = MSG & "Bent U zeker ?"
+            Ktrl = MsgBox(MSG, 292, "Verkoopverrichtingen verlaten")
             If Ktrl = 6 Then
             Else
                 Exit Sub

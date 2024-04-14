@@ -103,8 +103,8 @@ Public Class BetalingsVerzoek
 	Private Sub btClose_Click(sender As Object, e As EventArgs) Handles btClose.Click
 
 		If lvPolicesDetail.Items.Count Then
-			Msg = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-			Ktrl = MsgBox(Msg, 292, "Voortijdig stoppen...")
+			MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
+			Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
 			If Ktrl = 6 Then
 			Else
 				Exit Sub
@@ -278,8 +278,8 @@ Public Class BetalingsVerzoek
 			Exit Sub 			
 		End If
 
-		Msg = "Kwijtingen " & Msg2 & " met vervaldag voor de" & vbCrLf & Mid(PeriodFromTo, 5, 2) & "e maand inladen ?"
-		Ktrl = MsgBox(Msg, 292)
+		MSG = "Kwijtingen " & Msg2 & " met vervaldag voor de" & vbCrLf & Mid(PeriodFromTo, 5, 2) & "e maand inladen ?"
+		Ktrl = MsgBox(MSG, 292)
 		If Ktrl = MsgBoxResult.Yes Then
 			InsertTermijn()
 			lvPolicesDetail.Focus
@@ -807,13 +807,13 @@ DetailLijnen:
         'TB2ValeursJSON()
 
 
-		Msg = TB2info2017()
-		If Msg = "" Then
+		MSG = TB2info2017()
+		If MSG = "" Then
 			pdfY = Mim.Report.Print(0.9, pdfY, " ")
 			pdfY = Mim.Report.Print(0.9, pdfY, " ")
 			pdfY = Mim.Report.Print(0.9, pdfY, " ")
 		Else
-			pdfY = Mim.Report.Print(0.6, pdfY, Msg)
+			pdfY = Mim.Report.Print(0.6, pdfY, MSG)
 		End If
 
 InfoTekst: 
@@ -999,15 +999,15 @@ End Class
 '		On Error Resume Next
 '		Err.Clear()
 '		rsTMP.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-'		Msg = "SELECT * FROM Dokumenten WHERE v033 Like 'Q%' AND A000 = '" & sharedPolis & "' AND Val(v249) = " & Str(sharedTotaal) & " ORDER BY v033 DESC"
-'		SnelHelpPrint(Msg, blLogging)
+'		MSG = "SELECT * FROM Dokumenten WHERE v033 Like 'Q%' AND A000 = '" & sharedPolis & "' AND Val(v249) = " & Str(sharedTotaal) & " ORDER BY v033 DESC"
+'		SnelHelpPrint(MSG, blLogging)
 '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'		rsTMP.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsTMP.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		If Err.Number Then
 '			MsgBox(ErrorToString())
 '		Else
-'			'Debug.Print Msg
+'			'Debug.Print MSG
 '			If rsTMP.RecordCount Then
 '				Do While Not rsTMP.EOF
 '					'Stop

@@ -168,7 +168,7 @@ Module ModLibs
     Public SetupVelden As Short
     Public BedrijfKeuze As String
     Public dMuntL As Double
-    Public Msg As String
+    Public MSG As String
     Public KtrlBox As Short
     Public SQLBevel As String
     Public DoEventsStatus As Short

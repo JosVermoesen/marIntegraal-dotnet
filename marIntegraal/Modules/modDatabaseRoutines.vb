@@ -240,9 +240,9 @@ EditAgain:
             Exit Function
         End If
         MsgBox(ErrorToString())
-        Msg = "De recordgegevens zelf zijn op dit ogenblik in bewerking bij een andere gebruiker !" & vbCrLf
-        Msg = Msg & "Steeds opnieuw proberen ?" & vbCrLf & vbCrLf
-        Ktrl = MsgBox(Msg, 5 + 16, "Schrijfbeveiliging andere gebruiker")
+        MSG = "De recordgegevens zelf zijn op dit ogenblik in bewerking bij een andere gebruiker !" & vbCrLf
+        MSG = MSG & "Steeds opnieuw proberen ?" & vbCrLf & vbCrLf
+        Ktrl = MsgBox(MSG, 5 + 16, "Schrijfbeveiliging andere gebruiker")
         Select Case Ktrl
             Case 4
                 Resume
@@ -481,15 +481,15 @@ TryAgain:
         Select Case Ktrl
             Case 0
             Case 5
-                Msg = "Dergelijke ID.Kode Bestaat reeds : " & KeyBuf(Fl) & " : " & Str(Fl)
-                MsgBox(Msg)
+                MSG = "Dergelijke ID.Kode Bestaat reeds : " & KeyBuf(Fl) & " : " & Str(Fl)
+                MsgBox(MSG)
             Case 46
-                Msg = "TableDefOnt werd geopend in LEES-modus." & vbCrLf & "Schrijven is niet mogelijk..."
-                MsgBox(Msg, 0, "Database beveiliging")
+                MSG = "TableDefOnt werd geopend in LEES-modus." & vbCrLf & "Schrijven is niet mogelijk..."
+                MsgBox(MSG, 0, "Database beveiliging")
 
             Case Else
-                Msg = "Stopkode " & Str(Ktrl) & " tijdens invoegen nieuwe record."
-                MsgBox(Msg)
+                MSG = "Stopkode " & Str(Ktrl) & " tijdens invoegen nieuwe record."
+                MsgBox(MSG)
         End Select
         Exit Sub
 

@@ -76,21 +76,21 @@ Public Class xLog
             'End If
             'X.Focus()
         Else
-            'Msg = ""
+            'MSG = ""
             If Mid(codeString, 10, 1) = "-" Then
-                Msg = "Deze informatie kan niet gewijzigd worden..."
+                MSG = "Deze informatie kan niet gewijzigd worden..."
                 GridText = "Edit No"
             Else
                 GridText = "Edit Yes"
             End If
             If Mid(codeString, 1, 1) = "@" Then
-                Msg = Mid(codeString, 1, 3)
+                MSG = Mid(codeString, 1, 3)
             Else
-                Msg = Msg & QuickHelp(Mid(codeString, 1, 3))
+                MSG = MSG & QuickHelp(Mid(codeString, 1, 3))
             End If
             'X.Col = 2
             'ATLijn = Val(Mid(TeleBibCode(X.Row - 1), 10, 1))
-            tijdelijk = vsfInputBox(Msg, omsString, inputString, "")
+            tijdelijk = vsfInputBox(MSG, omsString, inputString, "")
             If inputString = tijdelijk Then
             Else
                 AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))

@@ -195,8 +195,8 @@ End Class
 
 '		JetGet(TableOfVarious, 1, SetSpacing(AdoGetField(TableOfVarious, "#" & JetTableUseIndex(TableOfVarious, 1) & "#"), FlIndexLen(TableOfVarious, 1)))
 '		If Ktrl = 0 Then
-'			Msg = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
-'			KtrlBox = MsgBox(Msg, 292)
+'			MSG = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
+'			KtrlBox = MsgBox(MSG, 292)
 '			If KtrlBox = 6 Then
 '				Select Case VB.Left(cmbDokumentType.Text, 2)
 '					Case "10"
@@ -343,8 +343,8 @@ End Class
 '		If KeyCode = 46 Then
 '			RecordToField(TableOfVarious)
 '			If VB.Left(cmbDokumentType.Text, 2) = VB.Left(FVT(TableOfVarious, 1), 2) And RTrim(TekstInfo(0).Text) = RTrim(Mid(FVT(TableOfVarious, 1), 3)) Then
-'				Msg = "Bestaande fiche verwijderen.  Bent U zeker ?"
-'				KtrlBox = MsgBox(Msg, 292)
+'				MSG = "Bestaande fiche verwijderen.  Bent U zeker ?"
+'				KtrlBox = MsgBox(MSG, 292)
 '				If KtrlBox = 6 Then
 '					Bdelete(TableOfVarious)
 '					Knop_Click(Knop.Item(3), New System.EventArgs())
@@ -483,11 +483,11 @@ End Class
 
 '		bhKontrole = False
 '		If String99(Reading, 63) = "1" Then
-'			Msg = "Afschrijvingsposten reeds gegenereerd voor dit boekjaar !" & vbCrLf & vbCrLf
-'			Msg = Msg & "Bijkomende posten kunnen uitsluitend via 'Diverse post'-optie" & vbCrLf
-'			Msg = Msg & "ingebracht worden !" & vbCrLf & vbCrLf
-'			Msg = Msg & "Wenst U boekhoudkundige kontrolelijst ?"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
+'			MSG = "Afschrijvingsposten reeds gegenereerd voor dit boekjaar !" & vbCrLf & vbCrLf
+'			MSG = MSG & "Bijkomende posten kunnen uitsluitend via 'Diverse post'-optie" & vbCrLf
+'			MSG = MSG & "ingebracht worden !" & vbCrLf & vbCrLf
+'			MSG = MSG & "Wenst U boekhoudkundige kontrolelijst ?"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
 '			If KtrlBox = MsgBoxResult.Yes Then
 '				bhKontrole = True
 '			Else

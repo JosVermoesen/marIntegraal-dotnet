@@ -146,8 +146,8 @@ GetIt:
                 If lvJournaalDetail.Items.Count >= maxLijn Then
                     If Zoekverder Then
                     Else
-                        Msg = "Meer dan " & Format(maxLijn - 2) & " journaallijnen.  Enkel de eerste " & Format(maxLijn - 2) & " tonen ?"
-                        KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
+                        MSG = "Meer dan " & Format(maxLijn - 2) & " journaallijnen.  Enkel de eerste " & Format(maxLijn - 2) & " tonen ?"
+                        KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1)
                         If KtrlBox = MsgBoxResult.Yes Then
                             GoTo JournaalJump 
                         Else

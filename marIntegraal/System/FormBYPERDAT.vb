@@ -73,8 +73,8 @@ Public Class FormBYPERDAT
                 End If
             End If
             If Boekjaar.SelectedIndex = 1 And bhEuro = False Then
-                Msg = "Dit bedrijf heeft een boekjaar -1 met verwerking in BEF.  Indien U nog boekingen in BEF wenst uit te voeren voor het zopas aangeduide boekjaar, gelieve een vorige versie (6.5.300 of lager) opnieuw te installeren a.u.b."
-                MsgBox(Msg, MsgBoxStyle.Exclamation)
+                MSG = "Dit bedrijf heeft een boekjaar -1 met verwerking in BEF.  Indien U nog boekingen in BEF wenst uit te voeren voor het zopas aangeduide boekjaar, gelieve een vorige versie (6.5.300 of lager) opnieuw te installeren a.u.b."
+                MsgBox(MSG, MsgBoxStyle.Exclamation)
             End If
         End If
 

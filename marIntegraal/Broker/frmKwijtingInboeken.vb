@@ -38,9 +38,9 @@ End Class
 '		Dim KopijString As String
 
 '		MsgBox(GridTextPolis)
-'		Msg = "Wijzigingen in rekeninguittreksels invoegen" & vbCrLf
-'		Msg = Msg & "Bent U zeker ?"
-'		Ktrl = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1 + MsgBoxStyle.Question)
+'		MSG = "Wijzigingen in rekeninguittreksels invoegen" & vbCrLf
+'		MSG = MSG & "Bent U zeker ?"
+'		Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton1 + MsgBoxStyle.Question)
 '		If Ktrl = MsgBoxResult.No Then
 '			Exit Sub
 '		Else
@@ -103,7 +103,7 @@ End Class
 '	End Sub
 
 '	Private Sub Afsluiten_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Afsluiten.Click
-'		Dim Msg As String
+'		Dim MSG As String
 '		Dim aa As New VB6.FixedLengthString(30)
 '		Dim TotaalPremie As Decimal
 '		Dim TotaalLoon As Decimal
@@ -111,13 +111,13 @@ End Class
 '		Dim DummySleutel As String
 
 '		If dokumentSleutel.Value <> SleutelDok(121) Then
-'			Msg = dokumentSleutel.Value & " <> " & SleutelDok(121) & vbCrLf & vbCrLf
-'			Msg = Msg & "MOGELIJKHEID 1: Teller is identiek, boekjaar is hoger/lager." & vbCrLf
-'			Msg = Msg & "U hebt dus het actief boekjaar of periode gewijzigd tijdens de aanmaak van dit dokument.  Probeer nogmaals NA KONTROLE." & vbCrLf & vbCrLf
-'			Msg = Msg & "MOGELIJKHEID 2: Boekjaar is identiek, teller is hoger/lager." & vbCrLf
-'			Msg = Msg & "Een andere gebruiker heeft ondertussen een dokument verwerkt." & vbCrLf & vbCrLf
-'			Msg = Msg & "Kontroleer eerst eens vooraleer de boeking nogmaals uit te voeren a.u.b. !!!"
-'			MsgBox(Msg)
+'			MSG = dokumentSleutel.Value & " <> " & SleutelDok(121) & vbCrLf & vbCrLf
+'			MSG = MSG & "MOGELIJKHEID 1: Teller is identiek, boekjaar is hoger/lager." & vbCrLf
+'			MSG = MSG & "U hebt dus het actief boekjaar of periode gewijzigd tijdens de aanmaak van dit dokument.  Probeer nogmaals NA KONTROLE." & vbCrLf & vbCrLf
+'			MSG = MSG & "MOGELIJKHEID 2: Boekjaar is identiek, teller is hoger/lager." & vbCrLf
+'			MSG = MSG & "Een andere gebruiker heeft ondertussen een dokument verwerkt." & vbCrLf & vbCrLf
+'			MSG = MSG & "Kontroleer eerst eens vooraleer de boeking nogmaals uit te voeren a.u.b. !!!"
+'			MsgBox(MSG)
 '			dokumentSleutel.Value = SleutelDok(121)
 '			Me.Text = "Kwijtschriften beginnende (" & dokumentSleutel.Value & ")"
 '			Exit Sub
@@ -143,12 +143,12 @@ End Class
 '			End If
 '		Next 
 
-'		Msg = RTrim(KeuzeInfo(1).Text) & " van" & vbCrLf
-'		Msg = Msg & RTrim(KeuzeInfo(0).Text) & vbCrLf & vbCrLf
-'		Msg = Msg & "Totaal premie(s) : " & Dec(TotaalPremie, MaskEURBH) & vbCrLf
-'		Msg = Msg & "Totaal loon : " & Dec(TotaalLoon, MaskEURBH) & vbCrLf
-'		Msg = Msg & "Boekdatum : " & TekstInfo(0).Text
-'		Ktrl = MsgBox(Msg, 292, "Afboeken " & VB.Right(dokumentSleutel.Value, 5) & " tot " & VB6.Format(Val(VB.Right(dokumentSleutel.Value, 5)) + PolisDetail.Rows - 3, "00000") & " ?")
+'		MSG = RTrim(KeuzeInfo(1).Text) & " van" & vbCrLf
+'		MSG = MSG & RTrim(KeuzeInfo(0).Text) & vbCrLf & vbCrLf
+'		MSG = MSG & "Totaal premie(s) : " & Dec(TotaalPremie, MaskEURBH) & vbCrLf
+'		MSG = MSG & "Totaal loon : " & Dec(TotaalLoon, MaskEURBH) & vbCrLf
+'		MSG = MSG & "Boekdatum : " & TekstInfo(0).Text
+'		Ktrl = MsgBox(MSG, 292, "Afboeken " & VB.Right(dokumentSleutel.Value, 5) & " tot " & VB6.Format(Val(VB.Right(dokumentSleutel.Value, 5)) + PolisDetail.Rows - 3, "00000") & " ?")
 '		If Ktrl = MsgBoxResult.No Then
 '			Exit Sub
 '		End If
@@ -184,8 +184,8 @@ End Class
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
 '		If PolisDetail.Rows > 2 Then
-'			Msg = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-'			Ktrl = MsgBox(Msg, 292, "Voortijdig stoppen...")
+'			MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
+'			Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
 '			If Ktrl = 6 Then
 '			Else
 '				Exit Sub
@@ -255,18 +255,18 @@ End Class
 '				If rsTB2.State = ADODB.ObjectStateEnum.adStateOpen Then
 '					rsTB2.Close()
 '				End If
-'				Msg = "SELECT * FROM TB2 WHERE memoTB2 Like '%PTY+006+" & VB.Left(KeuzeInfo(0).Text, 4) & "+%'"
+'				MSG = "SELECT * FROM TB2 WHERE memoTB2 Like '%PTY+006+" & VB.Left(KeuzeInfo(0).Text, 4) & "+%'"
 '				MsgNoZero = "SELECT * FROM TB2 WHERE memoTB2 Like '%PTY+006+" & Trim(Str(Val(VB.Left(KeuzeInfo(0).Text, 4)))) & "+%'"
 '				'PTY+006+0739+
 '				If Me.cbBoekDatum.CheckState = System.Windows.Forms.CheckState.Checked Then
 '					'UPGRADE_WARNING: ClipText has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-'					Msg = Msg & " AND memoTB2 Like '%DTM+005:" & Me.mebBoekDatum.Text & ":005" & "%'"
+'					MSG = MSG & " AND memoTB2 Like '%DTM+005:" & Me.mebBoekDatum.Text & ":005" & "%'"
 '					'UPGRADE_WARNING: ClipText has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '					MsgNoZero = MsgNoZero & " AND memoTB2 Like '%DTM+005:" & Me.mebBoekDatum.Text & ":005" & "%'"
 '				End If
 
 '				Me.cbPolisHistoriek.Items.Clear()
-'				rsTB2.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+'				rsTB2.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 '				If rsTB2.RecordCount > 0 Then
 '					SSTab2.TabPages.Item(1).Text = "&TB2= (" & Trim(Str(rsTB2.RecordCount)) & ")"
 '					Do While Not rsTB2.EOF
@@ -630,8 +630,8 @@ End Class
 '		Select Case Index
 '			Case 1
 '				If KeuzeInfo(1).SelectedIndex = 1 And PolisDetail.Rows = 2 Then
-'					Msg = "Bestaande kontrakten met vervaldag voor de" & vbCrLf & Mid(TekstInfo(0).Text, 4, 2) & "e maand inladen ?"
-'					Ktrl = MsgBox(Msg, 292, "Polissen Termijn inladen")
+'					MSG = "Bestaande kontrakten met vervaldag voor de" & vbCrLf & Mid(TekstInfo(0).Text, 4, 2) & "e maand inladen ?"
+'					Ktrl = MsgBox(MSG, 292, "Polissen Termijn inladen")
 '					If Ktrl = 6 Then
 '						InstallPolissen()
 '					End If
@@ -1151,13 +1151,13 @@ End Class
 
 '		If Err.Number = 3265 Then
 '			rsMAR(TableOfInvoices).Close()
-'			Msg = "ALTER TABLE Dokumenten ADD COLUMN rvXMLTB2 MEMO;"
+'			MSG = "ALTER TABLE Dokumenten ADD COLUMN rvXMLTB2 MEMO;"
 '			Err.Clear()
-'			adntDB.Execute(Msg)
+'			adntDB.Execute(MSG)
 '			If Err.Number Then
 '				MsgBox("Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description)
 '			Else
-'				MsgBox(Msg, MsgBoxStyle.Information, "Met succes")
+'				MsgBox(MSG, MsgBoxStyle.Information, "Met succes")
 '			End If
 '			MsgBox("Belangrijk veld werd toegevoegd. Gelieve het bedrijf opnieuw te openen a.u.b.")
 '			ktrlRVmemo = False

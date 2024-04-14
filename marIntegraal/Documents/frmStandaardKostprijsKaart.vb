@@ -212,15 +212,15 @@ End Class
 '			DatumKlaar.Value = KtrlInput
 '		End If
 
-'		Msg = "Aanmaak van " & VB6.Format(Aantal, "#,##0.00") & " eenheden" & vbCrLf & vbCrLf
-'		Msg = Msg & LblProduktInfo.Text & vbCrLf & vbCrLf
-'		Msg = Msg & "Aanmaakdatum : " & DatumAanmaak.Value & ", klaar tegen : " & DatumKlaar.Value & vbCrLf & vbCrLf
-'		Msg = Msg & "Bent U zeker ?"
+'		MSG = "Aanmaak van " & VB6.Format(Aantal, "#,##0.00") & " eenheden" & vbCrLf & vbCrLf
+'		MSG = MSG & LblProduktInfo.Text & vbCrLf & vbCrLf
+'		MSG = MSG & "Aanmaakdatum : " & DatumAanmaak.Value & ", klaar tegen : " & DatumKlaar.Value & vbCrLf & vbCrLf
+'		MSG = MSG & "Bent U zeker ?"
 
 '		dokumentSleutel.Value = SleutelDok(188)
 
 'DeAfdrukVraag: 
-'		KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche " & dokumentSleutel.Value & " afdrukken/aanmaken")
+'		KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche " & dokumentSleutel.Value & " afdrukken/aanmaken")
 '		Select Case KtrlBox
 '			Case MsgBoxResult.Yes
 '			Case MsgBoxResult.No
@@ -278,7 +278,7 @@ End Class
 '		Printer.EndDoc()
 
 'DeWegschrijfVraag: 
-'		KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche verwerken")
+'		KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton3, "Produktiefiche verwerken")
 '		Select Case KtrlBox
 '			Case MsgBoxResult.Yes
 '			Case MsgBoxResult.No
@@ -321,10 +321,10 @@ End Class
 
 'StelDEVraag: 
 '		If dKtrlCumul <> CDbl(VB6.Format(TotaalPrijs * Aantal, "0")) Then
-'			Msg = "Vierkantskontrole..." & vbCrLf & Str(dKtrlCumul) & "/" & Str(TotaalPrijs * Aantal) & vbCrLf & vbCrLf
-'			Msg = Msg & "Rekenverschil : " & VB6.Format(dKtrlCumul - CDbl(VB6.Format(TotaalPrijs * Aantal))) & vbCrLf
-'			Msg = Msg & "mag genegeerd worden ?"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Critical)
+'			MSG = "Vierkantskontrole..." & vbCrLf & Str(dKtrlCumul) & "/" & Str(TotaalPrijs * Aantal) & vbCrLf & vbCrLf
+'			MSG = MSG & "Rekenverschil : " & VB6.Format(dKtrlCumul - CDbl(VB6.Format(TotaalPrijs * Aantal))) & vbCrLf
+'			MSG = MSG & "mag genegeerd worden ?"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3 + MsgBoxStyle.Critical)
 '			If KtrlBox = MsgBoxResult.Yes Then
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub SKPKUpdate
@@ -411,11 +411,11 @@ End Class
 '		'on error resume next
 '		Err.Clear()
 '		rsKPK.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-'		Msg = "SELECT * FROM Allerlei WHERE v005 Like '11%'"
-'		SnelHelpPrint(Msg, blLogging)
+'		MSG = "SELECT * FROM Allerlei WHERE v005 Like '11%'"
+'		SnelHelpPrint(MSG, blLogging)
 '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'		rsKPK.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsKPK.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		If Err.Number Then
 '			MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '			'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
@@ -579,8 +579,8 @@ End Class
 '		TempoTekst = GridText
 '		Do While TempoTekst <> ""
 '			cmdSchoon_Click(cmdSchoon, New System.EventArgs())
-'			Msg = "11" & VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1)
-'			X = adoGet(TableOfVarious, 1, "=", Msg)
+'			MSG = "11" & VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1)
+'			X = adoGet(TableOfVarious, 1, "=", MSG)
 '			If Not X Then MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
 '			JetGet(TableOfProductsAndServices, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
 '			If Ktrl Then
@@ -653,9 +653,9 @@ End Class
 '	Private Sub CmdSprodukt_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CmdSprodukt.Click
 
 '		If GrdProduktIsGewijzigd Then
-'			Msg = "Huidige wijzigingen negeren." & vbCrLf & vbCrLf
-'			Msg = Msg & "Bent U zeker ?"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wijziging wegschrijven")
+'			MSG = "Huidige wijzigingen negeren." & vbCrLf & vbCrLf
+'			MSG = MSG & "Bent U zeker ?"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wijziging wegschrijven")
 '			If KtrlBox = MsgBoxResult.Yes Then
 '			Else
 '				Exit Sub
@@ -698,9 +698,9 @@ End Class
 '		Dim aa As String
 '		Dim Teller As Short
 
-'		Msg = "Huidige definitie wegschrijven." & vbCrLf & vbCrLf
-'		Msg = Msg & "Bent U zeker ?"
-'		KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wegschrijven")
+'		MSG = "Huidige definitie wegschrijven." & vbCrLf & vbCrLf
+'		MSG = MSG & "Bent U zeker ?"
+'		KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Wegschrijven")
 '		If KtrlBox = MsgBoxResult.Yes Then
 '			JetGet(TableOfVarious, 1, SetSpacing("11" & CmdSProdukt.Text, 20))
 '			If Ktrl Then
@@ -728,9 +728,9 @@ End Class
 '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '			If Len(aa) > 0 Then GoSub SchrijfEensWeg
 
-'			Msg = "Gewijzigde aankoop- en/of verkoopprijs wegschrijven." & vbCrLf & vbCrLf
-'			Msg = Msg & "Bent U zeker ?"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1, "Prijzen bijwerken")
+'			MSG = "Gewijzigde aankoop- en/of verkoopprijs wegschrijven." & vbCrLf & vbCrLf
+'			MSG = MSG & "Bent U zeker ?"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1, "Prijzen bijwerken")
 '			If KtrlBox = MsgBoxResult.Yes Then
 '				JetGet(TableOfProductsAndServices, 0, (CmdSProdukt.Text))
 '				If Ktrl Then
@@ -779,11 +779,11 @@ End Class
 '		'on error resume next
 '		Err.Clear()
 '		rsKPK.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-'		Msg = "SELECT * FROM Allerlei WHERE v005 Like '11%'"
-'		SnelHelpPrint(Msg, blLogging)
+'		MSG = "SELECT * FROM Allerlei WHERE v005 Like '11%'"
+'		SnelHelpPrint(MSG, blLogging)
 '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
 '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-'		rsKPK.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+'		rsKPK.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 '		If Err.Number Then
 '			MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
 '			'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
@@ -931,8 +931,8 @@ End Class
 '			TotaalVerkoop = 0
 '			TotaalAankoopNieuw = 0
 '			TotaalVerkoopNieuw = 0
-'			Msg = "11" & VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1)
-'			X = adoGet(TableOfVarious, 1, "=", Msg)
+'			MSG = "11" & VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1)
+'			X = adoGet(TableOfVarious, 1, "=", MSG)
 '			If Not X Then MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
 '			JetGet(TableOfProductsAndServices, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
 '			If Ktrl Then

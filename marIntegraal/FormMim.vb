@@ -179,8 +179,8 @@ Public Class Mim
 
     ' Actions
     Private Sub CompanyOpenMenuItem_Click(sender As Object, e As EventArgs)
-        Msg = "Hierna worden eerst alle bestanden en openstaande vensters van een actief bedrijf gesloten."
-        If GaVerder(Msg, 1, "Bedrijf Openen") Then
+        MSG = "Hierna worden eerst alle bestanden en openstaande vensters van een actief bedrijf gesloten."
+        If GaVerder(MSG, 1, "Bedrijf Openen") Then
             Ktrl = 100
             AutoUnloadCompany(BJPERDAT:=FormBYPERDAT)
             On Error Resume Next
@@ -195,8 +195,8 @@ Public Class Mim
         End If
     End Sub
     Private Sub CompanyNewMenuItem_Click(sender As Object, e As EventArgs)
-        Msg = "Hierna worden eerst alle bestanden en openstaande vensters van een actief bedrijf gesloten."
-        If GaVerder(Msg, 1, "Nieuw Bedrijf") Then
+        MSG = "Hierna worden eerst alle bestanden en openstaande vensters van een actief bedrijf gesloten."
+        If GaVerder(MSG, 1, "Nieuw Bedrijf") Then
             Ktrl = 100
             AutoUnloadCompany(BJPERDAT:=FormBYPERDAT)
             On Error Resume Next

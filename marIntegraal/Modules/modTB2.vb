@@ -58,8 +58,8 @@ Module modTB2
 
         rsTB2Qualifiers = New ADODB.Recordset
         rsTB2Qualifiers.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT * From A_DE_QUALIFIANT"
-        rsTB2Qualifiers.Open(Msg, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        MSG = "SELECT * From A_DE_QUALIFIANT"
+        rsTB2Qualifiers.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 
         If rsTB2Qualifiers.RecordCount <= 0 Then
             TB2QualifiersJSON = "null"
@@ -108,8 +108,8 @@ Module modTB2
         rsTB2Lists = New ADODB.Recordset
 
         rsTB2Lists.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT * From VALEUR"
-        rsTB2Lists.Open(Msg, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        MSG = "SELECT * From VALEUR"
+        rsTB2Lists.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
         If rsTB2Lists.RecordCount <= 0 Then
             TB2ValeursJSON = "null"
         Else
@@ -182,8 +182,8 @@ Module modTB2
 
         rsTB2Qualifiers = New ADODB.Recordset
         rsTB2Qualifiers.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT * From A_DE_QUALIFIANT WHERE DE = '" & strDE & "' AND Qualifiant = '" & strQualifiant & "'"
-        rsTB2Qualifiers.Open(Msg, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        MSG = "SELECT * From A_DE_QUALIFIANT WHERE DE = '" & strDE & "' AND Qualifiant = '" & strQualifiant & "'"
+        rsTB2Qualifiers.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
         If rsTB2Qualifiers.RecordCount <> 1 Then
             headComLists = " - "
             Exit Function
@@ -206,8 +206,8 @@ Module modTB2
 
         rsTB2Lists = New ADODB.Recordset
         rsTB2Lists.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        Msg = "SELECT * From VALEUR WHERE Code = '" & strCode & "' AND Valeur = '" & strValeur & "'"
-        rsTB2Lists.Open(Msg, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+        MSG = "SELECT * From VALEUR WHERE Code = '" & strCode & "' AND Valeur = '" & strValeur & "'"
+        rsTB2Lists.Open(MSG, adTBIB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
         If rsTB2Lists.RecordCount <> 1 Then
             subComLists = ""
         Else

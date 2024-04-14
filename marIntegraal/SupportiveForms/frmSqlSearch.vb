@@ -46,23 +46,23 @@ Public Class SqlSearch
             MsgBox("InitSQL")
         Else
             RecordToField(TableOfVarious)
-            Msg = AdoGetField(TableOfVarious, "#v132 #")
-            If InStr(UCase(Msg), "WHERE") Then
-                Msg = Mid(Msg, 1, InStr(UCase(Msg), " WHERE ") - 1)
-                Msg = Msg & " WHERE " & SorteerIndex & " Like " & Chr(34) & txtTeZoeken.Text & Chr(34)
-                Msg = Msg & " ORDER BY " & SorteerOrde
-                rtbSQLTekst.Text = Msg
-                Msg = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
-                If Msg = "" Then
+            MSG = AdoGetField(TableOfVarious, "#v132 #")
+            If InStr(UCase(MSG), "WHERE") Then
+                MSG = Mid(MSG, 1, InStr(UCase(MSG), " WHERE ") - 1)
+                MSG = MSG & " WHERE " & SorteerIndex & " Like " & Chr(34) & txtTeZoeken.Text & Chr(34)
+                MSG = MSG & " ORDER BY " & SorteerOrde
+                rtbSQLTekst.Text = MSG
+                MSG = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
+                If MSG = "" Then
                     Stop
                     'grdColWidth(0) = 0
                 Else
 
                     CountTo = 0
-                    Do While Msg <> ""
-                        If InStr(Msg, vbTab) <> 0 Then
-                            'grdColWidth(CountTo) = Val(VB.Left(Msg, InStr(Msg, vbTab) - 1))
-                            Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+                    Do While MSG <> ""
+                        If InStr(MSG, vbTab) <> 0 Then
+                            'grdColWidth(CountTo) = Val(VB.Left(MSG, InStr(MSG, vbTab) - 1))
+                            MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
                             CountTo = CountTo + 1
                         Else
                             Exit Do
@@ -77,7 +77,7 @@ Public Class SqlSearch
         Exit Function
 
 InitSQL:
-        'Msg = "SELECT"
+        'MSG = "SELECT"
         'Dim Delaatste As Boolean
 
         'Delaatste = False
@@ -85,16 +85,16 @@ InitSQL:
         'Stop
         'For CountTo = 0 To Sortering.Items.Count - 1
         'If Trim(JetTableUseIndex(SharedFl, 0)) = Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2) Then
-        'Msg = Msg & " " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2)
-        'Msg = Msg & " AS [" & Mid(VB6.GetItemString(Sortering, CountTo), InStr(VB6.GetItemString(Sortering, CountTo), ";") + 2) & "]"
-        'Msg = Msg & ","
+        'MSG = MSG & " " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2)
+        'MSG = MSG & " AS [" & Mid(VB6.GetItemString(Sortering, CountTo), InStr(VB6.GetItemString(Sortering, CountTo), ";") + 2) & "]"
+        'MSG = MSG & ","
         'If CountTo = Sortering.Items.Count - 1 Then
         'Delaatste = True
         'End If
         'Exit For
         'End If
         'Next
-        'If Msg = "SELECT" Then
+        'If MSG = "SELECT" Then
         'MsgBox("Hoofdindex " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2) & " bestaat niet (meer)", MsgBoxStyle.Critical)
         'End If
 
@@ -102,20 +102,20 @@ InitSQL:
         'For CountTo = 0 To Sortering.Items.Count - 1
         'If Trim(JetTableUseIndex(SharedFl, 0)) = Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2) Then
         'Else
-        'Msg = Msg & " " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2)
-        'Msg = Msg & " AS [" & Mid(VB6.GetItemString(Sortering, CountTo), InStr(VB6.GetItemString(Sortering, CountTo), ";") + 2) & "]"
+        'MSG = MSG & " " & Mid(VB6.GetItemString(Sortering, CountTo), 2, InStr(VB6.GetItemString(Sortering, CountTo), ";") - 2)
+        'MSG = MSG & " AS [" & Mid(VB6.GetItemString(Sortering, CountTo), InStr(VB6.GetItemString(Sortering, CountTo), ";") + 2) & "]"
         'If Delaatste = True And Sortering.Items.Count = 1 Then
         'ElseIf Delaatste = True And CountTo = Sortering.Items.Count - 2 Then
         'ElseIf CountTo < Sortering.Items.Count - 1 Then
-        'Msg = Msg & ","
+        'MSG = MSG & ","
         'End If
         'End If
         'Next
-        'Msg = Msg & " FROM " & JetTableName(SharedFl)
-        'Msg = Msg & " WHERE " & SorteerIndex & " Like " & Chr(34) & txtTeZoeken.Text & Chr(34)
-        'Msg = Msg & " ORDER BY " & SorteerOrde
+        'MSG = MSG & " FROM " & JetTableName(SharedFl)
+        'MSG = MSG & " WHERE " & SorteerIndex & " Like " & Chr(34) & txtTeZoeken.Text & Chr(34)
+        'MSG = MSG & " ORDER BY " & SorteerOrde
         'UPGRADE_WARNING: TextRTF was upgraded to Text and has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        'rtbSQLTekst.Text = Msg
+        'rtbSQLTekst.Text = MSG
         'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
         'Return
 
@@ -274,7 +274,7 @@ InitSQL:
                 zoekenButton.Text = "Zoeken"
                 txtTeZoeken.Focus()
             End If
-            'datPrimaryRS.Close()
+            'dataGridViewRS.Close()
         End If
 
         'For CountTo = 0 To mfgLijst.get_Cols() - 1

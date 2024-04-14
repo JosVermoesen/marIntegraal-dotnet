@@ -254,9 +254,9 @@ End Class
 
 '	Private Sub cmdKopij_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cmdKopij.Click
 
-'		Msg = "Kies 'Ja' voor kopij als XML bestand" & vbCr & "Kies 'Nee' voor kopij naar het klassieke plakbord"
+'		MSG = "Kies 'Ja' voor kopij als XML bestand" & vbCr & "Kies 'Nee' voor kopij naar het klassieke plakbord"
 
-'		KtrlBox = MsgBox(Msg, MsgBoxStyle.Question + MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3)
+'		KtrlBox = MsgBox(MSG, MsgBoxStyle.Question + MsgBoxStyle.YesNoCancel + MsgBoxStyle.DefaultButton3)
 '		Dim BestandHier As String
 '		If KtrlBox = MsgBoxResult.Cancel Then
 '			Exit Sub
@@ -363,8 +363,8 @@ End Class
 '			txtMilieu.Text = TempoMilieu
 '			TempoMilieu = ""
 '		End If
-'		Msg = "Gegevens bestaande '" & JetTableName(TableOfProductsAndServices) & "'-fiche wijzigen.  Bent U zeker ?"
-'		KtrlBox = MsgBox(Msg, 292)
+'		MSG = "Gegevens bestaande '" & JetTableName(TableOfProductsAndServices) & "'-fiche wijzigen.  Bent U zeker ?"
+'		KtrlBox = MsgBox(MSG, 292)
 '		If KtrlBox = MsgBoxResult.Yes Then
 '			RecordVullen()
 '			If TeSwitchen = True Then
@@ -402,8 +402,8 @@ End Class
 '		'If rsPFStat.State = adStateOpen Then
 '		'        rsPFStat.Close
 '		'    End If
-'		'    Msg = "SELECT * FROM ProductenTB2 WHERE Polis = '" & TxtInfo(0).Text & "'"
-'		'    rsTB2.Open Msg, adntDB, adOpenDynamic, adLockOptimistic, adCmdText
+'		'    MSG = "SELECT * FROM ProductenTB2 WHERE Polis = '" & TxtInfo(0).Text & "'"
+'		'    rsTB2.Open MSG, adntDB, adOpenDynamic, adLockOptimistic, adCmdText
 '		'    Me.cbPolisHistoriek.Clear
 '		'    If rsTB2.RecordCount = 0 Then
 '		'        SSTab2.TabCaption(1) = "&TB2= (0)"
@@ -576,16 +576,16 @@ End Class
 '	Private Sub CmdVerwijderFiche_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CmdVerwijderFiche.Click
 
 '		If Trim(TLBRecord(TableOfProductsAndServices)) = "" Or Trim(TxtInfo(0).Text) = "" Then
-'			Msg = "Nummer met blanco verwijderen.  Bent u zeker"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
+'			MSG = "Nummer met blanco verwijderen.  Bent u zeker"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
 '			If KtrlBox = MsgBoxResult.Yes Then
 '				Bdelete(TableOfProductsAndServices)
 '				CmdHoger_Click(CmdHoger, New System.EventArgs())
 '				Exit Sub
 '			End If
 '		Else
-'			Msg = "Gegevens bestaande '" & JetTableName(TableOfProductsAndServices) & "'-fiche :" & Trim(TxtInfo(0).Text) & " verwijderen.  Bent U zeker ?"
-'			KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
+'			MSG = "Gegevens bestaande '" & JetTableName(TableOfProductsAndServices) & "'-fiche :" & Trim(TxtInfo(0).Text) & " verwijderen.  Bent U zeker ?"
+'			KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2)
 '			If KtrlBox = MsgBoxResult.Yes Then
 '				Bdelete(TableOfProductsAndServices)
 '				CmdHoger_Click(CmdHoger, New System.EventArgs())

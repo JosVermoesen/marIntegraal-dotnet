@@ -55,21 +55,21 @@ End Class
 
 '		IndexeerVeld = Trim(JetTableUseIndex(Val(Mid(Tabel.Text, 1, 1)), Val(Mid(Me.Sortering.Text, 1, 2))))
 
-'		Msg = "SELECT"
+'		MSG = "SELECT"
 '		For CountTo = 0 To Me.RapportVelden.Items.Count - 1
-'			Msg = Msg & " " & Trim(Mid(VB6.GetItemString(Me.RapportVelden, CountTo), 5, 5))
-'			Msg = Msg & " AS [" & Trim(Mid(VB6.GetItemString(RapportVelden, CountTo), 22)) & "]"
+'			MSG = MSG & " " & Trim(Mid(VB6.GetItemString(Me.RapportVelden, CountTo), 5, 5))
+'			MSG = MSG & " AS [" & Trim(Mid(VB6.GetItemString(RapportVelden, CountTo), 22)) & "]"
 '			If CountTo < Me.RapportVelden.Items.Count - 1 Then
-'				Msg = Msg & ","
+'				MSG = MSG & ","
 '			End If
 '		Next 
-'		Msg = Msg & " FROM " & Mid(Me.Tabel.Text, 4)
-'		Msg = Msg & " WHERE " & IndexeerVeld & " >= '" & Trim(Me.TekstInfo(0).Text) & "'"
-'		Msg = Msg & " AND " & IndexeerVeld & " <= '" & Trim(Me.TekstInfo(1).Text) & "'"
-'		Msg = Msg & " ORDER BY " & IndexeerVeld
+'		MSG = MSG & " FROM " & Mid(Me.Tabel.Text, 4)
+'		MSG = MSG & " WHERE " & IndexeerVeld & " >= '" & Trim(Me.TekstInfo(0).Text) & "'"
+'		MSG = MSG & " AND " & IndexeerVeld & " <= '" & Trim(Me.TekstInfo(1).Text) & "'"
+'		MSG = MSG & " ORDER BY " & IndexeerVeld
 
 'EindeSelect: 
-'		sqlSELECTLijst = Msg
+'		sqlSELECTLijst = MSG
 
 '	End Function
 
@@ -511,8 +511,8 @@ End Class
 
 '		Select Case KeyCode
 '			Case 46
-'				Msg = "Rapportdefinitie " & vbCrLf & vbCrLf & RapportDefinitie.Text & vbCrLf & vbCrLf & "verwijderen.  Bent U zeker ?"
-'				KtrlBox = MsgBox(Msg, 292)
+'				MSG = "Rapportdefinitie " & vbCrLf & vbCrLf & RapportDefinitie.Text & vbCrLf & vbCrLf & "verwijderen.  Bent U zeker ?"
+'				KtrlBox = MsgBox(MSG, 292)
 '				If KtrlBox = 6 Then
 '					Kill(ProgramLocation & "Def\" & VB6.Format(Val(VB.Left(Tabel.Text, 1)), "000") & VB.Left(RapportDefinitie.Text, 2) & ".PRD")
 '					RapportDefinitie.Items.RemoveAt(RapportDefinitie.SelectedIndex)

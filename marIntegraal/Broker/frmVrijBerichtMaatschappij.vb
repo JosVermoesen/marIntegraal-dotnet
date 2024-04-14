@@ -28,7 +28,7 @@ End Class
 '		Dim SpatieLijn As Integer
 '		Dim Tekst As String
 '		Dim TekstLijn As String
-'		Dim Msg As String
+'		Dim MSG As String
 '		Dim MijKeuze As String
 
 '		If Mid(KeuzeInfo(4).Text, 1, 1) = "P" Then
@@ -139,7 +139,7 @@ End Class
 '		Dim T As Short
 '		Dim Tekst As String
 '		Dim TabIs As Short
-'		Dim Msg As String
+'		Dim MSG As String
 
 '		Printer = Printers(dokumentPrinterNr)
 '		On Error Resume Next
@@ -192,10 +192,10 @@ End Class
 '		GoSub DetailLijnen
 '		Printer.EndDoc()
 '		Me.Activate()
-'		Msg = "Herdrukken van dit dokument ?" & vbCrLf
-'		Msg = Msg & "Bent U zeker ?" & vbCrLf & vbCrLf
-'		Msg = Msg & "Cancel of ESC om nog iets te wijzigen..."
-'		Ktrl = MsgBox(Msg, 3, "Afdruk via printer")
+'		MSG = "Herdrukken van dit dokument ?" & vbCrLf
+'		MSG = MSG & "Bent U zeker ?" & vbCrLf & vbCrLf
+'		MSG = MSG & "Cancel of ESC om nog iets te wijzigen..."
+'		Ktrl = MsgBox(MSG, 3, "Afdruk via printer")
 '		Select Case Ktrl
 '			Case 2, 7
 '			Case Else
@@ -657,15 +657,15 @@ End Class
 '				Input(FlFree, FiguurX)
 '				Input(FlFree, FiguurY)
 '				Input(FlFree, FiguurName)
-'				If ScrLeesTekstBestand(Msg, LocationCompanyData & FiguurName & ".mfd") Then
-'					FigBestandsnaam = VB.Left(Msg, InStr(Msg, vbTab) - 1)
+'				If ScrLeesTekstBestand(MSG, LocationCompanyData & FiguurName & ".mfd") Then
+'					FigBestandsnaam = VB.Left(MSG, InStr(MSG, vbTab) - 1)
 '					Mim.imgFiguur.Image = System.Drawing.Image.FromFile(FigBestandsnaam)
-'					Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+'					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object Hoogte. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Hoogte = VB.Left(Msg, InStr(Msg, vbTab) - 1)
-'					Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+'					Hoogte = VB.Left(MSG, InStr(MSG, vbTab) - 1)
+'					MSG = Mid(MSG, InStr(MSG, vbTab) + 1)
 '					'UPGRADE_WARNING: Couldn't resolve default property of object Breedte. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'					Breedte = Msg
+'					Breedte = MSG
 '					Printer.PaintPicture(Mim.imgFiguur.Image, FiguurX, FiguurY, Breedte, Hoogte)
 '				Else
 '					MsgBox("afdrukprobleemke figuurobject: " & FiguurName)
@@ -799,7 +799,7 @@ End Class
 '		Dim SpatieLijn As Integer
 '		Dim Tekst As String
 '		Dim TekstLijn As String
-'		Dim Msg As String
+'		Dim MSG As String
 '		Dim MijKeuze As String
 
 '		If VrijeTekst.Text = "" Then
@@ -832,12 +832,12 @@ End Class
 '		End If
 
 '		If AfdrukBericht.CheckState = 0 Then
-'			Msg = "Afdruk controleblad én versturen via AS/2 van " & vbCrLf
-'			Msg = Msg & VB6.Format(TelLijn) & " tekstlijnen voor " & MijKeuze & vbCrLf & vbCrLf
-'			Msg = Msg & "Bent U zeker ?" & vbCrLf & vbCrLf
-'			Msg = Msg & "Kies No om enkel te versturen via ASSURNET !" & vbCrLf
-'			Msg = Msg & "Cancel of ESC om terug te keren..."
-'			Ktrl = MsgBox(Msg, 3, "Vrij bericht versturen en/of afdrukken")
+'			MSG = "Afdruk controleblad én versturen via AS/2 van " & vbCrLf
+'			MSG = MSG & VB6.Format(TelLijn) & " tekstlijnen voor " & MijKeuze & vbCrLf & vbCrLf
+'			MSG = MSG & "Bent U zeker ?" & vbCrLf & vbCrLf
+'			MSG = MSG & "Kies No om enkel te versturen via ASSURNET !" & vbCrLf
+'			MSG = MSG & "Cancel of ESC om terug te keren..."
+'			Ktrl = MsgBox(MSG, 3, "Vrij bericht versturen en/of afdrukken")
 '			Select Case Ktrl
 '				Case 2
 '					Exit Sub
@@ -878,10 +878,10 @@ End Class
 '			SchrijfWeg(A.Value & aa)
 '			Schoon()
 '		Else
-'			Msg = "Afdrukken van " & Str(TelLijn) & " tekstlijnen" & vbCrLf
-'			Msg = Msg & "voor " & MijKeuze & vbCrLf & vbCrLf
-'			Msg = Msg & "Bent U zeker ?"
-'			Ktrl = MsgBox(Msg, 292, "Afdruk via PRINTER")
+'			MSG = "Afdrukken van " & Str(TelLijn) & " tekstlijnen" & vbCrLf
+'			MSG = MSG & "voor " & MijKeuze & vbCrLf & vbCrLf
+'			MSG = MSG & "Bent U zeker ?"
+'			Ktrl = MsgBox(MSG, 292, "Afdruk via PRINTER")
 '			If Ktrl = MsgBoxResult.Yes Then
 '				DrukAf()
 '				'MsgBox "asDirectOK hier..."

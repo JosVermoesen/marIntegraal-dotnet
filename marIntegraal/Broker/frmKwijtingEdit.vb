@@ -295,11 +295,11 @@ End Class
 '							RecordToField(TableOfContracts)
 '							msgTitel = AdoGetField(TableOfContracts, "#B010 #") & " " & AdoGetField(TableOfContracts, "#e069 #")
 							
-'							Msg = "Kwijting voor polisnummer : " & AdoGetField(TableOfContracts, "#A000 #") & vbCrLf & vbCrLf
-'							Msg = Msg & AdoGetField(TableOfContracts, "#vs99 #") & vbCrLf
-'							Msg = Msg & AdoGetField(TableOfContracts, "#vs98 #") & vbCrLf & vbCrLf
-'							Msg = Msg & "Bent U zeker ?"
-'							KtrlBox = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, msgTitel)
+'							MSG = "Kwijting voor polisnummer : " & AdoGetField(TableOfContracts, "#A000 #") & vbCrLf & vbCrLf
+'							MSG = MSG & AdoGetField(TableOfContracts, "#vs99 #") & vbCrLf
+'							MSG = MSG & AdoGetField(TableOfContracts, "#vs98 #") & vbCrLf & vbCrLf
+'							MSG = MSG & "Bent U zeker ?"
+'							KtrlBox = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, msgTitel)
 '							If KtrlBox = MsgBoxResult.Yes Then
 '								TekstInfo(0).Text = AdoGetField(TableOfContracts, "#A000 #")
 '								TekstInfo(0).Focus()

@@ -46,8 +46,8 @@ Public Class TelebibIN
 		If rsTB2.State = ADODB.ObjectStateEnum.adStateOpen Then
 			rsTB2.Close()
 		End If
-		Msg = "SELECT TOP 1 * FROM TB2"
-		rsTB2.Open(Msg, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
+		MSG = "SELECT TOP 1 * FROM TB2"
+		rsTB2.Open(MSG, adntDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 
 		gboDIR = LaadTekst("TelebibIN", "gboLocatie")
 		gboFILE = "PRENOT.GBO"
@@ -391,11 +391,11 @@ GBOeinde:
 			XEHcodeHier = XEHarray(1) '"01"
 			strA000RB = XEHarray(4)
 			If Trim(strA000RB) = "" Then
-				Msg = Mid(MAPIString, InStr(MAPIString, "RFF+001:") + 8)
-				If Trim(Msg) = "" Then
+				MSG = Mid(MAPIString, InStr(MAPIString, "RFF+001:") + 8)
+				If Trim(MSG) = "" Then
 					Stop
 				Else
-					strA000RB = Mid(Msg, 1, InStr(Msg, ":") - 1)
+					strA000RB = Mid(MSG, 1, InStr(MSG, ":") - 1)
 				End If
 				If Trim(strA000RB) = "" Then
 					Stop
@@ -406,11 +406,11 @@ GBOeinde:
 			MsgBox("Uitwisseling Schadedossier " & XGHarray(2), MsgBoxStyle.Information)
 			XEHcodeHier = "02"
 			If Trim(strA000RB) = "" Then
-				Msg = Mid(MAPIString, InStr(MAPIString, "RFF+001:") + 8)
-				If Trim(Msg) = "" Then
+				MSG = Mid(MAPIString, InStr(MAPIString, "RFF+001:") + 8)
+				If Trim(MSG) = "" Then
 					Stop
 				Else
-					strA000RB = Mid(Msg, 1, InStr(Msg, "'") - 1)
+					strA000RB = Mid(MSG, 1, InStr(MSG, "'") - 1)
 				End If
 				If Trim(strA000RB) = "" Then
 					Stop
@@ -480,41 +480,41 @@ GBOeinde:
 					End If
 				End If
 			End If
-			Msg = Mid(MAPISTRING, posSTR + 8)
-			Msg = Mid(Msg, 1, 8)
+			MSG = Mid(MAPISTRING, posSTR + 8)
+			MSG = Mid(MSG, 1, 8)
 
-			rsTB2.Fields("DatumAanvang").Value = CDate(Mid(Msg, 1, 2) & "/" & Mid(Msg, 3, 2) & "/" & Mid(Msg, 5, 4))
-			'SnelHelpPrint Msg, False
+			rsTB2.Fields("DatumAanvang").Value = CDate(Mid(MSG, 1, 2) & "/" & Mid(MSG, 3, 2) & "/" & Mid(MSG, 5, 4))
+			'SnelHelpPrint MSG, False
 
 		ElseIf XEHCODEHIER = "02" Then  'contract
 			posSTR = InStr(MAPISTRING, "DTM+048:")
 			If posSTR = 0 Then
 				MsgBox("Stop")
 			Else
-				Msg = Mid(MAPISTRING, posSTR + 8)
-				Msg = Mid(Msg, 1, 8)
+				MSG = Mid(MAPISTRING, posSTR + 8)
+				MSG = Mid(MSG, 1, 8)
 			End If
-			rsTB2.Fields("DatumAanvang").Value = CDate(Mid(Msg, 1, 2) & "/" & Mid(Msg, 3, 2) & "/" & Mid(Msg, 5, 4))
+			rsTB2.Fields("DatumAanvang").Value = CDate(Mid(MSG, 1, 2) & "/" & Mid(MSG, 3, 2) & "/" & Mid(MSG, 5, 4))
 		ElseIf XEHCODEHIER = "07" Then  'rekeninguittreksel?
 			rsTB2.Fields("Polis").Value = "" 'zeker geen polisnummer dan!
 			posSTR = InStr(MAPISTRING, "DTM+069:")
 			If posSTR = 0 Then
 				MsgBox("Stop")
 			Else
-				Msg = Mid(MAPISTRING, posSTR + 8)
-				Msg = Mid(Msg, 1, 8)
+				MSG = Mid(MAPISTRING, posSTR + 8)
+				MSG = Mid(MSG, 1, 8)
 			End If
-			rsTB2.Fields("DatumAanvang").Value = CDate(Mid(Msg, 1, 2) & "/" & Mid(Msg, 3, 2) & "/" & Mid(Msg, 5, 4))
+			rsTB2.Fields("DatumAanvang").Value = CDate(Mid(MSG, 1, 2) & "/" & Mid(MSG, 3, 2) & "/" & Mid(MSG, 5, 4))
 		ElseIf XEHCODEHIER = "03" Then  'hernieuwingen ?
 			rsTB2.Fields("Polis").Value = "" 'zeker geen polisnummer dan!
 			posSTR = InStr(MAPISTRING, "DTM+005:")
 			If posSTR = 0 Then
 				MsgBox("Stop")
 			Else
-				Msg = Mid(MAPISTRING, posSTR + 8)
-				Msg = Mid(Msg, 1, 6)
+				MSG = Mid(MAPISTRING, posSTR + 8)
+				MSG = Mid(MSG, 1, 6)
 			End If
-			rsTB2.Fields("DatumAanvang").Value = CDate("01" & "/" & Mid(Msg, 1, 2) & "/" & Mid(Msg, 3, 4))
+			rsTB2.Fields("DatumAanvang").Value = CDate("01" & "/" & Mid(MSG, 1, 2) & "/" & Mid(MSG, 3, 4))
 		Else
 			MsgBox("Stop")
 		End If

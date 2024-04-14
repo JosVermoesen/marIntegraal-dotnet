@@ -38,10 +38,10 @@ End Class
 '	Dim KontroleLijst As String
 '	Dim aa As String
 
-'	'Msg = "ALTER TABLE Journalen ADD COLUMN v248 CURRENCY;"
-'	'Msg = "ALTER TABLE Journalen DROP COLUMN v248"
-'	'Msg = "UPDATE Journalen SET v248=Str$(Cdbl(Format(Val(v068)/40.3399," + Chr$(34) + "0.0000" + Chr$(34) + "))) WHERE v066 <= '" + Right(BookyearFromTo, 8) + "';"
-'	'adntDB.Execute Msg, AantalRecordsHier
+'	'MSG = "ALTER TABLE Journalen ADD COLUMN v248 CURRENCY;"
+'	'MSG = "ALTER TABLE Journalen DROP COLUMN v248"
+'	'MSG = "UPDATE Journalen SET v248=Str$(Cdbl(Format(Val(v068)/40.3399," + Chr$(34) + "0.0000" + Chr$(34) + "))) WHERE v066 <= '" + Right(BookyearFromTo, 8) + "';"
+'	'adntDB.Execute MSG, AantalRecordsHier
 '	'If Err Then
 '	'    MsgBox "Foutmelding bron: " & Err.Source & vbCrLf & "Foutkodenummer: " & Err.Number & vbCrLf & vbCrLf & "Foutmelding omschrijving:" & vbCrLf & Err.Description
 '	'End If
@@ -137,8 +137,8 @@ End Class
 '				Else
 '					If TotalDebit - TotalCredit <> 0 Then
 '						ErrorTekst = "j"
-'						Msg = "DC ongelijkheid vanaf laatste dag vóór : " & ErrorTekst & AdoGetField(FlJournaal, "#v066 #")
-'						MsgBox(Msg)
+'						MSG = "DC ongelijkheid vanaf laatste dag vóór : " & ErrorTekst & AdoGetField(FlJournaal, "#v066 #")
+'						MsgBox(MSG)
 '					End If
 '				End If
 '			End If
@@ -352,14 +352,14 @@ End Class
 '		End If
 '		If System.Math.Abs(CumTotaalD + CumTotaalC) - System.Math.Abs(Val(AdoGetField(TableOfLedgerAccounts, rkVeldje))) = 0 Then
 '		Else
-'			Msg = "KontroleStop bijwerking rekeningsaldo !!" & vbCrLf & vbCrLf
-'			Msg = Msg & "Rekening : " & KeyBuf(TableOfLedgerAccounts) & vbCrLf
+'			MSG = "KontroleStop bijwerking rekeningsaldo !!" & vbCrLf & vbCrLf
+'			MSG = MSG & "Rekening : " & KeyBuf(TableOfLedgerAccounts) & vbCrLf
 '			If bhEuro Then
-'				Msg = Msg & Str(CumTotaalD + CumTotaalC) & " <> " & Str(Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")))
+'				MSG = MSG & Str(CumTotaalD + CumTotaalC) & " <> " & Str(Val(AdoGetField(TableOfLedgerAccounts, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")))
 '			Else
-'				Msg = Msg & Str(CumTotaalD + CumTotaalC) & " <> " & Str(Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")))
+'				MSG = MSG & Str(CumTotaalD + CumTotaalC) & " <> " & Str(Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")))
 '			End If
-'			MsgBox(Msg & vbCrLf & vbCrLf & "Na deze P&S, nogmaals opnieuw P&S a.u.b. samenstellen", MsgBoxStyle.Exclamation)
+'			MsgBox(MSG & vbCrLf & vbCrLf & "Na deze P&S, nogmaals opnieuw P&S a.u.b. samenstellen", MsgBoxStyle.Exclamation)
 
 '			KontroleLijst = KontroleLijst & AdoGetField(TableOfLedgerAccounts, "#v020 #") & " " & Dec(CumTotaalD + CumTotaalC, "#########.00") & " " & Dec(Val(AdoGetField(TableOfLedgerAccounts, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")), "#########.00") & vbCrLf
 '			If bhEuro Then
@@ -429,16 +429,16 @@ End Class
 '		End If
 '		If chkDetailJournaal.CheckState Then
 '			BeginPlaySound(9)
-'			Msg = "Sinds 1993 zijn er aanbevelingen om na elk boek "
-'			Msg = Msg & "een centralisatieblad af te drukken en te bewaren "
-'			Msg = Msg & "in een grootboek.  Dit heeft de voorkeur boven het "
-'			Msg = Msg & "omslachtig en papierverslindend systeem van algemeen "
-'			Msg = Msg & "journaal afdrukken welke U zopas hebt gekozen..." & vbCr & vbCr
-'			Msg = Msg & "U KAN OOK voor detailjournaal kiezen om kontroles uit te voeren.  "
-'			Msg = Msg & "Laat dan best in venster afdrukken (bvb. vaststelling "
-'			Msg = Msg & "van Debet <> Credit verschil de juiste dag van feiten "
-'			Msg = Msg & "op te zoeken"
-'			MsgBox(Msg)
+'			MSG = "Sinds 1993 zijn er aanbevelingen om na elk boek "
+'			MSG = MSG & "een centralisatieblad af te drukken en te bewaren "
+'			MSG = MSG & "in een grootboek.  Dit heeft de voorkeur boven het "
+'			MSG = MSG & "omslachtig en papierverslindend systeem van algemeen "
+'			MSG = MSG & "journaal afdrukken welke U zopas hebt gekozen..." & vbCr & vbCr
+'			MSG = MSG & "U KAN OOK voor detailjournaal kiezen om kontroles uit te voeren.  "
+'			MSG = MSG & "Laat dan best in venster afdrukken (bvb. vaststelling "
+'			MSG = MSG & "van Debet <> Credit verschil de juiste dag van feiten "
+'			MSG = MSG & "op te zoeken"
+'			MsgBox(MSG)
 '		End If
 
 '	End Sub

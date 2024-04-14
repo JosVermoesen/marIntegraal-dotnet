@@ -182,8 +182,8 @@ End Class
 '		Xlog.SSTab1.TabPages.Item(1).Visible = False
 '		Xlog.ShowDialog()
 '		If XLogKey <> "" Then
-'			Msg = "Boekjaarparameters overschrijven.  Bent U zeker ?"
-'			KtrlBox = MsgBox(Msg, 292)
+'			MSG = "Boekjaarparameters overschrijven.  Bent U zeker ?"
+'			KtrlBox = MsgBox(MSG, 292)
 '			If KtrlBox = 6 Then
 '				T = 0
 '				Xlog.X.Col = 2

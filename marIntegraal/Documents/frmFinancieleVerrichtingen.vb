@@ -14,8 +14,8 @@ Public Class FinancieleVerrichtingen
 	Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
 
 		If lbFinancieelDetail.Items.Count Then
-			Msg = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-			Ktrl = MsgBox(Msg, 292, "Voortijdig stoppen...")
+			MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
+			Ktrl = MsgBox(MSG, 292, "Voortijdig stoppen...")
 			If Ktrl = 6 Then
 			Else
 				Exit Sub
@@ -134,10 +134,10 @@ End Class
 '		Else
 '			RecordToField(FlJournaal)
 '			If AdoGetField(FlJournaal, "#v066 #") > VB6.Format(Datum.Value, "yyyymmdd") Then
-'				Msg = "Er zijn reeds uittreksels met een hogere datum !" & vbCrLf & vbCrLf
-'				Msg = Msg & "Laatste uittreksel nr. " & UCase(VB.Left(AdoGetField(TableOfLedgerAccounts, "#v020 #"), 2)) & VB.Right(VB6.Format(Datum.Value, "dd/mm/yyyy"), 2) & VB6.Format(Val(LabelInfo(11).Text) - 1, "0000") & " dateert van : " & FunctionDateText(AdoGetField(FlJournaal, "#v066 #")) & vbCrLf & vbCrLf
-'				Msg = Msg & "Vervolg.  Bent U zeker ?"
-'				Ktrl = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Uittreksel afsluiten")
+'				MSG = "Er zijn reeds uittreksels met een hogere datum !" & vbCrLf & vbCrLf
+'				MSG = MSG & "Laatste uittreksel nr. " & UCase(VB.Left(AdoGetField(TableOfLedgerAccounts, "#v020 #"), 2)) & VB.Right(VB6.Format(Datum.Value, "dd/mm/yyyy"), 2) & VB6.Format(Val(LabelInfo(11).Text) - 1, "0000") & " dateert van : " & FunctionDateText(AdoGetField(FlJournaal, "#v066 #")) & vbCrLf & vbCrLf
+'				MSG = MSG & "Vervolg.  Bent U zeker ?"
+'				Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Uittreksel afsluiten")
 '				If Ktrl = MsgBoxResult.No Then
 '					Exit Sub
 '				End If
@@ -145,11 +145,11 @@ End Class
 '		End If
 
 '		If bhEuro Then
-'			Msg = "Datum uittreksel " & Datum.Value & " en bekomen eindsaldo EUR " & lblInfo(1).Text & vbCrLf & vbCrLf & "Hierna wordt de boekhouding bijgewerkt.  Bent U zeker ?"
+'			MSG = "Datum uittreksel " & Datum.Value & " en bekomen eindsaldo EUR " & lblInfo(1).Text & vbCrLf & vbCrLf & "Hierna wordt de boekhouding bijgewerkt.  Bent U zeker ?"
 '		Else
-'			Msg = "Datum uittreksel " & Datum.Value & " en bekomen eindsaldo BEF " & LabelInfo(13).Text & vbCrLf & vbCrLf & "Hierna wordt de boekhouding bijgewerkt.  Bent U zeker ?"
+'			MSG = "Datum uittreksel " & Datum.Value & " en bekomen eindsaldo BEF " & LabelInfo(13).Text & vbCrLf & vbCrLf & "Hierna wordt de boekhouding bijgewerkt.  Bent U zeker ?"
 '		End If
-'		Ktrl = MsgBox(Msg, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Uittreksel : " & UCase(VB.Left(AdoGetField(TableOfLedgerAccounts, "#v020 #"), 2)) & VB.Right(VB6.Format(Datum.Value, "dd/mm/yyyy"), 2) & VB6.Format(Val(LabelInfo(11).Text), "0000"))
+'		Ktrl = MsgBox(MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2, "Uittreksel : " & UCase(VB.Left(AdoGetField(TableOfLedgerAccounts, "#v020 #"), 2)) & VB.Right(VB6.Format(Datum.Value, "dd/mm/yyyy"), 2) & VB6.Format(Val(LabelInfo(11).Text), "0000"))
 '		If Ktrl = MsgBoxResult.Yes Then
 '			TransBegin()
 '			If WegBoekFout() Then
@@ -203,8 +203,8 @@ End Class
 '	Private Sub Annuleren_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Annuleren.Click
 
 '		If FinancieelDetail.Items.Count Then
-'			Msg = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
-'			Ktrl = MsgBox(Msg, 292)
+'			MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
+'			Ktrl = MsgBox(MSG, 292)
 '			If Ktrl = 6 Then
 '			Else
 '				Exit Sub
@@ -539,12 +539,12 @@ End Class
 '		SnelHelpPrint(" ", blLogging)
 '		DefaultKlanten.Value = String99(Reading, 9)
 
-'		Msg = "Breng mededeling in" & vbCrLf
-'		Msg = Msg & "met masker nnnnnnnnnnnn" & vbCrLf & vbCrLf
-'		Msg = Msg & "Waarbij n staat voor elk" & vbCrLf
-'		Msg = Msg & "van de 12 verplichte cijfers" & vbCrLf & vbCrLf
+'		MSG = "Breng mededeling in" & vbCrLf
+'		MSG = MSG & "met masker nnnnnnnnnnnn" & vbCrLf & vbCrLf
+'		MSG = MSG & "Waarbij n staat voor elk" & vbCrLf
+'		MSG = MSG & "van de 12 verplichte cijfers" & vbCrLf & vbCrLf
 
-'		ReferteTxt = InputBox(Msg, "Gestruktureerde betaling")
+'		ReferteTxt = InputBox(MSG, "Gestruktureerde betaling")
 '		If ReferteTxt = "" Then
 '			Exit Sub
 '		Else
@@ -568,11 +568,11 @@ End Class
 '					'het is geen klant, probeer als leveranciersreferte...
 '				Else
 '					RecordToField(TableOfCustomers)
-'					Msg = "Breng bedrag in voor" & vbCr
-'					Msg = Msg & "totaal van " & VB.Left(ReferteTxt, 1) & " kwijtingen" & vbCr & vbCr
-'					Msg = Msg & "klant :" & vbCr & vbCr & RTrim(AdoGetField(TableOfCustomers, "#A100 #") & " " & AdoGetField(TableOfCustomers, "#A101 #")) & " " & RTrim(AdoGetField(TableOfCustomers, "#A125 #") & " " & AdoGetField(TableOfCustomers, "#A127 #")) & vbCr
-'					Msg = Msg & "Rekeningen:" & AdoGetField(TableOfCustomers, "#A170 #") & " " & AdoGetField(TableOfCustomers, "#v251 #")
-'					dBedragTekst = Val(InputBox(Msg, "Totaal betaling"))
+'					MSG = "Breng bedrag in voor" & vbCr
+'					MSG = MSG & "totaal van " & VB.Left(ReferteTxt, 1) & " kwijtingen" & vbCr & vbCr
+'					MSG = MSG & "klant :" & vbCr & vbCr & RTrim(AdoGetField(TableOfCustomers, "#A100 #") & " " & AdoGetField(TableOfCustomers, "#A101 #")) & " " & RTrim(AdoGetField(TableOfCustomers, "#A125 #") & " " & AdoGetField(TableOfCustomers, "#A127 #")) & vbCr
+'					MSG = MSG & "Rekeningen:" & AdoGetField(TableOfCustomers, "#A170 #") & " " & AdoGetField(TableOfCustomers, "#v251 #")
+'					dBedragTekst = Val(InputBox(MSG, "Totaal betaling"))
 '					If dBedragTekst = 0 Then
 '						Exit Sub
 '					Else
