@@ -25,20 +25,18 @@ Partial Class FormFinancialBook
         Me.components = New System.ComponentModel.Container()
         Me.cmdCKTRL = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.chkAfdrukLiggend = New System.Windows.Forms.CheckBox()
-        Me.chkAfdrukInVenster = New System.Windows.Forms.CheckBox()
         Me.CmdJournaalManueel = New System.Windows.Forms.Button()
-        Me.UittrekselsLijst = New System.Windows.Forms.ListBox()
-        Me._KeuzeInfo_0 = New System.Windows.Forms.ComboBox()
-        Me._TekstLijn_0 = New System.Windows.Forms.TextBox()
+        Me.LbUittrekselsLijst = New System.Windows.Forms.ListBox()
+        Me.CbFinancialChoosen = New System.Windows.Forms.ComboBox()
+        Me.TbTekstLijn = New System.Windows.Forms.TextBox()
         Me._TekstLijn_1 = New System.Windows.Forms.TextBox()
-        Me.Drukken = New System.Windows.Forms.Button()
-        Me.Annuleren = New System.Windows.Forms.Button()
+        Me.BtnGenerateReport = New System.Windows.Forms.Button()
+        Me.BtnClose = New System.Windows.Forms.Button()
         Me._Label1_2 = New System.Windows.Forms.Label()
         Me._Label1_0 = New System.Windows.Forms.Label()
         Me._Label1_1 = New System.Windows.Forms.Label()
         Me.lblInOntwikkeling = New System.Windows.Forms.Label()
-        Me.SuspendLayout
+        Me.SuspendLayout()
         '
         'cmdCKTRL
         '
@@ -53,32 +51,6 @@ Partial Class FormFinancialBook
         Me.cmdCKTRL.Text = "cKTRL"
         Me.cmdCKTRL.UseVisualStyleBackColor = False
         '
-        'chkAfdrukLiggend
-        '
-        Me.chkAfdrukLiggend.BackColor = System.Drawing.SystemColors.Control
-        Me.chkAfdrukLiggend.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkAfdrukLiggend.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkAfdrukLiggend.Location = New System.Drawing.Point(125, 316)
-        Me.chkAfdrukLiggend.Name = "chkAfdrukLiggend"
-        Me.chkAfdrukLiggend.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkAfdrukLiggend.Size = New System.Drawing.Size(154, 17)
-        Me.chkAfdrukLiggend.TabIndex = 24
-        Me.chkAfdrukLiggend.Text = "Liggende Printerafdruk"
-        Me.chkAfdrukLiggend.UseVisualStyleBackColor = False
-        '
-        'chkAfdrukInVenster
-        '
-        Me.chkAfdrukInVenster.BackColor = System.Drawing.SystemColors.Control
-        Me.chkAfdrukInVenster.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkAfdrukInVenster.Location = New System.Drawing.Point(1, 316)
-        Me.chkAfdrukInVenster.Name = "chkAfdrukInVenster"
-        Me.chkAfdrukInVenster.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkAfdrukInVenster.Size = New System.Drawing.Size(122, 17)
-        Me.chkAfdrukInVenster.TabIndex = 23
-        Me.chkAfdrukInVenster.Text = "Afdruk in venster"
-        Me.chkAfdrukInVenster.UseVisualStyleBackColor = False
-        Me.chkAfdrukInVenster.Visible = False
-        '
         'CmdJournaalManueel
         '
         Me.CmdJournaalManueel.BackColor = System.Drawing.SystemColors.Control
@@ -91,42 +63,42 @@ Partial Class FormFinancialBook
         Me.CmdJournaalManueel.Text = "&Journalen Manueel Zoeken"
         Me.CmdJournaalManueel.UseVisualStyleBackColor = False
         '
-        'UittrekselsLijst
+        'LbUittrekselsLijst
         '
-        Me.UittrekselsLijst.BackColor = System.Drawing.SystemColors.Window
-        Me.UittrekselsLijst.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UittrekselsLijst.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.UittrekselsLijst.ItemHeight = 16
-        Me.UittrekselsLijst.Location = New System.Drawing.Point(1, 96)
-        Me.UittrekselsLijst.Name = "UittrekselsLijst"
-        Me.UittrekselsLijst.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.UittrekselsLijst.Size = New System.Drawing.Size(457, 212)
-        Me.UittrekselsLijst.Sorted = True
-        Me.UittrekselsLijst.TabIndex = 15
+        Me.LbUittrekselsLijst.BackColor = System.Drawing.SystemColors.Window
+        Me.LbUittrekselsLijst.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbUittrekselsLijst.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.LbUittrekselsLijst.ItemHeight = 16
+        Me.LbUittrekselsLijst.Location = New System.Drawing.Point(1, 96)
+        Me.LbUittrekselsLijst.Name = "LbUittrekselsLijst"
+        Me.LbUittrekselsLijst.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.LbUittrekselsLijst.Size = New System.Drawing.Size(457, 212)
+        Me.LbUittrekselsLijst.Sorted = True
+        Me.LbUittrekselsLijst.TabIndex = 15
         '
-        '_KeuzeInfo_0
+        'CbFinancialChoosen
         '
-        Me._KeuzeInfo_0.BackColor = System.Drawing.Color.White
-        Me._KeuzeInfo_0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me._KeuzeInfo_0.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._KeuzeInfo_0.Location = New System.Drawing.Point(81, 72)
-        Me._KeuzeInfo_0.Name = "_KeuzeInfo_0"
-        Me._KeuzeInfo_0.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._KeuzeInfo_0.Size = New System.Drawing.Size(259, 21)
-        Me._KeuzeInfo_0.TabIndex = 14
+        Me.CbFinancialChoosen.BackColor = System.Drawing.Color.White
+        Me.CbFinancialChoosen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CbFinancialChoosen.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CbFinancialChoosen.Location = New System.Drawing.Point(81, 72)
+        Me.CbFinancialChoosen.Name = "CbFinancialChoosen"
+        Me.CbFinancialChoosen.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbFinancialChoosen.Size = New System.Drawing.Size(259, 21)
+        Me.CbFinancialChoosen.TabIndex = 14
         '
-        '_TekstLijn_0
+        'TbTekstLijn
         '
-        Me._TekstLijn_0.AcceptsReturn = True
-        Me._TekstLijn_0.BackColor = System.Drawing.Color.White
-        Me._TekstLijn_0.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me._TekstLijn_0.ForeColor = System.Drawing.Color.Black
-        Me._TekstLijn_0.Location = New System.Drawing.Point(1, 32)
-        Me._TekstLijn_0.MaxLength = 0
-        Me._TekstLijn_0.Name = "_TekstLijn_0"
-        Me._TekstLijn_0.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._TekstLijn_0.Size = New System.Drawing.Size(237, 20)
-        Me._TekstLijn_0.TabIndex = 18
+        Me.TbTekstLijn.AcceptsReturn = True
+        Me.TbTekstLijn.BackColor = System.Drawing.Color.White
+        Me.TbTekstLijn.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TbTekstLijn.ForeColor = System.Drawing.Color.Black
+        Me.TbTekstLijn.Location = New System.Drawing.Point(1, 32)
+        Me.TbTekstLijn.MaxLength = 0
+        Me.TbTekstLijn.Name = "TbTekstLijn"
+        Me.TbTekstLijn.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TbTekstLijn.Size = New System.Drawing.Size(237, 20)
+        Me.TbTekstLijn.TabIndex = 18
         '
         '_TekstLijn_1
         '
@@ -141,31 +113,31 @@ Partial Class FormFinancialBook
         Me._TekstLijn_1.Size = New System.Drawing.Size(104, 20)
         Me._TekstLijn_1.TabIndex = 20
         '
-        'Drukken
+        'BtnGenerateReport
         '
-        Me.Drukken.BackColor = System.Drawing.SystemColors.Control
-        Me.Drukken.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Drukken.Location = New System.Drawing.Point(363, 12)
-        Me.Drukken.Name = "Drukken"
-        Me.Drukken.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Drukken.Size = New System.Drawing.Size(96, 29)
-        Me.Drukken.TabIndex = 16
-        Me.Drukken.Text = "Af&drukken"
-        Me.Drukken.UseVisualStyleBackColor = False
+        Me.BtnGenerateReport.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnGenerateReport.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnGenerateReport.Location = New System.Drawing.Point(363, 12)
+        Me.BtnGenerateReport.Name = "BtnGenerateReport"
+        Me.BtnGenerateReport.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnGenerateReport.Size = New System.Drawing.Size(96, 29)
+        Me.BtnGenerateReport.TabIndex = 16
+        Me.BtnGenerateReport.Text = "Genereren"
+        Me.BtnGenerateReport.UseVisualStyleBackColor = False
         '
-        'Annuleren
+        'BtnClose
         '
-        Me.Annuleren.BackColor = System.Drawing.SystemColors.Control
-        Me.Annuleren.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Annuleren.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Annuleren.Location = New System.Drawing.Point(359, 310)
-        Me.Annuleren.Name = "Annuleren"
-        Me.Annuleren.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Annuleren.Size = New System.Drawing.Size(96, 25)
-        Me.Annuleren.TabIndex = 21
-        Me.Annuleren.TabStop = False
-        Me.Annuleren.Text = "Sluiten"
-        Me.Annuleren.UseVisualStyleBackColor = False
+        Me.BtnClose.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnClose.Location = New System.Drawing.Point(359, 310)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnClose.Size = New System.Drawing.Size(96, 25)
+        Me.BtnClose.TabIndex = 21
+        Me.BtnClose.TabStop = False
+        Me.BtnClose.Text = "Sluiten"
+        Me.BtnClose.UseVisualStyleBackColor = False
         '
         '_Label1_2
         '
@@ -220,22 +192,19 @@ Partial Class FormFinancialBook
         Me.ClientSize = New System.Drawing.Size(468, 339)
         Me.Controls.Add(Me.lblInOntwikkeling)
         Me.Controls.Add(Me.cmdCKTRL)
-        Me.Controls.Add(Me.chkAfdrukLiggend)
-        Me.Controls.Add(Me.chkAfdrukInVenster)
         Me.Controls.Add(Me.CmdJournaalManueel)
-        Me.Controls.Add(Me.UittrekselsLijst)
-        Me.Controls.Add(Me._KeuzeInfo_0)
-        Me.Controls.Add(Me._TekstLijn_0)
+        Me.Controls.Add(Me.LbUittrekselsLijst)
+        Me.Controls.Add(Me.CbFinancialChoosen)
+        Me.Controls.Add(Me.TbTekstLijn)
         Me.Controls.Add(Me._TekstLijn_1)
-        Me.Controls.Add(Me.Drukken)
-        Me.Controls.Add(Me.Annuleren)
+        Me.Controls.Add(Me.BtnGenerateReport)
+        Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me._Label1_2)
         Me.Controls.Add(Me._Label1_0)
         Me.Controls.Add(Me._Label1_1)
         Me.Name = "FormFinancialBook"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "FinancialBook"
-        AddHandler Load, AddressOf Me.FormFinancialBook_Load
         Me.ResumeLayout(False)
         Me.PerformLayout
 
@@ -243,15 +212,13 @@ End Sub
 
     Public WithEvents cmdCKTRL As Button
     Public WithEvents ToolTip1 As ToolTip
-    Public WithEvents chkAfdrukLiggend As CheckBox
-    Public WithEvents chkAfdrukInVenster As CheckBox
     Public WithEvents CmdJournaalManueel As Button
-    Public WithEvents UittrekselsLijst As ListBox
-    Public WithEvents _KeuzeInfo_0 As ComboBox
-    Public WithEvents _TekstLijn_0 As TextBox
+    Public WithEvents LbUittrekselsLijst As ListBox
+    Public WithEvents CbFinancialChoosen As ComboBox
+    Public WithEvents TbTekstLijn As TextBox
     Public WithEvents _TekstLijn_1 As TextBox
-    Public WithEvents Drukken As Button
-    Public WithEvents Annuleren As Button
+    Public WithEvents BtnGenerateReport As Button
+    Public WithEvents BtnClose As Button
     Public WithEvents _Label1_2 As Label
     Public WithEvents _Label1_0 As Label
     Public WithEvents _Label1_1 As Label
