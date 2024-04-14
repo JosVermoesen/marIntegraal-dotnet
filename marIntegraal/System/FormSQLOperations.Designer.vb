@@ -32,7 +32,7 @@ Partial Class SqlOperations
         Me.cbSQLBevel = New System.Windows.Forms.ComboBox()
         Me.cmdOpenXML = New System.Windows.Forms.Button()
         Me.cmdSelectWegschrijven = New System.Windows.Forms.Button()
-        Me.cmbSelect = New System.Windows.Forms.ComboBox()
+        Me.CmbSelect = New System.Windows.Forms.ComboBox()
         Me.txtSQL = New System.Windows.Forms.TextBox()
         Me.cmdExecute = New System.Windows.Forms.Button()
         Me.cmdKopij = New System.Windows.Forms.Button()
@@ -50,7 +50,7 @@ Partial Class SqlOperations
         Me.cmdBackup.BackColor = System.Drawing.SystemColors.Control
         Me.cmdBackup.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdBackup.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdBackup.Location = New System.Drawing.Point(562, 183)
+        Me.cmdBackup.Location = New System.Drawing.Point(562, 170)
         Me.cmdBackup.Name = "cmdBackup"
         Me.cmdBackup.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdBackup.Size = New System.Drawing.Size(45, 25)
@@ -63,7 +63,7 @@ Partial Class SqlOperations
         Me.cmdNet1.BackColor = System.Drawing.SystemColors.Control
         Me.cmdNet1.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdNet1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdNet1.Location = New System.Drawing.Point(526, 183)
+        Me.cmdNet1.Location = New System.Drawing.Point(526, 170)
         Me.cmdNet1.Name = "cmdNet1"
         Me.cmdNet1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdNet1.Size = New System.Drawing.Size(33, 25)
@@ -78,7 +78,7 @@ Partial Class SqlOperations
         Me.txtPLUS.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtPLUS.Enabled = False
         Me.txtPLUS.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtPLUS.Location = New System.Drawing.Point(95, 306)
+        Me.txtPLUS.Location = New System.Drawing.Point(95, 432)
         Me.txtPLUS.MaxLength = 0
         Me.txtPLUS.Name = "txtPLUS"
         Me.txtPLUS.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -92,7 +92,7 @@ Partial Class SqlOperations
         Me.txtWaarde.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtWaarde.Enabled = False
         Me.txtWaarde.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtWaarde.Location = New System.Drawing.Point(504, 307)
+        Me.txtWaarde.Location = New System.Drawing.Point(504, 433)
         Me.txtWaarde.MaxLength = 0
         Me.txtWaarde.Name = "txtWaarde"
         Me.txtWaarde.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -106,7 +106,7 @@ Partial Class SqlOperations
         Me.cbOperatie.Enabled = False
         Me.cbOperatie.ForeColor = System.Drawing.SystemColors.WindowText
         Me.cbOperatie.Items.AddRange(New Object() {"Like", "=", "<>", "<=", ">=", ">", "<"})
-        Me.cbOperatie.Location = New System.Drawing.Point(395, 306)
+        Me.cbOperatie.Location = New System.Drawing.Point(395, 432)
         Me.cbOperatie.Name = "cbOperatie"
         Me.cbOperatie.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cbOperatie.Size = New System.Drawing.Size(105, 21)
@@ -118,7 +118,7 @@ Partial Class SqlOperations
         Me.cbVelden.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbVelden.Enabled = False
         Me.cbVelden.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.cbVelden.Location = New System.Drawing.Point(299, 306)
+        Me.cbVelden.Location = New System.Drawing.Point(299, 432)
         Me.cbVelden.Name = "cbVelden"
         Me.cbVelden.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cbVelden.Size = New System.Drawing.Size(93, 21)
@@ -131,7 +131,7 @@ Partial Class SqlOperations
         Me.cbSQLBevel.Enabled = False
         Me.cbSQLBevel.ForeColor = System.Drawing.SystemColors.WindowText
         Me.cbSQLBevel.Items.AddRange(New Object() {"SELECT", "DELETE", "UPDATE", "INSERT", "PROCEDURE"})
-        Me.cbSQLBevel.Location = New System.Drawing.Point(3, 306)
+        Me.cbSQLBevel.Location = New System.Drawing.Point(3, 432)
         Me.cbSQLBevel.Name = "cbSQLBevel"
         Me.cbSQLBevel.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cbSQLBevel.Size = New System.Drawing.Size(89, 21)
@@ -158,7 +158,7 @@ Partial Class SqlOperations
         Me.cmdSelectWegschrijven.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdSelectWegschrijven.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cmdSelectWegschrijven.Image = CType(resources.GetObject("cmdSelectWegschrijven.Image"), System.Drawing.Image)
-        Me.cmdSelectWegschrijven.Location = New System.Drawing.Point(349, 161)
+        Me.cmdSelectWegschrijven.Location = New System.Drawing.Point(475, 287)
         Me.cmdSelectWegschrijven.Name = "cmdSelectWegschrijven"
         Me.cmdSelectWegschrijven.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdSelectWegschrijven.Size = New System.Drawing.Size(25, 20)
@@ -167,17 +167,17 @@ Partial Class SqlOperations
         Me.cmdSelectWegschrijven.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdSelectWegschrijven.UseVisualStyleBackColor = False
         '
-        'cmbSelect
+        'CmbSelect
         '
-        Me.cmbSelect.BackColor = System.Drawing.SystemColors.Window
-        Me.cmbSelect.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmbSelect.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.cmbSelect.Location = New System.Drawing.Point(95, 160)
-        Me.cmbSelect.Name = "cmbSelect"
-        Me.cmbSelect.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmbSelect.Size = New System.Drawing.Size(248, 21)
-        Me.cmbSelect.TabIndex = 20
-        Me.cmbSelect.Text = "Combo1"
+        Me.CmbSelect.BackColor = System.Drawing.SystemColors.Window
+        Me.CmbSelect.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CmbSelect.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CmbSelect.Location = New System.Drawing.Point(95, 286)
+        Me.CmbSelect.Name = "CmbSelect"
+        Me.CmbSelect.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CmbSelect.Size = New System.Drawing.Size(374, 21)
+        Me.CmbSelect.TabIndex = 20
+        Me.CmbSelect.Text = "Combo1"
         '
         'txtSQL
         '
@@ -185,13 +185,13 @@ Partial Class SqlOperations
         Me.txtSQL.BackColor = System.Drawing.SystemColors.Window
         Me.txtSQL.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSQL.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtSQL.Location = New System.Drawing.Point(3, 182)
+        Me.txtSQL.Location = New System.Drawing.Point(3, 308)
         Me.txtSQL.MaxLength = 0
         Me.txtSQL.Multiline = True
         Me.txtSQL.Name = "txtSQL"
         Me.txtSQL.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtSQL.Size = New System.Drawing.Size(518, 117)
+        Me.txtSQL.Size = New System.Drawing.Size(602, 117)
         Me.txtSQL.TabIndex = 19
         '
         'cmdExecute
@@ -199,10 +199,10 @@ Partial Class SqlOperations
         Me.cmdExecute.BackColor = System.Drawing.SystemColors.Control
         Me.cmdExecute.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdExecute.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdExecute.Location = New System.Drawing.Point(380, 161)
+        Me.cmdExecute.Location = New System.Drawing.Point(526, 263)
         Me.cmdExecute.Name = "cmdExecute"
         Me.cmdExecute.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdExecute.Size = New System.Drawing.Size(110, 20)
+        Me.cmdExecute.Size = New System.Drawing.Size(79, 44)
         Me.cmdExecute.TabIndex = 24
         Me.cmdExecute.TabStop = False
         Me.cmdExecute.Text = "SQL &EXECUTE"
@@ -229,7 +229,7 @@ Partial Class SqlOperations
         Me.cmdSluiten.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdSluiten.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdSluiten.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdSluiten.Location = New System.Drawing.Point(526, 238)
+        Me.cmdSluiten.Location = New System.Drawing.Point(526, 225)
         Me.cmdSluiten.Name = "cmdSluiten"
         Me.cmdSluiten.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdSluiten.Size = New System.Drawing.Size(79, 20)
@@ -243,7 +243,7 @@ Partial Class SqlOperations
         Me.cmdSQL.BackColor = System.Drawing.SystemColors.Control
         Me.cmdSQL.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdSQL.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdSQL.Location = New System.Drawing.Point(3, 160)
+        Me.cmdSQL.Location = New System.Drawing.Point(3, 286)
         Me.cmdSQL.Name = "cmdSQL"
         Me.cmdSQL.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdSQL.Size = New System.Drawing.Size(82, 20)
@@ -257,7 +257,7 @@ Partial Class SqlOperations
         Me.cmbVersie.BackColor = System.Drawing.SystemColors.Control
         Me.cmbVersie.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmbVersie.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmbVersie.Location = New System.Drawing.Point(526, 211)
+        Me.cmbVersie.Location = New System.Drawing.Point(526, 198)
         Me.cmbVersie.Name = "cmbVersie"
         Me.cmbVersie.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmbVersie.Size = New System.Drawing.Size(80, 20)
@@ -287,7 +287,7 @@ Partial Class SqlOperations
         Me.msfSQL.Location = New System.Drawing.Point(3, 4)
         Me.msfSQL.Name = "msfSQL"
         Me.msfSQL.ReadOnly = True
-        Me.msfSQL.Size = New System.Drawing.Size(518, 150)
+        Me.msfSQL.Size = New System.Drawing.Size(518, 276)
         Me.msfSQL.TabIndex = 88
         '
         'LBDatabase
@@ -298,14 +298,14 @@ Partial Class SqlOperations
         Me.LBDatabase.ItemHeight = 20
         Me.LBDatabase.Location = New System.Drawing.Point(613, 0)
         Me.LBDatabase.Name = "LBDatabase"
-        Me.LBDatabase.Size = New System.Drawing.Size(196, 338)
+        Me.LBDatabase.Size = New System.Drawing.Size(196, 458)
         Me.LBDatabase.TabIndex = 89
         '
         'SqlOperations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(809, 338)
+        Me.ClientSize = New System.Drawing.Size(809, 458)
         Me.Controls.Add(Me.LBDatabase)
         Me.Controls.Add(Me.msfSQL)
         Me.Controls.Add(Me.cmdBackup)
@@ -317,7 +317,7 @@ Partial Class SqlOperations
         Me.Controls.Add(Me.cbSQLBevel)
         Me.Controls.Add(Me.cmdOpenXML)
         Me.Controls.Add(Me.cmdSelectWegschrijven)
-        Me.Controls.Add(Me.cmbSelect)
+        Me.Controls.Add(Me.CmbSelect)
         Me.Controls.Add(Me.txtSQL)
         Me.Controls.Add(Me.cmdExecute)
         Me.Controls.Add(Me.cmdKopij)
@@ -343,7 +343,7 @@ End Sub
     Public WithEvents cbSQLBevel As ComboBox
     Public WithEvents cmdOpenXML As Button
     Public WithEvents cmdSelectWegschrijven As Button
-    Public WithEvents cmbSelect As ComboBox
+    Public WithEvents CmbSelect As ComboBox
     Public WithEvents txtSQL As TextBox
     Public WithEvents cmdExecute As Button
     Public WithEvents cmdKopij As Button

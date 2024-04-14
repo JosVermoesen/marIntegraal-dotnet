@@ -30,9 +30,10 @@ Public Class SqlOperations
         Else
             GetSqlDefRecordSet = True
         End If
-        msfSQL.DataSource = sqlDef
+
 
     End Function
+
     Private Sub SqlOperations_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         datPrimaryRS = New ADODB.Recordset With {
@@ -98,96 +99,17 @@ Public Class SqlOperations
 
     Private Sub SqlOperations_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
 
-        '		On Error Resume Next
-        '		datPrimaryRS.Close()
-        '		'UPGRADE_NOTE: Object datPrimaryRS may not be destroyed until it is garbage collected. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6E35BFF6-CD74-4B09-9689-3E1A43DF8969"'
-        '		datPrimaryRS = Nothing
+        On Error Resume Next
+        datPrimaryRS.Close()
+        'UPGRADE_NOTE: Object datPrimaryRS may not be destroyed until it is garbage collected. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6E35BFF6-CD74-4B09-9689-3E1A43DF8969"'
+        datPrimaryRS = Nothing
 
-        '		'hier nu eerst terug rsjournaal maken !!!!!
-        '		If allesGesloten = True Then
-        '			MsgBox("Bedrijfsdatabase wordt hierna automatisch afgesloten.", MsgBoxStyle.Information)
-        '			AutoUnloadCompany()
-        '			Exit Sub
-        '		End If
-
-    End Sub
-
-
-    Private Sub cbOperatie_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbOperatie.SelectedIndexChanged
-        '		queryPLUS()
-        '		queryChange()
-    End Sub
-
-    Private Sub cbSQLBevel_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbSQLBevel.SelectedIndexChanged
-
-        If cbSQLBevel.SelectedIndex <> 0 Then
-            Msg = cbSQLBevel.Text & " opdracht." & vbCr & vbCr & "Het is ten zeerste aan te raden om dergelijke" & vbCr & "opdrachten BINNENIN een TRANSACTIE uit te voeren" & vbCr & vbCr & vbCr & "BEGIN WORK start een transactie" & vbCr & vbCr & "ROLLBACK WORK annuleert alle wijziging na 'BEGIN WORK'" & vbCr & "(m.a.w. zéér interessant om foutieve 'DELETE/UPDATES/INSERT'" & vbCr & "opdrachten teniet te doen...)" & vbCr & vbCr & "COMMIT WORK ten slotte laat alle 'DELETE/UPDATE/INSERT'" & vbCr & "opdrachten doorgaan." & vbCr & vbCr & "BEGIN WORK wordt hierna voorgesteld als instructie.  Druk Alt+E om te activeren"
-            MsgBox(Msg, MsgBoxStyle.Exclamation)
-            txtSQL.Text = "BEGIN WORK"
-        Else
-            '			queryPLUS()
-            '			queryChange()
+        'hier nu eerst terug rsjournaal maken !!!!!
+        If allesGesloten = True Then
+            MsgBox("Bedrijfsdatabase wordt hierna automatisch afgesloten.", MsgBoxStyle.Information)
+            AutoUnloadCompany(FormBYPERDAT)
+            Exit Sub
         End If
-
-    End Sub
-
-    Private Sub cbVelden_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbVelden.SelectedIndexChanged
-        '		queryPLUS()
-        '		queryChange()
-    End Sub
-
-    Private Sub cmbSelect_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cmbSelect.SelectedIndexChanged
-
-        '		JetGet(TableOfVarious, 1, "29" & cmbSelect.Text)
-        '		If Ktrl Then
-        '		Else
-        '			RecordToField(TableOfVarious)
-        '			If InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") Then
-        '				txtSQL.Text = VB.Left(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") - 1)
-        '			Else
-        '				txtSQL.Text = AdoGetField(TableOfVarious, "#v132 #")
-        '			End If
-
-        '			On Error Resume Next
-        '			Msg = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
-        '			If Msg = "" Then
-        '				grdColWidth(0) = 0
-        '			Else
-        '				CountTo = 0
-        '				Do While Msg <> ""
-        '					If InStr(Msg, vbTab) <> 0 Then
-        '						grdColWidth(CountTo) = Val(VB.Left(Msg, InStr(Msg, vbTab) - 1))
-        '						Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
-        '						CountTo = CountTo + 1
-        '					Else
-        '						Exit Do
-        '					End If
-        '				Loop 
-        '				grdColWidth(CountTo) = 0
-        '			End If
-
-        '		End If
-
-    End Sub
-
-    Private Sub cmbSelect_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles cmbSelect.KeyDown
-
-        '		Dim KeyCode As Short = eventArgs.KeyCode
-        '		Dim Shift As Short = eventArgs.KeyData \ &H10000
-
-        '		If KeyCode = 46 Then
-        '			JetGet(TableOfVarious, 1, "29" & cmbSelect.Text)
-        '			If Ktrl Or VB.Left(KeyBuf(TableOfVarious), 2) <> "29" Then
-        '			ElseIf MsgBox("Bestaande definitie '" & cmbSelect.Text & "' verwijderen ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2) = MsgBoxResult.Yes Then 
-        '				RecordToField(TableOfVarious)
-        '				Bdelete(TableOfVarious)
-        '				SelectComboVullen()
-        '			Else
-        '				Exit Sub
-        '			End If
-        '		ElseIf KeyCode = 13 Then 
-        '			cmdSelectWegschrijven_Click(cmdSelectWegschrijven, New System.EventArgs())
-        '		End If
 
     End Sub
 
@@ -424,16 +346,16 @@ Public Class SqlOperations
 
     Sub SelectComboVullen()
 
-        cmbSelect.Items.Clear()
+        CmbSelect.Items.Clear()
         sqlDef.MoveFirst()
         Do While Not sqlDef.EOF
             TLBRecord(TableOfVarious) = sqlDef.Fields("MEMO").Value
-            cmbSelect.Items.Add(AdoGetField(TableOfVarious, "#v250 #"))
+            CmbSelect.Items.Add(AdoGetField(TableOfVarious, "#v250 #"))
             sqlDef.MoveNext()
         Loop
-        If cmbSelect.Items.Count = 0 Then
+        If CmbSelect.Items.Count = 0 Then
         Else
-            cmbSelect.SelectedIndex = 0
+            CmbSelect.SelectedIndex = 0
         End If
 
     End Sub
@@ -444,27 +366,6 @@ Public Class SqlOperations
 
     End Sub
 
-    'Private Sub msfSQL_DblClick(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles msfSQL.DblClick
-
-    '		If VB6.PixelsToTwipsY(msfSQL.Top) = 5 Then
-    '			'vergroten
-    '			Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-    '			msfSQL.Top = 0
-    '			msfSQL.Left = 0
-    '			msfSQL.Height = VB6.TwipsToPixelsY(VB6.PixelsToTwipsY(Me.Height) - 700)
-    '			msfSQL.Width = VB6.TwipsToPixelsX(VB6.PixelsToTwipsX(Me.Width) - 100)
-    '		Else
-    '			'terug normaal
-    '			Me.WindowState = System.Windows.Forms.FormWindowState.Normal
-    '			With msfSQL
-    '				.Top = VB6.TwipsToPixelsY(5)
-    '				.Left = 0
-    '				.Height = VB6.TwipsToPixelsY(2175)
-    '				.Width = VB6.TwipsToPixelsX(6135)
-    '			End With
-    '		End If
-
-    'End Sub
 
     Public Sub AdoLoadDatabase()
 
@@ -494,13 +395,14 @@ Public Class SqlOperations
         On Error Resume Next
         datPrimaryRS.Open(txtSQL.Text, adntDB)
         If Err.Number Then
-            MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
+            MsgBox("SQLQuery: " & txtSQL.Text & vbCrLf & vbCrLf & "Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
             msfSQL.Refresh()
-        Else
-            msfSQL.DataSource = datPrimaryRS
         End If
+        Dim dt As DataTable = datPrimaryRS.ADODBRSetToDataTable() ' Convert ADODB recordset to DataTable
+        Dim view As New DataView(dt) ' Create a DataView from the DataTable
+        ' Now you can work with the data using the 'view' variable.
+        msfSQL.DataSource = view
         lblRecordCount.Text = CStr(datPrimaryRS.RecordCount)
-        msfSQL.DataSource = datPrimaryRS
         Cursor.Current = Cursors.Default
 
     End Function
@@ -582,5 +484,128 @@ Public Class SqlOperations
 
     End Sub
 
+    Private Sub CbOperatie_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbOperatie.SelectedIndexChanged
+
+        QueryPLUS()
+        QueryChange()
+
+    End Sub
+
+    Private Sub CbSQLBevel_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbSQLBevel.SelectedIndexChanged
+
+        If cbSQLBevel.SelectedIndex <> 0 Then
+            Msg = cbSQLBevel.Text & " opdracht." & vbCr & vbCr & "Het is ten zeerste aan te raden om dergelijke" & vbCr & "opdrachten BINNENIN een TRANSACTIE uit te voeren" & vbCr & vbCr & vbCr & "BEGIN WORK start een transactie" & vbCr & vbCr & "ROLLBACK WORK annuleert alle wijziging na 'BEGIN WORK'" & vbCr & "(m.a.w. zéér interessant om foutieve 'DELETE/UPDATES/INSERT'" & vbCr & "opdrachten teniet te doen...)" & vbCr & vbCr & "COMMIT WORK ten slotte laat alle 'DELETE/UPDATE/INSERT'" & vbCr & "opdrachten doorgaan." & vbCr & vbCr & "BEGIN WORK wordt hierna voorgesteld als instructie.  Druk Alt+E om te activeren"
+            MsgBox(Msg, MsgBoxStyle.Exclamation)
+            txtSQL.Text = "BEGIN WORK"
+        Else
+            QueryPLUS()
+            QueryChange()
+        End If
+
+    End Sub
+
+    Private Sub CbVelden_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbVelden.SelectedIndexChanged
+
+        QueryPLUS()
+        QueryChange()
+
+    End Sub
+
+    Private Sub CmbSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbSelect.SelectedIndexChanged
+
+        JetGet(TableOfVarious, 1, "29" & CmbSelect.Text)
+        If Ktrl Then
+        Else
+            RecordToField(TableOfVarious)
+            If InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") Then
+                txtSQL.Text = Mid(AdoGetField(TableOfVarious, "#v132 #"), 1, InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") - 1)
+            Else
+                txtSQL.Text = AdoGetField(TableOfVarious, "#v132 #")
+            End If
+
+            On Error Resume Next
+            Msg = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
+            If Msg = "" Then
+                'Stop
+                'grdColWidth(0) = 0
+            Else
+                'Stop
+            End If
+        End If
+
+        '		JetGet(TableOfVarious, 1, "29" & cmbSelect.Text)
+        '		If Ktrl Then
+        '		Else
+        '			RecordToField(TableOfVarious)
+        '			If InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") Then
+        '				txtSQL.Text = VB.Left(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") - 1)
+        '			Else
+        '				txtSQL.Text = AdoGetField(TableOfVarious, "#v132 #")
+        '			End If
+
+        '			On Error Resume Next
+        '			Msg = Mid(AdoGetField(TableOfVarious, "#v132 #"), InStr(AdoGetField(TableOfVarious, "#v132 #"), "[Colwidth]") + 10)
+        '			If Msg = "" Then
+        '				grdColWidth(0) = 0
+        '			Else
+        '				CountTo = 0
+        '				Do While Msg <> ""
+        '					If InStr(Msg, vbTab) <> 0 Then
+        '						grdColWidth(CountTo) = Val(VB.Left(Msg, InStr(Msg, vbTab) - 1))
+        '						Msg = Mid(Msg, InStr(Msg, vbTab) + 1)
+        '						CountTo = CountTo + 1
+        '					Else
+        '						Exit Do
+        '					End If
+        '				Loop 
+        '				grdColWidth(CountTo) = 0
+        '			End If
+
+        '		End If
+
+    End Sub
+
+    Private Sub CmbSelect_KeyDown(sender As Object, e As KeyEventArgs) Handles CmbSelect.KeyDown
+
+        Dim KeyCode As Short = e.KeyCode
+        Dim Shift As Short = e.KeyData \ &H10000
+
+        If KeyCode = 46 Then
+            JetGet(TableOfVarious, 1, "29" & CmbSelect.Text)
+            If Ktrl Or Mid(KeyBuf(TableOfVarious), 1, 2) <> "29" Then
+            ElseIf MsgBox("Bestaande definitie '" & cmbSelect.Text & "' verwijderen ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2) = MsgBoxResult.Yes Then
+                RecordToField(TableOfVarious)
+                Bdelete(TableOfVarious)
+                SelectComboVullen()
+            Else
+                Exit Sub
+            End If
+        ElseIf KeyCode = 13 Then
+            cmdSelectWegschrijven_Click(cmdSelectWegschrijven, New System.EventArgs())
+        End If
+
+    End Sub
+
+    Private Sub msfSQL_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles msfSQL.MouseDoubleClick
+
+        If msfSQL.Top = 4 Then
+            'vergroten
+            WindowState = FormWindowState.Maximized
+            msfSQL.Top = 0
+            msfSQL.Left = 0
+            msfSQL.Height = Height - 50
+            msfSQL.Width = Width
+        Else
+            'terug normaal
+            WindowState = FormWindowState.Normal
+            With msfSQL
+                .Top = 4
+                .Left = 1
+                .Height = 276
+                .Width = 518
+            End With
+        End If
+
+    End Sub
 End Class
 

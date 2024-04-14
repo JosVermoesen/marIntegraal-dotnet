@@ -1,10 +1,18 @@
 ﻿Option Strict Off
 Option Explicit On
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Data.OleDb
 
 Module modDataBaseRoutines
 
     Dim X As Short
+
+    <Runtime.CompilerServices.Extension()>
+    Public Function ADODBRSetToDataTable(ByVal adodbRecordSet As ADODB.Recordset) As DataTable
+        Dim dataAdapter As New OleDbDataAdapter()
+        Dim dt As New DataTable()
+        dataAdapter.Fill(dt, adodbRecordSet)
+        Return dt
+    End Function
 
     Public Function OpenSchemaString(objectType As String) As String
 
