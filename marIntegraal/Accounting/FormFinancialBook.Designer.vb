@@ -29,13 +29,12 @@ Partial Class FormFinancialBook
         Me.LbUittrekselsLijst = New System.Windows.Forms.ListBox()
         Me.CbFinancialChoosen = New System.Windows.Forms.ComboBox()
         Me.TbTekstLijn = New System.Windows.Forms.TextBox()
-        Me._TekstLijn_1 = New System.Windows.Forms.TextBox()
         Me.BtnGenerateReport = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me._Label1_2 = New System.Windows.Forms.Label()
         Me._Label1_0 = New System.Windows.Forms.Label()
         Me._Label1_1 = New System.Windows.Forms.Label()
-        Me.lblInOntwikkeling = New System.Windows.Forms.Label()
+        Me.DateTimePickerProcessingDate = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'cmdCKTRL
@@ -81,7 +80,7 @@ Partial Class FormFinancialBook
         Me.CbFinancialChoosen.BackColor = System.Drawing.Color.White
         Me.CbFinancialChoosen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CbFinancialChoosen.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.CbFinancialChoosen.Location = New System.Drawing.Point(81, 72)
+        Me.CbFinancialChoosen.Location = New System.Drawing.Point(93, 72)
         Me.CbFinancialChoosen.Name = "CbFinancialChoosen"
         Me.CbFinancialChoosen.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.CbFinancialChoosen.Size = New System.Drawing.Size(259, 21)
@@ -97,21 +96,8 @@ Partial Class FormFinancialBook
         Me.TbTekstLijn.MaxLength = 0
         Me.TbTekstLijn.Name = "TbTekstLijn"
         Me.TbTekstLijn.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TbTekstLijn.Size = New System.Drawing.Size(237, 20)
+        Me.TbTekstLijn.Size = New System.Drawing.Size(169, 20)
         Me.TbTekstLijn.TabIndex = 18
-        '
-        '_TekstLijn_1
-        '
-        Me._TekstLijn_1.AcceptsReturn = True
-        Me._TekstLijn_1.BackColor = System.Drawing.Color.White
-        Me._TekstLijn_1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me._TekstLijn_1.ForeColor = System.Drawing.Color.Black
-        Me._TekstLijn_1.Location = New System.Drawing.Point(239, 32)
-        Me._TekstLijn_1.MaxLength = 0
-        Me._TekstLijn_1.Name = "_TekstLijn_1"
-        Me._TekstLijn_1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._TekstLijn_1.Size = New System.Drawing.Size(104, 20)
-        Me._TekstLijn_1.TabIndex = 20
         '
         'BtnGenerateReport
         '
@@ -159,7 +145,7 @@ Partial Class FormFinancialBook
         Me._Label1_0.Location = New System.Drawing.Point(3, 12)
         Me._Label1_0.Name = "_Label1_0"
         Me._Label1_0.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._Label1_0.Size = New System.Drawing.Size(146, 18)
+        Me._Label1_0.Size = New System.Drawing.Size(135, 18)
         Me._Label1_0.TabIndex = 17
         Me._Label1_0.Text = "Afdrukperiode Van - &Tot"
         '
@@ -168,35 +154,34 @@ Partial Class FormFinancialBook
         Me._Label1_1.BackColor = System.Drawing.SystemColors.Control
         Me._Label1_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me._Label1_1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me._Label1_1.Location = New System.Drawing.Point(241, 12)
+        Me._Label1_1.Location = New System.Drawing.Point(176, 12)
         Me._Label1_1.Name = "_Label1_1"
         Me._Label1_1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me._Label1_1.Size = New System.Drawing.Size(93, 18)
         Me._Label1_1.TabIndex = 19
         Me._Label1_1.Text = "Datu&m Drukken"
         '
-        'lblInOntwikkeling
+        'DateTimePickerProcessingDate
         '
-        Me.lblInOntwikkeling.AutoSize = True
-        Me.lblInOntwikkeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblInOntwikkeling.Location = New System.Drawing.Point(99, 148)
-        Me.lblInOntwikkeling.Name = "lblInOntwikkeling"
-        Me.lblInOntwikkeling.Size = New System.Drawing.Size(270, 42)
-        Me.lblInOntwikkeling.TabIndex = 88
-        Me.lblInOntwikkeling.Text = "In Ontwikkeling"
+        Me.DateTimePickerProcessingDate.Location = New System.Drawing.Point(176, 33)
+        Me.DateTimePickerProcessingDate.MaxDate = New Date(2061, 12, 31, 0, 0, 0, 0)
+        Me.DateTimePickerProcessingDate.MinDate = New Date(1985, 12, 1, 0, 0, 0, 0)
+        Me.DateTimePickerProcessingDate.Name = "DateTimePickerProcessingDate"
+        Me.DateTimePickerProcessingDate.Size = New System.Drawing.Size(176, 20)
+        Me.DateTimePickerProcessingDate.TabIndex = 89
         '
         'FormFinancialBook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(468, 339)
-        Me.Controls.Add(Me.lblInOntwikkeling)
+        Me.Controls.Add(Me.DateTimePickerProcessingDate)
         Me.Controls.Add(Me.cmdCKTRL)
         Me.Controls.Add(Me.CmdJournaalManueel)
         Me.Controls.Add(Me.LbUittrekselsLijst)
         Me.Controls.Add(Me.CbFinancialChoosen)
         Me.Controls.Add(Me.TbTekstLijn)
-        Me.Controls.Add(Me._TekstLijn_1)
         Me.Controls.Add(Me.BtnGenerateReport)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me._Label1_2)
@@ -216,11 +201,10 @@ End Sub
     Public WithEvents LbUittrekselsLijst As ListBox
     Public WithEvents CbFinancialChoosen As ComboBox
     Public WithEvents TbTekstLijn As TextBox
-    Public WithEvents _TekstLijn_1 As TextBox
     Public WithEvents BtnGenerateReport As Button
     Public WithEvents BtnClose As Button
     Public WithEvents _Label1_2 As Label
     Public WithEvents _Label1_0 As Label
     Public WithEvents _Label1_1 As Label
-    Friend WithEvents lblInOntwikkeling As Label
+    Friend WithEvents DateTimePickerProcessingDate As DateTimePicker
 End Class

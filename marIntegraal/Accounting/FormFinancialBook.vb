@@ -23,6 +23,8 @@ Public Class FormFinancialBook
     Dim ErrorMsg As String
     Dim JournaalManueelVlag As Boolean
 
+    Dim rsFinancial As ADODB.Recordset
+
     Private Sub FormFinancialBook_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Text = "Financieel Boeken " & Mid(Mim.Text, InStr(Mim.Text, "["))
@@ -33,80 +35,87 @@ Public Class FormFinancialBook
         '			Exit Sub
         '		End If
 
-        '		Dim T As Short
-        '		Dim A As String
-        '		Dim TempbModus As Short
+        Dim T As Short
+        Dim A As String
+        Dim TempbModus As Short
 
-        '		JournaalManueelVlag = False
-        '		Printer = Printers(LISTPRINTER_NUMBER)
-        '		On Error Resume Next
-        '		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
-        '		If Printer.Orientation = PrinterObjectConstants.vbPRORLandscape Then
-        '			chkAfdrukLiggend.CheckState = System.Windows.Forms.CheckState.Checked
-        '		Else
-        '			chkAfdrukLiggend.CheckState = System.Windows.Forms.CheckState.Unchecked
-        '		End If
-        '		chkAfdrukLiggend_CheckStateChanged(chkAfdrukLiggend, New System.EventArgs())
+        JournaalManueelVlag = False
 
-        '		TekstLijn(0).Text = FunctionDateText(VB.Left(BOOKYEAR_FROMTO.Value, 8)) & " - " & FunctionDateText(VB.Right(BOOKYEAR_FROMTO.Value, 8))
-        '		TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
-        '		PeriodFromChosen.Value = VB.Left(BOOKYEAR_FROMTO.Value, 8)
-        '		PeriodToChosen.Value = VB.Right(BOOKYEAR_FROMTO.Value, 8)
+        PeriodFromChosen = Mid(BOOKYEAR_FROMTO, 1, 8)
+        PeriodToChosen = Mid(BOOKYEAR_FROMTO, 9, 8)
+        TbTekstLijn.Text = FunctionDateText(PeriodFromChosen) & " - " & FunctionDateText(PeriodToChosen)
 
-        '		RecNummer(0) = 31
-        '		RekeningNummer(0) = String99(READING, 41)
+        RecNummer(0) = 31
+        RekeningNummer(0) = String99(READING, 41)
 
-        '		RecNummer(1) = 32
-        '		RekeningNummer(1) = String99(READING, 42)
+        RecNummer(1) = 32
+        RekeningNummer(1) = String99(READING, 42)
 
-        '		RecNummer(2) = 33
-        '		RekeningNummer(2) = String99(READING, 43)
+        RecNummer(2) = 33
+        RekeningNummer(2) = String99(READING, 43)
 
-        '		RecNummer(3) = 34
-        '		RekeningNummer(3) = String99(READING, 44)
+        RecNummer(3) = 34
+        RekeningNummer(3) = String99(READING, 44)
 
-        '		RecNummer(4) = 35
-        '		RekeningNummer(4) = String99(READING, 45)
+        RecNummer(4) = 35
+        RekeningNummer(4) = String99(READING, 45)
 
-        '		RecNummer(5) = 38
-        '		RekeningNummer(5) = String99(READING, 39)
+        RecNummer(5) = 38
+        RekeningNummer(5) = String99(READING, 39)
 
-        '		RecNummer(6) = 215
-        '		RekeningNummer(6) = String99(READING, 211)
+        RecNummer(6) = 215
+        RekeningNummer(6) = String99(READING, 211)
 
-        '		RecNummer(7) = 216
-        '		RekeningNummer(7) = String99(READING, 212)
+        RecNummer(7) = 216
+        RekeningNummer(7) = String99(READING, 212)
 
-        '		RecNummer(8) = 217
-        '		RekeningNummer(8) = String99(READING, 213)
+        RecNummer(8) = 217
+        RekeningNummer(8) = String99(READING, 213)
 
-        '		RecNummer(9) = 218
-        '		RekeningNummer(9) = String99(READING, 214)
+        RecNummer(9) = 218
+        RekeningNummer(9) = String99(READING, 214)
 
-        '		JetTableClose(TABLE_JOURNAL)
-        '		For T = 0 To 9
-        '			JetGet(TABLE_LEDGERACCOUNTS, 0, RekeningNummer(T))
-        '			If KTRL Then
-        '				A = RekeningNummer(T) & Chr(124) & "Niet aanwezig. Setup Boekjaar!"
-        '			Else
-        '				RecordToField(TABLE_LEDGERACCOUNTS)
-        '				A = RekeningNummer(T) & Chr(124) & RTrim(AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"))
-        '			End If
-        '			JetGetFirst(TABLE_JOURNAL, 0)
-        '			JetGetOrGreater(TABLE_JOURNAL, 0, RekeningNummer(T) & PeriodFromChosen.Value)
-        '			If KTRL Then
-        '			Else
-        '				If KEY_BUF(TABLE_JOURNAL) > RekeningNummer(T) & PeriodToChosen.Value Then
-        '				Else
-        '					KeuzeInfo(0).Items.Add(A)
-        '				End If
-        '			End If
-        '		Next 
-        '		If KeuzeInfo(0).Items.Count Then KeuzeInfo(0).SelectedIndex = 0
+        JetTableClose(TABLE_JOURNAL)
+        For T = 0 To 9
+            If RekeningNummer(T) = "" Then
+            Else
+                If GetFinancialBookRecordSet(SetSpacing(RekeningNummer(T), 7), PeriodFromChosen, PeriodToChosen) Then
+                    JetGet(TABLE_LEDGERACCOUNTS, 0, RekeningNummer(T))
+                    If KTRL Then
+                        A = RekeningNummer(T) & Chr(124) & "Niet aanwezig. Setup Boekjaar!"
+                    Else
+                        RecordToField(TABLE_LEDGERACCOUNTS)
+                        A = RekeningNummer(T) & Chr(124) & RTrim(AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"))
+                    End If
+                    CbFinancialChoosen.Items.Add(A)
+                End If
+            End If
+
+        Next
+        If CbFinancialChoosen.Items.Count Then CbFinancialChoosen.SelectedIndex = 0
 
     End Sub
 
+
+    Private Function GetFinancialBookRecordSet(accountNumber As String, keyFrom As String, keyTo As String) As Boolean
+
+        GetFinancialBookRecordSet = False
+
+        Dim sSQL As String
+        sSQL = "SELECT * FROM Journalen WHERE v070 >='" & accountNumber & keyFrom & "' AND v070 <= '" & accountNumber & keyTo & "' ORDER BY v070"
+
+        ' Create a recordset using the provided collection
+        rsFinancial = New ADODB.Recordset With {
+            .CursorLocation = ADODB.CursorLocationEnum.adUseClient
+        }
+        rsFinancial.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        If rsFinancial.RecordCount <= 0 Then
+            'Message something
+        Else
+            GetFinancialBookRecordSet = True
+        End If
+
+    End Function
     Sub DetailFinancieelStuk(ByRef DeString As String)
         Dim A As String
 
@@ -452,80 +461,50 @@ Public Class FormFinancialBook
 
     Private Sub CbFinancialChoosen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbFinancialChoosen.SelectedIndexChanged
 
-        '		Dim Index As Short = KeuzeInfo.GetIndex(eventSender)
-        '		Dim DummyText As String
-        '		Dim DCBedrag As Double
+        Dim DummyText As String
+        Dim DCBedrag As Double
 
-        '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-        '		Select Case Index
-        '			Case 0
-        '				UittrekselsLijst.Visible = False
-        '				UittrekselsLijst.Items.Clear()
-        '				JetGetFirst(TABLE_JOURNAL, 0)
-        '				JetGetOrGreater(TABLE_JOURNAL, 0, VB.Left(KeuzeInfo(0).Text, 7) & PeriodFromChosen.Value)
-        '				If KTRL Or KEY_BUF(TABLE_JOURNAL) > VB.Left(KeuzeInfo(0).Text, 7) & PeriodToChosen.Value Then
-        '					MsgBox("onlogische situatie")
-        '					GoTo EindeClick
-        '				Else
-        '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '					GoSub VoegErBij
-        '				End If
+        If GetFinancialBookRecordSet(Mid(CbFinancialChoosen.Text, 1, 7), PeriodFromChosen, PeriodToChosen) Then
+            Cursor.Current = Cursors.WaitCursor
+            LbUittrekselsLijst.Visible = False
+            LbUittrekselsLijst.Items.Clear()
 
-        '				Do 
-        '					bNext(TABLE_JOURNAL)
-        '					If KTRL Or KEY_BUF(TABLE_JOURNAL) > VB.Left(KeuzeInfo(0).Text, 7) & PeriodToChosen.Value Then
-        '						Exit Do
-        '					Else
-        '						'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '						GoSub VoegErBij
-        '					End If
-        '				Loop 
-        '				If UittrekselsLijst.Items.Count Then UittrekselsLijst.SelectedIndex = 0
-        '				UittrekselsLijst.Visible = True
-        '			Case Else
-        '		End Select
+            rsFinancial.MoveFirst()
+            Do While Not rsFinancial.EOF
 
-        'EindeClick: 
-        '		'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
-        '		'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'
-        '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '		System.Windows.Forms.Cursor.Current = vbNormal
-        '		On Error Resume Next
-        '		'UittrekselsLijst.SetFocus
-        '		Exit Sub
+                DummyText = rsFinancial.Fields("v038").Value + " " + Chr(124) + " "
+                DummyText = DummyText & FunctionDateText(rsFinancial.Fields("v066").Value.ToString) & " " & Chr(124) & " "
+                DummyText = DummyText & SetSpacing(rsFinancial.Fields("v067").Value.ToString, 30) & " " & Chr(124) & " "
 
-        'VoegErBij: 
-        '		RecordToField(TABLE_JOURNAL)
-        '		If Len(AdoGetField(TABLE_JOURNAL, "#v038 #")) <> 8 Then
-        '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '			Return 
-        '			'DummyText = AdoGetField(TABLE_JOURNAL, "#v033 #") + " " + Chr$(124) + " "
-        '		Else
-        '			DummyText = AdoGetField(TABLE_JOURNAL, "#v038 #") & " " & Chr(124) & " "
-        '		End If
-        '		DummyText = DummyText & FunctionDateText(AdoGetField(TABLE_JOURNAL, "#v066 #")) & " " & Chr(124) & " "
-        '		DummyText = DummyText & SetSpacing(AdoGetField(TABLE_JOURNAL, "#v067 #"), 30) & Chr(124)
-        '		DCBedrag = Val(AdoGetField(TABLE_JOURNAL, "#v068 #"))
-        '		Select Case DCBedrag
-        '			Case Is < 0
-        '				DummyText = DummyText & Dec(0, MASK_EURBH) & Chr(124) & Dec(System.Math.Abs(DCBedrag), MASK_EURBH)
-        '			Case Else
-        '				DummyText = DummyText & Dec(System.Math.Abs(DCBedrag), MASK_EURBH) & Chr(124) & Dec(0, MASK_EURBH)
-        '		End Select
-        '		UittrekselsLijst.Items.Add(DummyText)
-        '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '		Return 
+                DCBedrag = Val(rsFinancial.Fields("v068").Value)
+                Select Case DCBedrag
+                    Case Is < 0
+                        DummyText = DummyText & Dec(0, MASK_EURBH) & Chr(124) & Dec(Math.Abs(DCBedrag), MASK_EURBH)
+                    Case Else
+                        DummyText = DummyText & Dec(System.Math.Abs(DCBedrag), MASK_EURBH) & Chr(124) & Dec(0, MASK_EURBH)
+                End Select
+                LbUittrekselsLijst.Items.Add(DummyText)
+                rsFinancial.MoveNext()
+            Loop
+            If LbUittrekselsLijst.Items.Count Then LbUittrekselsLijst.SelectedIndex = 0
+            LbUittrekselsLijst.Visible = True
 
+            Cursor.Current = Cursors.Default
+            On Error Resume Next
+            LbUittrekselsLijst.Select()
+        End If
 
     End Sub
 
     Private Sub LbUittrekselsLijst_KeyDown(sender As Object, e As KeyEventArgs) Handles LbUittrekselsLijst.KeyDown
 
-        Dim KeyCode As Short = sender.KeyCode
-        Dim Shift As Short = sender.KeyData \ &H10000
+        'Dim KeyCode = sender.KeyCode
+        'Dim Shift = sender.KeyData \ &H10000
 
-        If KeyCode = 13 Then DetailFinancieelStuk(Mid(LbUittrekselsLijst.Text, 1, 8))
+        'If KeyCode = 13 Then DetailFinancieelStuk(Mid(LbUittrekselsLijst.Text, 1, 8))
+
+        'MessageBox.Show(sender.KeyCode.ToString() & " " & sender.KeyData.ToString())
+        'MessageBox.Show(e.KeyCode.ToString() & " " & e.KeyData.ToString())
 
     End Sub
 
