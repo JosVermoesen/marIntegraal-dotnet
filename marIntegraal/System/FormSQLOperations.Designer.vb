@@ -283,8 +283,11 @@ Partial Class SqlOperations
         '
         Me.DgvSQL.AllowUserToAddRows = False
         Me.DgvSQL.AllowUserToDeleteRows = False
+        Me.DgvSQL.AllowUserToResizeRows = False
+        Me.DgvSQL.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.DgvSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvSQL.Location = New System.Drawing.Point(3, 4)
+        Me.DgvSQL.MultiSelect = False
         Me.DgvSQL.Name = "DgvSQL"
         Me.DgvSQL.ReadOnly = True
         Me.DgvSQL.Size = New System.Drawing.Size(518, 276)

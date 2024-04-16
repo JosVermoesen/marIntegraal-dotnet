@@ -125,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="SupportiveForms\FormInfoDetail.Designer.vb">
+      <DependentUpon>FormInfoDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SupportiveForms\FormInfoDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SupportiveForms\frmAankoopEdit.Designer.vb">
       <DependentUpon>frmAankoopEdit.vb</DependentUpon>
     </Compile>
@@ -432,6 +438,9 @@
     <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SupportiveForms\FormInfoDetail.resx">
+      <DependentUpon>FormInfoDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupportiveForms\frmAankoopEdit.resx">
       <DependentUpon>frmAankoopEdit.vb</DependentUpon>
     </EmbeddedResource>

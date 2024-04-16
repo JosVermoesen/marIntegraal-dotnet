@@ -24,16 +24,11 @@ Public Class FormFinancialBook
     Dim JournaalManueelVlag As Boolean
 
     Dim rsFinancial As ADODB.Recordset
+    Dim rsFinancialDayDetail As ADODB.Recordset
 
     Private Sub FormFinancialBook_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Text = "Financieel Boeken " & Mid(Mim.Text, InStr(Mim.Text, "["))
-        '		Dim Printer As New Printer
-
-        '		If Not Toegankelijk(Me) Then
-        '			Me.Close()
-        '			Exit Sub
-        '		End If
 
         Dim T As Short
         Dim A As String
@@ -96,7 +91,6 @@ Public Class FormFinancialBook
 
     End Sub
 
-
     Private Function GetFinancialBookRecordSet(accountNumber As String, keyFrom As String, keyTo As String) As Boolean
 
         GetFinancialBookRecordSet = False
@@ -116,124 +110,49 @@ Public Class FormFinancialBook
         End If
 
     End Function
-    Sub DetailFinancieelStuk(ByRef DeString As String)
-        Dim A As String
 
-        '       InfoScherm.Close()
-        '		'UPGRADE_ISSUE: Load statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B530EFF2-3132-48F8-B8BC-D88AF543D321"'
-        '		Load(InfoScherm)
-        '		InfoScherm.Text = InfoScherm.Text & ", Journaaldetail voor uittreksel : " & DeString
-        '		InfoScherm.X.Rows = 2
-        '		InfoScherm.X.Cols = 8
-        '		InfoScherm.X.Col = 0
-        '		InfoScherm.X.Row = 0
-        '		InfoScherm.X.Text = "Datum (v066)"
-        '		InfoScherm.X.set_ColAlignment(0, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.Col = 1
-        '		InfoScherm.X.Text = "Rekening (v019)"
-        '		InfoScherm.X.set_ColAlignment(1, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.Col = 2
-        '		InfoScherm.X.Text = "Naam (v020)"
-        '		InfoScherm.X.set_ColAlignment(2, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.Col = 3
-        '		InfoScherm.X.Text = "Bedrag (dece068)"
-        '		InfoScherm.X.set_ColAlignment(3, MSFlexGridLib.AlignmentSettings.flexAlignGeneral)
-        '		InfoScherm.X.Col = 4
-        '		InfoScherm.X.Text = "Boekingsomschrijving (v067)"
-        '		InfoScherm.X.set_ColAlignment(4, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.Col = 5
-        '		InfoScherm.X.Text = "AV Dokum. (v033)"
-        '		InfoScherm.X.set_ColAlignment(5, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.Col = 6
-        '		InfoScherm.X.Text = "TegenRek. (v069)"
-        '		InfoScherm.X.set_ColAlignment(6, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.Col = 7
-        '		InfoScherm.X.Text = "vsfRecord"
+    Private Function GetFinancialDayDetailRecordSet(accountStatement As String) As Boolean
 
-        '		JetGet(TABLE_JOURNAL, 2, SetSpacing(DeString, 8))
-        '		If KTRL Then
-        '			Beep()
-        '			MsgBox("Geen journaallijnen voor " & DeString)
-        '			Exit Sub
-        '		Else
-        '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '			System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-        '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '			GoSub VolgendeLijn
-        '			Do 
-        '				bNext(TABLE_JOURNAL)
-        '				If KTRL Or KEY_BUF(TABLE_JOURNAL) <> DeString Then
-        '					Exit Do
-        '				Else
-        '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '					GoSub VolgendeLijn
-        '				End If
-        '			Loop 
-        '		End If
-        '		'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
-        '		'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'
-        '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '		System.Windows.Forms.Cursor.Current = vbNormal
+        GetFinancialDayDetailRecordSet = False
 
-        'OpHetScherm: 
-        '		InfoScherm.X.Row = 1
-        '		InfoScherm.X.Col = 0
+        Dim sSQL As String = "SELECT Journalen.v066 AS [Datum], Journalen.v019 AS [Rekening], Rekeningen.v020 AS [Naam], Journalen.v068 AS [Bedrag], Journalen.v067 AS [Boekomschrijving], Journalen.v033 AS [AV Document], Journalen.v069 AS [Tegenrekening] FROM Journalen, Rekeningen WHERE Journalen.v038 ='" & accountStatement & "' AND Journalen.v019 = Rekeningen.v019"
 
-        '		InfoScherm.X.set_ColWidth(0, 1005)
-        '		InfoScherm.X.set_ColWidth(1, 765)
-        '		InfoScherm.X.set_ColWidth(2, 2160)
-        '		InfoScherm.X.set_ColWidth(3, 750)
-        '		InfoScherm.X.set_ColWidth(4, 1950)
-        '		InfoScherm.X.set_ColWidth(5, 1150)
-        '		InfoScherm.X.set_ColWidth(6, 870)
-        '		InfoScherm.X.set_ColWidth(7, 6000)
-        '		InfoScherm.X.set_ColAlignment(0, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.set_ColAlignment(1, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.set_ColAlignment(2, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.set_ColAlignment(3, MSFlexGridLib.AlignmentSettings.flexAlignGeneral)
-        '		InfoScherm.X.set_ColAlignment(4, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.set_ColAlignment(5, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.set_ColAlignment(6, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
-        '		InfoScherm.X.set_ColAlignment(7, MSFlexGridLib.AlignmentSettings.flexAlignLeftCenter)
+        ' Create a recordset using the provided collection
+        rsFinancialDayDetail = New ADODB.Recordset With {
+            .CursorType = ADODB.CursorTypeEnum.adOpenForwardOnly,
+            .LockType = ADODB.LockTypeEnum.adLockReadOnly,
+            .CursorLocation = ADODB.CursorLocationEnum.adUseClient
+        }
+        rsFinancialDayDetail.Open(sSQL, AD_NTDB)
+        If Err.Number Then
+            MsgBox("SQLQuery: " & sSQL & vbCrLf & vbCrLf & "Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
+        End If
 
-        'XLogShow: 
-        '		InfoScherm.ShowDialog()
-        '		InfoScherm.Close()
-        '		Exit Sub
+        If rsFinancialDayDetail.RecordCount <= 0 Then
+            'Message something
+        Else
+            GetFinancialDayDetailRecordSet = True
+        End If
 
-        'VolgendeLijn: 
-        '		RecordToField(TABLE_JOURNAL)
-        '		If SetSpacing(AdoGetField(TABLE_JOURNAL, "#v019 #"), 7) = VB.Left(KeuzeInfo(0).Text, 7) Then
-        '			'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '			Return 
-        '		ElseIf FunctionDateText(AdoGetField(TABLE_JOURNAL, "#v066 #")) <> Mid(UittrekselsLijst.Text, 12, 10) Then 
-        '			If Not JournaalManueelVlag Then
-        '				'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '				Return 
-        '			End If
-        '		ElseIf RTrim(AdoGetField(TABLE_JOURNAL, "#v019 #")) <> "" Then 
-        '			If SetSpacing(AdoGetField(TABLE_JOURNAL, "#v069 #"), 7) <> VB.Left(KeuzeInfo(0).Text, 7) Then
-        '				'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '				Return 
-        '			End If
-        '		End If
-        '		A = FunctionDateText(AdoGetField(TABLE_JOURNAL, "#v066 #")) & vbTab
-        '		A = A & AdoGetField(TABLE_JOURNAL, "#v019 #") & vbTab
-        '		JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(AdoGetField(TABLE_JOURNAL, "#v019 #"), 7))
-        '		If KTRL Then
-        '			A = A & "//" & vbTab
-        '		Else
-        '			RecordToField(TABLE_LEDGERACCOUNTS)
-        '			A = A & AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #") & vbTab
-        '		End If
-        '		A = A & RS_MAR(TABLE_JOURNAL).Fields("v068").Value & vbTab
-        '		A = A & RS_MAR(TABLE_JOURNAL).Fields("v067").Value & vbTab
-        '		A = A & RS_MAR(TABLE_JOURNAL).Fields("v033").Value & vbTab
-        '		A = A & RS_MAR(TABLE_JOURNAL).Fields("v069").Value & vbTab
-        '		A = A & TLB_RECORD(TABLE_JOURNAL)
-        '		InfoScherm.X.AddItem(A, InfoScherm.X.Rows - 1)
-        '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '		Return 
+    End Function
+
+    Sub DetailFinancieelStuk(statementString As String)
+
+        Dim ktrl = GetFinancialDayDetailRecordSet(statementString)
+        If Not ktrl Then
+            MsgBox("Geen journaallijnen voor uittreksel " & statementString)
+            Exit Sub
+        End If
+
+        FormInfoDetail.Close()
+        FormInfoDetail.Text = "Journaaldetail voor uittreksel: " + statementString
+
+        Dim dt As DataTable = rsFinancialDayDetail.ADODBRSetToDataTable() ' Convert ADODB recordset to DataTable
+        Dim view As New DataView(dt) ' Create a DataView from the DataTable
+        ' Now we can work with the data using the 'view' variable.
+        FormInfoDetail.DgvSQL.DataSource = view
+        FormInfoDetail.Width = 694
+        FormInfoDetail.ShowDialog()
 
     End Sub
 
@@ -449,13 +368,7 @@ Public Class FormFinancialBook
 
     Private Sub UittrekselsLijst_DoubleClick(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles LbUittrekselsLijst.DoubleClick
 
-        '		DetailFinancieelStuk(Mid(UittrekselsLijst.Text, 1, 8))
-
-    End Sub
-
-    Private Sub UittrekselsLijst_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles LbUittrekselsLijst.Enter
-
-        '		SnelHelpPrint("[Enter] of dubbelklikken voor detail.", BL_LOGGING)
+        DetailFinancieelStuk(Mid(LbUittrekselsLijst.Text, 1, 8))
 
     End Sub
 
