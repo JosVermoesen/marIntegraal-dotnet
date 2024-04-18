@@ -146,7 +146,7 @@ End Class
 
 
 
-'	Private Sub PrintTotal()
+'	Private Sub PrintEndTotal()
 '		Dim Printer As New Printer
 '		Dim T As Short
 '		Dim aa As Object
@@ -422,7 +422,7 @@ End Class
 '			FieldText(7) = grdDokumentDetail.get_TextMatrix(Teller, 8)
 '			VpePrintLines()
 '		Next 
-'		PrintTotal()
+'		PrintEndTotal()
 '		If chkAfdrukInVenster.CheckState = 0 Then Printer.EndDoc()
 '		'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
 '		'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'

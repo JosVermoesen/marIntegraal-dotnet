@@ -23,7 +23,6 @@ Partial Class FormFinancialBook
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.cmdCKTRL = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.CmdJournaalManueel = New System.Windows.Forms.Button()
         Me.LbUittrekselsLijst = New System.Windows.Forms.ListBox()
@@ -36,19 +35,6 @@ Partial Class FormFinancialBook
         Me._Label1_1 = New System.Windows.Forms.Label()
         Me.DateTimePickerProcessingDate = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
-        '
-        'cmdCKTRL
-        '
-        Me.cmdCKTRL.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdCKTRL.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdCKTRL.Location = New System.Drawing.Point(291, 312)
-        Me.cmdCKTRL.Name = "cmdCKTRL"
-        Me.cmdCKTRL.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdCKTRL.Size = New System.Drawing.Size(61, 21)
-        Me.cmdCKTRL.TabIndex = 25
-        Me.cmdCKTRL.TabStop = False
-        Me.cmdCKTRL.Text = "cKTRL"
-        Me.cmdCKTRL.UseVisualStyleBackColor = False
         '
         'CmdJournaalManueel
         '
@@ -97,7 +83,7 @@ Partial Class FormFinancialBook
         Me.TbTekstLijn.Name = "TbTekstLijn"
         Me.TbTekstLijn.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.TbTekstLijn.Size = New System.Drawing.Size(169, 20)
-        Me.TbTekstLijn.TabIndex = 18
+        Me.TbTekstLijn.TabIndex = 2
         '
         'BtnGenerateReport
         '
@@ -146,7 +132,7 @@ Partial Class FormFinancialBook
         Me._Label1_0.Name = "_Label1_0"
         Me._Label1_0.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me._Label1_0.Size = New System.Drawing.Size(135, 18)
-        Me._Label1_0.TabIndex = 17
+        Me._Label1_0.TabIndex = 1
         Me._Label1_0.Text = "Afdrukperiode Van - &Tot"
         '
         '_Label1_1
@@ -177,7 +163,6 @@ Partial Class FormFinancialBook
         Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(468, 339)
         Me.Controls.Add(Me.DateTimePickerProcessingDate)
-        Me.Controls.Add(Me.cmdCKTRL)
         Me.Controls.Add(Me.CmdJournaalManueel)
         Me.Controls.Add(Me.LbUittrekselsLijst)
         Me.Controls.Add(Me.CbFinancialChoosen)
@@ -188,14 +173,12 @@ Partial Class FormFinancialBook
         Me.Controls.Add(Me._Label1_0)
         Me.Controls.Add(Me._Label1_1)
         Me.Name = "FormFinancialBook"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FinancialBook"
         Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
-
-    Public WithEvents cmdCKTRL As Button
     Public WithEvents ToolTip1 As ToolTip
     Public WithEvents CmdJournaalManueel As Button
     Public WithEvents LbUittrekselsLijst As ListBox

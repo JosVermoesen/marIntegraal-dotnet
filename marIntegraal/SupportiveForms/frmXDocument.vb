@@ -34,7 +34,7 @@ End Class
 '	Dim tMaxField As Short
 
 
-'	Private Sub PrintTotal()
+'	Private Sub PrintEndTotal()
 '		Dim Printer As New Printer
 '		Dim T As Short
 
@@ -549,7 +549,7 @@ End Class
 '				End If
 '			Loop 
 '		End If
-'		PrintTotal()
+'		PrintEndTotal()
 '		Printer.EndDoc()
 '		If bhKontrole = True Then
 '			AfschrijvingenLijstOk = False

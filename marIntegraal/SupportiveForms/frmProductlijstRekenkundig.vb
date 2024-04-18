@@ -124,7 +124,7 @@ End Class
 '				GoSub PrintInfo
 '			End If
 '		Loop 
-'		PrintTotal()
+'		PrintEndTotal()
 '		If chkAfdrukInVenster.CheckState = 0 Then
 '			Printer.EndDoc()
 '		End If
@@ -351,7 +351,7 @@ End Class
 
 '	End Sub
 
-'	Private Sub PrintTotal()
+'	Private Sub PrintEndTotal()
 '		Dim Printer As New Printer
 '		Dim T As Short
 

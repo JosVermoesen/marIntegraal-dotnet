@@ -96,9 +96,8 @@ Public Class BSBook
 		If NumberHere Then
 			MsgBox("Binnen deze periode, zijn er reeds" & vbCrLf & "dokumenten opgenomen !", 0, "BTW aangifte kontroleren a.u.b. !")
 			BtnGenerateReport.Enabled = False
-		Else
-			'Drukken.Enabled = True
 		End If
+
 	End Sub
 
 	Sub AgfControl()
@@ -132,7 +131,7 @@ Public Class BSBook
 			End If
 			PeriodeMax -= 1
 		Loop
-jump:
+TryAgain:
 		If NumberHere Then
 			MsgBox("Periode " & Format(NumberHere, "00") & " reeds afgesloten...")
 			BtnGenerateReport.Visible = False
@@ -146,7 +145,7 @@ jump:
 				AdoInsertToRecord(TABLE_VARIOUS, Format(FormBYPERDAT.PeriodeBoekjaar.SelectedIndex + 1, "00"), "v091")
 				AdoInsertToRecord(TABLE_VARIOUS, "17" & AdoGetField(TABLE_VARIOUS, "#v090 #") & AdoGetField(TABLE_VARIOUS, "#v091 #"), "v005")
 				JetInsert(TABLE_VARIOUS, 1)
-				GoTo jump
+				GoTo TryAgain
 			Else
 				RecordToField(TABLE_VARIOUS)
 			End If
@@ -217,7 +216,7 @@ jump:
 
 				ReportFieldNr(10) = 99
 				ReportWay(10) = 1 'zoek flpartij kode+naam1
-				REPORT_FIELD(10) = "ID.Kode/Naam"
+				REPORT_FIELD(10) = "ID.Code/Naam"
 				REPORT_TAB(10) = 2
 
 				ReportFieldNr(11) = 53
@@ -542,7 +541,7 @@ jump:
 
 	Private Sub CumulUpdate(account As String, amount As Double)
 
-StartPunt:
+TryAgain:
 		JetGet(TABLE_DUMMY, 0, account)
 		If KTRL Then
 			TLB_RECORD(TABLE_DUMMY) = ""
@@ -550,7 +549,7 @@ StartPunt:
 			AdoInsertToRecord(TABLE_DUMMY, "0", "v013")
 			AdoInsertToRecord(TABLE_DUMMY, "0", "v068")
 			JetInsert(TABLE_DUMMY, 0)
-			GoTo StartPunt
+			GoTo TryAgain
 		Else
 			RecordToField(TABLE_DUMMY)
 			AdoInsertToRecord(TABLE_DUMMY, Str(Val(AdoGetField(TABLE_DUMMY, "#v013 #")) + 1), "v013")
@@ -701,8 +700,6 @@ StartPunt:
 		Else
 			pdfY = Mim.Report.Print(1, pdfY, vbCrLf)
 		End If
-
-
 
 		'		Dim BedragVK2 As Double
 		'		Dim BedragVK As Double
