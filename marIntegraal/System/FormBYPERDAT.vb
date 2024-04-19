@@ -42,8 +42,8 @@ Public Class FormBYPERDAT
                 A = periodesBJ(T)
                 If T = 0 Then
                     BOOKYEAR_FROMTO = Mid(A, 1, 8)
-                ElseIf T = UBound(periodesBJ) then
-                    BOOKYEAR_FROMTO = BOOKYEAR_FROMTO + Mid (A, 9, 8)
+                ElseIf T = UBound(periodesBJ) Then
+                    BOOKYEAR_FROMTO += Mid(A, 9, 8)
                 End If
                 
                 XX = Mid(A, 7, 2) & "/" & Mid(A, 5, 2) & "/" & Mid(A, 1, 4) & " - " & Mid(A, 15, 2) & "/" & Mid(A, 13, 2) & "/" & Mid(A, 9, 4)
@@ -89,6 +89,7 @@ Public Class FormBYPERDAT
         FlFree = FreeFile()
         FileOpen(FlFree, fullPath, OpenMode.Output)
         A = PeriodeBoekjaar.Text
+        PERIOD_INDEX = PeriodeBoekjaar.SelectedIndex
         PERIOD_FROMTO = Mid(A, 7, 4) & Mid(A, 4, 2) & Mid(A, 1, 2) & Mid(A, 20, 4) & Mid(A, 17, 2) & Mid(A, 14, 2)
         aA = Trim(Str(ACTIVE_BOOKYEAR)) & ","
         aA = aA & Boekjaar.Text & ","

@@ -126,6 +126,7 @@ Module ModLibs
     Public COUNT_TO As Short
 
     Public PERIOD_FROMTO As String ' New VB6.FixedLengthString(16)
+    Public PERIOD_INDEX As Short
     Public BOOKYEAR_FROMTO As String 'New VB6.FixedLengthString(16)
     Public ACTIVE_BOOKYEAR As Short
     Public MIM_GLOBAL_DATE As String 'New VB6.FixedLengthString(10)

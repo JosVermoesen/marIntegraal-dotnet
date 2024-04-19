@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<VATSENDING xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="F:\Intervat\Intervat.xsd">
+  <DECLARER>
+    <VATNUMBER>9999999999</VATNUMBER>
+    <NAME>Contactpersoon</NAME>
+    <ADDRESS>StraatContact</ADDRESS>
+    <POSTCODE>0000</POSTCODE>
+    <CITY>Plaatscontact</CITY>
+    <SENDINGREFERENCE>99999999900000</SENDINGREFERENCE>
+  </DECLARER>
+  <VATRECORD>
+    <RECNUM>1</RECNUM>
+    <VATNUMBER>0000000000</VATNUMBER>
+    <NAME>NaamBedrijf</NAME>
+    <ADDRESS>StraatBedrijf</ADDRESS>
+    <POSTCODE>9999</POSTCODE>
+    <CITY>PlaatsBedrijf</CITY>
+    <DPERIODE>
+      <QUARTERORMONTH>0</QUARTERORMONTH>
+      <YEAR>1985</YEAR>
+    </DPERIODE>
+    <ASK PAYMENT="NO" RESTITUTION="NO"/>
+    <DATA>
+      <DATA_ELEM>
+        <D0>0</D0>
+        <D1>0</D1>
+        <D2>0</D2>
+        <D3>0</D3>
+        <D45>0</D45>
+        <D46>0</D46>
+        <D47>0</D47>
+        <D48>0</D48>
+        <D49>0</D49>
+        <D54>0</D54>
+        <D55>0</D55>
+        <D56>0</D56>
+        <D57>0</D57>
+        <D59>0</D59>
+        <D61>0</D61>
+        <D62>0</D62>
+        <D63>0</D63>
+        <D64>0</D64>
+        <D71>0</D71>
+        <D81>0</D81>
+        <D82>0</D82>
+        <D83>0</D83>
+        <D84>0</D84>
+        <D85>0</D85>
+        <D86>0</D86>
+        <D87>0</D87>
+      </DATA_ELEM>
+    </DATA>
+  </VATRECORD>
+</VATSENDING>

@@ -379,7 +379,7 @@ Public Class Mim
         MessageBox.Show("VATDomesticAnnualListingMenuItem_Click")
     End Sub
     Private Sub VATReturnStatusMenuItem_Click(sender As Object, e As EventArgs)
-        Dim StatusVatDeclaration As New FormVatDeclaration
+        Dim StatusVatDeclaration As New FormVatDeclarations
         StatusVatDeclaration.ShowDialog()
     End Sub
     Private Sub InventoryControlMenuItem_Click(sender As Object, e As EventArgs)

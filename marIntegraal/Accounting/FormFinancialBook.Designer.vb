@@ -24,66 +24,66 @@ Partial Class FormFinancialBook
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CmdJournaalManueel = New System.Windows.Forms.Button()
-        Me.LbUittrekselsLijst = New System.Windows.Forms.ListBox()
-        Me.CbFinancialChoosen = New System.Windows.Forms.ComboBox()
-        Me.TbTekstLijn = New System.Windows.Forms.TextBox()
+        Me.BtnManualSearch = New System.Windows.Forms.Button()
+        Me.LbStatementsList = New System.Windows.Forms.ListBox()
+        Me.CbBankList = New System.Windows.Forms.ComboBox()
+        Me.TbFromTo = New System.Windows.Forms.TextBox()
         Me.BtnGenerateReport = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
-        Me._Label1_2 = New System.Windows.Forms.Label()
-        Me._Label1_0 = New System.Windows.Forms.Label()
-        Me._Label1_1 = New System.Windows.Forms.Label()
+        Me.LabelBancList = New System.Windows.Forms.Label()
+        Me.LabelFromTo = New System.Windows.Forms.Label()
+        Me.LabelDate = New System.Windows.Forms.Label()
         Me.DateTimePickerProcessingDate = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
-        'CmdJournaalManueel
+        'BtnManualSearch
         '
-        Me.CmdJournaalManueel.BackColor = System.Drawing.SystemColors.Control
-        Me.CmdJournaalManueel.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CmdJournaalManueel.Location = New System.Drawing.Point(363, 44)
-        Me.CmdJournaalManueel.Name = "CmdJournaalManueel"
-        Me.CmdJournaalManueel.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CmdJournaalManueel.Size = New System.Drawing.Size(96, 47)
-        Me.CmdJournaalManueel.TabIndex = 22
-        Me.CmdJournaalManueel.Text = "&Journalen Manueel Zoeken"
-        Me.CmdJournaalManueel.UseVisualStyleBackColor = False
+        Me.BtnManualSearch.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnManualSearch.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnManualSearch.Location = New System.Drawing.Point(363, 44)
+        Me.BtnManualSearch.Name = "BtnManualSearch"
+        Me.BtnManualSearch.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnManualSearch.Size = New System.Drawing.Size(96, 47)
+        Me.BtnManualSearch.TabIndex = 22
+        Me.BtnManualSearch.Text = "Manueel &Zoeken"
+        Me.BtnManualSearch.UseVisualStyleBackColor = False
         '
-        'LbUittrekselsLijst
+        'LbStatementsList
         '
-        Me.LbUittrekselsLijst.BackColor = System.Drawing.SystemColors.Window
-        Me.LbUittrekselsLijst.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbUittrekselsLijst.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.LbUittrekselsLijst.ItemHeight = 16
-        Me.LbUittrekselsLijst.Location = New System.Drawing.Point(1, 96)
-        Me.LbUittrekselsLijst.Name = "LbUittrekselsLijst"
-        Me.LbUittrekselsLijst.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LbUittrekselsLijst.Size = New System.Drawing.Size(457, 212)
-        Me.LbUittrekselsLijst.Sorted = True
-        Me.LbUittrekselsLijst.TabIndex = 15
+        Me.LbStatementsList.BackColor = System.Drawing.SystemColors.Window
+        Me.LbStatementsList.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbStatementsList.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.LbStatementsList.ItemHeight = 16
+        Me.LbStatementsList.Location = New System.Drawing.Point(1, 96)
+        Me.LbStatementsList.Name = "LbStatementsList"
+        Me.LbStatementsList.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.LbStatementsList.Size = New System.Drawing.Size(457, 212)
+        Me.LbStatementsList.Sorted = True
+        Me.LbStatementsList.TabIndex = 15
         '
-        'CbFinancialChoosen
+        'CbBankList
         '
-        Me.CbFinancialChoosen.BackColor = System.Drawing.Color.White
-        Me.CbFinancialChoosen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CbFinancialChoosen.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.CbFinancialChoosen.Location = New System.Drawing.Point(93, 72)
-        Me.CbFinancialChoosen.Name = "CbFinancialChoosen"
-        Me.CbFinancialChoosen.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CbFinancialChoosen.Size = New System.Drawing.Size(259, 21)
-        Me.CbFinancialChoosen.TabIndex = 14
+        Me.CbBankList.BackColor = System.Drawing.Color.White
+        Me.CbBankList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CbBankList.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.CbBankList.Location = New System.Drawing.Point(93, 72)
+        Me.CbBankList.Name = "CbBankList"
+        Me.CbBankList.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbBankList.Size = New System.Drawing.Size(259, 21)
+        Me.CbBankList.TabIndex = 14
         '
-        'TbTekstLijn
+        'TbFromTo
         '
-        Me.TbTekstLijn.AcceptsReturn = True
-        Me.TbTekstLijn.BackColor = System.Drawing.Color.White
-        Me.TbTekstLijn.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.TbTekstLijn.ForeColor = System.Drawing.Color.Black
-        Me.TbTekstLijn.Location = New System.Drawing.Point(1, 32)
-        Me.TbTekstLijn.MaxLength = 0
-        Me.TbTekstLijn.Name = "TbTekstLijn"
-        Me.TbTekstLijn.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TbTekstLijn.Size = New System.Drawing.Size(169, 20)
-        Me.TbTekstLijn.TabIndex = 2
+        Me.TbFromTo.AcceptsReturn = True
+        Me.TbFromTo.BackColor = System.Drawing.Color.White
+        Me.TbFromTo.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TbFromTo.ForeColor = System.Drawing.Color.Black
+        Me.TbFromTo.Location = New System.Drawing.Point(1, 32)
+        Me.TbFromTo.MaxLength = 0
+        Me.TbFromTo.Name = "TbFromTo"
+        Me.TbFromTo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TbFromTo.Size = New System.Drawing.Size(169, 20)
+        Me.TbFromTo.TabIndex = 2
         '
         'BtnGenerateReport
         '
@@ -111,41 +111,41 @@ Partial Class FormFinancialBook
         Me.BtnClose.Text = "Sluiten"
         Me.BtnClose.UseVisualStyleBackColor = False
         '
-        '_Label1_2
+        'LabelBancList
         '
-        Me._Label1_2.BackColor = System.Drawing.SystemColors.Control
-        Me._Label1_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me._Label1_2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me._Label1_2.Location = New System.Drawing.Point(-1, 64)
-        Me._Label1_2.Name = "_Label1_2"
-        Me._Label1_2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._Label1_2.Size = New System.Drawing.Size(71, 29)
-        Me._Label1_2.TabIndex = 13
-        Me._Label1_2.Text = "&Uittreksels periode"
+        Me.LabelBancList.BackColor = System.Drawing.SystemColors.Control
+        Me.LabelBancList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LabelBancList.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LabelBancList.Location = New System.Drawing.Point(3, 64)
+        Me.LabelBancList.Name = "LabelBancList"
+        Me.LabelBancList.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.LabelBancList.Size = New System.Drawing.Size(71, 29)
+        Me.LabelBancList.TabIndex = 13
+        Me.LabelBancList.Text = "&Uittreksels periode"
         '
-        '_Label1_0
+        'LabelFromTo
         '
-        Me._Label1_0.BackColor = System.Drawing.SystemColors.Control
-        Me._Label1_0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me._Label1_0.ForeColor = System.Drawing.SystemColors.ControlText
-        Me._Label1_0.Location = New System.Drawing.Point(3, 12)
-        Me._Label1_0.Name = "_Label1_0"
-        Me._Label1_0.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._Label1_0.Size = New System.Drawing.Size(135, 18)
-        Me._Label1_0.TabIndex = 1
-        Me._Label1_0.Text = "Afdrukperiode Van - &Tot"
+        Me.LabelFromTo.BackColor = System.Drawing.SystemColors.Control
+        Me.LabelFromTo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LabelFromTo.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LabelFromTo.Location = New System.Drawing.Point(3, 12)
+        Me.LabelFromTo.Name = "LabelFromTo"
+        Me.LabelFromTo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.LabelFromTo.Size = New System.Drawing.Size(135, 18)
+        Me.LabelFromTo.TabIndex = 1
+        Me.LabelFromTo.Text = "Afdrukperiode Van - &Tot"
         '
-        '_Label1_1
+        'LabelDate
         '
-        Me._Label1_1.BackColor = System.Drawing.SystemColors.Control
-        Me._Label1_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me._Label1_1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me._Label1_1.Location = New System.Drawing.Point(176, 12)
-        Me._Label1_1.Name = "_Label1_1"
-        Me._Label1_1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._Label1_1.Size = New System.Drawing.Size(93, 18)
-        Me._Label1_1.TabIndex = 19
-        Me._Label1_1.Text = "Datu&m Drukken"
+        Me.LabelDate.BackColor = System.Drawing.SystemColors.Control
+        Me.LabelDate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LabelDate.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LabelDate.Location = New System.Drawing.Point(176, 12)
+        Me.LabelDate.Name = "LabelDate"
+        Me.LabelDate.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.LabelDate.Size = New System.Drawing.Size(93, 18)
+        Me.LabelDate.TabIndex = 19
+        Me.LabelDate.Text = "Datu&m Drukken"
         '
         'DateTimePickerProcessingDate
         '
@@ -163,15 +163,15 @@ Partial Class FormFinancialBook
         Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(468, 339)
         Me.Controls.Add(Me.DateTimePickerProcessingDate)
-        Me.Controls.Add(Me.CmdJournaalManueel)
-        Me.Controls.Add(Me.LbUittrekselsLijst)
-        Me.Controls.Add(Me.CbFinancialChoosen)
-        Me.Controls.Add(Me.TbTekstLijn)
+        Me.Controls.Add(Me.BtnManualSearch)
+        Me.Controls.Add(Me.LbStatementsList)
+        Me.Controls.Add(Me.CbBankList)
+        Me.Controls.Add(Me.TbFromTo)
         Me.Controls.Add(Me.BtnGenerateReport)
         Me.Controls.Add(Me.BtnClose)
-        Me.Controls.Add(Me._Label1_2)
-        Me.Controls.Add(Me._Label1_0)
-        Me.Controls.Add(Me._Label1_1)
+        Me.Controls.Add(Me.LabelBancList)
+        Me.Controls.Add(Me.LabelFromTo)
+        Me.Controls.Add(Me.LabelDate)
         Me.Name = "FormFinancialBook"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FinancialBook"
@@ -180,14 +180,14 @@ Partial Class FormFinancialBook
 
 End Sub
     Public WithEvents ToolTip1 As ToolTip
-    Public WithEvents CmdJournaalManueel As Button
-    Public WithEvents LbUittrekselsLijst As ListBox
-    Public WithEvents CbFinancialChoosen As ComboBox
-    Public WithEvents TbTekstLijn As TextBox
+    Public WithEvents BtnManualSearch As Button
+    Public WithEvents LbStatementsList As ListBox
+    Public WithEvents CbBankList As ComboBox
+    Public WithEvents TbFromTo As TextBox
     Public WithEvents BtnGenerateReport As Button
     Public WithEvents BtnClose As Button
-    Public WithEvents _Label1_2 As Label
-    Public WithEvents _Label1_0 As Label
-    Public WithEvents _Label1_1 As Label
+    Public WithEvents LabelBancList As Label
+    Public WithEvents LabelFromTo As Label
+    Public WithEvents LabelDate As Label
     Friend WithEvents DateTimePickerProcessingDate As DateTimePicker
 End Class

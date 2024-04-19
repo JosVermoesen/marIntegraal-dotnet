@@ -28,9 +28,6 @@ Public Class FormFinancialBook
 
         Text = "Financieel Boeken " & Mid(Mim.Text, InStr(Mim.Text, "["))
 
-        Dim T As Short
-        Dim A As String
-
         If BH_EURO Then
             MaskHere = "#####0.00"
         Else
@@ -41,7 +38,7 @@ Public Class FormFinancialBook
         PeriodFromChosen = Mid(BOOKYEAR_FROMTO, 1, 8)
         PeriodToChosen = Mid(BOOKYEAR_FROMTO, 9, 8)
         PeriodFromToChosenInitial = FunctionDateText(PeriodFromChosen) & " - " & FunctionDateText(PeriodToChosen)
-        TbTekstLijn.Text = PeriodFromToChosenInitial
+        TbFromTo.Text = PeriodFromToChosenInitial
 
         RecNummer(0) = 31
         RekeningNummer(0) = String99(READING, 41)
@@ -79,7 +76,7 @@ Public Class FormFinancialBook
 
     Private Sub InitialiseChooseList()
 
-        CbFinancialChoosen.Items.Clear()
+        CbBankList.Items.Clear()
         JetTableClose(TABLE_JOURNAL)
         For T = 0 To 9
             If RekeningNummer(T) = "" Then
@@ -92,12 +89,12 @@ Public Class FormFinancialBook
                         RecordToField(TABLE_LEDGERACCOUNTS)
                         A = RekeningNummer(T) & Chr(124) & RTrim(AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"))
                     End If
-                    CbFinancialChoosen.Items.Add(A)
+                    CbBankList.Items.Add(A)
                 End If
             End If
 
         Next
-        If CbFinancialChoosen.Items.Count Then CbFinancialChoosen.SelectedIndex = 0
+        If CbBankList.Items.Count Then CbBankList.SelectedIndex = 0
 
     End Sub
 
@@ -268,7 +265,7 @@ TryAgain:
 
         ReportText(2) = "Financiëel Boek " & Mid(Mim.Text, InStr(Mim.Text, "["))
         ReportText(0) = Format(DateTimePickerProcessingDate.Value, "dd/MM/yyyy")
-        ReportText(3) = CbFinancialChoosen.Text & " " & TbTekstLijn.Text
+        ReportText(3) = CbBankList.Text & " " & TbFromTo.Text
 
         With Mim.Report
             .CloseDoc()
@@ -282,7 +279,7 @@ TryAgain:
         TotalCredit = 0
         PAGE_COUNTER = 0
 
-        If LbUittrekselsLijst.Items.Count = 0 Then
+        If LbStatementsList.Items.Count = 0 Then
             Exit Sub
         Else
             Cursor.Current = Cursors.WaitCursor
@@ -291,15 +288,15 @@ TryAgain:
 
             Dim AA As String = ""
 
-            For T = 0 To LbUittrekselsLijst.Items.Count - 1
+            For T = 0 To LbStatementsList.Items.Count - 1
 
                 'skip first record dayTotal
-                AA = LbUittrekselsLijst.Items(T).ToString
+                AA = LbStatementsList.Items(T).ToString
 
                 GetRSForDayDetailReport(Mid(AA, 1, 8))
                 rsFinancialDayDetail.MoveFirst()
                 FieldText(0) = Mid(AA, 12, 10)
-                FieldText(1) = Mid(CbFinancialChoosen.Text, 1, 7)
+                FieldText(1) = Mid(CbBankList.Text, 1, 7)
                 FieldText(2) = Mid(AA, 25, 30)
                 FieldText(3) = "DS/CS Saldo van het uittreksel"
                 FieldText(4) = Mid(AA, 58, 12)
@@ -464,22 +461,21 @@ TryAgain:
 
     End Sub
 
-    Private Sub UittrekselsLijst_DoubleClick(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles LbUittrekselsLijst.DoubleClick
+    Private Sub UittrekselsLijst_DoubleClick(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles LbStatementsList.DoubleClick
 
-        Dim inScreen As Boolean = True
-        DetailForInfoForm(Mid(LbUittrekselsLijst.Text, 1, 8))
+        DetailForInfoForm(Mid(LbStatementsList.Text, 1, 8))
 
     End Sub
 
-    Private Sub CbFinancialChoosen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbFinancialChoosen.SelectedIndexChanged
+    Private Sub CbFinancialChoosen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbBankList.SelectedIndexChanged
 
         Dim DummyText As String
         Dim DCBedrag As Double
 
-        If GetRSFinancialBook(Mid(CbFinancialChoosen.Text, 1, 7), PeriodFromChosen, PeriodToChosen) Then
+        If GetRSFinancialBook(Mid(CbBankList.Text, 1, 7), PeriodFromChosen, PeriodToChosen) Then
             Cursor.Current = Cursors.WaitCursor
-            LbUittrekselsLijst.Visible = False
-            LbUittrekselsLijst.Items.Clear()
+            LbStatementsList.Visible = False
+            LbStatementsList.Items.Clear()
 
             rsFinancial.MoveFirst()
             Do While Not rsFinancial.EOF
@@ -495,23 +491,23 @@ TryAgain:
                     Case Else
                         DummyText = DummyText & Dec(System.Math.Abs(DCBedrag), MASK_EURBH) & Chr(124) & Dec(0, MASK_EURBH)
                 End Select
-                LbUittrekselsLijst.Items.Add(DummyText)
+                LbStatementsList.Items.Add(DummyText)
                 rsFinancial.MoveNext()
             Loop
-            If LbUittrekselsLijst.Items.Count Then LbUittrekselsLijst.SelectedIndex = 0
-            LbUittrekselsLijst.Visible = True
+            If LbStatementsList.Items.Count Then LbStatementsList.SelectedIndex = 0
+            LbStatementsList.Visible = True
 
             Cursor.Current = Cursors.Default
             On Error Resume Next
-            LbUittrekselsLijst.Select()
+            LbStatementsList.Select()
         End If
 
     End Sub
 
-    Private Sub LbUittrekselsLijst_KeyDown(sender As Object, e As KeyEventArgs) Handles LbUittrekselsLijst.KeyDown
+    Private Sub LbUittrekselsLijst_KeyDown(sender As Object, e As KeyEventArgs) Handles LbStatementsList.KeyDown
 
         Dim KeyCode = e.KeyCode
-        If KeyCode = 13 Then DetailForInfoForm(Mid(LbUittrekselsLijst.Text, 1, 8))
+        If KeyCode = 13 Then DetailForInfoForm(Mid(LbStatementsList.Text, 1, 8))
 
     End Sub
 
@@ -521,25 +517,25 @@ TryAgain:
 
     End Sub
 
-    Private Sub TbTekstLijn_Leave(sender As Object, e As EventArgs) Handles TbTekstLijn.Leave
+    Private Sub TbTekstLijn_Leave(sender As Object, e As EventArgs) Handles TbFromTo.Leave
 
         '		Dim Index As Short = TekstLijn.GetIndex(eventSender)
         '		Dim T As Short
         '		Dim A As String
 
-        If Len(TbTekstLijn.Text) <> 23 Then
+        If Len(TbFromTo.Text) <> 23 Then
             MsgBox("Respecteer : " & vbCrLf & vbCrLf & "DD/MM/EEJJ - DD/MM/EEJJ a.u.b. !")
-            TbTekstLijn.Text = PeriodFromToChosenInitial
-            TbTekstLijn.Focus()
+            TbFromTo.Text = PeriodFromToChosenInitial
+            TbFromTo.Focus()
         Else
-            PeriodFromChosen = Mid(TbTekstLijn.Text, 7, 4) & Mid(TbTekstLijn.Text, 4, 2) & Mid(TbTekstLijn.Text, 1, 2)
-            PeriodToChosen = Mid(TbTekstLijn.Text, 20, 4) & Mid(TbTekstLijn.Text, 17, 2) & Mid(TbTekstLijn.Text, 14, 2)
+            PeriodFromChosen = Mid(TbFromTo.Text, 7, 4) & Mid(TbFromTo.Text, 4, 2) & Mid(TbFromTo.Text, 1, 2)
+            PeriodToChosen = Mid(TbFromTo.Text, 20, 4) & Mid(TbFromTo.Text, 17, 2) & Mid(TbFromTo.Text, 14, 2)
             InitialiseChooseList()
         End If
 
     End Sub
 
-    Private Sub CmdJournaalManueel_Click(sender As Object, e As EventArgs) Handles CmdJournaalManueel.Click
+    Private Sub CmdJournaalManueel_Click(sender As Object, e As EventArgs) Handles BtnManualSearch.Click
 
         Dim KtrlInput As String
 
@@ -547,12 +543,12 @@ TryAgain:
         If KtrlInput = "" Then
             Exit Sub
         ElseIf Len(KtrlInput) <> 8 Then
-            MSG = "dokumentnummer bestaat uit 8 tekens !" & vbCrLf & vbCrLf
+            MSG = "Documentnummer moet uit 8 tekens bestaan!" & vbCrLf & vbCrLf
             MSG = MSG & "Voorbeeld:" & vbCrLf
             MSG = MSG & "Rekening 'GB', werkelijk jaar 19'98'," & vbCrLf
             MSG = MSG & "uittreksel 124, geeft als dokumentnummer:" & vbCrLf & vbCrLf
-            MSG = MSG & "GB980124"
-            MsgBox(MSG)
+            MSG &= "GB980124"
+            MsgBox(MSG, MsgBoxStyle.Critical)
             Exit Sub
         End If
         DetailForInfoForm(KtrlInput)
