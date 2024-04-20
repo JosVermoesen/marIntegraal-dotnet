@@ -22,8 +22,6 @@ Partial Class ntInputbox
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ntInputbox))
         Me.cmdVooruit = New System.Windows.Forms.Button()
         Me.Hernieuw = New System.Windows.Forms.Button()
         Me.cmdAchteruit = New System.Windows.Forms.Button()
@@ -38,7 +36,7 @@ Partial Class ntInputbox
         Me.cmdVooruit.BackColor = System.Drawing.SystemColors.Control
         Me.cmdVooruit.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdVooruit.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdVooruit.Location = New System.Drawing.Point(236, 76)
+        Me.cmdVooruit.Location = New System.Drawing.Point(236, 44)
         Me.cmdVooruit.Name = "cmdVooruit"
         Me.cmdVooruit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdVooruit.Size = New System.Drawing.Size(33, 25)
@@ -51,7 +49,7 @@ Partial Class ntInputbox
         Me.Hernieuw.BackColor = System.Drawing.SystemColors.Control
         Me.Hernieuw.Cursor = System.Windows.Forms.Cursors.Default
         Me.Hernieuw.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Hernieuw.Location = New System.Drawing.Point(276, 76)
+        Me.Hernieuw.Location = New System.Drawing.Point(276, 44)
         Me.Hernieuw.Name = "Hernieuw"
         Me.Hernieuw.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Hernieuw.Size = New System.Drawing.Size(97, 25)
@@ -66,7 +64,7 @@ Partial Class ntInputbox
         Me.cmdAchteruit.BackColor = System.Drawing.SystemColors.Control
         Me.cmdAchteruit.Cursor = System.Windows.Forms.Cursors.Default
         Me.cmdAchteruit.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdAchteruit.Location = New System.Drawing.Point(12, 76)
+        Me.cmdAchteruit.Location = New System.Drawing.Point(12, 44)
         Me.cmdAchteruit.Name = "cmdAchteruit"
         Me.cmdAchteruit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdAchteruit.Size = New System.Drawing.Size(33, 25)
@@ -80,10 +78,10 @@ Partial Class ntInputbox
         Me.Sluiten.Cursor = System.Windows.Forms.Cursors.Default
         Me.Sluiten.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Sluiten.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Sluiten.Location = New System.Drawing.Point(376, 45)
+        Me.Sluiten.Location = New System.Drawing.Point(376, 12)
         Me.Sluiten.Name = "Sluiten"
         Me.Sluiten.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Sluiten.Size = New System.Drawing.Size(81, 25)
+        Me.Sluiten.Size = New System.Drawing.Size(81, 26)
         Me.Sluiten.TabIndex = 10
         Me.Sluiten.TabStop = False
         Me.Sluiten.Text = "Negeren"
@@ -94,10 +92,10 @@ Partial Class ntInputbox
         Me.Ok.BackColor = System.Drawing.SystemColors.Control
         Me.Ok.Cursor = System.Windows.Forms.Cursors.Default
         Me.Ok.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Ok.Location = New System.Drawing.Point(380, 44)
+        Me.Ok.Location = New System.Drawing.Point(376, 12)
         Me.Ok.Name = "Ok"
         Me.Ok.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Ok.Size = New System.Drawing.Size(81, 25)
+        Me.Ok.Size = New System.Drawing.Size(81, 26)
         Me.Ok.TabIndex = 9
         Me.Ok.TabStop = False
         Me.Ok.Text = "&Ok"
@@ -106,10 +104,11 @@ Partial Class ntInputbox
         'TekstInfo
         '
         Me.TekstInfo.AllowPromptAsInput = False
-        Me.TekstInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TekstInfo.Location = New System.Drawing.Point(12, 44)
+        Me.TekstInfo.BackColor = System.Drawing.Color.White
+        Me.TekstInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TekstInfo.Location = New System.Drawing.Point(12, 12)
         Me.TekstInfo.Name = "TekstInfo"
-        Me.TekstInfo.Size = New System.Drawing.Size(361, 20)
+        Me.TekstInfo.Size = New System.Drawing.Size(361, 26)
         Me.TekstInfo.TabIndex = 8
         '
         'lblInfo
@@ -118,7 +117,7 @@ Partial Class ntInputbox
         Me.lblInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblInfo.Cursor = System.Windows.Forms.Cursors.Default
         Me.lblInfo.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblInfo.Location = New System.Drawing.Point(50, 76)
+        Me.lblInfo.Location = New System.Drawing.Point(50, 44)
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.lblInfo.Size = New System.Drawing.Size(177, 25)
@@ -129,7 +128,7 @@ Partial Class ntInputbox
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Sluiten
-        Me.ClientSize = New System.Drawing.Size(469, 133)
+        Me.ClientSize = New System.Drawing.Size(470, 81)
         Me.Controls.Add(Me.cmdVooruit)
         Me.Controls.Add(Me.Hernieuw)
         Me.Controls.Add(Me.cmdAchteruit)

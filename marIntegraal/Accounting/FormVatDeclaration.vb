@@ -95,10 +95,11 @@ Public Class FormVatDeclarations
 
         If AdoGetField(TABLE_VARIOUS, "#i001 #") = "" Then
             MsgBox("Aan- en verkoopboeken voor Intervat nog af te drukken.  Intervat tabblad blijft uitgeschakeld.  Intervat enkel mogelijk met boeken uitgedrukt via versie 6.6.900 of hoger.  TIP: initialiseer fiche en druk de boeken opnieuw uit met versie 900 of hoger", MsgBoxStyle.Information)
-            TC.TabPages(1).Visible = False
+            'TC.TabPages(0).Enabled = False
             ' Me.Command2.Enabled = False
         Else
-            TC.TabPages(1).Visible = True
+
+            'TC.TabPages(1).Visible = True
             ' Me.Command2.Enabled = True
         End If
 

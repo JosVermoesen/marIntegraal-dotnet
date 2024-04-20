@@ -563,6 +563,7 @@ XLogShow:
         xLog.Afsluiten.TabStop = True
         XLOG_KEY = ""
         'xLog.SSTab1.TabPages.Item(1).Visible = False
+
         xLog.ShowDialog()
         If XLOG_KEY <> "" Then
             t = 0
@@ -575,7 +576,6 @@ XLogShow:
                 inputString = itemX.SubItems.Item(2).Text
                 crText2 = inputString
                 If Mid(codeString, 10, 1) = "*" And crText2 = "" Then
-
                     MsgBox("Invoer voor '" & RTrim(omsString) & "'" & vbCrLf & vbCrLf & "is verplicht !", 0, "Vervolledig a.u.b.")
                     GoTo XLogShow
                 End If

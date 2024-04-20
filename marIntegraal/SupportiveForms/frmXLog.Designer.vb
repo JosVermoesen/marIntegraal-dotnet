@@ -102,8 +102,10 @@ Partial Class xLog
         Me.X.Dock = System.Windows.Forms.DockStyle.Fill
         Me.X.ForeColor = System.Drawing.SystemColors.WindowText
         Me.X.FullRowSelect = True
+        Me.X.GridLines = True
         Me.X.HideSelection = False
         Me.X.Location = New System.Drawing.Point(3, 3)
+        Me.X.MultiSelect = False
         Me.X.Name = "X"
         Me.X.Size = New System.Drawing.Size(473, 311)
         Me.X.TabIndex = 0

@@ -8,6 +8,8 @@ Public Class xLog
     Dim TempoTxt As String
     Dim CrText As String
     Dim CrText2 As String
+    Dim lineIndex As Short
+
     Private Sub xLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         flHier = Val(Tag)
@@ -16,6 +18,7 @@ Public Class xLog
         Else
             ArrangeDeckChairs(flHier)
             AcceptButton = WijzigenLijn
+            X.Items.Item(0).Selected = True
         End If
     End Sub
     Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles Annuleren.Click
@@ -38,6 +41,7 @@ Public Class xLog
         WijzigenLijn.Top = Height - 70
     End Sub
     Private Sub X_SelectedIndexChanged(sender As Object, e As EventArgs) Handles X.SelectedIndexChanged
+        On Error Resume Next
         XLOG_KEY = X.FocusedItem.SubItems.Item(2).Text
     End Sub
     Private Sub X_DoubleClick(sender As Object, e As EventArgs) Handles X.DoubleClick
@@ -54,7 +58,9 @@ Public Class xLog
         Dim omsString As String
         Dim tijdelijk As String
         Dim itemX As ListViewItem
+
         itemX = X.FocusedItem
+        lineIndex = X.FocusedItem.Index
         codeString = itemX.SubItems.Item(0).Text
         omsString = itemX.SubItems.Item(1).Text
         inputString = itemX.SubItems.Item(2).Text
@@ -105,6 +111,10 @@ Public Class xLog
             'X.Focus()
             'End If
         End If
+        lineIndex = lineIndex + 1
+        X.Items.Item(lineIndex).Selected = True
+        X.Items.Item(lineIndex).Focused = True
+
     End Sub
     Private Sub Afsluiten_Click(sender As Object, e As EventArgs) Handles Afsluiten.Click
         Dim codeString As String
