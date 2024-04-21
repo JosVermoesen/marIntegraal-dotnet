@@ -939,7 +939,7 @@ TeleBibError:
             Exit Function
         End If
         ZoekTekst = ZoekTekst & marBoxNumber
-        fmarBoxText = ZoekEnPlaats(KeuzeVSF.NTBoxLijst, ZoekTekst, 0, 0, marBoxOption)
+        fmarBoxText = ZoekEnPlaats(FormBoxList.LbBoxList, ZoekTekst, 0, 0, marBoxOption)
 
     End Function
 

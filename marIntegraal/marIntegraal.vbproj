@@ -281,10 +281,10 @@
     <Compile Include="Accounting\frmJaarlistingBtw.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SupportiveForms\frmKeuzeLijst.Designer.vb">
-      <DependentUpon>frmKeuzeLijst.vb</DependentUpon>
+    <Compile Include="SupportiveForms\FormBoxList.Designer.vb">
+      <DependentUpon>FormBoxList.vb</DependentUpon>
     </Compile>
-    <Compile Include="SupportiveForms\frmKeuzeLijst.vb">
+    <Compile Include="SupportiveForms\FormBoxList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Broker\frmKwijtingEdit.Designer.vb">
@@ -516,8 +516,8 @@
     <EmbeddedResource Include="Accounting\frmJaarlistingBtw.resx">
       <DependentUpon>frmJaarlistingBtw.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SupportiveForms\frmKeuzeLijst.resx">
-      <DependentUpon>frmKeuzeLijst.vb</DependentUpon>
+    <EmbeddedResource Include="SupportiveForms\FormBoxList.resx">
+      <DependentUpon>FormBoxList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Broker\frmKwijtingEdit.resx">
       <DependentUpon>frmKwijtingEdit.vb</DependentUpon>
@@ -1015,12 +1015,16 @@
     <Content Include="Def\XMLbtwAangifte.DEF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="My Project\Application.myapp" />
     <Content Include="NOTE04.ICO">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="My Project\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Settings.settings" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

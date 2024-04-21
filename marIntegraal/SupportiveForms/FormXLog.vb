@@ -134,7 +134,8 @@ Public Class FormXlog
             End If
             DummyText = xText
             GRIDTEXT = DummyText
-            KeuzeVSF.ShowDialog()
+            FormBoxList.Text = X.FocusedItem.SubItems.Item(1).Text
+            FormBoxList.ShowDialog()
             If GRIDTEXT <> DummyText Then
                 DummyText = GRIDTEXT
                 xText = DummyText
