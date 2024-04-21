@@ -1027,7 +1027,7 @@ TeleBibError:
             End If
             'TODOBoeking. Boeking.mshfBoekLijst.AddItem(JustTry, frmBoeking.mshfBoekLijst.Rows - 1)
         End If
-        Boeking.boekListView.Items.Add(itemHier)
+        FormBookingControl.LvReadyToBook.Items.Add(itemHier)
 
         RS_JOURNAL.Fields("v070").Value = SetSpacing(RS_JOURNAL.Fields("v019").Value, 7) + RS_JOURNAL.Fields("v066").Value
 

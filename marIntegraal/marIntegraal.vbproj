@@ -227,10 +227,10 @@
     <Compile Include="System\FormBYPERDAT.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SupportiveForms\frmBoeking.Designer.vb">
-      <DependentUpon>frmBoeking.vb</DependentUpon>
+    <Compile Include="SupportiveForms\FormBookingControl.Designer.vb">
+      <DependentUpon>FormBookingControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="SupportiveForms\frmBoeking.vb">
+    <Compile Include="SupportiveForms\FormBookingControl.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Accounting\FormJournalEntryInput.Designer.vb">
@@ -489,8 +489,8 @@
     <EmbeddedResource Include="System\FormBYPERDAT.resx">
       <DependentUpon>FormBYPERDAT.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SupportiveForms\frmBoeking.resx">
-      <DependentUpon>frmBoeking.vb</DependentUpon>
+    <EmbeddedResource Include="SupportiveForms\FormBookingControl.resx">
+      <DependentUpon>FormBookingControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\FormJournalEntryInput.resx">
       <DependentUpon>FormJournalEntryInput.vb</DependentUpon>

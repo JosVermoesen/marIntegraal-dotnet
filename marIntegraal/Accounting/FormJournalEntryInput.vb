@@ -24,8 +24,8 @@ Public Class FormJournalEntryInput
         BookingError = False
         DKTRL_CUMUL = 0 : DKTRL_BEF = 0 : DKTRL_EUR = 0
 
-        Boeking.Close()
-        Boeking.Hide()
+        FormBookingControl.Close()
+        FormBookingControl.Hide()
 
         For T = 0 To ListBoxJournalEntries.Items.Count - 1
             MSG = ListBoxJournalEntries.Items.Item(T)
@@ -63,15 +63,15 @@ Public Class FormJournalEntryInput
 
         If DKTRL_CUMUL Then
             MsgBox("Fout bij vierkantskontrole journaal." & vbCrLf & vbCrLf & "Deze verrichting wordt genegeerd.")
-            Boeking.cmdBoeken.Enabled = False
-            Boeking.ShowDialog()
+            FormBookingControl.BtnBookIt.Enabled = False
+            FormBookingControl.ShowDialog()
             BookingError = True
         ElseIf JOURNAL_LOCKED = True Then
-            Boeking.cmdBoeken.Enabled = False
-            Boeking.ShowDialog()
+            FormBookingControl.BtnBookIt.Enabled = False
+            FormBookingControl.ShowDialog()
             BookingError = True
         Else
-            Boeking.ShowDialog()
+            FormBookingControl.ShowDialog()
             If DKTRL_CUMUL Then BookingError = True
         End If
 
