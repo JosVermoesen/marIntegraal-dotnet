@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class xLog
+Partial Class FormXlog
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,55 +22,55 @@ Partial Class xLog
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Annuleren = New System.Windows.Forms.Button()
-        Me.Afsluiten = New System.Windows.Forms.Button()
-        Me.WijzigenLijn = New System.Windows.Forms.Button()
+        Me.BtnCancel = New System.Windows.Forms.Button()
+        Me.BtnHideAndGoBack = New System.Windows.Forms.Button()
+        Me.BtnEditLine = New System.Windows.Forms.Button()
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.defaultTabPage = New System.Windows.Forms.TabPage()
         Me.X = New System.Windows.Forms.ListView()
         Me.bijlageTabPage = New System.Windows.Forms.TabPage()
-        Me.selectonlyButton = New System.Windows.Forms.Button()
+        Me.BtnSelectOnly = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.defaultTabPage.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Annuleren
+        'BtnCancel
         '
-        Me.Annuleren.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Annuleren.Location = New System.Drawing.Point(104, 354)
-        Me.Annuleren.Name = "Annuleren"
-        Me.Annuleren.Size = New System.Drawing.Size(75, 23)
-        Me.Annuleren.TabIndex = 0
-        Me.Annuleren.TabStop = False
-        Me.Annuleren.Text = "Annuleren"
-        Me.Annuleren.UseVisualStyleBackColor = True
+        Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnCancel.Location = New System.Drawing.Point(104, 354)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.BtnCancel.TabIndex = 0
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Annuleren"
+        Me.BtnCancel.UseVisualStyleBackColor = True
         '
-        'Afsluiten
+        'BtnHideAndGoBack
         '
-        Me.Afsluiten.BackColor = System.Drawing.SystemColors.Control
-        Me.Afsluiten.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Afsluiten.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Afsluiten.Location = New System.Drawing.Point(5, 354)
-        Me.Afsluiten.Name = "Afsluiten"
-        Me.Afsluiten.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Afsluiten.Size = New System.Drawing.Size(94, 22)
-        Me.Afsluiten.TabIndex = 1
-        Me.Afsluiten.Text = "Ok"
-        Me.Afsluiten.UseVisualStyleBackColor = False
+        Me.BtnHideAndGoBack.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnHideAndGoBack.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnHideAndGoBack.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnHideAndGoBack.Location = New System.Drawing.Point(4, 354)
+        Me.BtnHideAndGoBack.Name = "BtnHideAndGoBack"
+        Me.BtnHideAndGoBack.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnHideAndGoBack.Size = New System.Drawing.Size(94, 22)
+        Me.BtnHideAndGoBack.TabIndex = 1
+        Me.BtnHideAndGoBack.Text = "Ok"
+        Me.BtnHideAndGoBack.UseVisualStyleBackColor = False
         '
-        'WijzigenLijn
+        'BtnEditLine
         '
-        Me.WijzigenLijn.BackColor = System.Drawing.SystemColors.Control
-        Me.WijzigenLijn.Cursor = System.Windows.Forms.Cursors.Default
-        Me.WijzigenLijn.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.WijzigenLijn.Location = New System.Drawing.Point(185, 354)
-        Me.WijzigenLijn.Name = "WijzigenLijn"
-        Me.WijzigenLijn.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.WijzigenLijn.Size = New System.Drawing.Size(94, 22)
-        Me.WijzigenLijn.TabIndex = 1
-        Me.WijzigenLijn.TabStop = False
-        Me.WijzigenLijn.Text = "Wijzigen"
-        Me.WijzigenLijn.UseVisualStyleBackColor = False
+        Me.BtnEditLine.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnEditLine.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnEditLine.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnEditLine.Location = New System.Drawing.Point(185, 354)
+        Me.BtnEditLine.Name = "BtnEditLine"
+        Me.BtnEditLine.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnEditLine.Size = New System.Drawing.Size(94, 22)
+        Me.BtnEditLine.TabIndex = 1
+        Me.BtnEditLine.TabStop = False
+        Me.BtnEditLine.Text = "Wijzigen"
+        Me.BtnEditLine.UseVisualStyleBackColor = False
         '
         'TabControl
         '
@@ -122,33 +122,33 @@ Partial Class xLog
         Me.bijlageTabPage.Text = "Bijlage"
         Me.bijlageTabPage.UseVisualStyleBackColor = True
         '
-        'selectonlyButton
+        'BtnSelectOnly
         '
-        Me.selectonlyButton.BackColor = System.Drawing.SystemColors.Control
-        Me.selectonlyButton.Cursor = System.Windows.Forms.Cursors.Default
-        Me.selectonlyButton.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.selectonlyButton.Location = New System.Drawing.Point(5, 354)
-        Me.selectonlyButton.Name = "selectonlyButton"
-        Me.selectonlyButton.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.selectonlyButton.Size = New System.Drawing.Size(94, 22)
-        Me.selectonlyButton.TabIndex = 2
-        Me.selectonlyButton.Text = "Ok"
-        Me.selectonlyButton.UseVisualStyleBackColor = False
-        Me.selectonlyButton.Visible = False
+        Me.BtnSelectOnly.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnSelectOnly.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnSelectOnly.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnSelectOnly.Location = New System.Drawing.Point(384, 354)
+        Me.BtnSelectOnly.Name = "BtnSelectOnly"
+        Me.BtnSelectOnly.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnSelectOnly.Size = New System.Drawing.Size(94, 22)
+        Me.BtnSelectOnly.TabIndex = 2
+        Me.BtnSelectOnly.Text = "Select Only"
+        Me.BtnSelectOnly.UseVisualStyleBackColor = False
+        Me.BtnSelectOnly.Visible = False
         '
-        'xLog
+        'FormXlog
         '
-        Me.AcceptButton = Me.WijzigenLijn
+        Me.AcceptButton = Me.BtnEditLine
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.Annuleren
+        Me.CancelButton = Me.BtnCancel
         Me.ClientSize = New System.Drawing.Size(490, 382)
         Me.Controls.Add(Me.TabControl)
-        Me.Controls.Add(Me.Afsluiten)
-        Me.Controls.Add(Me.WijzigenLijn)
-        Me.Controls.Add(Me.Annuleren)
-        Me.Controls.Add(Me.selectonlyButton)
-        Me.Name = "xLog"
+        Me.Controls.Add(Me.BtnHideAndGoBack)
+        Me.Controls.Add(Me.BtnEditLine)
+        Me.Controls.Add(Me.BtnCancel)
+        Me.Controls.Add(Me.BtnSelectOnly)
+        Me.Name = "FormXlog"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Log"
         Me.TabControl.ResumeLayout(False)
@@ -157,12 +157,12 @@ Partial Class xLog
 
     End Sub
 
-    Friend WithEvents Annuleren As Button
-    Public WithEvents Afsluiten As Button
-    Public WithEvents WijzigenLijn As Button
+    Friend WithEvents BtnCancel As Button
+    Public WithEvents BtnHideAndGoBack As Button
+    Public WithEvents BtnEditLine As Button
     Friend WithEvents TabControl As TabControl
     Friend WithEvents defaultTabPage As TabPage
     Public WithEvents X As ListView
     Friend WithEvents bijlageTabPage As TabPage
-    Public WithEvents selectonlyButton As Button
+    Public WithEvents BtnSelectOnly As Button
 End Class

@@ -1,10 +1,14 @@
 ﻿Public Class FormBookingControl
-    Private Sub cmdBoeken_Click(sender As Object, e As EventArgs) Handles BtnBookIt.Click
-        Close()
-    End Sub
+    Private Sub BtnCancelTransaction_Click(sender As Object, e As EventArgs) Handles BtnCancelTransaction.Click
 
-    Private Sub cmdNegeren_Click(sender As Object, e As EventArgs) Handles BtnIgnoreBooking.Click
         DKTRL_CUMUL = 99
         Close()
+
+    End Sub
+
+    Private Sub BtnCommitTransaction_Click(sender As Object, e As EventArgs) Handles BtnCommitTransaction.Click
+
+        Close()
+
     End Sub
 End Class

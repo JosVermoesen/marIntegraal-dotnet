@@ -409,10 +409,10 @@
     <Compile Include="SupportiveForms\frmXDocument.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SupportiveForms\frmXLog.Designer.vb">
-      <DependentUpon>frmXLog.vb</DependentUpon>
+    <Compile Include="SupportiveForms\FormXLog.Designer.vb">
+      <DependentUpon>FormXLog.vb</DependentUpon>
     </Compile>
-    <Compile Include="SupportiveForms\frmXLog.vb">
+    <Compile Include="SupportiveForms\FormXLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\modDatabase.vb" />
@@ -579,8 +579,8 @@
     <EmbeddedResource Include="SupportiveForms\frmXDocument.resx">
       <DependentUpon>frmXDocument.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SupportiveForms\frmXLog.resx">
-      <DependentUpon>frmXLog.vb</DependentUpon>
+    <EmbeddedResource Include="SupportiveForms\FormXLog.resx">
+      <DependentUpon>FormXLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

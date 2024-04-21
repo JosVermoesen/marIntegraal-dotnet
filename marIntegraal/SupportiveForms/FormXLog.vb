@@ -1,6 +1,6 @@
 ﻿Option Strict Off
 Option Explicit On
-Public Class xLog
+Public Class FormXlog
     Dim MaxPlijn As Short
     Dim ATLijn As Short
     Dim flHier As Integer
@@ -10,131 +10,50 @@ Public Class xLog
     Dim CrText2 As String
     Dim lineIndex As Short
 
-    Private Sub xLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormXlog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         flHier = Val(Tag)
         SettingsLoading(Me)
-        If selectonlyButton.Visible Then
+        If BtnSelectOnly.Visible Then
         Else
             ArrangeDeckChairs(flHier)
-            AcceptButton = WijzigenLijn
+            AcceptButton = BtnEditLine
             X.Items.Item(0).Selected = True
         End If
+
     End Sub
-    Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles Annuleren.Click
-        XLOG_KEY = ""
-        GRIDTEXT = ""
-        WindowState = System.Windows.Forms.FormWindowState.Normal
-        Hide()
-    End Sub
-    Private Sub xLog_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+
+    Private Sub FormXlog_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+
         Dim X As Boolean
         X = SettingsSaving(Me)
+
     End Sub
-    Private Sub xLog_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+
+    Private Sub FormXlog_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+
         On Error Resume Next
         TabControl.Width = Width - 20
         TabControl.Height = Height - 80
-        Afsluiten.Top = Height - 70
-        selectonlyButton.Top = Height - 70
-        Annuleren.Top = Height - 70
-        WijzigenLijn.Top = Height - 70
+        BtnHideAndGoBack.Top = Height - 70
+        BtnSelectOnly.Top = Height - 70
+        BtnCancel.Top = Height - 70
+        BtnEditLine.Top = Height - 70
+
     End Sub
+
     Private Sub X_SelectedIndexChanged(sender As Object, e As EventArgs) Handles X.SelectedIndexChanged
         On Error Resume Next
         XLOG_KEY = X.FocusedItem.SubItems.Item(2).Text
     End Sub
     Private Sub X_DoubleClick(sender As Object, e As EventArgs) Handles X.DoubleClick
-        If selectonlyButton.Visible Then
-            selectonlyButton.PerformClick()
+        If BtnSelectOnly.Visible Then
+            BtnSelectOnly.PerformClick()
         Else
-            WijzigenLijn.PerformClick()
+            BtnEditLine.PerformClick()
         End If
     End Sub
-    Private Sub WijzigenLijn_Click(sender As Object, e As EventArgs) Handles WijzigenLijn.Click
-        On Error Resume Next
-        Dim codeString As String
-        Dim inputString As String
-        Dim omsString As String
-        Dim tijdelijk As String
-        Dim itemX As ListViewItem
 
-        itemX = X.FocusedItem
-        lineIndex = X.FocusedItem.Index
-        codeString = itemX.SubItems.Item(0).Text
-        omsString = itemX.SubItems.Item(1).Text
-        inputString = itemX.SubItems.Item(2).Text
-        'MsgBox(codeString & " / " & omsString & " / " & inputString)
-        If Mid(codeString, 2, 2) <> "  " And Mid(codeString, 1, 1) <> "@" Then
-            XKeyDown(codeString, inputString)
-            If GRIDTEXT = "" Then
-            Else
-                tijdelijk = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, ":") - 1)
-                AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))
-                ArrangeDeckChairs(flHier)
-            End If
-            ' X_KeyDownEvent(X, New AxMSFlexGridLib.DMSFlexGridEvents_KeyDownEvent(17, 0))
-            'If X.Row < X.Rows - 1 Then
-            'X.Row = X.Row + 1
-            'If X.Row > 6 Then
-            'X.TopRow = X.Row - 5
-            'End If
-            'End If
-            'X.Focus()
-        Else
-            'MSG = ""
-            If Mid(codeString, 10, 1) = "-" Then
-                MSG = "Deze informatie kan niet gewijzigd worden..."
-                GRIDTEXT = "Edit No"
-            Else
-                GRIDTEXT = "Edit Yes"
-            End If
-            If Mid(codeString, 1, 1) = "@" Then
-                MSG = Mid(codeString, 1, 3)
-            Else
-                MSG = MSG & QuickHelp(Mid(codeString, 1, 3))
-            End If
-            'X.Col = 2
-            'ATLijn = Val(Mid(TELEBIB_CODE(X.Row - 1), 10, 1))
-            tijdelijk = vsfInputBox(MSG, omsString, inputString, "")
-            If inputString = tijdelijk Then
-            Else
-                AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))
-                ArrangeDeckChairs(flHier)
-            End If
-            'If X.Row < X.Rows - 1 Then
-            'X.Row = X.Row + 1
-            'If X.Row > 6 Then
-            'X.TopRow = X.Row - 5
-            'End If
-            'End If
-            'X.Focus()
-            'End If
-        End If
-        lineIndex = lineIndex + 1
-        X.Items.Item(lineIndex).Selected = True
-        X.Items.Item(lineIndex).Focused = True
-
-    End Sub
-    Private Sub Afsluiten_Click(sender As Object, e As EventArgs) Handles Afsluiten.Click
-        Dim codeString As String
-        Dim inputString As String
-        Dim omsString As String
-        Dim itemX As ListViewItem
-        itemX = X.Items.Item(0)
-        codeString = itemX.SubItems.Item(0).Text
-        omsString = itemX.SubItems.Item(1).Text
-        inputString = itemX.SubItems.Item(2).Text
-        If codeString = "" Then
-            If Mid(Text, 1, 6) = "Schade" Then
-                XLOG_KEY = "Nieuw"
-            End If
-        Else
-            XLOG_KEY = codeString & vbCrLf
-            XLOG_KEY = XLOG_KEY & omsString '???? of inputstring ???
-        End If
-        Hide()
-    End Sub
     Private Sub XKeyDown(xCode As String, xText As String)
         Dim DummyText As String
         Dim resultString As String
@@ -255,12 +174,114 @@ Public Class xLog
                 QuickHelp = "Volledige datum als sleutel"
         End Select
     End Function
-    Private Sub selectonlyButton_Click(sender As Object, e As EventArgs) Handles selectonlyButton.Click
+
+    Private Sub BtnSelectOnly_Click(sender As Object, e As EventArgs) Handles BtnSelectOnly.Click
+
         Dim codeString As String
         Dim itemX As ListViewItem
         itemX = X.FocusedItem
         codeString = itemX.SubItems.Item(0).Text
         XLOG_KEY = codeString & vbCrLf
         Hide()
+
     End Sub
+
+    Private Sub BtnHideAndGoBack_Click(sender As Object, e As EventArgs) Handles BtnHideAndGoBack.Click
+
+        Dim codeString As String
+        Dim inputString As String
+        Dim omsString As String
+        Dim itemX As ListViewItem
+        itemX = X.Items.Item(0)
+        codeString = itemX.SubItems.Item(0).Text
+        omsString = itemX.SubItems.Item(1).Text
+        inputString = itemX.SubItems.Item(2).Text
+        If codeString = "" Then
+            If Mid(Text, 1, 6) = "Schade" Then
+                XLOG_KEY = "Nieuw"
+            End If
+        Else
+            XLOG_KEY = codeString & vbCrLf
+            XLOG_KEY &= omsString '???? of inputstring ???
+        End If
+        Hide()
+
+    End Sub
+
+    Private Sub BtnEditLine_Click(sender As Object, e As EventArgs) Handles BtnEditLine.Click
+
+        On Error Resume Next
+        Dim codeString As String
+        Dim inputString As String
+        Dim omsString As String
+        Dim tijdelijk As String
+        Dim itemX As ListViewItem
+
+        itemX = X.FocusedItem
+        lineIndex = X.FocusedItem.Index
+        codeString = itemX.SubItems.Item(0).Text
+        omsString = itemX.SubItems.Item(1).Text
+        inputString = itemX.SubItems.Item(2).Text
+        'MsgBox(codeString & " / " & omsString & " / " & inputString)
+        If Mid(codeString, 2, 2) <> "  " And Mid(codeString, 1, 1) <> "@" Then
+            XKeyDown(codeString, inputString)
+            If GRIDTEXT = "" Then
+            Else
+                tijdelijk = Mid(GRIDTEXT, 1, InStr(GRIDTEXT, ":") - 1)
+                AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))
+                ArrangeDeckChairs(flHier)
+            End If
+            ' X_KeyDownEvent(X, New AxMSFlexGridLib.DMSFlexGridEvents_KeyDownEvent(17, 0))
+            'If X.Row < X.Rows - 1 Then
+            'X.Row = X.Row + 1
+            'If X.Row > 6 Then
+            'X.TopRow = X.Row - 5
+            'End If
+            'End If
+            'X.Focus()
+        Else
+            'MSG = ""
+            If Mid(codeString, 10, 1) = "-" Then
+                MSG = "Deze informatie kan niet gewijzigd worden..."
+                GRIDTEXT = "Edit No"
+            Else
+                GRIDTEXT = "Edit Yes"
+            End If
+            If Mid(codeString, 1, 1) = "@" Then
+                MSG = Mid(codeString, 1, 3)
+            Else
+                MSG = MSG & QuickHelp(Mid(codeString, 1, 3))
+            End If
+            'X.Col = 2
+            'ATLijn = Val(Mid(TELEBIB_CODE(X.Row - 1), 10, 1))
+            tijdelijk = vsfInputBox(MSG, omsString, inputString, "")
+            If inputString = tijdelijk Then
+            Else
+                AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))
+                ArrangeDeckChairs(flHier)
+            End If
+            'If X.Row < X.Rows - 1 Then
+            'X.Row = X.Row + 1
+            'If X.Row > 6 Then
+            'X.TopRow = X.Row - 5
+            'End If
+            'End If
+            'X.Focus()
+            'End If
+        End If
+        lineIndex += 1
+        X.Items.Item(lineIndex).Selected = True
+        X.Items.Item(lineIndex).Focused = True
+
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+
+        XLOG_KEY = ""
+        GRIDTEXT = ""
+        WindowState = System.Windows.Forms.FormWindowState.Normal
+        Hide()
+
+    End Sub
+
 End Class

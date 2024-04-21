@@ -527,18 +527,18 @@ EenFoutBijINLaden:
                 LogTekst = " BIB Allerlei"
         End Select
 
-        xLog.Close()
-        xLog.Dispose()
-        xLog.Hide()
-        xLog.Text = xLog.Text & LogTekst
-        xLog.Tag = Str(Fl)
+        FormXlog.Close()
+        FormXlog.Dispose()
+        FormXlog.Hide()
+        FormXlog.Text = FormXlog.Text & LogTekst
+        FormXlog.Tag = Str(Fl)
         If Fl = TABLE_INVOICES Then
             If VSF_PRO Then
-                xLog.WijzigenLijn.Enabled = True
-                xLog.Afsluiten.Text = "Speciaal"
+                FormXlog.BtnEditLine.Enabled = True
+                FormXlog.BtnHideAndGoBack.Text = "Speciaal"
             Else
-                xLog.WijzigenLijn.Enabled = False
-                xLog.Afsluiten.Text = "Vernietig!"
+                FormXlog.BtnEditLine.Enabled = False
+                FormXlog.BtnHideAndGoBack.Text = "Vernietig!"
             End If
         End If
 
@@ -560,17 +560,17 @@ EenFoutBijINLaden:
 
 XLogShow:
         'SetDefault(xLog.WijzigenLijn, True)
-        xLog.Afsluiten.TabStop = True
+        FormXlog.BtnHideAndGoBack.TabStop = True
         XLOG_KEY = ""
         'xLog.SSTab1.TabPages.Item(1).Visible = False
 
-        xLog.ShowDialog()
+        FormXlog.ShowDialog()
         If XLOG_KEY <> "" Then
             t = 0
             'xLog.X.Col = 2
             Do While Trim(TELEBIB_CODE(t)) <> ""
                 Dim itemX As ListViewItem
-                itemX = xLog.X.Items.Item(t)
+                itemX = FormXlog.X.Items.Item(t)
                 codeString = itemX.SubItems.Item(0).Text
                 omsString = itemX.SubItems.Item(1).Text
                 inputString = itemX.SubItems.Item(2).Text
@@ -581,7 +581,7 @@ XLogShow:
                 End If
                 t = t + 1
             Loop
-            If xLog.Afsluiten.Text = "Speciaal" Then
+            If FormXlog.BtnHideAndGoBack.Text = "Speciaal" Then
                 MSG = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
                 KTRL = MsgBox(MSG, 292)
                 If KTRL = 6 Then
@@ -600,7 +600,7 @@ XLogShow:
         Dim BoxMask As String = ""
         Dim BoxType As Integer
 
-        With xLog.X
+        With FormXlog.X
             .Clear()
             .Columns.Add("vsfKode", 5)
             .Columns.Add("Veldomschrijving", 220)
@@ -631,7 +631,7 @@ XLogShow:
             Dim itemHier As New ListViewItem(TELEBIB_CODE(T))
             itemHier.SubItems.Add(TELEBIB_TEXT(T))
             itemHier.SubItems.Add(CrText)
-            xLog.X.Items.Add(itemHier)
+            FormXlog.X.Items.Add(itemHier)
             T = T + 1
         Loop
 

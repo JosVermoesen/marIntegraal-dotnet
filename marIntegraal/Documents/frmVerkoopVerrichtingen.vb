@@ -541,7 +541,7 @@ MaskAantal:
         Dim dataVeld As String
         If KlantInfo.Text = "" Then Exit Sub
         T = 0
-        Dim xlogHier As New xLog
+        Dim xlogHier As New FormXlog
         xlogHier.Hide()
         xlogHier.Text = "Document inladen voor : " + RV(rsKlant, "A100")
         xlogHier.X.Columns.Add("Document", 100)
@@ -549,10 +549,10 @@ MaskAantal:
         xlogHier.X.Columns.Add("Bedrag EUR", 100)
         xlogHier.X.Columns.Add("Bedrag BEF", 100)
         xlogHier.X.Columns.Add("Zie ook document", 100)
-        xlogHier.WijzigenLijn.Visible = False
-        xlogHier.Afsluiten.Visible = False
-        xlogHier.selectonlyButton.Visible = True
-        xlogHier.AcceptButton = xlogHier.selectonlyButton
+        xlogHier.BtnEditLine.Visible = False
+        xlogHier.BtnHideAndGoBack.Visible = False
+        xlogHier.BtnSelectOnly.Visible = True
+        xlogHier.AcceptButton = xlogHier.BtnSelectOnly
         XLOG_KEY = ""
         rsDetail = New ADODB.Recordset
         On Error Resume Next

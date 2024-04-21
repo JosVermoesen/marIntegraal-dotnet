@@ -63,11 +63,11 @@ Public Class FormJournalEntryInput
 
         If DKTRL_CUMUL Then
             MsgBox("Fout bij vierkantskontrole journaal." & vbCrLf & vbCrLf & "Deze verrichting wordt genegeerd.")
-            FormBookingControl.BtnBookIt.Enabled = False
+            FormBookingControl.BtnCommitTransaction.Enabled = False
             FormBookingControl.ShowDialog()
             BookingError = True
         ElseIf JOURNAL_LOCKED = True Then
-            FormBookingControl.BtnBookIt.Enabled = False
+            FormBookingControl.BtnCommitTransaction.Enabled = False
             FormBookingControl.ShowDialog()
             BookingError = True
         Else

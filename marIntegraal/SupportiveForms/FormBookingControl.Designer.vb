@@ -22,8 +22,8 @@ Partial Class FormBookingControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.BtnIgnoreBooking = New System.Windows.Forms.Button()
-        Me.BtnBookIt = New System.Windows.Forms.Button()
+        Me.BtnCancelTransaction = New System.Windows.Forms.Button()
+        Me.BtnCommitTransaction = New System.Windows.Forms.Button()
         Me._SSTab1_TabPage0 = New System.Windows.Forms.TabPage()
         Me.LvReadyToBook = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -37,34 +37,34 @@ Partial Class FormBookingControl
         Me.TcSquareControle.SuspendLayout()
         Me.SuspendLayout()
         '
-        'BtnIgnoreBooking
+        'BtnCancelTransaction
         '
-        Me.BtnIgnoreBooking.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnIgnoreBooking.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnIgnoreBooking.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnIgnoreBooking.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnIgnoreBooking.Location = New System.Drawing.Point(430, 4)
-        Me.BtnIgnoreBooking.Name = "BtnIgnoreBooking"
-        Me.BtnIgnoreBooking.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnIgnoreBooking.Size = New System.Drawing.Size(127, 25)
-        Me.BtnIgnoreBooking.TabIndex = 6
-        Me.BtnIgnoreBooking.TabStop = False
-        Me.BtnIgnoreBooking.Text = "Boeking Terugzetten"
-        Me.BtnIgnoreBooking.UseVisualStyleBackColor = False
+        Me.BtnCancelTransaction.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnCancelTransaction.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnCancelTransaction.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnCancelTransaction.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnCancelTransaction.Location = New System.Drawing.Point(430, 4)
+        Me.BtnCancelTransaction.Name = "BtnCancelTransaction"
+        Me.BtnCancelTransaction.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnCancelTransaction.Size = New System.Drawing.Size(127, 25)
+        Me.BtnCancelTransaction.TabIndex = 6
+        Me.BtnCancelTransaction.TabStop = False
+        Me.BtnCancelTransaction.Text = "Boeking Terugzetten"
+        Me.BtnCancelTransaction.UseVisualStyleBackColor = False
         '
-        'BtnBookIt
+        'BtnCommitTransaction
         '
-        Me.BtnBookIt.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnBookIt.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnBookIt.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnBookIt.Location = New System.Drawing.Point(295, 4)
-        Me.BtnBookIt.Name = "BtnBookIt"
-        Me.BtnBookIt.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnBookIt.Size = New System.Drawing.Size(129, 25)
-        Me.BtnBookIt.TabIndex = 5
-        Me.BtnBookIt.TabStop = False
-        Me.BtnBookIt.Text = "&Boeking laten doorgaan"
-        Me.BtnBookIt.UseVisualStyleBackColor = False
+        Me.BtnCommitTransaction.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnCommitTransaction.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnCommitTransaction.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnCommitTransaction.Location = New System.Drawing.Point(295, 4)
+        Me.BtnCommitTransaction.Name = "BtnCommitTransaction"
+        Me.BtnCommitTransaction.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnCommitTransaction.Size = New System.Drawing.Size(129, 25)
+        Me.BtnCommitTransaction.TabIndex = 5
+        Me.BtnCommitTransaction.TabStop = False
+        Me.BtnCommitTransaction.Text = "&Boeking laten doorgaan"
+        Me.BtnCommitTransaction.UseVisualStyleBackColor = False
         '
         '_SSTab1_TabPage0
         '
@@ -135,11 +135,11 @@ Partial Class FormBookingControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.BtnIgnoreBooking
+        Me.CancelButton = Me.BtnCancelTransaction
         Me.ClientSize = New System.Drawing.Size(595, 248)
         Me.ControlBox = False
-        Me.Controls.Add(Me.BtnIgnoreBooking)
-        Me.Controls.Add(Me.BtnBookIt)
+        Me.Controls.Add(Me.BtnCancelTransaction)
+        Me.Controls.Add(Me.BtnCommitTransaction)
         Me.Controls.Add(Me.TcSquareControle)
         Me.Name = "FormBookingControl"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -150,8 +150,8 @@ Partial Class FormBookingControl
 
     End Sub
 
-    Public WithEvents BtnIgnoreBooking As Button
-    Public WithEvents BtnBookIt As Button
+    Public WithEvents BtnCancelTransaction As Button
+    Public WithEvents BtnCommitTransaction As Button
     Public WithEvents _SSTab1_TabPage0 As TabPage
     Public WithEvents TcSquareControle As TabControl
     Public WithEvents LvReadyToBook As ListView
