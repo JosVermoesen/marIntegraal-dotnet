@@ -255,99 +255,6 @@ TryAgain:
 
     End Sub
 
-    Private Sub BtnGenerateReport_Click(sender As Object, e As EventArgs) Handles BtnGenerateReport.Click
-
-        Dim DCBedrag As Decimal
-        Dim HetBedrag As Decimal
-
-        Dim FinRekening As String = SetSpacing("", 7)
-        Dim DeRekening As String = SetSpacing("", 7)
-
-        ReportText(2) = "Financiëel Boek " & Mid(Mim.Text, InStr(Mim.Text, "["))
-        ReportText(0) = Format(DateTimePickerProcessingDate.Value, "dd/MM/yyyy")
-        ReportText(3) = CbBankList.Text & " " & TbFromTo.Text
-
-        With Mim.Report
-            .CloseDoc()
-            .OpenDoc()
-            .Author = "marIntegraal"
-            .GUILanguage = 3 'Nederlands
-            .Title = "Financiëel boek" + ReportText(3)
-        End With
-
-        TotalDebit = 0
-        TotalCredit = 0
-        PAGE_COUNTER = 0
-
-        If LbStatementsList.Items.Count = 0 Then
-            Exit Sub
-        Else
-            Cursor.Current = Cursors.WaitCursor
-            InitialiseFields()
-            VpePrintHeader()
-
-            Dim AA As String = ""
-
-            For T = 0 To LbStatementsList.Items.Count - 1
-
-                'skip first record dayTotal
-                AA = LbStatementsList.Items(T).ToString
-
-                GetRSForDayDetailReport(Mid(AA, 1, 8))
-                rsFinancialDayDetail.MoveFirst()
-                FieldText(0) = Mid(AA, 12, 10)
-                FieldText(1) = Mid(CbBankList.Text, 1, 7)
-                FieldText(2) = Mid(AA, 25, 30)
-                FieldText(3) = "DS/CS Saldo van het uittreksel"
-                FieldText(4) = Mid(AA, 58, 12)
-                FieldText(5) = Mid(AA, 71, 12)
-                FieldText(6) = Mid(AA, 1, 8)
-                DeRekening = FieldText(1)
-                HetBedrag = -Val(FieldText(5)) + Val(FieldText(4))
-                Select Case HetBedrag
-                    Case Is < 0
-                        TotalCredit += HetBedrag
-                    Case Else
-                        TotalDebit += HetBedrag
-                End Select
-                CumulUpdate(DeRekening, HetBedrag)
-                VpePrintLine()
-
-                rsFinancialDayDetail.MoveNext()
-                Do While Not rsFinancialDayDetail.EOF
-                    FieldText(0) = FunctionDateText(rsFinancialDayDetail.Fields("v066").Value.ToString)
-                    FieldText(1) = rsFinancialDayDetail.Fields("v019").Value
-
-                    FieldText(2) = rsFinancialDayDetail.Fields("v020").Value
-                    FieldText(3) = rsFinancialDayDetail.Fields("v067").Value
-                    DCBedrag = Val(rsFinancialDayDetail.Fields("v068").Value)
-                    Select Case DCBedrag
-                        Case Is < 0
-                            TotalCredit += DCBedrag
-                            FieldText(4) = ""
-                            FieldText(5) = Dec(Math.Abs(DCBedrag), MASK_EURBH)
-                        Case Else
-                            TotalDebit += DCBedrag
-                            FieldText(4) = Dec(DCBedrag, MASK_EURBH)
-                            FieldText(5) = ""
-                    End Select
-                    FieldText(6) = rsFinancialDayDetail.Fields("v033").Value.ToString
-                    DeRekening = FieldText(1)
-                    HetBedrag = DCBedrag
-                    CumulUpdate(DeRekening, HetBedrag)
-                    VpePrintLine()
-                    rsFinancialDayDetail.MoveNext()
-                Loop
-                pdfY = Mim.Report.Print(1, pdfY, vbCrLf)
-            Next
-            PrintEndTotal()
-            CumulPrint()
-
-            Cursor.Current = Cursors.Default
-            Mim.Report.Preview()
-        End If
-
-    End Sub
 
     Private Sub CumulPrint()
 
@@ -511,12 +418,6 @@ TryAgain:
 
     End Sub
 
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-
-        Me.Close()
-
-    End Sub
-
     Private Sub TbTekstLijn_Leave(sender As Object, e As EventArgs) Handles TbFromTo.Leave
 
         '		Dim Index As Short = TekstLijn.GetIndex(eventSender)
@@ -535,7 +436,121 @@ TryAgain:
 
     End Sub
 
-    Private Sub CmdJournaalManueel_Click(sender As Object, e As EventArgs) Handles BtnManualSearch.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs)
+
+        Close()
+
+    End Sub
+
+    Private Sub FormFinancialBook_FormClosing(sender As Object, e As FormClosingEventArgs)
+
+        Dim CancelHere As Boolean = e.Cancel
+        If Mim.Report.IsOpen = True Then
+            MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
+            CancelHere = True
+        Else
+            Mim.FinancialJournalMenuItem.Enabled = True
+        End If
+        e.Cancel = CancelHere
+
+    End Sub
+
+    Private Sub BtnGenerateReport_Click(sender As Object, e As EventArgs)
+
+        Dim DCBedrag As Decimal
+        Dim HetBedrag As Decimal
+
+        Dim FinRekening As String = SetSpacing("", 7)
+        Dim DeRekening As String = SetSpacing("", 7)
+
+        ReportText(2) = "Financiëel Boek " & Mid(Mim.Text, InStr(Mim.Text, "["))
+        ReportText(0) = Format(DateTimePickerProcessingDate.Value, "dd/MM/yyyy")
+        ReportText(3) = CbBankList.Text & " " & TbFromTo.Text
+
+        With Mim.Report
+            .CloseDoc()
+            .OpenDoc()
+            .Author = "marIntegraal"
+            .GUILanguage = 3 'Nederlands
+            .Title = "Financiëel boek" + ReportText(3)
+        End With
+
+        TotalDebit = 0
+        TotalCredit = 0
+        PAGE_COUNTER = 0
+
+        If LbStatementsList.Items.Count = 0 Then
+            Exit Sub
+        Else
+            Cursor.Current = Cursors.WaitCursor
+            InitialiseFields()
+            VpePrintHeader()
+
+            Dim AA As String = ""
+
+            For T = 0 To LbStatementsList.Items.Count - 1
+
+                'skip first record dayTotal
+                AA = LbStatementsList.Items(T).ToString
+
+                GetRSForDayDetailReport(Mid(AA, 1, 8))
+                rsFinancialDayDetail.MoveFirst()
+                FieldText(0) = Mid(AA, 12, 10)
+                FieldText(1) = Mid(CbBankList.Text, 1, 7)
+                FieldText(2) = Mid(AA, 25, 30)
+                FieldText(3) = "DS/CS Saldo van het uittreksel"
+                FieldText(4) = Mid(AA, 58, 12)
+                FieldText(5) = Mid(AA, 71, 12)
+                FieldText(6) = Mid(AA, 1, 8)
+                DeRekening = FieldText(1)
+                HetBedrag = -Val(FieldText(5)) + Val(FieldText(4))
+                Select Case HetBedrag
+                    Case Is < 0
+                        TotalCredit += HetBedrag
+                    Case Else
+                        TotalDebit += HetBedrag
+                End Select
+                CumulUpdate(DeRekening, HetBedrag)
+                VpePrintLine()
+
+                rsFinancialDayDetail.MoveNext()
+                Do While Not rsFinancialDayDetail.EOF
+                    FieldText(0) = FunctionDateText(rsFinancialDayDetail.Fields("v066").Value.ToString)
+                    FieldText(1) = rsFinancialDayDetail.Fields("v019").Value
+
+                    FieldText(2) = rsFinancialDayDetail.Fields("v020").Value
+                    FieldText(3) = rsFinancialDayDetail.Fields("v067").Value
+                    DCBedrag = Val(rsFinancialDayDetail.Fields("v068").Value)
+                    Select Case DCBedrag
+                        Case Is < 0
+                            TotalCredit += DCBedrag
+                            FieldText(4) = ""
+                            FieldText(5) = Dec(Math.Abs(DCBedrag), MASK_EURBH)
+                        Case Else
+                            TotalDebit += DCBedrag
+                            FieldText(4) = Dec(DCBedrag, MASK_EURBH)
+                            FieldText(5) = ""
+                    End Select
+                    FieldText(6) = rsFinancialDayDetail.Fields("v033").Value.ToString
+                    DeRekening = FieldText(1)
+                    HetBedrag = DCBedrag
+                    CumulUpdate(DeRekening, HetBedrag)
+                    VpePrintLine()
+                    rsFinancialDayDetail.MoveNext()
+                Loop
+                pdfY = Mim.Report.Print(1, pdfY, vbCrLf)
+            Next
+            PrintEndTotal()
+            CumulPrint()
+
+            Cursor.Current = Cursors.Default
+            Mim.Report.Preview()
+        End If
+        Focus()
+
+    End Sub
+
+    Private Sub BtnManualSearch_Click(sender As Object, e As EventArgs)
 
         Dim KtrlInput As String
 
@@ -552,7 +567,7 @@ TryAgain:
             Exit Sub
         End If
         DetailForInfoForm(KtrlInput)
-    End Sub
 
+    End Sub
 End Class
 

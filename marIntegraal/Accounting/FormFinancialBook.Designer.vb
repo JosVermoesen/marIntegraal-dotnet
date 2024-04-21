@@ -47,6 +47,7 @@ Partial Class FormFinancialBook
         Me.BtnManualSearch.TabIndex = 22
         Me.BtnManualSearch.Text = "Manueel &Zoeken"
         Me.BtnManualSearch.UseVisualStyleBackColor = False
+        AddHandler Me.BtnManualSearch.Click, AddressOf Me.BtnManualSearch_Click
         '
         'LbStatementsList
         '
@@ -96,6 +97,7 @@ Partial Class FormFinancialBook
         Me.BtnGenerateReport.TabIndex = 16
         Me.BtnGenerateReport.Text = "Genereren"
         Me.BtnGenerateReport.UseVisualStyleBackColor = False
+        AddHandler Me.BtnGenerateReport.Click, AddressOf Me.BtnGenerateReport_Click
         '
         'BtnClose
         '
@@ -110,6 +112,7 @@ Partial Class FormFinancialBook
         Me.BtnClose.TabStop = False
         Me.BtnClose.Text = "Sluiten"
         Me.BtnClose.UseVisualStyleBackColor = False
+        AddHandler Me.BtnClose.Click, AddressOf Me.BtnClose_Click
         '
         'LabelBancList
         '
@@ -175,6 +178,7 @@ Partial Class FormFinancialBook
         Me.Name = "FormFinancialBook"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FinancialBook"
+        AddHandler FormClosing, AddressOf Me.FormFinancialBook_FormClosing
         Me.ResumeLayout(False)
         Me.PerformLayout
 

@@ -861,6 +861,7 @@ TryAgain:
 
 		Cursor.Current = Cursors.Default
 		Mim.Report.Preview()
+		Focus()
 
 		MSG = "Totaliseren voor BTW AANGIFTE.  Bent U zeker?"
 		If RbInvoices.Checked Then
@@ -1005,6 +1006,26 @@ TryAgain:
 
 	Private Sub RbCreditNotes_CheckedChanged(sender As Object, e As EventArgs) Handles RbCreditNotes.CheckedChanged
 		InvoiceCreditNoteCheck()
+	End Sub
+
+	Private Sub BSBook_FormClosing(sender As Object, e As FormClosingEventArgs)
+
+		Dim CancelHere As Boolean = e.Cancel
+		If Mim.Report.IsOpen = True Then
+			MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
+			CancelHere = True
+		Else
+			Select Case A_INDEX
+				Case TABLE_SUPPLIERS
+					Mim.PurchaseDiaryMenuItem.Enabled = True
+				Case TABLE_CUSTOMERS
+					Mim.SalesDiaryMenuItem.Enabled = True
+				Case Else
+					MsgBox("Stop")
+			End Select
+		End If
+		e.Cancel = CancelHere
+
 	End Sub
 
 End Class

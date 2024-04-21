@@ -200,6 +200,7 @@ Public Class FormJournalEntriesBook
         Mim.Report.AddMailReceiver(TextBoxMailToOption.Text, RecipientClass.To)
         Mim.Report.Preview()
         'Mim.Report.CloseDoc()
+        Focus()
 
     End Sub
 End Class

@@ -187,6 +187,7 @@ Partial Class BSBook
         Me.Name = "BSBook"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "FormBSBook"
+        AddHandler FormClosing, AddressOf Me.BSBook_FormClosing
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
