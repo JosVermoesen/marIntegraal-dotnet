@@ -657,14 +657,15 @@ XLogShow:
                 Case "00"
                     SQL_COMMAND = "SELECT * FROM ISOLandKodes WHERE ISOLandNummer LIKE '" & Trim(TekstZelf) & "%';"
                     'ntInputbox.BindingNavigator.BindingSource = ntInputbox.ISOLandkodesBindingSource
-                    'TODO: NTInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
+                    'TODO: ntInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
+
                     ReDim ToolDef(3)
                     ToolDef(0) = "00=v149 " 'Landnummer  ISO kode
                     ToolDef(1) = "01=vs03 " 'Munteenheid ISO kode
                     ToolDef(2) = "02=v150 " 'Landkode    ISO kode
                 Case "01"
                     SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PostKode LIKE '" & Trim(TekstZelf) & "%';"
-                    'TODO: NTInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
+                    'TODO: ntInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
                     'ntInputbox.BindingNavigator.BindingSource = ntInputbox.PostKodesWoonPlaatsenBindingSource
 
                     ReDim ToolDef(3)
@@ -673,19 +674,21 @@ XLogShow:
 
                 Case "02"
                     SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PlaatsNaam LIKE '" & Trim(TekstZelf) & "%';"
-                    'TODO: NTInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
+                    'TODO: ntInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
                     'ntInputbox.BindingNavigator.BindingSource = ntInputbox.PostKodesWoonPlaatsenBindingSource
                     ReDim ToolDef(3)
                     ToolDef(0) = "02=A108 " 'Plaatsnaam
                     ToolDef(1) = "01=A107 " 'PostKode volgens Postkantoor
+                Case Else
+                    SQL_COMMAND = ""
             End Select
         Else
             ntInputbox.Hernieuw.Visible = False
-            NTInputbox.cmdVooruit.Visible = False
-            NTInputbox.cmdAchteruit.Visible = False
-            NTInputbox.lblInfo.Visible = False
+            ntInputbox.cmdVooruit.Visible = False
+            ntInputbox.cmdAchteruit.Visible = False
+            ntInputbox.lblInfo.Visible = False
         End If
-        NTInputbox.Tag = GRIDTEXT
+        ntInputbox.Tag = GRIDTEXT
         If GRIDTEXT = "Edit No" Then
             ntInputbox.Ok.Visible = False
             ntInputbox.TekstInfo.Enabled = False
@@ -697,52 +700,48 @@ XLogShow:
         End If
         GRIDTEXT = InfoTekst
         If Mid(InfoTekst, 1, 1) = "@" Then
-            'ntInputbox.ToolStrip.Text = GRIDTEXT ' & NTInputbox.DefaultData.RecordSource
+            ntInputbox.LabelToolStrip.Text = GRIDTEXT & SQL_COMMAND 'ntInputbox.DefaultData.RecordSource
         Else
-            'ntInputbox.ToolStrip.Text = GRIDTEXT
+            ntInputbox.LabelToolStrip.Text = GRIDTEXT
         End If
-        NTInputbox.TekstInfo.Text = TekstZelf
-        'nTInputBox.TekstInfo.PasswordChar = Paswoord
-        NTInputbox.ShowDialog()
+        ntInputbox.TekstInfo.Text = TekstZelf
+        'ntInputbox.TekstInfo.PasswordChar = Paswoord
+
+        ntInputbox.ShowDialog()
 
         Dim AantalRijen As Short
-        If NTInputbox.TekstInfo.Text = Chr(255) Then
+        If ntInputbox.TekstInfo.Text = Chr(255) Then
             vsfInputBox = TekstZelf
         Else
             If SQL_COMMAND = "" Then
                 vsfInputBox = ntInputbox.TekstInfo.Text
-            ElseIf Mid(InfoTekst, 1, 1) = "@" Then
-                Stop
-                'And NTInputbox.TekstInfo.Text = NTInputbox.DefaultData.Recordset.Fields(Val(Mid(ToolDef(0), 1, 2))).Value Then
-                'Select Case Mid(InfoTekst, 2, 2)
-                'Case "00"
-                'AantalRijen = 2
-                'Case "01", "02"
-                'AantalRijen = 1
-                'Case Else
-                'MsgBox("Stop")
-                'End Select
-                'For T = AantalRijen To 0 Step -1
-                'xLog.X.Col = 0
-                'For TT = 1 To xLog.X.Rows
-                'xLog.X.Row = TT
-                'If Mid(xLog.X.Text, 5, 5) = Mid(ToolDef(T), 4) Then
-                'xLog.X.Col = 2
-                'xLog.X.Text = NTInputbox.DefaultData.Recordset.Fields(Val(Mid(ToolDef(T), 1, 2))).Value
-                'Exit For
-                'End If
-                'Next
-                'Next
-                'vsfInputBox = ntInputbox.TekstInfo.Text
+            ElseIf Mid(InfoTekst, 1, 1) = "@" And ntInputbox.TekstInfo.Text = ntInputbox.rsInputBoxData.Fields(Val(Mid(ToolDef(0), 1, 2))).Value Then
+                Select Case Mid(InfoTekst, 2, 2)
+                    Case "00"
+                        AantalRijen = 2
+                    Case "01", "02"
+                        AantalRijen = 1
+                    Case Else
+                        MsgBox("Stop")
+                End Select
+                For T = AantalRijen To 0 Step -1
+                    'xLog.X.Col = 0
+                    'For TT = 1 To xLog.X.Rows
+                    'xLog.X.Row = TT
+                    'If Mid(xLog.X.Text, 5, 5) = Mid(ToolDef(T), 4) Then
+                    'xLog.X.Col = 2
+                    'xLog.X.Text = ntInputbox.DefaultData.Recordset.Fields(Val(Mid(ToolDef(T), 1, 2))).Value
+                    'Exit For
+                    'End If
+                    'Next
+                Next
+                vsfInputBox = ntInputbox.TekstInfo.Text
                 'Else
-                'vsfInputBox = NTInputbox.TekstInfo.Text
+                'vsfInputBox = ntInputbox.TekstInfo.Text
                 'End If
             End If
-
-
-
         End If
-        'TODO: NTInputbox.DefaultData.RecordSource = ""
+        'TODO: ntInputbox.DefaultData.RecordSource = ""
         Exit Function
 
 ErrInput:
@@ -751,6 +750,7 @@ ErrInput:
         Exit Function
 
     End Function
+
     Function Dec(ByRef fGetal As Double, ByRef fMasker As String) As String
 
         Dim MaskerLengte As Short

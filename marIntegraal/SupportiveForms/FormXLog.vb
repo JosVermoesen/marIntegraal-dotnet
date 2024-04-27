@@ -246,16 +246,17 @@ Public Class FormXlog
                 MSG = "Deze informatie kan niet gewijzigd worden..."
                 GRIDTEXT = "Edit No"
             Else
+                MSG = ""
                 GRIDTEXT = "Edit Yes"
             End If
             If Mid(codeString, 1, 1) = "@" Then
                 MSG = Mid(codeString, 1, 3)
             Else
-                MSG = MSG & QuickHelp(Mid(codeString, 1, 3))
+                MSG = MSG & " " & QuickHelp(Mid(codeString, 1, 3))
             End If
             'X.Col = 2
             'ATLijn = Val(Mid(TELEBIB_CODE(X.Row - 1), 10, 1))
-            tijdelijk = vsfInputBox(MSG, omsString, inputString, "")
+            tijdelijk = vsfInputBox(MSG, omsString, Trim(inputString), "")
             If inputString = tijdelijk Then
             Else
                 AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))

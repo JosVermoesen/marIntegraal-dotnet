@@ -53,37 +53,6 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\default.mdb")>  _
-        Public ReadOnly Property defaultConnectionString() As String
-            Get
-                Return CType(Me("defaultConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Def\TELEBIB2.DEF")>  _
-        Public ReadOnly Property TELEBIB2ConnectionString() As String
-            Get
-                Return CType(Me("TELEBIB2ConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=""C:\Users\Jos\Documents\marNT\Data\0"& _ 
-            "01\marnt - kopie11062015.mdv""")>  _
-        Public ReadOnly Property marnt___kopie11062015ConnectionString() As String
-            Get
-                Return CType(Me("marnt___kopie11062015ConnectionString"),String)
-            End Get
-        End Property
     End Class
 End Namespace
 

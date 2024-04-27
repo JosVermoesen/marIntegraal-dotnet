@@ -117,10 +117,10 @@ Public Class Mim
         AD_TBIB = New ADODB.Connection
 
         'AD_KBDB.ConnectionString = marIntegraal.My.Settings.defaultConnectionString
-        AD_KBDB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "Def\default.def;" & "Persist Security Info=False"
+        AD_KBDB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "Def\DEFAULT.DEF;" & "Persist Security Info=False"
         AD_KBDB.Open()
 
-        AD_TBIB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "\Def\Telebib2.def;" & "Persist Security Info=False"
+        AD_TBIB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "\Def\TELEBIB2.DEF;" & "Persist Security Info=False"
         AD_TBIB.Open()
 
         AD_KBTable = New ADODB.Recordset With {
@@ -128,6 +128,7 @@ Public Class Mim
         }
         AD_KBTable.Open("KeuzeBoxData", AD_KBDB, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdTableDirect) '  adLockReadOnly, adCmdTableDirect
         AD_KBTable.Index = "BestandsNaam"
+
         With CUSTOMERS_SHEET
             .MdiParent = Me
             .Text = "Klanten"
@@ -450,7 +451,10 @@ Public Class Mim
         Process.Start(New ProcessStartInfo("https://webmail.rv.be"))
     End Sub
     Private Sub LicentieToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
         MessageBox.Show("Licentie")
+        FormPostalCodesAndPlaces.Show()
+
     End Sub
     Private Sub CommandToolStripMenuItem_Click(sender As Object, e As EventArgs)
 

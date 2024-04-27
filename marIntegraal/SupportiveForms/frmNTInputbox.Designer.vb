@@ -29,6 +29,7 @@ Partial Class ntInputbox
         Me.Ok = New System.Windows.Forms.Button()
         Me.TekstInfo = New System.Windows.Forms.MaskedTextBox()
         Me.lblInfo = New System.Windows.Forms.Label()
+        Me.LabelToolStrip = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'cmdVooruit
@@ -92,7 +93,7 @@ Partial Class ntInputbox
         Me.Ok.BackColor = System.Drawing.SystemColors.Control
         Me.Ok.Cursor = System.Windows.Forms.Cursors.Default
         Me.Ok.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Ok.Location = New System.Drawing.Point(376, 12)
+        Me.Ok.Location = New System.Drawing.Point(376, 13)
         Me.Ok.Name = "Ok"
         Me.Ok.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Ok.Size = New System.Drawing.Size(81, 26)
@@ -123,12 +124,22 @@ Partial Class ntInputbox
         Me.lblInfo.Size = New System.Drawing.Size(177, 25)
         Me.lblInfo.TabIndex = 15
         '
+        'LabelToolStrip
+        '
+        Me.LabelToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.LabelToolStrip.Location = New System.Drawing.Point(0, 91)
+        Me.LabelToolStrip.Name = "LabelToolStrip"
+        Me.LabelToolStrip.Size = New System.Drawing.Size(470, 13)
+        Me.LabelToolStrip.TabIndex = 16
+        Me.LabelToolStrip.Text = "Label1"
+        '
         'ntInputbox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Sluiten
-        Me.ClientSize = New System.Drawing.Size(470, 81)
+        Me.ClientSize = New System.Drawing.Size(470, 104)
+        Me.Controls.Add(Me.LabelToolStrip)
         Me.Controls.Add(Me.cmdVooruit)
         Me.Controls.Add(Me.Hernieuw)
         Me.Controls.Add(Me.cmdAchteruit)
@@ -138,7 +149,7 @@ Partial Class ntInputbox
         Me.Controls.Add(Me.Sluiten)
         Me.Name = "ntInputbox"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmNTInputbox"
+        Me.Text = "frmntInputbox"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -151,5 +162,5 @@ Partial Class ntInputbox
     Public WithEvents Ok As Button
     Public WithEvents TekstInfo As MaskedTextBox
     Public WithEvents lblInfo As Label
-
+    Friend WithEvents LabelToolStrip As Label
 End Class
