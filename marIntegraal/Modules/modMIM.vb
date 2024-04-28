@@ -448,6 +448,7 @@ EenFoutBijINLaden:
         'InbrengFinancieel.Close()
 
     End Sub
+
     Function TeleBibClick(ByRef Fl As Integer) As Boolean
         Dim PositieX As Integer
         Dim aa As String
@@ -497,6 +498,7 @@ EenFoutBijINLaden:
             Case Else
                 MsgBox("stop in telebibclick, fl=" & Format(Fl))
         End Select
+
         Select Case Fl
             Case TABLE_CUSTOMERS
                 LogTekst = "BIB voor Klanten"
@@ -636,6 +638,7 @@ XLogShow:
         Loop
 
     End Sub
+
     Function vsfInputBox(ByRef InfoTekst As String, ByRef Titel As String, ByRef TekstZelf As String, ByRef Paswoord As String) As String
         Dim T As Short
         Dim TT As Short
@@ -656,8 +659,6 @@ XLogShow:
             Select Case Mid(InfoTekst, 2, 2)
                 Case "00"
                     SQL_COMMAND = "SELECT * FROM ISOLandKodes WHERE ISOLandNummer LIKE '" & Trim(TekstZelf) & "%';"
-                    'ntInputbox.BindingNavigator.BindingSource = ntInputbox.ISOLandkodesBindingSource
-                    'TODO: ntInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
 
                     ReDim ToolDef(3)
                     ToolDef(0) = "00=v149 " 'Landnummer  ISO kode
@@ -665,8 +666,6 @@ XLogShow:
                     ToolDef(2) = "02=v150 " 'Landkode    ISO kode
                 Case "01"
                     SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PostKode LIKE '" & Trim(TekstZelf) & "%';"
-                    'TODO: ntInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
-                    'ntInputbox.BindingNavigator.BindingSource = ntInputbox.PostKodesWoonPlaatsenBindingSource
 
                     ReDim ToolDef(3)
                     ToolDef(0) = "01=A107 " 'PostKode volgens Postkantoor
@@ -674,8 +673,7 @@ XLogShow:
 
                 Case "02"
                     SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PlaatsNaam LIKE '" & Trim(TekstZelf) & "%';"
-                    'TODO: ntInputbox.DefaultData.RecordSource = SQL_COMMAND & RTrim(TekstZelf) & "%';"
-                    'ntInputbox.BindingNavigator.BindingSource = ntInputbox.PostKodesWoonPlaatsenBindingSource
+
                     ReDim ToolDef(3)
                     ToolDef(0) = "02=A108 " 'Plaatsnaam
                     ToolDef(1) = "01=A107 " 'PostKode volgens Postkantoor
@@ -710,6 +708,11 @@ XLogShow:
         ntInputbox.ShowDialog()
 
         Dim AantalRijen As Short
+        Dim xLogLines As Integer
+        Dim xLogBibHere As String
+        Dim toolDefCheck As String
+        Dim newInputBoxVariable As String
+
         If ntInputbox.TekstInfo.Text = Chr(255) Then
             vsfInputBox = TekstZelf
         Else
@@ -724,16 +727,20 @@ XLogShow:
                     Case Else
                         MsgBox("Stop")
                 End Select
+
+                xLogLines = FormXlog.X.Items.Count
                 For T = AantalRijen To 0 Step -1
-                    'xLog.X.Col = 0
-                    'For TT = 1 To xLog.X.Rows
-                    'xLog.X.Row = TT
-                    'If Mid(xLog.X.Text, 5, 5) = Mid(ToolDef(T), 4) Then
-                    'xLog.X.Col = 2
-                    'xLog.X.Text = ntInputbox.DefaultData.Recordset.Fields(Val(Mid(ToolDef(T), 1, 2))).Value
-                    'Exit For
-                    'End If
-                    'Next
+                    toolDefCheck = Mid(ToolDef(T), 4)
+
+                    For TT = 0 To xLogLines - 1
+
+                        xLogBibHere = Mid(FormXlog.X.Items(TT).SubItems(0).Text, 5, 5)
+                        If Trim(xLogBibHere) = Trim(toolDefCheck) Then
+                            newInputBoxVariable = Trim(ntInputbox.rsInputBoxData.Fields(Val(Mid(ToolDef(T), 1, 2))).Value)
+                            FormXlog.X.Items(TT).SubItems(2).Text = newInputBoxVariable
+                            Exit For
+                        End If
+                    Next
                 Next
                 vsfInputBox = ntInputbox.TekstInfo.Text
                 'Else
