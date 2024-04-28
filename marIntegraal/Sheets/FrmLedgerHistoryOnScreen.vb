@@ -30,7 +30,7 @@ Public Class HistoriekRekeningScherm
             .Add("T.Rek", 63, HorizontalAlignment.Left)            
         End With
 
-        TxtLijnen.Text = "300" 'LaadTekst("HistoriekInScherm", "MaxLijnen")
+        TxtLijnen.Text = "300" 'SettingLoading("HistoriekInScherm", "MaxLijnen")
         tbVanTot.Text = FunctionDateText(mid(BOOKYEAR_FROMTO, 1, 8)) & " - " & FunctionDateText(Mid(BOOKYEAR_FROMTO, 9, 8))
 
         ' Set up the delays for the ToolTip.
@@ -169,7 +169,7 @@ JournaalJump:
 
     Private Sub HistoriekRekeningScherm_Closed(sender As Object, e As EventArgs) Handles Me.Closed
 
-        'BeWaarTekst("HistoriekInScherm", "MaxLijnen", TxtLijnen.Text)
+        'SettingSaving("HistoriekInScherm", "MaxLijnen", TxtLijnen.Text)
         'Bewaar ook de kolomgrootte van de listview
 
     End Sub

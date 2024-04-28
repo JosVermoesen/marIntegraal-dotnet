@@ -123,7 +123,7 @@ End Class
 '			Exit Sub
 '		End If
 
-'		If Not DatumKtrl(TekstInfo(0).Text, PERIODAS_TEXT) Then
+'		If Not IsDateOk(TekstInfo(0).Text, PERIODAS_TEXT) Then
 '			Beep()
 '			BJPERDAT.WindowState = System.Windows.Forms.FormWindowState.Normal
 '			BJPERDAT.PeriodeBoekjaar.Focus()
@@ -782,7 +782,7 @@ End Class
 '					TekstInfo(0).Text = MIM_GLOBAL_DATE.Value
 '					Beep()
 '					TekstInfo(0).Focus()
-'				ElseIf Not DatumKtrl(TekstInfo(0).Text, PERIODAS_TEXT) Then 
+'				ElseIf Not IsDateOk(TekstInfo(0).Text, PERIODAS_TEXT) Then 
 '					Beep()
 '					BJPERDAT.WindowState = System.Windows.Forms.FormWindowState.Normal
 '					BJPERDAT.PeriodeBoekjaar.Focus()

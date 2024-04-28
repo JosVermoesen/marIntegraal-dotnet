@@ -1,10 +1,10 @@
-﻿Public Class ntInputbox
+﻿Public Class FormNtInputBox
 
     Public rsInputBoxData As ADODB.Recordset
     Dim sqlHere As String
     Dim sqlLabelHere As String
 
-    Private Sub frmntInputbox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormNtInputBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim tempo = LabelToolStrip.Text
         If SQL_COMMAND = "" Then
@@ -20,16 +20,16 @@
 
         Select Case Mid(LabelToolStrip.Text, 2, 2)
             Case "00"
-                lblInfo.Text = rsInputBoxData.Fields("ISOLandNummer").Value + ", " + rsInputBoxData.Fields("ISOLandkode").Value + ", " + rsInputBoxData.Fields("ISOMuntKode").Value + ", " + rsInputBoxData.Fields("LandNaam").Value
-                TekstInfo.Text = rsInputBoxData.Fields("ISOLandNummer").Value
+                LabelInfo.Text = rsInputBoxData.Fields("ISOLandNummer").Value + ", " + rsInputBoxData.Fields("ISOLandkode").Value + ", " + rsInputBoxData.Fields("ISOMuntKode").Value + ", " + rsInputBoxData.Fields("LandNaam").Value
+                TbTextLine.Text = rsInputBoxData.Fields("ISOLandNummer").Value
 
             Case "01"
-                lblInfo.Text = rsInputBoxData.Fields("PostKode").Value + ", " + rsInputBoxData.Fields("Plaatsnaam").Value
-                TekstInfo.Text = rsInputBoxData.Fields("PostKode").Value
+                LabelInfo.Text = rsInputBoxData.Fields("PostKode").Value + ", " + rsInputBoxData.Fields("Plaatsnaam").Value
+                TbTextLine.Text = rsInputBoxData.Fields("PostKode").Value
 
             Case "02"
-                lblInfo.Text = rsInputBoxData.Fields("PostKode").Value + ", " + rsInputBoxData.Fields("Plaatsnaam").Value
-                TekstInfo.Text = rsInputBoxData.Fields("PlaatsNaam").Value
+                LabelInfo.Text = rsInputBoxData.Fields("PostKode").Value + ", " + rsInputBoxData.Fields("Plaatsnaam").Value
+                TbTextLine.Text = rsInputBoxData.Fields("PlaatsNaam").Value
         End Select
 
     End Sub
@@ -40,8 +40,8 @@
 
         Dim sqlQuery As String
         Dim sqlLabel As String
-        sqlQuery = sqlHere + "LIKE '" & Trim(TekstInfo.Text) & "%'"
-        sqlLabel = sqlLabelHere + "LIKE '" & Trim(TekstInfo.Text) & "%'"
+        sqlQuery = sqlHere + "LIKE '" & Trim(TbTextLine.Text) & "%'"
+        sqlLabel = sqlLabelHere + "LIKE '" & Trim(TbTextLine.Text) & "%'"
 
         rsInputBoxData = New ADODB.Recordset With {
             .CursorType = ADODB.CursorTypeEnum.adOpenDynamic,
@@ -63,37 +63,37 @@
 
     End Function
 
-    Private Sub Sluiten_Click(sender As Object, e As EventArgs) Handles Sluiten.Click
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
 
         KTRL = 9
-        TekstInfo.Text = Chr(255)
-        TekstInfo.Focus()
+        TbTextLine.Text = Chr(255)
+        TbTextLine.Focus()
         Hide()
 
     End Sub
 
-    Private Sub Ok_Click(sender As Object, e As EventArgs) Handles Ok.Click
+    Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
 
         On Error Resume Next
 
-        TekstInfo.Focus()
+        TbTextLine.Focus()
         KTRL = 0
         Hide()
 
     End Sub
 
-    Private Sub Hernieuw_Click(sender As Object, e As EventArgs) Handles Hernieuw.Click
+    Private Sub BtnReNew_Click(sender As Object, e As EventArgs) Handles BtnReNew.Click
 
         Dim result = GetRSInputBoxData()
 
         If result Then
             RefreshRecordPosition()
         End If
-        AcceptButton = Ok
+        AcceptButton = BtnAccept
 
     End Sub
 
-    Private Sub cmdVooruit_Click(sender As Object, e As EventArgs) Handles cmdVooruit.Click
+    Private Sub BtnForward_Click(sender As Object, e As EventArgs) Handles BtnForward.Click
 
         If rsInputBoxData.EOF Then
             rsInputBoxData.MoveLast()
@@ -107,7 +107,7 @@
 
     End Sub
 
-    Private Sub cmdAchteruit_Click(sender As Object, e As EventArgs) Handles cmdAchteruit.Click
+    Private Sub BtnBack_Click(sender As Object, e As EventArgs) Handles BtnBack.Click
 
         If rsInputBoxData.BOF Then
             rsInputBoxData.MoveFirst()
@@ -121,10 +121,10 @@
 
     End Sub
 
-    Private Sub TekstInfo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TekstInfo.KeyPress
+    Private Sub TbTextLine_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbTextLine.KeyPress
 
-        If Hernieuw.Visible Then
-            AcceptButton = Hernieuw
+        If BtnReNew.Visible Then
+            AcceptButton = BtnReNew
         End If
 
     End Sub

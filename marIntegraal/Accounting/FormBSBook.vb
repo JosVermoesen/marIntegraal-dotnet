@@ -773,7 +773,7 @@ TryAgain:
 
 	Private Sub DateTimePickerProcessingDate_Leave(sender As Object, e As EventArgs) Handles DateTimePickerProcessingDate.Leave
 
-		If Not DatumKtrl(Format(DateTimePickerProcessingDate.Value, "ddMMyyyy"), PERIODAS_TEXT) Then
+		If Not IsDateOk(Format(DateTimePickerProcessingDate.Value, "ddMMyyyy"), PERIODAS_TEXT) Then
 			MessageBox.Show("Datum verwerking buiten periode" & vbCrLf & vbCrLf & FormBYPERDAT.PeriodeBoekjaar.Text & "!", "Datum controle", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 			DateTimePickerProcessingDate.Focus()
 		End If

@@ -95,8 +95,8 @@ End Class
 '			Me.TekstInfo(6).TabIndex = 9
 '			pctFilter = ""
 '		End If
-'		BeWaarTekst("Aankoopverrichting", "FilterToggle", Str(Me.Filter_Renamed(0).Checked))
-'		BeWaarTekst("Aankoopverrichting", "FilterPCT", pctFilter)
+'		SettingSaving("Aankoopverrichting", "FilterToggle", Str(Me.Filter_Renamed(0).Checked))
+'		SettingSaving("Aankoopverrichting", "FilterPCT", pctFilter)
 '		Me.lPctFilter.Text = pctFilter
 
 '	End Sub
@@ -106,12 +106,12 @@ End Class
 '		Dim X As Short
 
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(Aankoopverrichting, FilterToggle). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Me.Filter_Renamed(0).Checked = LaadTekst("Aankoopverrichting", "FilterToggle")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(Aankoopverrichting, FilterToggle). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Me.Filter_Renamed(0).Checked = SettingLoading("Aankoopverrichting", "FilterToggle")
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		pctFilter = LaadTekst("Aankoopverrichting", "FilterPCT")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		pctFilter = SettingLoading("Aankoopverrichting", "FilterPCT")
 '		If Me.Filter_Renamed(0).Checked = True Then
 '			Me.TekstInfo(6).Visible = True
 '			Me.TekstInfo(6).TabIndex = 9

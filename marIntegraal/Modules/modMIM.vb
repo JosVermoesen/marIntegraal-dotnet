@@ -246,7 +246,6 @@ ErrorOpvang:
 
     End Sub
 
-
     Function InitTables() As Boolean
         Dim T As Integer
 
@@ -304,7 +303,6 @@ ErrorOpvang:
         Next
     End Function
 
-
     Function SettingsSaving(ByRef frmVenster As System.Windows.Forms.Form) As Boolean
 
         Err.Clear() : SettingsSaving = True
@@ -315,6 +313,7 @@ ErrorOpvang:
         If Err.Number Then SettingsSaving = False
 
     End Function
+
     Sub SettingsLoading(ByRef frmVenster As System.Windows.Forms.Form)
         Dim valTop As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Top"))
         Dim valLeft As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Top"))
@@ -329,18 +328,20 @@ ErrorOpvang:
             frmVenster.Height = valHeight
         End If
     End Sub
-    Function LaadTekst(ByRef Onderdeel As String, ByRef SubDeel As String) As Object
+
+    Function SettingLoading(ByRef Onderdeel As String, ByRef SubDeel As String) As Object
 
         On Error Resume Next
         If InStr(Onderdeel, ";") Then
-            LaadTekst = GetSetting(Left(Onderdeel, InStr(Onderdeel, ";") - 1), Mid(Onderdeel, InStr(Onderdeel, ";") + 1), SubDeel)
+            SettingLoading = GetSetting(Left(Onderdeel, InStr(Onderdeel, ";") - 1), Mid(Onderdeel, InStr(Onderdeel, ";") + 1), SubDeel)
         Else
-            LaadTekst = GetSetting(My.Application.Info.ProductName, Onderdeel, SubDeel)
+            SettingLoading = GetSetting(My.Application.Info.ProductName, Onderdeel, SubDeel)
         End If
 
 EenFoutBijINLaden:
     End Function
-    Sub BeWaarTekst(ByRef Onderdeel As String, ByRef SubDeel As String, ByRef Element As String)
+
+    Sub SettingSaving(ByRef Onderdeel As String, ByRef SubDeel As String, ByRef Element As String)
 
         SaveSetting(My.Application.Info.ProductName, Onderdeel, SubDeel, Element)
 
@@ -384,8 +385,7 @@ EenFoutBijINLaden:
 
     End Sub
 
-
-    Public Function VeldOK(ByRef FlHier As Short, ByRef VeldNaam As String, Optional ByRef VeldDef As String = "") As Integer
+    Public Function FieldIsOk(ByRef FlHier As Short, ByRef VeldNaam As String, Optional ByRef VeldDef As String = "") As Integer
         Dim AantalRC As Short
 
         If RS_MAR(FlHier).State = ADODB.ObjectStateEnum.adStateClosed Then
@@ -395,10 +395,10 @@ EenFoutBijINLaden:
         Err.Clear()
         MSG = RS_MAR(FlHier).Fields(VeldNaam).Name
         If Err.Number = 0 Then
-            VeldOK = Err.Number
+            FieldIsOk = Err.Number
             Exit Function
         ElseIf VeldDef = "" Then
-            VeldOK = Err.Number
+            FieldIsOk = Err.Number
             Exit Function
         Else
             JetTableClose(FlHier)
@@ -412,9 +412,9 @@ EenFoutBijINLaden:
                     MsgBox(MSG & " met succes uitgevoerd", MsgBoxStyle.Information)
 
                 End If
-                VeldOK = Err.Number
+                FieldIsOk = Err.Number
             Else
-                VeldOK = 99
+                FieldIsOk = 99
             End If
         End If
 
@@ -639,7 +639,7 @@ XLogShow:
 
     End Sub
 
-    Function vsfInputBox(ByRef InfoTekst As String, ByRef Titel As String, ByRef TekstZelf As String, ByRef Paswoord As String) As String
+    Function InOutBox(InfoString As String, TitleString As String, ValueString As String, PasswordString As String) As String
         Dim T As Short
         Dim TT As Short
 
@@ -647,32 +647,32 @@ XLogShow:
 
         Dim ToolDef(3) As String
         'UPGRADE_ISSUE: Load statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B530EFF2-3132-48F8-B8BC-D88AF543D321"'
-        ntInputbox.Dispose()
-        ntInputbox.Hide()
-        ntInputbox.Text = Titel
+        FormNtInputBox.Dispose()
+        FormNtInputBox.Hide()
+        FormNtInputBox.Text = TitleString
         SQL_COMMAND = ""
-        If Mid(InfoTekst, 1, 1) = "@" Then
-            ntInputbox.Hernieuw.Visible = True
-            ntInputbox.cmdVooruit.Visible = True
-            ntInputbox.cmdAchteruit.Visible = True
-            ntInputbox.lblInfo.Visible = True
-            Select Case Mid(InfoTekst, 2, 2)
+        If Mid(InfoString, 1, 1) = "@" Then
+            FormNtInputBox.BtnReNew.Visible = True
+            FormNtInputBox.BtnForward.Visible = True
+            FormNtInputBox.BtnBack.Visible = True
+            FormNtInputBox.LabelInfo.Visible = True
+            Select Case Mid(InfoString, 2, 2)
                 Case "00"
-                    SQL_COMMAND = "SELECT * FROM ISOLandKodes WHERE ISOLandNummer LIKE '" & Trim(TekstZelf) & "%';"
+                    SQL_COMMAND = "SELECT * FROM ISOLandKodes WHERE ISOLandNummer LIKE '" & Trim(ValueString) & "%';"
 
                     ReDim ToolDef(3)
                     ToolDef(0) = "00=v149 " 'Landnummer  ISO kode
                     ToolDef(1) = "01=vs03 " 'Munteenheid ISO kode
                     ToolDef(2) = "02=v150 " 'Landkode    ISO kode
                 Case "01"
-                    SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PostKode LIKE '" & Trim(TekstZelf) & "%';"
+                    SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PostKode LIKE '" & Trim(ValueString) & "%';"
 
                     ReDim ToolDef(3)
                     ToolDef(0) = "01=A107 " 'PostKode volgens Postkantoor
                     ToolDef(1) = "02=A108 " 'Plaatsnaam
 
                 Case "02"
-                    SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PlaatsNaam LIKE '" & Trim(TekstZelf) & "%';"
+                    SQL_COMMAND = "SELECT * FROM PostKodesWoonplaatsen WHERE PlaatsNaam LIKE '" & Trim(ValueString) & "%';"
 
                     ReDim ToolDef(3)
                     ToolDef(0) = "02=A108 " 'Plaatsnaam
@@ -681,31 +681,31 @@ XLogShow:
                     SQL_COMMAND = ""
             End Select
         Else
-            ntInputbox.Hernieuw.Visible = False
-            ntInputbox.cmdVooruit.Visible = False
-            ntInputbox.cmdAchteruit.Visible = False
-            ntInputbox.lblInfo.Visible = False
+            FormNtInputBox.BtnReNew.Visible = False
+            FormNtInputBox.BtnForward.Visible = False
+            FormNtInputBox.BtnBack.Visible = False
+            FormNtInputBox.LabelInfo.Visible = False
         End If
-        ntInputbox.Tag = GRIDTEXT
+        FormNtInputBox.Tag = GRIDTEXT
         If GRIDTEXT = "Edit No" Then
-            ntInputbox.Ok.Visible = False
-            ntInputbox.TekstInfo.Enabled = False
-            ntInputbox.AcceptButton = ntInputbox.Sluiten
+            FormNtInputBox.BtnAccept.Visible = False
+            FormNtInputBox.TbTextLine.Enabled = False
+            FormNtInputBox.AcceptButton = FormNtInputBox.BtnCancel
         Else
-            ntInputbox.Ok.Visible = True
-            ntInputbox.TekstInfo.Enabled = True
-            ntInputbox.AcceptButton = ntInputbox.Ok
+            FormNtInputBox.BtnAccept.Visible = True
+            FormNtInputBox.TbTextLine.Enabled = True
+            FormNtInputBox.AcceptButton = FormNtInputBox.BtnAccept
         End If
-        GRIDTEXT = InfoTekst
-        If Mid(InfoTekst, 1, 1) = "@" Then
-            ntInputbox.LabelToolStrip.Text = GRIDTEXT & SQL_COMMAND 'ntInputbox.DefaultData.RecordSource
+        GRIDTEXT = InfoString
+        If Mid(InfoString, 1, 1) = "@" Then
+            FormNtInputBox.LabelToolStrip.Text = GRIDTEXT & SQL_COMMAND 'ntInputbox.DefaultData.RecordSource
         Else
-            ntInputbox.LabelToolStrip.Text = GRIDTEXT
+            FormNtInputBox.LabelToolStrip.Text = GRIDTEXT
         End If
-        ntInputbox.TekstInfo.Text = TekstZelf
-        'ntInputbox.TekstInfo.PasswordChar = Paswoord
+        FormNtInputBox.TbTextLine.Text = ValueString
+        'ntInputbox.TekstInfo.PasswordChar = PasswordString
 
-        ntInputbox.ShowDialog()
+        FormNtInputBox.ShowDialog()
 
         Dim AantalRijen As Short
         Dim xLogLines As Integer
@@ -713,13 +713,13 @@ XLogShow:
         Dim toolDefCheck As String
         Dim newInputBoxVariable As String
 
-        If ntInputbox.TekstInfo.Text = Chr(255) Then
-            vsfInputBox = TekstZelf
+        If FormNtInputBox.TbTextLine.Text = Chr(255) Then
+            InOutBox = ValueString
         Else
             If SQL_COMMAND = "" Then
-                vsfInputBox = ntInputbox.TekstInfo.Text
-            ElseIf Mid(InfoTekst, 1, 1) = "@" And ntInputbox.TekstInfo.Text = ntInputbox.rsInputBoxData.Fields(Val(Mid(ToolDef(0), 1, 2))).Value Then
-                Select Case Mid(InfoTekst, 2, 2)
+                InOutBox = FormNtInputBox.TbTextLine.Text
+            ElseIf Mid(InfoString, 1, 1) = "@" And FormNtInputBox.TbTextLine.Text = FormNtInputBox.rsInputBoxData.Fields(Val(Mid(ToolDef(0), 1, 2))).Value Then
+                Select Case Mid(InfoString, 2, 2)
                     Case "00"
                         AantalRijen = 2
                     Case "01", "02"
@@ -736,15 +736,15 @@ XLogShow:
 
                         xLogBibHere = Mid(FormXlog.X.Items(TT).SubItems(0).Text, 5, 5)
                         If Trim(xLogBibHere) = Trim(toolDefCheck) Then
-                            newInputBoxVariable = Trim(ntInputbox.rsInputBoxData.Fields(Val(Mid(ToolDef(T), 1, 2))).Value)
+                            newInputBoxVariable = Trim(FormNtInputBox.rsInputBoxData.Fields(Val(Mid(ToolDef(T), 1, 2))).Value)
                             FormXlog.X.Items(TT).SubItems(2).Text = newInputBoxVariable
                             Exit For
                         End If
                     Next
                 Next
-                vsfInputBox = ntInputbox.TekstInfo.Text
+                InOutBox = FormNtInputBox.TbTextLine.Text
                 'Else
-                'vsfInputBox = ntInputbox.TekstInfo.Text
+                'InOutBox = ntInputbox.TekstInfo.Text
                 'End If
             End If
         End If
@@ -753,7 +753,7 @@ XLogShow:
 
 ErrInput:
         Beep()
-        vsfInputBox = TekstZelf
+        InOutBox = ValueString
         Exit Function
 
     End Function
@@ -774,7 +774,8 @@ ErrInput:
         Dec = TempoString
 
     End Function
-    Function DatumKtrl(ByRef fDatum As String, ByRef fVlag As Short) As Boolean
+
+    Function IsDateOk(ByRef fDatum As String, ByRef fVlag As Short) As Boolean
 
         Dim Dag As String = "  "
         Dim Maand As String = "  "
@@ -782,7 +783,7 @@ ErrInput:
         Dim gDatum As String
         Dim gPos As Short
 
-        DatumKtrl = False
+        IsDateOk = False
         gDatum = fDatum
         Do While InStr(gDatum, "/")
             gPos = InStr(gDatum, "/")
@@ -806,16 +807,17 @@ ErrInput:
             Case PERIODAS_TEXT, PERIODAS_KEY
                 If Jaar & Maand & Dag < Left(PERIOD_FROMTO, 8) Or Jaar & Maand & Dag > Right(PERIOD_FROMTO, 8) Then
                 Else
-                    DatumKtrl = True
+                    IsDateOk = True
                 End If
             Case BOOKYEARAS_TEXT, BOOKYEARAS_KEY
                 If Jaar & Maand & Dag < Left(BOOKYEAR_FROMTO, 8) Or Jaar & Maand & Dag > Right(BOOKYEAR_FROMTO, 8) Then
                 Else
-                    DatumKtrl = True
+                    IsDateOk = True
                 End If
         End Select
 
     End Function
+
     Function VValdag(ByRef rDat1 As String, ByRef rvv As String) As String
         Dim adm1 As Short
         Dim irjr43, irdg43, irmd43, avd43 As Short

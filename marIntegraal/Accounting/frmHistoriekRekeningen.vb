@@ -69,8 +69,8 @@ End Class
 
 '		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		If chkAfdrukLiggend.CheckState = 1 Then
 '			Printer.Orientation = PrinterObjectConstants.vbPRORLandscape
 '		Else
@@ -123,7 +123,7 @@ End Class
 '		End If
 '		VolgendePagina()
 
-'		If DatumKtrl(VB.Right(KEY_BUF(TABLE_JOURNAL), 8), BOOKYEARAS_KEY) Then
+'		If IsDateOk(VB.Right(KEY_BUF(TABLE_JOURNAL), 8), BOOKYEARAS_KEY) Then
 '			If VB.Left(KEY_BUF(TABLE_JOURNAL), 7) >= VB.Left(BeginSleutel.Value, 7) Then
 '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '				GoSub InstalSubTitel
@@ -138,7 +138,7 @@ End Class
 '				Exit Do
 '			End If
 '			If VB.Left(VorigeSleutel.Value, 7) = VB.Left(KEY_BUF(TABLE_JOURNAL), 7) Then
-'				If Not DatumKtrl(VB.Right(KEY_BUF(TABLE_JOURNAL), 8), BOOKYEARAS_KEY) Then
+'				If Not IsDateOk(VB.Right(KEY_BUF(TABLE_JOURNAL), 8), BOOKYEARAS_KEY) Then
 '				ElseIf Mid(VorigeSleutel.Value, 12, 2) = Mid(KEY_BUF(TABLE_JOURNAL), 12, 2) Then 
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '					GoSub PrintInfo
@@ -153,7 +153,7 @@ End Class
 '					GoSub PrintInfo
 '				End If
 '			Else
-'				If DatumKtrl(VB.Right(KEY_BUF(TABLE_JOURNAL), 8), BOOKYEARAS_KEY) Then
+'				If IsDateOk(VB.Right(KEY_BUF(TABLE_JOURNAL), 8), BOOKYEARAS_KEY) Then
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
 '					GoSub InstalSubTitel
 '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
@@ -298,8 +298,8 @@ End Class
 
 '		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		If Printer.Orientation = PrinterObjectConstants.vbPRORLandscape Then
 '			chkAfdrukLiggend.CheckState = System.Windows.Forms.CheckState.Checked
 '		Else

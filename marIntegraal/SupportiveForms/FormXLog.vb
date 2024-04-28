@@ -256,7 +256,7 @@ Public Class FormXlog
             End If
             'X.Col = 2
             'ATLijn = Val(Mid(TELEBIB_CODE(X.Row - 1), 10, 1))
-            tijdelijk = vsfInputBox(MSG, omsString, Trim(inputString), "")
+            tijdelijk = InOutBox(MSG, omsString, Trim(inputString), "")
             If inputString = tijdelijk Then
             Else
                 AdoInsertToRecord(flHier, tijdelijk, Mid(codeString, 5, 5))

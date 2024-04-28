@@ -37,7 +37,7 @@ Partial Class FormXlog
         'BtnCancel
         '
         Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnCancel.Location = New System.Drawing.Point(104, 354)
+        Me.BtnCancel.Location = New System.Drawing.Point(104, 353)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
         Me.BtnCancel.TabIndex = 0
@@ -50,7 +50,7 @@ Partial Class FormXlog
         Me.BtnHideAndGoBack.BackColor = System.Drawing.SystemColors.Control
         Me.BtnHideAndGoBack.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnHideAndGoBack.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnHideAndGoBack.Location = New System.Drawing.Point(4, 354)
+        Me.BtnHideAndGoBack.Location = New System.Drawing.Point(4, 353)
         Me.BtnHideAndGoBack.Name = "BtnHideAndGoBack"
         Me.BtnHideAndGoBack.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnHideAndGoBack.Size = New System.Drawing.Size(94, 22)
@@ -127,7 +127,7 @@ Partial Class FormXlog
         Me.BtnSelectOnly.BackColor = System.Drawing.SystemColors.Control
         Me.BtnSelectOnly.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnSelectOnly.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnSelectOnly.Location = New System.Drawing.Point(384, 354)
+        Me.BtnSelectOnly.Location = New System.Drawing.Point(384, 353)
         Me.BtnSelectOnly.Name = "BtnSelectOnly"
         Me.BtnSelectOnly.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnSelectOnly.Size = New System.Drawing.Size(94, 22)
@@ -142,7 +142,7 @@ Partial Class FormXlog
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
-        Me.ClientSize = New System.Drawing.Size(490, 382)
+        Me.ClientSize = New System.Drawing.Size(490, 385)
         Me.Controls.Add(Me.TabControl)
         Me.Controls.Add(Me.BtnHideAndGoBack)
         Me.Controls.Add(Me.BtnEditLine)

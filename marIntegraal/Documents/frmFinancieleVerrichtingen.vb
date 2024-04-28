@@ -111,7 +111,7 @@ End Class
 '		Dim TempoTekst As String
 '		Dim DummySleutel As New VB6.FixedLengthString(5)
 
-'		If Not DatumKtrl(VB6.Format(Datum.Value, "dd/mm/yyyy"), PERIODAS_TEXT) Then
+'		If Not IsDateOk(VB6.Format(Datum.Value, "dd/mm/yyyy"), PERIODAS_TEXT) Then
 '			Beep()
 '			Datum.Focus()
 '			Exit Sub
@@ -330,7 +330,7 @@ End Class
 
 '		Select Case Index
 '			Case 0
-'				If DatumKtrl(VB6.Format(Datum.Value, "dd/mm/yyyy"), PERIODAS_TEXT) Then
+'				If IsDateOk(VB6.Format(Datum.Value, "dd/mm/yyyy"), PERIODAS_TEXT) Then
 '				Else
 '					BJPERDAT.WindowState = System.Windows.Forms.FormWindowState.Normal
 '					BJPERDAT.PeriodeBoekjaar.Focus()

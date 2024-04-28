@@ -103,8 +103,8 @@ End Class
 '			Else
 '				Printer = Printers(LISTPRINTER_NUMBER)
 '				On Error Resume Next
-'				'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'				Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'				'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'				Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '				If Printer.Width > 12000 Then
 '					Printer.FontSize = 10
 '					Printer.FontName = "Courier New"
@@ -155,8 +155,8 @@ End Class
 
 '		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		If chkAfdrukLiggend.CheckState = 1 Then
 '			Printer.Orientation = PrinterObjectConstants.vbPRORLandscape
 '		Else
@@ -294,8 +294,8 @@ End Class
 
 '		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		If Printer.Orientation = PrinterObjectConstants.vbPRORLandscape Then
 '			chkAfdrukLiggend.CheckState = System.Windows.Forms.CheckState.Checked
 '		Else

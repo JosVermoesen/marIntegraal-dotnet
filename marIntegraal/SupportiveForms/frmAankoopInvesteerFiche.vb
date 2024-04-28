@@ -91,7 +91,7 @@ End Class
 '				MSG = MSG & "reeds aanwezig.  Vermijdt dubbele optellingen !" & vbCrLf & vbCrLf
 '				MSG = MSG & "Kies Sluiten indien U zopas de fiche reeds bijgewerkt hebt."
 '				MsgBox(MSG, 48, "Investeringsfiche éénzelfde datum")
-'			ElseIf Not DatumKtrl(TekstInfo(6).Text, BOOKYEARAS_TEXT) Then 
+'			ElseIf Not IsDateOk(TekstInfo(6).Text, BOOKYEARAS_TEXT) Then 
 '				MSG = "Opgelet, U probeert een investeringsfiche" & vbCrLf
 '				MSG = MSG & "van een ander boekjaar bij te werken !" & vbCrLf & vbCrLf
 '				MSG = MSG & "Kies Sluiten en neem de juiste rekening."

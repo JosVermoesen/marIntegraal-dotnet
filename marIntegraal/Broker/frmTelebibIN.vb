@@ -49,7 +49,7 @@ Public Class TelebibIN
 		MSG = "SELECT TOP 1 * FROM TB2"
 		rsTB2.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenDynamic, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdText)
 
-		gboDIR = LaadTekst("TelebibIN", "gboLocatie")
+		gboDIR = SettingLoading("TelebibIN", "gboLocatie")
 		gboFILE = "PRENOT.GBO"
 		If gboDIR = "" Then
 			Me.cbGBO.Enabled = False
@@ -65,7 +65,7 @@ Public Class TelebibIN
 		End If
 		lblGboFile.Text = gboDIR & gboFILE
 
-		aswebDIR = Trim(LaadTekst("TelebibIN", "aswebLocatie"))
+		aswebDIR = Trim(SettingLoading("TelebibIN", "aswebLocatie"))
 		aswebFILE = "AS1.EDI"
 		If aswebDIR = "" Then
 			Me.cbASWEB.Enabled = False
@@ -138,7 +138,7 @@ Public Class TelebibIN
 		ElseIf Mim.OpenFileDialog.FileName <> aswebDIR Then
 			aswebDIR = UCase(Mim.OpenFileDialog.FileName)
 			aswebDIR = Mid(aswebDIR, 1, InStr(aswebDIR, aswebFILE)-1)
-			BeWaarTekst("TelebibIN", "aswebLocatie", aswebDIR)
+			SettingSaving("TelebibIN", "aswebLocatie", aswebDIR)
 
 			lblAswebFile.Text = aswebDIR & aswebFILE
 			Me.cbASWEB.Enabled = True
@@ -167,7 +167,7 @@ Public Class TelebibIN
 		ElseIf Mim.OpenFileDialog.FileName <> gboDIR Then
 			gboDIR = UCase(Mim.OpenFileDialog.FileName)
 			gboDIR = Mid(gboDIR, 1, InStr(gboDIR, gboFILE) - 1)
-			BeWaarTekst("TelebibIN", "gboLocatie", gboDIR)
+			SettingSaving("TelebibIN", "gboLocatie", gboDIR)
 			lblGboFile.Text = gboDIR & gboFILE
 			Me.cbGBO.Enabled = True
 			'CURRAC= rekeninguittreksel

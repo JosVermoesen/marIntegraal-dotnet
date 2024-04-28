@@ -330,10 +330,10 @@
     <Compile Include="Actions\FrmCompanyNew.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SupportiveForms\frmntInputbox.Designer.vb">
-      <DependentUpon>frmntInputbox.vb</DependentUpon>
+    <Compile Include="SupportiveForms\FormNtInputbox.Designer.vb">
+      <DependentUpon>FormNtInputbox.vb</DependentUpon>
     </Compile>
-    <Compile Include="SupportiveForms\frmntInputbox.vb">
+    <Compile Include="SupportiveForms\FormNtInputbox.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sheets\frmProductFiche.Designer.vb">
@@ -543,8 +543,8 @@
     <EmbeddedResource Include="Actions\FrmCompanyNew.resx">
       <DependentUpon>FrmCompanyNew.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SupportiveForms\frmntInputbox.resx">
-      <DependentUpon>frmntInputbox.vb</DependentUpon>
+    <EmbeddedResource Include="SupportiveForms\FormNtInputbox.resx">
+      <DependentUpon>FormNtInputbox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sheets\frmProductFiche.resx">
       <DependentUpon>frmProductFiche.vb</DependentUpon>

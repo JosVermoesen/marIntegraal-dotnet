@@ -73,8 +73,8 @@ End Class
 
 '		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		If chkAfdrukLiggend.CheckState = 1 Then
 '			Printer.Orientation = PrinterObjectConstants.vbPRORLandscape
 '		Else
@@ -101,14 +101,14 @@ End Class
 
 '	Private Sub CmdBewaar_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CmdBewaar.Click
 
-'		BeWaarTekst("dokumentenBalans", "KontroleVervaldag", CStr(Selektie(0).CheckState))
-'		BeWaarTekst("dokumentenBalans", "GeenBetalingHogerBoekjaar", CStr(Selektie(1).CheckState))
-'		BeWaarTekst("dokumentenBalans", "PeriodeBegrenzen", CStr(Selektie(2).CheckState))
-'		BeWaarTekst("dokumentenBalans", "EnkelNietBetaaldedokumenten", CStr(Selektie(3).CheckState))
-'		BeWaarTekst("dokumentenBalans", "-dokumenten-1994Uitsluiten", CStr(Selektie(4).CheckState))
-'		BeWaarTekst("dokumentenBalans", "BetalingsKontrole", CStr(Selektie(5).CheckState))
-'		BeWaarTekst("dokumentenBalans", "FinancieelDetailViaJournaal", CStr(ChkFinancieelDetail.CheckState))
-'		BeWaarTekst("dokumentenBalans", "AfdrukInRooster", CStr(chkAfdrukInVenster.CheckState))
+'		SettingSaving("dokumentenBalans", "KontroleVervaldag", CStr(Selektie(0).CheckState))
+'		SettingSaving("dokumentenBalans", "GeenBetalingHogerBoekjaar", CStr(Selektie(1).CheckState))
+'		SettingSaving("dokumentenBalans", "PeriodeBegrenzen", CStr(Selektie(2).CheckState))
+'		SettingSaving("dokumentenBalans", "EnkelNietBetaaldedokumenten", CStr(Selektie(3).CheckState))
+'		SettingSaving("dokumentenBalans", "-dokumenten-1994Uitsluiten", CStr(Selektie(4).CheckState))
+'		SettingSaving("dokumentenBalans", "BetalingsKontrole", CStr(Selektie(5).CheckState))
+'		SettingSaving("dokumentenBalans", "FinancieelDetailViaJournaal", CStr(ChkFinancieelDetail.CheckState))
+'		SettingSaving("dokumentenBalans", "AfdrukInRooster", CStr(chkAfdrukInVenster.CheckState))
 
 '	End Sub
 
@@ -147,7 +147,7 @@ End Class
 '				'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
 '				XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
 '				RecordToField(TABLE_INVOICES)
-'				If DatumKtrl(AdoGetField(TABLE_INVOICES, "#v035 #"), BOOKYEARAS_KEY) = False Then
+'				If IsDateOk(AdoGetField(TABLE_INVOICES, "#v035 #"), BOOKYEARAS_KEY) = False Then
 '					TotaalAantalBEF = TotaalAantalBEF + 1
 '					Select Case VB.Left(AdoGetField(TABLE_INVOICES, "#v034 #"), 1)
 '						Case "K"
@@ -1130,8 +1130,8 @@ End Class
 '		Printer = Printers(LISTPRINTER_NUMBER)
 
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		If Printer.Orientation = PrinterObjectConstants.vbPRORLandscape Then
 '			chkAfdrukLiggend.CheckState = System.Windows.Forms.CheckState.Checked
 '		Else
@@ -1141,30 +1141,30 @@ End Class
 
 '		On Error Resume Next
 '		Err.Clear()
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dokumentenBalans, BetalingsKontrole). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Selektie(5).CheckState = LaadTekst("dokumentenBalans", "BetalingsKontrole")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dokumentenBalans, BetalingsKontrole). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Selektie(5).CheckState = SettingLoading("dokumentenBalans", "BetalingsKontrole")
 '		If Err.Number Then
 '		Else
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dokumentenBalans, KontroleVervaldag). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Selektie(0).CheckState = LaadTekst("dokumentenBalans", "KontroleVervaldag")
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dokumentenBalans, GeenBetalingHogerBoekjaar). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Selektie(1).CheckState = LaadTekst("dokumentenBalans", "GeenBetalingHogerBoekjaar")
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dokumentenBalans, PeriodeBegrenzen). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Selektie(2).CheckState = LaadTekst("dokumentenBalans", "PeriodeBegrenzen")
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dokumentenBalans, EnkelNietBetaaldedokumenten). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Selektie(3).CheckState = LaadTekst("dokumentenBalans", "EnkelNietBetaaldedokumenten")
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dokumentenBalans, -dokumenten-1994Uitsluiten). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Selektie(4).CheckState = LaadTekst("dokumentenBalans", "-dokumenten-1994Uitsluiten")
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			ChkFinancieelDetail.CheckState = LaadTekst("dokumentenBalans", "FinancieelDetailViaJournaal")
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			chkAfdrukInVenster.CheckState = LaadTekst("dokumentenBalans", "AfdrukInRooster")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dokumentenBalans, KontroleVervaldag). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Selektie(0).CheckState = SettingLoading("dokumentenBalans", "KontroleVervaldag")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dokumentenBalans, GeenBetalingHogerBoekjaar). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Selektie(1).CheckState = SettingLoading("dokumentenBalans", "GeenBetalingHogerBoekjaar")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dokumentenBalans, PeriodeBegrenzen). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Selektie(2).CheckState = SettingLoading("dokumentenBalans", "PeriodeBegrenzen")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dokumentenBalans, EnkelNietBetaaldedokumenten). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Selektie(3).CheckState = SettingLoading("dokumentenBalans", "EnkelNietBetaaldedokumenten")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dokumentenBalans, -dokumenten-1994Uitsluiten). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Selektie(4).CheckState = SettingLoading("dokumentenBalans", "-dokumenten-1994Uitsluiten")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			ChkFinancieelDetail.CheckState = SettingLoading("dokumentenBalans", "FinancieelDetailViaJournaal")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			chkAfdrukInVenster.CheckState = SettingLoading("dokumentenBalans", "AfdrukInRooster")
 '		End If
 '		TekstLijn(1).Text = MIM_GLOBAL_DATE.Value
 '		TekstLijn(4).Text = FunctionDateText(VB.Left(BOOKYEAR_FROMTO.Value, 8)) & " - " & FunctionDateText(VB.Right(BOOKYEAR_FROMTO.Value, 8))

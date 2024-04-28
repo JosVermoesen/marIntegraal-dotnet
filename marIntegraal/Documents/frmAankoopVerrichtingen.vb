@@ -193,7 +193,7 @@ End Class
 '			Exit Sub
 '		End If
 
-'		If Not DatumKtrl(TekstInfo(0).Text, PERIODAS_TEXT) Then
+'		If Not IsDateOk(TekstInfo(0).Text, PERIODAS_TEXT) Then
 '			Beep()
 '			On Error Resume Next
 '			TekstInfo(0).Focus()
@@ -280,14 +280,14 @@ End Class
 '		'Dim miDoc As MODIctl.Document
 '		'Set miDoc = New MODIctl.Document
 
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		If LaadTekst("dnnInstellingen", "PostvakIO") = "" Then
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		If SettingLoading("dnnInstellingen", "PostvakIO") = "" Then
 '			MsgBox("Nieuwe PC of nog geen instellingen voor PDF Postvak In.  Aanbevolen in te te stellen a.u.b. via submenu DotNetNuke.", MsgBoxStyle.Information)
 '			Mim.TekenOpen.InitialDirectory = LOCATION_COMPANYDATA
 '		Else
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Mim.TekenOpen.InitialDirectory = LaadTekst("dnnInstellingen", "PostvakIO")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Mim.TekenOpen.InitialDirectory = SettingLoading("dnnInstellingen", "PostvakIO")
 '		End If
 '		'UPGRADE_WARNING: Filter has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
 '		Mim.TekenOpen.Filter = "Acrobat bestanden (*.pdf)|*.pdf"
@@ -530,8 +530,8 @@ End Class
 '		Mid(GrensDetail(3), 8, 7) = VB.Left(FL99_RECORD, 7)
 
 '		'InstalleerRecenteCrediteuren
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		MSG = LaadTekst("DirekteAankoop", "startBlad")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		MSG = SettingLoading("DirekteAankoop", "startBlad")
 '		If MSG = "" Then MSG = "True"
 '		StartBlad = CBool(MSG)
 '		Schoon()
@@ -945,7 +945,7 @@ End Class
 '		If eventSender.Checked Then
 '			Dim Index As Short = obTAB.GetIndex(eventSender)
 
-'			BeWaarTekst("DirekteAankoop", "startBlad", Str(obTAB(0).Checked))
+'			SettingSaving("DirekteAankoop", "startBlad", Str(obTAB(0).Checked))
 
 '		End If
 '	End Sub
@@ -1112,7 +1112,7 @@ End Class
 '				If DateWrongFormat(TekstInfo(0).Text) Then
 '					TekstInfo(0).Text = MIM_GLOBAL_DATE.Value
 '					TekstInfo(0).Focus()
-'				ElseIf Not DatumKtrl(TekstInfo(0).Text, PERIODAS_TEXT) Then 
+'				ElseIf Not IsDateOk(TekstInfo(0).Text, PERIODAS_TEXT) Then 
 '					BJPERDAT.WindowState = System.Windows.Forms.FormWindowState.Normal
 '					BJPERDAT.PeriodeBoekjaar.Focus()
 '				End If

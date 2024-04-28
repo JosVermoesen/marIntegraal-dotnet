@@ -532,7 +532,7 @@ Public Class FormJournalEntryInput
             TextBoxDescription.Focus()
             Exit Sub
         End If
-        If Not DatumKtrl(Format(DateTimePickerBookingDate.Value, "dd/MM/yyyy"), PERIODAS_TEXT) Then
+        If Not IsDateOk(Format(DateTimePickerBookingDate.Value, "dd/MM/yyyy"), PERIODAS_TEXT) Then
             Beep()
             FormBYPERDAT.WindowState = FormWindowState.Normal
             FormBYPERDAT.Focus()

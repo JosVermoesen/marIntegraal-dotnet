@@ -63,7 +63,7 @@ End Class
 '					End If
 
 '					aa = fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #"))
-'					Antwoord = vsfInputBox("Verkoopprijs per eenheid in BEF : " & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), MASK_SY(4)), "Geef het verbruik aan (in " & Mid(aa, 4) & ")", "", "")
+'					Antwoord = InOutBox("Verkoopprijs per eenheid in BEF : " & Dec(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")), MASK_SY(4)), "Geef het verbruik aan (in " & Mid(aa, 4) & ")", "", "")
 '					If Antwoord = "" Then
 '						Exit Sub
 '					Else
@@ -234,8 +234,8 @@ End Class
 'AfdrukProduktieFiche: 
 '		Printer = Printers(LISTPRINTER_NUMBER)
 '		On Error Resume Next
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		Printer.PaperBin = LaadTekst(My.Application.Info.Title, "LIJSTPRINTER")
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
 '		Printer.FontName = "Courier New"
 '		Printer.FontSize = 7.2
 '		Printer.Write(vbCrLf & vbCrLf & FULL_LINE.Value & vbCrLf)

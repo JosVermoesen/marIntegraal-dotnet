@@ -274,14 +274,14 @@ End Class
 
 '	Private Sub cbBijlage_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cbBijlage.Click
 
-'		'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'		If LaadTekst("dnnInstellingen", "PostvakIO") = "" Then
+'		'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'		If SettingLoading("dnnInstellingen", "PostvakIO") = "" Then
 '			MsgBox("Nieuwe PC of nog geen instellingen voor PDF Postvak In.  Aanbevolen in te te stellen a.u.b. via submenu DotNetNuke.", MsgBoxStyle.Information)
 '			Mim.TekenOpen.InitialDirectory = LOCATION_COMPANYDATA
 '		Else
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Mim.TekenOpen.InitialDirectory = LaadTekst("dnnInstellingen", "PostvakIO")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(dnnInstellingen, PostvakIO). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Mim.TekenOpen.InitialDirectory = SettingLoading("dnnInstellingen", "PostvakIO")
 '		End If
 '		'Mim.Teken.Filter = "Acrobat bestanden (*.pdf)|*.pdf"
 '		Mim.TekenOpen.ShowDialog()
@@ -1274,8 +1274,8 @@ End Class
 '		If DDEFlag <> 1 Then
 '			Printer = Printers(DOCUMENTPRINTER_NUMBER)
 '			On Error Resume Next
-'			'UPGRADE_WARNING: Couldn't resolve default property of object LaadTekst(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-'			Printer.PaperBin = LaadTekst(My.Application.Info.Title, "dokumentPRINTER")
+'			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
+'			Printer.PaperBin = SettingLoading(My.Application.Info.Title, "dokumentPRINTER")
 '			If Printer.Orientation = PrinterObjectConstants.vbPRORLandscape Then
 '				Printer.Orientation = PrinterObjectConstants.vbPRORPortrait
 '				System.Windows.Forms.Application.DoEvents()

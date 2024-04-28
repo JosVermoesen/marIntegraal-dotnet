@@ -813,7 +813,7 @@ MaskAantal:
         Dim BestondReeds As Short
         Dim T As Short
         If dokumentType = "15" And Annuleren.Enabled = True Then
-            If Not DatumKtrl(datumdocMTextbox.Text, PERIODAS_TEXT) Then
+            If Not IsDateOk(datumdocMTextbox.Text, PERIODAS_TEXT) Then
                 FormBYPERDAT.WindowState = FormWindowState.Normal
                 FormBYPERDAT.Focus()
                 datumdocMTextbox.Focus()

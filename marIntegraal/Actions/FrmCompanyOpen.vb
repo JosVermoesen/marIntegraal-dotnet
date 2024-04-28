@@ -14,7 +14,7 @@ Public Class FrmCompanyOpen
         bedrijvenListView.Columns.Add("Map", -2, HorizontalAlignment.Right)
         bedrijvenListView.View = View.Details
 
-        strDataLocatie = LaadTekst("BedrijfOpenen", "DataDefault")
+        strDataLocatie = SettingLoading("BedrijfOpenen", "DataDefault")
         If Trim(strDataLocatie) = "" Then
             strDataLocatie = "lokaal"
         End If
@@ -46,25 +46,25 @@ Public Class FrmCompanyOpen
             locatieTextBox.Focus()
         Else
             If localdataRadioButton.Checked = True Then
-                If locatieTextBox.Text <> LaadTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave") Then
+                If locatieTextBox.Text <> SettingLoading(My.Application.Info.Title, "Bedrijfsinhoudsopgave") Then
                     CTRL_BOX = MsgBox(locatieTextBox.Text & vbCrLf & vbCrLf & "Wordt dit de nieuwe 'lokale' opstartinhoudsopgave ?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
                     If CTRL_BOX = MsgBoxResult.Yes Then
-                        BeWaarTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave", locatieTextBox.Text)
+                        SettingSaving(My.Application.Info.Title, "Bedrijfsinhoudsopgave", locatieTextBox.Text)
                         MsgBox("Hierna wordt er afgesloten.  Start het programma opnieuw op")
                         End
                     Else
-                        locatieTextBox.Text = LaadTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave")
+                        locatieTextBox.Text = SettingLoading(My.Application.Info.Title, "Bedrijfsinhoudsopgave")
                     End If
                 End If
             Else
-                If locatieTextBox.Text <> LaadTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") Then
+                If locatieTextBox.Text <> SettingLoading(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") Then
                     CTRL_BOX = MsgBox(locatieTextBox.Text & vbCrLf & vbCrLf & "Wordt dit de nieuwe 'server' opstartinhoudsopgave ?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.YesNo)
                     If CTRL_BOX = MsgBoxResult.Yes Then
-                        BeWaarTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave", locatieTextBox.Text)
+                        SettingSaving(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave", locatieTextBox.Text)
                         MsgBox("Hierna wordt er afgesloten.  Start het programma opnieuw op")
                         End
                     Else
-                        locatieTextBox.Text = LaadTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave")
+                        locatieTextBox.Text = SettingLoading(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave")
                     End If
                 End If
             End If
@@ -75,14 +75,14 @@ Public Class FrmCompanyOpen
     Private Sub localdataRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles localdataRadioButton.CheckedChanged
 
         If serverdataRadioButton.Checked = True Then
-            locatieTextBox.Text = LaadTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") 'Server anders
-            BeWaarTekst("BedrijfOpenen", "DataDefault", "server")
+            locatieTextBox.Text = SettingLoading(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") 'Server anders
+            SettingSaving("BedrijfOpenen", "DataDefault", "server")
             compactdatabaseButton.Enabled = False
             verwijderenButton.Enabled = False
             onedriveButton.Enabled = False
         Else
-            locatieTextBox.Text = LaadTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave") 'Lokaal is standaard
-            BeWaarTekst("BedrijfOpenen", "DataDefault", "lokaal")
+            locatieTextBox.Text = SettingLoading(My.Application.Info.Title, "Bedrijfsinhoudsopgave") 'Lokaal is standaard
+            SettingSaving("BedrijfOpenen", "DataDefault", "lokaal")
             compactdatabaseButton.Enabled = True
             verwijderenButton.Enabled = True
             onedriveButton.Enabled = True
@@ -93,14 +93,14 @@ Public Class FrmCompanyOpen
 
     Private Sub serverdataRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles serverdataRadioButton.CheckedChanged
         If serverdataRadioButton.Checked = True Then
-            locatieTextBox.Text = LaadTekst(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") 'Server anders
-            BeWaarTekst("BedrijfOpenen", "DataDefault", "server")
+            locatieTextBox.Text = SettingLoading(My.Application.Info.Title, "ServerBedrijfsinhoudsopgave") 'Server anders
+            SettingSaving("BedrijfOpenen", "DataDefault", "server")
             compactdatabaseButton.Enabled = False
             verwijderenButton.Enabled = False
             onedriveButton.Enabled = False
         Else
-            locatieTextBox.Text = LaadTekst(My.Application.Info.Title, "Bedrijfsinhoudsopgave") 'Lokaal is standaard
-            BeWaarTekst("BedrijfOpenen", "DataDefault", "lokaal")
+            locatieTextBox.Text = SettingLoading(My.Application.Info.Title, "Bedrijfsinhoudsopgave") 'Lokaal is standaard
+            SettingSaving("BedrijfOpenen", "DataDefault", "lokaal")
             compactdatabaseButton.Enabled = True
             verwijderenButton.Enabled = True
             onedriveButton.Enabled = True
