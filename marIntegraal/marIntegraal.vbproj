@@ -226,10 +226,10 @@
     <Compile Include="Sheets\FrmBasicSheetTemplate.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Actions\FrmCompanyOpen.Designer.vb">
-      <DependentUpon>FrmCompanyOpen.vb</DependentUpon>
+    <Compile Include="Actions\FormCompanyOpen.Designer.vb">
+      <DependentUpon>FormCompanyOpen.vb</DependentUpon>
     </Compile>
-    <Compile Include="Actions\FrmCompanyOpen.vb">
+    <Compile Include="Actions\FormCompanyOpen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="System\FormBYPERDAT.Designer.vb">
@@ -396,10 +396,10 @@
     <Compile Include="SupportiveForms\frmVerkoopSjabloon.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Documents\frmVerkoopVerrichtingen.Designer.vb">
-      <DependentUpon>frmVerkoopVerrichtingen.vb</DependentUpon>
+    <Compile Include="Documents\FomSalesTransactions.Designer.vb">
+      <DependentUpon>FomSalesTransactions.vb</DependentUpon>
     </Compile>
-    <Compile Include="Documents\frmVerkoopVerrichtingen.vb">
+    <Compile Include="Documents\FomSalesTransactions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="System\FrmVPEOutgoing.Designer.vb">
@@ -492,8 +492,8 @@
     <EmbeddedResource Include="Sheets\FrmBasicSheetTemplate.resx">
       <DependentUpon>FrmBasicSheetTemplate.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Actions\FrmCompanyOpen.resx">
-      <DependentUpon>FrmCompanyOpen.vb</DependentUpon>
+    <EmbeddedResource Include="Actions\FormCompanyOpen.resx">
+      <DependentUpon>FormCompanyOpen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="System\FormBYPERDAT.resx">
       <DependentUpon>FormBYPERDAT.vb</DependentUpon>
@@ -576,8 +576,8 @@
     <EmbeddedResource Include="SupportiveForms\frmVerkoopSjabloon.resx">
       <DependentUpon>frmVerkoopSjabloon.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Documents\frmVerkoopVerrichtingen.resx">
-      <DependentUpon>frmVerkoopVerrichtingen.vb</DependentUpon>
+    <EmbeddedResource Include="Documents\FomSalesTransactions.resx">
+      <DependentUpon>FomSalesTransactions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="System\FrmVPEOutgoing.resx">
       <DependentUpon>FrmVPEOutgoing.vb</DependentUpon>

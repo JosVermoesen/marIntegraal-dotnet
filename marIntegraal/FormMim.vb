@@ -189,7 +189,7 @@ Public Class Mim
             On Error GoTo 0
             CompanyOpenMenuItem.Enabled = False
             CompanyNewMenuItem.Enabled = False
-            Dim BedrijfOpenen As New FrmCompanyOpen With {
+            Dim BedrijfOpenen As New FormCompanyOpen With {
                 .MdiParent = Me
             }
             BedrijfOpenen.Show()
@@ -304,7 +304,7 @@ Public Class Mim
         AankoopVerrichtingen.Show()
     End Sub
     Private Sub SalesTransactionMenuItem_Click(sender As Object, e As EventArgs)
-        Dim VerkoopVerrichtingen As New frmVerkoopVerrichtingen With {
+        Dim VerkoopVerrichtingen As New FomSalesTransactions With {
             .MdiParent = Me
         }
         SalesTransactionMenuItem.Enabled = False

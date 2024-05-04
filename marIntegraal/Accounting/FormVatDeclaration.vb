@@ -54,7 +54,7 @@ Public Class FormVatDeclarations
 
     End Sub
 
-    Private Sub TvDeclarations_KeyDown(sender As Object, e As KeyEventArgs)
+    Private Sub TvDeclarations_KeyDown(sender As Object, e As KeyEventArgs) Handles TvDeclarations.KeyDown
 
         Dim KeyCode = e.KeyCode
         If KeyCode = 13 Then
@@ -66,9 +66,19 @@ Public Class FormVatDeclarations
     End Sub
 
     Private Sub VulDeVelden(strJaar As String, strPeriode As String)
+
         Dim T As Short
         Dim lblEURVak As Short
         Dim lblBEFVak As Short
+
+        Dim total65 As Double
+        Dim totalXX As Double
+
+        Dim total66 As Double
+        Dim totalYY As Double
+
+        Dim total71 As Double
+        Dim total72 As Double
 
         btwVakken = ""
         Dim ktrlHere As Boolean = GetRSVatDeclarations(strJaar, strPeriode)
@@ -237,17 +247,24 @@ Public Class FormVatDeclarations
             LblVak86.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v052 ")), "#,##0.00")
             LblVak87.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v053 ")), "#,##0.00")
 
+            total65 = 0
             LblVak54.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v064 ")), "#,##0.00")
+            total65 += Val(AdoGetField(TABLE_VARIOUS, "#v064 "))
             LblVak55.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v042 ")), "#,##0.00")
+            total65 += Val(AdoGetField(TABLE_VARIOUS, "#v042 "))
             LblVak56.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v043 ")), "#,##0.00")
+            total65 += Val(AdoGetField(TABLE_VARIOUS, "#v043 "))
             LblVak57.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v044 ")), "#,##0.00")
-            'LblVak61.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#???? ")), "#,##0") 'Vak 61 som van 54 t/m 57 ?
+            total65 += Val(AdoGetField(TABLE_VARIOUS, "#v044 "))
+            LblVak61.Text = Format(0, "#,##0.00")
+            'LblVak63.Text = Format(0, "#,##0.00")
             LblVak63.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v100 ")), "#,##0.00")
-            'LblVak65.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#???? ")), "#,##0")
-            'LblVakXX.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#???? ")), "#,##0")
+            'LblVak65.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#???? ")), "#,##0") ??
+            LblVakXX.Text = Format(total65, "#,##0.00")
 
             LblVak59.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v045 ")), "#,##0.00")
-            LblVak62.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v045 ")), "#,##0.00") '?
+            'LblVak62.Text = Format(0, "#,##0.00")
+            'LblVak62.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v045 ")), "#,##0.00")
             LblVak64.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#v0101 ")), "#,##0.00")
             'LblVak66.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#???? ")), "#,##0")
             'LblVakYY.Text = Format(Val(AdoGetField(TABLE_VARIOUS, "#???? ")), "#,##0")
@@ -269,7 +286,7 @@ Public Class FormVatDeclarations
             'End If
             'Next
         Else
-            MessageBox.Show("Btw aangiftes in BEF kunnen (voorlopig) niet met deze versie getoond worden.")
+            MessageBox.Show("Btw aangiftes in BEF kunnen niet met deze versie getoond worden.")
             Exit Sub
         End If
 

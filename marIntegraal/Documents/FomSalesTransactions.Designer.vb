@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmVerkoopVerrichtingen
+Partial Class FomSalesTransactions
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,8 +23,8 @@ Partial Class frmVerkoopVerrichtingen
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.cbPDF = New System.Windows.Forms.CheckBox()
-        Me.Annuleren = New System.Windows.Forms.Button()
-        Me.Schoonvegen = New System.Windows.Forms.Button()
+        Me.BtnCancel = New System.Windows.Forms.Button()
+        Me.BtnClear = New System.Windows.Forms.Button()
         Me.cbLayOudPDF = New System.Windows.Forms.Button()
         Me._Label1_9 = New System.Windows.Forms.Label()
         Me._Label1_8 = New System.Windows.Forms.Label()
@@ -58,17 +58,17 @@ Partial Class frmVerkoopVerrichtingen
         Me.chkZonderRelatie = New System.Windows.Forms.CheckBox()
         Me.cmdLijst = New System.Windows.Forms.Button()
         Me.cmdSQLInfo = New System.Windows.Forms.Button()
-        Me.CmbAfdruk = New System.Windows.Forms.Button()
-        Me.CmdTekst = New System.Windows.Forms.Button()
-        Me.CmdOmschrijving = New System.Windows.Forms.Button()
-        Me.CmdStock = New System.Windows.Forms.Button()
+        Me.BtnGenerateCopy = New System.Windows.Forms.Button()
+        Me.BtnPutTextLine = New System.Windows.Forms.Button()
+        Me.BtnFromDescription = New System.Windows.Forms.Button()
+        Me.BtnFromStock = New System.Windows.Forms.Button()
         Me.Optimaliseer = New System.Windows.Forms.Button()
         Me.Overschrijvingsstrook = New System.Windows.Forms.CheckBox()
-        Me.Klassement = New System.Windows.Forms.Button()
-        Me.Afsluiten = New System.Windows.Forms.Button()
+        Me.BtnDocumentHistory = New System.Windows.Forms.Button()
+        Me.BtnGenerateAndSave = New System.Windows.Forms.Button()
         Me.Medekontraktant = New System.Windows.Forms.CheckBox()
         Me.CreditNota = New System.Windows.Forms.CheckBox()
-        Me.KlantAktiveren = New System.Windows.Forms.Button()
+        Me.BtnGetClient = New System.Windows.Forms.Button()
         Me.VerkoopDetail = New System.Windows.Forms.ListBox()
         Me.Sjabloon = New System.Windows.Forms.Button()
         Me.DirekteVerkoop = New System.Windows.Forms.RadioButton()
@@ -91,37 +91,37 @@ Partial Class frmVerkoopVerrichtingen
         Me.cbPDF.Size = New System.Drawing.Size(73, 21)
         Me.cbPDF.TabIndex = 67
         Me.cbPDF.Text = "Vpe-Pdf"
-        Me.cbPDF.UseVisualStyleBackColor = false
+        Me.cbPDF.UseVisualStyleBackColor = False
         '
-        'Annuleren
+        'BtnCancel
         '
-        Me.Annuleren.BackColor = System.Drawing.SystemColors.Control
-        Me.Annuleren.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Annuleren.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Annuleren.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Annuleren.Location = New System.Drawing.Point(480, 475)
-        Me.Annuleren.Name = "Annuleren"
-        Me.Annuleren.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Annuleren.Size = New System.Drawing.Size(59, 21)
-        Me.Annuleren.TabIndex = 65
-        Me.Annuleren.TabStop = false
-        Me.Annuleren.Text = "Sluiten"
-        Me.Annuleren.UseVisualStyleBackColor = false
+        Me.BtnCancel.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnCancel.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnCancel.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnCancel.Location = New System.Drawing.Point(480, 475)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnCancel.Size = New System.Drawing.Size(59, 21)
+        Me.BtnCancel.TabIndex = 65
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Sluiten"
+        Me.BtnCancel.UseVisualStyleBackColor = False
         '
-        'Schoonvegen
+        'BtnClear
         '
-        Me.Schoonvegen.BackColor = System.Drawing.SystemColors.Control
-        Me.Schoonvegen.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Schoonvegen.Enabled = false
-        Me.Schoonvegen.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Schoonvegen.Location = New System.Drawing.Point(544, 475)
-        Me.Schoonvegen.Name = "Schoonvegen"
-        Me.Schoonvegen.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Schoonvegen.Size = New System.Drawing.Size(59, 19)
-        Me.Schoonvegen.TabIndex = 64
-        Me.Schoonvegen.TabStop = false
-        Me.Schoonvegen.Text = "Schoo&n"
-        Me.Schoonvegen.UseVisualStyleBackColor = false
+        Me.BtnClear.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnClear.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnClear.Enabled = False
+        Me.BtnClear.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnClear.Location = New System.Drawing.Point(544, 475)
+        Me.BtnClear.Name = "BtnClear"
+        Me.BtnClear.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnClear.Size = New System.Drawing.Size(59, 19)
+        Me.BtnClear.TabIndex = 64
+        Me.BtnClear.TabStop = False
+        Me.BtnClear.Text = "Schoo&n"
+        Me.BtnClear.UseVisualStyleBackColor = False
         '
         'cbLayOudPDF
         '
@@ -133,9 +133,9 @@ Partial Class frmVerkoopVerrichtingen
         Me.cbLayOudPDF.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cbLayOudPDF.Size = New System.Drawing.Size(193, 21)
         Me.cbLayOudPDF.TabIndex = 66
-        Me.cbLayOudPDF.TabStop = false
+        Me.cbLayOudPDF.TabStop = False
         Me.cbLayOudPDF.Text = "Beheer van VPE PFD Lay-Out"
-        Me.cbLayOudPDF.UseVisualStyleBackColor = false
+        Me.cbLayOudPDF.UseVisualStyleBackColor = False
         '
         '_Label1_9
         '
@@ -223,7 +223,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         '_Label1_3
         '
-        Me._Label1_3.AutoSize = true
+        Me._Label1_3.AutoSize = True
         Me._Label1_3.BackColor = System.Drawing.SystemColors.Control
         Me._Label1_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me._Label1_3.Cursor = System.Windows.Forms.Cursors.Default
@@ -332,7 +332,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         '_Label1_5
         '
-        Me._Label1_5.AutoSize = true
+        Me._Label1_5.AutoSize = True
         Me._Label1_5.BackColor = System.Drawing.SystemColors.Control
         Me._Label1_5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me._Label1_5.Cursor = System.Windows.Forms.Cursors.Default
@@ -346,7 +346,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         '_Label1_7
         '
-        Me._Label1_7.AutoSize = true
+        Me._Label1_7.AutoSize = True
         Me._Label1_7.BackColor = System.Drawing.SystemColors.Control
         Me._Label1_7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me._Label1_7.Cursor = System.Windows.Forms.Cursors.Default
@@ -400,7 +400,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         'KlantInfo
         '
-        Me.KlantInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(255,Byte),Integer), CType(CType(255,Byte),Integer))
+        Me.KlantInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.KlantInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.KlantInfo.Cursor = System.Windows.Forms.Cursors.Default
         Me.KlantInfo.ForeColor = System.Drawing.SystemColors.ControlText
@@ -412,7 +412,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         'DagKoers
         '
-        Me.DagKoers.AutoSize = true
+        Me.DagKoers.AutoSize = True
         Me.DagKoers.BackColor = System.Drawing.SystemColors.Control
         Me.DagKoers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.DagKoers.Cursor = System.Windows.Forms.Cursors.Default
@@ -426,18 +426,18 @@ Partial Class frmVerkoopVerrichtingen
         '
         'TekstInfo3
         '
-        Me.TekstInfo3.AllowPromptAsInput = false
+        Me.TekstInfo3.AllowPromptAsInput = False
         Me.TekstInfo3.BackColor = System.Drawing.Color.Yellow
         Me.TekstInfo3.Location = New System.Drawing.Point(385, 6)
         Me.TekstInfo3.Name = "TekstInfo3"
         Me.TekstInfo3.Size = New System.Drawing.Size(89, 20)
         Me.TekstInfo3.TabIndex = 26
-        Me.TekstInfo3.TabStop = false
-        Me.TekstInfo3.Visible = false
+        Me.TekstInfo3.TabStop = False
+        Me.TekstInfo3.Visible = False
         '
         'datumdocMTextbox
         '
-        Me.datumdocMTextbox.AllowPromptAsInput = false
+        Me.datumdocMTextbox.AllowPromptAsInput = False
         Me.datumdocMTextbox.BackColor = System.Drawing.Color.Yellow
         Me.datumdocMTextbox.Location = New System.Drawing.Point(105, 29)
         Me.datumdocMTextbox.Mask = "##/##/####"
@@ -447,7 +447,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         'mgrklantenrekMTextBox
         '
-        Me.mgrklantenrekMTextBox.AllowPromptAsInput = false
+        Me.mgrklantenrekMTextBox.AllowPromptAsInput = False
         Me.mgrklantenrekMTextBox.BackColor = System.Drawing.Color.Yellow
         Me.mgrklantenrekMTextBox.Location = New System.Drawing.Point(301, 29)
         Me.mgrklantenrekMTextBox.Name = "mgrklantenrekMTextBox"
@@ -456,7 +456,7 @@ Partial Class frmVerkoopVerrichtingen
         '
         'vervaldagMTextBox
         '
-        Me.vervaldagMTextBox.AllowPromptAsInput = false
+        Me.vervaldagMTextBox.AllowPromptAsInput = False
         Me.vervaldagMTextBox.BackColor = System.Drawing.Color.Yellow
         Me.vervaldagMTextBox.Location = New System.Drawing.Point(205, 29)
         Me.vervaldagMTextBox.Mask = "##/##/####"
@@ -466,9 +466,9 @@ Partial Class frmVerkoopVerrichtingen
         '
         'muntMTextBox
         '
-        Me.muntMTextBox.AllowPromptAsInput = false
+        Me.muntMTextBox.AllowPromptAsInput = False
         Me.muntMTextBox.BackColor = System.Drawing.Color.Yellow
-        Me.muntMTextBox.Enabled = false
+        Me.muntMTextBox.Enabled = False
         Me.muntMTextBox.Location = New System.Drawing.Point(9, 29)
         Me.muntMTextBox.Name = "muntMTextBox"
         Me.muntMTextBox.Size = New System.Drawing.Size(93, 20)
@@ -478,22 +478,22 @@ Partial Class frmVerkoopVerrichtingen
         '
         Me.cmdSwitch.BackColor = System.Drawing.SystemColors.Control
         Me.cmdSwitch.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdSwitch.Enabled = false
+        Me.cmdSwitch.Enabled = False
         Me.cmdSwitch.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cmdSwitch.Location = New System.Drawing.Point(545, 285)
         Me.cmdSwitch.Name = "cmdSwitch"
         Me.cmdSwitch.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdSwitch.Size = New System.Drawing.Size(67, 37)
         Me.cmdSwitch.TabIndex = 1
-        Me.cmdSwitch.TabStop = false
+        Me.cmdSwitch.TabStop = False
         Me.cmdSwitch.Text = "Ingave in BEF"
-        Me.cmdSwitch.UseVisualStyleBackColor = false
+        Me.cmdSwitch.UseVisualStyleBackColor = False
         '
         'ckEURINFO
         '
         Me.ckEURINFO.BackColor = System.Drawing.SystemColors.Control
         Me.ckEURINFO.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ckEURINFO.Checked = true
+        Me.ckEURINFO.Checked = True
         Me.ckEURINFO.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ckEURINFO.Cursor = System.Windows.Forms.Cursors.Default
         Me.ckEURINFO.ForeColor = System.Drawing.SystemColors.ControlText
@@ -503,7 +503,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.ckEURINFO.Size = New System.Drawing.Size(97, 17)
         Me.ckEURINFO.TabIndex = 2
         Me.ckEURINFO.Text = "&EURO && Bef Info"
-        Me.ckEURINFO.UseVisualStyleBackColor = false
+        Me.ckEURINFO.UseVisualStyleBackColor = False
         '
         'chkBTWBouw
         '
@@ -517,12 +517,12 @@ Partial Class frmVerkoopVerrichtingen
         Me.chkBTWBouw.Size = New System.Drawing.Size(139, 16)
         Me.chkBTWBouw.TabIndex = 3
         Me.chkBTWBouw.Text = "Btw Tarief Bouw + 5 jaar"
-        Me.chkBTWBouw.UseVisualStyleBackColor = false
+        Me.chkBTWBouw.UseVisualStyleBackColor = False
         '
         'chkZonderRelatie
         '
         Me.chkZonderRelatie.BackColor = System.Drawing.SystemColors.Control
-        Me.chkZonderRelatie.Checked = true
+        Me.chkZonderRelatie.Checked = True
         Me.chkZonderRelatie.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkZonderRelatie.Cursor = System.Windows.Forms.Cursors.Default
         Me.chkZonderRelatie.ForeColor = System.Drawing.SystemColors.ControlText
@@ -532,7 +532,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.chkZonderRelatie.Size = New System.Drawing.Size(116, 23)
         Me.chkZonderRelatie.TabIndex = 4
         Me.chkZonderRelatie.Text = "&Nog te factureren"
-        Me.chkZonderRelatie.UseVisualStyleBackColor = false
+        Me.chkZonderRelatie.UseVisualStyleBackColor = False
         '
         'cmdLijst
         '
@@ -545,7 +545,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.cmdLijst.Size = New System.Drawing.Size(71, 23)
         Me.cmdLijst.TabIndex = 5
         Me.cmdLijst.Text = "Totaal &Lijst"
-        Me.cmdLijst.UseVisualStyleBackColor = false
+        Me.cmdLijst.UseVisualStyleBackColor = False
         '
         'cmdSQLInfo
         '
@@ -557,66 +557,66 @@ Partial Class frmVerkoopVerrichtingen
         Me.cmdSQLInfo.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cmdSQLInfo.Size = New System.Drawing.Size(43, 35)
         Me.cmdSQLInfo.TabIndex = 6
-        Me.cmdSQLInfo.TabStop = false
+        Me.cmdSQLInfo.TabStop = False
         Me.cmdSQLInfo.Text = "SQL &Info"
-        Me.cmdSQLInfo.UseVisualStyleBackColor = false
-        Me.cmdSQLInfo.Visible = false
+        Me.cmdSQLInfo.UseVisualStyleBackColor = False
+        Me.cmdSQLInfo.Visible = False
         '
-        'CmbAfdruk
+        'BtnGenerateCopy
         '
-        Me.CmbAfdruk.BackColor = System.Drawing.SystemColors.Control
-        Me.CmbAfdruk.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CmbAfdruk.Enabled = false
-        Me.CmbAfdruk.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CmbAfdruk.Location = New System.Drawing.Point(545, 165)
-        Me.CmbAfdruk.Name = "CmbAfdruk"
-        Me.CmbAfdruk.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CmbAfdruk.Size = New System.Drawing.Size(63, 35)
-        Me.CmbAfdruk.TabIndex = 7
-        Me.CmbAfdruk.Text = "(Extra) Afdruk"
-        Me.CmbAfdruk.UseVisualStyleBackColor = false
+        Me.BtnGenerateCopy.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnGenerateCopy.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnGenerateCopy.Enabled = False
+        Me.BtnGenerateCopy.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnGenerateCopy.Location = New System.Drawing.Point(545, 165)
+        Me.BtnGenerateCopy.Name = "BtnGenerateCopy"
+        Me.BtnGenerateCopy.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnGenerateCopy.Size = New System.Drawing.Size(63, 35)
+        Me.BtnGenerateCopy.TabIndex = 7
+        Me.BtnGenerateCopy.Text = "(Extra) Afdruk"
+        Me.BtnGenerateCopy.UseVisualStyleBackColor = False
         '
-        'CmdTekst
+        'BtnPutTextLine
         '
-        Me.CmdTekst.BackColor = System.Drawing.SystemColors.Control
-        Me.CmdTekst.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CmdTekst.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CmdTekst.Location = New System.Drawing.Point(261, 121)
-        Me.CmdTekst.Name = "CmdTekst"
-        Me.CmdTekst.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CmdTekst.Size = New System.Drawing.Size(87, 22)
-        Me.CmdTekst.TabIndex = 8
-        Me.CmdTekst.TabStop = false
-        Me.CmdTekst.Text = "Vrije &Tekst"
-        Me.CmdTekst.UseVisualStyleBackColor = false
+        Me.BtnPutTextLine.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnPutTextLine.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnPutTextLine.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnPutTextLine.Location = New System.Drawing.Point(261, 121)
+        Me.BtnPutTextLine.Name = "BtnPutTextLine"
+        Me.BtnPutTextLine.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnPutTextLine.Size = New System.Drawing.Size(87, 22)
+        Me.BtnPutTextLine.TabIndex = 8
+        Me.BtnPutTextLine.TabStop = False
+        Me.BtnPutTextLine.Text = "Vrije &Tekst"
+        Me.BtnPutTextLine.UseVisualStyleBackColor = False
         '
-        'CmdOmschrijving
+        'BtnFromDescription
         '
-        Me.CmdOmschrijving.BackColor = System.Drawing.SystemColors.Control
-        Me.CmdOmschrijving.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CmdOmschrijving.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CmdOmschrijving.Location = New System.Drawing.Point(97, 121)
-        Me.CmdOmschrijving.Name = "CmdOmschrijving"
-        Me.CmdOmschrijving.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CmdOmschrijving.Size = New System.Drawing.Size(163, 22)
-        Me.CmdOmschrijving.TabIndex = 9
-        Me.CmdOmschrijving.TabStop = false
-        Me.CmdOmschrijving.Text = "Bedrag via &Omschrijving"
-        Me.CmdOmschrijving.UseVisualStyleBackColor = false
+        Me.BtnFromDescription.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnFromDescription.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnFromDescription.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnFromDescription.Location = New System.Drawing.Point(97, 121)
+        Me.BtnFromDescription.Name = "BtnFromDescription"
+        Me.BtnFromDescription.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnFromDescription.Size = New System.Drawing.Size(163, 22)
+        Me.BtnFromDescription.TabIndex = 9
+        Me.BtnFromDescription.TabStop = False
+        Me.BtnFromDescription.Text = "Bedrag via &Omschrijving"
+        Me.BtnFromDescription.UseVisualStyleBackColor = False
         '
-        'CmdStock
+        'BtnFromStock
         '
-        Me.CmdStock.BackColor = System.Drawing.SystemColors.Control
-        Me.CmdStock.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CmdStock.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CmdStock.Location = New System.Drawing.Point(9, 121)
-        Me.CmdStock.Name = "CmdStock"
-        Me.CmdStock.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CmdStock.Size = New System.Drawing.Size(87, 22)
-        Me.CmdStock.TabIndex = 10
-        Me.CmdStock.TabStop = false
-        Me.CmdStock.Text = "&Stock artikel"
-        Me.CmdStock.UseVisualStyleBackColor = false
+        Me.BtnFromStock.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnFromStock.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnFromStock.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnFromStock.Location = New System.Drawing.Point(9, 121)
+        Me.BtnFromStock.Name = "BtnFromStock"
+        Me.BtnFromStock.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnFromStock.Size = New System.Drawing.Size(87, 22)
+        Me.BtnFromStock.TabIndex = 10
+        Me.BtnFromStock.TabStop = False
+        Me.BtnFromStock.Text = "&Stock artikel"
+        Me.BtnFromStock.UseVisualStyleBackColor = False
         '
         'Optimaliseer
         '
@@ -628,15 +628,15 @@ Partial Class frmVerkoopVerrichtingen
         Me.Optimaliseer.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Optimaliseer.Size = New System.Drawing.Size(71, 22)
         Me.Optimaliseer.TabIndex = 11
-        Me.Optimaliseer.TabStop = false
+        Me.Optimaliseer.TabStop = False
         Me.Optimaliseer.Text = "O&ptimaliseer"
-        Me.Optimaliseer.UseVisualStyleBackColor = false
+        Me.Optimaliseer.UseVisualStyleBackColor = False
         '
         'Overschrijvingsstrook
         '
         Me.Overschrijvingsstrook.BackColor = System.Drawing.SystemColors.Control
         Me.Overschrijvingsstrook.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Overschrijvingsstrook.Checked = true
+        Me.Overschrijvingsstrook.Checked = True
         Me.Overschrijvingsstrook.CheckState = System.Windows.Forms.CheckState.Checked
         Me.Overschrijvingsstrook.Cursor = System.Windows.Forms.Cursors.Default
         Me.Overschrijvingsstrook.ForeColor = System.Drawing.SystemColors.ControlText
@@ -646,36 +646,36 @@ Partial Class frmVerkoopVerrichtingen
         Me.Overschrijvingsstrook.Size = New System.Drawing.Size(65, 31)
         Me.Overschrijvingsstrook.TabIndex = 12
         Me.Overschrijvingsstrook.Text = "&Met OVS Strook"
-        Me.Overschrijvingsstrook.UseVisualStyleBackColor = false
+        Me.Overschrijvingsstrook.UseVisualStyleBackColor = False
         '
-        'Klassement
+        'BtnDocumentHistory
         '
-        Me.Klassement.BackColor = System.Drawing.SystemColors.Control
-        Me.Klassement.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Klassement.Enabled = false
-        Me.Klassement.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Klassement.Location = New System.Drawing.Point(265, 53)
-        Me.Klassement.Name = "Klassement"
-        Me.Klassement.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Klassement.Size = New System.Drawing.Size(75, 37)
-        Me.Klassement.TabIndex = 13
-        Me.Klassement.TabStop = false
-        Me.Klassement.Text = "&Haal uit klassement"
-        Me.Klassement.UseVisualStyleBackColor = false
+        Me.BtnDocumentHistory.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnDocumentHistory.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnDocumentHistory.Enabled = False
+        Me.BtnDocumentHistory.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnDocumentHistory.Location = New System.Drawing.Point(265, 53)
+        Me.BtnDocumentHistory.Name = "BtnDocumentHistory"
+        Me.BtnDocumentHistory.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnDocumentHistory.Size = New System.Drawing.Size(75, 37)
+        Me.BtnDocumentHistory.TabIndex = 13
+        Me.BtnDocumentHistory.TabStop = False
+        Me.BtnDocumentHistory.Text = "&Haal uit klassement"
+        Me.BtnDocumentHistory.UseVisualStyleBackColor = False
         '
-        'Afsluiten
+        'BtnGenerateAndSave
         '
-        Me.Afsluiten.BackColor = System.Drawing.SystemColors.Control
-        Me.Afsluiten.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Afsluiten.Enabled = false
-        Me.Afsluiten.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Afsluiten.Location = New System.Drawing.Point(349, 121)
-        Me.Afsluiten.Name = "Afsluiten"
-        Me.Afsluiten.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Afsluiten.Size = New System.Drawing.Size(75, 22)
-        Me.Afsluiten.TabIndex = 14
-        Me.Afsluiten.Text = "&Verwerken"
-        Me.Afsluiten.UseVisualStyleBackColor = false
+        Me.BtnGenerateAndSave.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnGenerateAndSave.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnGenerateAndSave.Enabled = False
+        Me.BtnGenerateAndSave.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnGenerateAndSave.Location = New System.Drawing.Point(349, 121)
+        Me.BtnGenerateAndSave.Name = "BtnGenerateAndSave"
+        Me.BtnGenerateAndSave.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnGenerateAndSave.Size = New System.Drawing.Size(75, 22)
+        Me.BtnGenerateAndSave.TabIndex = 14
+        Me.BtnGenerateAndSave.Text = "&Verwerken"
+        Me.BtnGenerateAndSave.UseVisualStyleBackColor = False
         '
         'Medekontraktant
         '
@@ -689,7 +689,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.Medekontraktant.Size = New System.Drawing.Size(136, 24)
         Me.Medekontraktant.TabIndex = 15
         Me.Medekontraktant.Text = "Bt&w Medekontractant"
-        Me.Medekontraktant.UseVisualStyleBackColor = false
+        Me.Medekontraktant.UseVisualStyleBackColor = False
         '
         'CreditNota
         '
@@ -702,28 +702,28 @@ Partial Class frmVerkoopVerrichtingen
         Me.CreditNota.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.CreditNota.Size = New System.Drawing.Size(93, 16)
         Me.CreditNota.TabIndex = 16
-        Me.CreditNota.TabStop = false
+        Me.CreditNota.TabStop = False
         Me.CreditNota.Text = "&CreditNota"
-        Me.CreditNota.UseVisualStyleBackColor = false
+        Me.CreditNota.UseVisualStyleBackColor = False
         '
-        'KlantAktiveren
+        'BtnGetClient
         '
-        Me.KlantAktiveren.BackColor = System.Drawing.SystemColors.Control
-        Me.KlantAktiveren.Cursor = System.Windows.Forms.Cursors.Default
-        Me.KlantAktiveren.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.KlantAktiveren.Location = New System.Drawing.Point(265, 93)
-        Me.KlantAktiveren.Name = "KlantAktiveren"
-        Me.KlantAktiveren.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.KlantAktiveren.Size = New System.Drawing.Size(75, 23)
-        Me.KlantAktiveren.TabIndex = 0
-        Me.KlantAktiveren.Text = "&Klant"
-        Me.KlantAktiveren.UseVisualStyleBackColor = false
+        Me.BtnGetClient.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnGetClient.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnGetClient.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnGetClient.Location = New System.Drawing.Point(265, 93)
+        Me.BtnGetClient.Name = "BtnGetClient"
+        Me.BtnGetClient.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnGetClient.Size = New System.Drawing.Size(75, 23)
+        Me.BtnGetClient.TabIndex = 0
+        Me.BtnGetClient.Text = "&Klant"
+        Me.BtnGetClient.UseVisualStyleBackColor = False
         '
         'VerkoopDetail
         '
         Me.VerkoopDetail.BackColor = System.Drawing.Color.White
         Me.VerkoopDetail.Cursor = System.Windows.Forms.Cursors.Default
-        Me.VerkoopDetail.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.VerkoopDetail.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.VerkoopDetail.ForeColor = System.Drawing.Color.Black
         Me.VerkoopDetail.ItemHeight = 14
         Me.VerkoopDetail.Location = New System.Drawing.Point(9, 165)
@@ -736,16 +736,16 @@ Partial Class frmVerkoopVerrichtingen
         '
         Me.Sjabloon.BackColor = System.Drawing.SystemColors.Control
         Me.Sjabloon.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Sjabloon.Enabled = false
+        Me.Sjabloon.Enabled = False
         Me.Sjabloon.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Sjabloon.Location = New System.Drawing.Point(393, 29)
         Me.Sjabloon.Name = "Sjabloon"
         Me.Sjabloon.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Sjabloon.Size = New System.Drawing.Size(71, 23)
         Me.Sjabloon.TabIndex = 18
-        Me.Sjabloon.TabStop = false
+        Me.Sjabloon.TabStop = False
         Me.Sjabloon.Text = "Sja&bloon"
-        Me.Sjabloon.UseVisualStyleBackColor = false
+        Me.Sjabloon.UseVisualStyleBackColor = False
         '
         'DirekteVerkoop
         '
@@ -759,7 +759,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.DirekteVerkoop.Size = New System.Drawing.Size(115, 16)
         Me.DirekteVerkoop.TabIndex = 19
         Me.DirekteVerkoop.Text = "&Direkte Verkoop"
-        Me.DirekteVerkoop.UseVisualStyleBackColor = false
+        Me.DirekteVerkoop.UseVisualStyleBackColor = False
         '
         'Bestelbon
         '
@@ -773,7 +773,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.Bestelbon.Size = New System.Drawing.Size(83, 16)
         Me.Bestelbon.TabIndex = 20
         Me.Bestelbon.Text = "Bestelbon"
-        Me.Bestelbon.UseVisualStyleBackColor = false
+        Me.Bestelbon.UseVisualStyleBackColor = False
         '
         'Offerte
         '
@@ -787,13 +787,13 @@ Partial Class frmVerkoopVerrichtingen
         Me.Offerte.Size = New System.Drawing.Size(67, 16)
         Me.Offerte.TabIndex = 21
         Me.Offerte.Text = "Offerte"
-        Me.Offerte.UseVisualStyleBackColor = false
+        Me.Offerte.UseVisualStyleBackColor = False
         '
         'lstKopiePlak
         '
         Me.lstKopiePlak.BackColor = System.Drawing.SystemColors.Window
         Me.lstKopiePlak.Cursor = System.Windows.Forms.Cursors.Default
-        Me.lstKopiePlak.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.lstKopiePlak.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstKopiePlak.ForeColor = System.Drawing.SystemColors.WindowText
         Me.lstKopiePlak.ItemHeight = 14
         Me.lstKopiePlak.Location = New System.Drawing.Point(58, 171)
@@ -811,26 +811,26 @@ Partial Class frmVerkoopVerrichtingen
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(134, 67)
         Me.GroupBox1.TabIndex = 69
-        Me.GroupBox1.TabStop = false
+        Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Type Document"
         '
         'lblInOntwikkeling
         '
-        Me.lblInOntwikkeling.AutoSize = true
-        Me.lblInOntwikkeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.lblInOntwikkeling.AutoSize = True
+        Me.lblInOntwikkeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInOntwikkeling.Location = New System.Drawing.Point(176, 230)
         Me.lblInOntwikkeling.Name = "lblInOntwikkeling"
         Me.lblInOntwikkeling.Size = New System.Drawing.Size(270, 42)
         Me.lblInOntwikkeling.TabIndex = 88
         Me.lblInOntwikkeling.Text = "In Ontwikkeling"
         '
-        'frmVerkoopVerrichtingen
+        'FomSalesTransactions
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.Annuleren
+        Me.CancelButton = Me.BtnCancel
         Me.ClientSize = New System.Drawing.Size(622, 502)
-        Me.ControlBox = false
+        Me.ControlBox = False
         Me.Controls.Add(Me.lblInOntwikkeling)
         Me.Controls.Add(Me.VerkoopDetail)
         Me.Controls.Add(Me.GroupBox1)
@@ -839,9 +839,9 @@ Partial Class frmVerkoopVerrichtingen
         Me.Controls.Add(Me._Label1_8)
         Me.Controls.Add(Me.cbPDF)
         Me.Controls.Add(Me._Label1_6)
-        Me.Controls.Add(Me.Annuleren)
+        Me.Controls.Add(Me.BtnCancel)
         Me.Controls.Add(Me.btwBedrag1)
-        Me.Controls.Add(Me.Schoonvegen)
+        Me.Controls.Add(Me.BtnClear)
         Me.Controls.Add(Me.btwBedrag2)
         Me.Controls.Add(Me.btwBedrag3)
         Me.Controls.Add(Me._Label1_3)
@@ -854,27 +854,27 @@ Partial Class frmVerkoopVerrichtingen
         Me.Controls.Add(Me.LblEx2Btw)
         Me.Controls.Add(Me.Sjabloon)
         Me.Controls.Add(Me._Label1_1)
-        Me.Controls.Add(Me.KlantAktiveren)
+        Me.Controls.Add(Me.BtnGetClient)
         Me.Controls.Add(Me._Label1_5)
         Me.Controls.Add(Me.CreditNota)
         Me.Controls.Add(Me._Label1_7)
         Me.Controls.Add(Me.Medekontraktant)
         Me.Controls.Add(Me._Label1_2)
-        Me.Controls.Add(Me.Afsluiten)
+        Me.Controls.Add(Me.BtnGenerateAndSave)
         Me.Controls.Add(Me._Label1_4)
-        Me.Controls.Add(Me.Klassement)
+        Me.Controls.Add(Me.BtnDocumentHistory)
         Me.Controls.Add(Me._Label1_0)
         Me.Controls.Add(Me.Overschrijvingsstrook)
         Me.Controls.Add(Me.KlantInfo)
         Me.Controls.Add(Me.Optimaliseer)
         Me.Controls.Add(Me.DagKoers)
-        Me.Controls.Add(Me.CmdStock)
+        Me.Controls.Add(Me.BtnFromStock)
         Me.Controls.Add(Me.TekstInfo3)
-        Me.Controls.Add(Me.CmdOmschrijving)
+        Me.Controls.Add(Me.BtnFromDescription)
         Me.Controls.Add(Me.datumdocMTextbox)
-        Me.Controls.Add(Me.CmdTekst)
+        Me.Controls.Add(Me.BtnPutTextLine)
         Me.Controls.Add(Me.mgrklantenrekMTextBox)
-        Me.Controls.Add(Me.CmbAfdruk)
+        Me.Controls.Add(Me.BtnGenerateCopy)
         Me.Controls.Add(Me.vervaldagMTextBox)
         Me.Controls.Add(Me.cmdSQLInfo)
         Me.Controls.Add(Me.muntMTextBox)
@@ -884,7 +884,7 @@ Partial Class frmVerkoopVerrichtingen
         Me.Controls.Add(Me.ckEURINFO)
         Me.Controls.Add(Me.chkBTWBouw)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "frmVerkoopVerrichtingen"
+        Me.Name = "FomSalesTransactions"
         Me.Text = "Verkoopverrichtingen"
         Me.GroupBox1.ResumeLayout(false)
         Me.ResumeLayout(false)
@@ -893,8 +893,8 @@ Partial Class frmVerkoopVerrichtingen
 End Sub
 
     Public WithEvents cbPDF As CheckBox
-    Public WithEvents Annuleren As Button
-    Public WithEvents Schoonvegen As Button
+    Public WithEvents BtnCancel As Button
+    Public WithEvents BtnClear As Button
     Public WithEvents cbLayOudPDF As Button
     Public WithEvents _Label1_9 As Label
     Public WithEvents _Label1_8 As Label
@@ -928,17 +928,17 @@ End Sub
     Public WithEvents chkZonderRelatie As CheckBox
     Public WithEvents cmdLijst As Button
     Public WithEvents cmdSQLInfo As Button
-    Public WithEvents CmbAfdruk As Button
-    Public WithEvents CmdTekst As Button
-    Public WithEvents CmdOmschrijving As Button
-    Public WithEvents CmdStock As Button
+    Public WithEvents BtnGenerateCopy As Button
+    Public WithEvents BtnPutTextLine As Button
+    Public WithEvents BtnFromDescription As Button
+    Public WithEvents BtnFromStock As Button
     Public WithEvents Optimaliseer As Button
     Public WithEvents Overschrijvingsstrook As CheckBox
-    Public WithEvents Klassement As Button
-    Public WithEvents Afsluiten As Button
+    Public WithEvents BtnDocumentHistory As Button
+    Public WithEvents BtnGenerateAndSave As Button
     Public WithEvents Medekontraktant As CheckBox
     Public WithEvents CreditNota As CheckBox
-    Public WithEvents KlantAktiveren As Button
+    Public WithEvents BtnGetClient As Button
     Public WithEvents VerkoopDetail As ListBox
     Public WithEvents Sjabloon As Button
     Public WithEvents DirekteVerkoop As RadioButton

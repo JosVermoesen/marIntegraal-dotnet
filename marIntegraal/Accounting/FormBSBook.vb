@@ -19,9 +19,11 @@ Public Class BSBook
 	'Dim VeldTXT(17) As String
 
 	Dim NumberHere As Integer
+
 	Dim ReportFieldNr(23) As Short
 	Dim ReportWay(23) As Short
 	Dim ColumnTotal(17) As Decimal
+
 	Dim T As Short
 	Dim Line
 	Dim ReportText(5) As String
@@ -181,37 +183,37 @@ TryAgain:
 
 				ReportFieldNr(3) = 46
 				ReportWay(3) = 9 'geheel NumberHere geformateerd
-				REPORT_FIELD(3) = "   VAK 81"
+				REPORT_FIELD(3) = "   VAK 81" 'v046
 				REPORT_TAB(3) = 46
 
 				ReportFieldNr(4) = 47
 				ReportWay(4) = 9
-				REPORT_FIELD(4) = "   VAK 82"
+				REPORT_FIELD(4) = "   VAK 82" 'v047
 				REPORT_TAB(4) = 56
 
 				ReportFieldNr(5) = 48
 				ReportWay(5) = 9
-				REPORT_FIELD(5) = "   VAK 83"
+				REPORT_FIELD(5) = "   VAK 83" 'v048
 				REPORT_TAB(5) = 66
 
 				ReportFieldNr(6) = 49
 				ReportWay(6) = 9
-				REPORT_FIELD(6) = "   DERDEN"
+				REPORT_FIELD(6) = "   DERDEN" 'v049?
 				REPORT_TAB(6) = 76
 
 				ReportFieldNr(7) = 50
 				ReportWay(7) = 9
-				REPORT_FIELD(7) = "   VAK 84"
+				REPORT_FIELD(7) = "   VAK 84" 'v050
 				REPORT_TAB(7) = 86
 
 				ReportFieldNr(8) = 51
 				ReportWay(8) = 9
-				REPORT_FIELD(8) = "   VAK 85"
+				REPORT_FIELD(8) = "   VAK 85" 'v051
 				REPORT_TAB(8) = 96
 
 				ReportFieldNr(9) = 52
 				ReportWay(9) = 9
-				REPORT_FIELD(9) = "   VAK 86"
+				REPORT_FIELD(9) = "   VAK 86" 'v052
 				REPORT_TAB(9) = 106
 
 				ReportFieldNr(10) = 99
@@ -221,76 +223,77 @@ TryAgain:
 
 				ReportFieldNr(11) = 53
 				ReportWay(11) = 9
-				REPORT_FIELD(11) = "   VAK 87"
+				REPORT_FIELD(11) = "   VAK 87" 'v053
 				REPORT_TAB(11) = 56
 
 				ReportFieldNr(12) = 54
 				ReportWay(12) = 9
-				REPORT_FIELD(12) = "   VAK 88"
+				REPORT_FIELD(12) = "   VAK 88" 'v054
 				REPORT_TAB(12) = 66
 
 				ReportFieldNr(13) = 42
 				ReportWay(13) = 9
-				REPORT_FIELD(13) = "   VAK 55"
+				REPORT_FIELD(13) = "   VAK 55" 'v042
 				REPORT_TAB(13) = 76
 
 				ReportFieldNr(14) = 43
 				ReportWay(14) = 9
-				REPORT_FIELD(14) = "   VAK 56"
+				REPORT_FIELD(14) = "   VAK 56" 'v043
 				REPORT_TAB(14) = 86
 
 				ReportFieldNr(15) = 44
 				ReportWay(15) = 9
-				REPORT_FIELD(15) = "   VAK 57"
+				REPORT_FIELD(15) = "   VAK 57" 'v044
 				REPORT_TAB(15) = 96
 
 				ReportFieldNr(16) = 45
 				ReportWay(16) = 9
 				REPORT_TAB(16) = 106
-
 				Select Case Ar
 					Case 1
-						REPORT_FIELD(16) = "   VAK 59"
+						REPORT_FIELD(16) = "   VAK 59" 'v045
 					Case Else
-						REPORT_FIELD(16) = "   VAK 63"
+						REPORT_FIELD(16) = "   VAK 63" 'v100
 				End Select
+
 				REPORT_TAB(17) = 0
 				tMaxField = 16
 
 			Case TABLE_CUSTOMERS
+
 				ReportFieldNr(2) = 55
-				ReportWay(2) = 9 'geheel NumberHere geformateerd
-				REPORT_FIELD(2) = "VAK 00"
+				ReportWay(2) = 9 'formatted number
+				REPORT_FIELD(2) = "VAK 00" 'v055 
 				REPORT_TAB(2) = 44
 
 				ReportFieldNr(3) = 56
 				ReportWay(3) = 9
-				REPORT_FIELD(3) = "VAK 01"
+				REPORT_FIELD(3) = "VAK 01" 'v056
 				REPORT_TAB(3) = 55
 
 				ReportFieldNr(4) = 57
 				ReportWay(4) = 9
-				REPORT_FIELD(4) = "VAK 02"
+				REPORT_FIELD(4) = "VAK 02" 'v057
 				REPORT_TAB(4) = 66
 
 				ReportFieldNr(5) = 58
 				ReportWay(5) = 9
-				REPORT_FIELD(5) = "VAK 03"
+				REPORT_FIELD(5) = "VAK 03" 'v058
 				REPORT_TAB(5) = 77
 
 				ReportFieldNr(6) = 59
 				ReportWay(6) = 9
-				REPORT_FIELD(6) = "VAK 45"
+				REPORT_FIELD(6) = "VAK 45" 'v059
 				REPORT_TAB(6) = 88
 
 				ReportFieldNr(7) = 60
 				ReportWay(7) = 9
-				REPORT_FIELD(7) = "VAK 46"
+				REPORT_FIELD(7) = "VAK 46" 'v060
 				REPORT_TAB(7) = 99
 
 				ReportFieldNr(8) = 61
 				ReportWay(8) = 9
-				REPORT_FIELD(8) = "VAK 47"
+				REPORT_FIELD(8) = "VAK 47" 'v061
 				REPORT_TAB(8) = 110
 
 				ReportFieldNr(9) = 99
@@ -300,25 +303,25 @@ TryAgain:
 
 				ReportFieldNr(10) = 62
 				ReportWay(10) = 9
-				REPORT_FIELD(10) = "VAK 48"
+				REPORT_FIELD(10) = "VAK 48" 'v062
 				REPORT_TAB(10) = 77
 
 
 				ReportFieldNr(11) = 63
 				ReportWay(11) = 9
-				REPORT_FIELD(11) = "VAK 49"
+				REPORT_FIELD(11) = "VAK 49" 'v063
 				REPORT_TAB(11) = 88
 
 				ReportFieldNr(12) = 64
 				ReportWay(12) = 9
 				REPORT_TAB(12) = 99
-
 				Select Case Ar
 					Case 12
-						REPORT_FIELD(12) = "VAK 54"
+						REPORT_FIELD(12) = "VAK 54" 'v064
 					Case Else
-						REPORT_FIELD(12) = "VAK 64"
+						REPORT_FIELD(12) = "VAK 64" 'v101
 				End Select
+
 				tMaxField = 12
 				REPORT_TAB(13) = 0
 		End Select
@@ -900,80 +903,80 @@ TryAgain:
 		'			MsgBox("marIntegraal boekhoudperiodes staan nog altijd op 3-maandelijks.  Geen Intervat aangifte mogelijk met deze werkwijze die dateert van 1985-1994 en vermoedelijk overgenomen werd uit marIntegraal DOS periode. Contacteer ons 0475/292255 voor manuele tussenkomst!!)", MsgBoxStyle.Critical)
 		'		End If
 
-		'		Select Case A_INDEX
-		'			Case TABLE_SUPPLIERS
-		'				Select Case Ar
-		'					Case 1
-		'						'Record Kontroleren, zou MOETEN op nul staan...
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(16)), "v045") 'vak 59
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(9)), "v052") 'vak 86
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(11)), "v053") 'vak 87
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v054") 'vak 88
+		Select Case A_INDEX
+			Case TABLE_SUPPLIERS
+				Select Case Ar
+					Case 1
+						'Record Kontroleren, zou MOETEN op nul staan...
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(16)), "v045") 'vak 59
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(9)), "v052") 'vak 86
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(11)), "v053") 'vak 87
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v054") 'vak 88
 
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v092")
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v093")
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v092")
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v093")
 
-		'					Case 3
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(16)), "v100") 'vak 63
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(7)), "v050") 'vak 84
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(8)), "v051") 'vak 85
+					Case 3
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(16)), "v100") 'vak 63
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(7)), "v050") 'vak 84
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(8)), "v051") 'vak 85
 
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v094")
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v095")
-		'						For Tel = 3 To 16
-		'							ColumnTotal(Tel) = -ColumnTotal(Tel)
-		'						Next 
-		'					Case Else
-		'						MsgBox("Stop")
-		'				End Select
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v094")
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v095")
+						For Tel = 3 To 16
+							ColumnTotal(Tel) = -ColumnTotal(Tel)
+						Next
+					Case Else
+						MsgBox("Stop")
+				End Select
 
-		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(13) + Val(AdoGetField(TABLE_VARIOUS, "#v042 #"))), "v042") 'vak 55
-		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(14) + Val(AdoGetField(TABLE_VARIOUS, "#v043 #"))), "v043") 'vak 56
-		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(15) + Val(AdoGetField(TABLE_VARIOUS, "#v044 #"))), "v044") 'vak 57
-		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(3) + Val(AdoGetField(TABLE_VARIOUS, "#v046 #"))), "v046") 'vak 81
-		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(4) + Val(AdoGetField(TABLE_VARIOUS, "#v047 #"))), "v047") 'vak 82
-		'				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(5) + Val(AdoGetField(TABLE_VARIOUS, "#v048 #"))), "v048") 'vak 83
+				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(13) + Val(AdoGetField(TABLE_VARIOUS, "#v042 #"))), "v042") 'vak 55
+				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(14) + Val(AdoGetField(TABLE_VARIOUS, "#v043 #"))), "v043") 'vak 56
+				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(15) + Val(AdoGetField(TABLE_VARIOUS, "#v044 #"))), "v044") 'vak 57
+				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(3) + Val(AdoGetField(TABLE_VARIOUS, "#v046 #"))), "v046") 'vak 81
+				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(4) + Val(AdoGetField(TABLE_VARIOUS, "#v047 #"))), "v047") 'vak 82
+				AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(5) + Val(AdoGetField(TABLE_VARIOUS, "#v048 #"))), "v048") 'vak 83
 
-		'				If Fixed Then
-		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(0)), "v055") 'vak 00
-		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(1)), "v056") 'vak 01
-		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(2)), "v057") 'vak 02
-		'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(3)), "v058") 'vak 03
-		'					AdoInsertToRecord(TABLE_VARIOUS, Str(BtwTotaalForfait), "v064") 'vak 54
-		'				End If
+				'				If Fixed Then
+				'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(0)), "v055") 'vak 00
+				'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(1)), "v056") 'vak 01
+				'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(2)), "v057") 'vak 02
+				'					AdoInsertToRecord(TABLE_VARIOUS, Str(VakForfait(3)), "v058") 'vak 03
+				'					AdoInsertToRecord(TABLE_VARIOUS, Str(BtwTotaalForfait), "v064") 'vak 54
+				'				End If
 
-		'			Case TABLE_CUSTOMERS
-		'				Select Case Ar
-		'					Case 12
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v064") 'vak 54
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(2) + Val(AdoGetField(TABLE_VARIOUS, "#v055 #"))), "v055") 'vak 00 bijtellen ?
+			Case TABLE_CUSTOMERS
+				Select Case Ar
+					Case 12 ' Invoice
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v064") 'vak 54 or 64
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(2) + Val(AdoGetField(TABLE_VARIOUS, "#v055 #"))), "v055") 'vak 00 bijtellen ?
 
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(3)), "v056") 'vak 01
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(4)), "v057") 'vak 02
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(5)), "v058") 'vak 03
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(6)), "v059") 'vak 45
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(7)), "v060") 'vak 46
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(8)), "v061") 'vak 47
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(3)), "v056") 'vak 01
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(4)), "v057") 'vak 02
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(5)), "v058") 'vak 03
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(6)), "v059") 'vak 45
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(7)), "v060") 'vak 46
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(8)), "v061") 'vak 47
 
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v096")
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v097")
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v096")
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v097")
 
-		'					Case 14
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v101") 'vak 64
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(Val(AdoGetField(TABLE_VARIOUS, "#v055 #")) - ColumnTotal(2)), "v055") 'vak 00 aftrekken ?
+					Case 14 ' Creditnote
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(12)), "v101") 'vak 64
+						AdoInsertToRecord(TABLE_VARIOUS, Str(Val(AdoGetField(TABLE_VARIOUS, "#v055 #")) - ColumnTotal(2)), "v055") 'vak 00 aftrekken ?
 
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(10)), "v062") 'vak 48
-		'						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(11)), "v063") 'vak 49
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(10)), "v062") 'vak 48
+						AdoInsertToRecord(TABLE_VARIOUS, Str(ColumnTotal(11)), "v063") 'vak 49
 
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstVan.Text), "00000"), "v098")
-		'						AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v099")
+						'AdoInsertToRecord(TABLE_VARIOUS, Format(Val(TekstVan.Text), "00000"), "v098")
+						'AdoInsertToRecord(TABLE_VARIOUS, VB6.Format(Val(TekstLijn(3).Text), "00000"), "v099")
 
-		'					Case Else
-		'						MsgBox("Stop")
-		'				End Select
-		'			Case Else
-		'				MsgBox("Stop")
-		'		End Select
+					Case Else
+						MsgBox("Stop")
+				End Select
+			Case Else
+				MsgBox("Stop")
+		End Select
 
 		'		If BH_EURO Then
 		'			AdoInsertToRecord(TABLE_VARIOUS, "EUR", "vEUR")

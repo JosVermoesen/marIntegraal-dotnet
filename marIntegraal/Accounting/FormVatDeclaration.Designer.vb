@@ -278,7 +278,6 @@ Partial Class FormVatDeclarations
         Me.TvDeclarations.Name = "TvDeclarations"
         Me.TvDeclarations.Size = New System.Drawing.Size(137, 443)
         Me.TvDeclarations.TabIndex = 0
-        AddHandler Me.TvDeclarations.KeyDown, AddressOf Me.TvDeclarations_KeyDown
         '
         'TC
         '
@@ -454,7 +453,6 @@ Partial Class FormVatDeclarations
         Me.LblVak66.Name = "LblVak66"
         Me.LblVak66.Size = New System.Drawing.Size(100, 19)
         Me.LblVak66.TabIndex = 72
-        Me.LblVak66.Text = "0.00"
         Me.LblVak66.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'LabelVak66
@@ -647,7 +645,6 @@ Partial Class FormVatDeclarations
         Me.LblVak65.Name = "LblVak65"
         Me.LblVak65.Size = New System.Drawing.Size(100, 19)
         Me.LblVak65.TabIndex = 51
-        Me.LblVak65.Text = "0.00"
         Me.LblVak65.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'LabelVak65

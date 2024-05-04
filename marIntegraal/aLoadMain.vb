@@ -25,15 +25,16 @@ TryAgainPlease:
             MSG = MSG & "Raadpleeg binnen het contract 2017 uw MAIL of FAX voor de juiste "
             MSG = MSG & "opstartcode.  Code kwijt?  Mail ons: info@rv.be of fax +32.53781922 voor nieuwe code" & vbCrLf & vbCrLf
             MSG = MSG & "STAP 1: Naam van deze computer :"
-            answer = InputBox(MSG, "Naam deze Computer", "Computer1")
-            If answer = "" Then GoTo TryAgainPlease
+            'answer = InputBox(MSG, "Naam deze Computer", "Computer1")
+            'If answer = "" Then GoTo TryAgainPlease
             MSG = "STAP 2: Opstartcode." & vbCrLf
             MSG = MSG & "Code kwijt?  Mail ons: info@rv.be of fax +32.53781922 voor nieuwe code" & vbCrLf & vbCrLf & "Om uit te proberen (max. 50 journaalLIJNEN) en voor beperkte functionaliteit geef het volgende woord in: DEMO"
-            answer = InputBox(MSG, "Opstartkode?", "DEMO")
-            If answer = "" Then
-                MsgBox("Het programma wordt beëindigd.", MsgBoxStyle.Information)
-                End
-            End If
+            answer = "demo"
+            'answer = InputBox(MSG, "Opstartkode?", "DEMO")
+            'If answer = "" Then
+            'MsgBox("Het programma wordt beëindigd.", MsgBoxStyle.Information)
+            'End
+            'End If
             If UCase(answer) = "DEMO" Then
                 USER_LICENSEINFO = "DemoModus"
             ElseIf UCase(answer) = "THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG" Then

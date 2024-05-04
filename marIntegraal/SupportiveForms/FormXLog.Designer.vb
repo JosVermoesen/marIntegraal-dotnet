@@ -98,7 +98,7 @@ Partial Class FormXlog
         '
         'X
         '
-        Me.X.BackColor = System.Drawing.Color.Honeydew
+        Me.X.BackColor = System.Drawing.Color.Gainsboro
         Me.X.Dock = System.Windows.Forms.DockStyle.Fill
         Me.X.ForeColor = System.Drawing.SystemColors.WindowText
         Me.X.FullRowSelect = True

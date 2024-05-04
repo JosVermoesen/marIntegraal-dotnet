@@ -1,9 +1,9 @@
 ﻿Option Strict Off
 Option Explicit On
-Public Class frmVerkoopVerrichtingen
+Public Class FomSalesTransactions
     Dim dokumentType As String = "  "
     Dim pdfDOKUMENTTYPE As String
-    Dim dokumentHistoriek As String = "           "
+    Dim dokumentHistoriek As String = Space(11)
     Dim VerkoopDetailTitel(8) As String
     Dim dokumentSleutel As String = "           "
     Dim KlantRekening As String = "       "
@@ -165,7 +165,7 @@ MaskAantal:
                     TempoDOK = Mid(GRIDTEXT_9, InStr(GRIDTEXT_9, vbTab) + 1)
                     If Len(TempoDOK) <> 8 Then
                         'VerkoopOptie_CheckedChanged(VerkoopOptie.Item(0), New System.EventArgs())
-                        VerkoopKTRL
+                        GetSellNumber()
 
                     Else
                         XLOG_KEY = TempoDOK
@@ -175,12 +175,12 @@ MaskAantal:
             End Select
         End If
         On Error Resume Next
-        'verkoopKTRL()
+        'GetSellNumber()
         DirekteVerkoop.Checked = True
         Activate()
 
     End Sub
-    Private Sub KlantAktiveren_Click(sender As Object, e As EventArgs) Handles KlantAktiveren.Click
+    Private Sub KlantAktiveren_Click(sender As Object, e As EventArgs) Handles BtnGetClient.Click
         If VerkoopDetail.Items.Count Then
             MSG = "Huidige inbreng en klant negeren." & vbCrLf & vbCrLf
             MSG = MSG & "Bent U zeker."
@@ -218,7 +218,7 @@ MaskAantal:
 
         VerkoopDetail.Enabled = True
         Klantje = vbCrLf & RV(rsKlant, "A100") & vbCrLf & RV(rsKlant, "A125") & vbCrLf & RV(rsKlant, "A104") & vbCrLf & RV(rsKlant, "A109") & " " & RV(rsKlant, "A107") & " " & RV(rsKlant, "A108")
-        Schoonvegen.Enabled = True
+        BtnClear.Enabled = True
         Sjabloon.Enabled = True
         DagKoers.Text = "Dagkoers " & RV(rsKlant, "vs03")
         sMuntKlant = RV(rsKlant, "vs03")
@@ -345,19 +345,19 @@ MaskAantal:
         Dim T As Short
 
         TLB_RECORD(TABLE_VARIOUS) = ""
-        dokumentHistoriek = ""
+        dokumentHistoriek = Space(11)
         VerkoopDetail.Enabled = False
-        Afsluiten.Enabled = False
-        CmbAfdruk.Enabled = False
+        BtnGenerateAndSave.Enabled = False
+        BtnGenerateCopy.Enabled = False
         cmdSwitch.Enabled = False
         Medekontraktant.Enabled = True
         Sjabloon.Enabled = False
-        Klassement.Enabled = False
+        BtnDocumentHistory.Enabled = False
         'Klassement.Font = VB6.FontChangeBold(Klassement.Font, False)
         chkBTWBouw.CheckState = System.Windows.Forms.CheckState.Unchecked
         VAT_BOBTHEBUILDERS = False
         KlantInfo.Text = ""
-        Annuleren.Enabled = True
+        BtnCancel.Enabled = True
         Medekontraktant.CheckState = System.Windows.Forms.CheckState.Unchecked
 
         If DirekteVerkoop.Enabled Then
@@ -421,10 +421,10 @@ MaskAantal:
         MSG = "SELECT TOP 1 * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%'"
         rsDetail.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Or rsDetail.RecordCount = 0 Then
-            Klassement.Enabled = False
+            BtnDocumentHistory.Enabled = False
             'Klassement.Font = VB6.FontChangeBold(Klassement.Font, False)
         Else
-            Klassement.Enabled = True
+            BtnDocumentHistory.Enabled = True
             'Klassement.Font = VB6.FontChangeBold(Klassement.Font, True)
         End If
         rsDetail.Close()
@@ -449,32 +449,30 @@ MaskAantal:
         MaakTotaal()
 
     End Sub
-    Sub verkoopKTRL()
+    Sub GetSellNumber()
 
-        'If dokumentHistoriek <> Space(11) Then
-        'MsgBox("Opgelet, data van o.a. " & dokumentHistoriek & " is nog aktief.  Vermijd dubbele bewerkingen.", 64)
-        'End If
+        If dokumentHistoriek <> Space(11) Then
+            MsgBox("Opgelet, data van o.a. " & dokumentHistoriek & " is nog aktief.  Vermijd dubbele bewerkingen.", 64)
+        End If
 
         If VerkoopDetail.Items.Count Then
-            If Annuleren.Enabled = False Then
+            If BtnCancel.Enabled = False Then
                 MsgBox("U gaat naar een hogere modus met ingeladen dokument(en)." & vbCrLf & vbCrLf & "Indien dit niet de bedoeling was, onmiddellijk verkoopvenster sluiten en herbeginnen a.u.b.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation)
                 dokumentHistoriek = dokumentSleutel
                 TLB_RECORD(TABLE_VARIOUS) = ""
-                Annuleren.Enabled = True
+                BtnCancel.Enabled = True
             End If
         End If
 
-        MsgBox("TODO: Stop voor Creditnota enabled bij verkoopKTRL")
-        'If Index > 0 Then
-        'CreditNota.Enabled = False
-        'Else
-        'CreditNota.Enabled = True
-        'End If
-
         If DirekteVerkoop.Checked Then
             dokumentType = "15" 'Faktuur of creditnota
-            CreditNota.Checked = False
-            Vr = 11
+            If CreditNota.Enabled = True Then
+                Vr = 11
+                CreditNota.Checked = False
+            Else
+                Vr = 13
+                CreditNota.Checked = True
+            End If
             dokumentSleutel = SleutelDok(Vr)
             datumdocMTextbox.Text = MIM_GLOBAL_DATE
             vervaldagMTextBox.Text = MIM_GLOBAL_DATE
@@ -495,20 +493,10 @@ MaskAantal:
         End If
         TekstInfo3.Text = dokumentSleutel
 
-        'If KTRL = 99 Then
-        'MSG = VerkoopOptie(Index).Text & " aktief bij andere gebruiker." & vbCrLf & vbCrLf
-        'MSG = MSG & "Verkoopverrichting afsluiten of andere optie selecteren a.u.b. !"
-        'KTRL = MsgBox(MSG, 16)
-        'If Index = 0 Then VerkoopOptie(1).Checked = 1
-        'If Index = 1 Then VerkoopOptie(0).Checked = 1
-        'If Index = 2 Then VerkoopOptie(1).Checked = 1
-        'VerkoopOptie(Index).Enabled = False
-        'Exit Sub
-        'End If
         IsErKlassement()
 
-        'End If
     End Sub
+
     Private Sub CreditNota_CheckedChanged(sender As Object, e As EventArgs) Handles CreditNota.CheckedChanged
         If CreditNota.Checked = True Then
             DirekteVerkoop.Checked = True
@@ -516,25 +504,26 @@ MaskAantal:
             Bestelbon.Enabled = False
             Offerte.Enabled = False
             CreditNota.Enabled = False
-            verkoopKTRL()
+            GetSellNumber()
         End If
     End Sub
+
     Private Sub DirekteVerkoop_CheckedChanged(sender As Object, e As EventArgs) Handles DirekteVerkoop.CheckedChanged
         If DirekteVerkoop.Checked = True Then
-            verkoopKTRL()
+            GetSellNumber()
         End If
     End Sub
     Private Sub Bestelbon_CheckedChanged(sender As Object, e As EventArgs) Handles Bestelbon.CheckedChanged
         If Bestelbon.Checked = True Then
-            verkoopKTRL()
+            GetSellNumber()
         End If
     End Sub
     Private Sub Offerte_CheckedChanged(sender As Object, e As EventArgs) Handles Offerte.CheckedChanged
         If Offerte.Checked = True Then
-            verkoopKTRL()
+            GetSellNumber()
         End If
     End Sub
-    Private Sub Klassement_Click(sender As Object, e As EventArgs) Handles Klassement.Click
+    Private Sub Klassement_Click(sender As Object, e As EventArgs) Handles BtnDocumentHistory.Click
         Dim T As Short
         Dim LaatsteWAS As String
         Dim TotaalEX As Decimal
@@ -663,16 +652,16 @@ MaskAantal:
         Loop
         rsDetail.Close()
         rsDetail = Nothing
-        Annuleren.Enabled = False
-        Afsluiten.Enabled = True
-        CmbAfdruk.Enabled = True
+        BtnCancel.Enabled = False
+        BtnGenerateAndSave.Enabled = True
+        BtnGenerateCopy.Enabled = True
         On Error Resume Next
         If docInEur = "EUR" Then
             cmdSwitch.Text = "Ingave in EUR"
         Else
             cmdSwitch.Text = "Ingave in BEF"
         End If
-        Afsluiten.Focus()
+        BtnGenerateAndSave.Focus()
         Select Case dokumentType
             Case "15"
                 DirekteVerkoop.Enabled = False
@@ -684,7 +673,7 @@ MaskAantal:
                 Medekontraktant.Enabled = False
                 CreditNota.Enabled = False
                 VerkoopDetail.Enabled = False
-                Afsluiten.Enabled = False
+                BtnGenerateAndSave.Enabled = False
             Case "14"
                 Bestelbon.Enabled = False
                 frmDokHistoriek.lstDokHistoriek.Items.Add(dokumentSleutel)
@@ -797,13 +786,13 @@ MaskAantal:
         LblEx2Btw.Text = Format(BtwEuroEx, "#,##0.00") 'masker voor EURO
         LblIn2Btw.Text = Format(BtwEuroIn, "#,##0.00") 'masker voor EURO
     End Sub
-    Private Sub Schoonvegen_Click(sender As Object, e As EventArgs) Handles Schoonvegen.Click
+    Private Sub Schoonvegen_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
         Schoon()
     End Sub
     Private Sub cbLayOudPDF_Click(sender As Object, e As EventArgs) Handles cbLayOudPDF.Click
         LayOutpdfDokument.Show()
     End Sub
-    Private Sub CmbAfdruk_Click(sender As Object, e As EventArgs) Handles CmbAfdruk.Click
+    Private Sub CmbAfdruk_Click(sender As Object, e As EventArgs) Handles BtnGenerateCopy.Click
         Dim A As String
         Dim refString As String
         Dim refID As String
@@ -812,7 +801,7 @@ MaskAantal:
         Dim DummySleutel As String
         Dim BestondReeds As Short
         Dim T As Short
-        If dokumentType = "15" And Annuleren.Enabled = True Then
+        If dokumentType = "15" And BtnCancel.Enabled = True Then
             If Not IsDateOk(datumdocMTextbox.Text, PERIODAS_TEXT) Then
                 FormBYPERDAT.WindowState = FormWindowState.Normal
                 FormBYPERDAT.Focus()
@@ -1288,7 +1277,7 @@ pdfKontroleLijn:
             rNTTxt2 = rNTTxt2 & Mid(rNTTXT, Teltxt, 1) & " "
         Next
     End Sub
-    Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles Annuleren.Click
+    Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
 
         If VerkoopDetail.Items.Count Then
             MSG = "Huidige inbreng negeren en venster sluiten." & vbCrLf & vbCrLf
@@ -1303,4 +1292,28 @@ pdfKontroleLijn:
         Close()
     End Sub
 
+    Private Sub VerkoopDetail_DoubleClick(sender As Object, e As EventArgs) Handles VerkoopDetail.DoubleClick
+
+        If VerkoopDetail.SelectedIndex Then
+            VerkoopDetail_KeyPress(sender, e)
+        End If
+    End Sub
+
+    Private Sub VerkoopDetail_Leave(sender As Object, e As EventArgs) Handles VerkoopDetail.Leave
+
+        VerkoopDetail.SelectedIndex = -1
+
+    End Sub
+
+    Private Sub VerkoopDetail_KeyPress(sender As Object, e As KeyPressEventArgs) Handles VerkoopDetail.KeyPress
+
+        MessageBox.Show("VerkoopDetail_KeyPress")
+
+    End Sub
+
+    Private Sub VerkoopDetail_Enter(sender As Object, e As EventArgs) Handles VerkoopDetail.Enter
+
+        MessageBox.Show("VerkoopDetail_Enter")
+
+    End Sub
 End Class
