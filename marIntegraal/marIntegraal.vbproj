@@ -125,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Documents\FormSalesEdit.Designer.vb">
+      <DependentUpon>FormSalesEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Documents\FormSalesEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -444,6 +450,9 @@
     <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Documents\FormSalesEdit.resx">
+      <DependentUpon>FormSalesEdit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupportiveForms\FormInfoDetail.resx">
       <DependentUpon>FormInfoDetail.vb</DependentUpon>
     </EmbeddedResource>

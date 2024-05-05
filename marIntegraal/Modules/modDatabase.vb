@@ -302,6 +302,7 @@ EditAgain:
         End If
 
     End Sub
+
     Sub JetGetFirst(ByRef Fl As Short, ByRef fIndex As Short)
 
         On Error Resume Next
@@ -328,6 +329,7 @@ EditAgain:
         End If
 
     End Sub
+
     Sub JetGet(ByRef Fl As Short, ByRef fIndex As Short, ByRef fSleutel As String)
 
         On Error Resume Next
@@ -389,6 +391,7 @@ TryAgain:
         KEY_INDEX(Fl) = fIndex
 
     End Sub
+
     Sub JetInsert(ByRef Fl As Short, ByRef fIndex As Short) ', fKey As String)
         Dim XXXXX As Short
 
@@ -538,7 +541,6 @@ JetErrorInsert:
 
     End Sub
 
-
     Sub bNext(ByRef Fl As Short, ByRef fIndex As Short, ByRef SleutelBefore As String)
 
         On Error Resume Next
@@ -623,6 +625,7 @@ JetErrorInsert:
 
 
     End Sub
+
     Sub bUpdate(ByRef Fl As Short, ByRef fIndex As Short)
         Dim XXXXX As Short
         Err.Clear()
@@ -640,6 +643,7 @@ JetErrorInsert:
             MsgBox(ex.Message)
         End Try
     End Sub
+
     Function RTV(ByRef Fl As Short) As Short
         Dim T As Short
 
@@ -658,7 +662,6 @@ JetErrorInsert:
         RTV = True
 
     End Function
-
 
     Sub RecordToField(ByRef Fl As Short)
         Dim T As Short
@@ -723,7 +726,6 @@ JetErrorInsert:
 
     End Sub
 
-
     Sub SetFields(ByRef Fl As Short, ByRef vBibCode As String, ByRef StringData As String)
         Dim vBCode As String
         If StringData = "" Then
@@ -748,7 +750,6 @@ JetErrorInsert:
             End Try
         End If
     End Sub
-
 
     Function FieldToRecord(ByRef Fl As Short) As Short
         Dim T As Short
@@ -983,6 +984,7 @@ TeleBibError:
         If Len(OptieTxt) = 0 Then OptieNr = 0
 
     End Function
+
     Function RV(ByRef adoRecord As ADODB.Recordset, ByRef TBS As String) As Object
         If IsDBNull(adoRecord.Fields(TBS).Value) Or IsNothing(adoRecord.Fields(TBS).Value) Then
             RV = ""
@@ -990,6 +992,7 @@ TeleBibError:
             RV = adoRecord.Fields(TBS).Value
         End If
     End Function
+
     Function adoJournaalOK() As Boolean
 
         adoJournaalOK = False
@@ -1061,6 +1064,7 @@ TeleBibError:
         End If
 
     End Function
+
     Function adoGet(ByRef iTabel As Short, ByRef iIndex As Short, ByRef sZoals As String, ByRef sZoek As Object) As Boolean
 
         Dim MsgHier As String
@@ -1104,6 +1108,7 @@ TeleBibError:
         End If
 
     End Function
+
     Function adoBibTekst(ByRef adoField As ADODB.Field, ByRef TBS As String) As String
 
         Err.Clear()
