@@ -80,7 +80,7 @@ Module ModLibs
     Public TABLEDEF_ONT(NUMBER_TABLES) As String
     Public KEY_INDEX(NUMBER_TABLES) As Short
     Public INSERT_FLAG(NUMBER_TABLES) As Short
-    Public FlAantalIndexen(10) As Short
+    Public FL_NUMBEROFINDEXEN(10) As Short
     Public JETTABLEUSE_INDEX(NUMBER_TABLES, 10) As String
     Public FLINDEX_LEN(NUMBER_TABLES, 10) As Short
     Public FLINDEX_CAPTION(NUMBER_TABLES, 10) As String

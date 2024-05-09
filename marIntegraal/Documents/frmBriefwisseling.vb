@@ -621,7 +621,7 @@ End Class
 '			Briefwisseling(0).Checked = 1
 
 '			Sortering.Items.Clear()
-'			For T = 0 To FlAantalIndexen(FlPartij)
+'			For T = 0 To FL_NUMBEROFINDEXEN(FlPartij)
 '				Sortering.Items.Add(VB6.Format(T, "00") & ":" & FLINDEX_CAPTION(FlPartij, T))
 '			Next 
 '			Sortering.SelectedIndex = 1

@@ -46,12 +46,12 @@ Partial Class FormSalesEdit
         Me.TbInfo2 = New System.Windows.Forms.TextBox()
         Me.TbInfo3 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TbInfo7 = New System.Windows.Forms.TextBox()
         Me.TbInfo8 = New System.Windows.Forms.TextBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.CbSortering = New System.Windows.Forms.ComboBox()
         Me.CbKeuze0 = New System.Windows.Forms.ComboBox()
         Me.CbKeuze1 = New System.Windows.Forms.ComboBox()
+        Me.TbInfo7 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'LabelSensitive
@@ -73,9 +73,9 @@ Partial Class FormSalesEdit
         '
         'Label11
         '
-        Me.Label11.Location = New System.Drawing.Point(12, 62)
+        Me.Label11.Location = New System.Drawing.Point(12, 53)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(72, 18)
+        Me.Label11.Size = New System.Drawing.Size(69, 18)
         Me.Label11.TabIndex = 2
         Me.Label11.Text = "Omschrijving"
         '
@@ -148,7 +148,7 @@ Partial Class FormSalesEdit
         'LabelVerkoop8
         '
         Me.LabelVerkoop8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelVerkoop8.Location = New System.Drawing.Point(272, 106)
+        Me.LabelVerkoop8.Location = New System.Drawing.Point(269, 115)
         Me.LabelVerkoop8.Name = "LabelVerkoop8"
         Me.LabelVerkoop8.Size = New System.Drawing.Size(68, 18)
         Me.LabelVerkoop8.TabIndex = 11
@@ -157,7 +157,7 @@ Partial Class FormSalesEdit
         'LabelMinStockInfo
         '
         Me.LabelMinStockInfo.BackColor = System.Drawing.SystemColors.Info
-        Me.LabelMinStockInfo.Location = New System.Drawing.Point(269, 196)
+        Me.LabelMinStockInfo.Location = New System.Drawing.Point(378, 92)
         Me.LabelMinStockInfo.Name = "LabelMinStockInfo"
         Me.LabelMinStockInfo.Size = New System.Drawing.Size(90, 44)
         Me.LabelMinStockInfo.TabIndex = 12
@@ -165,7 +165,7 @@ Partial Class FormSalesEdit
         '
         'BtnOk
         '
-        Me.BtnOk.Location = New System.Drawing.Point(272, 258)
+        Me.BtnOk.Location = New System.Drawing.Point(381, 53)
         Me.BtnOk.Name = "BtnOk"
         Me.BtnOk.Size = New System.Drawing.Size(87, 24)
         Me.BtnOk.TabIndex = 13
@@ -175,7 +175,7 @@ Partial Class FormSalesEdit
         'BtnCancel
         '
         Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnCancel.Location = New System.Drawing.Point(272, 288)
+        Me.BtnCancel.Location = New System.Drawing.Point(381, 29)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(87, 23)
         Me.BtnCancel.TabIndex = 14
@@ -191,9 +191,10 @@ Partial Class FormSalesEdit
         '
         'TbInfo1
         '
-        Me.TbInfo1.Location = New System.Drawing.Point(87, 60)
+        Me.TbInfo1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbInfo1.Location = New System.Drawing.Point(87, 53)
         Me.TbInfo1.Name = "TbInfo1"
-        Me.TbInfo1.Size = New System.Drawing.Size(285, 20)
+        Me.TbInfo1.Size = New System.Drawing.Size(285, 22)
         Me.TbInfo1.TabIndex = 16
         '
         'TbInfo4
@@ -205,7 +206,7 @@ Partial Class FormSalesEdit
         '
         'TbInfo9
         '
-        Me.TbInfo9.Location = New System.Drawing.Point(272, 83)
+        Me.TbInfo9.Location = New System.Drawing.Point(272, 88)
         Me.TbInfo9.Name = "TbInfo9"
         Me.TbInfo9.Size = New System.Drawing.Size(100, 20)
         Me.TbInfo9.TabIndex = 18
@@ -246,19 +247,16 @@ Partial Class FormSalesEdit
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "%"
         '
-        'TbInfo7
-        '
-        Me.TbInfo7.Location = New System.Drawing.Point(8, 289)
-        Me.TbInfo7.Name = "TbInfo7"
-        Me.TbInfo7.Size = New System.Drawing.Size(100, 20)
-        Me.TbInfo7.TabIndex = 25
-        '
         'TbInfo8
         '
+        Me.TbInfo8.BackColor = System.Drawing.SystemColors.Info
+        Me.TbInfo8.Enabled = False
+        Me.TbInfo8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbInfo8.Location = New System.Drawing.Point(117, 289)
         Me.TbInfo8.Name = "TbInfo8"
         Me.TbInfo8.Size = New System.Drawing.Size(100, 20)
         Me.TbInfo8.TabIndex = 26
+        Me.TbInfo8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CheckBox1
         '
@@ -295,18 +293,29 @@ Partial Class FormSalesEdit
         Me.CbKeuze1.Size = New System.Drawing.Size(84, 21)
         Me.CbKeuze1.TabIndex = 30
         '
+        'TbInfo7
+        '
+        Me.TbInfo7.BackColor = System.Drawing.SystemColors.Info
+        Me.TbInfo7.Enabled = False
+        Me.TbInfo7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbInfo7.Location = New System.Drawing.Point(12, 289)
+        Me.TbInfo7.Name = "TbInfo7"
+        Me.TbInfo7.Size = New System.Drawing.Size(100, 20)
+        Me.TbInfo7.TabIndex = 31
+        Me.TbInfo7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'FormSalesEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
-        Me.ClientSize = New System.Drawing.Size(391, 323)
+        Me.ClientSize = New System.Drawing.Size(475, 315)
+        Me.Controls.Add(Me.TbInfo7)
         Me.Controls.Add(Me.CbKeuze1)
         Me.Controls.Add(Me.CbKeuze0)
         Me.Controls.Add(Me.CbSortering)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.TbInfo8)
-        Me.Controls.Add(Me.TbInfo7)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TbInfo3)
         Me.Controls.Add(Me.TbInfo2)
@@ -363,10 +372,10 @@ Partial Class FormSalesEdit
     Friend WithEvents TbInfo2 As TextBox
     Friend WithEvents TbInfo3 As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents TbInfo7 As TextBox
     Friend WithEvents TbInfo8 As TextBox
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents CbSortering As ComboBox
     Friend WithEvents CbKeuze0 As ComboBox
     Friend WithEvents CbKeuze1 As ComboBox
+    Friend WithEvents TbInfo7 As TextBox
 End Class

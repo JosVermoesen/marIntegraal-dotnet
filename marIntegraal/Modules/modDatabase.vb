@@ -656,7 +656,7 @@ JetErrorInsert:
             AdoInsertToRecord(Fl, RTrim(RS_MAR(Fl).Fields(VBC(Fl, T)).Value), VBC(Fl, T))
             T = T + 1
         Loop
-        For T = 0 To FlAantalIndexen(Fl)
+        For T = 0 To FL_NUMBEROFINDEXEN(Fl)
             FVT(Fl, T) = AdoGetField(Fl, "#" & JETTABLEUSE_INDEX(Fl, T) & "#")
         Next
         RTV = True
@@ -767,7 +767,7 @@ JetErrorInsert:
         ElseIf Fl = TABLE_JOURNAL Then
             AdoInsertToRecord(Fl, SetSpacing(AdoGetField(Fl, "#v019 #"), 7) & AdoGetField(Fl, "#v066 #"), "v070")
         End If
-        For T = 0 To FlAantalIndexen(Fl)
+        For T = 0 To FL_NUMBEROFINDEXEN(Fl)
             FVT(Fl, T) = SetSpacing(AdoGetField(Fl, "#" & JETTABLEUSE_INDEX(Fl, T) & "#"), FLINDEX_LEN(Fl, T))
         Next
         AdoInsertToRecord(Fl, FVT(Fl, 0), JETTABLEUSE_INDEX(Fl, 0))

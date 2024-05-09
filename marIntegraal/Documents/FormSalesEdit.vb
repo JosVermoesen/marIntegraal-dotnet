@@ -125,6 +125,14 @@ Public Class FormSalesEdit
                     BtnOk.Enabled = True
                     TbInfo1.MaxLength = 75
                     TbInfo1.Text = RTrim$(Mid(GRIDTEXT, 1, 75))
+
+                    Text = "Vrije tekst"
+                    Height = 124
+                    LabelProduct0.Visible = False
+                    TbInfo0.Visible = False
+                    LabelSensitive.Visible = False
+                    CbSortering.Visible = False
+
                 Case Else
                     MsgBox("Stop")
             End Select
@@ -134,48 +142,63 @@ Public Class FormSalesEdit
         End If
 
         Select Case LijnType
-            '        Case "0"
-            '            For T = 0 To FlAantalIndexen(FlProdukt)
-            '                cmbSortering.AddItem Format(T, "00") + ":" + FLIndexCaption(FlProdukt, T)
-            '        Next
-            '            On Error Resume Next
-            '            cmbSortering = LaadTekst(Me.Name, "ProduktSortering")
+            Case "0"
 
-            '            TekstInfo(1).Enabled = False
-            '            'TekstInfo(4).Enabled = False
+                For T = 0 To FL_NUMBEROFINDEXEN(TABLE_PRODUCTS)
+                    CbSortering.Items.Add(Format(T, "00") + ":" + FLINDEX_CAPTION(TABLE_PRODUCTS, T))
+                Next
+                On Error Resume Next
 
-            '            MaakTotaal()
-            '        Case "1"
-            '            TekstInfo(0).Text = "OMSCHRIJVING"
-            '            TekstInfo(2).Text = Dec$(1, "###0.0")
-            '            Keuze(0).ListIndex = 9
+                CbSortering = SettingLoading(Name, "ProduktSortering")
 
-            '            ProduktLabel(0).Visible = False
-            '            ProduktLabel(1).Visible = False
-            '            TekstInfo(0).Visible = False
-            '            TekstInfo(2).Visible = False
-            '            Keuze(0).Visible = False
-            '            MaakTotaal()
-            '            TekstInfo(1).TabIndex = 0
+                TbInfo1.Enabled = False
+                TbInfo4.Enabled = False
 
-            '        Case "2"
-            '            TekstInfo(1).MaxLength = 75
-            '            'TekstInfo(1).Text = vSet((TekstInfo(1).Text), 75)
-            '            Keuze(0).ListIndex = 0
+                CalculateTotal()
+            Case "1"
+                TbInfo0.Text = "OMSCHRIJVING"
+                TbInfo2.Text = Dec$(1, "###0.0")
+                CbKeuze0.SelectedIndex = 9
 
-            '            ProduktLabel(0).Visible = False
-            '            ProduktLabel(1).Visible = False
-            '            Keuze(0).Visible = False
-            '            Keuze(1).Visible = False
+                LabelProduct0.Visible = False
+                LabelProduct1.Visible = False
+                TbInfo0.Visible = False
+                TbInfo2.Visible = False
+                CbKeuze0.Visible = False
+                CalculateTotal()
+                TbInfo1.TabIndex = 0
 
-            '            For T = 0 To 8
-            '                TekstInfo(T).Visible = False
-            '                VerkoopLabel(T).Visible = False
-            '            Next
-            '            TekstInfo(9).Visible = False
-            '            BTWType.Visible = False
-            '            TekstInfo(1).Visible = True
-            '            Ok.Enabled = True
+            Case "2"
+                TbInfo1.MaxLength = 75
+                'TekstInfo(1).Text = vSet((TekstInfo(1).Text), 75)
+                CbKeuze0.SelectedIndex = 0
+
+                LabelProduct0.Visible = False
+                LabelProduct1.Visible = False
+                CbKeuze0.Visible = False
+                CbKeuze1.Visible = False
+
+
+                TbInfo0.Visible = False
+                LabelVerkoop0.Visible = False
+                TbInfo1.Visible = False
+                LabelVerkoop1.Visible = False
+                TbInfo2.Visible = False
+                LabelVerkoop5.Visible = False
+                TbInfo3.Visible = False
+                LabelVerkoop6.Visible = False
+                TbInfo4.Visible = False
+                LabelVerkoop8.Visible = False
+                TbInfo5.Visible = False
+                TbInfo6.Visible = False
+                TbInfo7.Visible = False
+                TbInfo8.Visible = False
+
+                TbInfo9.Visible = False
+                '            BTWType.Visible = False
+                TbInfo1.Visible = True
+                BtnOk.Enabled = True
+
         End Select
 
         If Len(TbInfo6.Text) Then
@@ -208,6 +231,58 @@ Public Class FormSalesEdit
 
     Private Sub BtnOk_Click(sender As Object, e As EventArgs) Handles BtnOk.Click
 
+        '    If TekstInfo(6) = "*" Then Exit Sub
+
+        '    Select Case LijnType
+        '        Case "0", "1"
+        '            TekstInfo(0).Text = vSet((TekstInfo(0).Text), 13) 'ProduktNummer
+        '            TekstInfo(1).Text = vSet((TekstInfo(1).Text), 40) 'Omschrijving
+        '            TekstInfo(2).Text = Dec$(Val(TekstInfo(2).Text), "###0.0") 'Verpakking
+        '            TekstInfo(3).Text = vSet((TekstInfo(3).Text), 7) 'Boekhoudingrekening
+        '            TekstInfo(4).Text = Dec$(Val(TekstInfo(4).Text), "######0.000") 'Verkoopprijs
+        '            TekstInfo(5).Text = Dec$(Val(TekstInfo(5).Text), "##0") 'Korting
+        '            TekstInfo(6).Text = Dec$(Val(TekstInfo(6).Text), vkMaskAantal) 'Aantal
+        '            CalculateTotal()
+
+        '            'controle voor mileulijn!!
+        '            If BL_ENVIRONMENT = True Then
+
+        '                MilieuGridText = ""
+
+        '                Dim strMilieu() As String
+        '                Dim telmilieu As Integer
+
+        '                strMilieu = Split(AdoGetField(FlProdukt, "#v261 #"), ";")
+        '                If LijnType = "1" Then
+        '                Else
+        '                    For telmilieu = 0 To UBound(strMilieu)
+        '                        bGet FlProdukt, 0, vSet(strMilieu(telmilieu), 13)
+        '                    If KTRL Then
+        '                            MsgBox "subcode " & strMilieu(telmilieu) & " niet te vinden"
+        '                        BL_ENVIRONMENT = False
+        '                        Else
+        '                            RecordToVeld FlProdukt
+        '                        MilieuGridText = MilieuGridText + vSet(AdoGetField(FlProdukt, "#v105 #"), 40) + Chr$(124) + Dec$(Val(AdoGetField(FlProdukt, "#e112 #")), "######0.000") + Chr$(124) + TekstInfo(6) + Chr$(124) + Dec$(Val(TekstInfo(6)) * Val(AdoGetField(FlProdukt, "#e112 #")), "#######0.000") + Chr$(124) + Dec$(1, "###0.0") + Chr$(124)
+        '                            MilieuGridText = MilieuGridText + AdoGetField(FlProdukt, "#v106 #") + Chr$(124) + Dec$(0, "##0") + Chr$(124) + AdoGetField(FlProdukt, "#v111 #") + Chr$(124) + vSet(AdoGetField(FlProdukt, "#v117 #"), 7) + Chr$(124) + vSet(AdoGetField(FlProdukt, "#v102 #"), 13) + Chr$(124) + "0" + vbCrLf
+        '                        End If
+        '                    Next
+        '                End If
+        '            End If
+        '            If TekstInfo(1).Text = Space$(Len(TekstInfo(1).Text)) Or TekstInfo(3).Text = Space$(Len(TekstInfo(3).Text)) Then
+        '                TekstInfo(1).Text = ""
+        '            Else
+        '                GRIDTEXT = TekstInfo(1).Text + Chr$(124) + TekstInfo(4).Text + Chr$(124) + TekstInfo(6).Text + Chr$(124) + TekstInfo(7).Text + Chr$(124) + TekstInfo(2).Text + Chr$(124)
+        '                GRIDTEXT = GRIDTEXT + Left(Keuze(0).Text, 1) + Chr$(124) + TekstInfo(5).Text + Chr$(124) + Left(Keuze(1).Text, 1) + Chr$(124) + TekstInfo(3).Text + Chr$(124) + TekstInfo(0).Text + Chr$(124) + LijnType
+        '                WijzigenVerkoop.Hide
+        '            End If
+
+        '        Case "2"
+        '            TekstInfo(1).Text = vSet((TekstInfo(1).Text), 75)
+        '            GRIDTEXT = TekstInfo(1).Text + Chr$(124) + LijnType
+        '            WijzigenVerkoop.Hide
+        '    End Select
+
+
     End Sub
 
     Private Sub CbSortering_Click(sender As Object, e As EventArgs) Handles CbSortering.Click
@@ -216,155 +291,98 @@ Public Class FormSalesEdit
 
     End Sub
 
+    Private Sub CalculateTotal()
+
+        nVol = Val(TbInfo2.Text)
+        dHg = Val(TbInfo4.Text)
+        nAnt = Val(TbInfo6.Text)
+
+        SubEx = (dHg * nAnt) - ((dHg * nAnt) * Val(TbInfo5.Text) / 100)
+        SubIn = SubEx + (SubEx * Val(Mid(CbKeuze1.Text, 4, 4)) / 100)
+        TbInfo7.Text = Dec$((SubEx), "#######0.000")
+        TbInfo8.Text = Dec$((SubIn), "#######0.000")
+        TbInfo9.Text = TbInfo4.Text
+
+    End Sub
+
+    Private Sub CbKeuze1_Click(sender As Object, e As EventArgs) Handles CbKeuze1.Click
+
+        CalculateTotal()
+
+    End Sub
+
+    Private Function ProdukTekstInfo()
+        Dim HuidigeStock As Single
+        Dim MinimumStock As Single
+
+        If Trim(AdoGetField(TABLE_PRODUCTS, "#v261 #")) = "" Then
+            LabelSensitive.Visible = False
+        Else
+            LabelSensitive.Visible = True
+        End If
+        BL_ENVIRONMENT = LabelSensitive.Visible
+
+        TbInfo0.Text = AdoGetField(TABLE_PRODUCTS, "#v102 #")
+        TbInfo1.Text = AdoGetField(TABLE_PRODUCTS, "#v105 #")
+        TbInfo5.Text = AdoGetField(TABLE_PRODUCTS, "#v300 #")
+
+        For T = 0 To CbKeuze0.Items.Count - 1
+            If Mid(CbKeuze0.Items.Item(T).ToString, 1, 1) = AdoGetField(TABLE_PRODUCTS, "#v106 #") Then
+                CbKeuze0.SelectedIndex = T
+                Exit For
+            End If
+        Next
+
+        If VAT_BOBTHEBUILDERS = True Then
+            CbKeuze1.SelectedIndex = 0
+        ElseIf Val(AdoGetField(TABLE_PRODUCTS, "#v111 #")) = 6 Then
+            CbKeuze1.SelectedIndex = 3
+        Else
+            CbKeuze1.SelectedIndex = Val(AdoGetField(TABLE_PRODUCTS, "#v111 #")) - 1
+        End If
+
+        nVol = Val(AdoGetField(TABLE_PRODUCTS, "#v107 #"))
+        TbInfo2.Text = Dec$((nVol), "###0.0")
+        If InStr(DIRECTSELL_STRING, "EUR") Then
+            TbInfo4.Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * nVol, "######0.000")
+        Else
+            TbInfo4.Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")) * nVol, "######0.000")
+        End If
+        TbInfo9.Text = TbInfo4.Text
+
+        dHg = Val(TbInfo4.Text)
+        If Val(TbInfo5.Text) <> 0 Then
+        Else
+            TbInfo5.Text = Dec$(Val(AdoGetField(TABLE_CUSTOMERS, "#vs05 #")), "##0")
+        End If
+        TbInfo6.Text = Dec$(1, vkMaskAantal)
+        nAnt = 1
+
+        HuidigeStock = Val(AdoGetField(TABLE_PRODUCTS, "#v114 #")) + Val(AdoGetField(TABLE_PRODUCTS, "#v119 #")) - Val(AdoGetField(TABLE_PRODUCTS, "#v120 #"))
+        MinimumStock = Val(AdoGetField(TABLE_PRODUCTS, "#v115 #"))
+        If MinimumStock > HuidigeStock Then
+            LabelMinStockInfo.Visible = True
+        Else
+            LabelMinStockInfo.Visible = False
+        End If
+        LabelMinStockInfo.Text = "Min.Stock: " + Format(MinimumStock) + " / Stock: " + Format(HuidigeStock) + " / Plaats: " + AdoGetField(TABLE_PRODUCTS, "#v109 #")
+
+        '    'TaksKeuze(0).ListIndex = Val(AdoGetField(FlProdukt, "#v168 #"))
+        '    'Select Case Val(AdoGetField(FlProdukt, "#v168 #"))
+        '    '    Case 1 To 9
+        '    '        TaksKeuze(0).Visible = True
+        '    '    Case Else
+        '    '        TaksKeuze(0).Visible = False
+        '    'End Select
+        '    CalculateTotal()
+        '    'Ok.Enabled = True
+
+    End Function
+
 End Class
 
 
-'Private Sub Keuze_Click(Index As Integer)
 
-'    Select Case Index
-'        Case 1
-'            MaakTotaal()
-'    End Select
-
-'End Sub
-
-'Private Sub MaakTotaal()
-
-'    nVol = Val(TekstInfo(2).Text)
-'    dHg = Val(TekstInfo(4).Text)
-'    nAnt = Val(TekstInfo(6).Text)
-
-'    SubEx = (dHg * nAnt) - ((dHg * nAnt) * Val(TekstInfo(5).Text) / 100)
-'    SubIn = SubEx + (SubEx * Val(Mid(Keuze(1).Text, 4, 4)) / 100)
-'    TekstInfo(7).Text = Dec$((SubEx), "#######0.000")
-'    TekstInfo(8).Text = Dec$((SubIn), "#######0.000")
-'    TekstInfo(9).Text = TekstInfo(4).Text
-
-'End Sub
-
-'Private Sub Ok_Click()
-
-'    If TekstInfo(6) = "*" Then Exit Sub
-
-'    Select Case LijnType
-'        Case "0", "1"
-'            TekstInfo(0).Text = vSet((TekstInfo(0).Text), 13) 'ProduktNummer
-'            TekstInfo(1).Text = vSet((TekstInfo(1).Text), 40) 'Omschrijving
-'            TekstInfo(2).Text = Dec$(Val(TekstInfo(2).Text), "###0.0") 'Verpakking
-'            TekstInfo(3).Text = vSet((TekstInfo(3).Text), 7) 'Boekhoudingrekening
-'            TekstInfo(4).Text = Dec$(Val(TekstInfo(4).Text), "######0.000") 'Verkoopprijs
-'            TekstInfo(5).Text = Dec$(Val(TekstInfo(5).Text), "##0") 'Korting
-'            TekstInfo(6).Text = Dec$(Val(TekstInfo(6).Text), vkMaskAantal) 'Aantal
-'            MaakTotaal()
-
-'            'controle voor mileulijn!!
-'            If blMilieu = True Then
-
-'                MilieuGridText = ""
-
-'                Dim strMilieu() As String
-'                Dim telmilieu As Integer
-
-'                strMilieu = Split(vBibTekst(FlProdukt, "#v261 #"), ";")
-'                If LijnType = "1" Then
-'                Else
-'                    For telmilieu = 0 To UBound(strMilieu)
-'                        bGet FlProdukt, 0, vSet(strMilieu(telmilieu), 13)
-'                    If KTRL Then
-'                            MsgBox "subcode " & strMilieu(telmilieu) & " niet te vinden"
-'                        blMilieu = False
-'                        Else
-'                            RecordToVeld FlProdukt
-'                        MilieuGridText = MilieuGridText + vSet(vBibTekst(FlProdukt, "#v105 #"), 40) + Chr$(124) + Dec$(Val(vBibTekst(FlProdukt, "#e112 #")), "######0.000") + Chr$(124) + TekstInfo(6) + Chr$(124) + Dec$(Val(TekstInfo(6)) * Val(vBibTekst(FlProdukt, "#e112 #")), "#######0.000") + Chr$(124) + Dec$(1, "###0.0") + Chr$(124)
-'                            MilieuGridText = MilieuGridText + vBibTekst(FlProdukt, "#v106 #") + Chr$(124) + Dec$(0, "##0") + Chr$(124) + vBibTekst(FlProdukt, "#v111 #") + Chr$(124) + vSet(vBibTekst(FlProdukt, "#v117 #"), 7) + Chr$(124) + vSet(vBibTekst(FlProdukt, "#v102 #"), 13) + Chr$(124) + "0" + vbCrLf
-'                        End If
-'                    Next
-'                End If
-'            End If
-'            If TekstInfo(1).Text = Space$(Len(TekstInfo(1).Text)) Or TekstInfo(3).Text = Space$(Len(TekstInfo(3).Text)) Then
-'                TekstInfo(1).Text = ""
-'            Else
-'                GRIDTEXT = TekstInfo(1).Text + Chr$(124) + TekstInfo(4).Text + Chr$(124) + TekstInfo(6).Text + Chr$(124) + TekstInfo(7).Text + Chr$(124) + TekstInfo(2).Text + Chr$(124)
-'                GRIDTEXT = GRIDTEXT + Left(Keuze(0).Text, 1) + Chr$(124) + TekstInfo(5).Text + Chr$(124) + Left(Keuze(1).Text, 1) + Chr$(124) + TekstInfo(3).Text + Chr$(124) + TekstInfo(0).Text + Chr$(124) + LijnType
-'                WijzigenVerkoop.Hide
-'            End If
-
-'        Case "2"
-'            TekstInfo(1).Text = vSet((TekstInfo(1).Text), 75)
-'            GRIDTEXT = TekstInfo(1).Text + Chr$(124) + LijnType
-'            WijzigenVerkoop.Hide
-'    End Select
-
-'End Sub
-
-'Private Function ProdukTekstInfo()
-'    Dim HuidigeStock As Single
-'    Dim MinimumStock As Single
-
-'    If Trim(vBibTekst(FlProdukt, "#v261 #")) = "" Then
-'        Me.lbMilieu.Visible = False
-'    Else
-'        Me.lbMilieu.Visible = True
-'    End If
-'    blMilieu = Me.lbMilieu.Visible
-
-'    TekstInfo(0).Text = vBibTekst(FlProdukt, "#v102 #")
-'    TekstInfo(1).Text = vBibTekst(FlProdukt, "#v105 #")
-'    TekstInfo(5).Text = vBibTekst(FlProdukt, "#v300 #")
-
-'    For T = 0 To Keuze(0).ListCount - 1
-'        If Left(Keuze(0).List(T), 1) = vBibTekst(FlProdukt, "#v106 #") Then
-'            Keuze(0).ListIndex = T
-'            Exit For
-'        End If
-'    Next
-
-'    If BtwBouw = True Then
-'        Keuze(1).ListIndex = 0
-'    ElseIf Val(vBibTekst(FlProdukt, "#v111 #")) = 6 Then
-'        Keuze(1).ListIndex = 3
-'    Else
-'        Keuze(1).ListIndex = Val(vBibTekst(FlProdukt, "#v111 #")) - 1
-'    End If
-
-'    nVol = Val(vBibTekst(FlProdukt, "#v107 #"))
-'    TekstInfo(2).Text = Dec$((nVol), "###0.0")
-'    If InStr(DirecteVerkoopString, "EUR") Then
-'        TekstInfo(4).Text = Dec$(Val(vBibTekst(FlProdukt, "#e112 #")) * nVol, "######0.000")
-'    Else
-'        TekstInfo(4).Text = Dec$(Val(vBibTekst(FlProdukt, "#v112 #")) * nVol, "######0.000")
-'    End If
-'    TekstInfo(9).Text = TekstInfo(4).Text
-
-'    dHg = Val(TekstInfo(4).Text)
-'    If Val(TekstInfo(5).Text) <> 0 Then
-'    Else
-'        TekstInfo(5).Text = Dec$(Val(vBibTekst(FlKlant, "#vs05 #")), "##0")
-'    End If
-'    TekstInfo(6).Text = Dec$(1, vkMaskAantal)
-'    nAnt = 1
-
-'    HuidigeStock = Val(vBibTekst(FlProdukt, "#v114 #")) + Val(vBibTekst(FlProdukt, "#v119 #")) - Val(vBibTekst(FlProdukt, "#v120 #"))
-'    MinimumStock = Val(vBibTekst(FlProdukt, "#v115 #"))
-'    If MinimumStock > HuidigeStock Then
-'        Me.lbMinStockInfo.Visible = True
-'    Else
-'        Me.lbMinStockInfo.Visible = False
-'    End If
-'    LocalInfo.SimpleText = "Min.Stock: " + Format(MinimumStock) + " / Stock: " + Format(HuidigeStock) + " / Plaats: " + vBibTekst(FlProdukt, "#v109 #")
-
-
-'    'TaksKeuze(0).ListIndex = Val(vBibTekst(FlProdukt, "#v168 #"))
-'    'Select Case Val(vBibTekst(FlProdukt, "#v168 #"))
-'    '    Case 1 To 9
-'    '        TaksKeuze(0).Visible = True
-'    '    Case Else
-'    '        TaksKeuze(0).Visible = False
-'    'End Select
-'    MaakTotaal()
-'    'Ok.Enabled = True
-
-'End Function
 
 
 'Private Sub TekstInfo_DblClick(Index As Integer)
@@ -385,7 +403,7 @@ End Class
 '            If KTRL Then
 '                Else
 '                    RecordToVeld FlRekening
-'                SnelHelpPrint vBibTekst(FlRekening, "#v020 #"), blLogging
+'                SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
 '            End If
 '            End If
 '        Case 4
@@ -432,18 +450,18 @@ End Class
 '                    Else
 '                        RecordToVeld FlProdukt
 '                    ProdukTekstInfo()
-'                        bGet FlRekening, 0, vSet(vBibTekst(FlProdukt, "#v117 #"), 7)
+'                        bGet FlRekening, 0, vSet(AdoGetField(FlProdukt, "#v117 #"), 7)
 '                    If KTRL Then
 '                            TekstInfo(3).Text = ""
 '                            TekstInfo(0).SetFocus : Exit Sub
-'                        ElseIf Val(vBibTekst(FlProdukt, "#e113 #")) <= 0 Then
+'                        ElseIf Val(AdoGetField(FlProdukt, "#e113 #")) <= 0 Then
 '                            MsgBox "Aankoopprijs is onbekend.  Geef de inkoopprijs in van dit artikel a.u.b. via de produktfiche !"
 '                        TekstInfo(0).Text = ""
 '                            TekstInfo(0).SetFocus : Exit Sub
 '                        Else
 '                            RecordToVeld FlRekening
-'                        TekstInfo(3).Text = vBibTekst(FlRekening, "#v019 #")
-'                            SnelHelpPrint vBibTekst(FlRekening, "#v020 #"), blLogging
+'                        TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
+'                            SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
 '                        Ok.Enabled = True
 '                        End If
 '                    End If
@@ -459,7 +477,7 @@ End Class
 '                        Ok.Enabled = False
 '                    Else
 '                        RecordToVeld FlRekening
-'                    TekstInfo(3).Text = vBibTekst(FlRekening, "#v019 #")
+'                    TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
 '                        Ok.Enabled = True
 '                    End If
 '            End Select
@@ -493,14 +511,14 @@ End Class
 '                Else
 '                    RecordToVeld FlProdukt
 '                ProdukTekstInfo()
-'                    bGet FlRekening, 0, vSet(vBibTekst(FlProdukt, "#v117 #"), 7)
+'                    bGet FlRekening, 0, vSet(AdoGetField(FlProdukt, "#v117 #"), 7)
 '                If KTRL Then
-'                        MsgBox "Verkooprekening " & vSet(vBibTekst(FlProdukt, "#v117 #"), 7) & " bestaat niet (meer).  Eerst verbeteren a.u.b. in productfiche", vbExclamation
+'                        MsgBox "Verkooprekening " & vSet(AdoGetField(FlProdukt, "#v117 #"), 7) & " bestaat niet (meer).  Eerst verbeteren a.u.b. in productfiche", vbExclamation
 '                    TekstInfo(0).SetFocus : Exit Sub
 '                    Else
 '                        RecordToVeld FlRekening
-'                    TekstInfo(3).Text = vBibTekst(FlRekening, "#v019 #")
-'                        SnelHelpPrint vBibTekst(FlRekening, "#v020 #"), blLogging
+'                    TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
+'                        SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
 '                    Ok.Enabled = True
 '                    End If
 '                    TekstInfo(6).SetFocus
@@ -511,9 +529,9 @@ End Class
 '            nVol = Val(TekstInfo(2).Text)
 '            TekstInfo(2).Text = Dec$((nVol), "###0.0")
 '            If InStr(DirecteVerkoopString, "EUR") Then
-'                TekstInfo(4).Text = Dec$(Val(vBibTekst(FlProdukt, "#e112 #")) * nVol, "######0.000")
+'                TekstInfo(4).Text = Dec$(Val(AdoGetField(FlProdukt, "#e112 #")) * nVol, "######0.000")
 '            Else
-'                TekstInfo(4).Text = Dec$(Val(vBibTekst(FlProdukt, "#v112 #")) * nVol, "######0.000")
+'                TekstInfo(4).Text = Dec$(Val(AdoGetField(FlProdukt, "#v112 #")) * nVol, "######0.000")
 '            End If
 '            TekstInfo(9).Text = TekstInfo(4).Text
 
@@ -528,8 +546,8 @@ End Class
 '                End If
 '            Else
 '                RecordToVeld FlRekening
-'            TekstInfo(3).Text = vBibTekst(FlRekening, "#v019 #")
-'                SnelHelpPrint vBibTekst(FlRekening, "#v020 #"), blLogging
+'            TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
+'                SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
 '        End If
 
 '        Case 4
@@ -539,17 +557,17 @@ End Class
 '                TempPCT = Val(Mid(Keuze(1).Text, 4, 4))
 '                dHg = dHg * 100 / (100 + TempPCT)
 '                TekstInfo(4).Text = Dec$((dHg), "######0.000")
-'                MaakTotaal()
+'                CalculateTotal()
 '                Ok.Enabled = True
 '            Else
 '                TekstInfo(4).Text = Dec$(Val(TekstInfo(4).Text), "######0.000")
-'                MaakTotaal()
+'                CalculateTotal()
 '                Ok.Enabled = True
 '            End If
 
 '        Case 5
 '            If TekstInfo(0).Visible = True Then
-'                If (Val(TekstInfo(4).Text) / Val(TekstInfo(2).Text)) / (1 + (Val(TekstInfo(5).Text) / 100)) < Val(vBibTekst(FlProdukt, "#e113 #")) Then
+'                If (Val(TekstInfo(4).Text) / Val(TekstInfo(2).Text)) / (1 + (Val(TekstInfo(5).Text) / 100)) < Val(AdoGetField(FlProdukt, "#e113 #")) Then
 '                    MSG = "Uw verkoopprijs wordt kleiner dan uw aankoopprijs !  Is dit de bedoeling ?"
 '                    KtrlBox = MsgBox(MSG, 292)
 '                    If KtrlBox = 6 Then
@@ -576,7 +594,7 @@ End Class
 '            TekstInfo(6).Text = Dec$((nAnt), vkMaskAantal)
 '            'If Ok.Enabled = True Then Ok.SetFocus
 '    End Select
-'    MaakTotaal()
+'    CalculateTotal()
 
 'End Sub
 

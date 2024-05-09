@@ -147,7 +147,7 @@ InitSQL:
     Private Sub VulcmbSortering()
         Dim T As Short
         sorteringComboBox.Items.Clear()
-        For T = 0 To FlAantalIndexen(SHARED_FL)
+        For T = 0 To FL_NUMBEROFINDEXEN(SHARED_FL)
             Dim sortveldString As String = Trim(JETTABLEUSE_INDEX(SHARED_FL, T))
             sorteringComboBox.Items.Add("+" & sortveldString & "; " & FLINDEX_CAPTION(SHARED_FL, T))
         Next

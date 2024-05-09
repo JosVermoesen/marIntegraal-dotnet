@@ -579,7 +579,7 @@ End Class
 
 '		Sortering.Items.Clear()
 '		FlKeuze = Val(VB.Left(Tabel.Text, 1))
-'		For T = 0 To FlAantalIndexen(FlKeuze)
+'		For T = 0 To FL_NUMBEROFINDEXEN(FlKeuze)
 '			Sortering.Items.Add(VB6.Format(T, "00") & ":" & FLINDEX_CAPTION(FlKeuze, T))
 '		Next 
 '		Sortering.SelectedIndex = 0

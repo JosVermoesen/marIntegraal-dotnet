@@ -1,7 +1,11 @@
 ﻿Option Strict Off
 Option Explicit On
+
 Public Class FomSalesTransactions
-    Dim dokumentType As String = Space (2)
+
+    Dim EditDetailModus As Boolean = False
+
+    Dim dokumentType As String = Space(2)
     Dim pdfDOKUMENTTYPE As String
     Dim dokumentHistoriek As String = Space(11)
     Dim VerkoopDetailTitel(8) As String
@@ -36,8 +40,6 @@ Public Class FomSalesTransactions
     Dim pdfX As Double
     Dim pdfY As Double
     Dim pdfOVSStrook As Double
-
-
 
     Dim tabV As Short
     Dim hTAB As Short
@@ -176,10 +178,11 @@ MaskAantal:
         End If
         On Error Resume Next
         'GetSellNumber()
-        DirekteVerkoop.Checked = True
+        RbDirekteVerkoop.Checked = True
         Activate()
 
     End Sub
+
     Private Sub KlantAktiveren_Click(sender As Object, e As EventArgs) Handles BtnGetClient.Click
         If VerkoopDetail.Items.Count Then
             MSG = "Huidige inbreng en klant negeren." & vbCrLf & vbCrLf
@@ -201,6 +204,462 @@ MaskAantal:
         End If
         SqlSearch.Dispose()
     End Sub
+
+    Private Sub CreditNota_CheckedChanged(sender As Object, e As EventArgs) Handles CbCreditNota.CheckedChanged
+        If CbCreditNota.Checked = True Then
+            RbDirekteVerkoop.Checked = True
+            RbDirekteVerkoop.Enabled = False
+            RbBestelbon.Enabled = False
+            RbOfferte.Enabled = False
+            CbCreditNota.Enabled = False
+            GetSellNumber()
+        End If
+    End Sub
+
+    Private Sub DirekteVerkoop_CheckedChanged(sender As Object, e As EventArgs) Handles RbDirekteVerkoop.CheckedChanged
+        If RbDirekteVerkoop.Checked = True Then
+            GetSellNumber()
+        End If
+    End Sub
+
+    Private Sub Bestelbon_CheckedChanged(sender As Object, e As EventArgs) Handles RbBestelbon.CheckedChanged
+        If RbBestelbon.Checked = True Then
+            GetSellNumber()
+        End If
+    End Sub
+
+    Private Sub Offerte_CheckedChanged(sender As Object, e As EventArgs) Handles RbOfferte.CheckedChanged
+        If RbOfferte.Checked = True Then
+            GetSellNumber()
+        End If
+    End Sub
+
+    Private Sub Klassement_Click(sender As Object, e As EventArgs) Handles BtnDocumentHistory.Click
+        Dim T As Short
+        Dim LaatsteWAS As String
+        Dim TotaalEX As Decimal
+        Dim dataVeld As String
+        If KlantInfo.Text = "" Then Exit Sub
+        T = 0
+        Dim xlogHier As New FormXlog
+        xlogHier.Hide()
+        xlogHier.Text = "Document inladen voor : " + RV(rsKlant, "A100")
+        xlogHier.X.Columns.Add("Document", 100)
+        xlogHier.X.Columns.Add("Datum", 100)
+        xlogHier.X.Columns.Add("Bedrag EUR", 100)
+        xlogHier.X.Columns.Add("Bedrag BEF", 100)
+        xlogHier.X.Columns.Add("Zie ook document", 100)
+        xlogHier.BtnEditLine.Visible = False
+        xlogHier.BtnHideAndGoBack.Visible = False
+        xlogHier.BtnSelectOnly.Visible = True
+        xlogHier.AcceptButton = xlogHier.BtnSelectOnly
+        XLOG_KEY = ""
+        rsDetail = New ADODB.Recordset
+        On Error Resume Next
+        Err.Clear()
+        rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
+        MSG = "SELECT * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%' ORDER BY v004, v005 DESC"
+        Cursor.Current = Cursors.WaitCursor
+        rsDetail.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
+        If Err.Number Then
+            MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
+            Exit Sub
+        ElseIf rsDetail.RecordCount = 0 Then
+            MsgBox("Geen dokumenten (meer) te vinden.", MsgBoxStyle.Information)
+            Exit Sub
+        Else
+            LaatsteWAS = ""
+            'rsDetail.MoveFirst()
+            Do While Not rsDetail.EOF
+                'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
+                If LaatsteWAS = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #") Then
+                Else
+                    LaatsteWAS = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #")
+                    dataVeld = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #")
+                    Dim itemHier As New ListViewItem(dataVeld)
+                    dataVeld = FunctionDateText(adoBibTekst(rsDetail.Fields("Memo"), "#v035 #"))
+                    itemHier.SubItems.Add(dataVeld)
+                    If adoBibTekst(rsDetail.Fields("Memo"), "#vEUR #") = "EUR" Then
+                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")), "#,##0.00")
+                        itemHier.SubItems.Add(dataVeld)
+                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")) * EURO, "#,##0.00")
+                        itemHier.SubItems.Add(dataVeld)
+                    Else
+                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")) / EURO, "#,##0.00")
+                        itemHier.SubItems.Add(dataVeld)
+                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")), "#,##0.00")
+                        itemHier.SubItems.Add(dataVeld)
+                    End If
+                    dataVeld = adoBibTekst(rsDetail.Fields("Memo"), "#v147 #") & " " & adoBibTekst(rsDetail.Fields("Memo"), "#v148 #")
+                    itemHier.SubItems.Add(dataVeld)
+                    xlogHier.X.Items.Add(itemHier)
+                End If
+                rsDetail.MoveNext()
+            Loop
+        End If
+        rsDetail.Close()
+        rsDetail = Nothing
+        'xLog.SSTab1.TabPages.Item(1).Visible = False
+        xlogHier.ShowDialog()
+        xlogHier.Close()
+        If XLOG_KEY <> "" Then
+            LaadHetdokument()
+        End If
+        Exit Sub
+    End Sub
+
+    Private Sub Schoonvegen_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
+        Schoon()
+    End Sub
+
+    Private Sub cbLayOudPDF_Click(sender As Object, e As EventArgs) Handles cbLayOudPDF.Click
+        LayOutpdfDokument.Show()
+    End Sub
+
+    Private Sub CmbAfdruk_Click(sender As Object, e As EventArgs) Handles BtnGenerateCopy.Click
+        Dim A As String
+        Dim refString As String
+        Dim refID As String
+        Dim aa As String = "                              "
+        Dim dTTwb As Double
+        Dim DummySleutel As String
+        Dim BestondReeds As Short
+        Dim T As Short
+        If dokumentType = "15" And BtnCancel.Enabled = True Then
+            If Not IsDateOk(datumdocMTextbox.Text, PERIODAS_TEXT) Then
+                FormBYPERDAT.WindowState = FormWindowState.Normal
+                FormBYPERDAT.Focus()
+                datumdocMTextbox.Focus()
+                Beep()
+                Exit Sub
+            End If
+        End If
+        If dokumentType = "15" Then
+            If frmDokHistoriek.lstDokHistoriek.Items.Count <> 0 Then
+                MSG = ""
+                refID = "RF:"
+                For T = 0 To frmDokHistoriek.lstDokHistoriek.Items.Count - 1
+                    frmDokHistoriek.lstDokHistoriek.SelectedIndex = T
+                    MSG = MSG & frmDokHistoriek.lstDokHistoriek.Text & " "
+                Next
+                CTRL_BOX = MsgBox("Bons als referte opnemen." & vbCr & vbCr & refID & MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
+                If CTRL_BOX = MsgBoxResult.Yes Then
+                    refString = New String(" ", 75) & "|2"
+                    VerkoopDetail.Items.Add(refString)
+                    Do While MSG <> ""
+                        refString = New String(" ", 75) & "|2"
+                        Mid(refString, 1) = refID & Mid(MSG, 1, 72)
+                        If Len(MSG) > 72 Then
+                            MSG = Mid(MSG, 73)
+                        Else
+                            MSG = ""
+                        End If
+                        VerkoopDetail.Items.Add(refString)
+                    Loop
+                End If
+            End If
+        End If
+        TotaalBTW = 0
+        If CbMedekontraktant.CheckState Or VerkoopFLG Then
+            BTWBedrag(1) = 0 : BTWEuroBedrag(1) = 0
+            BTWBedrag(2) = 0 : BTWEuroBedrag(2) = 0
+            BTWBedrag(3) = 0 : BTWEuroBedrag(3) = 0
+        Else
+            For T = 0 To 3
+                If InStr(cmdSwitch.Text, "EUR") Then
+                    TotaalBTW = TotaalBTW + BTWEuroBedrag(T)
+                Else
+                    TotaalBTW = TotaalBTW + BTWBedrag(T)
+                End If
+            Next
+        End If
+        If VerkoopFLG Then
+            If sMuntKlant = "EUR" Then
+                TotaalUitvoer = CDbl(LblEx2Btw.Text)
+            Else
+                TotaalUitvoer = CDbl(LblExBtw.Text)
+            End If
+            For T = 0 To 3
+                BTWBasis(T) = 0
+                BTWEuroBasis(T) = 0
+            Next
+        Else
+            TotaalUitvoer = 0
+        End If
+        Dim VMAIL_TO As Integer
+        VMAIL_TO = 1
+        If cbPDF.CheckState = System.Windows.Forms.CheckState.Checked Then
+            If Mim.Report.IsOpen = True Then
+                Mim.Report.CloseDoc()
+            End If
+
+            With Mim.Report
+                .OpenDoc()
+                .Author = "Jos Vermoesen"
+                .GUILanguage = 3 'Nederlands
+                .Title = "dnnVerkoopDocument"
+            End With
+            pdfDrukAf()
+            Mim.Report.WriteDoc(LOCATION_COMPANYDATA & Format(Now, "YYYYMMDDHHMMSS") & "-dnnVerkoopDocumenten.pdf")
+            Mim.Report.MailSubject = pdfDOKUMENTTYPE & " " & dokumentSleutel
+            Mim.Report.MailText = pdfDOKUMENTTYPE & " " & dokumentSleutel & " in bijlage."
+            If Not IsDBNull(RS_MAR(TABLE_CUSTOMERS).Fields("e072").Value) Then
+                If RS_MAR(TABLE_CUSTOMERS).Fields("e072").Value = "1" Then
+                    'automatisch mail proberen
+                    Call Mim.Report.AddMailReceiver(RS_MAR(TABLE_CUSTOMERS).Fields("v224").Value, VMAIL_TO)
+                    KTRL = Mim.Report.MailDoc
+                    'Call Mim.Report.AddMailReceiver("[FAX: +32 53 781922]", VMAIL_TO)
+                    'X = Mim.Report.AddMailAttachment("c:\data\report.vpe", "")
+                    If KTRL = 1 Then 'success
+                        'nu nog report sluiten !!
+                        Mim.Report.CloseDoc()
+                        Exit Sub
+                    Else
+                        Mim.Report.Preview()
+                    End If
+                End If
+            Else
+                'If Me.cbPdfExport.Value = vbChecked Then
+                '    MsgBox "exporteren naar DNN folder of andere nog te definiëren"
+                '    Mim.Report.CloseDoc
+                Mim.Report.Preview()
+            End If
+        Else
+            'TODO: DrukAf()
+        End If
+    End Sub
+
+    Private Sub VerkoopDetail_DoubleClick(sender As Object, e As EventArgs) Handles VerkoopDetail.DoubleClick
+
+        If VerkoopDetail.SelectedIndex Then
+            EditDetailModus = True
+            SendKeys.Send("{ENTER}")
+        End If
+
+    End Sub
+
+    Private Sub VerkoopDetail_Leave(sender As Object, e As EventArgs) Handles VerkoopDetail.Leave
+
+        VerkoopDetail.SelectedIndex = -1
+
+    End Sub
+
+    Private Sub VerkoopDetail_KeyPress(sender As Object, e As KeyPressEventArgs) Handles VerkoopDetail.KeyPress
+
+        'If e.KeyChar <> Chr(13) Then
+        'Exit Sub
+        'End If
+        'MessageBox.Show("Enter pressed")
+
+        Dim Positie As Integer
+        Dim TempoBedrag As Double
+        Dim TempoBTW As Integer
+
+        'MessageBox.Show("Pressed key: " + e.KeyChar)
+
+Jumper:
+        If EditDetailModus Then
+
+
+        End If
+
+        Select Case UCase(e.KeyChar)
+            Case "S"
+                'aIndex = 0
+            Case "O"
+                'aIndex = 1
+            Case "T"
+                'aIndex = 2
+        End Select
+        Positie = VerkoopDetail.SelectedIndex
+        'MessageBox.Show(Len(VerkoopDetail.SelectedItem.ToString))
+
+        Select Case e.KeyChar
+            Case Chr(13)         'Enter
+                If Positie < 0 Then
+                    MessageBox.Show("Eerst een lijn selecteren!")
+                    Exit Sub
+                End If
+                ' If dokumentType <> "15" And Annuleren.Enabled = False Then
+                '     Annuleren.Enabled = True
+                ' End If
+                GRIDTEXT = VerkoopDetail.Text
+                Dim lastChar As Char = GRIDTEXT.Substring(GRIDTEXT.Length - 1)
+                If lastChar = "2" Then
+                Else
+                    RefreshBTW()
+                End If
+                'XLogKassa = ""
+                FormSalesEdit.Close()
+                FormSalesEdit.ShowDialog()
+                FormSalesEdit.Hide()
+                Focus()
+
+                If GRIDTEXT = "" Then
+                    RefreshBTW()
+                Else
+                    '            If Right(GRIDTEXT, 1) = "2" Then
+                    '            Else
+                    '                TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
+                    '                TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
+                    '                If TempoBTW = 6 Then
+                    '                    If bhEuro Then
+                    '                        If cmdSwitch.Caption = "Ingave in EUR" Then
+                    '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                    '                        Else
+                    '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag / EURO, 2)
+                    '                        End If
+                    '                    Else
+                    '                        If cmdSwitch.Caption = "Ingave in BEF" Then
+                    '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                    '                        Else
+                    '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag * EURO, 2)
+                    '                        End If
+                    '                    End If
+                    '                Else
+                    '                    If bhEuro Then
+                    '                        If cmdSwitch.Caption = "Ingave in EUR" Then
+                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                    '                        Else
+                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag / EURO, 2)
+                    '                        End If
+                    '                    Else
+                    '                        If cmdSwitch.Caption = "Ingave in BEF" Then
+                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                    '                        Else
+                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag * EURO, 2)
+                    '                        End If
+                    '                    End If
+                    '                End If
+                    '            End If
+                    '            VerkoopDetail.RemoveItem Positie
+                    '    VerkoopDetail.AddItem GRIDTEXT, Positie
+                End If
+                '        VerkoopDetail.ListIndex = Positie
+                '        CalculateTotal()
+
+                '    Case 43
+                '        GRIDTEXT = ""
+                '        XLogKassa = ""
+                '        WijzigenVerkoop.Show 1
+                'Unload WijzigenVerkoop
+                'DirekteVerkoop.SetFocus
+                '        If GRIDTEXT = "" Then
+                '        Else
+                '            If Right(GRIDTEXT, 1) = "2" Then
+                '            Else
+                '                TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
+                '                TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
+                '                If TempoBTW = 6 Then
+                '                    If bhEuro Then
+                '                        If cmdSwitch.Caption = "Ingave in EUR" Then
+                '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                '                        Else
+                '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag / EURO, 2)
+                '                        End If
+                '                    Else
+                '                        If cmdSwitch.Caption = "Ingave in BEF" Then
+                '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                '                        Else
+                '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag * EURO, 2)
+                '                        End If
+                '                    End If
+                '                Else
+                '                    If bhEuro Then
+                '                        If cmdSwitch.Caption = "Ingave in EUR" Then
+                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                '                        Else
+                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag / EURO, 2)
+                '                        End If
+                '                    Else
+                '                        If cmdSwitch.Caption = "Ingave in BEF" Then
+                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                '                        Else
+                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag * EURO, 2)
+                '                        End If
+                '                    End If
+                '                End If
+                '                CalculateTotal()
+                '            End If
+
+                '            Dim splitmilieu() As String
+                '            Dim telmilieu As Integer
+
+                '            If Positie < 0 Then
+                '                VerkoopDetail.AddItem GRIDTEXT, VerkoopDetail.ListCount
+                '        If BL_ENVIRONMENT = True Then
+                '                    splitmilieu = Split(MilieuGridText, vbCrLf)
+                '                    For telmilieu = 0 To UBound(splitmilieu) - 1
+                '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
+                '            Next
+                '                    BL_ENVIRONMENT = False
+                '                End If
+                '            Else
+                '                VerkoopDetail.AddItem GRIDTEXT, Positie
+                '        If BL_ENVIRONMENT = True Then
+                '                    splitmilieu = Split(MilieuGridText, vbCrLf)
+                '                    MsgBox "stop, waarom?"
+                '            For telmilieu = 0 To UBound(splitmilieu) - 1
+                '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
+                '            Next
+                '                    BL_ENVIRONMENT = False
+                '                End If
+                '            End If
+                '        End If
+                '        If Mid(XLogKey, 39, 2) = vbCrLf Then
+                '            Do While Len(XLogKey) <> 0
+                '                MSG = Mid(XLogKey, 1, 38) + String(37, " ") + "|2"
+                '                VerkoopDetail.AddItem MSG
+                '        XLogKey = Mid(XLogKey, 41)
+                '            Loop
+                '        End If
+
+                '    Case 79, 83, 84, 111, 115, 116
+                '        If dokumentType <> "15" And Annuleren.Enabled = False Then
+                '            Annuleren.Enabled = True
+                '        End If
+                '        'LijnType(InStr$("SOT", UCase$(Chr$(KeyAscii))) - 1).Value = 1
+                '        KeyAscii = 43
+                '        GoTo Jumper
+                '    Case Else
+                '        '        VensterKeyPress KeyAscii
+        End Select
+        'If VerkoopDetail.ListCount Then
+        '    Afsluiten.Enabled = True
+        '    CmbAfdruk.Enabled = True
+        'Else
+        '    Afsluiten.Enabled = False
+        '    CmbAfdruk.Enabled = False
+        'End If
+        'RefreshBTW()
+        'If CmdStock.Default Then CmdStock.SetFocus
+        'If CmdOmschrijving.Default Then CmdOmschrijving.SetFocus
+        'If CmdTekst.Default Then CmdTekst.SetFocus
+
+    End Sub
+
+    Private Sub VerkoopDetail_Enter(sender As Object, e As EventArgs) Handles VerkoopDetail.Enter
+
+        'MessageBox.Show("VerkoopDetail entered")
+
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+
+        If VerkoopDetail.Items.Count Then
+            MSG = "Huidige inbreng negeren en venster sluiten." & vbCrLf & vbCrLf
+            MSG = MSG & "Bent U zeker ?"
+            KTRL = MsgBox(MSG, 292, "Verkoopverrichtingen verlaten")
+            If KTRL = 6 Then
+            Else
+                Exit Sub
+            End If
+        End If
+        Mim.SalesTransactionMenuItem.Enabled = True
+        Close()
+
+    End Sub
+
     Private Sub InstalKlant()
         Dim Klantje As String
         Dim T As Short
@@ -290,11 +749,11 @@ MaskAantal:
         ElseIf RV(rsKlant, "v149") = "002" Then
             KlantInfo.Text = SetSpacing(RV(rsKlant, "A110"), 12) & "* Binnenland * " & Klantje
             VerkoopFLG = 0
-            Medekontraktant.Enabled = True
+            CbMedekontraktant.Enabled = True
         ElseIf InStr(SISO, RV(rsKlant, "v149")) Then
             KlantInfo.Text = SetSpacing(RV(rsKlant, "A110"), 12) & "* E.U. mét Btw-nummer * " & Klantje
             VerkoopFLG = 1
-            Medekontraktant.Enabled = False
+            CbMedekontraktant.Enabled = False
             If SetSpacing(RV(rsKlant, "A161"), 12) = Space(12) Then
                 KlantInfo.Text = SetSpacing(RV(rsKlant, "A110"), 12) & "* E.U. geen Btw-nummer * " & Klantje
                 VerkoopFLG = 0
@@ -302,7 +761,7 @@ MaskAantal:
         Else
             KlantInfo.Text = SetSpacing(RV(rsKlant, "A110"), 12) & "* Uitvoer buiten E.U. *" & Klantje
             VerkoopFLG = 2
-            Medekontraktant.Enabled = False
+            CbMedekontraktant.Enabled = False
         End If
 
         datumdocMTextbox.Enabled = True
@@ -311,7 +770,7 @@ MaskAantal:
 
 
         If RV(rsKlant, "v151") = "1" Then
-            Medekontraktant.CheckState = System.Windows.Forms.CheckState.Checked
+            CbMedekontraktant.CheckState = System.Windows.Forms.CheckState.Checked
         End If
 
         If Mid(RV(rsKlant, "v161"), 1, 3) = "400" Then
@@ -340,6 +799,7 @@ MaskAantal:
             cmdSQLInfo.Visible = True
         End If
     End Sub
+
     Private Function Schoon() As Short
 
         Dim T As Short
@@ -350,18 +810,18 @@ MaskAantal:
         BtnGenerateAndSave.Enabled = False
         BtnGenerateCopy.Enabled = False
         cmdSwitch.Enabled = False
-        Medekontraktant.Enabled = True
+        CbMedekontraktant.Enabled = True
         Sjabloon.Enabled = False
         BtnDocumentHistory.Enabled = False
         'Klassement.Font = VB6.FontChangeBold(Klassement.Font, False)
-        chkBTWBouw.CheckState = System.Windows.Forms.CheckState.Unchecked
+        CbBTWBouw.CheckState = System.Windows.Forms.CheckState.Unchecked
         VAT_BOBTHEBUILDERS = False
         KlantInfo.Text = ""
         BtnCancel.Enabled = True
-        Medekontraktant.CheckState = System.Windows.Forms.CheckState.Unchecked
+        CbMedekontraktant.CheckState = System.Windows.Forms.CheckState.Unchecked
 
-        If DirekteVerkoop.Enabled Then
-            CreditNota.Checked = False
+        If RbDirekteVerkoop.Enabled Then
+            CbCreditNota.Checked = False
         End If
 
         Err.Clear()
@@ -410,6 +870,7 @@ MaskAantal:
         Activate()
 
     End Function
+
     Private Sub IsErKlassement()
 
         If KlantInfo.Text = "" Then Exit Sub
@@ -432,6 +893,7 @@ MaskAantal:
         rsDetail = Nothing
 
     End Sub
+
     Private Sub RasterSchoon()
         Dim T As Short
 
@@ -446,9 +908,10 @@ MaskAantal:
         Next
         TotaalBTW = 0
         TotaalUitvoer = 0
-        MaakTotaal()
+        CalculateTotal()
 
     End Sub
+
     Sub GetSellNumber()
 
         If dokumentHistoriek <> Space(11) Then
@@ -464,27 +927,27 @@ MaskAantal:
             End If
         End If
 
-        If DirekteVerkoop.Checked Then
+        If RbDirekteVerkoop.Checked Then
             dokumentType = "15" 'Faktuur of creditnota
-            If CreditNota.Enabled = True Then
+            If CbCreditNota.Enabled = True Then
                 Vr = 11
-                CreditNota.Checked = False
+                CbCreditNota.Checked = False
             Else
                 Vr = 13
-                CreditNota.Checked = True
+                CbCreditNota.Checked = True
             End If
             dokumentSleutel = SleutelDok(Vr)
             datumdocMTextbox.Text = MIM_GLOBAL_DATE
             vervaldagMTextBox.Text = MIM_GLOBAL_DATE
             Text = SetSpacing("Ctrl+F2 Verkoopverrichting", 28) & "(" & dokumentSleutel & ")"
             chkZonderRelatie.Visible = False
-        ElseIf Bestelbon.Checked Then
+        ElseIf RbBestelbon.Checked Then
             dokumentType = "14" 'Bestelbon, Leveringsbon
             Vr = 73
             dokumentSleutel = SleutelDok(Vr)
             Text = SetSpacing("Ctrl+F2 Bestelling/levering", 28) & "(" & dokumentSleutel & ")"
             chkZonderRelatie.Visible = True
-        ElseIf Offerte.Checked Then
+        ElseIf RbOfferte.Checked Then
             dokumentType = "13" 'Offerte
             Vr = 59
             dokumentSleutel = SleutelDok(Vr)
@@ -497,105 +960,6 @@ MaskAantal:
 
     End Sub
 
-    Private Sub CreditNota_CheckedChanged(sender As Object, e As EventArgs) Handles CreditNota.CheckedChanged
-        If CreditNota.Checked = True Then
-            DirekteVerkoop.Checked = True
-            DirekteVerkoop.Enabled = False
-            Bestelbon.Enabled = False
-            Offerte.Enabled = False
-            CreditNota.Enabled = False
-            GetSellNumber()
-        End If
-    End Sub
-
-    Private Sub DirekteVerkoop_CheckedChanged(sender As Object, e As EventArgs) Handles DirekteVerkoop.CheckedChanged
-        If DirekteVerkoop.Checked = True Then
-            GetSellNumber()
-        End If
-    End Sub
-    Private Sub Bestelbon_CheckedChanged(sender As Object, e As EventArgs) Handles Bestelbon.CheckedChanged
-        If Bestelbon.Checked = True Then
-            GetSellNumber()
-        End If
-    End Sub
-    Private Sub Offerte_CheckedChanged(sender As Object, e As EventArgs) Handles Offerte.CheckedChanged
-        If Offerte.Checked = True Then
-            GetSellNumber()
-        End If
-    End Sub
-    Private Sub Klassement_Click(sender As Object, e As EventArgs) Handles BtnDocumentHistory.Click
-        Dim T As Short
-        Dim LaatsteWAS As String
-        Dim TotaalEX As Decimal
-        Dim dataVeld As String
-        If KlantInfo.Text = "" Then Exit Sub
-        T = 0
-        Dim xlogHier As New FormXlog
-        xlogHier.Hide()
-        xlogHier.Text = "Document inladen voor : " + RV(rsKlant, "A100")
-        xlogHier.X.Columns.Add("Document", 100)
-        xlogHier.X.Columns.Add("Datum", 100)
-        xlogHier.X.Columns.Add("Bedrag EUR", 100)
-        xlogHier.X.Columns.Add("Bedrag BEF", 100)
-        xlogHier.X.Columns.Add("Zie ook document", 100)
-        xlogHier.BtnEditLine.Visible = False
-        xlogHier.BtnHideAndGoBack.Visible = False
-        xlogHier.BtnSelectOnly.Visible = True
-        xlogHier.AcceptButton = xlogHier.BtnSelectOnly
-        XLOG_KEY = ""
-        rsDetail = New ADODB.Recordset
-        On Error Resume Next
-        Err.Clear()
-        rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        MSG = "SELECT * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%' ORDER BY v004, v005 DESC"
-        Cursor.Current = Cursors.WaitCursor
-        rsDetail.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
-        If Err.Number Then
-            MsgBox("Bron:" & vbCrLf & Err.Source & vbCrLf & vbCrLf & "Foutnummer: " & Err.Number & vbCrLf & vbCrLf & "Detail:" & vbCrLf & Err.Description)
-            Exit Sub
-        ElseIf rsDetail.RecordCount = 0 Then
-            MsgBox("Geen dokumenten (meer) te vinden.", MsgBoxStyle.Information)
-            Exit Sub
-        Else
-            LaatsteWAS = ""
-            'rsDetail.MoveFirst()
-            Do While Not rsDetail.EOF
-                'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-                If LaatsteWAS = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #") Then
-                Else
-                    LaatsteWAS = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #")
-                    dataveld = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #")
-                    Dim itemHier As New ListViewItem(dataVeld)
-                    dataVeld = FunctionDateText(adoBibTekst(rsDetail.Fields("Memo"), "#v035 #"))
-                    itemHier.SubItems.Add(dataVeld)
-                    If adoBibTekst(rsDetail.Fields("Memo"), "#vEUR #") = "EUR" Then
-                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")), "#,##0.00")
-                        itemHier.SubItems.Add(dataVeld)
-                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")) * EURO, "#,##0.00")
-                        itemHier.SubItems.Add(dataVeld)
-                    Else
-                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")) / EURO, "#,##0.00")
-                        itemHier.SubItems.Add(dataVeld)
-                        dataVeld = Format(CDbl(adoBibTekst(rsDetail.Fields("Memo"), "#v137 #")), "#,##0.00")
-                        itemHier.SubItems.Add(dataVeld)
-                    End If
-                    dataVeld = adoBibTekst(rsDetail.Fields("Memo"), "#v147 #") & " " & adoBibTekst(rsDetail.Fields("Memo"), "#v148 #")
-                    itemHier.SubItems.Add(dataVeld)
-                    xlogHier.X.Items.Add(itemHier)
-                End If
-                rsDetail.MoveNext()
-            Loop
-        End If
-        rsDetail.Close()
-        rsDetail = Nothing
-        'xLog.SSTab1.TabPages.Item(1).Visible = False
-        xlogHier.ShowDialog()
-        xlogHier.Close()
-        If XLOG_KEY <> "" Then
-            LaadHetdokument()
-        End If
-        Exit Sub
-    End Sub
     Sub LaadHetdokument()
         Dim aa As String
         Dim T As Short
@@ -631,11 +995,11 @@ MaskAantal:
         End If
         dokumentSleutel = adoBibTekst(rsDetail.Fields("Memo"), "#v033 #")
         If Mid(dokumentSleutel, 2, 1) = "1" Then
-            CreditNota.CheckState = System.Windows.Forms.CheckState.Checked
+            CbCreditNota.CheckState = System.Windows.Forms.CheckState.Checked
         End If
         Dim docInEur As String
         TekstInfo3.Text = dokumentSleutel
-        Medekontraktant.CheckState = Val(adoBibTekst(rsDetail.Fields("Memo"), "#v135 #"))
+        CbMedekontraktant.CheckState = Val(adoBibTekst(rsDetail.Fields("Memo"), "#v135 #"))
         datumdocMTextbox.Text = FunctionDateText(adoBibTekst(rsDetail.Fields("Memo"), "#v035 #"))
         vervaldagMTextBox.Text = FunctionDateText(adoBibTekst(rsDetail.Fields("Memo"), "#v036 #"))
         mgrklantenrekMTextBox.Text = adoBibTekst(rsDetail.Fields("Memo"), "#v136 #")
@@ -664,18 +1028,18 @@ MaskAantal:
         BtnGenerateAndSave.Focus()
         Select Case dokumentType
             Case "15"
-                DirekteVerkoop.Enabled = False
-                Bestelbon.Enabled = False
-                Offerte.Enabled = False
+                RbDirekteVerkoop.Enabled = False
+                RbBestelbon.Enabled = False
+                RbOfferte.Enabled = False
                 datumdocMTextbox.Enabled = False
                 vervaldagMTextBox.Enabled = False
                 mgrklantenrekMTextBox.Enabled = False
-                Medekontraktant.Enabled = False
-                CreditNota.Enabled = False
+                CbMedekontraktant.Enabled = False
+                CbCreditNota.Enabled = False
                 VerkoopDetail.Enabled = False
                 BtnGenerateAndSave.Enabled = False
             Case "14"
-                Bestelbon.Enabled = False
+                RbBestelbon.Enabled = False
                 frmDokHistoriek.lstDokHistoriek.Items.Add(dokumentSleutel)
                 If frmDokHistoriek.Visible = False Then
                     frmDokHistoriek.Show()
@@ -739,9 +1103,10 @@ MaskAantal:
                     End If
             End Select
         Next
-        MaakTotaal()
+        CalculateTotal()
     End Sub
-    Private Sub MaakTotaal()
+
+    Private Sub CalculateTotal()
         Dim BTWIn As Double
         Dim BTWEx As Double
         Dim BtwEuroIn As Double
@@ -787,124 +1152,7 @@ MaskAantal:
         LblEx2Btw.Text = Format(BtwEuroEx, "#,##0.00") 'masker voor EURO
         LblIn2Btw.Text = Format(BtwEuroIn, "#,##0.00") 'masker voor EURO
     End Sub
-    Private Sub Schoonvegen_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
-        Schoon()
-    End Sub
-    Private Sub cbLayOudPDF_Click(sender As Object, e As EventArgs) Handles cbLayOudPDF.Click
-        LayOutpdfDokument.Show()
-    End Sub
-    Private Sub CmbAfdruk_Click(sender As Object, e As EventArgs) Handles BtnGenerateCopy.Click
-        Dim A As String
-        Dim refString As String
-        Dim refID As String
-        Dim aa As String = "                              "
-        Dim dTTwb As Double
-        Dim DummySleutel As String
-        Dim BestondReeds As Short
-        Dim T As Short
-        If dokumentType = "15" And BtnCancel.Enabled = True Then
-            If Not IsDateOk(datumdocMTextbox.Text, PERIODAS_TEXT) Then
-                FormBYPERDAT.WindowState = FormWindowState.Normal
-                FormBYPERDAT.Focus()
-                datumdocMTextbox.Focus()
-                Beep()
-                Exit Sub
-            End If
-        End If
-        If dokumentType = "15" Then
-            If frmDokHistoriek.lstDokHistoriek.Items.Count <> 0 Then
-                MSG = ""
-                refID = "RF:"
-                For T = 0 To frmDokHistoriek.lstDokHistoriek.Items.Count - 1
-                    frmDokHistoriek.lstDokHistoriek.SelectedIndex = T
-                    MSG = MSG & frmDokHistoriek.lstDokHistoriek.Text & " "
-                Next
-                CTRL_BOX = MsgBox("Bons als referte opnemen." & vbCr & vbCr & refID & MSG, MsgBoxStyle.YesNo + MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1)
-                If CTRL_BOX = MsgBoxResult.Yes Then
-                    refString = New String(" ", 75) & "|2"
-                    VerkoopDetail.Items.Add(refString)
-                    Do While MSG <> ""
-                        refString = New String(" ", 75) & "|2"
-                        Mid(refString, 1) = refID & Mid(MSG, 1, 72)
-                        If Len(MSG) > 72 Then
-                            MSG = Mid(MSG, 73)
-                        Else
-                            MSG = ""
-                        End If
-                        VerkoopDetail.Items.Add(refString)
-                    Loop
-                End If
-            End If
-        End If
-        TotaalBTW = 0
-        If Medekontraktant.CheckState Or VerkoopFLG Then
-            BTWBedrag(1) = 0 : BTWEuroBedrag(1) = 0
-            BTWBedrag(2) = 0 : BTWEuroBedrag(2) = 0
-            BTWBedrag(3) = 0 : BTWEuroBedrag(3) = 0
-        Else
-            For T = 0 To 3
-                If InStr(cmdSwitch.Text, "EUR") Then
-                    TotaalBTW = TotaalBTW + BTWEuroBedrag(T)
-                Else
-                    TotaalBTW = TotaalBTW + BTWBedrag(T)
-                End If
-            Next
-        End If
-        If VerkoopFLG Then
-            If sMuntKlant = "EUR" Then
-                TotaalUitvoer = CDbl(LblEx2Btw.Text)
-            Else
-                TotaalUitvoer = CDbl(LblExBtw.Text)
-            End If
-            For T = 0 To 3
-                BTWBasis(T) = 0
-                BTWEuroBasis(T) = 0
-            Next
-        Else
-            TotaalUitvoer = 0
-        End If
-        Dim VMAIL_TO As Integer
-        VMAIL_TO = 1
-        If cbPDF.CheckState = System.Windows.Forms.CheckState.Checked Then
-            If Mim.Report.IsOpen = True Then
-                Mim.Report.CloseDoc()
-            End If
 
-            With Mim.Report
-                .OpenDoc()
-                .Author = "Jos Vermoesen"
-                .GUILanguage = 3 'Nederlands
-                .Title = "dnnVerkoopDocument"
-            End With
-            pdfDrukAf()
-            Mim.Report.WriteDoc(LOCATION_COMPANYDATA & Format(Now, "YYYYMMDDHHMMSS") & "-dnnVerkoopDocumenten.pdf")
-            Mim.Report.MailSubject = pdfDOKUMENTTYPE & " " & dokumentSleutel
-            Mim.Report.MailText = pdfDOKUMENTTYPE & " " & dokumentSleutel & " in bijlage."
-            If Not IsDBNull(RS_MAR(TABLE_CUSTOMERS).Fields("e072").Value) Then
-                If RS_MAR(TABLE_CUSTOMERS).Fields("e072").Value = "1" Then
-                    'automatisch mail proberen
-                    Call Mim.Report.AddMailReceiver(RS_MAR(TABLE_CUSTOMERS).Fields("v224").Value, VMAIL_TO)
-                    KTRL = Mim.Report.MailDoc
-                    'Call Mim.Report.AddMailReceiver("[FAX: +32 53 781922]", VMAIL_TO)
-                    'X = Mim.Report.AddMailAttachment("c:\data\report.vpe", "")
-                    If KTRL = 1 Then 'success
-                        'nu nog report sluiten !!
-                        Mim.Report.CloseDoc()
-                        Exit Sub
-                    Else
-                        Mim.Report.Preview()
-                    End If
-                End If
-            Else
-                'If Me.cbPdfExport.Value = vbChecked Then
-                '    MsgBox "exporteren naar DNN folder of andere nog te definiëren"
-                '    Mim.Report.CloseDoc
-                Mim.Report.Preview()
-            End If
-        Else
-            'TODO: DrukAf()
-        End If
-    End Sub
     Private Sub pdfDrukAf()
         If Overschrijvingsstrook.CheckState Then
             pdfOVSStrook = 8.2
@@ -1028,6 +1276,7 @@ pdfKopBalk:
         pdfY = Mim.Report.PrintBox(1.5, pdfY, strMeerLijn)
         pdfY = Mim.Report.Print(1.5, pdfY, vbCrLf)
     End Sub
+
     Sub pdfPrintKopTekst()
         If Vr = 11 Then
             'Faktuur
@@ -1059,6 +1308,7 @@ pdfKopBalk:
         Next
         ktrlHier = Mim.Report.Write(PDF_ADDRESS_XPOS, PDF_ADDRESS_YPOS, PDF_ADDRESS_XPOS2, PDF_ADDRESS_YPOS2, adresString)
     End Sub
+
     Sub pdfPrintUserDef(ByRef TypeEnTaal As String, ByRef pdfOVSStrook As Double)
         Dim pfcmd As Short
         Dim FlFree As Short
@@ -1158,13 +1408,14 @@ pdfKopBalk:
 
 pdfKontroleLijn:
             If pdfY >= PDF_VSOFT_TO - 2.3 - pdfOVSStrook Then
-                pdfOnderKant
-                pdfVoetTekst
+                pdfOnderKant()
+                pdfVoetTekst()
                 MsgBox("stop voor nieuwe pdf pagina nog te verbeteren")
                 pdfKopBALK()
             End If
         Next
     End Sub
+
     Sub pdfOnderKant()
         pdfY = Mim.Report.Print(1.5, PDF_VSOFT_TO - 2.3 - pdfOVSStrook, vbCrLf)
         Mim.Report.SelectFont("Courier New", 10)
@@ -1182,16 +1433,18 @@ pdfKontroleLijn:
         strMeerLijn = strMeerLijn & "  " & Dec(BTWEuroBasis(2) / dMuntK, sy) & "  " & Dec(BTWEuroBasis(3) / dMuntK, sy) & "  " & rft(8) & sMuntKlant & ":"
         TotaalBedrag = TotaalBTW + CDbl(LblEx2Btw.Text)
         strMeerLijn = strMeerLijn & Dec(TotaalBedrag / dMuntK, sy2)
-        If Medekontraktant.CheckState Then
+        If CbMedekontraktant.CheckState Then
             strMeerLijn = strMeerLijn & vbCrLf & "  " & rft(4)
         End If
         pdfY = Mim.Report.PrintBox(3, pdfY, strMeerLijn)
     End Sub
+
     Sub pdfVoetTekst()
         If OVSStrooklijnen Then
             pdfOverschrijvingsstrook()
         End If
     End Sub
+
     Sub pdfFilterVelden()
         VeldInfo(1) = Mid(GRIDTEXT, 1, 40)
         GRIDTEXT = Mid(GRIDTEXT, 42)
@@ -1216,6 +1469,7 @@ pdfKontroleLijn:
         GRIDTEXT = Mid(GRIDTEXT, 9)
         VeldInfo(0) = Mid(GRIDTEXT, 1, 13)
     End Sub
+
     Sub pdfOverschrijvingsstrook()
         On Error GoTo 0
         If Dir(LOCATION_COMPANYDATA & ovsDefinitie) = "" Then
@@ -1278,224 +1532,24 @@ pdfKontroleLijn:
             rNTTxt2 = rNTTxt2 & Mid(rNTTXT, Teltxt, 1) & " "
         Next
     End Sub
-    Private Sub Annuleren_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
 
-        If VerkoopDetail.Items.Count Then
-            MSG = "Huidige inbreng negeren en venster sluiten." & vbCrLf & vbCrLf
-            MSG = MSG & "Bent U zeker ?"
-            KTRL = MsgBox(MSG, 292, "Verkoopverrichtingen verlaten")
-            If KTRL = 6 Then
-            Else
-                Exit Sub
-            End If
-        End If
-        Mim.SalesTransactionMenuItem.Enabled = True
-        Close()
+    Private Sub BtnFromStock_Click(sender As Object, e As EventArgs) Handles BtnFromStock.Click
+
     End Sub
 
-    Private Sub VerkoopDetail_DoubleClick(sender As Object, e As EventArgs) Handles VerkoopDetail.DoubleClick
+    Private Sub BtnFromDescription_Click(sender As Object, e As EventArgs) Handles BtnFromDescription.Click
 
-        If VerkoopDetail.SelectedIndex Then
-            SendKeys.Send("{ENTER}")
+        If VerkoopDetail.Enabled Then
+            EditDetailModus = False
+            VerkoopDetail.Focus()
+            SendKeys.Send("{O}")
+        Else
+            MessageBox.Show("Eerst klant kiezen a.u.b !!!")
         End If
 
     End Sub
 
-    Private Sub VerkoopDetail_Leave(sender As Object, e As EventArgs) Handles VerkoopDetail.Leave
-
-        VerkoopDetail.SelectedIndex = -1
-
-    End Sub
-
-    Private Sub VerkoopDetail_KeyPress(sender As Object, e As KeyPressEventArgs) Handles VerkoopDetail.KeyPress
-
-        'If e.KeyChar <> Chr(13) Then
-        'Exit Sub
-        'End If
-        'MessageBox.Show("Enter pressed")
-
-        Dim Positie As Integer
-        Dim TempoBedrag As Double
-        Dim TempoBTW As Integer
-
-
-Jumper:
-        XLOG_KEY = DefaultVerkoop
-        Select Case UCase(e.KeyChar)
-            Case "S"
-                'aIndex = 0
-            Case "O"
-                'aIndex = 1
-            Case "T"
-                'aIndex = 2
-        End Select
-        Positie = VerkoopDetail.SelectedIndex
-        'MessageBox.Show(Len(VerkoopDetail.SelectedItem.ToString))
-
-        Select Case e.KeyChar
-            Case Chr(13)         'Enter
-                If Positie < 0 Then
-                    MessageBox.Show("Eerst een lijn selecteren!")
-                    Exit Sub
-                End If
-                ' If dokumentType <> "15" And Annuleren.Enabled = False Then
-                '     Annuleren.Enabled = True
-                ' End If
-                GRIDTEXT = VerkoopDetail.Text
-                Dim lastChar As Char = GRIDTEXT.Substring(GRIDTEXT.Length - 1)
-                If lastChar = "2" Then
-                Else
-                    RefreshBTW()
-                End If
-                'XLogKassa = ""
-                FormSalesEdit.ShowDialog()
-                FormSalesEdit.Hide()
-                Focus()
-
-                If GRIDTEXT = "" Then
-                    RefreshBTW()
-                Else
-                    '            If Right(GRIDTEXT, 1) = "2" Then
-                    '            Else
-                    '                TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
-                    '                TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
-                    '                If TempoBTW = 6 Then
-                    '                    If bhEuro Then
-                    '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                    '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag / EURO, 2)
-                    '                        End If
-                    '                    Else
-                    '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                    '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag * EURO, 2)
-                    '                        End If
-                    '                    End If
-                    '                Else
-                    '                    If bhEuro Then
-                    '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag / EURO, 2)
-                    '                        End If
-                    '                    Else
-                    '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag * EURO, 2)
-                    '                        End If
-                    '                    End If
-                    '                End If
-                    '            End If
-                    '            VerkoopDetail.RemoveItem Positie
-                    '    VerkoopDetail.AddItem GRIDTEXT, Positie
-                End If
-                '        VerkoopDetail.ListIndex = Positie
-                '        MaakTotaal()
-
-                '    Case 43
-                '        GRIDTEXT = ""
-                '        XLogKassa = ""
-                '        WijzigenVerkoop.Show 1
-                'Unload WijzigenVerkoop
-                'DirekteVerkoop.SetFocus
-                '        If GRIDTEXT = "" Then
-                '        Else
-                '            If Right(GRIDTEXT, 1) = "2" Then
-                '            Else
-                '                TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
-                '                TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
-                '                If TempoBTW = 6 Then
-                '                    If bhEuro Then
-                '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag / EURO, 2)
-                '                        End If
-                '                    Else
-                '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag * EURO, 2)
-                '                        End If
-                '                    End If
-                '                Else
-                '                    If bhEuro Then
-                '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag / EURO, 2)
-                '                        End If
-                '                    Else
-                '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag * EURO, 2)
-                '                        End If
-                '                    End If
-                '                End If
-                '                MaakTotaal()
-                '            End If
-
-                '            Dim splitmilieu() As String
-                '            Dim telmilieu As Integer
-
-                '            If Positie < 0 Then
-                '                VerkoopDetail.AddItem GRIDTEXT, VerkoopDetail.ListCount
-                '        If blMilieu = True Then
-                '                    splitmilieu = Split(MilieuGridText, vbCrLf)
-                '                    For telmilieu = 0 To UBound(splitmilieu) - 1
-                '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
-                '            Next
-                '                    blMilieu = False
-                '                End If
-                '            Else
-                '                VerkoopDetail.AddItem GRIDTEXT, Positie
-                '        If blMilieu = True Then
-                '                    splitmilieu = Split(MilieuGridText, vbCrLf)
-                '                    MsgBox "stop, waarom?"
-                '            For telmilieu = 0 To UBound(splitmilieu) - 1
-                '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
-                '            Next
-                '                    blMilieu = False
-                '                End If
-                '            End If
-                '        End If
-                '        If Mid(XLogKey, 39, 2) = vbCrLf Then
-                '            Do While Len(XLogKey) <> 0
-                '                MSG = Mid(XLogKey, 1, 38) + String(37, " ") + "|2"
-                '                VerkoopDetail.AddItem MSG
-                '        XLogKey = Mid(XLogKey, 41)
-                '            Loop
-                '        End If
-
-                '    Case 79, 83, 84, 111, 115, 116
-                '        If dokumentType <> "15" And Annuleren.Enabled = False Then
-                '            Annuleren.Enabled = True
-                '        End If
-                '        'LijnType(InStr$("SOT", UCase$(Chr$(KeyAscii))) - 1).Value = 1
-                '        KeyAscii = 43
-                '        GoTo Jumper
-                '    Case Else
-                '        '        VensterKeyPress KeyAscii
-        End Select
-        'If VerkoopDetail.ListCount Then
-        '    Afsluiten.Enabled = True
-        '    CmbAfdruk.Enabled = True
-        'Else
-        '    Afsluiten.Enabled = False
-        '    CmbAfdruk.Enabled = False
-        'End If
-        'RefreshBTW()
-        'If CmdStock.Default Then CmdStock.SetFocus
-        'If CmdOmschrijving.Default Then CmdOmschrijving.SetFocus
-        'If CmdTekst.Default Then CmdTekst.SetFocus
-
-    End Sub
-
-    Private Sub VerkoopDetail_Enter(sender As Object, e As EventArgs) Handles VerkoopDetail.Enter
+    Private Sub BtnPutTextLine_Click(sender As Object, e As EventArgs) Handles BtnPutTextLine.Click
 
     End Sub
 End Class

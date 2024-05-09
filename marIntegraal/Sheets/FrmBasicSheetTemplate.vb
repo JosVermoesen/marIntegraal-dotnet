@@ -45,7 +45,7 @@ Public Class FrmBasicSheetTemplate
 
         If sorteringComboBox.Items.Count Then
         Else
-            For T = 0 To FlAantalIndexen(hierFl)
+            For T = 0 To FL_NUMBEROFINDEXEN(hierFl)
                 Dim sortOmsString As String = Format(T, "00") & ":" & FLINDEX_CAPTION(hierFl, T)
                 Dim sortveldString As String = Trim(JETTABLEUSE_INDEX(hierFl, T))
                 sorteringComboBox.Items.Add(sortOmsString & " (" & sortveldString & ")")

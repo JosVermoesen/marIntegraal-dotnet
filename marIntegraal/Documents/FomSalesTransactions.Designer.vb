@@ -54,7 +54,7 @@ Partial Class FomSalesTransactions
         Me.muntMTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.cmdSwitch = New System.Windows.Forms.Button()
         Me.ckEURINFO = New System.Windows.Forms.CheckBox()
-        Me.chkBTWBouw = New System.Windows.Forms.CheckBox()
+        Me.CbBTWBouw = New System.Windows.Forms.CheckBox()
         Me.chkZonderRelatie = New System.Windows.Forms.CheckBox()
         Me.cmdLijst = New System.Windows.Forms.Button()
         Me.cmdSQLInfo = New System.Windows.Forms.Button()
@@ -66,14 +66,14 @@ Partial Class FomSalesTransactions
         Me.Overschrijvingsstrook = New System.Windows.Forms.CheckBox()
         Me.BtnDocumentHistory = New System.Windows.Forms.Button()
         Me.BtnGenerateAndSave = New System.Windows.Forms.Button()
-        Me.Medekontraktant = New System.Windows.Forms.CheckBox()
-        Me.CreditNota = New System.Windows.Forms.CheckBox()
+        Me.CbMedekontraktant = New System.Windows.Forms.CheckBox()
+        Me.CbCreditNota = New System.Windows.Forms.CheckBox()
         Me.BtnGetClient = New System.Windows.Forms.Button()
         Me.VerkoopDetail = New System.Windows.Forms.ListBox()
         Me.Sjabloon = New System.Windows.Forms.Button()
-        Me.DirekteVerkoop = New System.Windows.Forms.RadioButton()
-        Me.Bestelbon = New System.Windows.Forms.RadioButton()
-        Me.Offerte = New System.Windows.Forms.RadioButton()
+        Me.RbDirekteVerkoop = New System.Windows.Forms.RadioButton()
+        Me.RbBestelbon = New System.Windows.Forms.RadioButton()
+        Me.RbOfferte = New System.Windows.Forms.RadioButton()
         Me.lstKopiePlak = New System.Windows.Forms.ListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblInOntwikkeling = New System.Windows.Forms.Label()
@@ -505,19 +505,19 @@ Partial Class FomSalesTransactions
         Me.ckEURINFO.Text = "&EURO && Bef Info"
         Me.ckEURINFO.UseVisualStyleBackColor = False
         '
-        'chkBTWBouw
+        'CbBTWBouw
         '
-        Me.chkBTWBouw.BackColor = System.Drawing.SystemColors.Control
-        Me.chkBTWBouw.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkBTWBouw.Cursor = System.Windows.Forms.Cursors.Default
-        Me.chkBTWBouw.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkBTWBouw.Location = New System.Drawing.Point(469, 117)
-        Me.chkBTWBouw.Name = "chkBTWBouw"
-        Me.chkBTWBouw.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkBTWBouw.Size = New System.Drawing.Size(139, 16)
-        Me.chkBTWBouw.TabIndex = 3
-        Me.chkBTWBouw.Text = "Btw Tarief Bouw + 5 jaar"
-        Me.chkBTWBouw.UseVisualStyleBackColor = False
+        Me.CbBTWBouw.BackColor = System.Drawing.SystemColors.Control
+        Me.CbBTWBouw.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CbBTWBouw.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbBTWBouw.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.CbBTWBouw.Location = New System.Drawing.Point(469, 117)
+        Me.CbBTWBouw.Name = "CbBTWBouw"
+        Me.CbBTWBouw.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbBTWBouw.Size = New System.Drawing.Size(139, 16)
+        Me.CbBTWBouw.TabIndex = 3
+        Me.CbBTWBouw.Text = "Btw Tarief Bouw + 5 jaar"
+        Me.CbBTWBouw.UseVisualStyleBackColor = False
         '
         'chkZonderRelatie
         '
@@ -677,34 +677,34 @@ Partial Class FomSalesTransactions
         Me.BtnGenerateAndSave.Text = "&Verwerken"
         Me.BtnGenerateAndSave.UseVisualStyleBackColor = False
         '
-        'Medekontraktant
+        'CbMedekontraktant
         '
-        Me.Medekontraktant.BackColor = System.Drawing.SystemColors.Control
-        Me.Medekontraktant.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Medekontraktant.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Medekontraktant.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Medekontraktant.Location = New System.Drawing.Point(472, 94)
-        Me.Medekontraktant.Name = "Medekontraktant"
-        Me.Medekontraktant.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Medekontraktant.Size = New System.Drawing.Size(136, 24)
-        Me.Medekontraktant.TabIndex = 15
-        Me.Medekontraktant.Text = "Bt&w Medekontractant"
-        Me.Medekontraktant.UseVisualStyleBackColor = False
+        Me.CbMedekontraktant.BackColor = System.Drawing.SystemColors.Control
+        Me.CbMedekontraktant.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CbMedekontraktant.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbMedekontraktant.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.CbMedekontraktant.Location = New System.Drawing.Point(472, 94)
+        Me.CbMedekontraktant.Name = "CbMedekontraktant"
+        Me.CbMedekontraktant.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbMedekontraktant.Size = New System.Drawing.Size(136, 24)
+        Me.CbMedekontraktant.TabIndex = 15
+        Me.CbMedekontraktant.Text = "Bt&w Medekontractant"
+        Me.CbMedekontraktant.UseVisualStyleBackColor = False
         '
-        'CreditNota
+        'CbCreditNota
         '
-        Me.CreditNota.BackColor = System.Drawing.SystemColors.Control
-        Me.CreditNota.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.CreditNota.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CreditNota.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CreditNota.Location = New System.Drawing.Point(515, 82)
-        Me.CreditNota.Name = "CreditNota"
-        Me.CreditNota.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.CreditNota.Size = New System.Drawing.Size(93, 16)
-        Me.CreditNota.TabIndex = 16
-        Me.CreditNota.TabStop = False
-        Me.CreditNota.Text = "&CreditNota"
-        Me.CreditNota.UseVisualStyleBackColor = False
+        Me.CbCreditNota.BackColor = System.Drawing.SystemColors.Control
+        Me.CbCreditNota.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CbCreditNota.Cursor = System.Windows.Forms.Cursors.Default
+        Me.CbCreditNota.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.CbCreditNota.Location = New System.Drawing.Point(515, 82)
+        Me.CbCreditNota.Name = "CbCreditNota"
+        Me.CbCreditNota.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CbCreditNota.Size = New System.Drawing.Size(93, 16)
+        Me.CbCreditNota.TabIndex = 16
+        Me.CbCreditNota.TabStop = False
+        Me.CbCreditNota.Text = "&CreditNota"
+        Me.CbCreditNota.UseVisualStyleBackColor = False
         '
         'BtnGetClient
         '
@@ -747,47 +747,47 @@ Partial Class FomSalesTransactions
         Me.Sjabloon.Text = "Sja&bloon"
         Me.Sjabloon.UseVisualStyleBackColor = False
         '
-        'DirekteVerkoop
+        'RbDirekteVerkoop
         '
-        Me.DirekteVerkoop.BackColor = System.Drawing.SystemColors.Control
-        Me.DirekteVerkoop.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.DirekteVerkoop.Cursor = System.Windows.Forms.Cursors.Default
-        Me.DirekteVerkoop.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.DirekteVerkoop.Location = New System.Drawing.Point(10, 16)
-        Me.DirekteVerkoop.Name = "DirekteVerkoop"
-        Me.DirekteVerkoop.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.DirekteVerkoop.Size = New System.Drawing.Size(115, 16)
-        Me.DirekteVerkoop.TabIndex = 19
-        Me.DirekteVerkoop.Text = "&Direkte Verkoop"
-        Me.DirekteVerkoop.UseVisualStyleBackColor = False
+        Me.RbDirekteVerkoop.BackColor = System.Drawing.SystemColors.Control
+        Me.RbDirekteVerkoop.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RbDirekteVerkoop.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RbDirekteVerkoop.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.RbDirekteVerkoop.Location = New System.Drawing.Point(10, 16)
+        Me.RbDirekteVerkoop.Name = "RbDirekteVerkoop"
+        Me.RbDirekteVerkoop.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.RbDirekteVerkoop.Size = New System.Drawing.Size(115, 16)
+        Me.RbDirekteVerkoop.TabIndex = 19
+        Me.RbDirekteVerkoop.Text = "&Direkte Verkoop"
+        Me.RbDirekteVerkoop.UseVisualStyleBackColor = False
         '
-        'Bestelbon
+        'RbBestelbon
         '
-        Me.Bestelbon.BackColor = System.Drawing.SystemColors.Control
-        Me.Bestelbon.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Bestelbon.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Bestelbon.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Bestelbon.Location = New System.Drawing.Point(42, 33)
-        Me.Bestelbon.Name = "Bestelbon"
-        Me.Bestelbon.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Bestelbon.Size = New System.Drawing.Size(83, 16)
-        Me.Bestelbon.TabIndex = 20
-        Me.Bestelbon.Text = "Bestelbon"
-        Me.Bestelbon.UseVisualStyleBackColor = False
+        Me.RbBestelbon.BackColor = System.Drawing.SystemColors.Control
+        Me.RbBestelbon.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RbBestelbon.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RbBestelbon.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.RbBestelbon.Location = New System.Drawing.Point(42, 33)
+        Me.RbBestelbon.Name = "RbBestelbon"
+        Me.RbBestelbon.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.RbBestelbon.Size = New System.Drawing.Size(83, 16)
+        Me.RbBestelbon.TabIndex = 20
+        Me.RbBestelbon.Text = "Bestelbon"
+        Me.RbBestelbon.UseVisualStyleBackColor = False
         '
-        'Offerte
+        'RbOfferte
         '
-        Me.Offerte.BackColor = System.Drawing.SystemColors.Control
-        Me.Offerte.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Offerte.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Offerte.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Offerte.Location = New System.Drawing.Point(58, 49)
-        Me.Offerte.Name = "Offerte"
-        Me.Offerte.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Offerte.Size = New System.Drawing.Size(67, 16)
-        Me.Offerte.TabIndex = 21
-        Me.Offerte.Text = "Offerte"
-        Me.Offerte.UseVisualStyleBackColor = False
+        Me.RbOfferte.BackColor = System.Drawing.SystemColors.Control
+        Me.RbOfferte.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RbOfferte.Cursor = System.Windows.Forms.Cursors.Default
+        Me.RbOfferte.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.RbOfferte.Location = New System.Drawing.Point(58, 49)
+        Me.RbOfferte.Name = "RbOfferte"
+        Me.RbOfferte.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.RbOfferte.Size = New System.Drawing.Size(67, 16)
+        Me.RbOfferte.TabIndex = 21
+        Me.RbOfferte.Text = "Offerte"
+        Me.RbOfferte.UseVisualStyleBackColor = False
         '
         'lstKopiePlak
         '
@@ -804,9 +804,9 @@ Partial Class FomSalesTransactions
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Offerte)
-        Me.GroupBox1.Controls.Add(Me.DirekteVerkoop)
-        Me.GroupBox1.Controls.Add(Me.Bestelbon)
+        Me.GroupBox1.Controls.Add(Me.RbOfferte)
+        Me.GroupBox1.Controls.Add(Me.RbDirekteVerkoop)
+        Me.GroupBox1.Controls.Add(Me.RbBestelbon)
         Me.GroupBox1.Location = New System.Drawing.Point(480, 9)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(134, 67)
@@ -856,9 +856,9 @@ Partial Class FomSalesTransactions
         Me.Controls.Add(Me._Label1_1)
         Me.Controls.Add(Me.BtnGetClient)
         Me.Controls.Add(Me._Label1_5)
-        Me.Controls.Add(Me.CreditNota)
+        Me.Controls.Add(Me.CbCreditNota)
         Me.Controls.Add(Me._Label1_7)
-        Me.Controls.Add(Me.Medekontraktant)
+        Me.Controls.Add(Me.CbMedekontraktant)
         Me.Controls.Add(Me._Label1_2)
         Me.Controls.Add(Me.BtnGenerateAndSave)
         Me.Controls.Add(Me._Label1_4)
@@ -882,7 +882,7 @@ Partial Class FomSalesTransactions
         Me.Controls.Add(Me.cmdSwitch)
         Me.Controls.Add(Me.chkZonderRelatie)
         Me.Controls.Add(Me.ckEURINFO)
-        Me.Controls.Add(Me.chkBTWBouw)
+        Me.Controls.Add(Me.CbBTWBouw)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "FomSalesTransactions"
         Me.Text = "Verkoopverrichtingen"
@@ -924,7 +924,7 @@ End Sub
     Public WithEvents muntMTextBox As MaskedTextBox
     Public WithEvents cmdSwitch As Button
     Public WithEvents ckEURINFO As CheckBox
-    Public WithEvents chkBTWBouw As CheckBox
+    Public WithEvents CbBTWBouw As CheckBox
     Public WithEvents chkZonderRelatie As CheckBox
     Public WithEvents cmdLijst As Button
     Public WithEvents cmdSQLInfo As Button
@@ -936,14 +936,14 @@ End Sub
     Public WithEvents Overschrijvingsstrook As CheckBox
     Public WithEvents BtnDocumentHistory As Button
     Public WithEvents BtnGenerateAndSave As Button
-    Public WithEvents Medekontraktant As CheckBox
-    Public WithEvents CreditNota As CheckBox
+    Public WithEvents CbMedekontraktant As CheckBox
+    Public WithEvents CbCreditNota As CheckBox
     Public WithEvents BtnGetClient As Button
     Public WithEvents VerkoopDetail As ListBox
     Public WithEvents Sjabloon As Button
-    Public WithEvents DirekteVerkoop As RadioButton
-    Public WithEvents Bestelbon As RadioButton
-    Public WithEvents Offerte As RadioButton
+    Public WithEvents RbDirekteVerkoop As RadioButton
+    Public WithEvents RbBestelbon As RadioButton
+    Public WithEvents RbOfferte As RadioButton
     Public WithEvents lstKopiePlak As ListBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lblInOntwikkeling As Label

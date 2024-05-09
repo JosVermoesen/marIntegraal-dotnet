@@ -79,7 +79,7 @@ End Class
 '						aa = aa & Mid(fmarBoxText("004", "2", AdoGetField(TABLE_PRODUCTS, "#v106 #")), 4) & vbTab
 '						aa = aa & Dec(Val(Antwoord), MASK_SY(4) & "0")
 '						grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
-'						X = MaakTotaal
+'						X = CalculateTotal
 '						GrdProduktIsGewijzigd = True
 '						CmdWegschrijven.Enabled = True
 '						CmdProduktieFiche.Enabled = True
@@ -95,7 +95,7 @@ End Class
 '					CTRL_BOX = MsgBox(grdProduktDetail.Text & "-lijn verwijderen.  Bent U zeker ?", MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2)
 '					If CTRL_BOX = MsgBoxResult.Yes Then
 '						grdProduktDetail.RemoveItem(grdProduktDetail.Row)
-'						X = MaakTotaal
+'						X = CalculateTotal
 '					End If
 '				End If
 '				grdProduktDetail.Focus()
@@ -107,7 +107,7 @@ End Class
 
 '	End Sub
 
-'	Function MaakTotaal() As Boolean
+'	Function CalculateTotal() As Boolean
 
 '		LblAankoopNieuw.Text = "0"
 '		LblVerkoopNieuw.Text = "0"
@@ -487,7 +487,7 @@ End Class
 '					grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
 '					GRIDTEXT = Mid(GRIDTEXT, InStr(GRIDTEXT, vbCrLf) + 2)
 '				Loop 
-'				X = MaakTotaal
+'				X = CalculateTotal
 '				If Not PrijsAantepassen Then
 '					' Add a ListItem object.
 '					itmX = frmADOXlog.lvDetail.Items.Add(Mid(LblProduktInfo.Text, InStr(LblProduktInfo.Text, vbCr) + 1))
@@ -620,7 +620,7 @@ End Class
 '					grdProduktDetail.AddItem(aa, grdProduktDetail.Rows - 1)
 '					GRIDTEXT = Mid(GRIDTEXT, InStr(GRIDTEXT, vbCrLf) + 2)
 '				Loop 
-'				X = MaakTotaal
+'				X = CalculateTotal
 '				JetGet(TABLE_PRODUCTS, 0, VB.Left(TempoTekst, InStr(TempoTekst, vbCr) - 1))
 '				If KTRL Then
 '					MsgBox("Onlogische situatie", MsgBoxStyle.Critical)
@@ -1083,7 +1083,7 @@ End Class
 '			Loop 
 '			CmdWegschrijven.Enabled = True
 '			CmdProduktieFiche.Enabled = True
-'			X = MaakTotaal
+'			X = CalculateTotal
 '		End If
 '		Exit Function
 
