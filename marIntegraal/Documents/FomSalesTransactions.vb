@@ -95,9 +95,9 @@ Public Class FomSalesTransactions
         Left = 0
 
         'uitsluitend EURO vanaf 2011
-        cmdSwitch.Text = "Ingave in EUR"
+        BtnSwitchMoney.Text = "Ingave in EUR"
         If BH_EURO Then
-            cmdSwitch.Text = "Ingave in EUR"
+            BtnSwitchMoney.Text = "Ingave in EUR"
         Else
             BH_EURO = True
         End If
@@ -366,7 +366,7 @@ MaskAantal:
             BTWBedrag(3) = 0 : BTWEuroBedrag(3) = 0
         Else
             For T = 0 To 3
-                If InStr(cmdSwitch.Text, "EUR") Then
+                If InStr(BtnSwitchMoney.Text, "EUR") Then
                     TotaalBTW = TotaalBTW + BTWEuroBedrag(T)
                 Else
                     TotaalBTW = TotaalBTW + BTWBedrag(T)
@@ -455,7 +455,8 @@ MaskAantal:
         Dim TempoBedrag As Double
         Dim TempoBTW As Integer
 
-        'MessageBox.Show("Pressed key: " + e.KeyChar)
+        MessageBox.Show("Pressed key: " + e.KeyChar)
+        Dim ascii As Byte() = System.Text.Encoding.ASCII.GetBytes(e.KeyChar)
 
 Jumper:
         If EditDetailModus Then
@@ -465,11 +466,11 @@ Jumper:
 
         Select Case UCase(e.KeyChar)
             Case "S"
-                'aIndex = 0
+                SHARED_INDEX = 0
             Case "O"
-                'aIndex = 1
+                SHARED_INDEX = 1
             Case "T"
-                'aIndex = 2
+                SHARED_INDEX = 2
         End Select
         Positie = VerkoopDetail.SelectedIndex
         'MessageBox.Show(Len(VerkoopDetail.SelectedItem.ToString))
@@ -492,149 +493,148 @@ Jumper:
                 'XLogKassa = ""
                 FormSalesEdit.Close()
                 FormSalesEdit.ShowDialog()
-                FormSalesEdit.Hide()
+                'FormSalesEdit.Hide()
                 Focus()
 
                 If GRIDTEXT = "" Then
                     RefreshBTW()
                 Else
-                    '            If Right(GRIDTEXT, 1) = "2" Then
+                    If lastChar = "2" Then
+                    Else
+                        TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
+                        TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
+                        If TempoBTW = 6 Then
+                            If BH_EURO Then
+                                If BtnSwitchMoney.Text = "Ingave in EUR" Then
+                                    BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                                Else
+                                    BTWBasis(0) = BTWBasis(0) + Math.Round(TempoBedrag / EURO, 2)
+                                End If
+                            Else
+                                If BtnSwitchMoney.Text = "Ingave in BEF" Then
+                                    BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                                Else
+                                    BTWBasis(0) = BTWBasis(0) + Math.Round(TempoBedrag * EURO, 2)
+                                End If
+                            End If
+                        Else
+                            If BH_EURO Then
+                                If BtnSwitchMoney.Text = "Ingave in EUR" Then
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                                Else
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Math.Round(TempoBedrag / EURO, 2)
+                                End If
+                            Else
+                                If BtnSwitchMoney.Text = "Ingave in BEF" Then
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                                Else
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Math.Round(TempoBedrag * EURO, 2)
+                                End If
+                            End If
+                        End If
+                    End If
+                    ' VerkoopDetail.RemoveItem Positie
+                    ' VerkoopDetail.AddItem GRIDTEXT, Positie
+                End If
+                ' VerkoopDetail.ListIndex = Positie
+                CalculateTotal()
+
+            Case Chr(43)
+                GRIDTEXT = ""
+                XLOG_CASHREGISTER = ""
+                FormSalesEdit.ShowDialog()
+                Focus()
+                If GRIDTEXT = "" Then
+                Else
+                    If GRIDTEXT.Substring(GRIDTEXT.Length - 1) = "2" Then
+                    Else
+                        TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
+                        TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
+                        If TempoBTW = 6 Then
+                            If BH_EURO Then
+                                If BtnSwitchMoney.Text = "Ingave in EUR" Then
+                                    BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                                Else
+                                    BTWBasis(0) = BTWBasis(0) + Math.Round(TempoBedrag / EURO, 2)
+                                End If
+                            Else
+                                If BtnSwitchMoney.Text = "Ingave in BEF" Then
+                                    BTWBasis(0) = BTWBasis(0) + TempoBedrag
+                                Else
+                                    BTWBasis(0) = BTWBasis(0) + Math.Round(TempoBedrag * EURO, 2)
+                                End If
+                            End If
+                        Else
+                            If BH_EURO Then
+                                If BtnSwitchMoney.Text = "Ingave in EUR" Then
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                                Else
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Math.Round(TempoBedrag / EURO, 2)
+                                End If
+                            Else
+                                If BtnSwitchMoney.Text = "Ingave in BEF" Then
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
+                                Else
+                                    BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Math.Round(TempoBedrag * EURO, 2)
+                                End If
+                            End If
+                        End If
+                        CalculateTotal()
+                    End If
+
+                    Dim splitmilieu() As String
+                    Dim telmilieu As Integer
+
+                    ' If Positie < 0 Then
+                    ' VerkoopDetail.AddItem GRIDTEXT, VerkoopDetail.ListCount
+                    '        If BL_ENVIRONMENT = True Then
+                    '                    splitmilieu = Split(MilieuGridText, vbCrLf)
+                    '                    For telmilieu = 0 To UBound(splitmilieu) - 1
+                    '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
+                    '            Next
+                    '                    BL_ENVIRONMENT = False
+                    '                End If
                     '            Else
-                    '                TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
-                    '                TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
-                    '                If TempoBTW = 6 Then
-                    '                    If bhEuro Then
-                    '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                    '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag / EURO, 2)
-                    '                        End If
-                    '                    Else
-                    '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                    '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag * EURO, 2)
-                    '                        End If
-                    '                    End If
-                    '                Else
-                    '                    If bhEuro Then
-                    '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag / EURO, 2)
-                    '                        End If
-                    '                    Else
-                    '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                    '                        Else
-                    '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag * EURO, 2)
-                    '                        End If
-                    '                    End If
+                    '                VerkoopDetail.AddItem GRIDTEXT, Positie
+                    '        If BL_ENVIRONMENT = True Then
+                    '                    splitmilieu = Split(MilieuGridText, vbCrLf)
+                    '                    MsgBox "stop, waarom?"
+                    '            For telmilieu = 0 To UBound(splitmilieu) - 1
+                    '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
+                    '            Next
+                    '                    BL_ENVIRONMENT = False
                     '                End If
                     '            End If
-                    '            VerkoopDetail.RemoveItem Positie
-                    '    VerkoopDetail.AddItem GRIDTEXT, Positie
+                    '        End If
+                    '        If Mid(XLogKey, 39, 2) = vbCrLf Then
+                    Do While Len(XLOG_KEY) <> 0
+                        MSG = Mid(XLOG_KEY, 1, 38) + Space(37) + "|2"
+                        VerkoopDetail.Items.Add(MSG)
+                        XLOG_KEY = Mid(XLOG_KEY, 41)
+                    Loop
                 End If
-                '        VerkoopDetail.ListIndex = Positie
-                '        CalculateTotal()
 
-                '    Case 43
-                '        GRIDTEXT = ""
-                '        XLogKassa = ""
-                '        WijzigenVerkoop.Show 1
-                'Unload WijzigenVerkoop
-                'DirekteVerkoop.SetFocus
-                '        If GRIDTEXT = "" Then
-                '        Else
-                '            If Right(GRIDTEXT, 1) = "2" Then
-                '            Else
-                '                TempoBedrag = Val(Mid(GRIDTEXT, 62, 12))
-                '                TempoBTW = Val(Mid(GRIDTEXT, 88, 1))
-                '                If TempoBTW = 6 Then
-                '                    If bhEuro Then
-                '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag / EURO, 2)
-                '                        End If
-                '                    Else
-                '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                '                            BTWBasis(0) = BTWBasis(0) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(0) = BTWBasis(0) + Round(TempoBedrag * EURO, 2)
-                '                        End If
-                '                    End If
-                '                Else
-                '                    If bhEuro Then
-                '                        If cmdSwitch.Caption = "Ingave in EUR" Then
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag / EURO, 2)
-                '                        End If
-                '                    Else
-                '                        If cmdSwitch.Caption = "Ingave in BEF" Then
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + TempoBedrag
-                '                        Else
-                '                            BTWBasis(TempoBTW) = BTWBasis(TempoBTW) + Round(TempoBedrag * EURO, 2)
-                '                        End If
-                '                    End If
-                '                End If
-                '                CalculateTotal()
-                '            End If
-
-                '            Dim splitmilieu() As String
-                '            Dim telmilieu As Integer
-
-                '            If Positie < 0 Then
-                '                VerkoopDetail.AddItem GRIDTEXT, VerkoopDetail.ListCount
-                '        If BL_ENVIRONMENT = True Then
-                '                    splitmilieu = Split(MilieuGridText, vbCrLf)
-                '                    For telmilieu = 0 To UBound(splitmilieu) - 1
-                '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
-                '            Next
-                '                    BL_ENVIRONMENT = False
-                '                End If
-                '            Else
-                '                VerkoopDetail.AddItem GRIDTEXT, Positie
-                '        If BL_ENVIRONMENT = True Then
-                '                    splitmilieu = Split(MilieuGridText, vbCrLf)
-                '                    MsgBox "stop, waarom?"
-                '            For telmilieu = 0 To UBound(splitmilieu) - 1
-                '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
-                '            Next
-                '                    BL_ENVIRONMENT = False
-                '                End If
-                '            End If
-                '        End If
-                '        If Mid(XLogKey, 39, 2) = vbCrLf Then
-                '            Do While Len(XLogKey) <> 0
-                '                MSG = Mid(XLogKey, 1, 38) + String(37, " ") + "|2"
-                '                VerkoopDetail.AddItem MSG
-                '        XLogKey = Mid(XLogKey, 41)
-                '            Loop
-                '        End If
-
-                '    Case 79, 83, 84, 111, 115, 116
+                    Case Chr(79), Chr(83), Chr(84), Chr(111), Chr(115), Chr(116)
                 '        If dokumentType <> "15" And Annuleren.Enabled = False Then
                 '            Annuleren.Enabled = True
                 '        End If
                 '        'LijnType(InStr$("SOT", UCase$(Chr$(KeyAscii))) - 1).Value = 1
-                '        KeyAscii = 43
+                ' KeyAscii = 43
                 '        GoTo Jumper
-                '    Case Else
-                '        '        VensterKeyPress KeyAscii
+            Case Else
+                ' VensterKeyPress KeyAscii IS NEVER USED BEFORE
         End Select
-        'If VerkoopDetail.ListCount Then
-        '    Afsluiten.Enabled = True
-        '    CmbAfdruk.Enabled = True
-        'Else
-        '    Afsluiten.Enabled = False
-        '    CmbAfdruk.Enabled = False
-        'End If
-        'RefreshBTW()
-        'If CmdStock.Default Then CmdStock.SetFocus
-        'If CmdOmschrijving.Default Then CmdOmschrijving.SetFocus
-        'If CmdTekst.Default Then CmdTekst.SetFocus
+        If VerkoopDetail.Items.Count Then
+            BtnGenerateAndSave.Enabled = True
+            BtnGenerateCopy.Enabled = True
+        Else
+            BtnGenerateAndSave.Enabled = False
+            BtnGenerateCopy.Enabled = False
+        End If
+        RefreshBTW()
+        If e.KeyChar = "S" Then BtnFromStock.Focus()
+        If e.KeyChar = "O" Then BtnFromDescription.Focus()
+        If e.KeyChar = "T" Then BtnPutTextLine.Focus()
 
     End Sub
 
@@ -708,29 +708,29 @@ Jumper:
 
         If BH_EURO Then
             If sMuntKlant = "BEF" Then
-                cmdSwitch.Text = "Ingave in BEF"
+                BtnSwitchMoney.Text = "Ingave in BEF"
                 'cmdSwitch.Enabled = True
                 dMuntK = 1
                 'TekstInfo(5).Text = Dec$(1 / EURO, "##0.########")
             ElseIf sMuntKlant = "EUR" Then
-                cmdSwitch.Text = "Ingave in EUR"
+                BtnSwitchMoney.Text = "Ingave in EUR"
                 'cmdSwitch.Enabled = True
                 dMuntK = 1
             Else
-                cmdSwitch.Text = "Ingave in EUR"
+                BtnSwitchMoney.Text = "Ingave in EUR"
                 'cmdSwitch.Enabled = False
             End If
         Else
             If sMuntKlant = "EUR" Then
-                cmdSwitch.Text = "Ingave in EUR"
+                BtnSwitchMoney.Text = "Ingave in EUR"
                 'cmdSwitch.Enabled = True
                 dMuntK = 1
             ElseIf sMuntKlant = "BEF" Then
-                cmdSwitch.Text = "Ingave in BEF"
+                BtnSwitchMoney.Text = "Ingave in BEF"
                 'cmdSwitch.Enabled = True
                 dMuntK = 1
             Else
-                cmdSwitch.Text = "Ingave in BEF"
+                BtnSwitchMoney.Text = "Ingave in BEF"
                 'cmdSwitch.Enabled = False
             End If
         End If
@@ -740,7 +740,7 @@ Jumper:
             Stop
             dMuntK = Val(muntMTextBox.Text)
         End If
-        DIRECTSELL_STRING = cmdSwitch.Text
+        DIRECTSELL_STRING = BtnSwitchMoney.Text
         rsDetail.Close()
         rsDetail = Nothing
         If RV(rsKlant, "v149") = "" Then
@@ -809,7 +809,7 @@ Jumper:
         VerkoopDetail.Enabled = False
         BtnGenerateAndSave.Enabled = False
         BtnGenerateCopy.Enabled = False
-        cmdSwitch.Enabled = False
+        BtnSwitchMoney.Enabled = False
         CbMedekontraktant.Enabled = True
         Sjabloon.Enabled = False
         BtnDocumentHistory.Enabled = False
@@ -1021,9 +1021,9 @@ Jumper:
         BtnGenerateCopy.Enabled = True
         On Error Resume Next
         If docInEur = "EUR" Then
-            cmdSwitch.Text = "Ingave in EUR"
+            BtnSwitchMoney.Text = "Ingave in EUR"
         Else
-            cmdSwitch.Text = "Ingave in BEF"
+            BtnSwitchMoney.Text = "Ingave in BEF"
         End If
         BtnGenerateAndSave.Focus()
         Select Case dokumentType
@@ -1077,7 +1077,7 @@ Jumper:
                 Case "0", "1"
                     bVak = Val(Mid(aa, 88, 1))
                     If bVak = 6 Then
-                        If cmdSwitch.Text = "Ingave in EUR" Then
+                        If BtnSwitchMoney.Text = "Ingave in EUR" Then
                             BTWBasis(0) = BTWBasis(0) + Val(Dec(Val(Mid(aa, 62, 12)) * EURO, MASK_EURBH))
                             BTWEuroBasis(0) = BTWEuroBasis(0) + Val(Dec(Val(Mid(aa, 62, 12)), MASK_EURBH))
                         Else
@@ -1085,7 +1085,7 @@ Jumper:
                             BTWEuroBasis(0) = BTWEuroBasis(0) + Val(Dec(Val(Mid(aa, 62, 12)) / EURO, MASK_EURBH))
                         End If
                     Else
-                        If cmdSwitch.Text = "Ingave in EUR" Then
+                        If BtnSwitchMoney.Text = "Ingave in EUR" Then
                             If BTWBasis(bVak) <> 0 Then
                                 BTWBasis(bVak) = System.Math.Round(BTWBasis(bVak))
                                 maskerMULTI = "############"
@@ -1121,7 +1121,7 @@ Jumper:
             BTWEuroBedrag(Teller) = Val(Dec(BTWEuroBasis(Teller) * Val(Mid(fmarBoxText("002", "2", Format(Teller)), 4, 4)) / 100, MASK_EURBH))
             BtwEuroIn = BtwEuroIn + BTWEuroBasis(Teller) + BTWEuroBedrag(Teller)
             BtwEuroEx = BtwEuroEx + BTWEuroBasis(Teller)
-            If cmdSwitch.Text = "Ingave in BEF" Then
+            If BtnSwitchMoney.Text = "Ingave in BEF" Then
                 Select Case Teller
                     Case 1
                         btwBedrag1.Text = Format(Math.Round(BTWBasis(Teller)), "#,##0.00")
@@ -1397,7 +1397,7 @@ pdfKopBalk:
             End If
             BtwTekst = "    "
             Mid(BtwTekst, 1, 1) = Mid(fmarBoxText("002", "2", VeldInfo(9)), 4, 4)
-            If InStr(cmdSwitch.Text, "EUR") Then
+            If InStr(BtnSwitchMoney.Text, "EUR") Then
                 strMeerLijn = strMeerLijn & BtwTekst & " " & Dec(dVeldInfo(7) / dMuntK, "########0.00") & vbCrLf
             ElseIf dMuntK <> 1 Then
                 strMeerLijn = strMeerLijn & BtwTekst & " " & Dec(dVeldInfo(7) / dMuntK, "########0.00") & vbCrLf
@@ -1535,6 +1535,14 @@ pdfKontroleLijn:
 
     Private Sub BtnFromStock_Click(sender As Object, e As EventArgs) Handles BtnFromStock.Click
 
+        If VerkoopDetail.Enabled Then
+            EditDetailModus = False
+            VerkoopDetail.Focus()
+            SendKeys.Send("{S}")
+        Else
+            MessageBox.Show("Eerst klant kiezen a.u.b !!!")
+        End If
+
     End Sub
 
     Private Sub BtnFromDescription_Click(sender As Object, e As EventArgs) Handles BtnFromDescription.Click
@@ -1550,6 +1558,75 @@ pdfKontroleLijn:
     End Sub
 
     Private Sub BtnPutTextLine_Click(sender As Object, e As EventArgs) Handles BtnPutTextLine.Click
+
+        If VerkoopDetail.Enabled Then
+            EditDetailModus = False
+            VerkoopDetail.Focus()
+            SendKeys.Send("{T}")
+        Else
+            MessageBox.Show("Eerst klant kiezen a.u.b !!!")
+        End If
+
+    End Sub
+
+    Private Sub BtnSwitchMoney_Click(sender As Object, e As EventArgs) Handles BtnSwitchMoney.Click
+
+        '    Dim TempoTel As Integer
+        '    Dim TempoVar As Variant
+        '    Dim MaskerEURBHmini As String
+
+        '    DirecteVerkoopString = cmdSwitch.Caption
+        '    MaskerEURBHmini = Mid(MaskerEURBH, 2)
+        '    If sMuntKlant = "BEF" Or sMuntKlant = "EUR" Then
+        '        '    If VerkoopDetail.ListCount Then
+        '        '        If cmdSwitch.Caption = "Ingave in BEF" Then
+        '        '            Msg = "Switch van BEF naar EUR.  Bij het later terugzetten naar BEF, bestaat de mogelijkheid van afrondingsverschillen indien meerdere lijnen in   nzelfde dokument aanwezig met oorspronkelijke cijfers in BEF na de komma.  De terugrekening vanuit de EURO naar BEF geeft in dat geval kans op afrondingsverschillen." & vbCr & vbCr & "Omrekening laten doorgaan ?"
+        '        '            KtrlBox = MsgBox(Msg, vbExclamation + vbYesNo + vbDefaultButton2)
+        '        '            If KtrlBox = vbNo Then Exit Sub
+        '        '        End If
+        '        '    End If
+        '    Else
+        '        MsgBox "Switch niet mogelijk voor klanten buiten de E.U.   n enkel mogelijk indien klant met BEF of EUR code", vbInformation
+        'Exit Sub
+        '    End If
+
+        '    If cmdSwitch.Caption = "Ingave in EUR" Then
+        '        'Stap 1: overschakeling cijfers van EUR naar BEF
+        '        On Local Error Resume Next
+        '        For TelTot = 1 To 3
+        '            lblBTWBedrag(TelTot).Caption = Format(Round(CDbl(lblBTWBedrag(TelTot).Caption) * EURO, 0), "#,##0.00")
+        '        Next
+        '        cmdSwitch.Caption = "Ingave in BEF"
+        '        sMuntKlant = "BEF"
+        '        For TelTot = 0 To VerkoopDetail.ListCount - 1
+        '            TempoVar = VerkoopDetail.List(TelTot)
+        '            If Right(TempoVar, 1) = "2" Then
+        '            Else
+        '                Mid(TempoVar, 42, 11) = Dec(Val(Mid(TempoVar, 42, 11)) * EURO, MaskerEURBHmini)
+        '                Mid(TempoVar, 62, 12) = Dec(Val(Mid(TempoVar, 62, 12)) * EURO, MaskerEURBH)
+        '                VerkoopDetail.List(TelTot) = TempoVar
+        '            End If
+        '        Next
+        '    Else
+        '        'overschakeling cijfers van BEF naar EUR
+        '        For TelTot = 1 To 3
+        '            lblBTWBedrag(TelTot).Caption = Format(Round(CDbl(lblBTWBedrag(TelTot).Caption) / EURO, 2), "#,##0.00")
+        '        Next
+        '        cmdSwitch.Caption = "Ingave in EUR"
+        '        sMuntKlant = "EUR"
+        '        For TelTot = 0 To VerkoopDetail.ListCount - 1
+        '            TempoVar = VerkoopDetail.List(TelTot)
+        '            If Right(TempoVar, 1) = "2" Then
+        '            Else
+        '                Mid(TempoVar, 42, 11) = Dec(Val(Mid(TempoVar, 42, 11)) / EURO, MaskerEURBHmini)
+        '                Mid(TempoVar, 62, 12) = Dec(Val(Mid(TempoVar, 62, 12)) / EURO, MaskerEURBH)
+        '                VerkoopDetail.List(TelTot) = TempoVar
+        '            End If
+        '        Next
+        '    End If
+        '    TekstInfo(5).Text = Dec$(dMuntK, "##0.########")
+        '    DirecteVerkoopString = cmdSwitch.Caption
+        '    RefreshBTW()
 
     End Sub
 End Class

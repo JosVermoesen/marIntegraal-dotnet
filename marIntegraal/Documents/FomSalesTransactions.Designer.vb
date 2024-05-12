@@ -52,7 +52,7 @@ Partial Class FomSalesTransactions
         Me.mgrklantenrekMTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.vervaldagMTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.muntMTextBox = New System.Windows.Forms.MaskedTextBox()
-        Me.cmdSwitch = New System.Windows.Forms.Button()
+        Me.BtnSwitchMoney = New System.Windows.Forms.Button()
         Me.ckEURINFO = New System.Windows.Forms.CheckBox()
         Me.CbBTWBouw = New System.Windows.Forms.CheckBox()
         Me.chkZonderRelatie = New System.Windows.Forms.CheckBox()
@@ -474,20 +474,20 @@ Partial Class FomSalesTransactions
         Me.muntMTextBox.Size = New System.Drawing.Size(93, 20)
         Me.muntMTextBox.TabIndex = 22
         '
-        'cmdSwitch
+        'BtnSwitchMoney
         '
-        Me.cmdSwitch.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdSwitch.Cursor = System.Windows.Forms.Cursors.Default
-        Me.cmdSwitch.Enabled = False
-        Me.cmdSwitch.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cmdSwitch.Location = New System.Drawing.Point(545, 285)
-        Me.cmdSwitch.Name = "cmdSwitch"
-        Me.cmdSwitch.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdSwitch.Size = New System.Drawing.Size(67, 37)
-        Me.cmdSwitch.TabIndex = 1
-        Me.cmdSwitch.TabStop = False
-        Me.cmdSwitch.Text = "Ingave in BEF"
-        Me.cmdSwitch.UseVisualStyleBackColor = False
+        Me.BtnSwitchMoney.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnSwitchMoney.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnSwitchMoney.Enabled = False
+        Me.BtnSwitchMoney.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnSwitchMoney.Location = New System.Drawing.Point(545, 285)
+        Me.BtnSwitchMoney.Name = "BtnSwitchMoney"
+        Me.BtnSwitchMoney.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnSwitchMoney.Size = New System.Drawing.Size(67, 37)
+        Me.BtnSwitchMoney.TabIndex = 1
+        Me.BtnSwitchMoney.TabStop = False
+        Me.BtnSwitchMoney.Text = "Ingave in BEF"
+        Me.BtnSwitchMoney.UseVisualStyleBackColor = False
         '
         'ckEURINFO
         '
@@ -879,7 +879,7 @@ Partial Class FomSalesTransactions
         Me.Controls.Add(Me.cmdSQLInfo)
         Me.Controls.Add(Me.muntMTextBox)
         Me.Controls.Add(Me.cmdLijst)
-        Me.Controls.Add(Me.cmdSwitch)
+        Me.Controls.Add(Me.BtnSwitchMoney)
         Me.Controls.Add(Me.chkZonderRelatie)
         Me.Controls.Add(Me.ckEURINFO)
         Me.Controls.Add(Me.CbBTWBouw)
@@ -922,7 +922,7 @@ End Sub
     Public WithEvents mgrklantenrekMTextBox As MaskedTextBox
     Public WithEvents vervaldagMTextBox As MaskedTextBox
     Public WithEvents muntMTextBox As MaskedTextBox
-    Public WithEvents cmdSwitch As Button
+    Public WithEvents BtnSwitchMoney As Button
     Public WithEvents ckEURINFO As CheckBox
     Public WithEvents CbBTWBouw As CheckBox
     Public WithEvents chkZonderRelatie As CheckBox

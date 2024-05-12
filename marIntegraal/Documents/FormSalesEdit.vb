@@ -138,7 +138,7 @@ Public Class FormSalesEdit
             End Select
         Else
             TbInfo3.Text = OpbrengstDefault
-            LijnType = "0" 'Format(aIndex) ??
+            LijnType = "0" 'Format(SHARED_INDEX) ??
         End If
 
         Select Case LijnType
@@ -440,7 +440,7 @@ End Class
 '                Case 0
 '                    Ok.Enabled = False
 '                    SharedFl = FlProdukt
-'                    aIndex = Val(Left(cmbSortering, 2))
+'                    SHARED_INDEX = Val(Left(cmbSortering, 2))
 '                    FVT(FlProdukt, 0) = String$(13, 0)
 '                    GRIDTEXT = TekstInfo(0).Text
 '                    SqlSearch.Show 1
@@ -467,7 +467,7 @@ End Class
 '                    End If
 '                Case 3
 '                    SharedFl = FlRekening
-'                    aIndex = 0
+'                    SHARED_INDEX = 0
 '                    FVT(FlRekening, 0) = String$(7, 0)
 '                    GRIDTEXT = TekstInfo(3).Text
 '                    SqlSearch.Show 1
