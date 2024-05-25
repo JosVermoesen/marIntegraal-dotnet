@@ -450,7 +450,7 @@ GBOeinde:
 		AdoInsertToRecord(TABLE_VARIOUS, "E1", "v400")
 		AdoInsertToRecord(TABLE_VARIOUS, SetSpacing("30" & XEHCODE & "E1", 20), "v005")
 		AdoInsertToRecord(TABLE_VARIOUS, (RichTextBox1.Text), "v132")
-		'rsmar(flallerlei)("A000")= djfkddk
+		'rsmar(TABLE_VARIOUS)("A000")= djfkddk
 		'RS_MAR(TABLE_VARIOUS).Update
 
 		rsTB2.AddNew()

@@ -157,12 +157,6 @@ Public Class FormCompanyOpen
 
 
 
-    Private Sub bedrijvenListView_Click(sender As Object, e As EventArgs) Handles LvCompanies.Click
-
-        StartAutoLoad()
-
-    End Sub
-
     Private Sub bedrijvenListView_KeyPress(sender As Object, e As KeyPressEventArgs) Handles LvCompanies.KeyPress
 
         If e.KeyChar = vbCr Then
@@ -191,6 +185,12 @@ Public Class FormCompanyOpen
     End Sub
 
     Private Sub BtnMakeDeletePossible_Click(sender As Object, e As EventArgs) Handles BtnMakeDeletePossible.Click
+
+    End Sub
+
+    Private Sub LvCompanies_DoubleClick(sender As Object, e As EventArgs) Handles LvCompanies.DoubleClick
+
+        StartAutoLoad()
 
     End Sub
 End Class

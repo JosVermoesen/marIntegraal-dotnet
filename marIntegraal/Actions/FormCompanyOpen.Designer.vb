@@ -171,7 +171,7 @@ Partial Class FormCompanyOpen
         Me.datalocatieGroupBox.TabStop = False
         Me.datalocatieGroupBox.Text = "Database"
         '
-        'FrmCompanyOpen
+        'FormCompanyOpen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -190,7 +190,7 @@ Partial Class FormCompanyOpen
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FrmCompanyOpen"
+        Me.Name = "FormCompanyOpen"
         Me.Text = "Bedrijf Openen"
         Me.datalocatieGroupBox.ResumeLayout(false)
         Me.ResumeLayout(false)

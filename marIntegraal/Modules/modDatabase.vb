@@ -487,7 +487,7 @@ TryAgain:
                 MSG = "Dergelijke ID.Kode Bestaat reeds : " & KEY_BUF(Fl) & " : " & Str(Fl)
                 MsgBox(MSG)
             Case 46
-                MSG = "TABLEDEF_ONT werd geopend in LEES-modus." & vbCrLf & "Schrijven is niet mogelijk..."
+                MSG = "TABLEDEF_ONT werd geopend in READING-modus." & vbCrLf & "Schrijven is niet mogelijk..."
                 MsgBox(MSG, 0, "Database beveiliging")
 
             Case Else

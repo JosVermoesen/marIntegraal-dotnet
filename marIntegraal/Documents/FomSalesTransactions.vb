@@ -5,7 +5,7 @@ Public Class FomSalesTransactions
 
     Dim EditDetailModus As Boolean = False
 
-    Dim dokumentType As String = Space(2)
+    Dim documentType As String = Space(2)
     Dim pdfDOKUMENTTYPE As String
     Dim dokumentHistoriek As String = Space(11)
     Dim VerkoopDetailTitel(8) As String
@@ -163,7 +163,7 @@ MaskAantal:
             InstalKlant()
             Select Case Mid(GRIDTEXT_9, 1, 2)
                 Case "13", "14", "15"
-                    dokumentType = Mid(GRIDTEXT_9, 1, 2)
+                    documentType = Mid(GRIDTEXT_9, 1, 2)
                     TempoDOK = Mid(GRIDTEXT_9, InStr(GRIDTEXT_9, vbTab) + 1)
                     If Len(TempoDOK) <> 8 Then
                         'VerkoopOptie_CheckedChanged(VerkoopOptie.Item(0), New System.EventArgs())
@@ -258,7 +258,7 @@ MaskAantal:
         On Error Resume Next
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        MSG = "SELECT * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%' ORDER BY v004, v005 DESC"
+        MSG = "SELECT * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + documentType + "%' ORDER BY v004, v005 DESC"
         Cursor.Current = Cursors.WaitCursor
         rsDetail.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Then
@@ -325,7 +325,7 @@ MaskAantal:
         Dim DummySleutel As String
         Dim BestondReeds As Short
         Dim T As Short
-        If dokumentType = "15" And BtnCancel.Enabled = True Then
+        If documentType = "15" And BtnCancel.Enabled = True Then
             If Not IsDateOk(datumdocMTextbox.Text, PERIODAS_TEXT) Then
                 FormBYPERDAT.WindowState = FormWindowState.Normal
                 FormBYPERDAT.Focus()
@@ -334,7 +334,7 @@ MaskAantal:
                 Exit Sub
             End If
         End If
-        If dokumentType = "15" Then
+        If documentType = "15" Then
             If frmDokHistoriek.lstDokHistoriek.Items.Count <> 0 Then
                 MSG = ""
                 refID = "RF:"
@@ -451,20 +451,21 @@ MaskAantal:
         'End If
         'MessageBox.Show("Enter pressed")
 
-        Dim Positie As Integer
+        Dim Position As Integer
         Dim TempoBedrag As Double
         Dim TempoBTW As Integer
+        Dim keyAscii = e.KeyChar
 
-        MessageBox.Show("Pressed key: " + e.KeyChar)
-        Dim ascii As Byte() = System.Text.Encoding.ASCII.GetBytes(e.KeyChar)
-
-Jumper:
-        If EditDetailModus Then
-
-
+        If keyAscii = "+" Then
+            Exit Sub
         End If
 
-        Select Case UCase(e.KeyChar)
+        MessageBox.Show("Pressed key: " + keyAscii)
+
+        XLOG_KEY = DefaultVerkoop
+Jumper:
+
+        Select Case UCase(keyAscii)
             Case "S"
                 SHARED_INDEX = 0
             Case "O"
@@ -472,28 +473,30 @@ Jumper:
             Case "T"
                 SHARED_INDEX = 2
         End Select
-        Positie = VerkoopDetail.SelectedIndex
-        'MessageBox.Show(Len(VerkoopDetail.SelectedItem.ToString))
+        Position = VerkoopDetail.SelectedIndex
+        If Position >= 0 Then
+            MessageBox.Show(Len(VerkoopDetail.SelectedItem.ToString))
+        End If
 
-        Select Case e.KeyChar
-            Case Chr(13)         'Enter
-                If Positie < 0 Then
+        Select Case keyAscii
+            Case vbCr 'Enter
+                If Position < 0 Then
                     MessageBox.Show("Eerst een lijn selecteren!")
                     Exit Sub
                 End If
-                ' If dokumentType <> "15" And Annuleren.Enabled = False Then
-                '     Annuleren.Enabled = True
-                ' End If
+                If documentType <> "15" And BtnCancel.Enabled = False Then
+                    BtnCancel.Enabled = True
+                End If
                 GRIDTEXT = VerkoopDetail.Text
                 Dim lastChar As Char = GRIDTEXT.Substring(GRIDTEXT.Length - 1)
                 If lastChar = "2" Then
                 Else
                     RefreshBTW()
                 End If
-                'XLogKassa = ""
+                XLOG_CASHREGISTER = ""
                 FormSalesEdit.Close()
                 FormSalesEdit.ShowDialog()
-                'FormSalesEdit.Hide()
+                FormSalesEdit.Hide()
                 Focus()
 
                 If GRIDTEXT = "" Then
@@ -533,13 +536,13 @@ Jumper:
                             End If
                         End If
                     End If
-                    ' VerkoopDetail.RemoveItem Positie
-                    ' VerkoopDetail.AddItem GRIDTEXT, Positie
+                    VerkoopDetail.Items.RemoveAt(Position)
+                    VerkoopDetail.Items.Insert(Position, GRIDTEXT)
                 End If
-                ' VerkoopDetail.ListIndex = Positie
+                VerkoopDetail.SelectedIndex = Position
                 CalculateTotal()
 
-            Case Chr(43)
+            Case "+"
                 GRIDTEXT = ""
                 XLOG_CASHREGISTER = ""
                 FormSalesEdit.ShowDialog()
@@ -582,31 +585,31 @@ Jumper:
                         CalculateTotal()
                     End If
 
-                    Dim splitmilieu() As String
-                    Dim telmilieu As Integer
+                    Dim splitEnvironment() As String
+                    Dim countEnvironment As Integer
 
-                    ' If Positie < 0 Then
-                    ' VerkoopDetail.AddItem GRIDTEXT, VerkoopDetail.ListCount
-                    '        If BL_ENVIRONMENT = True Then
-                    '                    splitmilieu = Split(MilieuGridText, vbCrLf)
-                    '                    For telmilieu = 0 To UBound(splitmilieu) - 1
-                    '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
-                    '            Next
-                    '                    BL_ENVIRONMENT = False
-                    '                End If
-                    '            Else
-                    '                VerkoopDetail.AddItem GRIDTEXT, Positie
-                    '        If BL_ENVIRONMENT = True Then
-                    '                    splitmilieu = Split(MilieuGridText, vbCrLf)
-                    '                    MsgBox "stop, waarom?"
-                    '            For telmilieu = 0 To UBound(splitmilieu) - 1
-                    '                        VerkoopDetail.AddItem splitmilieu(telmilieu), VerkoopDetail.ListCount
-                    '            Next
-                    '                    BL_ENVIRONMENT = False
-                    '                End If
-                    '            End If
-                    '        End If
-                    '        If Mid(XLogKey, 39, 2) = vbCrLf Then
+                    If Position < 0 Then
+                        VerkoopDetail.Items.Insert(VerkoopDetail.Items.Count, GRIDTEXT)
+                        If BL_ENVIRONMENT = True Then
+                            splitEnvironment = Split(ENVIRONMENT_GRIDTEXT, vbCrLf)
+                            For countEnvironment = 0 To UBound(splitEnvironment) - 1
+                                VerkoopDetail.Items.Insert(VerkoopDetail.Items.Count, splitEnvironment(countEnvironment))
+                            Next
+                            BL_ENVIRONMENT = False
+                        End If
+                    Else
+                        VerkoopDetail.Items.Insert(Position, GRIDTEXT)
+                        If BL_ENVIRONMENT = True Then
+                            splitEnvironment = Split(ENVIRONMENT_GRIDTEXT, vbCrLf)
+                            MessageBox.Show("stop, waarom?")
+                            For countEnvironment = 0 To UBound(splitEnvironment) - 1
+                                VerkoopDetail.Items.Insert(VerkoopDetail.Items.Count, splitEnvironment(countEnvironment))
+                            Next
+                            BL_ENVIRONMENT = False
+                        End If
+                    End If
+                End If
+                If Mid(XLOG_KEY, 39, 2) = vbCrLf Then
                     Do While Len(XLOG_KEY) <> 0
                         MSG = Mid(XLOG_KEY, 1, 38) + Space(37) + "|2"
                         VerkoopDetail.Items.Add(MSG)
@@ -614,13 +617,13 @@ Jumper:
                     Loop
                 End If
 
-                    Case Chr(79), Chr(83), Chr(84), Chr(111), Chr(115), Chr(116)
-                '        If dokumentType <> "15" And Annuleren.Enabled = False Then
-                '            Annuleren.Enabled = True
-                '        End If
-                '        'LijnType(InStr$("SOT", UCase$(Chr$(KeyAscii))) - 1).Value = 1
-                ' KeyAscii = 43
-                '        GoTo Jumper
+            Case "O", "S", "T", "o", "s", "t"
+                If documentType <> "15" And BtnCancel.Enabled = False Then
+                    BtnCancel.Enabled = True
+                End If
+                keyAscii = "+"
+                GoTo Jumper
+
             Case Else
                 ' VensterKeyPress KeyAscii IS NEVER USED BEFORE
         End Select
@@ -879,7 +882,7 @@ Jumper:
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
         'UPGRADE_WARNING: Couldn't resolve default property of object RV(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        MSG = "SELECT TOP 1 * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + dokumentType + "%'"
+        MSG = "SELECT TOP 1 * FROM Allerlei WHERE v004 = 'K" + RV(rsKlant, "A110") + "' AND v005 Like '" + documentType + "%'"
         rsDetail.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Or rsDetail.RecordCount = 0 Then
             BtnDocumentHistory.Enabled = False
@@ -928,7 +931,7 @@ Jumper:
         End If
 
         If RbDirekteVerkoop.Checked Then
-            dokumentType = "15" 'Faktuur of creditnota
+            documentType = "15" 'Faktuur of creditnota
             If CbCreditNota.Enabled = True Then
                 Vr = 11
                 CbCreditNota.Checked = False
@@ -942,13 +945,13 @@ Jumper:
             Text = SetSpacing("Ctrl+F2 Verkoopverrichting", 28) & "(" & dokumentSleutel & ")"
             chkZonderRelatie.Visible = False
         ElseIf RbBestelbon.Checked Then
-            dokumentType = "14" 'Bestelbon, Leveringsbon
+            documentType = "14" 'Bestelbon, Leveringsbon
             Vr = 73
             dokumentSleutel = SleutelDok(Vr)
             Text = SetSpacing("Ctrl+F2 Bestelling/levering", 28) & "(" & dokumentSleutel & ")"
             chkZonderRelatie.Visible = True
         ElseIf RbOfferte.Checked Then
-            dokumentType = "13" 'Offerte
+            documentType = "13" 'Offerte
             Vr = 59
             dokumentSleutel = SleutelDok(Vr)
             Text = SetSpacing("Ctrl+F2 Offerte", 28) & "(" & dokumentSleutel & ")"
@@ -963,14 +966,14 @@ Jumper:
     Sub LaadHetdokument()
         Dim aa As String
         Dim T As Short
-        If dokumentType = "15" Then
+        If documentType = "15" Then
             RasterSchoon()
         End If
         rsDetail = New ADODB.Recordset
         On Error Resume Next
         Err.Clear()
         rsDetail.CursorLocation = ADODB.CursorLocationEnum.adUseClient
-        MSG = "SELECT * FROM Allerlei WHERE v005 Like '" & dokumentType & Mid(XLOG_KEY, 1, 11) & "%'"
+        MSG = "SELECT * FROM Allerlei WHERE v005 Like '" & documentType & Mid(XLOG_KEY, 1, 11) & "%'"
         Cursor.Current = Cursors.WaitCursor
         rsDetail.Open(MSG, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
         If Err.Number Then
@@ -1026,7 +1029,7 @@ Jumper:
             BtnSwitchMoney.Text = "Ingave in BEF"
         End If
         BtnGenerateAndSave.Focus()
-        Select Case dokumentType
+        Select Case documentType
             Case "15"
                 RbDirekteVerkoop.Enabled = False
                 RbBestelbon.Enabled = False
@@ -1576,7 +1579,7 @@ pdfKontroleLijn:
         '    Dim MaskerEURBHmini As String
 
         '    DirecteVerkoopString = cmdSwitch.Caption
-        '    MaskerEURBHmini = Mid(MaskerEURBH, 2)
+        '    MaskerEURBHmini = Mid(MASK_EURBH, 2)
         '    If sMuntKlant = "BEF" Or sMuntKlant = "EUR" Then
         '        '    If VerkoopDetail.ListCount Then
         '        '        If cmdSwitch.Caption = "Ingave in BEF" Then
@@ -1603,7 +1606,7 @@ pdfKontroleLijn:
         '            If Right(TempoVar, 1) = "2" Then
         '            Else
         '                Mid(TempoVar, 42, 11) = Dec(Val(Mid(TempoVar, 42, 11)) * EURO, MaskerEURBHmini)
-        '                Mid(TempoVar, 62, 12) = Dec(Val(Mid(TempoVar, 62, 12)) * EURO, MaskerEURBH)
+        '                Mid(TempoVar, 62, 12) = Dec(Val(Mid(TempoVar, 62, 12)) * EURO, MASK_EURBH)
         '                VerkoopDetail.List(TelTot) = TempoVar
         '            End If
         '        Next
@@ -1619,7 +1622,7 @@ pdfKontroleLijn:
         '            If Right(TempoVar, 1) = "2" Then
         '            Else
         '                Mid(TempoVar, 42, 11) = Dec(Val(Mid(TempoVar, 42, 11)) / EURO, MaskerEURBHmini)
-        '                Mid(TempoVar, 62, 12) = Dec(Val(Mid(TempoVar, 62, 12)) / EURO, MaskerEURBH)
+        '                Mid(TempoVar, 62, 12) = Dec(Val(Mid(TempoVar, 62, 12)) / EURO, MASK_EURBH)
         '                VerkoopDetail.List(TelTot) = TempoVar
         '            End If
         '        Next

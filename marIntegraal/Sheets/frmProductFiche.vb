@@ -163,7 +163,7 @@ End Class
 '		Dim BedragEurIncl As Decimal
 '		Dim bedragEurBtw As Decimal
 
-'		'maskerEur
+'		'MASK_EUR
 '		If InStr(cmdSwitch.Text, "EUR") Then
 '			BedragEurExcl = Val(TxtInfo(3).Text) * Val(TxtInfo(8).Text)
 '			BedragBefExcl = BedragEurExcl * EURO

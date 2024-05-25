@@ -207,7 +207,7 @@ Public Class FormSalesEdit
         End If
 
         ' If XLogKassa = "" Then
-        '    BTWType.Value = Val(String99(Lees, 182))
+        '    BTWType.Value = Val(String99(READING, 182))
         ' Else
         '    BTWType.Value = 1
         '    TekstInfo(2).Enabled = False
@@ -252,18 +252,18 @@ Public Class FormSalesEdit
         '                Dim strMilieu() As String
         '                Dim telmilieu As Integer
 
-        '                strMilieu = Split(AdoGetField(FlProdukt, "#v261 #"), ";")
+        '                strMilieu = Split(AdoGetField(TABLE_PRODUCTS, "#v261 #"), ";")
         '                If LijnType = "1" Then
         '                Else
         '                    For telmilieu = 0 To UBound(strMilieu)
-        '                        bGet FlProdukt, 0, vSet(strMilieu(telmilieu), 13)
+        '                        bGet TABLE_PRODUCTS, 0, vSet(strMilieu(telmilieu), 13)
         '                    If KTRL Then
         '                            MsgBox "subcode " & strMilieu(telmilieu) & " niet te vinden"
         '                        BL_ENVIRONMENT = False
         '                        Else
-        '                            RecordToVeld FlProdukt
-        '                        MilieuGridText = MilieuGridText + vSet(AdoGetField(FlProdukt, "#v105 #"), 40) + Chr$(124) + Dec$(Val(AdoGetField(FlProdukt, "#e112 #")), "######0.000") + Chr$(124) + TekstInfo(6) + Chr$(124) + Dec$(Val(TekstInfo(6)) * Val(AdoGetField(FlProdukt, "#e112 #")), "#######0.000") + Chr$(124) + Dec$(1, "###0.0") + Chr$(124)
-        '                            MilieuGridText = MilieuGridText + AdoGetField(FlProdukt, "#v106 #") + Chr$(124) + Dec$(0, "##0") + Chr$(124) + AdoGetField(FlProdukt, "#v111 #") + Chr$(124) + vSet(AdoGetField(FlProdukt, "#v117 #"), 7) + Chr$(124) + vSet(AdoGetField(FlProdukt, "#v102 #"), 13) + Chr$(124) + "0" + vbCrLf
+        '                            RecordToVeld TABLE_PRODUCTS
+        '                        MilieuGridText = MilieuGridText + vSet(AdoGetField(TABLE_PRODUCTS, "#v105 #"), 40) + Chr$(124) + Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), "######0.000") + Chr$(124) + TekstInfo(6) + Chr$(124) + Dec$(Val(TekstInfo(6)) * Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")), "#######0.000") + Chr$(124) + Dec$(1, "###0.0") + Chr$(124)
+        '                            MilieuGridText = MilieuGridText + AdoGetField(TABLE_PRODUCTS, "#v106 #") + Chr$(124) + Dec$(0, "##0") + Chr$(124) + AdoGetField(TABLE_PRODUCTS, "#v111 #") + Chr$(124) + vSet(AdoGetField(TABLE_PRODUCTS, "#v117 #"), 7) + Chr$(124) + vSet(AdoGetField(TABLE_PRODUCTS, "#v102 #"), 13) + Chr$(124) + "0" + vbCrLf
         '                        End If
         '                    Next
         '                End If
@@ -367,8 +367,8 @@ Public Class FormSalesEdit
         End If
         LabelMinStockInfo.Text = "Min.Stock: " + Format(MinimumStock) + " / Stock: " + Format(HuidigeStock) + " / Plaats: " + AdoGetField(TABLE_PRODUCTS, "#v109 #")
 
-        '    'TaksKeuze(0).ListIndex = Val(AdoGetField(FlProdukt, "#v168 #"))
-        '    'Select Case Val(AdoGetField(FlProdukt, "#v168 #"))
+        '    'TaksKeuze(0).ListIndex = Val(AdoGetField(TABLE_PRODUCTS, "#v168 #"))
+        '    'Select Case Val(AdoGetField(TABLE_PRODUCTS, "#v168 #"))
         '    '    Case 1 To 9
         '    '        TaksKeuze(0).Visible = True
         '    '    Case Else
@@ -378,6 +378,34 @@ Public Class FormSalesEdit
         '    'Ok.Enabled = True
 
     End Function
+
+    Private Sub TbInfo0_Leave(sender As Object, e As EventArgs) Handles TbInfo0.Leave
+
+        BtnOk.Enabled = True
+        If Trim(TbInfo0.Text) = "" Then
+        Else
+            JetGet(TABLE_PRODUCTS, 0, Trim(TbInfo0.Text))
+            If KTRL Then
+                TbInfo0.Text = ""
+                TbInfo0.Focus() : Exit Sub
+            Else
+                RecordToField(TABLE_PRODUCTS)
+                ProdukTekstInfo()
+                JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(AdoGetField(TABLE_PRODUCTS, "#v117 #"), 7))
+                If KTRL Then
+                    MsgBox("Verkooprekening " & SetSpacing(AdoGetField(TABLE_PRODUCTS, "#v117 #"), 7) & " bestaat niet (meer).  Eerst verbeteren a.u.b. in productfiche", vbExclamation)
+                    TbInfo0.Focus() : Exit Sub
+                Else
+                    RecordToField(TABLE_LEDGERACCOUNTS)
+                    TbInfo3.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+                    'SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
+                    BtnOk.Enabled = True
+                End If
+                TbInfo6.Focus()
+            End If
+        End If
+
+    End Sub
 
 End Class
 
@@ -399,11 +427,11 @@ End Class
 '        Case 0, 3
 '            SnelHelpPrint "Dubbelklikken of [Ctrl] voor ge ndexeerd zoeken", blLogging
 '        If TekstInfo(3).Text <> "" Then
-'                bGet FlRekening, 0, vSet((TekstInfo(3).Text), 7)
+'                bGet TABLE_LEDGERACCOUNTS, 0, vSet((TekstInfo(3).Text), 7)
 '            If KTRL Then
 '                Else
-'                    RecordToVeld FlRekening
-'                SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
+'                    RecordToVeld TABLE_LEDGERACCOUNTS
+'                SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
 '            End If
 '            End If
 '        Case 4
@@ -439,45 +467,45 @@ End Class
 '            Select Case Index
 '                Case 0
 '                    Ok.Enabled = False
-'                    SharedFl = FlProdukt
+'                    SharedFl = TABLE_PRODUCTS
 '                    SHARED_INDEX = Val(Left(cmbSortering, 2))
-'                    FVT(FlProdukt, 0) = String$(13, 0)
+'                    FVT(TABLE_PRODUCTS, 0) = String$(13, 0)
 '                    GRIDTEXT = TekstInfo(0).Text
 '                    SqlSearch.Show 1
 '                If KTRL Then
 '                        TekstInfo(0).Text = ""
 '                        TekstInfo(0).SetFocus : Exit Sub
 '                    Else
-'                        RecordToVeld FlProdukt
+'                        RecordToVeld TABLE_PRODUCTS
 '                    ProdukTekstInfo()
-'                        bGet FlRekening, 0, vSet(AdoGetField(FlProdukt, "#v117 #"), 7)
+'                        bGet TABLE_LEDGERACCOUNTS, 0, vSet(AdoGetField(TABLE_PRODUCTS, "#v117 #"), 7)
 '                    If KTRL Then
 '                            TekstInfo(3).Text = ""
 '                            TekstInfo(0).SetFocus : Exit Sub
-'                        ElseIf Val(AdoGetField(FlProdukt, "#e113 #")) <= 0 Then
+'                        ElseIf Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) <= 0 Then
 '                            MsgBox "Aankoopprijs is onbekend.  Geef de inkoopprijs in van dit artikel a.u.b. via de produktfiche !"
 '                        TekstInfo(0).Text = ""
 '                            TekstInfo(0).SetFocus : Exit Sub
 '                        Else
-'                            RecordToVeld FlRekening
-'                        TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
-'                            SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
+'                            RecordToVeld TABLE_LEDGERACCOUNTS
+'                        TekstInfo(3).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'                            SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
 '                        Ok.Enabled = True
 '                        End If
 '                    End If
 '                Case 3
-'                    SharedFl = FlRekening
+'                    SharedFl = TABLE_LEDGERACCOUNTS
 '                    SHARED_INDEX = 0
-'                    FVT(FlRekening, 0) = String$(7, 0)
+'                    FVT(TABLE_LEDGERACCOUNTS, 0) = String$(7, 0)
 '                    GRIDTEXT = TekstInfo(3).Text
 '                    SqlSearch.Show 1
 '                If KTRL Then
 '                        TekstInfo(1).Text = ""
-'                        FVT(FlRekening, 0) = ""
+'                        FVT(TABLE_LEDGERACCOUNTS, 0) = ""
 '                        Ok.Enabled = False
 '                    Else
-'                        RecordToVeld FlRekening
-'                    TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
+'                        RecordToVeld TABLE_LEDGERACCOUNTS
+'                    TekstInfo(3).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
 '                        Ok.Enabled = True
 '                    End If
 '            End Select
@@ -501,53 +529,30 @@ End Class
 
 '    Select Case Index
 '        Case 0
-'            Ok.Enabled = True
-'            If Trim$(TekstInfo(0)) = "" Then
-'            Else
-'                bGet FlProdukt, 0, Trim$(TekstInfo(0).Text)
-'            If KTRL Then
-'                    TekstInfo(0).Text = ""
-'                    TekstInfo(0).SetFocus : Exit Sub
-'                Else
-'                    RecordToVeld FlProdukt
-'                ProdukTekstInfo()
-'                    bGet FlRekening, 0, vSet(AdoGetField(FlProdukt, "#v117 #"), 7)
-'                If KTRL Then
-'                        MsgBox "Verkooprekening " & vSet(AdoGetField(FlProdukt, "#v117 #"), 7) & " bestaat niet (meer).  Eerst verbeteren a.u.b. in productfiche", vbExclamation
-'                    TekstInfo(0).SetFocus : Exit Sub
-'                    Else
-'                        RecordToVeld FlRekening
-'                    TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
-'                        SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
-'                    Ok.Enabled = True
-'                    End If
-'                    TekstInfo(6).SetFocus
-'                End If
-'            End If
 
 '        Case 2
 '            nVol = Val(TekstInfo(2).Text)
 '            TekstInfo(2).Text = Dec$((nVol), "###0.0")
 '            If InStr(DirecteVerkoopString, "EUR") Then
-'                TekstInfo(4).Text = Dec$(Val(AdoGetField(FlProdukt, "#e112 #")) * nVol, "######0.000")
+'                TekstInfo(4).Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * nVol, "######0.000")
 '            Else
-'                TekstInfo(4).Text = Dec$(Val(AdoGetField(FlProdukt, "#v112 #")) * nVol, "######0.000")
+'                TekstInfo(4).Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")) * nVol, "######0.000")
 '            End If
 '            TekstInfo(9).Text = TekstInfo(4).Text
 
 '        Case 3
-'            bGet FlRekening, 0, vSet((TekstInfo(3).Text), 7)
+'            bGet TABLE_LEDGERACCOUNTS, 0, vSet((TekstInfo(3).Text), 7)
 '        If KTRL Then
-'                If FVT(FlRekening, 0) = String$(7, 0) Then
+'                If FVT(TABLE_LEDGERACCOUNTS, 0) = String$(7, 0) Then
 '                    Exit Sub
 '                Else
 '                    TekstInfo(3).Text = OpbrengstDefault
 '                    TekstInfo(3).SetFocus
 '                End If
 '            Else
-'                RecordToVeld FlRekening
-'            TekstInfo(3).Text = AdoGetField(FlRekening, "#v019 #")
-'                SnelHelpPrint AdoGetField(FlRekening, "#v020 #"), blLogging
+'                RecordToVeld TABLE_LEDGERACCOUNTS
+'            TekstInfo(3).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+'                SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
 '        End If
 
 '        Case 4
@@ -567,7 +572,7 @@ End Class
 
 '        Case 5
 '            If TekstInfo(0).Visible = True Then
-'                If (Val(TekstInfo(4).Text) / Val(TekstInfo(2).Text)) / (1 + (Val(TekstInfo(5).Text) / 100)) < Val(AdoGetField(FlProdukt, "#e113 #")) Then
+'                If (Val(TekstInfo(4).Text) / Val(TekstInfo(2).Text)) / (1 + (Val(TekstInfo(5).Text) / 100)) < Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) Then
 '                    MSG = "Uw verkoopprijs wordt kleiner dan uw aankoopprijs !  Is dit de bedoeling ?"
 '                    KtrlBox = MsgBox(MSG, 292)
 '                    If KtrlBox = 6 Then
