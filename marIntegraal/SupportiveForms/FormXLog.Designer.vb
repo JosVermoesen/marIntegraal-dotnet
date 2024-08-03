@@ -48,7 +48,6 @@ Partial Class FormXlog
         'BtnHideAndGoBack
         '
         Me.BtnHideAndGoBack.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnHideAndGoBack.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnHideAndGoBack.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnHideAndGoBack.Location = New System.Drawing.Point(4, 353)
         Me.BtnHideAndGoBack.Name = "BtnHideAndGoBack"
@@ -61,7 +60,6 @@ Partial Class FormXlog
         'BtnEditLine
         '
         Me.BtnEditLine.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnEditLine.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnEditLine.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnEditLine.Location = New System.Drawing.Point(185, 354)
         Me.BtnEditLine.Name = "BtnEditLine"
@@ -125,7 +123,6 @@ Partial Class FormXlog
         'BtnSelectOnly
         '
         Me.BtnSelectOnly.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnSelectOnly.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnSelectOnly.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnSelectOnly.Location = New System.Drawing.Point(384, 353)
         Me.BtnSelectOnly.Name = "BtnSelectOnly"

@@ -11,4 +11,8 @@
         Close()
 
     End Sub
+
+    Private Sub FormBookingControl_Load()
+
+    End Sub
 End Class

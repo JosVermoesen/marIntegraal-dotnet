@@ -107,6 +107,7 @@ Partial Class Mim
         Me.CommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Report = New IDEALSoftware.VpeStandard.VpeControl()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.QRCodeTestingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MimMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -633,7 +634,7 @@ Partial Class Mim
         '
         'InfoToolStrip
         '
-        Me.InfoToolStrip.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VsoftToolStripMenuItem, Me.HostingToolStripMenuItem, Me.PleskMailToolStripMenuItem, Me.InfoToolStripSeparator, Me.LicentieToolStripMenuItem, Me.InfoToolStripSeparator2, Me.CommandToolStripMenuItem})
+        Me.InfoToolStrip.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VsoftToolStripMenuItem, Me.HostingToolStripMenuItem, Me.PleskMailToolStripMenuItem, Me.InfoToolStripSeparator, Me.LicentieToolStripMenuItem, Me.InfoToolStripSeparator2, Me.CommandToolStripMenuItem, Me.QRCodeTestingToolStripMenuItem})
         Me.InfoToolStrip.Name = "InfoToolStrip"
         Me.InfoToolStrip.Size = New System.Drawing.Size(24, 20)
         Me.InfoToolStrip.Text = "?"
@@ -726,6 +727,13 @@ Partial Class Mim
         'OpenFileDialog
         '
         Me.OpenFileDialog.FileName = "OpenFileDialog1"
+        '
+        'QRCodeTestingToolStripMenuItem
+        '
+        Me.QRCodeTestingToolStripMenuItem.Name = "QRCodeTestingToolStripMenuItem"
+        Me.QRCodeTestingToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.QRCodeTestingToolStripMenuItem.Text = "QR Code Testing"
+        AddHandler Me.QRCodeTestingToolStripMenuItem.Click, AddressOf Me.QRCodeTestingToolStripMenuItem_Click
         '
         'Mim
         '
@@ -831,4 +839,5 @@ Partial Class Mim
     Friend WithEvents OpenFileDialog As OpenFileDialog
     Friend WithEvents InfoToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents CommandToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents QRCodeTestingToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -47,11 +47,12 @@ Partial Class FormSalesEdit
         Me.TbInfo3 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TbInfo8 = New System.Windows.Forms.TextBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CbVatFilter = New System.Windows.Forms.CheckBox()
         Me.CbSortering = New System.Windows.Forms.ComboBox()
         Me.CbKeuze0 = New System.Windows.Forms.ComboBox()
         Me.CbKeuze1 = New System.Windows.Forms.ComboBox()
         Me.TbInfo7 = New System.Windows.Forms.TextBox()
+        Me.LabelQuickHelp = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'LabelSensitive
@@ -258,16 +259,16 @@ Partial Class FormSalesEdit
         Me.TbInfo8.TabIndex = 26
         Me.TbInfo8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'CheckBox1
+        'CbVatFilter
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(193, 91)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(69, 17)
-        Me.CheckBox1.TabIndex = 27
-        Me.CheckBox1.Text = "Btw Filter"
-        Me.CheckBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CbVatFilter.AutoSize = True
+        Me.CbVatFilter.Location = New System.Drawing.Point(193, 91)
+        Me.CbVatFilter.Name = "CbVatFilter"
+        Me.CbVatFilter.Size = New System.Drawing.Size(69, 17)
+        Me.CbVatFilter.TabIndex = 27
+        Me.CbVatFilter.Text = "Btw Filter"
+        Me.CbVatFilter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.CbVatFilter.UseVisualStyleBackColor = True
         '
         'CbSortering
         '
@@ -304,17 +305,28 @@ Partial Class FormSalesEdit
         Me.TbInfo7.TabIndex = 31
         Me.TbInfo7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'LabelQuickHelp
+        '
+        Me.LabelQuickHelp.BackColor = System.Drawing.SystemColors.Info
+        Me.LabelQuickHelp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LabelQuickHelp.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.LabelQuickHelp.Location = New System.Drawing.Point(0, 319)
+        Me.LabelQuickHelp.Name = "LabelQuickHelp"
+        Me.LabelQuickHelp.Size = New System.Drawing.Size(475, 23)
+        Me.LabelQuickHelp.TabIndex = 32
+        '
         'FormSalesEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
-        Me.ClientSize = New System.Drawing.Size(475, 315)
+        Me.ClientSize = New System.Drawing.Size(475, 342)
+        Me.Controls.Add(Me.LabelQuickHelp)
         Me.Controls.Add(Me.TbInfo7)
         Me.Controls.Add(Me.CbKeuze1)
         Me.Controls.Add(Me.CbKeuze0)
         Me.Controls.Add(Me.CbSortering)
-        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.CbVatFilter)
         Me.Controls.Add(Me.TbInfo8)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TbInfo3)
@@ -373,9 +385,10 @@ Partial Class FormSalesEdit
     Friend WithEvents TbInfo3 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents TbInfo8 As TextBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CbVatFilter As CheckBox
     Friend WithEvents CbSortering As ComboBox
     Friend WithEvents CbKeuze0 As ComboBox
     Friend WithEvents CbKeuze1 As ComboBox
     Friend WithEvents TbInfo7 As TextBox
+    Friend WithEvents LabelQuickHelp As Label
 End Class

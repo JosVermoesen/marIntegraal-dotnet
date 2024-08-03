@@ -26,12 +26,12 @@ Partial Class FormBookingControl
         Me.BtnCommitTransaction = New System.Windows.Forms.Button()
         Me._SSTab1_TabPage0 = New System.Windows.Forms.TabPage()
         Me.LvReadyToBook = New System.Windows.Forms.ListView()
-        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader2 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader4 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader5 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader6 = New System.Windows.Forms.ColumnHeader()
         Me.TcSquareControle = New System.Windows.Forms.TabControl()
         Me._SSTab1_TabPage0.SuspendLayout()
         Me.TcSquareControle.SuspendLayout()
@@ -40,7 +40,6 @@ Partial Class FormBookingControl
         'BtnCancelTransaction
         '
         Me.BtnCancelTransaction.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnCancelTransaction.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnCancelTransaction.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnCancelTransaction.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnCancelTransaction.Location = New System.Drawing.Point(430, 4)
@@ -55,7 +54,6 @@ Partial Class FormBookingControl
         'BtnCommitTransaction
         '
         Me.BtnCommitTransaction.BackColor = System.Drawing.SystemColors.Control
-        Me.BtnCommitTransaction.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnCommitTransaction.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnCommitTransaction.Location = New System.Drawing.Point(295, 4)
         Me.BtnCommitTransaction.Name = "BtnCommitTransaction"
@@ -144,6 +142,7 @@ Partial Class FormBookingControl
         Me.Name = "FormBookingControl"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Booking Square Control"
+        AddHandler Load, AddressOf Me.FormBookingControl_Load
         Me._SSTab1_TabPage0.ResumeLayout(False)
         Me.TcSquareControle.ResumeLayout(False)
         Me.ResumeLayout(False)

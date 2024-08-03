@@ -80,8 +80,8 @@ Public Class Mim
 
     Private Sub Mim_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Dim hierCancel As Boolean = e.Cancel
-        Dim UnloadMode As System.Windows.Forms.CloseReason = CloseReason.ApplicationExitCall
-        If Me.Report.IsOpen = True Then
+
+        If Report.IsOpen = True Then
             MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
             hierCancel = True
         End If
@@ -478,4 +478,9 @@ Public Class Mim
 
     End Sub
 
+    Private Sub QRCodeTestingToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+        FormQRCodeTesting.Show()
+
+    End Sub
 End Class

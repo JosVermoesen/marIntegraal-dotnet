@@ -206,19 +206,19 @@ Public Class FormSalesEdit
             TbInfo6.Text = "1"
         End If
 
-        ' If XLogKassa = "" Then
-        '    BTWType.Value = Val(String99(READING, 182))
-        ' Else
-        '    BTWType.Value = 1
-        '    TekstInfo(2).Enabled = False
-        '    TekstInfo(3).Enabled = False
-        '    TekstInfo(4).Enabled = False
-        '    TekstInfo(5).Enabled = False
-        '    TekstInfo(6).Enabled = False
-        '    Keuze(0).Enabled = False
-        '    Keuze(1).Enabled = False
-        '    BTWType.Enabled = False
-        ' End If
+        If XLOG_CASHREGISTER = "" Then
+            CbVatFilter.Checked = Val(String99(READING, 182))
+        Else
+            CbVatFilter.Checked = True 'BTWType.Value = 1
+            TbInfo2.Enabled = False
+            TbInfo3.Enabled = False
+            TbInfo4.Enabled = False
+            TbInfo5.Enabled = False
+            TbInfo6.Enabled = False
+            CbKeuze0.Enabled = False
+            CbKeuze1.Enabled = False
+            CbVatFilter.Enabled = False
+        End If
 
     End Sub
 
@@ -311,7 +311,8 @@ Public Class FormSalesEdit
 
     End Sub
 
-    Private Function ProdukTekstInfo()
+    Private Sub ProdukTekstInfo()
+
         Dim HuidigeStock As Single
         Dim MinimumStock As Single
 
@@ -377,7 +378,7 @@ Public Class FormSalesEdit
         '    CalculateTotal()
         '    'Ok.Enabled = True
 
-    End Function
+    End Sub
 
     Private Sub TbInfo0_Leave(sender As Object, e As EventArgs) Handles TbInfo0.Leave
 
@@ -407,10 +408,160 @@ Public Class FormSalesEdit
 
     End Sub
 
+    Private Sub TbInfo2_Leave(sender As Object, e As EventArgs) Handles TbInfo2.Leave
+
+        nVol = Val(TbInfo2.Text)
+        TbInfo2.Text = Dec$((nVol), "###0.0")
+        If InStr(DIRECTSELL_STRING, "EUR") Then
+            TbInfo4.Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * nVol, "######0.000")
+        Else
+            TbInfo4.Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")) * nVol, "######0.000")
+        End If
+        TbInfo9.Text = TbInfo4.Text
+
+    End Sub
+
+    Private Sub TbInfo3_Leave(sender As Object, e As EventArgs) Handles TbInfo3.Leave
+
+        JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing((TbInfo3.Text), 7))
+        If KTRL Then
+            If FVT(TABLE_LEDGERACCOUNTS, 0) Then ' = String$(7, 0) Then
+                Exit Sub
+            Else
+                TbInfo3.Text = OpbrengstDefault
+                TbInfo3.Focus()
+            End If
+        Else
+            RecordToField(TABLE_LEDGERACCOUNTS)
+            TbInfo3.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
+            ' SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
+        End If
+
+    End Sub
+
+    Private Sub TbInfo4_Leave(sender As Object, e As EventArgs) Handles TbInfo4.Leave
+
+        Dim TempPCT As Single
+
+        If TbInfo4.Text = TbInfo9.Text Then
+        ElseIf CbVatFilter.Checked Then
+            dHg = Val(TbInfo4.Text)
+            TempPCT = Val(Mid(CbKeuze1.Text, 4, 4))
+            dHg = dHg * 100 / (100 + TempPCT)
+            TbInfo4.Text = Dec$((dHg), "######0.000")
+            CalculateTotal()
+            BtnOk.Enabled = True
+        Else
+            TbInfo4.Text = Dec$(Val(TbInfo4.Text), "######0.000")
+            CalculateTotal()
+            BtnOk.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub TbInfo5_Leave(sender As Object, e As EventArgs) Handles TbInfo5.Leave
+
+        If TbInfo0.Visible = True Then
+            If (Val(TbInfo4.Text) / Val(TbInfo2.Text)) / (1 + (Val(TbInfo5.Text) / 100)) < Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) Then
+                MSG = "Uw verkoopprijs wordt kleiner dan uw aankoopprijs !  Is dit de bedoeling ?"
+                CTRL_BOX = MsgBox(MSG, 292)
+                If CTRL_BOX = 6 Then
+                Else
+                    TbInfo5.Text = "0"
+                End If
+            End If
+        End If
+        TbInfo5.Text = Dec$(Val(TbInfo5.Text), "##0")
+
+    End Sub
+
+    Private Sub TbInfo6_Leave(sender As Object, e As EventArgs) Handles TbInfo6.Leave
+
+        If TbInfo6.Text = "*" Then
+            If CbKeuze0.Visible = True Then
+                If Mid(CbKeuze0.Text, 1, 1) = "5" Or Mid(CbKeuze0.Text, 1, 1) = "3" Then
+                    ' frmVanGucht.Show 1
+                Else
+                    TbInfo6.Text = Dec$(1, vkMaskAantal)
+                End If
+            Else
+                TbInfo6.Text = Dec$(1, vkMaskAantal)
+            End If
+        End If
+
+        nAnt = Val(TbInfo6.Text)
+        TbInfo6.Text = Dec$((nAnt), vkMaskAantal)
+        If BtnOk.Enabled = True Then BtnOk.Focus()
+        CalculateTotal()
+
+    End Sub
+
+    Private Sub TbInfo0_Enter(sender As Object, e As EventArgs) Handles TbInfo0.Enter
+
+        TbInfo0.SelectionStart = 0
+        TbInfo0.SelectionLength = Len(TbInfo0.Text)
+        LabelQuickHelp.Text = "Dubbelklikken of [Ctrl] voor geïndexeerd zoeken"
+
+        If TbInfo3.Text <> "" Then
+            JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing((TbInfo3.Text), 7))
+            If KTRL Then
+            Else
+                RecordToField(TABLE_LEDGERACCOUNTS)
+                LabelQuickHelp.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
+            End If
+        End If
+
+    End Sub
+
+    Private Sub TbInfo3_Enter(sender As Object, e As EventArgs) Handles TbInfo3.Enter
+
+        TbInfo3.SelectionStart = 0
+        TbInfo3.SelectionLength = Len(TbInfo3.Text)
+        LabelQuickHelp.Text = "Dubbelklikken of [Ctrl] voor geïndexeerd zoeken"
+
+        If TbInfo3.Text <> "" Then
+            JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing((TbInfo3.Text), 7))
+            If KTRL Then
+            Else
+                RecordToField(TABLE_LEDGERACCOUNTS)
+                LabelQuickHelp.Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
+            End If
+        End If
+
+    End Sub
+
+    Private Sub TbInfo4_Enter(sender As Object, e As EventArgs) Handles TbInfo4.Enter
+
+        ' Was in VB6 Ok.Default = True
+        BtnOk.Enabled = True
+        TbInfo4.SelectionStart = 0
+        TbInfo4.SelectionLength = Len(TbInfo4.Text)
+
+    End Sub
+
+    Private Sub TbInfo6_Enter(sender As Object, e As EventArgs) Handles TbInfo6.Enter
+
+        TbInfo6.SelectionStart = 0
+        If Val(TbInfo6.Text) = 0 Then
+            TbInfo6.Text = Dec$(1, "###.000")
+        End If
+        TbInfo6.SelectionLength = Len(TbInfo6.Text)
+
+    End Sub
+
+    Private Sub TbInfo4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbInfo4.KeyPress
+
+        TbInfo9.Text = ""
+
+    End Sub
+
+    Private Sub TbInfo0_KeyDown(sender As Object, e As KeyEventArgs) Handles TbInfo0.KeyDown
+
+        BtnOk.Enabled = False
+
+    End Sub
+
 End Class
-
-
-
 
 
 'Private Sub TekstInfo_DblClick(Index As Integer)
@@ -419,53 +570,23 @@ End Class
 
 'End Sub
 
-'Private Sub TekstInfo_GotFocus(Index As Integer)
-
-'    TekstInfo(Index).SelStart = 0
-'    TekstInfo(Index).SelLength = Len(TekstInfo(Index).Text)
-'    Select Case Index
-'        Case 0, 3
-'            SnelHelpPrint "Dubbelklikken of [Ctrl] voor ge ndexeerd zoeken", blLogging
-'        If TekstInfo(3).Text <> "" Then
-'                bGet TABLE_LEDGERACCOUNTS, 0, vSet((TekstInfo(3).Text), 7)
-'            If KTRL Then
-'                Else
-'                    RecordToVeld TABLE_LEDGERACCOUNTS
-'                SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
-'            End If
-'            End If
-'        Case 4
-'            Ok.Default = True
-
-'        Case 6
-'            If Val(TekstInfo(Index).Text) = 0 Then
-'                TekstInfo(Index).Text = Dec$(1, "###.000")
-'            End If
-'    End Select
-
-'    Select Case Index
-'        Case 1
-'            TekstInfo(1).SelLength = 0
-'        Case Else
-'            TekstInfo(Index).SelLength = Len(TekstInfo(Index).Text)
-'    End Select
-
-'End Sub
 
 'Private Sub TekstInfo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 
-'    If Index = 0 Then Ok.Enabled = False
 '    Select Case KeyCode
-'        Case 13
+'        Case 13 'Enter
+
 '            On Error Resume Next
 '            If Index = 4 Then Ok.Enabled = True : Ok.SetFocus : Exit Sub
 '            If Index = 0 Then
 '                SendKeys "{TAB}", True
 '            Exit Sub
 '            End If
-'        Case 17
+
+'        Case 17 'Ctrl
 '            Select Case Index
 '                Case 0
+
 '                    Ok.Enabled = False
 '                    SharedFl = TABLE_PRODUCTS
 '                    SHARED_INDEX = Val(Left(cmbSortering, 2))
@@ -493,6 +614,7 @@ End Class
 '                        Ok.Enabled = True
 '                        End If
 '                    End If
+
 '                Case 3
 '                    SharedFl = TABLE_LEDGERACCOUNTS
 '                    SHARED_INDEX = 0
@@ -508,98 +630,10 @@ End Class
 '                    TekstInfo(3).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
 '                        Ok.Enabled = True
 '                    End If
+
 '            End Select
 '    End Select
 
 'End Sub
 
-'Private Sub TekstInfo_KeyPress(Index As Integer, KeyAscii As Integer)
-
-'    Select Case Index
-'        Case 4
-'            TekstInfo(9).Text = ""
-'    End Select
-
-'End Sub
-
-'Private Sub TekstInfo_LostFocus(Index As Integer)
-'    Dim TempPCT As Single
-
-'    On Local Error Resume Next
-
-'    Select Case Index
-'        Case 0
-
-'        Case 2
-'            nVol = Val(TekstInfo(2).Text)
-'            TekstInfo(2).Text = Dec$((nVol), "###0.0")
-'            If InStr(DirecteVerkoopString, "EUR") Then
-'                TekstInfo(4).Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#e112 #")) * nVol, "######0.000")
-'            Else
-'                TekstInfo(4).Text = Dec$(Val(AdoGetField(TABLE_PRODUCTS, "#v112 #")) * nVol, "######0.000")
-'            End If
-'            TekstInfo(9).Text = TekstInfo(4).Text
-
-'        Case 3
-'            bGet TABLE_LEDGERACCOUNTS, 0, vSet((TekstInfo(3).Text), 7)
-'        If KTRL Then
-'                If FVT(TABLE_LEDGERACCOUNTS, 0) = String$(7, 0) Then
-'                    Exit Sub
-'                Else
-'                    TekstInfo(3).Text = OpbrengstDefault
-'                    TekstInfo(3).SetFocus
-'                End If
-'            Else
-'                RecordToVeld TABLE_LEDGERACCOUNTS
-'            TekstInfo(3).Text = AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #")
-'                SnelHelpPrint AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #"), blLogging
-'        End If
-
-'        Case 4
-'            If TekstInfo(4).Text = TekstInfo(9).Text Then
-'            ElseIf BTWType.Value Then
-'                dHg = Val(TekstInfo(4).Text)
-'                TempPCT = Val(Mid(Keuze(1).Text, 4, 4))
-'                dHg = dHg * 100 / (100 + TempPCT)
-'                TekstInfo(4).Text = Dec$((dHg), "######0.000")
-'                CalculateTotal()
-'                Ok.Enabled = True
-'            Else
-'                TekstInfo(4).Text = Dec$(Val(TekstInfo(4).Text), "######0.000")
-'                CalculateTotal()
-'                Ok.Enabled = True
-'            End If
-
-'        Case 5
-'            If TekstInfo(0).Visible = True Then
-'                If (Val(TekstInfo(4).Text) / Val(TekstInfo(2).Text)) / (1 + (Val(TekstInfo(5).Text) / 100)) < Val(AdoGetField(TABLE_PRODUCTS, "#e113 #")) Then
-'                    MSG = "Uw verkoopprijs wordt kleiner dan uw aankoopprijs !  Is dit de bedoeling ?"
-'                    KtrlBox = MsgBox(MSG, 292)
-'                    If KtrlBox = 6 Then
-'                    Else
-'                        TekstInfo(5).Text = "0"
-'                    End If
-'                End If
-'            End If
-'            TekstInfo(5).Text = Dec$(Val(TekstInfo(5).Text), "##0")
-
-'        Case 6
-'            If TekstInfo(6).Text = "*" Then
-'                If Keuze(0).Visible = True Then
-'                    If Mid(WijzigenVerkoop.Keuze(0), 1, 1) = "5" Or Mid(WijzigenVerkoop.Keuze(0), 1, 1) = "3" Then
-'                        frmVanGucht.Show 1
-'                Else
-'                        TekstInfo(6).Text = Dec$(1, vkMaskAantal)
-'                    End If
-'                Else
-'                    TekstInfo(6).Text = Dec$(1, vkMaskAantal)
-'                End If
-'            End If
-'            nAnt = Val(TekstInfo(6).Text)
-'            TekstInfo(6).Text = Dec$((nAnt), vkMaskAantal)
-'            'If Ok.Enabled = True Then Ok.SetFocus
-'    End Select
-'    CalculateTotal()
-
-'End Sub
 
