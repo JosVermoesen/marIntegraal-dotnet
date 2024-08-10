@@ -886,6 +886,7 @@ handlerVVDag:
         End Select
         SleutelDok = VoorLetter & Mid(PERIOD_FROMTO, 1, 4) & Format(Val(FL99_RECORD) + 1, "00000")
     End Function
+
     Function FunctionDateText(ByRef fDatumSleutel As String) As String
         Dim Dag As String = "  "
         Dim Maand As String = "  "
@@ -896,6 +897,7 @@ handlerVVDag:
         Jaar = Mid(fDatumSleutel, 1, 4)
         FunctionDateText = Dag & "/" & Maand & "/" & Jaar
     End Function
+
     Function CopyFile(ByRef SourcePath As String, ByRef TargetPath As String, ByRef FileToCopy As String) As Short
         Dim FlCopy1 As Short
         Dim FlCopy2 As Short
@@ -1206,6 +1208,7 @@ errorCMDWRITEBOX:
 errorCMDPRINT:
         MsgBox("CMDPRINT foutieve definitie")
     End Sub
+
     Function DateWrongFormat(ByRef fDatum As String) As Short
         Dim Dag As Short
         Dim Maand As Short

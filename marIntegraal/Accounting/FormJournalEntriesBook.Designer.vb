@@ -214,7 +214,7 @@ Partial Class FormJournalEntriesBook
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Diverse Postenboek"
         Me.TopMost = True
-        AddHandler FormClosing, AddressOf Me.FrmJournalEntriesBook_FormClosing
+        AddHandler Load, AddressOf Me.FormJournalEntriesBook_Load
         Me.ResumeLayout(False)
         Me.PerformLayout
 

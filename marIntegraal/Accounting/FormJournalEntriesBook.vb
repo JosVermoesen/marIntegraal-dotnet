@@ -16,7 +16,8 @@ Public Class FormJournalEntriesBook
     Dim PeriodToChosen As String = Space(8)
     Dim PdfReportTitle As String
 
-    Private Sub FrmJournalEntriesBook_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormJournalEntriesBook_Load()
+
         TotalDebit = 0
         TotalCredit = 0
         TextBoxPeriodFromTo.Text = FormBYPERDAT.PeriodeBoekjaar.Text
@@ -24,9 +25,10 @@ Public Class FormJournalEntriesBook
         PeriodFromChosen = Mid(PERIOD_FROMTO, 1, 8)
         PeriodToChosen = Mid(PERIOD_FROMTO, 9)
         CheckRecordSet()
+
     End Sub
 
-    Private Sub FrmJournalEntriesBook_FormClosing(sender As Object, e As FormClosingEventArgs)
+    Private Sub FormJournalEntriesBook_FormClosing(sender As Object, e As FormClosingEventArgs)
 
         Dim CancelHere As Boolean = e.Cancel
         If Mim.Report.IsOpen = True Then
@@ -101,6 +103,7 @@ Public Class FormJournalEntriesBook
         REPORT_TAB(6) = 105 'was 106
         REPORT_FIELD(7) = "T.Rekening"
         REPORT_TAB(7) = 118 ' was 119
+
         PdfReportTitle = Space(128)
         For T = 0 To 7
             Mid(PdfReportTitle, REPORT_TAB(T)) = REPORT_FIELD(T)
@@ -203,4 +206,5 @@ Public Class FormJournalEntriesBook
         Focus()
 
     End Sub
+
 End Class
