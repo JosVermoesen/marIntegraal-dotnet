@@ -106,7 +106,7 @@ Partial Class FormJournalEntriesBook
         Me.LabelProcessingDate.AutoSize = True
         Me.LabelProcessingDate.BackColor = System.Drawing.SystemColors.Control
         Me.LabelProcessingDate.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LabelProcessingDate.Location = New System.Drawing.Point(11, 61)
+        Me.LabelProcessingDate.Location = New System.Drawing.Point(12, 61)
         Me.LabelProcessingDate.Name = "LabelProcessingDate"
         Me.LabelProcessingDate.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LabelProcessingDate.Size = New System.Drawing.Size(38, 13)
@@ -190,7 +190,7 @@ Partial Class FormJournalEntriesBook
         Me.DateTimePickerProcessingDate.TabIndex = 3
         Me.DateTimePickerProcessingDate.TabStop = False
         '
-        'FrmJournalEntriesBook
+        'FormJournalEntriesBook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -210,7 +210,7 @@ Partial Class FormJournalEntriesBook
         Me.Controls.Add(Me.AutoPageBreak)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
-        Me.Name = "FrmJournalEntriesBook"
+        Me.Name = "FormJournalEntriesBook"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Diverse Postenboek"
         Me.TopMost = True

@@ -286,10 +286,10 @@
     <Compile Include="Documents\frmFinancieleVerrichtingen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accounting\frmHistoriekRekeningen.Designer.vb">
-      <DependentUpon>frmHistoriekRekeningen.vb</DependentUpon>
+    <Compile Include="Accounting\FormLedgerAccountHistory.Designer.vb">
+      <DependentUpon>FormLedgerAccountHistory.vb</DependentUpon>
     </Compile>
-    <Compile Include="Accounting\frmHistoriekRekeningen.vb">
+    <Compile Include="Accounting\FormLedgerAccountHistory.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sheets\FrmLedgerHistoryOnScreen.Designer.vb">
@@ -537,8 +537,8 @@
     <EmbeddedResource Include="Documents\frmFinancieleVerrichtingen.resx">
       <DependentUpon>frmFinancieleVerrichtingen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Accounting\frmHistoriekRekeningen.resx">
-      <DependentUpon>frmHistoriekRekeningen.vb</DependentUpon>
+    <EmbeddedResource Include="Accounting\FormLedgerAccountHistory.resx">
+      <DependentUpon>FormLedgerAccountHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sheets\FrmLedgerHistoryOnScreen.resx">
       <DependentUpon>FrmLedgerHistoryOnScreen.vb</DependentUpon>

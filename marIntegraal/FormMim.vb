@@ -390,7 +390,11 @@ Public Class Mim
         MessageBox.Show("TrialBalanceMenuItem_Click")
     End Sub
     Private Sub JournalHistoryMenuItem_Click(sender As Object, e As EventArgs)
-        MessageBox.Show("JournalHistoryMenuItem_Click")
+
+        Dim LedgerAccountHistory As New FormLedgerAccountHistory
+        ' LedgerAccountHistory.MdiParent = Me
+        LedgerAccountHistory.ShowDialog()
+
     End Sub
     Private Sub FinalReportingMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("FinalReportingMenuItem_Click")

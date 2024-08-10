@@ -1,7 +1,17 @@
-﻿Public Class frmHistoriekRekeningen
-    Private Sub frmHistoriekRekeningen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Public Class FormLedgerAccountHistory
+
+    Private Sub FormLedgerAccountHistory_Load(sender As Object, e As EventArgs)
 
     End Sub
+
+    Private Sub ButtonClose_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub ButtonGenerateReport_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
 End Class
 
 'Option Strict Off
