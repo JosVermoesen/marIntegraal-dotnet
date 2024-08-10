@@ -93,7 +93,6 @@ Partial Class FormLedgerAccountHistory
         Me.ButtonClose.TabStop = False
         Me.ButtonClose.Text = "&Sluiten"
         Me.ButtonClose.UseVisualStyleBackColor = False
-        AddHandler Me.ButtonClose.Click, AddressOf Me.ButtonClose_Click
         '
         'ButtonGenerateReport
         '
@@ -104,9 +103,8 @@ Partial Class FormLedgerAccountHistory
         Me.ButtonGenerateReport.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.ButtonGenerateReport.Size = New System.Drawing.Size(84, 23)
         Me.ButtonGenerateReport.TabIndex = 17
-        Me.ButtonGenerateReport.Text = "Af&drukken"
+        Me.ButtonGenerateReport.Text = "Generate"
         Me.ButtonGenerateReport.UseVisualStyleBackColor = False
-        AddHandler Me.ButtonGenerateReport.Click, AddressOf Me.ButtonGenerateReport_Click
         '
         'TextBoxLedgerAccountTo
         '
@@ -218,7 +216,6 @@ Partial Class FormLedgerAccountHistory
         Me.Controls.Add(Me.LabelProcessingDate)
         Me.Name = "FormLedgerAccountHistory"
         Me.Text = "frmHistoriekRekeningen"
-        AddHandler Load, AddressOf Me.FormLedgerAccountHistory_Load
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

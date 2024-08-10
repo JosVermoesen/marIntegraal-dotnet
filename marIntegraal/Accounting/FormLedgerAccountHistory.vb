@@ -1,42 +1,56 @@
-﻿Public Class FormLedgerAccountHistory
+﻿Option Strict Off
+Option Explicit On
+Imports IDEALSoftware.VpeStandard
 
-    Private Sub FormLedgerAccountHistory_Load(sender As Object, e As EventArgs)
+Public Class FormLedgerAccountHistory
+
+    Dim Line As Integer
+    Dim ReportText(5) As String
+    Dim FieldText(20) As String
+
+    Dim SelectionFromTo As String = Space(8)
+
+    Dim LNumberL(20) As Short
+
+    Dim SubTotalD As Double
+    Dim SubTotalC As Double
+    Dim TotalDebit As Double
+    Dim TotalCredit As Double
+    Dim EndTotalD As Double
+    Dim EndTotalC As Double
+
+    Private Sub FormLedgerAccountHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        SubTotalD = 0
+        SubTotalC = 0
+        TotalDebit = 0
+        TotalCredit = 0
+        EndTotalD = 0
+        EndTotalC = 0
+
+        SelectionFromTo = BOOKYEAR_FROMTO
+
+        TextBoxPeriodFromTo.Text = FunctionDateText(Mid(SelectionFromTo, 1, 8)) & " - " & FunctionDateText(Mid(SelectionFromTo, 9))
+        TextBoxProcessingDate.Text = MIM_GLOBAL_DATE
+        TextBoxLedgerAccountFrom.Text = CStr(10)
+        TextBoxLedgerAccountTo.Text = "7999999"
 
     End Sub
 
-    Private Sub ButtonClose_Click(sender As Object, e As EventArgs)
+    Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
 
     End Sub
 
-    Private Sub ButtonGenerateReport_Click(sender As Object, e As EventArgs)
+    Private Sub ButtonGenerateReport_Click(sender As Object, e As EventArgs) Handles ButtonGenerateReport.Click
 
     End Sub
 
 End Class
 
-'Option Strict Off
-'Option Explicit On
-'Imports VB = Microsoft.VisualBasic
 'Friend Class HistoriekPrint
 '	Inherits System.Windows.Forms.Form
 '	'UPGRADE_NOTE: DefInt A-Z statement was removed. Variables were explicitly declared as type Short. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="92AFD3E3-440D-4D49-A8BF-580D74A8C9F2"'
 
-'	Dim ReportText(5) As String
-'	Dim LFontSize(20) As Single
-'	Dim LNumberL(20) As Short
-'	Dim FontDefChanged As Short
-
-'	Dim FieldText(20) As String
-
-'	Dim SubTotaalD As Decimal
-'	Dim SubTotaalC As Decimal
-'	Dim TotalDebit As Decimal
-'	Dim TotalCredit As Decimal
-'	Dim AlgTotaalD As Decimal
-'	Dim AlgTotaalC As Decimal
-
-'	Dim Line As Integer
-'	Dim SelectieVanTot As String
 
 
 '	Sub AlgemeenEindTotaal()
