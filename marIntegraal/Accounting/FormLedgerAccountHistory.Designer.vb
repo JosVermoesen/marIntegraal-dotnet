@@ -46,7 +46,7 @@ Partial Class FormLedgerAccountHistory
         Me.CheckBoxPeriodTotals.Checked = True
         Me.CheckBoxPeriodTotals.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxPeriodTotals.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CheckBoxPeriodTotals.Location = New System.Drawing.Point(6, 56)
+        Me.CheckBoxPeriodTotals.Location = New System.Drawing.Point(12, 111)
         Me.CheckBoxPeriodTotals.Name = "CheckBoxPeriodTotals"
         Me.CheckBoxPeriodTotals.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.CheckBoxPeriodTotals.Size = New System.Drawing.Size(134, 17)
@@ -54,13 +54,14 @@ Partial Class FormLedgerAccountHistory
         Me.CheckBoxPeriodTotals.TabStop = False
         Me.CheckBoxPeriodTotals.Text = "&Periodieke Totalen"
         Me.CheckBoxPeriodTotals.UseVisualStyleBackColor = False
+        Me.CheckBoxPeriodTotals.Visible = False
         '
         'ButtonClose
         '
         Me.ButtonClose.BackColor = System.Drawing.SystemColors.Control
         Me.ButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.ButtonClose.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ButtonClose.Location = New System.Drawing.Point(282, 107)
+        Me.ButtonClose.Location = New System.Drawing.Point(282, 111)
         Me.ButtonClose.Name = "ButtonClose"
         Me.ButtonClose.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.ButtonClose.Size = New System.Drawing.Size(84, 23)
@@ -81,13 +82,14 @@ Partial Class FormLedgerAccountHistory
         Me.ButtonGenerateReport.TabIndex = 0
         Me.ButtonGenerateReport.Text = "Genereer Rapport"
         Me.ButtonGenerateReport.UseVisualStyleBackColor = False
+        AddHandler Me.ButtonGenerateReport.Click, AddressOf Me.ButtonGenerateReport_Click
         AddHandler Me.ButtonGenerateReport.Leave, AddressOf Me.ButtonGenerateReport_Leave
         '
         'TextBoxLedgerAccountTo
         '
         Me.TextBoxLedgerAccountTo.AllowPromptAsInput = False
         Me.TextBoxLedgerAccountTo.BackColor = System.Drawing.Color.White
-        Me.TextBoxLedgerAccountTo.Location = New System.Drawing.Point(126, 107)
+        Me.TextBoxLedgerAccountTo.Location = New System.Drawing.Point(126, 81)
         Me.TextBoxLedgerAccountTo.Name = "TextBoxLedgerAccountTo"
         Me.TextBoxLedgerAccountTo.Size = New System.Drawing.Size(105, 20)
         Me.TextBoxLedgerAccountTo.TabIndex = 5
@@ -97,7 +99,7 @@ Partial Class FormLedgerAccountHistory
         '
         Me.TextBoxLedgerAccountFrom.AllowPromptAsInput = False
         Me.TextBoxLedgerAccountFrom.BackColor = System.Drawing.Color.White
-        Me.TextBoxLedgerAccountFrom.Location = New System.Drawing.Point(6, 107)
+        Me.TextBoxLedgerAccountFrom.Location = New System.Drawing.Point(6, 81)
         Me.TextBoxLedgerAccountFrom.Name = "TextBoxLedgerAccountFrom"
         Me.TextBoxLedgerAccountFrom.Size = New System.Drawing.Size(113, 20)
         Me.TextBoxLedgerAccountFrom.TabIndex = 3
@@ -142,7 +144,7 @@ Partial Class FormLedgerAccountHistory
         Me.LabelLedgerAccountTo.BackColor = System.Drawing.SystemColors.Control
         Me.LabelLedgerAccountTo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.LabelLedgerAccountTo.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LabelLedgerAccountTo.Location = New System.Drawing.Point(134, 87)
+        Me.LabelLedgerAccountTo.Location = New System.Drawing.Point(126, 61)
         Me.LabelLedgerAccountTo.Name = "LabelLedgerAccountTo"
         Me.LabelLedgerAccountTo.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LabelLedgerAccountTo.Size = New System.Drawing.Size(25, 15)
@@ -155,7 +157,7 @@ Partial Class FormLedgerAccountHistory
         Me.LabelLedgerAccountFrom.BackColor = System.Drawing.SystemColors.Control
         Me.LabelLedgerAccountFrom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.LabelLedgerAccountFrom.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LabelLedgerAccountFrom.Location = New System.Drawing.Point(10, 87)
+        Me.LabelLedgerAccountFrom.Location = New System.Drawing.Point(6, 61)
         Me.LabelLedgerAccountFrom.Name = "LabelLedgerAccountFrom"
         Me.LabelLedgerAccountFrom.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LabelLedgerAccountFrom.Size = New System.Drawing.Size(77, 15)
@@ -178,7 +180,7 @@ Partial Class FormLedgerAccountHistory
         'LabelRecordLines
         '
         Me.LabelRecordLines.AutoSize = True
-        Me.LabelRecordLines.Location = New System.Drawing.Point(298, 14)
+        Me.LabelRecordLines.Location = New System.Drawing.Point(298, 10)
         Me.LabelRecordLines.Name = "LabelRecordLines"
         Me.LabelRecordLines.Size = New System.Drawing.Size(68, 13)
         Me.LabelRecordLines.TabIndex = 103
@@ -186,7 +188,7 @@ Partial Class FormLedgerAccountHistory
         '
         'TextBoxRecordLines
         '
-        Me.TextBoxRecordLines.Location = New System.Drawing.Point(291, 30)
+        Me.TextBoxRecordLines.Location = New System.Drawing.Point(288, 30)
         Me.TextBoxRecordLines.Name = "TextBoxRecordLines"
         Me.TextBoxRecordLines.ReadOnly = True
         Me.TextBoxRecordLines.Size = New System.Drawing.Size(75, 20)
@@ -216,6 +218,7 @@ Partial Class FormLedgerAccountHistory
         Me.Name = "FormLedgerAccountHistory"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Historiek Rekeningen"
+        AddHandler Load, AddressOf Me.FormLedgerAccountHistory_Load
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
