@@ -16,20 +16,23 @@ Public Class FormLedgerAccountHistory
 
     Dim SubTotalD As Double
     Dim SubTotalC As Double
-    Dim TotalDebit As Double
-    Dim TotalCredit As Double
+    Dim MonthTotalD As Double
+    Dim MonthTotalC As Double
     Dim EndTotalD As Double
     Dim EndTotalC As Double
 
     Dim PdfReportTitle As String
     Dim LastLedgerAccount As String
+    Dim CheckForMonth As String
 
-    Private Sub FormLedgerAccountHistory_Load(sender As Object, e As EventArgs)
+    Private Sub FormLedgerAccountHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        MonthTotalD = 0
+        MonthTotalC = 0
 
         SubTotalD = 0
         SubTotalC = 0
-        TotalDebit = 0
-        TotalCredit = 0
+
         EndTotalD = 0
         EndTotalC = 0
 
@@ -123,6 +126,8 @@ Public Class FormLedgerAccountHistory
         Line += 1
 
         LastLedgerAccount = Trim(JournalEntriesRS.Fields("v019").Value)
+        CheckForMonth = Mid(JournalEntriesRS.Fields("v066").Value, 5, 2)
+
         Mid(PdfLine, REPORT_TAB(0)) = Format(Line, "0000") 'lijn
         Mid(PdfLine, REPORT_TAB(1)) = FunctionDateText(ObjectValue((JournalEntriesRS.Fields("v066").Value))) 'datum
         Mid(PdfLine, REPORT_TAB(2)) = JournalEntriesRS.Fields("v067").Value 'betreft
@@ -139,12 +144,12 @@ Public Class FormLedgerAccountHistory
         DCAmount = ObjectValue((JournalEntriesRS.Fields("dece068").Value))
         Select Case DCAmount
             Case Is < 0
-                TotalCredit += DCAmount
+                MonthTotalC += DCAmount
                 SubTotalC += DCAmount
                 EndTotalC += DCAmount
                 Mid(PdfLine, REPORT_TAB(6)) = Dec(Math.Abs(DCAmount), MASK_EURBH) 'bedrag credit
             Case Else
-                TotalDebit += DCAmount
+                MonthTotalD += DCAmount
                 SubTotalD += DCAmount
                 EndTotalD += DCAmount
                 mid(PdfLine, REPORT_TAB(5)) = Dec(DCAmount, MASK_EURBH) 'bedrag debet
@@ -178,8 +183,9 @@ Public Class FormLedgerAccountHistory
         End With
 
         PAGE_COUNTER += 1
-        pdfY = Mim.Report.Print(1, 1, ReportText(3))
+        pdfY = Mim.Report.Print(1, 1, ReportText(2))
         pdfY = Mim.Report.Print(17, 1, "Pagina : " & Dec(PAGE_COUNTER, "##########") & vbCrLf)
+        Mim.Report.Print(1, pdfY, ReportText(3))
         pdfY = Mim.Report.Print(17, pdfY, "Datum  : " & ReportText(0) & vbCrLf & vbCrLf)
         VpePrintSubHeader()
 
@@ -194,14 +200,35 @@ Public Class FormLedgerAccountHistory
 
     End Sub
 
-    Private Sub PrintPeriodicTotal()
+    Private Sub PrintMonthTotal()
+
+        If CheckBoxPeriodTotals.Checked = False Then
+            Exit Sub
+        End If
 
         Dim PdfLine As String = Space(128)
 
-        mid(PdfLine, REPORT_TAB(4)) = "Periodiek totaal :"
+        mid(PdfLine, REPORT_TAB(2)) = "Maandtotaal:"
+        mid(PdfLine, REPORT_TAB(5)) = Dec(MonthTotalD, MASK_EURBH)
+        mid(PdfLine, REPORT_TAB(6)) = Dec(Math.Abs(MonthTotalC), MASK_EURBH)
+        pdfY = Mim.Report.Print(1, pdfY, vbCrLf & PdfLine & vbCrLf)
+        MonthTotalC = 0
+        MonthTotalD = 0
+
+    End Sub
+
+    Private Sub PrintPeriodicTotal()
+
+        PrintMonthTotal()
+
+        Dim PdfLine As String = Space(128)
+
+        PdfLine = Space(128)
+        mid(PdfLine, REPORT_TAB(2)) = "Boekjaar totalen:"
         mid(PdfLine, REPORT_TAB(5)) = Dec(SubTotalD, MASK_EURBH)
         mid(PdfLine, REPORT_TAB(6)) = Dec(Math.Abs(SubTotalC), MASK_EURBH)
-        pdfY = Mim.Report.Print(1, pdfY, vbCrLf & FULL_LINE & vbCrLf & PdfLine & vbCrLf)
+        pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf & vbCrLf)
+
         If pdfY > 27.5 Then
             Mim.Report.PageBreak()
             VpePrintHeader()
@@ -219,10 +246,10 @@ Public Class FormLedgerAccountHistory
 
         Dim PdfLine As String = Space(128)
 
-        mid(PdfLine, REPORT_TAB(2)) = "Boekjaartotalen :"
+        mid(PdfLine, REPORT_TAB(2)) = "Proef- en Salditotalen :"
         mid(PdfLine, REPORT_TAB(5)) = Dec(EndTotalD, MASK_EURBH)
         mid(PdfLine, REPORT_TAB(6)) = Dec(Math.Abs(EndTotalC), MASK_EURBH)
-        pdfY = Mim.Report.Print(1, pdfY, vbCrLf & FULL_LINE & vbCrLf & PdfLine & vbCrLf)
+        pdfY = Mim.Report.Print(1, pdfY, vbCrLf & PdfLine)
         EndTotalD = 0
         EndTotalC = 0
 
@@ -279,13 +306,13 @@ Public Class FormLedgerAccountHistory
 
     End Sub
 
-    Private Sub ButtonGenerateReport_Leave(sender As Object, e As EventArgs)
+    Private Sub ButtonGenerateReport_Leave(sender As Object, e As EventArgs) Handles ButtonGenerateReport.Leave
 
         TextBoxRecordLines.Text = "0"
 
     End Sub
 
-    Private Sub ButtonGenerateReport_Click(sender As Object, e As EventArgs)
+    Private Sub ButtonGenerateReport_Click(sender As Object, e As EventArgs) Handles ButtonGenerateReport.Click
 
         With Mim.Report
             .CloseDoc()
@@ -310,6 +337,10 @@ Public Class FormLedgerAccountHistory
                 If LastLedgerAccount <> Trim(JournalEntriesRS.Fields("v019").Value) Then
                     Line = 0
                     PrintPeriodicTotal()
+                Else
+                    If CheckForMonth <> Mid(JournalEntriesRS.Fields("v066").Value, 5, 2) Then
+                        PrintMonthTotal()
+                    End If
                 End If
             End If
         Loop
@@ -329,6 +360,11 @@ Public Class FormLedgerAccountHistory
 
     End Sub
 
+    Private Sub CheckBoxPeriodTotals_Leave(sender As Object, e As EventArgs) Handles CheckBoxPeriodTotals.Leave
+
+        CheckRecordSet()
+
+    End Sub
 End Class
 
 '	Private Sub TekstLijn_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles TekstLijn.Enter
