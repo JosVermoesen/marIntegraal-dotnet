@@ -478,7 +478,7 @@ TryAgain:
                     AdoInsertToRecord(TABLE_LEDGERACCOUNTS, Str(Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e022 #")) + Val(AdoGetField(TABLE_JOURNAL, "#v068 #"))), "e022")
                     RS_MAR(TABLE_LEDGERACCOUNTS).Fields("dece022").Value = RS_MAR(TABLE_LEDGERACCOUNTS).Fields("dece022").Value + RS_MAR(TABLE_JOURNAL).Fields("dece068").Value
                 End If
-                bUpdate(TABLE_LEDGERACCOUNTS, 0)
+                JetUpdate(TABLE_LEDGERACCOUNTS, 0)
             End If
         End If
         Select Case KTRL
@@ -514,7 +514,7 @@ JetErrorInsert:
 
     End Sub
 
-    Sub bLast(ByRef Fl As Short, ByRef fIndex As Short)
+    Sub JetLast(ByRef Fl As Short, ByRef fIndex As Short)
 
         On Error Resume Next
 
@@ -541,7 +541,7 @@ JetErrorInsert:
 
     End Sub
 
-    Sub bNext(ByRef Fl As Short, ByRef fIndex As Short, ByRef SleutelBefore As String)
+    Sub JetNext(ByRef Fl As Short, ByRef fIndex As Short, ByRef KeyBefore As String)
 
         On Error Resume Next
         JetTableClose(Fl)
@@ -551,7 +551,7 @@ JetErrorInsert:
 
         Err.Clear()
 
-        SQL_MSG(Fl) = "SELECT TOP 1 * FROM " & JET_TABLENAME(Fl) & " WHERE " & JETTABLEUSE_INDEX(Fl, fIndex) & " > '" & SleutelBefore & "' " & " ORDER BY " & JETTABLEUSE_INDEX(Fl, fIndex) & " ASC"
+        SQL_MSG(Fl) = "SELECT TOP 1 * FROM " & JET_TABLENAME(Fl) & " WHERE " & JETTABLEUSE_INDEX(Fl, fIndex) & " > '" & KeyBefore & "' " & " ORDER BY " & JETTABLEUSE_INDEX(Fl, fIndex) & " ASC"
         KTRL = 0 : JetTableOpen(Fl)
 
         If RS_MAR(Fl).EOF Then
@@ -598,7 +598,7 @@ JetErrorInsert:
 
     End Function
 
-    Sub bPrev(ByRef Fl As Short, ByRef fIndex As Short, ByRef SleutelBefore As String)
+    Sub JetPrev(ByRef Fl As Short, ByRef fIndex As Short, ByRef KeyBefore As String)
 
         On Error Resume Next
         JetTableClose(Fl)
@@ -608,7 +608,7 @@ JetErrorInsert:
 
 
         Err.Clear()
-        SQL_MSG(Fl) = "SELECT TOP 1 * FROM " & JET_TABLENAME(Fl) & " WHERE " & JETTABLEUSE_INDEX(Fl, fIndex) & " < '" & SleutelBefore & "' " & " ORDER BY " & JETTABLEUSE_INDEX(Fl, fIndex) & " DESC"
+        SQL_MSG(Fl) = "SELECT TOP 1 * FROM " & JET_TABLENAME(Fl) & " WHERE " & JETTABLEUSE_INDEX(Fl, fIndex) & " < '" & KeyBefore & "' " & " ORDER BY " & JETTABLEUSE_INDEX(Fl, fIndex) & " DESC"
         KTRL = 0 : JetTableOpen(Fl)
 
         If RS_MAR(Fl).EOF Then
@@ -626,7 +626,7 @@ JetErrorInsert:
 
     End Sub
 
-    Sub bUpdate(ByRef Fl As Short, ByRef fIndex As Short)
+    Sub JetUpdate(ByRef Fl As Short, ByRef fIndex As Short)
         Dim XXXXX As Short
         Err.Clear()
         XXXXX = FieldToRecord(Fl)
@@ -809,7 +809,7 @@ JetErrorInsert:
 
     End Function
 
-    Function TeleBibPagina(ByRef Fl As Short) As Short
+    Function TeleBibPage(ByRef Fl As Short) As Short
         Dim FlInput As Short
         Dim FFDefinitie As String
         Dim DummyString As String
@@ -819,7 +819,7 @@ JetErrorInsert:
         Dim CurBedrag As Decimal
         Dim T As Short
 
-        TeleBibPagina = False
+        TeleBibPage = False
 
 
 
@@ -871,7 +871,7 @@ EerstEnVooral:
             FileClose(FlInput)
             TELEBIB_CODE(T) = ""
             TELEBIB_LAST = T - 1
-            TeleBibPagina = True
+            TeleBibPage = True
             Exit Function
         End If
 
@@ -891,7 +891,7 @@ GeenUserVoorkeur:
         FileClose(FlInput)
         TELEBIB_LAST = T - 1
         TELEBIB_CODE(T) = ""
-        TeleBibPagina = True
+        TeleBibPage = True
 
 MakelaarIn:
         If Trim(AGENT_NUMBER) = "" Then
@@ -918,7 +918,7 @@ MakelaarIn:
 TeleBibError:
         MsgBox("Telebibinlaadfout" & Str(T) & " error:" & ErrorToString())
         FileClose(FlInput)
-        TeleBibPagina = False
+        TeleBibPage = False
         Exit Function
         Resume
 
@@ -1053,7 +1053,7 @@ TeleBibError:
             RS_MAR(TABLE_LEDGERACCOUNTS).Fields("dece022").Value = RS_MAR(TABLE_LEDGERACCOUNTS).Fields("dece022").Value + RV(RS_JOURNAL, "dece068")
         End If
         RS_MAR(TABLE_LEDGERACCOUNTS).Fields("dnnsync").Value = False
-        bUpdate(TABLE_LEDGERACCOUNTS, 0)
+        JetUpdate(TABLE_LEDGERACCOUNTS, 0)
         Err.Clear()
         On Error Resume Next
         RS_JOURNAL.Update()

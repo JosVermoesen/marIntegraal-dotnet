@@ -40,7 +40,7 @@ Public Class FormLedgerAccountHistory
         TextBoxProcessingDate.Text = MIM_GLOBAL_DATE
 
         TextBoxLedgerAccountFrom.Text = CStr(1)
-        bNext(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountFrom.Text, 7))
+        JetNext(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountFrom.Text, 7))
         If KTRL Then
         Else
             RecordToField(TABLE_LEDGERACCOUNTS)
@@ -48,7 +48,7 @@ Public Class FormLedgerAccountHistory
         End If
 
         TextBoxLedgerAccountTo.Text = "7999999"
-        bPrev(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountTo.Text, 7))
+        JetPrev(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountTo.Text, 7))
         If KTRL Then
         Else
             RecordToField(TABLE_LEDGERACCOUNTS)
@@ -286,7 +286,7 @@ Public Class FormLedgerAccountHistory
 
     Private Sub TextBoxLedgerAccountFrom_Leave(sender As Object, e As EventArgs) Handles TextBoxLedgerAccountFrom.Leave
 
-        bNext(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountFrom.Text, 7))
+        JetNext(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountFrom.Text, 7))
         If KTRL Then
         Else
             RecordToField(TABLE_LEDGERACCOUNTS)
@@ -297,7 +297,7 @@ Public Class FormLedgerAccountHistory
 
     Private Sub TextBoxLedgerAccountTo_Leave(sender As Object, e As EventArgs) Handles TextBoxLedgerAccountTo.Leave
 
-        bPrev(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountTo.Text, 7))
+        JetPrev(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountTo.Text, 7))
         If KTRL Then
         Else
             RecordToField(TABLE_LEDGERACCOUNTS)

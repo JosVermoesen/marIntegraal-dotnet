@@ -225,7 +225,7 @@ TryAgain:
             RecordToField(TABLE_DUMMY)
             AdoInsertToRecord(TABLE_DUMMY, Str(Val(AdoGetField(TABLE_DUMMY, "#v013 #")) + 1), "v013")
             AdoInsertToRecord(TABLE_DUMMY, Str(Val(AdoGetField(TABLE_DUMMY, "#v068 #")) + amount), "v068")
-            bUpdate(TABLE_DUMMY, 0)
+            JetUpdate(TABLE_DUMMY, 0)
         End If
 
     End Sub
@@ -294,7 +294,7 @@ TryAgain:
         Mid(PdfDetailLine, Tabul + 2) = Dec(aantalKeer, "####") & " x " & rekeningNummer & " " & rekeningNaam & " " & Dec(bedrag, MaskHere)
 
         Do
-            bNext(TABLE_DUMMY, 0, rekeningNummer)
+            JetNext(TABLE_DUMMY, 0, rekeningNummer)
             If KTRL Then
                 Exit Do
             End If

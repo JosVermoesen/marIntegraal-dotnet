@@ -21,6 +21,21 @@ Public Class FormTrialBalance
 
     Dim SelectionFromTo As String = Space(16)
     Dim PdfReportTitle As String
+    Dim PdfLine As String = Space(128)
+
+    Dim BookYearAccountSolde As String
+
+    Dim FirstPartDone As Boolean
+    Dim SecondPartReady As Boolean
+    Dim LastLedgerAccount As String
+    Dim CheckForMonth As String
+
+    Dim MonthTotalD As Decimal
+    Dim MonthTotalC As Decimal
+    Dim MonthCumulDC As Decimal
+    Dim AccountCumulDC As Decimal
+    Dim EndTotalD As Decimal
+    Dim EndTotalC As Decimal
 
     Private Sub FormTrialBalance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -31,9 +46,10 @@ Public Class FormTrialBalance
 
         SelectionFromTo = BOOKYEAR_FROMTO
         TextBoxProcessingDate.Text = MIM_GLOBAL_DATE
+        BookYearAccountSolde = "e" & Format(22 + FormBYPERDAT.Boekjaar.SelectedIndex, "000")
 
         TextBoxLedgerAccountFrom.Text = CStr(1)
-        bNext(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountFrom.Text, 7))
+        JetNext(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountFrom.Text, 7))
         If KTRL Then
         Else
             RecordToField(TABLE_LEDGERACCOUNTS)
@@ -41,7 +57,7 @@ Public Class FormTrialBalance
         End If
 
         TextBoxLedgerAccountTo.Text = "7999999"
-        bPrev(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountTo.Text, 7))
+        JetPrev(TABLE_LEDGERACCOUNTS, 0, SetSpacing(TextBoxLedgerAccountTo.Text, 7))
         If KTRL Then
         Else
             RecordToField(TABLE_LEDGERACCOUNTS)
@@ -140,7 +156,7 @@ Public Class FormTrialBalance
     Private Sub CheckRecordSet()
 
         Dim sSQL As String
-        sSQL = "SELECT Journalen.v066, Journalen.v019, Rekeningen.v020, Journalen.v067, Journalen.v033, Journalen.dece068, Journalen.v069, Journalen.v038 FROM Journalen, Rekeningen WHERE Journalen.v019=Rekeningen.v019 AND Journalen.v066 >= '" & Mid(SelectionFromTo, 1, 8) & "' AND Journalen.v066 <= '" & Mid(SelectionFromTo, 9) & "' ORDER BY Journalen.v019, Journalen.v066"
+        sSQL = "SELECT Journalen.v066, Journalen.v019, Rekeningen.v020, Rekeningen." & BookYearAccountSolde & ", Journalen.v067, Journalen.v033, Journalen.dece068, Journalen.v069, Journalen.v038 FROM Journalen, Rekeningen WHERE Journalen.v019=Rekeningen.v019 AND Journalen.v066 >= '" & Mid(SelectionFromTo, 1, 8) & "' AND Journalen.v066 <= '" & Mid(SelectionFromTo, 9) & "' ORDER BY Journalen.v019, Journalen.v066"
 
         ' Create a recordset using the provided collection
         JournalEntriesRS = New ADODB.Recordset With {
@@ -288,6 +304,49 @@ Public Class FormTrialBalance
 
     Private Sub PrintTrialBalance()
 
+        With Mim.Report
+            .CloseDoc()
+            .OpenDoc()
+            .Author = "marIntegraal"
+            .GUILanguage = 3 'Nederlands
+            .Title = "Proef- en Saldibalans"
+        End With
+        ReportText(2) = "Proef- en Saldibalans " & Mid(Mim.Text, InStr(Mim.Text, "["))
+        ReportText(0) = TextBoxProcessingDate.Text
+        ReportText(3) = TextBoxPeriodFromTo.Text
+        InitializeFields()
+        Line = 0
+        JournalEntriesRS.MoveFirst()
+        VpePrintHeader()
+        Do While Not JournalEntriesRS.EOF
+            VpePrintLine()
+            JournalEntriesRS.MoveNext()
+            If JournalEntriesRS.EOF Then
+                Exit Do
+            Else
+                If LastLedgerAccount <> Trim(JournalEntriesRS.Fields("v019").Value) Then
+                    Line = 0
+                    'PrintLedgerAccountTotal()
+                Else
+                    If CheckForMonth <> Mid(JournalEntriesRS.Fields("v066").Value, 5, 2) Then
+                        'PrintMonthTotal()
+                    End If
+                End If
+            End If
+        Loop
+        'PrintLedgerAccountTotal()
+        PrintEndTotal()
+        With Mim.Report
+            .WriteDoc(LOCATION_COMPANYDATA & Format(Now, "YYYYMMDDHHMMSS") & "-historieken.pdf")
+            .MailSubject = "Historieken bedrijfx"
+            .MailText = "Historieken bedrijf ix in bijlage."
+        End With
+
+        'Mim.Report.AddMailReceiver(TextBoxMailToOption.Text, RecipientClass.To)
+        Mim.Report.Preview()
+        'Mim.Report.CloseDoc()
+        Focus()
+        ButtonClose.PerformClick()
         '		Dim Printer As New Printer
         '		Dim SubTitelTekst As String
         '		Dim BeginSleutel As New VB6.FixedLengthString(15)
@@ -492,119 +551,68 @@ Public Class FormTrialBalance
     End Sub
 
     Private Sub VpePrintLine()
-        '	Private Sub VpePrintLines()
-        '		Dim Printer As New Printer
-        '		Dim T As Short
-        '		Dim VeldTekst As String
 
-        '		On Error GoTo PrtHandler4
+        Dim DCAmount As Double
+        Dim DCNote As String
 
-        '		aa = ""
-        '		Do While REPORT_TAB(T) <> 0
-        '			If chkAfdrukInVenster.CheckState Then
-        '				aa = aa & FieldText(T) & vbTab
-        '			Else
-        '				Printer.Print(TAB(REPORT_TAB(T)))
-        '				Printer.Write(FieldText(T))
-        '			End If
-        '			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
-        '				If chkAfdrukInVenster.CheckState Then
-        '				Else
-        '					Printer.Write(vbCrLf)
-        '				End If
-        '			End If
-        '			T = T + 1
-        '		Loop 
+        Line += 1
 
-        '		If chkAfdrukInVenster.CheckState Then Xlog.X.AddItem(aa, Xlog.X.Rows - 1) : Exit Sub
+        LastLedgerAccount = Trim(JournalEntriesRS.Fields("v019").Value)
+        CheckForMonth = Mid(JournalEntriesRS.Fields("v066").Value, 5, 2)
 
-        '		If Printer.CurrentY >= Printer.Height - 1200 Then
-        '			Printer.NewPage()
-        '			Printer.FontSize = Printer.FontSize
-        '			Printer.Print(" ")
-        '			Printer.FontSize = Printer.FontSize
-        '			VpePrintHeader()
-        '		End If
-        '		Exit Sub
+        If FirstPartDone Then
+            If SecondPartReady Then
 
-        'PrtHandler4: 
-        '		MsgBox("Kontroleer de printer.")
-        '		Resume 
 
-        '	End Sub
+            Else
+                AddUpLedgerAccountTotals()
+                Exit Sub
+            End If
+        Else
+            PdfLine = Space(128)
+            Mid(PdfLine, REPORT_TAB(0)) = JournalEntriesRS.Fields("v019").Value 'accountnumber
+            Mid(PdfLine, REPORT_TAB(1)) = JournalEntriesRS.Fields("v020").Value 'accountname
 
+            DCAmount = ObjectValue((JournalEntriesRS.Fields(BookYearAccountSolde).Value))
+            Select Case DCAmount
+                Case Is < 0
+                    DCNote = "CS:"
+                    Mid(PdfLine, REPORT_TAB(2)) = DCNote + Dec(Math.Abs(DCAmount), MASK_EURBH) 'CS amount
+                Case Else
+                    DCNote = "DS:"
+                    mid(PdfLine, REPORT_TAB(2)) = DCNote + Dec(DCAmount, MASK_EURBH) 'DS amount
+            End Select
+            FirstPartDone = True
+            AddUpLedgerAccountTotals()
+            Exit Sub
+        End If
+
+        pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf)
+        If pdfY > 27.5 Then
+            Mim.Report.PageBreak()
+            VpePrintHeader()
+        End If
 
     End Sub
 
-    Private Sub PrintLedgerAccoutTotal()
+    Private Sub AddUpLedgerAccountTotals()
 
-        '	Private Sub RekeningTotaal()
-        '		Dim Printer As New Printer
-        '		Dim T As Short
+        Dim DCAmount As Double
 
-        '		'On Local Error GoTo PrtHandler5
-        '		Dim TotaalDC As Double
-        '		Dim CumTotaalDC As Double
+        DCAmount = ObjectValue((JournalEntriesRS.Fields("dece068").Value))
+        Select Case DCAmount
+            Case Is < 0
+                MonthTotalC += DCAmount
+                MonthCumulDC += DCAmount
+                AccountCumulDC += DCAmount
+                EndTotalC += DCAmount
 
-        '		FieldText(4) = Dec(SubTotaalD, MASK_2002.Value)
-        '		FieldText(5) = Dec(System.Math.Abs(SubTotaalC), MASK_2002.Value)
-        '		'FieldText(6) = Dec$((CumTotaalD), MASK_SY(0))
-        '		TotaalDC = SubTotaalD + SubTotaalC
-        '		If TotaalDC < 0 Then
-        '			FieldText(6) = "C:" & Dec(System.Math.Abs(TotaalDC), MASK_2002.Value)
-        '		ElseIf TotaalDC > 0 Then 
-        '			FieldText(6) = "D:" & Dec(TotaalDC, MASK_2002.Value)
-        '		Else
-        '			FieldText(6) = "  " & Dec(TotaalDC, MASK_2002.Value)
-        '		End If
-
-        '		CumTotaalDC = CumTotaalD + CumTotaalC
-        '		If CumTotaalDC < 0 Then
-        '			FieldText(7) = "C:" & Dec(System.Math.Abs(CumTotaalDC), MASK_2002.Value)
-        '		ElseIf CumTotaalDC > 0 Then 
-        '			FieldText(7) = "D:" & Dec(CumTotaalDC, MASK_2002.Value)
-        '		Else
-        '			FieldText(7) = "  " & Dec(CumTotaalDC, MASK_2002.Value)
-        '		End If
-
-        '		T = 0
-        '		aa = ""
-        '		Do While REPORT_TAB(T) <> 0
-        '			If chkAfdrukInVenster.CheckState Then
-        '				aa = aa & FieldText(T) & vbTab
-        '			Else
-        '				Printer.Print(TAB(REPORT_TAB(T)))
-        '				Printer.Write(FieldText(T))
-        '				If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
-        '					Printer.Write(vbCrLf)
-        '				End If
-        '			End If
-        '			T = T + 1
-        '		Loop 
-
-        '		SubTotaalD = 0
-        '		SubTotaalC = 0
-
-        '		If chkAfdrukInVenster.CheckState Then
-        '			Xlog.X.AddItem(aa, Xlog.X.Rows - 1)
-        '		ElseIf Printer.CurrentY >= Printer.Height - 1200 Then 
-        '			Printer.NewPage()
-        '			Printer.FontSize = Printer.FontSize
-        '			Printer.Print(" ")
-        '			Printer.FontSize = Printer.FontSize
-        '			VpePrintHeader()
-        '		End If
-
-        '		For T = 0 To 7
-        '			FieldText(T) = ""
-        '		Next 
-        '		Exit Sub
-
-        'PrtHandler5: 
-        '		MsgBox("Kontroleer de printer.")
-        '		Resume 
-
-        '	End Sub
+            Case Else
+                MonthTotalD += DCAmount
+                MonthCumulDC += DCAmount
+                AccountCumulDC += DCAmount
+                EndTotalD += DCAmount
+        End Select
 
     End Sub
 

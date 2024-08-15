@@ -295,7 +295,7 @@ ErrorOpvang:
         JETTABLEUSE_INDEX(TABLE_DUMMY, 0) = "v089 " : FLINDEX_LEN(TABLE_DUMMY, 0) = 20 : FLINDEX_CAPTION(TABLE_DUMMY, 0) = "Plaatselijk sorteren"
 
         For T = TABLE_VARIOUS To TABLE_COUNTERS
-            If TeleBibPagina(T) Then
+            If TeleBibPage(T) Then
             Else
                 MsgBox("Fout tijdens inladen bestandsdefinities.  Herinstalleer het programma en/of kontakteer Vsoft")
                 InitTables = False
@@ -373,7 +373,7 @@ EenFoutBijINLaden:
             RecordToField(TABLE_COUNTERS)
             If BA_MODUS = 1 Then
                 AdoInsertToRecord(TABLE_COUNTERS, FL99_RECORD, "v217 ")
-                bUpdate(TABLE_COUNTERS, 0)
+                JetUpdate(TABLE_COUNTERS, 0)
                 If KTRL Then
                     MsgBox("UpdateStop Teller. kontakteer vsoft")
                 End If
@@ -461,7 +461,7 @@ EenFoutBijINLaden:
         TeleBibClick = False
         Select Case Fl
             Case TABLE_CUSTOMERS To TABLE_CONTRACTS 'Hoofdfiches
-                If TeleBibPagina(Fl) = False Then
+                If TeleBibPage(Fl) = False Then
                     Beep()
                     Exit Function
                 End If
@@ -587,7 +587,7 @@ XLogShow:
                 MSG = "Gegevens bestaande fiche wijzigen.  Bent U zeker ?"
                 KTRL = MsgBox(MSG, 292)
                 If KTRL = 6 Then
-                    bUpdate(Fl, 0)
+                    JetUpdate(Fl, 0)
                 End If
             End If
             TeleBibClick = True

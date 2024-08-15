@@ -92,6 +92,7 @@ Partial Class FormTrialBalance
         Me.TextBoxPeriodFromTo.Location = New System.Drawing.Point(99, 77)
         Me.TextBoxPeriodFromTo.MaxLength = 0
         Me.TextBoxPeriodFromTo.Name = "TextBoxPeriodFromTo"
+        Me.TextBoxPeriodFromTo.ReadOnly = True
         Me.TextBoxPeriodFromTo.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.TextBoxPeriodFromTo.Size = New System.Drawing.Size(189, 20)
         Me.TextBoxPeriodFromTo.TabIndex = 23

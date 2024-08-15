@@ -33,7 +33,7 @@ Public Class FrmBasicSheetTemplate
 
         JetGet(hierFl, 0, SetSpacing(codeTextBox.Text, FLINDEX_LEN(hierFl, 0)))
         If KTRL = 0 Then
-            bUpdate(hierFl, 0)
+            JetUpdate(hierFl, 0)
         Else
             JetInsert(hierFl, 0)
         End If
@@ -77,7 +77,7 @@ Public Class FrmBasicSheetTemplate
     End Sub
     Private Sub bodemButton_Click(sender As Object, e As EventArgs) Handles bodemButton.Click
 
-        bLast(hierFl, 0)
+        JetLast(hierFl, 0)
         If KTRL Then
             Beep()
             bewerkenButton.Enabled = False
@@ -91,7 +91,7 @@ Public Class FrmBasicSheetTemplate
     End Sub
     Private Sub lagerButton_Click(sender As Object, e As EventArgs) Handles lagerButton.Click
 
-        bPrev(hierFl, 0, lastKey)
+        JetPrev(hierFl, 0, lastKey)
         If KTRL Then
             Beep()
             bewerkenButton.Enabled = False
@@ -105,7 +105,7 @@ Public Class FrmBasicSheetTemplate
     End Sub
     Private Sub hogerButton_Click(sender As Object, e As EventArgs) Handles hogerButton.Click
 
-        bNext(hierFl, 0, lastKey)
+        JetNext(hierFl, 0, lastKey)
         If KTRL Then
             Beep()
             bewerkenButton.Enabled = False
