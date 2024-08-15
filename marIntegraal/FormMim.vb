@@ -373,28 +373,26 @@ Public Class Mim
         End With
     End Sub
     Private Sub FinancialJournalMenuItem_Click(sender As Object, e As EventArgs)
-        Dim FinancialBook As New FormFinancialBook
-        FinancialBook.ShowDialog()
+        Dim financialBook As New FormFinancialBook
+        financialBook.ShowDialog()
     End Sub
     Private Sub VATDomesticAnnualListingMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("VATDomesticAnnualListingMenuItem_Click")
     End Sub
     Private Sub VATReturnStatusMenuItem_Click(sender As Object, e As EventArgs)
-        Dim StatusVatDeclaration As New FormVatDeclarations
-        StatusVatDeclaration.ShowDialog()
+        Dim statusVatDeclaration As New FormVatDeclarations
+        statusVatDeclaration.ShowDialog()
     End Sub
     Private Sub InventoryControlMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("InventoryControlMenuItem_Click")
     End Sub
     Private Sub TrialBalanceMenuItem_Click(sender As Object, e As EventArgs)
-        MessageBox.Show("TrialBalanceMenuItem_Click")
+        Dim trialBalance As New FormTrialBalance
+        trialBalance.ShowDialog()
     End Sub
     Private Sub JournalHistoryMenuItem_Click(sender As Object, e As EventArgs)
-
-        Dim LedgerAccountHistory As New FormLedgerAccountHistory
-        ' LedgerAccountHistory.MdiParent = Me
-        LedgerAccountHistory.ShowDialog()
-
+        Dim ledgerAccountHistory As New FormLedgerAccountHistory
+        ledgerAccountHistory.ShowDialog()
     End Sub
     Private Sub FinalReportingMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("FinalReportingMenuItem_Click")

@@ -10,7 +10,7 @@ Public Class FormLedgerAccountHistory
     Dim pdfY As Double
     Dim ReportText(5) As String
     Dim FieldText(20) As String
-    Dim SelectionFromTo As String = Space(8)
+    Dim SelectionFromTo As String = Space(16)
 
     Dim LNumberL(20) As Short
 
@@ -76,16 +76,6 @@ Public Class FormLedgerAccountHistory
         Else
             TextBoxRecordLines.Text = JournalEntriesRS.RecordCount
             ButtonGenerateReport.Focus()
-        End If
-
-    End Sub
-
-    Private Sub TextBoxRecordLines_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRecordLines.TextChanged
-
-        If TextBoxRecordLines.Text = "0" Then
-            ButtonGenerateReport.Enabled = False
-        Else
-            ButtonGenerateReport.Enabled = True
         End If
 
     End Sub
@@ -217,7 +207,7 @@ Public Class FormLedgerAccountHistory
 
     End Sub
 
-    Private Sub PrintPeriodicTotal()
+    Private Sub PrintLedgerAccountTotal()
 
         PrintMonthTotal()
 
@@ -252,6 +242,16 @@ Public Class FormLedgerAccountHistory
         pdfY = Mim.Report.Print(1, pdfY, vbCrLf & PdfLine)
         EndTotalD = 0
         EndTotalC = 0
+
+    End Sub
+
+    Private Sub TextBoxRecordLines_TextChanged(sender As Object, e As EventArgs) Handles TextBoxRecordLines.TextChanged
+
+        If TextBoxRecordLines.Text = "0" Then
+            ButtonGenerateReport.Enabled = False
+        Else
+            ButtonGenerateReport.Enabled = True
+        End If
 
     End Sub
 
@@ -336,7 +336,7 @@ Public Class FormLedgerAccountHistory
             Else
                 If LastLedgerAccount <> Trim(JournalEntriesRS.Fields("v019").Value) Then
                     Line = 0
-                    PrintPeriodicTotal()
+                    PrintLedgerAccountTotal()
                 Else
                     If CheckForMonth <> Mid(JournalEntriesRS.Fields("v066").Value, 5, 2) Then
                         PrintMonthTotal()
@@ -344,7 +344,7 @@ Public Class FormLedgerAccountHistory
                 End If
             End If
         Loop
-        PrintPeriodicTotal()
+        PrintLedgerAccountTotal()
         PrintEndTotal()
         With Mim.Report
             .WriteDoc(LOCATION_COMPANYDATA & Format(Now, "YYYYMMDDHHMMSS") & "-historieken.pdf")

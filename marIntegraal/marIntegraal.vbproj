@@ -366,10 +366,10 @@
     <Compile Include="SupportiveForms\frmProductlijstRekenkundig.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accounting\frmProefEnSaldi.Designer.vb">
-      <DependentUpon>frmProefEnSaldi.vb</DependentUpon>
+    <Compile Include="Accounting\FormTrialBalance.Designer.vb">
+      <DependentUpon>FormTrialBalance.vb</DependentUpon>
     </Compile>
-    <Compile Include="Accounting\frmProefEnSaldi.vb">
+    <Compile Include="Accounting\FormTrialBalance.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="System\FrmSettingsFinancialYear.Designer.vb">
@@ -576,8 +576,8 @@
     <EmbeddedResource Include="SupportiveForms\frmProductlijstRekenkundig.resx">
       <DependentUpon>frmProductlijstRekenkundig.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Accounting\frmProefEnSaldi.resx">
-      <DependentUpon>frmProefEnSaldi.vb</DependentUpon>
+    <EmbeddedResource Include="Accounting\FormTrialBalance.resx">
+      <DependentUpon>FormTrialBalance.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="System\FrmSettingsFinancialYear.resx">
       <DependentUpon>FrmSettingsFinancialYear.vb</DependentUpon>

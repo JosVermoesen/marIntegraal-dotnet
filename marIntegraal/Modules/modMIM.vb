@@ -1219,7 +1219,7 @@ errorCMDPRINT:
             Dag = Val(Mid(fDatum, 1, 2))
             Maand = Val(Mid(fDatum, 4, 2))
             Jaar = Val(Mid(fDatum, 7, 4))
-            If Dag < 32 And Dag > 0 And Maand < 13 And Maand > 0 And Jaar > 1985 And Jaar < 2025 Then
+            If Dag < 32 And Dag > 0 And Maand < 13 And Maand > 0 And Jaar > 1985 And Jaar < 2062 Then
                 DateWrongFormat = False
             Else
                 DateWrongFormat = True

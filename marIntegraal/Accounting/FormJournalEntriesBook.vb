@@ -82,6 +82,7 @@ Public Class FormJournalEntriesBook
         pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf)
         pdfY = Mim.Report.Print(1, pdfY, PdfReportTitle & vbCrLf)
         pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf & vbCrLf)
+
     End Sub
 
     Private Sub InitialiseFields()
