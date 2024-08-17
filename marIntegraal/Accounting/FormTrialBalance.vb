@@ -156,7 +156,7 @@ Public Class FormTrialBalance
     Private Sub CheckRecordSet()
 
         Dim sSQL As String
-        sSQL = "SELECT Journalen.v066, Journalen.v019, Rekeningen.v020, Rekeningen." & BookYearAccountSolde & ", Journalen.v067, Journalen.v033, Journalen.dece068, Journalen.v069, Journalen.v038 FROM Journalen, Rekeningen WHERE Journalen.v019=Rekeningen.v019 AND Journalen.v066 >= '" & Mid(SelectionFromTo, 1, 8) & "' AND Journalen.v066 <= '" & Mid(SelectionFromTo, 9) & "' ORDER BY Journalen.v019, Journalen.v066"
+        sSQL = "SELECT Journalen.v066, Journalen.dece068, Journalen.v019, Rekeningen.v020, Rekeningen." & BookYearAccountSolde & " FROM Journalen, Rekeningen WHERE Journalen.v019=Rekeningen.v019 AND Journalen.v066 >= '" & Mid(SelectionFromTo, 1, 8) & "' AND Journalen.v066 <= '" & Mid(SelectionFromTo, 9) & "' ORDER BY Journalen.v019, Journalen.v066"
 
         ' Create a recordset using the provided collection
         JournalEntriesRS = New ADODB.Recordset With {
@@ -317,6 +317,9 @@ Public Class FormTrialBalance
         InitializeFields()
         Line = 0
         JournalEntriesRS.MoveFirst()
+        SecondPartReady = False
+        FirstPartDone = False
+        CheckForMonth = Mid(JournalEntriesRS.Fields("v066").Value, 5, 2)
         VpePrintHeader()
         Do While Not JournalEntriesRS.EOF
             VpePrintLine()
@@ -326,16 +329,25 @@ Public Class FormTrialBalance
             Else
                 If LastLedgerAccount <> Trim(JournalEntriesRS.Fields("v019").Value) Then
                     Line = 0
-                    'PrintLedgerAccountTotal()
+                    SecondPartReady = True
+                    VpePrintLine()
+                    SecondPartReady = False
+                    FirstPartDone = False
+                    AccountCumulDC = 0
+                    CheckForMonth = Mid(JournalEntriesRS.Fields("v066").Value, 5, 2)
                 Else
                     If CheckForMonth <> Mid(JournalEntriesRS.Fields("v066").Value, 5, 2) Then
-                        'PrintMonthTotal()
+                        SecondPartReady = True
+                        VpePrintLine()
+                        SecondPartReady = False
+                        CheckForMonth = Mid(JournalEntriesRS.Fields("v066").Value, 5, 2)
                     End If
                 End If
             End If
         Loop
-        'PrintLedgerAccountTotal()
-        PrintEndTotal()
+        SecondPartReady = True
+        VpePrintLine()
+        PrintTrialBalanceTotal()
         With Mim.Report
             .WriteDoc(LOCATION_COMPANYDATA & Format(Now, "YYYYMMDDHHMMSS") & "-historieken.pdf")
             .MailSubject = "Historieken bedrijfx"
@@ -347,206 +359,6 @@ Public Class FormTrialBalance
         'Mim.Report.CloseDoc()
         Focus()
         ButtonClose.PerformClick()
-        '		Dim Printer As New Printer
-        '		Dim SubTitelTekst As String
-        '		Dim BeginSleutel As New VB6.FixedLengthString(15)
-        '		Dim EindSleutel As New VB6.FixedLengthString(15)
-        '		Dim VorigeSleutel As New VB6.FixedLengthString(15)
-        '		Dim DCBedrag As Decimal
-        '		Dim recVeldje As String
-        '		Dim rkVeldje As String
-
-        '		'On Local Error GoTo PrtHandler2
-
-        '		Line = 0
-        '		VorigeSleutel.Value = ""
-        '		KontroleLijst = ""
-        '		BeginSleutel.Value = SetSpacing(txtTekstLijn(2).Text, 7) & PeriodFromChosen.Value
-        '		EindSleutel.Value = SetSpacing(txtTekstLijn(3).Text, 7) & PeriodToChosen.Value
-
-        '		ReportText(2) = "Proef- en Saldibalans " & Mid(Mim.Text, InStr(Mim.Text, "["))
-        '		ReportText(0) = txtTekstLijn(1).Text
-        '		ReportText(3) = "Boekjaar aanvang : " & VB.Left(BOOKYEAR_FROMTO.Value, 4) & ", " & txtTekstLijn(0).Text
-        '		InitialiseFields()
-
-        '		JetGetFirst(TABLE_JOURNAL, 0)
-        '		JetGetOrGreater(TABLE_JOURNAL, 0, BeginSleutel.Value)
-        '		If KTRL Then
-        '			Beep()
-        '			Exit Sub
-        '		End If
-        '		Me.Enabled = False
-        '		PAGE_COUNTER = 0
-        '		If chkAfdrukInVenster.CheckState = 0 Then
-        '			Printer = Printers(LISTPRINTER_NUMBER)
-        '			On Error Resume Next
-        '			'UPGRADE_WARNING: Couldn't resolve default property of object SettingLoading(). Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"'
-        '			Printer.PaperBin = SettingLoading(My.Application.Info.Title, "LIJSTPRINTER")
-        '			If Printer.Width > 12000 Then
-        '				Printer.FontSize = 10
-        '				Printer.FontName = "Courier New"
-        '				Printer.Print(" ")
-        '				Printer.FontSize = 10
-        '			Else
-        '				Printer.FontSize = 7.2
-        '				Printer.FontName = "Courier New"
-        '				Printer.Print(" ")
-        '				Printer.FontSize = 7.2
-        '				Printer.FontBold = True
-        '			End If
-        '		End If
-        '		VpePrintHeader()
-
-        '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '		System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
-        '		If VB.Right(KEY_BUF(TABLE_JOURNAL), 8) >= PeriodFromChosen.Value And VB.Right(KEY_BUF(TABLE_JOURNAL), 8) <= PeriodToChosen.Value Then
-        '			'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '			GoSub PrintInfo
-        '		End If
-
-        '		Do 
-        '			bNext(TABLE_JOURNAL)
-        '			'UPGRADE_ISSUE: DoEvents does not return a value. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="8D115264-E27F-4472-A684-865A00B5E826"'
-        '			XDO_EVENTS = System.Windows.Forms.Application.DoEvents()
-        '			If KTRL Then
-        '				Exit Do
-        '			ElseIf VB.Right(KEY_BUF(TABLE_JOURNAL), 8) >= PeriodFromChosen.Value And VB.Right(KEY_BUF(TABLE_JOURNAL), 8) <= PeriodToChosen.Value Then 
-        '				If VorigeSleutel.Value = Space(15) Then
-        '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '					GoSub PrintInfo
-        '				ElseIf VB.Left(VorigeSleutel.Value, 7) = VB.Left(KEY_BUF(TABLE_JOURNAL), 7) Then 
-        '					If Mid(VorigeSleutel.Value, 12, 2) <> Mid(KEY_BUF(TABLE_JOURNAL), 12, 2) Then
-        '						RekeningTotaal()
-        '						'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '						GoSub PrintInfo
-        '					Else
-        '						'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '						GoSub PrintInfo
-        '					End If
-        '				Else
-        '					RekeningTotaal()
-        '					'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '					GoSub PrintInfo
-        '				End If
-        '			End If
-        '		Loop 
-        '		'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '		GoSub RekSaldoKTRL
-        '		RekeningTotaal()
-        '		EindTotaal()
-        '		If chkAfdrukInVenster.CheckState Then
-        '		Else
-        '			Printer.NewPage()
-        '			Printer.FontSize = Printer.FontSize
-        '			Printer.Print(" ")
-        '			Printer.FontSize = Printer.FontSize
-        '		End If
-        '		If KontroleLijst <> "" Then
-        '			Printer.CurrentY = 400
-        '			Printer.Print(KontroleLijst)
-        '			Printer.EndDoc()
-        '		ElseIf chkAfdrukInVenster.CheckState Then 
-        '		Else
-        '			Printer.EndDoc()
-        '		End If
-        '		'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
-        '		'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'
-        '		'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '		System.Windows.Forms.Cursor.Current = vbNormal
-        '		Me.Enabled = True
-        '		cmdSluiten_Click(cmdSluiten, New System.EventArgs())
-        '		Exit Sub
-
-        'PrintInfo: 
-        '		RecordToField(TABLE_JOURNAL)
-        '		If VB.Left(VorigeSleutel.Value, 7) <> VB.Left(KEY_BUF(TABLE_JOURNAL), 7) Then
-        '			If VorigeSleutel.Value = Space(15) Then
-        '			ElseIf SaldiKontrole = True Then 
-        '				'UPGRADE_ISSUE: GoSub statement is not supported. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"'
-        '				GoSub RekSaldoKTRL
-        '			End If
-
-        '			CumTotaalD = 0
-        '			CumTotaalC = 0
-        '			JetGet(TABLE_LEDGERACCOUNTS, 0, SetSpacing(AdoGetField(TABLE_JOURNAL, "#v019 #"), 7))
-        '			FieldText(0) = AdoGetField(TABLE_JOURNAL, "#v019 #")
-        '			If KTRL Then
-        '				FieldText(1) = "Rekening reeds vernietigd..."
-        '				FieldText(2) = ""
-        '			Else
-        '				RecordToField(TABLE_LEDGERACCOUNTS)
-        '				FieldText(1) = AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #")
-
-        '				If BH_EURO Then
-        '					rkVeldje = "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"
-        '				Else
-        '					rkVeldje = "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"
-        '				End If
-
-        '				FieldText(2) = Str(Val(AdoGetField(TABLE_LEDGERACCOUNTS, rkVeldje)))
-        '				Select Case Val(FieldText(2))
-        '					Case Is < 0
-        '						FieldText(2) = "CS:" & Dec(System.Math.Abs(Val(FieldText(2))), MASK_2002.Value)
-        '					Case Else
-        '						FieldText(2) = "DS:" & Dec(Val(FieldText(2)), MASK_2002.Value)
-        '				End Select
-        '			End If
-        '		End If
-        '		VorigeSleutel.Value = KEY_BUF(TABLE_JOURNAL)
-        '		FieldText(3) = MONTH_AS_TEXT(Val(Mid(KEY_BUF(TABLE_JOURNAL), 12, 2)))
-        '		SnelHelpPrint(AdoGetField(TABLE_LEDGERACCOUNTS, "#v019 #") & " " & AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #") & " " & Trim(FieldText(3)) & " " & Mid(KEY_BUF(TABLE_JOURNAL), 8, 4), BL_LOGGING)
-
-        '		'UPGRADE_WARNING: Use of Null/IsNull() detected. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="2EED02CB-5C0E-4DC1-AE94-4FAA3A30F51A"'
-        '		If IsDbNull(RS_MAR(TABLE_JOURNAL).Fields("dece068").Value) Then
-        '			DCBedrag = 0
-        '		Else
-        '			DCBedrag = RS_MAR(TABLE_JOURNAL).Fields("dece068").Value
-        '		End If
-        '		Select Case DCBedrag
-        '			Case Is < 0
-        '				SubTotaalC = SubTotaalC + DCBedrag
-        '				CumTotaalC = CumTotaalC + DCBedrag
-        '				TotalCredit = TotalCredit + DCBedrag
-        '			Case Else
-        '				SubTotaalD = SubTotaalD + DCBedrag
-        '				CumTotaalD = CumTotaalD + DCBedrag
-        '				TotalDebit = TotalDebit + DCBedrag
-        '		End Select
-        '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '		Return 
-
-        'RekSaldoKTRL: 
-        '		If BH_EURO Then
-        '			rkVeldje = "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"
-        '		Else
-        '			rkVeldje = "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #"
-        '		End If
-        '		If System.Math.Abs(CumTotaalD + CumTotaalC) - System.Math.Abs(Val(AdoGetField(TABLE_LEDGERACCOUNTS, rkVeldje))) = 0 Then
-        '		Else
-        '			MSG = "KontroleStop bijwerking rekeningsaldo !!" & vbCrLf & vbCrLf
-        '			MSG = MSG & "Rekening : " & KEY_BUF(TABLE_LEDGERACCOUNTS) & vbCrLf
-        '			If BH_EURO Then
-        '				MSG = MSG & Str(CumTotaalD + CumTotaalC) & " <> " & Str(Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")))
-        '			Else
-        '				MSG = MSG & Str(CumTotaalD + CumTotaalC) & " <> " & Str(Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")))
-        '			End If
-        '			MsgBox(MSG & vbCrLf & vbCrLf & "Na deze P&S, nogmaals opnieuw P&S a.u.b. samenstellen", MsgBoxStyle.Exclamation)
-
-        '			KontroleLijst = KontroleLijst & AdoGetField(TABLE_LEDGERACCOUNTS, "#v020 #") & " " & Dec(CumTotaalD + CumTotaalC, "#########.00") & " " & Dec(Val(AdoGetField(TABLE_LEDGERACCOUNTS, "#v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000") & " #")), "#########.00") & vbCrLf
-        '			If BH_EURO Then
-        '				AdoInsertToRecord(TABLE_LEDGERACCOUNTS, Str(CumTotaalD + CumTotaalC), "e" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000"))
-        '				RS_MAR(TABLE_LEDGERACCOUNTS).Fields("dece" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000")).Value = CumTotaalD + CumTotaalC
-        '			Else
-        '				AdoInsertToRecord(TABLE_LEDGERACCOUNTS, Str(CumTotaalD + CumTotaalC), "v" & VB6.Format(22 + BJPERDAT.Boekjaar.SelectedIndex, "000"))
-        '			End If
-        '			bUpdate(TABLE_LEDGERACCOUNTS, 0)
-        '		End If
-        '		'UPGRADE_WARNING: Return has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"'
-        '		Return 
-
-        'PrtHandler2: 
-        '		MsgBox("Kontroleer de printer.")
-        '		Resume 
 
     End Sub
 
@@ -557,40 +369,65 @@ Public Class FormTrialBalance
 
         Line += 1
 
-        LastLedgerAccount = Trim(JournalEntriesRS.Fields("v019").Value)
-        CheckForMonth = Mid(JournalEntriesRS.Fields("v066").Value, 5, 2)
-
         If FirstPartDone Then
-            If SecondPartReady Then
-
-
-            Else
+            If Not SecondPartReady Then
                 AddUpLedgerAccountTotals()
                 Exit Sub
+            Else
+                ' Fit rest of the line
+                Mid(PdfLine, REPORT_TAB(3)) = MONTH_AS_TEXT(Val(CheckForMonth))
+                mid(PdfLine, REPORT_TAB(4)) = Dec(MonthTotalD, MASK_EUR)
+                mid(PdfLine, REPORT_TAB(5)) = Dec(Math.Abs(MonthTotalC), MASK_EUR)
+                Select Case MonthCumulDC
+                    Case Is < 0
+                        DCNote = "C:"
+                        mid(PdfLine, REPORT_TAB(6)) = DCNote + Dec(Math.Abs(MonthCumulDC), MASK_EUR)
+                    Case Else
+                        DCNote = "D:"
+                        mid(PdfLine, REPORT_TAB(6)) = DCNote + Dec(MonthCumulDC, MASK_EUR)
+                End Select
+
+                Select Case AccountCumulDC
+                    Case Is < 0
+                        DCNote = "C:"
+                        mid(PdfLine, REPORT_TAB(7)) = DCNote + Dec(Math.Abs(AccountCumulDC), MASK_EUR)
+                    Case Else
+                        DCNote = "D:"
+                        mid(PdfLine, REPORT_TAB(7)) = DCNote + Dec(AccountCumulDC, MASK_EUR)
+                End Select
+
+                pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf)
+                MonthTotalD = 0
+                MonthTotalC = 0
+                MonthCumulDC = 0
+
+                PdfLine = Space(128)
+                If pdfY > 27.5 Then
+                    Mim.Report.PageBreak()
+                    VpePrintHeader()
+                End If
             End If
         Else
+            LastLedgerAccount = Trim(JournalEntriesRS.Fields("v019").Value)
+
             PdfLine = Space(128)
             Mid(PdfLine, REPORT_TAB(0)) = JournalEntriesRS.Fields("v019").Value 'accountnumber
             Mid(PdfLine, REPORT_TAB(1)) = JournalEntriesRS.Fields("v020").Value 'accountname
 
-            DCAmount = ObjectValue((JournalEntriesRS.Fields(BookYearAccountSolde).Value))
+            DCAmount = Val(ObjectValue((JournalEntriesRS.Fields(BookYearAccountSolde).Value)))
             Select Case DCAmount
                 Case Is < 0
                     DCNote = "CS:"
-                    Mid(PdfLine, REPORT_TAB(2)) = DCNote + Dec(Math.Abs(DCAmount), MASK_EURBH) 'CS amount
+                    Mid(PdfLine, REPORT_TAB(2)) = DCNote + Dec(Math.Abs(DCAmount), MASK_EUR) 'CS amount
                 Case Else
                     DCNote = "DS:"
-                    mid(PdfLine, REPORT_TAB(2)) = DCNote + Dec(DCAmount, MASK_EURBH) 'DS amount
+                    mid(PdfLine, REPORT_TAB(2)) = DCNote + Dec(DCAmount, MASK_EUR) 'DS amount
             End Select
+
             FirstPartDone = True
+            SecondPartReady = False
             AddUpLedgerAccountTotals()
             Exit Sub
-        End If
-
-        pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf)
-        If pdfY > 27.5 Then
-            Mim.Report.PageBreak()
-            VpePrintHeader()
         End If
 
     End Sub
@@ -616,114 +453,16 @@ Public Class FormTrialBalance
 
     End Sub
 
-    Private Sub PrintEndTotal()
+    Private Sub PrintTrialBalanceTotal()
 
-        '	Private Sub EindTotaal()
-        '		Dim Printer As New Printer
-        '		Dim T As Short
+        Dim PdfLine As String = Space(128)
 
-        '		'On Local Error GoTo PrtHandler3
-
-        '		For T = 0 To 7
-        '			FieldText(T) = ""
-        '		Next 
-        '		FieldText(1) = "Totalen :"
-        '		If chkDetailJournaal.CheckState Then
-        '			FieldText(5) = Dec(TotalDebit, MASK_2002.Value)
-        '			FieldText(6) = Dec(System.Math.Abs(TotalCredit), MASK_2002.Value)
-        '		Else
-        '			FieldText(4) = Dec(TotalDebit, MASK_2002.Value)
-        '			FieldText(5) = Dec(System.Math.Abs(TotalCredit), MASK_2002.Value)
-        '		End If
-        '		T = 0
-        '		If chkAfdrukInVenster.CheckState Then
-        '		Else
-        '			Printer.Print(vbCrLf & FULL_LINE.Value)
-        '		End If
-
-        '		aa = ""
-        '		Do While REPORT_TAB(T) <> 0
-        '			If chkAfdrukInVenster.CheckState Then
-        '				aa = aa & FieldText(T) & vbTab
-        '			Else
-        '				Printer.Print(TAB(REPORT_TAB(T)))
-        '				Printer.Write(FieldText(T))
-        '			End If
-        '			If REPORT_TAB(T + 1) < REPORT_TAB(T) Then
-        '				If chkAfdrukInVenster.CheckState = 0 Then
-        '					Printer.Write(vbCrLf)
-        '				End If
-        '			End If
-        '			T = T + 1
-        '		Loop 
-        '		If chkAfdrukInVenster.CheckState Then
-        '			Xlog.X.AddItem(aa, Xlog.X.Rows - 1)
-        '		End If
-
-        '		If System.Math.Round(TotalDebit, 2) + System.Math.Round(TotalCredit, 2) Then
-        '			KontroleLijst = KontroleLijst & vbCrLf & vbCrLf & "Katastrofale fout : Algemene cumul Debet <> cumul credit.  Kontakteer ons 053/21.59.25 !" & vbCrLf & "Indien U niet beschikt over veiligheidskopij dient recuperatie van bestanden door ons te gebeuren."
-        '		End If
-
-        '		Line = 0
-        '		SubTotaalD = 0
-        '		SubTotaalC = 0
-        '		TotalDebit = 0
-        '		TotalCredit = 0
-
-        '		If chkAfdrukInVenster.CheckState Then
-        '			Xlog.X.Row = 1
-        '			Xlog.X.Col = 0
-        '			If chkDetailJournaal.CheckState Then
-        '				With Xlog.X
-        '					.set_ColWidth(0, 705)
-        '					.set_ColWidth(1, 990)
-        '					.set_ColWidth(2, 750)
-        '					.set_ColWidth(3, 2865)
-        '					.set_ColWidth(4, 1830)
-        '					.set_ColWidth(5, 915)
-        '					.set_ColWidth(6, 915)
-        '					.set_ColWidth(7, 1140)
-        '				End With
-        '				Xlog.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        '			Else
-        '				With Xlog.X
-        '					.set_ColWidth(0, 700)
-        '					.set_ColWidth(1, 2955)
-        '					.set_ColWidth(2, 1250)
-        '					.set_ColAlignment(2, MSFlexGridLib.AlignmentSettings.flexAlignRightTop)
-        '					.set_ColWidth(3, 855)
-        '					.set_ColWidth(4, 1200)
-        '					.set_ColAlignment(4, MSFlexGridLib.AlignmentSettings.flexAlignRightTop)
-        '					.set_ColWidth(5, 1200)
-        '					.set_ColAlignment(5, MSFlexGridLib.AlignmentSettings.flexAlignRightTop)
-        '					.set_ColWidth(6, 1200)
-        '					.set_ColAlignment(6, MSFlexGridLib.AlignmentSettings.flexAlignRightTop)
-        '					.set_ColWidth(7, 1200)
-        '					.set_ColAlignment(7, MSFlexGridLib.AlignmentSettings.flexAlignRightTop)
-        '				End With
-        '				Xlog.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        '			End If
-        '			'UPGRADE_ISSUE: Unable to determine which constant to upgrade vbNormal to. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="B3B44E51-B5F1-4FD7-AA29-CAD31B71F487"'
-        '			'UPGRADE_ISSUE: Screen property Screen.MousePointer does not support custom mousepointers. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="45116EAB-7060-405E-8ABE-9DBB40DC2E86"'
-        '			'UPGRADE_WARNING: Screen property Screen.MousePointer has a new behavior. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"'
-        '			System.Windows.Forms.Cursor.Current = vbNormal
-
-        '			Xlog.WijzigenLijn.Visible = False
-        '			Xlog.Afsluiten.Enabled = False
-        '			Xlog.Afsluiten.TabStop = False
-        '			Xlog.cbAfbeelding.Visible = False
-        '			XLOG_KEY = ""
-        '			Xlog.SSTab1.TabPages.Item(1).Visible = False
-        '			Xlog.ShowDialog()
-        '			Xlog.Close()
-        '		End If
-        '		Exit Sub
-
-        'PrtHandler3: 
-        '		MsgBox("Kontroleer de printer.")
-        '		Resume 
-
-        '	End Sub
+        PdfLine = Space(128)
+        pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf)
+        mid(PdfLine, REPORT_TAB(1)) = "Totalen:"
+        mid(PdfLine, REPORT_TAB(4)) = Dec(EndTotalD, MASK_EUR)
+        mid(PdfLine, REPORT_TAB(5)) = Dec(Math.Abs(EndTotalC), MASK_EUR)
+        pdfY = Mim.Report.Print(1, pdfY, PdfLine & vbCrLf)
 
     End Sub
 

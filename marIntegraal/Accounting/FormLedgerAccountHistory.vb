@@ -340,6 +340,7 @@ Public Class FormLedgerAccountHistory
                 Else
                     If CheckForMonth <> Mid(JournalEntriesRS.Fields("v066").Value, 5, 2) Then
                         PrintMonthTotal()
+                        pdfY = Mim.Report.Print(1, pdfY, vbCrLf)
                     End If
                 End If
             End If
