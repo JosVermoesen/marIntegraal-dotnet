@@ -70,11 +70,13 @@ Public Class FormFinancialBook
         RecNummer(9) = 218
         RekeningNummer(9) = String99(READING, 214)
 
-        'InitialiseChooseList()
+        InitialiseChooseList()
 
     End Sub
 
     Private Sub InitialiseChooseList()
+
+        AD_NTDB.Execute("DELETE * FROM TmpBestand")
 
         CbBankList.Items.Clear()
         JetTableClose(TABLE_JOURNAL)
@@ -254,7 +256,6 @@ TryAgain:
         pdfY = Mim.Report.Print(1, pdfY, FULL_LINE & vbCrLf & vbCrLf)
 
     End Sub
-
 
     Private Sub CumulPrint()
 
@@ -569,5 +570,6 @@ TryAgain:
         DetailForInfoForm(KtrlInput)
 
     End Sub
+
 End Class
 
