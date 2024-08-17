@@ -633,7 +633,10 @@ JetErrorInsert:
         If KTRL = 32000 Then Exit Sub
         KEY_BUF(Fl) = FVT(Fl, fIndex)
         KEY_INDEX(Fl) = fIndex
-        RS_MAR(Fl).Fields("dnnsync").Value = False
+        If Fl = TABLE_DUMMY Then
+        Else
+            RS_MAR(Fl).Fields("dnnsync").Value = False
+        End If
         If VSOFT_LOG Then
             WriteLog("UPDATE", Fl, fIndex, "")
         End If
