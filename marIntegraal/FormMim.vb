@@ -332,6 +332,7 @@ Public Class Mim
         MessageBox.Show("StandardCostCardMenuItem_Click")
     End Sub
     Private Sub CorrespondenceMenuItem_Click(sender As Object, e As EventArgs)
+
         CorrespondenceMenuItem.Enabled = False
         With Briefwisseling
             .MdiParent = Me
@@ -339,22 +340,27 @@ Public Class Mim
             .Enabled = True
             .Show()
         End With
+
     End Sub
 
     ' Accounting
     Private Sub JournalEntryInputMenuItem_Click(sender As Object, e As EventArgs)
+
         Dim VariousJournalEntries As New FormJournalEntryInput With {
             .MdiParent = Me
         }
         JournalEntryInputMenuItem.Enabled = False
         VariousJournalEntries.Show()
+
     End Sub
     Private Sub JournalEntriesBookMenuItem_Click(sender As Object, e As EventArgs)
+
         Dim JournalEntriesBook As New FormJournalEntriesBook
-        'JournalEntriesBook.MdiParent = Me
         JournalEntriesBook.ShowDialog()
+
     End Sub
     Private Sub PurchaseDiaryMenuItem_Click(sender As Object, e As EventArgs)
+
         A_INDEX = TABLE_SUPPLIERS
         With BSBook
             .WindowState = FormWindowState.Normal
@@ -362,8 +368,10 @@ Public Class Mim
             .ShowDialog()
             .Dispose()
         End With
+
     End Sub
     Private Sub SalesDiaryMenuItem_Click(sender As Object, e As EventArgs)
+
         A_INDEX = TABLE_CUSTOMERS
         With BSBook
             .WindowState = FormWindowState.Normal
@@ -371,31 +379,43 @@ Public Class Mim
             .ShowDialog()
             .Dispose()
         End With
+
     End Sub
     Private Sub FinancialJournalMenuItem_Click(sender As Object, e As EventArgs)
+
         Dim financialBook As New FormFinancialBook
         financialBook.ShowDialog()
+
     End Sub
     Private Sub VATDomesticAnnualListingMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("VATDomesticAnnualListingMenuItem_Click")
     End Sub
     Private Sub VATReturnStatusMenuItem_Click(sender As Object, e As EventArgs)
+
         Dim statusVatDeclaration As New FormVatDeclarations
         statusVatDeclaration.ShowDialog()
+
     End Sub
     Private Sub InventoryControlMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("InventoryControlMenuItem_Click")
     End Sub
     Private Sub TrialBalanceMenuItem_Click(sender As Object, e As EventArgs)
+
         Dim trialBalance As New FormTrialBalance
         trialBalance.ShowDialog()
+
     End Sub
     Private Sub JournalHistoryMenuItem_Click(sender As Object, e As EventArgs)
+
         Dim ledgerAccountHistory As New FormLedgerAccountHistory
         ledgerAccountHistory.ShowDialog()
+
     End Sub
     Private Sub FinalReportingMenuItem_Click(sender As Object, e As EventArgs)
-        MessageBox.Show("FinalReportingMenuItem_Click")
+
+        Dim finalReport As New FormFinalReport
+        finalReport.ShowDialog()
+
     End Sub
     Private Sub CustomersBalanceMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("CustomersBalanceMenuItem_Click")
@@ -477,6 +497,14 @@ Public Class Mim
             myCompanyProcess.StartInfo.CreateNoWindow = True
             myCompanyProcess.Start()
         End If
+
+        MSG = "Testing some paths..." & vbCrLf & vbCrLf
+        MSG = MSG & "Application.StartupPath: " & Application.StartupPath & vbCrLf & vbCrLf
+        MSG = MSG & "Application.ExecutablePath: " & Application.ExecutablePath & vbCrLf & vbCrLf
+        MSG = MSG & "Application.LocalUserAppDataPath: " & Application.LocalUserAppDataPath & vbCrLf & vbCrLf
+        MSG = MSG & "Application.CommonAppDataPath: " & Application.CommonAppDataPath & vbCrLf & vbCrLf
+        MSG = MSG & "Application.UserAppDataPath: " & Application.UserAppDataPath & vbCrLf
+        MsgBox(MSG)
 
     End Sub
 
