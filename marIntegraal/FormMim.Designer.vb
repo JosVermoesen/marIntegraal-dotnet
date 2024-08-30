@@ -750,7 +750,7 @@ Partial Class Mim
         Me.Text = "marIntegraal Manager"
         AddHandler FormClosing, AddressOf Me.Mim_FormClosing
         AddHandler FormClosed, AddressOf Me.Mim_FormClosed
-        AddHandler Load, AddressOf Me.Mim_Load
+        AddHandler Load, AddressOf Me.Mim_FormLoad
         Me.MimMenuStrip.ResumeLayout(False)
         Me.MimMenuStrip.PerformLayout()
         Me.ResumeLayout(False)

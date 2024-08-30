@@ -1,9 +1,93 @@
 ﻿Option Strict Off
 Option Explicit On
-Imports System.ComponentModel
 
 Public Class Mim
     Inherits Form
+
+    Private Sub Mim_FormLoad(sender As Object, e As EventArgs)
+
+        InitFirst()
+        MIM_GLOBAL_DATE = Format(Now, "dd/MM/yyyy")
+        PROGRAM_LOCATION = My.Application.Info.DirectoryPath & "\"
+
+        MAR_VERSION = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
+        Text = "marIntegraal.NET " & MAR_VERSION
+        StartUp()
+        SettingsLoading(Me)
+
+        On Error GoTo 0
+
+        AD_KBDB = New ADODB.Connection
+        AD_TBIB = New ADODB.Connection
+
+        'AD_KBDB.ConnectionString = marIntegraal.My.Settings.defaultConnectionString
+        AD_KBDB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "Def\DEFAULT.DEF;" & "Persist Security Info=False"
+        AD_KBDB.Open()
+
+        AD_TBIB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "\Def\TELEBIB2.DEF;" & "Persist Security Info=False"
+        AD_TBIB.Open()
+
+        AD_KBTable = New ADODB.Recordset With {
+            .CursorLocation = ADODB.CursorLocationEnum.adUseServer
+        }
+        AD_KBTable.Open("KeuzeBoxData", AD_KBDB, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdTableDirect) '  adLockReadOnly, adCmdTableDirect
+        AD_KBTable.Index = "BestandsNaam"
+
+        With CUSTOMERS_SHEET
+            .MdiParent = Me
+            .Text = "Klanten"
+            .BackColor = ColorTranslator.FromOle(QBColor(9))
+            .Tag = "1"
+            .WindowState = FormWindowState.Minimized
+            .Enabled = False
+            .Show()
+        End With
+
+        With SUPPLIERS_SHEET
+            .MdiParent = Me
+            .Text = "Leveranciers"
+            .BackColor = ColorTranslator.FromOle(QBColor(12))
+            .Tag = "2"
+            .WindowState = FormWindowState.Minimized
+            .Enabled = False
+            .Show()
+        End With
+
+        With LEDGERACCOUNTS_SHEET
+            .MdiParent = Me
+            .Text = "Rekeningen"
+            .BackColor = ColorTranslator.FromOle(QBColor(15))
+            .Tag = "3"
+            .WindowState = FormWindowState.Minimized
+            .Enabled = False
+            .Show()
+        End With
+        CompanyOpenMenuItem_Click(sender, e)
+
+    End Sub
+
+    Private Sub Mim_FormClosing(sender As Object, e As FormClosingEventArgs)
+
+        SettingsSaving(Me)
+
+        Dim hierCancel As Boolean = e.Cancel
+
+        If Report.IsOpen = True Then
+            MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
+            hierCancel = True
+        End If
+        e.Cancel = hierCancel
+
+    End Sub
+
+    Private Sub Mim_FormClosed(sender As Object, e As FormClosedEventArgs)
+
+        TotalClose()
+        If WindowState = FormWindowState.Minimized Then
+            WindowState = FormWindowState.Normal
+        End If
+
+    End Sub
 
     Sub InitFirst()
 
@@ -75,91 +159,6 @@ Public Class Mim
 
         AD_NTDB = Nothing
         NT_DB = Nothing
-
-    End Sub
-
-    Private Sub Mim_FormClosing(sender As Object, e As FormClosingEventArgs)
-
-        SettingsSaving(Me)
-
-        Dim hierCancel As Boolean = e.Cancel
-
-        If Report.IsOpen = True Then
-            MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
-            hierCancel = True
-        End If
-        e.Cancel = hierCancel
-
-    End Sub
-
-    Private Sub Mim_FormClosed(sender As Object, e As FormClosedEventArgs)
-
-        TotalClose()
-        If WindowState = FormWindowState.Minimized Then
-            WindowState = FormWindowState.Normal
-        End If
-
-    End Sub
-
-    Private Sub Mim_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        InitFirst()
-        MIM_GLOBAL_DATE = Format(Now, "dd/MM/yyyy")
-        PROGRAM_LOCATION = My.Application.Info.DirectoryPath & "\"
-
-        MAR_VERSION = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
-        Text = "marIntegraal.NET " & MAR_VERSION
-        StartUp()
-        SettingsLoading(Me)
-
-        On Error GoTo 0
-
-        AD_KBDB = New ADODB.Connection
-        AD_TBIB = New ADODB.Connection
-
-        'AD_KBDB.ConnectionString = marIntegraal.My.Settings.defaultConnectionString
-        AD_KBDB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "Def\DEFAULT.DEF;" & "Persist Security Info=False"
-        AD_KBDB.Open()
-
-        AD_TBIB.ConnectionString = ADOJET_PROVIDER & "Data Source=" & PROGRAM_LOCATION & "\Def\TELEBIB2.DEF;" & "Persist Security Info=False"
-        AD_TBIB.Open()
-
-        AD_KBTable = New ADODB.Recordset With {
-            .CursorLocation = ADODB.CursorLocationEnum.adUseServer
-        }
-        AD_KBTable.Open("KeuzeBoxData", AD_KBDB, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockOptimistic, ADODB.CommandTypeEnum.adCmdTableDirect) '  adLockReadOnly, adCmdTableDirect
-        AD_KBTable.Index = "BestandsNaam"
-
-        With CUSTOMERS_SHEET
-            .MdiParent = Me
-            .Text = "Klanten"
-            .BackColor = ColorTranslator.FromOle(QBColor(9))
-            .Tag = "1"
-            .WindowState = FormWindowState.Minimized
-            .Enabled = False
-            .Show()
-        End With
-
-        With SUPPLIERS_SHEET
-            .MdiParent = Me
-            .Text = "Leveranciers"
-            .BackColor = ColorTranslator.FromOle(QBColor(12))
-            .Tag = "2"
-            .WindowState = FormWindowState.Minimized
-            .Enabled = False
-            .Show()
-        End With
-
-        With LEDGERACCOUNTS_SHEET
-            .MdiParent = Me
-            .Text = "Rekeningen"
-            .BackColor = ColorTranslator.FromOle(QBColor(15))
-            .Tag = "3"
-            .WindowState = FormWindowState.Minimized
-            .Enabled = False
-            .Show()
-        End With
-        CompanyOpenMenuItem_Click(sender, e)
 
     End Sub
 
@@ -236,7 +235,7 @@ Public Class Mim
         SqlBewerkingen.Show()
     End Sub
 
-    ' Windows
+    ' MDIForm Forms
     Private Sub CascadeMenuItem_Click(sender As Object, e As EventArgs)
         LayoutMdi(MdiLayout.Cascade)
     End Sub
@@ -508,7 +507,6 @@ Public Class Mim
         MsgBox(MSG)
 
     End Sub
-
     Private Sub QRCodeTestingToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
         FormQRCodeTesting.Show()
