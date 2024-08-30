@@ -11,6 +11,14 @@ Public Class FormFinalReport
     Dim sMg(10) As String
     Dim sText(10) As String
 
+    Dim sMinSl As String = Space(7)
+    Dim sMaxSl As String = Space(7)
+    Dim aSort As Integer = 0
+    Dim sCode As String = ""
+    Dim aPos As Integer = 0
+    Dim sbd As String = Space(1)
+    Dim aLijn As Integer = 0
+
     Dim ichr(10) As Short
 
     Dim vLine As String = Chr(124)
@@ -80,184 +88,102 @@ Public Class FormFinalReport
 
     End Sub
 
-    Private Sub ButtonGenerate_Click(sender As Object, e As EventArgs) Handles ButtonGenerate.Click
-
-
-        '        Dim FlTemp As Integer
-        '        Dim ideler As Integer
-        '        Dim lijntel As Integer
-
-        '        Dim dbdhbj As Currency
-        '        Dim dbdvbj As Currency
-        '        Dim dTOT As Currency
-        '        Dim dvtot As Currency
+    Private Sub LabelRekening()
 
         '        'nieuw rekenkundige controle
-        '        Dim rTotaal1 As Currency
-        '        Dim rTotaal2 As Currency
-        '        'einde
+        Dim rTotaal1 = 0
+        Dim rTotaal2 = 0
+        Dim dTOT As Double
+        Dim dVTot As Double
 
-        '        Dim sminsl As String * 7
-        'Dim smaxsl As String * 7
+        Dim sMinSl As String = Space(7)
+        Dim sMaxSl As String = Space(7)
+        Dim cflag As Integer
 
-        'Dim sbd As String
-        '        Dim alijn As Integer
-        '        Dim Scode As String
-        '        Dim apos As Integer
+        For klt = 1 To asort
+            cflag = 1
+            dTOT = 0 : dVTot = 0
+            sMinSl = Mid(sMin(klt), 2, 7)
+            sMaxSl = Mid(sMin(klt), 10, 7)
+            Label1000()
 
-        '        LabelMemo.Caption = ""
-        '        Screen.MousePointer = vbHourglass
+            If Mid(sMin(klt), 1, 1) = "+" Then
+                rTotaal1 = rTotaal1 + dTOT
+            Else
+                'Stop
+            End If
+            dTOT = 0 : dVTot = 0
+            sMinSl = Mid(sMax(klt), 2, 7)
+            sMaxSl = Mid(sMax(klt), 10, 7)
+            Label1000()
 
-        '        On Local Error GoTo PrtHandler2
+            If Mid(sMax(klt), 1, 1) = "+" Then
+                rTotaal2 = rTotaal2 + dTOT
+            Else
+                'Stop
+            End If
+        Next klt
+        Select Case Mid(scode, 1, 2)
+            Case "? "
+                If rTotaal1 = 0 Or rTotaal2 = 0 Then
+                Else
+                    'MSG = Mid(Mim.SnelHelp.SimpleText, 9) + vbCrLf + vbCrLf
+                    MSG = MSG + Format(rTotaal1, MASK_EURBH) + " ? " + Format(rTotaal2, MASK_EURBH)
+                    MsgBox(MSG, 0, "Kontroleer a.u.b. !")
+                End If
+            Case Else
+                'Stop
+        End Select
 
-        '        PaginaTeller = 0
-        '    Set Printer = Printers(LijstPrinterNr)
-        '    On Error Resume Next
-        '        Printer.PaperBin = LaadTekst(App.Title, "LIJSTPRINTER")
-        '        If Printer.Width > 12000 Then
-        '            Printer.FontSize = 10
-        '            Printer.FontName = "Courier New"
-        '            Printer.Print " "
-        '            Printer.FontSize = 10
-        '        Else
-        '            Printer.FontSize = 7.2
-        '            Printer.FontName = "Courier New"
-        '            Printer.Print " "
-        '            Printer.FontSize = 7.2
-        '            Printer.FontBold = True
-        '        End If
+    End Sub
 
-        '        FlTemp = FreeFile()
-        '        Open ProgrammaLokatie + "Def\" + sFile(Keuzelijst.ListIndex) For Input As FlTemp
-        '    Input #FlTemp, sMg(9)
-        '    Input #FlTemp, sMg(2)
-        '    Input #FlTemp, sMg(3)
-        '    Input #FlTemp, sMg(4)
-        '    Input #FlTemp, sMg(5)
-        '    Input #FlTemp, ideler
+    Private Sub Label2000(stekst)
 
-        'lijntel = 6
-        '        If ideler = 1 Then
-        '            ideler = 1000
-        '        Else
-        '            ideler = 1
-        '        End If
+        Dim alt As Integer = 0
 
-        '        psTekst(2) = "Rapportage " + UCase(Mid(Mim.Caption, InStr(Mim.Caption, "[")))
-        '        psTekst(0) = TekstLijn(1).Text
-        '        psTekst(3) = sMg(9) + " Boekjaar " + BJPERDAT.Boekjaar.Text
+        'PrintTitel
+        'Printer.Print String$(Len(stekst(0)) + 1, Chr$(ichr(4))); Chr$(ivbtab); String$(7, Chr$(ichr(4))); Chr$(ivbtab); String$(23, Chr$(ichr(4))); Chr$(ivbtab); String$(24, Chr$(ichr(4))); Chr$(ichr(1))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); smg(2); Chr$(ichr(5)); smg(3); Chr$(ichr(5))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); smg(4); Chr$(ichr(6)); String$(23, Chr$(ichr(4))); Chr$(ichr(8)); String$(24, Chr$(ichr(4))); Chr$(ichr(7))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); smg(5); Chr$(ichr(5))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(6)); String$(7, Chr$(ichr(4))); Chr$(ichr(10)); String$(23, Chr$(ichr(4))); Chr$(ivbtab); String$(24, Chr$(ichr(4))); Chr$(ichr(7))
 
-        '        While Not EOF(FlTemp)
-        '            lijntel = lijntel + 1
-        '            Input #FlTemp, sbd, alijn, Scode, apos
-        '    If InStr("DCXYmheltr", sbd) = 0 Then
-        '                'nieuw rekenkundige controle
-        '                MsgBox "Rapportagedefinitiebestand defekt of beschadigd."
-        '        Close FlTemp
-        '        Printer.NewPage
-        '                Printer.EndDoc
-        '                Exit Sub
-        '            End If
+        While stekst(alt) <> ""
+            '    Printer.Print TAB(1); stekst(alt); " "; Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); Space$(23); Chr$(ichr(5)); Space$(24); Chr$(ichr(5))
 
-        '            For T = 0 To alijn - 1
-        '                lijntel = lijntel + 1
-        '                Input #FlTemp, stekst(T)
-        '        SnelHelpPrint "LN:" + Dec$((lijntel), "###") + "  " + stekst(T), blLogging
-        '    Next T
+            alt += 1
+        End While
 
-        '            lijntel = lijntel + 1
-        '            Input #FlTemp, asort
-        '    For T = 1 To asort
-        '                lijntel = lijntel + 1
-        '                Input #FlTemp, sMin(T), sMax(T)
-        '    Next T
+    End Sub
 
-        '            If InStr("mhelt", sbd) Then
-        '        GoSub Label1000
-        '    ElseIf InStr("r", sbd) Then
-        '        'nieuw rekenkundige controle
-        '        GoSub LabelRekening
-        '    Else
-        '                For klt = 1 To asort - 1
-        '                    cflag = 1
-        '                    sminsl = sMin(klt)
-        '                    smaxsl = sMax(klt)
-        '            GoSub Label1000
-        '        Next klt
-        '                sminsl = sMin(asort)
-        '                smaxsl = sMax(asort)
-        '                cflag = 0
-        '        GoSub Label1000
-        '    End If
-        'Wend
-        'Close FlTemp
-        'Printer.EndDoc
-        '        Screen.MousePointer = vbNormal
-        '        Exit Sub
+    Private Sub Label1000()
 
-        '        'nieuw rekenkundige controle
-        'LabelRekening:
-        '        rTotaal1 = 0
-        '        rTotaal2 = 0
-        '        For klt = 1 To asort
-        '            cflag = 1
-        '            dTOT = 0 : dvtot = 0
-        '            sminsl = Mid(sMin(klt), 2, 7)
-        '            smaxsl = Mid(sMin(klt), 10, 7)
-        '    GoSub Label1000
-        '    If Left(sMin(klt), 1) = "+" Then
-        '                rTotaal1 = rTotaal1 + dTOT
-        '            Else
-        '                'Stop
-        '            End If
-        '            dTOT = 0 : dvtot = 0
-        '            sminsl = Mid(sMax(klt), 2, 7)
-        '            smaxsl = Mid(sMax(klt), 10, 7)
-        '    GoSub Label1000
-        '    If Left(sMax(klt), 1) = "+" Then
-        '                rTotaal2 = rTotaal2 + dTOT
-        '            Else
-        '                'Stop
-        '            End If
-        '        Next klt
-        '        Select Case Left(Scode, 2)
-        '            Case "? "
-        '                If rTotaal1 = 0 Or rTotaal2 = 0 Then
-        '                Else
-        '                    MSG = Mid(Mim.SnelHelp.SimpleText, 9) + vbCrLf + vbCrLf
-        '                    MSG = MSG + Format(rTotaal1, MaskerEURBH) + " ? " + Format(rTotaal2, MaskerEURBH)
-        '                    MsgBox MSG, 0, "Kontroleer a.u.b. !"
-        '        End If
-        '            Case Else
-        '                'Stop
-        '        End Select
-        '        Return
+        Dim Tekst As String = ""
 
-        'Label1000:
-        '        Select Case sbd
-        '            Case "m"
-        '                Tekst$ = ""
-        '                For T = 0 To alijn
-        '                    Tekst$ = Tekst$ + stekst(T) + vbCrLf
-        '                Next
-        '                LabelMemo.Caption = Tekst$
-        '                LabelMemo.Refresh()
-        '                GoTo Label1060
 
-        '            Case "h"
-        '        GoSub Label2000
-        '        GoTo Label1060
+        Select Case sbd
+            Case "m"
+                For T = 0 To aLijn
+                    Tekst$ = Tekst$ + sText(T) + vbCrLf
+                Next
+                LabelMemo.Text = Tekst$
+                LabelMemo.Refresh()
+                'GoTo Label1060
 
-        '            Case "e"
-        '                GoTo Label2200
+            Case "h"
+                Label2000()
+                'GoTo Label1060
 
-        '            Case "t"
-        '                GoTo Label2300
+            Case "e"
+                'GoTo Label2200
 
-        '            Case "l"
-        '                GoTo Label2400
-        '            Case Else
-        '        End Select
+            Case "t"
+                'GoTo Label2300
+
+            Case "l"
+                'GoTo Label2400
+            Case Else
+        End Select
 
         'Vooraan:
         '        bFirst FlRekening, 0
@@ -357,19 +283,6 @@ Public Class FormFinalReport
         '        Next tlp
         '        Return
 
-        'Label2000:
-        '        PrintTitel
-        '        Printer.Print String$(Len(stekst(0)) + 1, Chr$(ichr(4))); Chr$(ivbtab); String$(7, Chr$(ichr(4))); Chr$(ivbtab); String$(23, Chr$(ichr(4))); Chr$(ivbtab); String$(24, Chr$(ichr(4))); Chr$(ichr(1))
-        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); smg(2); Chr$(ichr(5)); smg(3); Chr$(ichr(5))
-        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); smg(4); Chr$(ichr(6)); String$(23, Chr$(ichr(4))); Chr$(ichr(8)); String$(24, Chr$(ichr(4))); Chr$(ichr(7))
-        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); smg(5); Chr$(ichr(5))
-        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(6)); String$(7, Chr$(ichr(4))); Chr$(ichr(10)); String$(23, Chr$(ichr(4))); Chr$(ivbtab); String$(24, Chr$(ichr(4))); Chr$(ichr(7))
-        'alt = 0
-        '        While stekst(alt) <> ""
-        '            Printer.Print TAB(1); stekst(alt); " "; Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); Space$(23); Chr$(ichr(5)); Space$(24); Chr$(ichr(5))
-        '    alt = alt + 1
-        'Wend
-        'Return
 
         'Label2200:
         '        Printer.Print Space$(60); Chr$(ichr(2)); String$(7, Chr$(ichr(4))); Chr$(ichr(8)); String$(23, Chr$(ichr(4))); Chr$(ichr(8)); String$(24, Chr$(ichr(4))); Chr$(ichr(3));
@@ -384,9 +297,130 @@ Public Class FormFinalReport
         '        Printer.Print Space$(60); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); Space$(23); Chr$(ichr(5)); Space$(24); Chr$(ichr(5))
         'Return
 
-        'PrtHandler2:
-        '        MsgBox "Kontroleer de printer."
-        'Resume
+    End Sub
+
+    Private Sub Label2000()
+
+        Dim alt As Integer = 0
+
+        'PrintTitel
+        'Printer.Print String$(Len(stekst(0)) + 1, Chr$(ichr(4))); Chr$(ivbtab); String$(7, Chr$(ichr(4))); Chr$(ivbtab); String$(23, Chr$(ichr(4))); Chr$(ivbtab); String$(24, Chr$(ichr(4))); Chr$(ichr(1))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); smg(2); Chr$(ichr(5)); smg(3); Chr$(ichr(5))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); smg(4); Chr$(ichr(6)); String$(23, Chr$(ichr(4))); Chr$(ichr(8)); String$(24, Chr$(ichr(4))); Chr$(ichr(7))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); smg(5); Chr$(ichr(5))
+        'Printer.Print Space$(Len(stekst(0)) + 1); Chr$(ichr(6)); String$(7, Chr$(ichr(4))); Chr$(ichr(10)); String$(23, Chr$(ichr(4))); Chr$(ivbtab); String$(24, Chr$(ichr(4))); Chr$(ichr(7))
+
+        While sText(alt) <> ""
+            '    Printer.Print TAB(1); stekst(alt); " "; Chr$(ichr(5)); Space$(7); Chr$(ichr(5)); Space$(23); Chr$(ichr(5)); Space$(24); Chr$(ichr(5))
+            alt += 1
+        End While
+
+    End Sub
+
+    Private Sub ButtonGenerate_Click(sender As Object, e As EventArgs) Handles ButtonGenerate.Click
+
+        Dim FlTemp As Integer
+        Dim ideler As Integer
+        Dim lijntel As Integer
+
+        Dim dbdhBJ As Double
+        Dim dbdvBJ As Double
+
+        Dim cflag As Integer
+
+        Dim sbd As String = Space(1)
+        Dim alijn As Integer
+        Dim apos As Integer
+
+        LabelMemo.Text = ""
+
+        Cursor.Current = Cursors.WaitCursor
+        PAGE_COUNTER = 0
+
+        With Mim.Report
+            .CloseDoc()
+            .OpenDoc()
+            .Author = "marIntegraal"
+            .GUILanguage = 3 'Nederlands
+            .Title = "Diverse Postenboek"
+        End With
+
+
+        FlTemp = FreeFile()
+        FileOpen(FlTemp, PROGRAM_LOCATION & "Def\" & sFile(ComboBoxReportType.SelectedIndex), OpenMode.Input)
+
+        Input(FlTemp, sMg(9))
+        Input(FlTemp, sMg(2))
+        Input(FlTemp, sMg(3))
+        Input(FlTemp, sMg(4))
+        Input(FlTemp, sMg(5))
+        Input(FlTemp, ideler)
+
+        lijntel = 6
+
+        If ideler = 1 Then
+            ideler = 1000
+        Else
+            ideler = 1
+        End If
+
+        ReportText(2) = "Rapportage " & Mid(Mim.Text, InStr(Mim.Text, "["))
+        ReportText(0) = TextBoxProcessingDate.Text
+        ReportText(3) = sMg(9) + " Boekjaar " + FormBYPERDAT.Boekjaar.Text
+        VpePrintHeader()
+
+        While Not EOF(FlTemp)
+            lijntel = lijntel + 1
+            Input(FlTemp, sbd)
+            Input(FlTemp, alijn)
+            Input(FlTemp, Scode)
+            Input(FlTemp, apos)
+
+            If InStr("DCXYmheltr", sbd) = 0 Then
+                'nieuw rekenkundige controle
+                MsgBox("Rapportagedefinitiebestand defekt of beschadigd.")
+                FileClose(FlTemp)
+                'Printer.NewPage
+                'Printer.EndDoc
+                Exit Sub
+            End If
+
+            For T = 0 To alijn - 1
+                lijntel = lijntel + 1
+                Input(FlTemp, sText(T))
+                'SnelHelpPrint "LN:" + Dec$((lijntel), "###") + "  " + stekst(T), blLogging
+            Next T
+            lijntel = lijntel + 1
+            Input(FlTemp, asort)
+
+            For T = 1 To asort
+                lijntel = lijntel + 1
+                Input(FlTemp, sMin(T))
+                Input(FlTemp, sMax(T))
+            Next T
+
+            If InStr("mhelt", sbd) Then
+                'GoSub Label1000
+            ElseIf InStr("r", sbd) Then
+                'nieuw rekenkundige controle
+                LabelRekening()
+            Else
+                For klt = 1 To asort - 1
+                    cflag = 1
+                    sMinSl = sMin(klt)
+                    sMaxSl = sMax(klt)
+                    Label1000()
+                Next klt
+                sMinSl = sMin(asort)
+                sMaxSl = sMax(asort)
+                cflag = 0
+                Label1000()
+            End If
+        End While
+        FileClose(FlTemp)
+        'Printer.EndDoc
+        Cursor.Current = Cursors.Default
+        Exit Sub
 
     End Sub
 

@@ -307,18 +307,18 @@ ErrorOpvang:
 
         Err.Clear() : SettingsSaving = True
         SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Top", frmVenster.Top.ToString)
-        SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Links", frmVenster.Left.ToString)
-        SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Breedte", frmVenster.Width.ToString)
-        SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Hoogte", frmVenster.Height.ToString)
+        SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Left", frmVenster.Left.ToString)
+        SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Width", frmVenster.Width.ToString)
+        SaveSetting(My.Application.Info.ProductName, frmVenster.Name, "Height", frmVenster.Height.ToString)
         If Err.Number Then SettingsSaving = False
 
     End Function
 
     Sub SettingsLoading(ByRef frmVenster As System.Windows.Forms.Form)
         Dim valTop As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Top"))
-        Dim valLeft As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Top"))
-        Dim valWidth As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Breedte"))
-        Dim valHeight As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Hoogte"))
+        Dim valLeft As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Left"))
+        Dim valWidth As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Width"))
+        Dim valHeight As Integer = Val(GetSetting(My.Application.Info.ProductName, frmVenster.Name, "Height"))
 
         If valTop + valLeft + valWidth + valHeight = 0 Then
         Else

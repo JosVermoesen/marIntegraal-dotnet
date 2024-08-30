@@ -105,9 +105,9 @@ Partial Class Mim
         Me.LicentieToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InfoToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.CommandToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.QRCodeTestingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Report = New IDEALSoftware.VpeStandard.VpeControl()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.QRCodeTestingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MimMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -684,6 +684,13 @@ Partial Class Mim
         Me.CommandToolStripMenuItem.Text = "CMD Shell MyDocuments"
         AddHandler Me.CommandToolStripMenuItem.Click, AddressOf Me.CommandToolStripMenuItem_Click
         '
+        'QRCodeTestingToolStripMenuItem
+        '
+        Me.QRCodeTestingToolStripMenuItem.Name = "QRCodeTestingToolStripMenuItem"
+        Me.QRCodeTestingToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.QRCodeTestingToolStripMenuItem.Text = "QR Code Testing"
+        AddHandler Me.QRCodeTestingToolStripMenuItem.Click, AddressOf Me.QRCodeTestingToolStripMenuItem_Click
+        '
         'Report
         '
         Me.Report.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -728,13 +735,6 @@ Partial Class Mim
         '
         Me.OpenFileDialog.FileName = "OpenFileDialog1"
         '
-        'QRCodeTestingToolStripMenuItem
-        '
-        Me.QRCodeTestingToolStripMenuItem.Name = "QRCodeTestingToolStripMenuItem"
-        Me.QRCodeTestingToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
-        Me.QRCodeTestingToolStripMenuItem.Text = "QR Code Testing"
-        AddHandler Me.QRCodeTestingToolStripMenuItem.Click, AddressOf Me.QRCodeTestingToolStripMenuItem_Click
-        '
         'Mim
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -748,6 +748,9 @@ Partial Class Mim
         Me.Name = "Mim"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "marIntegraal Manager"
+        AddHandler FormClosing, AddressOf Me.Mim_FormClosing
+        AddHandler FormClosed, AddressOf Me.Mim_FormClosed
+        AddHandler Load, AddressOf Me.Mim_Load
         Me.MimMenuStrip.ResumeLayout(False)
         Me.MimMenuStrip.PerformLayout()
         Me.ResumeLayout(False)

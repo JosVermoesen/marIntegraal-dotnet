@@ -78,7 +78,10 @@ Public Class Mim
 
     End Sub
 
-    Private Sub Mim_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub Mim_FormClosing(sender As Object, e As FormClosingEventArgs)
+
+        SettingsSaving(Me)
+
         Dim hierCancel As Boolean = e.Cancel
 
         If Report.IsOpen = True Then
@@ -86,17 +89,15 @@ Public Class Mim
             hierCancel = True
         End If
         e.Cancel = hierCancel
+
     End Sub
 
-    Private Sub Mim_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+    Private Sub Mim_FormClosed(sender As Object, e As FormClosedEventArgs)
 
-        Dim X As Boolean
         TotalClose()
         If WindowState = FormWindowState.Minimized Then
             WindowState = FormWindowState.Normal
         End If
-        X = SettingsSaving(Me)
-        On Error Resume Next
 
     End Sub
 
@@ -513,4 +514,5 @@ Public Class Mim
         FormQRCodeTesting.Show()
 
     End Sub
+
 End Class
