@@ -1015,7 +1015,7 @@ TryAgain:
 
 		Dim CancelHere As Boolean = e.Cancel
 		If Mim.Report.IsOpen = True Then
-			MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
+			MsgBox("Sluit eerst het VPE venster a.u.b.", MsgBoxStyle.Information)
 			CancelHere = True
 		Else
 			Select Case A_INDEX

@@ -73,7 +73,6 @@ Partial Class FormTrialBalance
         '
         Me.CheckBoxDetailLedger.BackColor = System.Drawing.SystemColors.Control
         Me.CheckBoxDetailLedger.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.CheckBoxDetailLedger.Cursor = System.Windows.Forms.Cursors.Default
         Me.CheckBoxDetailLedger.ForeColor = System.Drawing.SystemColors.ControlText
         Me.CheckBoxDetailLedger.Location = New System.Drawing.Point(166, 9)
         Me.CheckBoxDetailLedger.Name = "CheckBoxDetailLedger"
@@ -100,7 +99,6 @@ Partial Class FormTrialBalance
         'ButtonClose
         '
         Me.ButtonClose.BackColor = System.Drawing.SystemColors.Control
-        Me.ButtonClose.Cursor = System.Windows.Forms.Cursors.Default
         Me.ButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.ButtonClose.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ButtonClose.Location = New System.Drawing.Point(293, 120)
@@ -111,6 +109,7 @@ Partial Class FormTrialBalance
         Me.ButtonClose.TabStop = False
         Me.ButtonClose.Text = "&Sluiten"
         Me.ButtonClose.UseVisualStyleBackColor = False
+        AddHandler Me.ButtonClose.Click, AddressOf Me.ButtonClose_Click_1
         '
         'TextBoxProcessingDate
         '
@@ -128,7 +127,6 @@ Partial Class FormTrialBalance
         'ButtonGenerateReport
         '
         Me.ButtonGenerateReport.BackColor = System.Drawing.SystemColors.Control
-        Me.ButtonGenerateReport.Cursor = System.Windows.Forms.Cursors.Default
         Me.ButtonGenerateReport.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ButtonGenerateReport.Location = New System.Drawing.Point(94, 104)
         Me.ButtonGenerateReport.Name = "ButtonGenerateReport"
@@ -143,7 +141,6 @@ Partial Class FormTrialBalance
         Me.LabelLedgerAccountFromTo.AutoSize = True
         Me.LabelLedgerAccountFromTo.BackColor = System.Drawing.SystemColors.Control
         Me.LabelLedgerAccountFromTo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.LabelLedgerAccountFromTo.Cursor = System.Windows.Forms.Cursors.Default
         Me.LabelLedgerAccountFromTo.ForeColor = System.Drawing.SystemColors.ControlText
         Me.LabelLedgerAccountFromTo.Location = New System.Drawing.Point(11, 34)
         Me.LabelLedgerAccountFromTo.Name = "LabelLedgerAccountFromTo"
@@ -157,7 +154,6 @@ Partial Class FormTrialBalance
         Me.LabelPeriodFromTo.AutoSize = True
         Me.LabelPeriodFromTo.BackColor = System.Drawing.SystemColors.Control
         Me.LabelPeriodFromTo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.LabelPeriodFromTo.Cursor = System.Windows.Forms.Cursors.Default
         Me.LabelPeriodFromTo.ForeColor = System.Drawing.SystemColors.ControlText
         Me.LabelPeriodFromTo.Location = New System.Drawing.Point(7, 80)
         Me.LabelPeriodFromTo.Name = "LabelPeriodFromTo"
@@ -171,7 +167,6 @@ Partial Class FormTrialBalance
         Me.LabelProcessingDate.AutoSize = True
         Me.LabelProcessingDate.BackColor = System.Drawing.SystemColors.Control
         Me.LabelProcessingDate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.LabelProcessingDate.Cursor = System.Windows.Forms.Cursors.Default
         Me.LabelProcessingDate.ForeColor = System.Drawing.SystemColors.ControlText
         Me.LabelProcessingDate.Location = New System.Drawing.Point(11, 9)
         Me.LabelProcessingDate.Name = "LabelProcessingDate"
@@ -183,7 +178,6 @@ Partial Class FormTrialBalance
         'ButtonXMLExport
         '
         Me.ButtonXMLExport.BackColor = System.Drawing.SystemColors.Control
-        Me.ButtonXMLExport.Cursor = System.Windows.Forms.Cursors.Default
         Me.ButtonXMLExport.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ButtonXMLExport.Location = New System.Drawing.Point(7, 108)
         Me.ButtonXMLExport.Name = "ButtonXMLExport"

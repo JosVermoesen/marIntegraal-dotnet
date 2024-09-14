@@ -31,7 +31,7 @@
     <SuiteName>marIntegraal Studio</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -80,7 +80,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -166,10 +166,10 @@
     <Compile Include="SupportiveForms\frmAankoopInvesteerFiche.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CloudIO\frmAppOutInstellingen.Designer.vb">
-      <DependentUpon>frmAppOutInstellingen.vb</DependentUpon>
+    <Compile Include="CloudIO\FormExternalSettings.Designer.vb">
+      <DependentUpon>FormExternalSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="CloudIO\frmAppOutInstellingen.vb">
+    <Compile Include="CloudIO\FormExternalSettings.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Accounting\FormBSBook.Designer.vb">
@@ -477,8 +477,8 @@
     <EmbeddedResource Include="SupportiveForms\frmAankoopInvesteerFiche.resx">
       <DependentUpon>frmAankoopInvesteerFiche.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CloudIO\frmAppOutInstellingen.resx">
-      <DependentUpon>frmAppOutInstellingen.vb</DependentUpon>
+    <EmbeddedResource Include="CloudIO\FormExternalSettings.resx">
+      <DependentUpon>FormExternalSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\FormBSBook.resx">
       <DependentUpon>FormBSBook.vb</DependentUpon>

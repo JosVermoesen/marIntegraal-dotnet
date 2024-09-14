@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>C:\Users\Jos\source\repos\JosVermoesen\mar\vss\marintegraal-dotnet\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\vss\marintegraal-vsvb\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\marintegraal-vsvb\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\marintegraal-vsvb\|C:\Users\Jos\source\repos\JosVermoesen\mar\2024-vsvb-marintegraal\Publish\</PublishUrlHistory>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <PublishUrlHistory>C:\Users\Jos\source\repos\mar\vss\marintegraal-dotnet\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\vss\marintegraal-dotnet\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\vss\marintegraal-vsvb\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\marintegraal-vsvb\Publish\|C:\Users\Jos\source\repos\JosVermoesen\mar\marintegraal-vsvb\</PublishUrlHistory>
     <InstallUrlHistory>https://clickonce.vsoft.be/marintegraal/|https://clickonce.vsoft.be/MarIntegraal/|http://www.vsoft.be/marintegraal/|http://vsoft.be/vs2017/marIntegraal/|http://vsoft.be/vs2015/marIntegraal/</InstallUrlHistory>
     <SupportUrlHistory>http://www.rv.be/marintegraal.aspx</SupportUrlHistory>
     <UpdateUrlHistory />

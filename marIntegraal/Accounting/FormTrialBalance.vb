@@ -536,4 +536,9 @@ Public Class FormTrialBalance
 
     End Sub
 
+    Private Sub ButtonClose_Click_1(sender As Object, e As EventArgs)
+
+        Close()
+
+    End Sub
 End Class

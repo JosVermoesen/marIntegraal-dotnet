@@ -73,7 +73,7 @@ Public Class Mim
         Dim hierCancel As Boolean = e.Cancel
 
         If Report.IsOpen = True Then
-            MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
+            MsgBox("Sluit eerst het VPE venster a.u.b.", MsgBoxStyle.Information)
             hierCancel = True
         End If
         e.Cancel = hierCancel
@@ -513,4 +513,10 @@ Public Class Mim
 
     End Sub
 
+    Private Sub InstellingenToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+        Dim IoSettings As New FormExternalSettings
+        IoSettings.ShowDialog()
+
+    End Sub
 End Class

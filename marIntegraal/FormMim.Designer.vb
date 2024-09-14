@@ -629,8 +629,9 @@ Partial Class Mim
         'InstellingenToolStripMenuItem
         '
         Me.InstellingenToolStripMenuItem.Name = "InstellingenToolStripMenuItem"
-        Me.InstellingenToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.InstellingenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.InstellingenToolStripMenuItem.Text = "Instellingen"
+        AddHandler Me.InstellingenToolStripMenuItem.Click, AddressOf Me.InstellingenToolStripMenuItem_Click
         '
         'InfoToolStrip
         '

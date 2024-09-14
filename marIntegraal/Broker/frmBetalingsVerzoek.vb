@@ -138,7 +138,7 @@ Public Class BetalingsVerzoek
 		Dim hierCancel As Boolean = e.Cancel
 		Dim UnloadMode As System.Windows.Forms.CloseReason = CloseReason.ApplicationExitCall
 		If Mim.Report.IsOpen = True Then
-			MsgBox("Sluit eerst het PDF venster a.u.b.", MsgBoxStyle.Information)
+			MsgBox("Sluit eerst het VPE venster a.u.b.", MsgBoxStyle.Information)
 			hierCancel = True
 		Else
 			'stop
