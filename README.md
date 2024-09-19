@@ -4,7 +4,7 @@
 
 ![MARINTEGRAAL](img/marIntegraalVSVB.png)
 
-## History (Dutch)
+## History
 
 marIntegraal stands for: complete bookkeeping around the Minimum Classification General Accounting System (Belgium).
 
