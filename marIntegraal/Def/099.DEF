@@ -6,13 +6,13 @@
 "002 s183","Default BTW code (3)","N",1
 "919 s200","Intrastat Aangifteschermen (0=OFF)","N",1
 "919 s201","Kontaktpersoon in adres ? (0=OFF)","N",1
-"919 s290","Briefwisseling via DDE ?","N",1
-"919 s021","E-mail mogelijk maken ?","N",1
-"2   s291","Programma voor DDE","A",20
-"2   s292","Algemene benaming toepassing","A",20
-"2   s293","Dokumentnaam voor DDE","A",20
-"2   s294","SendKeys 'afdruk door toepassing'","A",20
-"2   s295","SendKeys 'sluiten toepassing'","A",20
+"919 s021","Outlook E-mail aan?","N",1
+"919 s291","Outlook Mail Dialoog aan?","N",1
+"2   s290","Reserve","N",1
+"2   s292","Reserve","A",20
+"2   s293","Reserve","A",20
+"2   s294","Reserve","A",20
+"2   s295","Reserve","A",20
 ;Aankoopverrichtingen
 "5   s001","Nr Aankoopfakturen","N",5
 "5   s002","Nr Fakturen in Aankoopboek","N",5

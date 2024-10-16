@@ -82,8 +82,8 @@ Public Class BetalingsVerzoek
 		cbLanguage.Items.Add("4: Duits")
 		cbLanguage.SelectedIndex = 1
 
-		lvPolicesDetail.View = View.Details
-		With lvPolicesDetail.Columns
+		ListViewPostDetail.View = View.Details
+		With ListViewPostDetail.Columns
 			.Add("Polis", 79, HorizontalAlignment.Left)
 			.Add("Vervaldag", 73, HorizontalAlignment.Left)
 			.Add("Premie", 60, HorizontalAlignment.Right)
@@ -91,7 +91,18 @@ Public Class BetalingsVerzoek
 			.Add("Klant (naam 1)", 177, HorizontalAlignment.Left)
 			.Add("Comm.%", 64, HorizontalAlignment.Right)
 			.Add("TB2", 95, HorizontalAlignment.Left)
-		End With		
+		End With
+
+		ListViewMailDetail.View = View.Details
+		With ListViewMailDetail.Columns
+			.Add("Polis", 79, HorizontalAlignment.Left)
+			.Add("Vervaldag", 73, HorizontalAlignment.Left)
+			.Add("Premie", 60, HorizontalAlignment.Right)
+			.Add("Taksen", 60, HorizontalAlignment.Right)
+			.Add("Klant (naam 1)", 177, HorizontalAlignment.Left)
+			.Add("Comm.%", 64, HorizontalAlignment.Right)
+			.Add("TB2", 95, HorizontalAlignment.Left)
+		End With
 
 		InstallMij()
 		
@@ -102,7 +113,7 @@ Public Class BetalingsVerzoek
 
 	Private Sub btClose_Click(sender As Object, e As EventArgs) Handles btClose.Click
 
-		If lvPolicesDetail.Items.Count Then
+		If ListViewPostDetail.Items.Count Then
 			MSG = "Aangeduide verrichtingen negeren." & vbCrLf & vbCrLf & "Bent U zeker ?"
 			KTRL = MsgBox(MSG, 292, "Voortijdig stoppen...")
 			If KTRL = 6 Then
@@ -117,8 +128,9 @@ Public Class BetalingsVerzoek
 
 	Private Sub RasterSchoon()
 
-		lvPolicesDetail.Items.Clear 
-		
+		ListViewPostDetail.Items.Clear()
+		ListViewMailDetail.Items.Clear()
+
 	End Sub
 	
 	Private Sub Schoon()
@@ -253,7 +265,7 @@ Public Class BetalingsVerzoek
 				.Add (Format(Val(kwijtingArray(5)), "0.00"))
 				.Add (kwijtingArray(6))
 			End With
-			lvPolicesDetail.Items.Add(itemHier)					
+			ListViewPostDetail.Items.Add(itemHier)					
 		End If
 
 	End Sub
@@ -270,7 +282,7 @@ Public Class BetalingsVerzoek
 		
 
 		If cbPaymentType.SelectedIndex = 1 then
-			if lvPolicesDetail.Items.Count = 0 Then
+			if ListViewPostDetail.Items.Count = 0 Then
 			Else
 				Exit Sub
 			End If
@@ -282,7 +294,7 @@ Public Class BetalingsVerzoek
 		KTRL = MsgBox(MSG, 292)
 		If KTRL = MsgBoxResult.Yes Then
 			InsertTermijn()
-			lvPolicesDetail.Focus
+			ListViewPostDetail.Focus
 		End If
 
 	End Sub
@@ -313,7 +325,7 @@ Public Class BetalingsVerzoek
 		Dim Ktrl2 As Integer
 		Dim ZoekMaand As String
 		Dim Dummy As String
-		Dim tb2Dummy As String
+		Dim tb2Dummy As String = ""
 		Dim PostOfBezoek As String
 		Dim X As Integer
 		Dim TaksEnKost As Decimal
@@ -323,8 +335,9 @@ Public Class BetalingsVerzoek
 		Dim getPolice As String
 
 		Dim dbBA010 As Double 
-		Dim dbBB010 As Double 
-		Dim strV035 As String 
+		Dim dbBB010 As Double
+		Dim strV035 As String
+		Dim mailFlag As Boolean = False
 
 		Select Case Post.CheckState
 			Case 1
@@ -354,7 +367,7 @@ Public Class BetalingsVerzoek
 		Else
 			Cursor.Current = Cursors.WaitCursor
 			Enabled = False
-			lvPolicesDetail.Refresh
+			ListViewPostDetail.Refresh
 			policiesRS.MoveFirst()
 			Do While Not policiesRS.EOF
 				'select beperken tot: A110, vs97, v164
@@ -366,9 +379,14 @@ Public Class BetalingsVerzoek
 				Else
 					RecordToField(TABLE_CUSTOMERS)
 					Dummy = Trim(AdoGetField(TABLE_CUSTOMERS, "#A100 #") & " " & AdoGetField(TABLE_CUSTOMERS, "#A101 #"))
+					If Val(AdoGetField(TABLE_CUSTOMERS, "#g101 #")) > 0 Then
+						mailFlag = True
+					Else
+						mailFlag = False
+					End If
 				End If
 
-				getPolice = policiesRS.Fields("A000").Value
+					getPolice = policiesRS.Fields("A000").Value
 				sSQL = "SELECT * FROM Dokumenten WHERE A000 = '" & getPolice & "'"
 				invoicesRS.Open(sSQL, AD_NTDB, ADODB.CursorTypeEnum.adOpenForwardOnly, ADODB.LockTypeEnum.adLockReadOnly)
 				If invoicesRS.RecordCount <= 0 Then
@@ -428,6 +446,7 @@ Public Class BetalingsVerzoek
 						'hier bijvoegen enkel voor geselecteerde maatschappij
 						Dim dataVeld As String = policiesRS.Fields("A000").Value
 						Dim itemHier As New ListViewItem(dataVeld)
+						Dim itemHierMail As New ListViewItem(dataVeld)
 						Dim vervaldagHier As String = Mid(policiesRS.Fields("v165").Value, 1, 2) & "/" & Mid(policiesRS.Fields("v164").Value, 1, 2) & "/" & Mid(PERIOD_FROMTO, 1, 4)
 
 						With itemHier.SubItems
@@ -438,12 +457,24 @@ Public Class BetalingsVerzoek
 							.Add (Format(comPercentage, "0.000"))
 							.Add (tb2Dummy)
 						End With
-						lvPolicesDetail.Items.Add(itemHier)
+						ListViewPostDetail.Items.Add(itemHier)
+						If mailFlag Then
+							With itemHierMail.SubItems
+								.Add(vervaldagHier)
+								.Add(Format(Val(strB010), "#,##0.00"))
+								.Add(Format(TaksEnKost, "#,##0.00"))
+								.Add(Dummy)
+								.Add(Format(comPercentage, "0.000"))
+								.Add(tb2Dummy)
+							End With
+							ListViewMailDetail.Items.Add(itemHierMail)
+						End If
 					End If
 				Else
 					'hier bijvoegen voor alle maatschappijen
 					Dim dataVeld As String = policiesRS.Fields("A000").Value
 					Dim itemHier As New ListViewItem(dataVeld)
+					Dim itemHierMail As New ListViewItem(dataVeld)
 					Dim vervaldagHier As String = Mid(policiesRS.Fields("v165").Value, 1, 2) & "/" & Mid(policiesRS.Fields("v164").Value, 1, 2) & "/" & Mid(PERIOD_FROMTO, 1, 4)
 
 					With itemHier.SubItems
@@ -454,12 +485,23 @@ Public Class BetalingsVerzoek
 						.Add (Format(comPercentage, "0.000"))
 						.Add (tb2Dummy)
 					End With
-					lvPolicesDetail.Items.Add(itemHier)					
+					ListViewPostDetail.Items.Add(itemHier)
+					If mailFlag Then
+						With itemHierMail.SubItems
+							.Add(vervaldagHier)
+							.Add(Format(Val(strB010), "#,##0.00"))
+							.Add(Format(TaksEnKost, "#,##0.00"))
+							.Add(Dummy)
+							.Add(Format(comPercentage, "0.000"))
+							.Add(tb2Dummy)
+						End With
+						ListViewMailDetail.Items.Add(itemHierMail)
+					End If
 				End If
 
 				policiesRS.MoveNext() '
 			Loop
-			lvPolicesDetail.Refresh
+			ListViewPostDetail.Refresh
 			Cursor.Current = Cursors.Default
 			Enabled = True '			 
 			'			
@@ -468,10 +510,10 @@ Public Class BetalingsVerzoek
 	End Sub
 		
 
-	Private Sub lvPolicesDetail_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvPolicesDetail.SelectedIndexChanged
+	Private Sub lvPolicesDetail_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListViewPostDetail.SelectedIndexChanged
 
 		If btPrintOut.Enabled = True Then
-		ElseIf lvPolicesDetail.Items.Count Then
+		ElseIf ListViewPostDetail.Items.Count Then
 			btPrintOut.Enabled = True
 		End If
 			
@@ -514,11 +556,11 @@ Public Class BetalingsVerzoek
 		SDTitel = SDTitel & "Val.dag"
 		SDTitel = UCase(SDTitel)
 		
-		For T = 0 To lvPolicesDetail.Items.Count - 1
-			PolisNummer = lvPolicesDetail.items.Item(T).SubItems(0).Text 
-			sharedPolis = lvPolicesDetail.items.Item(T).SubItems(0).Text 
-			sharedTotaal = Val(lvPolicesDetail.items.Item(T).SubItems(2).Text )
-			sharedvsfTB2 = lvPolicesDetail.items.Item(T).SubItems(6).Text 
+		For T = 0 To ListViewPostDetail.Items.Count - 1
+			PolisNummer = ListViewPostDetail.items.Item(T).SubItems(0).Text 
+			sharedPolis = ListViewPostDetail.items.Item(T).SubItems(0).Text 
+			sharedTotaal = Val(ListViewPostDetail.items.Item(T).SubItems(2).Text )
+			sharedvsfTB2 = ListViewPostDetail.items.Item(T).SubItems(6).Text 
 			
 			JetGet(TABLE_CONTRACTS, 0, PolisNummer)
 			If KTRL Then
@@ -609,7 +651,7 @@ Public Class BetalingsVerzoek
 			End If
 						
 			XX = pdfDrukAf 
-			If T = lvPolicesDetail.Items.Count - 1 Then
+			If T = ListViewPostDetail.Items.Count - 1 Then
 			Else 
 				ktrlBOOL = Mim.Report.PageBreak
 			End If		

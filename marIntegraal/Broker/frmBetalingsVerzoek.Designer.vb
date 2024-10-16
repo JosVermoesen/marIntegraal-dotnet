@@ -44,10 +44,17 @@ Partial Class BetalingsVerzoek
         Me._LabelInfo_2 = New System.Windows.Forms.Label()
         Me.lblInOntwikkeling = New System.Windows.Forms.Label()
         Me.DateTimePicker = New System.Windows.Forms.DateTimePicker()
-        Me.lvPolicesDetail = New System.Windows.Forms.ListView()
+        Me.ListViewPostDetail = New System.Windows.Forms.ListView()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.MetOverschrijving = New System.Windows.Forms.CheckBox()
-        Me.SuspendLayout
+        Me.TabControlPremium = New System.Windows.Forms.TabControl()
+        Me.TabPagePost = New System.Windows.Forms.TabPage()
+        Me.TabPageEmail = New System.Windows.Forms.TabPage()
+        Me.ListViewMailDetail = New System.Windows.Forms.ListView()
+        Me.TabControlPremium.SuspendLayout()
+        Me.TabPagePost.SuspendLayout()
+        Me.TabPageEmail.SuspendLayout()
+        Me.SuspendLayout()
         '
         'cbTB2Info
         '
@@ -60,13 +67,13 @@ Partial Class BetalingsVerzoek
         Me.cbTB2Info.Size = New System.Drawing.Size(144, 21)
         Me.cbTB2Info.TabIndex = 60
         Me.cbTB2Info.Text = "TB2 Detail op blad 2"
-        Me.cbTB2Info.UseVisualStyleBackColor = false
+        Me.cbTB2Info.UseVisualStyleBackColor = False
         '
         'ckMetDatum
         '
         Me.ckMetDatum.BackColor = System.Drawing.SystemColors.Control
         Me.ckMetDatum.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ckMetDatum.Checked = true
+        Me.ckMetDatum.Checked = True
         Me.ckMetDatum.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ckMetDatum.Cursor = System.Windows.Forms.Cursors.Default
         Me.ckMetDatum.ForeColor = System.Drawing.SystemColors.ControlText
@@ -76,7 +83,7 @@ Partial Class BetalingsVerzoek
         Me.ckMetDatum.Size = New System.Drawing.Size(83, 20)
         Me.ckMetDatum.TabIndex = 56
         Me.ckMetDatum.Text = "Met datum"
-        Me.ckMetDatum.UseVisualStyleBackColor = false
+        Me.ckMetDatum.UseVisualStyleBackColor = False
         '
         'cbListCompanies
         '
@@ -89,12 +96,12 @@ Partial Class BetalingsVerzoek
         Me.cbListCompanies.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.cbListCompanies.Size = New System.Drawing.Size(265, 21)
         Me.cbListCompanies.TabIndex = 1
-        Me.cbListCompanies.Visible = false
+        Me.cbListCompanies.Visible = False
         '
         'Post
         '
         Me.Post.BackColor = System.Drawing.SystemColors.Control
-        Me.Post.Checked = true
+        Me.Post.Checked = True
         Me.Post.CheckState = System.Windows.Forms.CheckState.Checked
         Me.Post.Cursor = System.Windows.Forms.Cursors.Default
         Me.Post.ForeColor = System.Drawing.SystemColors.ControlText
@@ -104,7 +111,7 @@ Partial Class BetalingsVerzoek
         Me.Post.Size = New System.Drawing.Size(64, 21)
         Me.Post.TabIndex = 44
         Me.Post.Text = "P&ost"
-        Me.Post.UseVisualStyleBackColor = false
+        Me.Post.UseVisualStyleBackColor = False
         '
         'TekstBewaren
         '
@@ -117,12 +124,12 @@ Partial Class BetalingsVerzoek
         Me.TekstBewaren.Size = New System.Drawing.Size(89, 22)
         Me.TekstBewaren.TabIndex = 41
         Me.TekstBewaren.Text = "Opslaan"
-        Me.TekstBewaren.UseVisualStyleBackColor = false
+        Me.TekstBewaren.UseVisualStyleBackColor = False
         '
         '_TekstInfo_3
         '
-        Me._TekstInfo_3.AcceptsReturn = true
-        Me._TekstInfo_3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me._TekstInfo_3.AcceptsReturn = True
+        Me._TekstInfo_3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me._TekstInfo_3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me._TekstInfo_3.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._TekstInfo_3.ForeColor = System.Drawing.Color.Black
@@ -133,12 +140,12 @@ Partial Class BetalingsVerzoek
         Me._TekstInfo_3.Size = New System.Drawing.Size(72, 20)
         Me._TekstInfo_3.TabIndex = 46
         Me._TekstInfo_3.Text = "471.00"
-        Me._TekstInfo_3.Visible = false
+        Me._TekstInfo_3.Visible = False
         '
         '_TekstInfo_2
         '
-        Me._TekstInfo_2.AcceptsReturn = true
-        Me._TekstInfo_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me._TekstInfo_2.AcceptsReturn = True
+        Me._TekstInfo_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me._TekstInfo_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me._TekstInfo_2.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._TekstInfo_2.ForeColor = System.Drawing.Color.Black
@@ -149,25 +156,25 @@ Partial Class BetalingsVerzoek
         Me._TekstInfo_2.Size = New System.Drawing.Size(72, 20)
         Me._TekstInfo_2.TabIndex = 45
         Me._TekstInfo_2.Text = "145.56"
-        Me._TekstInfo_2.Visible = false
+        Me._TekstInfo_2.Visible = False
         '
         'tbInfoTekst
         '
-        Me.tbInfoTekst.AcceptsReturn = true
-        Me.tbInfoTekst.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me.tbInfoTekst.AcceptsReturn = True
+        Me.tbInfoTekst.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbInfoTekst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbInfoTekst.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.tbInfoTekst.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.tbInfoTekst.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbInfoTekst.ForeColor = System.Drawing.Color.Black
-        Me.tbInfoTekst.Location = New System.Drawing.Point(7, 281)
+        Me.tbInfoTekst.Location = New System.Drawing.Point(14, 288)
         Me.tbInfoTekst.MaxLength = 0
-        Me.tbInfoTekst.Multiline = true
+        Me.tbInfoTekst.Multiline = True
         Me.tbInfoTekst.Name = "tbInfoTekst"
         Me.tbInfoTekst.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.tbInfoTekst.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.tbInfoTekst.Size = New System.Drawing.Size(624, 85)
         Me.tbInfoTekst.TabIndex = 40
-        Me.tbInfoTekst.WordWrap = false
+        Me.tbInfoTekst.WordWrap = False
         '
         'cbLanguage
         '
@@ -197,7 +204,7 @@ Partial Class BetalingsVerzoek
         '
         Me.btPrintOut.BackColor = System.Drawing.SystemColors.Control
         Me.btPrintOut.Cursor = System.Windows.Forms.Cursors.Default
-        Me.btPrintOut.Enabled = false
+        Me.btPrintOut.Enabled = False
         Me.btPrintOut.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btPrintOut.Location = New System.Drawing.Point(637, 130)
         Me.btPrintOut.Name = "btPrintOut"
@@ -205,7 +212,7 @@ Partial Class BetalingsVerzoek
         Me.btPrintOut.Size = New System.Drawing.Size(82, 25)
         Me.btPrintOut.TabIndex = 38
         Me.btPrintOut.Text = "&Drukaf"
-        Me.btPrintOut.UseVisualStyleBackColor = false
+        Me.btPrintOut.UseVisualStyleBackColor = False
         '
         'btClose
         '
@@ -218,9 +225,9 @@ Partial Class BetalingsVerzoek
         Me.btClose.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.btClose.Size = New System.Drawing.Size(83, 25)
         Me.btClose.TabIndex = 48
-        Me.btClose.TabStop = false
+        Me.btClose.TabStop = False
         Me.btClose.Text = "Sluiten"
-        Me.btClose.UseVisualStyleBackColor = false
+        Me.btClose.UseVisualStyleBackColor = False
         '
         'bClear
         '
@@ -233,11 +240,11 @@ Partial Class BetalingsVerzoek
         Me.bClear.Size = New System.Drawing.Size(83, 25)
         Me.bClear.TabIndex = 47
         Me.bClear.Text = "Schoon"
-        Me.bClear.UseVisualStyleBackColor = false
+        Me.bClear.UseVisualStyleBackColor = False
         '
         '_LabelInfo_0
         '
-        Me._LabelInfo_0.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me._LabelInfo_0.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me._LabelInfo_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me._LabelInfo_0.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_0.ForeColor = System.Drawing.SystemColors.WindowText
@@ -250,7 +257,7 @@ Partial Class BetalingsVerzoek
         '
         'CRLFCaption
         '
-        Me.CRLFCaption.BackColor = System.Drawing.Color.FromArgb(CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(192,Byte),Integer))
+        Me.CRLFCaption.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.CRLFCaption.Cursor = System.Windows.Forms.Cursors.Default
         Me.CRLFCaption.ForeColor = System.Drawing.Color.Black
         Me.CRLFCaption.Location = New System.Drawing.Point(567, 263)
@@ -276,7 +283,7 @@ Partial Class BetalingsVerzoek
         '
         '_LabelInfo_3
         '
-        Me._LabelInfo_3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(128,Byte),Integer), CType(CType(128,Byte),Integer))
+        Me._LabelInfo_3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me._LabelInfo_3.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_3.ForeColor = System.Drawing.Color.Black
         Me._LabelInfo_3.Location = New System.Drawing.Point(435, 335)
@@ -285,11 +292,11 @@ Partial Class BetalingsVerzoek
         Me._LabelInfo_3.Size = New System.Drawing.Size(96, 16)
         Me._LabelInfo_3.TabIndex = 50
         Me._LabelInfo_3.Text = "BRAND ER IDX"
-        Me._LabelInfo_3.Visible = false
+        Me._LabelInfo_3.Visible = False
         '
         '_LabelInfo_2
         '
-        Me._LabelInfo_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(128,Byte),Integer), CType(CType(128,Byte),Integer))
+        Me._LabelInfo_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me._LabelInfo_2.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_2.ForeColor = System.Drawing.Color.Black
         Me._LabelInfo_2.Location = New System.Drawing.Point(251, 335)
@@ -298,12 +305,12 @@ Partial Class BetalingsVerzoek
         Me._LabelInfo_2.Size = New System.Drawing.Size(96, 16)
         Me._LabelInfo_2.TabIndex = 49
         Me._LabelInfo_2.Text = "BA Priv‚ IDX"
-        Me._LabelInfo_2.Visible = false
+        Me._LabelInfo_2.Visible = False
         '
         'lblInOntwikkeling
         '
-        Me.lblInOntwikkeling.AutoSize = true
-        Me.lblInOntwikkeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.lblInOntwikkeling.AutoSize = True
+        Me.lblInOntwikkeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInOntwikkeling.Location = New System.Drawing.Point(204, 290)
         Me.lblInOntwikkeling.Name = "lblInOntwikkeling"
         Me.lblInOntwikkeling.Size = New System.Drawing.Size(189, 42)
@@ -317,42 +324,43 @@ Partial Class BetalingsVerzoek
         Me.DateTimePicker.Size = New System.Drawing.Size(176, 20)
         Me.DateTimePicker.TabIndex = 88
         '
-        'lvPolicesDetail
+        'ListViewPostDetail
         '
-        Me.lvPolicesDetail.BackColor = System.Drawing.SystemColors.Window
-        Me.lvPolicesDetail.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.lvPolicesDetail.FullRowSelect = true
-        Me.lvPolicesDetail.HideSelection = false
-        Me.lvPolicesDetail.Location = New System.Drawing.Point(7, 91)
-        Me.lvPolicesDetail.Name = "lvPolicesDetail"
-        Me.lvPolicesDetail.Size = New System.Drawing.Size(624, 161)
-        Me.lvPolicesDetail.TabIndex = 89
-        Me.lvPolicesDetail.UseCompatibleStateImageBehavior = false
-        Me.lvPolicesDetail.View = System.Windows.Forms.View.List
+        Me.ListViewPostDetail.BackColor = System.Drawing.SystemColors.Window
+        Me.ListViewPostDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListViewPostDetail.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.ListViewPostDetail.FullRowSelect = True
+        Me.ListViewPostDetail.HideSelection = False
+        Me.ListViewPostDetail.Location = New System.Drawing.Point(3, 3)
+        Me.ListViewPostDetail.Name = "ListViewPostDetail"
+        Me.ListViewPostDetail.Size = New System.Drawing.Size(617, 157)
+        Me.ListViewPostDetail.TabIndex = 89
+        Me.ListViewPostDetail.UseCompatibleStateImageBehavior = False
+        Me.ListViewPostDetail.View = System.Windows.Forms.View.List
         '
         'btnAdd
         '
         Me.btnAdd.BackColor = System.Drawing.SystemColors.Control
         Me.btnAdd.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnAdd.Enabled = false
+        Me.btnAdd.Enabled = False
         Me.btnAdd.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btnAdd.Location = New System.Drawing.Point(471, 62)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.btnAdd.Size = New System.Drawing.Size(83, 25)
         Me.btnAdd.TabIndex = 90
-        Me.btnAdd.TabStop = false
+        Me.btnAdd.TabStop = False
         Me.btnAdd.Text = "Toevoegen"
-        Me.btnAdd.UseVisualStyleBackColor = false
+        Me.btnAdd.UseVisualStyleBackColor = False
         '
         'MetOverschrijving
         '
         Me.MetOverschrijving.BackColor = System.Drawing.SystemColors.Control
-        Me.MetOverschrijving.Checked = true
+        Me.MetOverschrijving.Checked = True
         Me.MetOverschrijving.CheckState = System.Windows.Forms.CheckState.Checked
         Me.MetOverschrijving.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MetOverschrijving.Enabled = false
+        Me.MetOverschrijving.Enabled = False
         Me.MetOverschrijving.ForeColor = System.Drawing.SystemColors.ControlText
         Me.MetOverschrijving.Location = New System.Drawing.Point(412, 12)
         Me.MetOverschrijving.Name = "MetOverschrijving"
@@ -360,15 +368,62 @@ Partial Class BetalingsVerzoek
         Me.MetOverschrijving.Size = New System.Drawing.Size(151, 21)
         Me.MetOverschrijving.TabIndex = 43
         Me.MetOverschrijving.Text = "Overschrijvingsstrook"
-        Me.MetOverschrijving.UseVisualStyleBackColor = false
+        Me.MetOverschrijving.UseVisualStyleBackColor = False
+        '
+        'TabControlPremium
+        '
+        Me.TabControlPremium.Controls.Add(Me.TabPagePost)
+        Me.TabControlPremium.Controls.Add(Me.TabPageEmail)
+        Me.TabControlPremium.Location = New System.Drawing.Point(7, 93)
+        Me.TabControlPremium.Name = "TabControlPremium"
+        Me.TabControlPremium.SelectedIndex = 0
+        Me.TabControlPremium.Size = New System.Drawing.Size(631, 189)
+        Me.TabControlPremium.TabIndex = 91
+        '
+        'TabPagePost
+        '
+        Me.TabPagePost.Controls.Add(Me.ListViewPostDetail)
+        Me.TabPagePost.Location = New System.Drawing.Point(4, 22)
+        Me.TabPagePost.Name = "TabPagePost"
+        Me.TabPagePost.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPagePost.Size = New System.Drawing.Size(623, 163)
+        Me.TabPagePost.TabIndex = 0
+        Me.TabPagePost.Text = "Post"
+        Me.TabPagePost.UseVisualStyleBackColor = True
+        '
+        'TabPageEmail
+        '
+        Me.TabPageEmail.Controls.Add(Me.ListViewMailDetail)
+        Me.TabPageEmail.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageEmail.Name = "TabPageEmail"
+        Me.TabPageEmail.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageEmail.Size = New System.Drawing.Size(623, 163)
+        Me.TabPageEmail.TabIndex = 1
+        Me.TabPageEmail.Text = "Mail"
+        Me.TabPageEmail.UseVisualStyleBackColor = True
+        '
+        'ListViewMailDetail
+        '
+        Me.ListViewMailDetail.BackColor = System.Drawing.SystemColors.Window
+        Me.ListViewMailDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListViewMailDetail.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.ListViewMailDetail.FullRowSelect = True
+        Me.ListViewMailDetail.HideSelection = False
+        Me.ListViewMailDetail.Location = New System.Drawing.Point(3, 3)
+        Me.ListViewMailDetail.Name = "ListViewMailDetail"
+        Me.ListViewMailDetail.Size = New System.Drawing.Size(617, 157)
+        Me.ListViewMailDetail.TabIndex = 90
+        Me.ListViewMailDetail.UseCompatibleStateImageBehavior = False
+        Me.ListViewMailDetail.View = System.Windows.Forms.View.List
         '
         'BetalingsVerzoek
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btClose
-        Me.ClientSize = New System.Drawing.Size(726, 378)
-        Me.ControlBox = false
+        Me.ClientSize = New System.Drawing.Size(728, 379)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.TabControlPremium)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.DateTimePicker)
         Me.Controls.Add(Me.lblInOntwikkeling)
@@ -391,14 +446,16 @@ Partial Class BetalingsVerzoek
         Me.Controls.Add(Me._LabelInfo_4)
         Me.Controls.Add(Me._LabelInfo_3)
         Me.Controls.Add(Me._LabelInfo_2)
-        Me.Controls.Add(Me.lvPolicesDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.MaximizeBox = false
-        Me.MinimizeBox = false
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "BetalingsVerzoek"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmBetalingsVerzoek"
-        Me.ResumeLayout(false)
+        Me.TabControlPremium.ResumeLayout(False)
+        Me.TabPagePost.ResumeLayout(False)
+        Me.TabPageEmail.ResumeLayout(False)
+        Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
@@ -423,7 +480,11 @@ End Sub
     Public WithEvents _LabelInfo_2 As Label
     Friend WithEvents lblInOntwikkeling As Label
     Friend WithEvents DateTimePicker As DateTimePicker
-    Public WithEvents lvPolicesDetail As ListView
+    Public WithEvents ListViewPostDetail As ListView
     Public WithEvents btnAdd As Button
     Public WithEvents MetOverschrijving As CheckBox
+    Friend WithEvents TabControlPremium As TabControl
+    Friend WithEvents TabPagePost As TabPage
+    Friend WithEvents TabPageEmail As TabPage
+    Public WithEvents ListViewMailDetail As ListView
 End Class

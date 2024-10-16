@@ -1,9 +1,13 @@
 "7   A110 -","Uniek Kodenummer","A",12
-" 98 A102","TitelKode 1","N",1
-"1   A100","Naam 1","A",35
-" 98 vs01","TitelKode 2","N",1
-"1   A125","Naam 2","A",35
+" 98 A102","TitelKode","N",1
 " 97 A10C *","Taalkode","N",1
+"1   A100","Naam","A",35
+"A   v002","Web URL","A",50
+"A   v224","E-mail adres","A",60
+"A   A10A","Telefoonnummer","N",12
+"A   v226","Gsm Nummer","N",12
+" 19 v017","Aardcode gestruktureerde mededeling","N",1
+"4   vs04","Betaaltermijn","A",4
 "1   A104","Straat","A",30
 "1   A105","Nummer","A",5
 "1   A106","Bus","A",4
@@ -13,12 +17,10 @@
 " 94 A109 *","Landkode volgens de POST","A",3
 "7   v150 *","ISOLandKode","A",2
 "    vs03","ISOMuntkode","A",3
-"A   A10A","Telefoonnummer","N",12
 "A   vs02","Fax/Telexnummer","N",12
-"A   v226","Gsm Nummer","N",12
-"A   v224","E-mail adres","A",60
+" 98 vs01","TitelKode 2","N",1
+"1   A125","Naam 2","A",35
 " 19 e072","Papierarm?","N",1
-"A   v002","Web URL","A",50
 "    v227","Datum laatste bezoek","N",10
 " 19 v163","Koppeling voor stockbeheer","N",1
 "&R  v016","Koppeling 6-Kostenrekening","N",7
@@ -31,8 +33,6 @@
 "7   v015","Registratienummer","A",10
 " 19 v151","Default Medekontraktant?","N",1
 "002 v111","Default BTW kode","N",1
-"4   vs04","Betaaltermijn","A",4
-"5   v017","Aardcode gestruktureerde mededeling","N",1
 "3   v018","Streefomzet (surplus commissie eindejaar)","D",9
 "    v247","Opmerkingen","A",50
 "    v254","SQL aankoopverrichting","A",50

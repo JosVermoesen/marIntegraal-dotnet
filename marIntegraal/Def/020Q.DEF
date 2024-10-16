@@ -17,6 +17,7 @@
 "3   v065  ","Voorschot schade (-)","D",10
 "    v245  ","Gebruikernummer","A",1
 "    v246  ","SysteemDatum en tijd bewerking","A",12
+"    v403  ","Kostenforfait !Paperless","N",12
 "    e069  ","Beheerskost","A",12
 "    e071  ","Fee %-age","N",8
 "    e072  ","Fee Bedrag EUR","A",12
