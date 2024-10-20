@@ -50,6 +50,7 @@ Partial Class BetalingsVerzoek
         Me.TabControlPremium = New System.Windows.Forms.TabControl()
         Me.TabPagePost = New System.Windows.Forms.TabPage()
         Me.TabPageEmail = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ListViewMailDetail = New System.Windows.Forms.ListView()
         Me.TabControlPremium.SuspendLayout()
         Me.TabPagePost.SuspendLayout()
@@ -59,7 +60,6 @@ Partial Class BetalingsVerzoek
         'cbTB2Info
         '
         Me.cbTB2Info.BackColor = System.Drawing.SystemColors.Control
-        Me.cbTB2Info.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbTB2Info.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cbTB2Info.Location = New System.Drawing.Point(410, 35)
         Me.cbTB2Info.Name = "cbTB2Info"
@@ -75,7 +75,6 @@ Partial Class BetalingsVerzoek
         Me.ckMetDatum.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ckMetDatum.Checked = True
         Me.ckMetDatum.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ckMetDatum.Cursor = System.Windows.Forms.Cursors.Default
         Me.ckMetDatum.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ckMetDatum.Location = New System.Drawing.Point(7, 65)
         Me.ckMetDatum.Name = "ckMetDatum"
@@ -88,7 +87,6 @@ Partial Class BetalingsVerzoek
         'cbListCompanies
         '
         Me.cbListCompanies.BackColor = System.Drawing.Color.White
-        Me.cbListCompanies.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbListCompanies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbListCompanies.ForeColor = System.Drawing.Color.Black
         Me.cbListCompanies.Location = New System.Drawing.Point(7, 38)
@@ -103,7 +101,6 @@ Partial Class BetalingsVerzoek
         Me.Post.BackColor = System.Drawing.SystemColors.Control
         Me.Post.Checked = True
         Me.Post.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.Post.Cursor = System.Windows.Forms.Cursors.Default
         Me.Post.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Post.Location = New System.Drawing.Point(301, 38)
         Me.Post.Name = "Post"
@@ -116,7 +113,6 @@ Partial Class BetalingsVerzoek
         'TekstBewaren
         '
         Me.TekstBewaren.BackColor = System.Drawing.SystemColors.Control
-        Me.TekstBewaren.Cursor = System.Windows.Forms.Cursors.Default
         Me.TekstBewaren.ForeColor = System.Drawing.SystemColors.ControlText
         Me.TekstBewaren.Location = New System.Drawing.Point(285, 257)
         Me.TekstBewaren.Name = "TekstBewaren"
@@ -179,7 +175,6 @@ Partial Class BetalingsVerzoek
         'cbLanguage
         '
         Me.cbLanguage.BackColor = System.Drawing.Color.White
-        Me.cbLanguage.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbLanguage.ForeColor = System.Drawing.Color.Black
         Me.cbLanguage.Location = New System.Drawing.Point(9, 257)
@@ -191,7 +186,6 @@ Partial Class BetalingsVerzoek
         'cbPaymentType
         '
         Me.cbPaymentType.BackColor = System.Drawing.Color.White
-        Me.cbPaymentType.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbPaymentType.ForeColor = System.Drawing.Color.Black
         Me.cbPaymentType.Location = New System.Drawing.Point(7, 11)
@@ -203,24 +197,22 @@ Partial Class BetalingsVerzoek
         'btPrintOut
         '
         Me.btPrintOut.BackColor = System.Drawing.SystemColors.Control
-        Me.btPrintOut.Cursor = System.Windows.Forms.Cursors.Default
         Me.btPrintOut.Enabled = False
         Me.btPrintOut.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btPrintOut.Location = New System.Drawing.Point(637, 130)
+        Me.btPrintOut.Location = New System.Drawing.Point(621, 6)
         Me.btPrintOut.Name = "btPrintOut"
         Me.btPrintOut.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.btPrintOut.Size = New System.Drawing.Size(82, 25)
+        Me.btPrintOut.Size = New System.Drawing.Size(82, 27)
         Me.btPrintOut.TabIndex = 38
-        Me.btPrintOut.Text = "&Drukaf"
+        Me.btPrintOut.Text = "&Genereer Lijst"
         Me.btPrintOut.UseVisualStyleBackColor = False
         '
         'btClose
         '
         Me.btClose.BackColor = System.Drawing.SystemColors.Control
-        Me.btClose.Cursor = System.Windows.Forms.Cursors.Default
         Me.btClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btClose.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btClose.Location = New System.Drawing.Point(636, 192)
+        Me.btClose.Location = New System.Drawing.Point(642, 9)
         Me.btClose.Name = "btClose"
         Me.btClose.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.btClose.Size = New System.Drawing.Size(83, 25)
@@ -232,9 +224,8 @@ Partial Class BetalingsVerzoek
         'bClear
         '
         Me.bClear.BackColor = System.Drawing.SystemColors.Control
-        Me.bClear.Cursor = System.Windows.Forms.Cursors.Default
         Me.bClear.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.bClear.Location = New System.Drawing.Point(636, 223)
+        Me.bClear.Location = New System.Drawing.Point(642, 40)
         Me.bClear.Name = "bClear"
         Me.bClear.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.bClear.Size = New System.Drawing.Size(83, 25)
@@ -246,7 +237,6 @@ Partial Class BetalingsVerzoek
         '
         Me._LabelInfo_0.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me._LabelInfo_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me._LabelInfo_0.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_0.ForeColor = System.Drawing.SystemColors.WindowText
         Me._LabelInfo_0.Location = New System.Drawing.Point(560, 70)
         Me._LabelInfo_0.Name = "_LabelInfo_0"
@@ -258,7 +248,6 @@ Partial Class BetalingsVerzoek
         'CRLFCaption
         '
         Me.CRLFCaption.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.CRLFCaption.Cursor = System.Windows.Forms.Cursors.Default
         Me.CRLFCaption.ForeColor = System.Drawing.Color.Black
         Me.CRLFCaption.Location = New System.Drawing.Point(567, 263)
         Me.CRLFCaption.Name = "CRLFCaption"
@@ -272,7 +261,6 @@ Partial Class BetalingsVerzoek
         '
         Me._LabelInfo_4.BackColor = System.Drawing.SystemColors.Control
         Me._LabelInfo_4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me._LabelInfo_4.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_4.ForeColor = System.Drawing.SystemColors.ControlText
         Me._LabelInfo_4.Location = New System.Drawing.Point(515, 263)
         Me._LabelInfo_4.Name = "_LabelInfo_4"
@@ -284,7 +272,6 @@ Partial Class BetalingsVerzoek
         '_LabelInfo_3
         '
         Me._LabelInfo_3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me._LabelInfo_3.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_3.ForeColor = System.Drawing.Color.Black
         Me._LabelInfo_3.Location = New System.Drawing.Point(435, 335)
         Me._LabelInfo_3.Name = "_LabelInfo_3"
@@ -297,7 +284,6 @@ Partial Class BetalingsVerzoek
         '_LabelInfo_2
         '
         Me._LabelInfo_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me._LabelInfo_2.Cursor = System.Windows.Forms.Cursors.Default
         Me._LabelInfo_2.ForeColor = System.Drawing.Color.Black
         Me._LabelInfo_2.Location = New System.Drawing.Point(251, 335)
         Me._LabelInfo_2.Name = "_LabelInfo_2"
@@ -327,7 +313,6 @@ Partial Class BetalingsVerzoek
         'ListViewPostDetail
         '
         Me.ListViewPostDetail.BackColor = System.Drawing.SystemColors.Window
-        Me.ListViewPostDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListViewPostDetail.ForeColor = System.Drawing.SystemColors.WindowText
         Me.ListViewPostDetail.FullRowSelect = True
         Me.ListViewPostDetail.HideSelection = False
@@ -341,7 +326,6 @@ Partial Class BetalingsVerzoek
         'btnAdd
         '
         Me.btnAdd.BackColor = System.Drawing.SystemColors.Control
-        Me.btnAdd.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnAdd.Enabled = False
         Me.btnAdd.ForeColor = System.Drawing.SystemColors.ControlText
@@ -359,7 +343,6 @@ Partial Class BetalingsVerzoek
         Me.MetOverschrijving.BackColor = System.Drawing.SystemColors.Control
         Me.MetOverschrijving.Checked = True
         Me.MetOverschrijving.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.MetOverschrijving.Cursor = System.Windows.Forms.Cursors.Default
         Me.MetOverschrijving.Enabled = False
         Me.MetOverschrijving.ForeColor = System.Drawing.SystemColors.ControlText
         Me.MetOverschrijving.Location = New System.Drawing.Point(412, 12)
@@ -377,35 +360,49 @@ Partial Class BetalingsVerzoek
         Me.TabControlPremium.Location = New System.Drawing.Point(7, 93)
         Me.TabControlPremium.Name = "TabControlPremium"
         Me.TabControlPremium.SelectedIndex = 0
-        Me.TabControlPremium.Size = New System.Drawing.Size(631, 189)
+        Me.TabControlPremium.Size = New System.Drawing.Size(717, 189)
         Me.TabControlPremium.TabIndex = 91
         '
         'TabPagePost
         '
         Me.TabPagePost.Controls.Add(Me.ListViewPostDetail)
+        Me.TabPagePost.Controls.Add(Me.btPrintOut)
         Me.TabPagePost.Location = New System.Drawing.Point(4, 22)
         Me.TabPagePost.Name = "TabPagePost"
         Me.TabPagePost.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPagePost.Size = New System.Drawing.Size(623, 163)
+        Me.TabPagePost.Size = New System.Drawing.Size(709, 163)
         Me.TabPagePost.TabIndex = 0
         Me.TabPagePost.Text = "Post"
         Me.TabPagePost.UseVisualStyleBackColor = True
         '
         'TabPageEmail
         '
+        Me.TabPageEmail.Controls.Add(Me.Button1)
         Me.TabPageEmail.Controls.Add(Me.ListViewMailDetail)
         Me.TabPageEmail.Location = New System.Drawing.Point(4, 22)
         Me.TabPageEmail.Name = "TabPageEmail"
         Me.TabPageEmail.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageEmail.Size = New System.Drawing.Size(623, 163)
+        Me.TabPageEmail.Size = New System.Drawing.Size(709, 163)
         Me.TabPageEmail.TabIndex = 1
         Me.TabPageEmail.Text = "Mail"
         Me.TabPageEmail.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.Enabled = False
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Button1.Location = New System.Drawing.Point(621, 6)
+        Me.Button1.Name = "Button1"
+        Me.Button1.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Button1.Size = New System.Drawing.Size(82, 29)
+        Me.Button1.TabIndex = 91
+        Me.Button1.Text = "&Genereer Mail"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'ListViewMailDetail
         '
         Me.ListViewMailDetail.BackColor = System.Drawing.SystemColors.Window
-        Me.ListViewMailDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListViewMailDetail.ForeColor = System.Drawing.SystemColors.WindowText
         Me.ListViewMailDetail.FullRowSelect = True
         Me.ListViewMailDetail.HideSelection = False
@@ -438,7 +435,6 @@ Partial Class BetalingsVerzoek
         Me.Controls.Add(Me.tbInfoTekst)
         Me.Controls.Add(Me.cbLanguage)
         Me.Controls.Add(Me.cbPaymentType)
-        Me.Controls.Add(Me.btPrintOut)
         Me.Controls.Add(Me.btClose)
         Me.Controls.Add(Me.bClear)
         Me.Controls.Add(Me._LabelInfo_0)
@@ -487,4 +483,5 @@ End Sub
     Friend WithEvents TabPagePost As TabPage
     Friend WithEvents TabPageEmail As TabPage
     Public WithEvents ListViewMailDetail As ListView
+    Public WithEvents Button1 As Button
 End Class

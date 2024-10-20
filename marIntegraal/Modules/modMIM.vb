@@ -775,49 +775,6 @@ ErrInput:
 
     End Function
 
-    Function IsDateOk(ByRef fDatum As String, ByRef fVlag As Short) As Boolean
-
-        Dim Dag As String = "  "
-        Dim Maand As String = "  "
-        Dim Jaar As String = "    "
-        Dim gDatum As String
-        Dim gPos As Short
-
-        IsDateOk = False
-        gDatum = fDatum
-        Do While InStr(gDatum, "/")
-            gPos = InStr(gDatum, "/")
-            gDatum = Left(gDatum, gPos - 1) & Mid(gDatum, gPos + 1)
-        Loop
-
-        Select Case fVlag
-            Case PERIODAS_TEXT, BOOKYEARAS_TEXT
-                Dag = Mid(gDatum, 1, 2)
-                Maand = Mid(gDatum, 3, 2)
-                Jaar = Mid(gDatum, 5, 4)
-            Case PERIODAS_KEY, BOOKYEARAS_KEY
-                Jaar = Mid(gDatum, 1, 4)
-                Maand = Mid(gDatum, 5, 2)
-                Dag = Mid(gDatum, 7, 2)
-            Case Else
-                MsgBox("Datum onjuist !")
-        End Select
-
-        Select Case fVlag
-            Case PERIODAS_TEXT, PERIODAS_KEY
-                If Jaar & Maand & Dag < Left(PERIOD_FROMTO, 8) Or Jaar & Maand & Dag > Right(PERIOD_FROMTO, 8) Then
-                Else
-                    IsDateOk = True
-                End If
-            Case BOOKYEARAS_TEXT, BOOKYEARAS_KEY
-                If Jaar & Maand & Dag < Left(BOOKYEAR_FROMTO, 8) Or Jaar & Maand & Dag > Right(BOOKYEAR_FROMTO, 8) Then
-                Else
-                    IsDateOk = True
-                End If
-        End Select
-
-    End Function
-
     Function VValdag(ByRef rDat1 As String, ByRef rvv As String) As String
         Dim adm1 As Short
         Dim irjr43, irdg43, irmd43, avd43 As Short
@@ -1227,4 +1184,66 @@ errorCMDPRINT:
             End If
         End If
     End Function
+
+    Function IsDateOk(ByRef fDatum As String, ByRef fVlag As Short) As Boolean
+
+        Dim Dag As String = "  "
+        Dim Maand As String = "  "
+        Dim Jaar As String = "    "
+        Dim gDatum As String
+        Dim gPos As Short
+
+        IsDateOk = False
+        gDatum = fDatum
+        Do While InStr(gDatum, "/")
+            gPos = InStr(gDatum, "/")
+            gDatum = Left(gDatum, gPos - 1) & Mid(gDatum, gPos + 1)
+        Loop
+
+        Select Case fVlag
+            Case PERIODAS_TEXT, BOOKYEARAS_TEXT
+                Dag = Mid(gDatum, 1, 2)
+                Maand = Mid(gDatum, 3, 2)
+                Jaar = Mid(gDatum, 5, 4)
+            Case PERIODAS_KEY, BOOKYEARAS_KEY
+                Jaar = Mid(gDatum, 1, 4)
+                Maand = Mid(gDatum, 5, 2)
+                Dag = Mid(gDatum, 7, 2)
+            Case Else
+                MsgBox("Datum onjuist !")
+        End Select
+
+        Select Case fVlag
+            Case PERIODAS_TEXT, PERIODAS_KEY
+                If Jaar & Maand & Dag < Left(PERIOD_FROMTO, 8) Or Jaar & Maand & Dag > Right(PERIOD_FROMTO, 8) Then
+                Else
+                    IsDateOk = True
+                End If
+            Case BOOKYEARAS_TEXT, BOOKYEARAS_KEY
+                If Jaar & Maand & Dag < Left(BOOKYEAR_FROMTO, 8) Or Jaar & Maand & Dag > Right(BOOKYEAR_FROMTO, 8) Then
+                Else
+                    IsDateOk = True
+                End If
+        End Select
+
+    End Function
+
+    Function DateText(ByRef fDate As String) As String
+
+        Dim day = Mid(fDate, 7, 2)
+        Dim month = Mid(fDate, 5, 2)
+        Dim year = Mid(fDate, 1, 4)
+        DateText = day & "/" & month & "/" & year
+
+    End Function
+
+    Function DateKey(ByRef fDate As String) As String
+
+        Dim Dag As String = Mid(fDate, 1, 2)
+        Dim Maand As String = Mid(fDate, 4, 2)
+        Dim Jaar = Mid(fDate, 7, 4)
+        DateKey = Jaar & Maand & Dag
+
+    End Function
+
 End Module
